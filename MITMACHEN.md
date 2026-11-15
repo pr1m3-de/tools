@@ -48,6 +48,7 @@ werkzeuge/            Hilfsskripte (Node.js ohne Pakete), werden nicht ausgelief
 CNAME                 Domain für GitHub Pages
 .nojekyll             GitHub Pages liefert alle Dateien unverändert aus (sonst würden .md-Dateien umgewandelt)
 LICENSE, LIZENZ.md    Code unter MIT, Aufgabenblätter unter CC BY 4.0
+FEHLERPROTOKOLL.md    alle bisherigen Fehler mit Ursache und Behebung
 ```
 
 ## 3. Wie eine Seite funktioniert
@@ -222,6 +223,7 @@ Dann http://localhost:8000/ im Browser. Vor dem Einreichen prüfen:
 1. Repo auf GitHub forken, einen Branch mit sprechendem Namen anlegen (`dach-dachflaeche`).
 2. Commit-Nachricht auf Deutsch: erste Zeile, was sich ändert; darunter Stichpunkte.
 3. Pull Request gegen `main` öffnen und kurz sagen, was getestet wurde.
+4. Wer einen Fehler behebt, trägt ihn oben in [FEHLERPROTOKOLL.md](FEHLERPROTOKOLL.md) ein: Fehler, Ursache, Behebung, PR.
 
 Fehler gefunden, aber keine Zeit für Code? Ein Issue auf GitHub oder eine Mail an support@pr1m3.de reicht.
 
