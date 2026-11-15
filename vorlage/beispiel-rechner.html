@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <!--
+    BEISPIELSEITE ZUM KOPIEREN
+    ==========================
+    Diese Seite zeigt, wie ein Rechner der Sammlung aufgebaut ist. Sie steht nicht auf der Startseite
+    und wird von Suchmaschinen nicht aufgenommen (noindex über werkzeuge/seo-bauen.js).
+
+    So wird daraus ein eigener Rechner (ausführlich in MITMACHEN.md):
+      1. Datei in den passenden Bereich kopieren, z. B. nach dach/dachflaeche.html. Die Pfade ../ bleiben gleich.
+      2. Titel, Beschreibung und alles in Rechner.seite({ … }) anpassen.
+      3. Eintrag in index.html (Array eintraege), dann node werkzeuge/seo-bauen.js, dann sw.js (DATEIEN und STAND).
+  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beispiel: Bodenfläche und Material – Formeln &amp; Rechner</title>
+  <meta name="description" content="Beispielseite für Mitmachende: Bodenfläche, Umfang und Diagonale eines Raums, Material mit Verschnitt und Kosten – zeigt Eingaben, Ergebnis, Löser, Rechenweg, Formelsammlung und Animation.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/vorlage/beispiel-rechner.html">
+  <meta name="robots" content="noindex, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Beispiel: Bodenfläche und Material">
+  <meta property="og:description" content="Beispielseite für Mitmachende: Bodenfläche, Umfang und Diagonale eines Raums, Material mit Verschnitt und Kosten – zeigt Eingaben, Ergebnis, Löser, Rechenweg, Formelsammlung und Animation.">
+  <meta property="og:url" content="https://tools.pr1m3.de/vorlage/beispiel-rechner.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Beispiel: Bodenfläche und Material">
+  <meta name="twitter:description" content="Beispielseite für Mitmachende: Bodenfläche, Umfang und Diagonale eines Raums, Material mit Verschnitt und Kosten – zeigt Eingaben, Ergebnis, Löser, Rechenweg, Formelsammlung und Animation.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/vorlage/beispiel-rechner.html#seite","name":"Beispiel: Bodenfläche und Material","url":"https://tools.pr1m3.de/vorlage/beispiel-rechner.html","inLanguage":"de","description":"Beispielseite für Mitmachende: Bodenfläche, Umfang und Diagonale eines Raums, Material mit Verschnitt und Kosten – zeigt Eingaben, Ergebnis, Löser, Rechenweg, Formelsammlung und Animation.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/vorlage/beispiel-rechner.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/vorlage/beispiel-rechner.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Beispiel: Bodenfläche und Material","item":"https://tools.pr1m3.de/vorlage/beispiel-rechner.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/vorlage/beispiel-rechner.html#fragen","mainEntity":[{"@type":"Question","name":"Wie viel Verschnitt muss man einplanen?","acceptedAnswer":{"@type":"Answer","text":"Bei gerade verlegten Fliesen, Laminat oder Parkett etwa 5 bis 10 %, bei diagonaler Verlegung oder vielen Ecken 15 % und mehr. Wer Muster versetzt oder große Formate verlegt, rechnet eher mit dem oberen Wert."}},{"@type":"Question","name":"Wofür braucht man den Umfang?","acceptedAnswer":{"@type":"Answer","text":"Für Sockelleisten, Randdämmstreifen und Fugen an der Wand. Türöffnungen werden davon abgezogen."}},{"@type":"Question","name":"Woran erkennt man, ob ein Raum rechtwinklig ist?","acceptedAnswer":{"@type":"Answer","text":"Beide Diagonalen messen. Sind sie gleich lang, ist der Raum rechtwinklig. Die berechnete Diagonale zeigt, welcher Wert herauskommen muss."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/vorlage/beispiel-rechner.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <!-- basis.js im <head>, ohne defer: setzt das Farbthema, bevor die Seite sichtbar wird -->
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <!-- Kopf und Fuß baut basis.js. data-wurzel = Weg zurück zur Startseite -->
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <!-- data-rechner: hier baut rechner.js alles auf. Statischer Inhalt (häufige Fragen) wandert ans Ende. -->
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie viel Verschnitt muss man einplanen?</summary><p>Bei gerade verlegten Fliesen, Laminat oder Parkett etwa 5 bis 10 %, bei diagonaler Verlegung oder vielen Ecken 15 % und mehr. Wer Muster versetzt oder große Formate verlegt, rechnet eher mit dem oberen Wert.</p></details>
+        <details><summary>Wofür braucht man den Umfang?</summary><p>Für Sockelleisten, Randdämmstreifen und Fugen an der Wand. Türöffnungen werden davon abgezogen.</p></details>
+        <details><summary>Woran erkennt man, ob ein Raum rechtwinklig ist?</summary><p>Beide Diagonalen messen. Sind sie gleich lang, ist der Raum rechtwinklig. Die berechnete Diagonale zeigt, welcher Wert herauskommen muss.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;   // Animationen laufen immer
+    // Kurznamen aus dem Baukasten: z = Zahl als Text (deutsch), tz = Zahl für TeX, E = Ergebnis hervorheben
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const BLAU = '#2B7BB9', GRUEN = '#2E8B57', ORANGE = '#C2410C', GELB = '#F2A541';
+    // Wert mit Einheit für TeX, z. B. m(12.5, 2, 'm²') → 12{,}50\,\text{m}^2
+    const m = function (w, n, e) { return tz(w, n) + '\\,\\text{' + String(e).replace(/²/g, '}^2\\text{') + '}'; };
+    const VERSCHNITT = { gerade: 8, versetzt: 10, diagonal: 15 };
+
+    R.seite({
+      titel: 'Beispiel: Bodenfläche und Material',
+      einleitung: 'Beispielseite für alle, die mitmachen wollen: Fläche, Umfang und Diagonale eines Raums, Material mit Verschnitt und Kosten. Die Seite zeigt jeden Baustein des Rechner-Baukastens und dient als Vorlage zum Kopieren.',
+      hilfe: 'Maße innen von Wand zu Wand messen. Der Verschnitt hängt von der Verlegeart ab und wird beim Wechsel der Verlegeart vorgeschlagen.',
+
+      // ---------- Eingaben: Gruppen mit Feldern ----------
+      // Feld: k = Schlüssel, tex = Formelzeichen, name, e = Einheit, min/max = erlaubter Bereich, ganz = nur ganze Zahlen,
+      //       wahl = Auswahlliste, bei = reagiert auf Änderung, wenn = nur zeigen, wenn …, hilfe = Erklärung beim Darüberfahren
+      gruppen: [
+        { titel: 'Raum', farbe: BLAU, felder: [
+          { k: 'a', tex: 'a', name: 'Länge', e: 'm', min: 0.1, max: 100 },
+          { k: 'b', tex: 'b', name: 'Breite', e: 'm', min: 0.1, max: 100 },
+          { k: 'tuer', name: 'Türöffnungen (für Sockelleiste)', e: 'm', min: 0, max: 50, hilfe: 'Summe der Türbreiten; dort kommt keine Sockelleiste hin.' }
+        ] },
+        { titel: 'Belag', farbe: ORANGE, felder: [
+          { k: 'art', name: 'Verlegeart', wahl: [['gerade', 'gerade'], ['versetzt', 'versetzt (Drittelverband)'], ['diagonal', 'diagonal']],
+            bei: function (e, wert, setze) { setze({ v: VERSCHNITT[wert] }); } },
+          { k: 'v', tex: 'v', name: 'Verschnitt', e: '%', min: 0, max: 50 },
+          { k: 'paket', name: 'Inhalt je Paket', e: 'm²', min: 0.1, max: 20 },
+          { k: 'preis', name: 'Preis je m²', e: '€', min: 0, max: 1000 }
+        ] }
+      ],
+      // Beispielwerte: zeigen beim ersten Öffnen sofort ein sinnvolles Ergebnis
+      beispiel: { a: 5, b: 4, tuer: 0.9, art: 'gerade', v: 8, paket: 2.2, preis: 29 },
+
+      // ---------- Rechnen: nur Zahlen, keine Ausgabe ----------
+      rechne: function (e) {
+        const r = {};
+        r.A = e.a * e.b;
+        r.U = 2 * (e.a + e.b);
+        r.d = Math.sqrt(e.a * e.a + e.b * e.b);
+        r.leiste = Math.max(0, r.U - e.tuer);
+        r.bedarf = r.A * (1 + e.v / 100);
+        r.pakete = Math.ceil(r.bedarf / e.paket - 1e-9);
+        r.gekauft = r.pakete * e.paket;
+        r.rest = r.gekauft - r.A;
+        r.kosten = r.gekauft * e.preis;
+        return r;
+      },
+
+      // ---------- Ergebnis: Meldungen, Urteil, Kacheln, Nachweise, Tabellen ----------
+      ergebnis: function (r, e, H) {
+        H.urteil(null, z(r.pakete, 0) + ' Pakete');
+        if (e.tuer >= r.U) H.meldung('Die Türöffnungen sind breiter als der ganze Umfang – bitte prüfen.', true);
+        if (e.v < 5) H.meldung('Weniger als 5 % Verschnitt reicht fast nie. Lieber ein Paket mehr kaufen als später nachbestellen: Farbe und Charge können abweichen.');
+        H.kacheln([
+          [z(r.A, 2) + ' m²', 'Bodenfläche', BLAU],
+          [z(r.leiste, 2) + ' m', 'Sockelleiste (Umfang ohne Türen)', GRUEN],
+          [z(r.pakete, 0) + ' Pakete', z(r.gekauft, 2) + ' m² gekauft, ' + z(r.rest, 2) + ' m² Reserve', ORANGE],
+          [z(r.kosten, 2) + ' €', 'Material', GELB]
+        ]);
+        H.nachweise([
+          [r.rest >= r.A * e.v / 100 - 1e-9, 'Reserve deckt den Verschnitt', z(r.rest, 2) + ' m² ≥ ' + z(r.A * e.v / 100, 2) + ' m²'],
+          [null, 'Rechtwinklig?', 'beide Diagonalen müssen ' + z(r.d, 2) + ' m lang sein']
+        ]);
+        H.tabelle('Verschnitt im Vergleich', ['Verlegeart', 'Verschnitt', 'Bedarf', 'Pakete', 'Kosten'],
+          Object.keys(VERSCHNITT).map(function (k) {
+            const v = VERSCHNITT[k], p = Math.ceil(r.A * (1 + v / 100) / e.paket - 1e-9);
+            return [k, v + ' %', z(r.A * (1 + v / 100), 2) + ' m²', String(p), z(p * e.paket * e.preis, 2) + ' €'];
+          }), { zahl: [1, 2, 3, 4], klasse: function (i) { return Object.keys(VERSCHNITT)[i] === e.art ? 'gewaehlt' : ''; } });
+      },
+
+      // ---------- Rechenweg mit den eingesetzten Zahlen: [Titel, TeX] ----------
+      weg: function (r, e) {
+        return [
+          ['Fläche', 'A = a \\cdot b = ' + m(e.a, 2, 'm') + ' \\cdot ' + m(e.b, 2, 'm') + ' = ' + E(m(r.A, 2, 'm²'))],
+          ['Umfang', 'U = 2 \\cdot (a + b) = 2 \\cdot (' + tz(e.a, 2) + ' + ' + tz(e.b, 2) + ') = ' + E(m(r.U, 2, 'm'))],
+          ['Diagonale', 'd = \\sqrt{a^2 + b^2} = \\sqrt{' + tz(e.a, 2) + '^2 + ' + tz(e.b, 2) + '^2} = ' + E(m(r.d, 2, 'm'))],
+          ['Bedarf mit Verschnitt', 'A_\\text{B} = A \\cdot \\left(1 + \\frac{v}{100}\\right) = ' + tz(r.A, 2) + ' \\cdot ' + tz(1 + e.v / 100, 2) + ' = ' + E(m(r.bedarf, 2, 'm²'))],
+          ['Pakete (aufgerundet)', 'n = \\left\\lceil \\frac{A_\\text{B}}{A_\\text{P}} \\right\\rceil = \\left\\lceil \\frac{' + tz(r.bedarf, 2) + '}{' + tz(e.paket, 2) + '} \\right\\rceil = ' + E(String(r.pakete))]
+        ];
+      },
+
+      // ---------- Löser in jede Richtung ----------
+      // Bekannte Werte eintragen, der Rest wird berechnet. Daraus erzeugt der Lernbereich auch Übungsaufgaben.
+      loeser: {
+        titel: 'Rechteck in jede Richtung',
+        hilfe: 'Zwei Größen eintragen, darunter Länge oder Breite – zum Beispiel Fläche und Länge oder Umfang und Breite. Der Rest wird berechnet.',
+        felder: [
+          { k: 'a', tex: 'a', name: 'Länge', e: 'm', min: 0.01, max: 1000, n: 2 },
+          { k: 'b', tex: 'b', name: 'Breite', e: 'm', min: 0.01, max: 1000, n: 2 },
+          { k: 'A', tex: 'A', name: 'Fläche', e: 'm²', min: 0.0001, max: 1e6, n: 2 },
+          { k: 'U', tex: 'U', name: 'Umfang', e: 'm', min: 0.04, max: 4000, n: 2 },
+          { k: 'd', tex: 'd', name: 'Diagonale', e: 'm', min: 0.01, max: 1500, n: 2 }
+        ],
+        beispiel: { A: 20, a: 5 },
+        // v: beteiligte Größen; f: beide Seiten der Gleichung; loese: geschlossene Lösung je Größe; weg: TeX für den Rechenweg
+        gleichungen: [
+          { name: 'Fläche', v: ['A', 'a', 'b'], f: function (x) { return [x.A, x.a * x.b]; },
+            loese: { A: function (x) { return x.a * x.b; }, a: function (x) { return x.A / x.b; }, b: function (x) { return x.A / x.a; } },
+            weg: function (k, x) { return k === 'A' ? 'A = a \\cdot b = ' + E(m(x.A, 2, 'm²')) : k + ' = \\frac{A}{' + (k === 'a' ? 'b' : 'a') + '} = \\frac{' + tz(x.A, 2) + '}{' + tz(k === 'a' ? x.b : x.a, 2) + '} = ' + E(m(x[k], 2, 'm')); } },
+          { name: 'Umfang', v: ['U', 'a', 'b'], f: function (x) { return [x.U, 2 * (x.a + x.b)]; },
+            loese: { U: function (x) { return 2 * (x.a + x.b); }, a: function (x) { return x.U / 2 - x.b; }, b: function (x) { return x.U / 2 - x.a; } } },
+          { name: 'Diagonale', v: ['d', 'a', 'b'], f: function (x) { return [x.d * x.d, x.a * x.a + x.b * x.b]; },
+            loese: { d: function (x) { return Math.sqrt(x.a * x.a + x.b * x.b); }, a: function (x) { return Math.sqrt(x.d * x.d - x.b * x.b); }, b: function (x) { return Math.sqrt(x.d * x.d - x.a * x.a); } } }
+        ]
+      },
+
+      // ---------- Formelsammlung: [Name, TeX, Hinweis] – liest auch der Lernbereich ----------
+      sammlung: [
+        ['Fläche des Rechtecks', 'A = a \\cdot b', 'Länge mal Breite'],
+        ['Umfang', 'U = 2 \\cdot (a + b)', 'Grundlage für Sockelleisten und Randstreifen'],
+        ['Diagonale (Pythagoras)', 'd = \\sqrt{a^2 + b^2}', 'gleich lange Diagonalen: der Raum ist rechtwinklig'],
+        ['Bedarf mit Verschnitt', 'A_\\text{B} = A \\cdot \\left(1 + \\frac{v}{100}\\right)', 'gerade etwa 5 bis 10 %, diagonal etwa 15 %'],
+        ['Pakete', 'n = \\left\\lceil \\frac{A_\\text{B}}{A_\\text{P}} \\right\\rceil', 'immer aufrunden']
+      ],
+      // Quellen und Annahmen offen nennen
+      quellen: 'Verschnittwerte sind übliche Richtwerte aus Herstellerangaben und Handwerkspraxis; maßgeblich sind die Verlegeanleitung des Belags und die tatsächliche Raumform.',
+
+      // ---------- Zeichnung oder Animation (Canvas) ----------
+      // zeichne(cx, B, H, t, r, e): cx = Canvas, B/H = Breite/Höhe in Pixeln, t = Zeit in ms, r = Ergebnis, e = Eingaben
+      bild: {
+        titel: 'Grundriss', label: 'Grundriss des Raums mit Maßen, Diagonale und einer Sockelleiste, die rundum verlegt wird', animiert: !bewegungAus,
+        hinweis: function (r) { return 'Die grüne Linie läuft den Umfang ab: ' + z(r.leiste, 2) + ' m Sockelleiste.'; },
+        zeichne: function (cx, B, H, t, r, e) {
+          const rand = 40, s = Math.min((B - 2 * rand) / e.a, (H - 2 * rand) / e.b);
+          const w = e.a * s, h = e.b * s, x0 = (B - w) / 2, y0 = (H - h) / 2;
+          // Belag als Raster, je nach Verlegeart
+          cx.save(); cx.beginPath(); cx.rect(x0, y0, w, h); cx.clip();
+          cx.fillStyle = 'rgba(194, 65, 12, 0.10)'; cx.fillRect(x0, y0, w, h);
+          cx.strokeStyle = 'rgba(194, 65, 12, 0.35)'; cx.lineWidth = 1;
+          const raster = 0.6 * s;
+          if (e.art === 'diagonal') {
+            for (let k = -h; k < w + h; k += raster) { cx.beginPath(); cx.moveTo(x0 + k, y0); cx.lineTo(x0 + k + h, y0 + h); cx.stroke(); cx.beginPath(); cx.moveTo(x0 + k + h, y0); cx.lineTo(x0 + k, y0 + h); cx.stroke(); }
+          } else {
+            for (let y = y0, i = 0; y < y0 + h; y += raster / 2, i++) {
+              cx.beginPath(); cx.moveTo(x0, y); cx.lineTo(x0 + w, y); cx.stroke();
+              const versatz = e.art === 'versetzt' ? (i % 3) * raster / 3 : 0;
+              for (let x = x0 - versatz; x < x0 + w; x += raster) { cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y + raster / 2); cx.stroke(); }
+            }
+          }
+          cx.restore();
+          // Wände und Diagonale
+          cx.strokeStyle = F('--text'); cx.lineWidth = 3; cx.strokeRect(x0, y0, w, h);
+          cx.setLineDash([6, 5]); cx.strokeStyle = BLAU; cx.lineWidth = 1.5;
+          cx.beginPath(); cx.moveTo(x0, y0 + h); cx.lineTo(x0 + w, y0); cx.stroke(); cx.setLineDash([]);
+          // Maße
+          R.Z.text(cx, 'a = ' + z(e.a, 2) + ' m', x0 + w / 2, y0 + h + 18, 'center', 12, true);
+          cx.save(); cx.translate(x0 - 18, y0 + h / 2); cx.rotate(-Math.PI / 2); R.Z.text(cx, 'b = ' + z(e.b, 2) + ' m', 0, 0, 'center', 12, true); cx.restore();
+          R.Z.text(cx, 'd = ' + z(r.d, 2) + ' m', x0 + w / 2 + 8, y0 + h / 2 - 10, 'left', 12, true, BLAU);
+          // Animation: Sockelleiste läuft rundum (t in Millisekunden)
+          const umfang = 2 * (w + h), anteil = (t / 6000) % 1, strecke = anteil * umfang;
+          cx.strokeStyle = GRUEN; cx.lineWidth = 5; cx.lineCap = 'round'; cx.beginPath(); cx.moveTo(x0, y0);
+          const ecken = [[x0 + w, y0], [x0 + w, y0 + h], [x0, y0 + h], [x0, y0]];
+          let rest = strecke, px = x0, py = y0;
+          for (let i = 0; i < 4 && rest > 0; i++) {
+            const qx = ecken[i][0], qy = ecken[i][1], l = Math.abs(qx - px) + Math.abs(qy - py), f = Math.min(1, rest / l);
+            px = px + (qx - px) * f; py = py + (qy - py) * f; cx.lineTo(px, py); rest -= l;
+          }
+          cx.stroke(); cx.lineCap = 'butt';
+          R.Z.text(cx, 'A = ' + z(r.A, 2) + ' m²', x0 + 10, y0 + 16, 'left', 13, true);
+        }
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
