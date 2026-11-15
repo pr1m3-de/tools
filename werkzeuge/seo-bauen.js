@@ -20,7 +20,7 @@ const DOMAIN = 'https://' + fs.readFileSync(path.join(WURZEL, 'CNAME'), 'utf8').
 const MARKE = 'Formeln & Rechner';
 const ZUSATZ = ' – ' + MARKE;
 const BILD = DOMAIN + '/assets/symbol-512.png';
-const NICHT_INDEXIEREN = ['projektmappe.html'];   // persönliche Ablage im Browser, kein eigener Inhalt
+const NICHT_INDEXIEREN = ['projektmappe.html', 'vorlage/beispiel-rechner.html'];   // persönliche Ablage im Browser / Vorlage für Mitmachende, kein eigener Inhalt
 const ZUSATZDATEN = (function () { try { return JSON.parse(fs.readFileSync(path.join(__dirname, 'seo-daten.json'), 'utf8')); } catch (e) { return {}; } })();
 const HERAUSGEBER = { '@type': 'Organization', '@id': DOMAIN + '/#herausgeber', name: MARKE, url: DOMAIN + '/', logo: BILD };
 
