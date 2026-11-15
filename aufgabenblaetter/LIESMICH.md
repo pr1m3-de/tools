@@ -33,3 +33,7 @@ Der Kopf zwischen den `---` ist freiwillig. `stufe` ist `leicht`, `mittel` oder 
 Möglich sind: Überschriften `#` bis `####`, **fett**, *kursiv*, Listen (`-`, `1.`, `- [ ]`), Tabellen, Zitate `>`, Trennlinie `---`, Links, Bilder (nur Dateien im Repo, z. B. `![Schaltung](schaltung.svg)` im selben Ordner), Formeln `$…$` und `$$…$$` (KaTeX), Lücken `___` sowie die Blöcke `:::lösung`, `:::tipp` und `:::hinweis`, die zum Aufklappen sind.
 
 Lösungen sind zuerst verborgen. Auf der Lernseite lassen sie sich einzeln oder alle zusammen zeigen, und das Blatt lässt sich mit oder ohne Lösungen drucken.
+
+## Lizenz
+
+Alle Blätter in diesem Ordner stehen unter [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de): frei nutzen, ändern und weitergeben, auch im Unterricht, mit Nennung der Quelle („Formeln & Rechner, tools.pr1m3.de, CC BY 4.0“). Wer ein Blatt beisteuert, stellt es unter dieselbe Lizenz. Der übrige Code steht unter MIT, siehe [LIZENZ.md](../LIZENZ.md).

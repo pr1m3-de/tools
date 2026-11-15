@@ -240,6 +240,7 @@
         'Etwas passt nicht? Bitte melden an <a href="mailto:support@pr1m3.de?subject=' + encodeURIComponent('Hinweis zu: ' + document.title) + '">support@pr1m3.de</a>.</p>' +
         '<span class="netz" role="status"></span>' +
         '<span>Läuft komplett offline, ohne externe Dateien' + (/^https?:$/.test(location.protocol) && 'serviceWorker' in navigator ? ', einmal geladen auch ohne Netz' : '') + '.</span>' +
+        '<span>Offen: <a href="https://github.com/pr1m3-de/tools" rel="noopener">Quelltext auf GitHub</a> · Code MIT, Aufgabenblätter CC BY 4.0.</span>' +
         '<span>Formelsatz mit KaTeX (MIT-Lizenz), lokal in assets/katex.</span>' +
       '</footer>';
     netzZeigen();
