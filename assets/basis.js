@@ -166,7 +166,7 @@
         '<a class="marke" href="' + wurzel + 'index.html"><span class="marke-zeichen" aria-hidden="true">∑</span>Formeln &amp; Rechner</a>' +
         '<nav class="reiter" aria-label="Hauptnavigation">' +
           '<a href="' + wurzel + 'index.html"' + (hier === 'start' ? ' aria-current="page"' : '') + '>Übersicht</a>' +
-          '<a href="' + wurzel + 'lernen.html"' + (/lernen\.html$/.test(location.pathname) ? ' aria-current="page"' : '') + '>Lernen</a>' +
+          '<a href="' + wurzel + 'lernen.html"' + (/lernen\.html$/.test(location.pathname) ? ' aria-current="page"' : ' class="neu" title="Neu: Aufgaben, Formelkarten und Aufgabenblätter"') + '>Lernen</a>' +
           '<a href="' + wurzel + 'index.html#bereiche">Bereiche</a>' +
           '<a href="' + wurzel + 'projektmappe.html"' + (/projektmappe\.html$/.test(location.pathname) ? ' aria-current="page"' : '') + '>Projekte</a>' +
         '</nav>' +

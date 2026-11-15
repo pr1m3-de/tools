@@ -144,6 +144,24 @@ button b, button strong, .karte h3 { hyphens: auto; -webkit-hyphens: auto; }
   border-radius: 999px;
 }
 .seitenkopf nav a:hover, .seitenkopf nav a[aria-current="page"] { color: var(--text); background: var(--flaeche); }
+/* Reiter „Lernen“ als neue Funktion hervorheben: Farbrand läuft langsam um, Punkt pulsiert */
+.seitenkopf nav a.neu {
+  position: relative;
+  color: var(--text); font-weight: 600;
+  border: 1.5px solid transparent;
+  background: linear-gradient(var(--flaeche), var(--flaeche)) padding-box, linear-gradient(90deg, #2B7BB9, #6E6FA6, #E4572E, #F2A541, #6E6FA6, #2B7BB9) 0 0 / 300% 100% border-box;
+  padding: 5px 8.5px;
+  animation: neu-rand 4s ease-in-out infinite alternate;
+}
+.seitenkopf nav a.neu::after {
+  content: ""; position: absolute; top: -3px; right: -2px; width: 7px; height: 7px; border-radius: 50%;
+  background: #E4572E; box-shadow: 0 0 0 0 rgba(228, 87, 46, .55);
+  animation: neu-punkt 2.4s ease-out infinite;
+}
+@keyframes neu-rand { to { background-position: 0 0, 100% 0; } }
+@keyframes neu-punkt { 0% { box-shadow: 0 0 0 0 rgba(228, 87, 46, .55); } 70%, 100% { box-shadow: 0 0 0 7px rgba(228, 87, 46, 0); } }
+@media (prefers-reduced-motion: reduce) { .seitenkopf nav a.neu, .seitenkopf nav a.neu::after { animation: none; } }
+@media print { .seitenkopf nav a.neu, .seitenkopf nav a.neu::after { animation: none; } }
 
 .themenschalter {
   width: 38px; height: 38px;
@@ -177,11 +195,14 @@ button b, button strong, .karte h3 { hyphens: auto; -webkit-hyphens: auto; }
   .seitenkopf nav.reiter::-webkit-scrollbar { display: none; }
   .seitenkopf nav.reiter a { padding: 6px 4px; font-size: .9rem; white-space: nowrap; background: var(--flaeche); flex: 1 1 0; min-width: 0; text-align: center; }
   .seitenkopf nav.reiter a[aria-current="page"] { background: var(--text); color: var(--grund); }
+  .seitenkopf nav.reiter a.neu::after { top: 2px; right: 3px; }
+  .seitenkopf nav.reiter a.neu { background: linear-gradient(var(--flaeche), var(--flaeche)) padding-box, linear-gradient(90deg, #2B7BB9, #6E6FA6, #E4572E, #F2A541, #6E6FA6, #2B7BB9) 0 0 / 300% 100% border-box; padding: 5px 2.5px; }
 }
 @media (max-width: 360px) {
   .seitenkopf .marke { font-size: .95rem; gap: 8px; }
   .seitenkopf .kopf-knoepfe { gap: 2px; }
   .seitenkopf nav.reiter a { font-size: .84rem; padding: 6px 2px; }
+  .seitenkopf nav.reiter a.neu { padding: 5px .5px; }
 }
 
 /* ---------- Großer Einstieg ---------- */
