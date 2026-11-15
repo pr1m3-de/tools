@@ -408,6 +408,8 @@ ol.weg li::before {
 }
 .seitenfuss .haftung { flex: 1 1 100%; margin: 0 0 6px; padding: 10px 14px; border-radius: var(--rund); background: var(--flaeche); max-width: none; line-height: 1.45; }
 .seitenfuss .haftung a { color: var(--text); font-weight: 600; }
+.seitenfuss > span a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.seitenfuss > span a:hover { color: var(--text); }
 .netz { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 .netz::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ergebnis); box-shadow: 0 0 0 3px var(--ergebnis-flaeche); flex: none; }
 .netz.netz-aus::before { background: var(--fehler); box-shadow: 0 0 0 3px var(--fehler-flaeche); }
