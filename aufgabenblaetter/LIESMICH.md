@@ -34,6 +34,14 @@ Möglich sind: Überschriften `#` bis `####`, **fett**, *kursiv*, Listen (`-`, `
 
 Lösungen sind zuerst verborgen. Auf der Lernseite lassen sie sich einzeln oder alle zusammen zeigen, und das Blatt lässt sich mit oder ohne Lösungen drucken.
 
+### So wird das Blatt dargestellt
+
+- Alles zwischen der `#`-Überschrift und der ersten `##`-Überschrift (z. B. Name, Datum, benötigte Formeln) erscheint als Kasten oben.
+- Jede `## Aufgabe 3 – Titel` wird eine Karte mit runder Nummer 3 und dem Titel. Andere `##`-Überschriften bleiben normale Abschnitte.
+- Nummerierte Listen in einer Aufgabe (`1.`, `2.`) erscheinen als Teilaufgaben a), b), c).
+- Beim Drucken ohne Lösungen bekommt jede Aufgabe Rechenkästchen; je mehr Teilaufgaben, desto mehr Platz.
+- Unten steht automatisch die Quelle mit Lizenz.
+
 ## Lizenz
 
 Alle Blätter in diesem Ordner stehen unter [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.de): frei nutzen, ändern und weitergeben, auch im Unterricht, mit Nennung der Quelle („Formeln & Rechner, tools.pr1m3.de, CC BY 4.0“). Wer ein Blatt beisteuert, stellt es unter dieselbe Lizenz. Der übrige Code steht unter MIT, siehe [LIZENZ.md](../LIZENZ.md).
