@@ -83,6 +83,70 @@
     .warte { color: var(--leise); padding: 20px 0; }
     #lade-rahmen { position: absolute; left: -10000px; top: 0; width: 1000px; height: 800px; overflow: hidden; visibility: hidden; }
     #lade-rahmen iframe { width: 1000px; height: 800px; border: 0; }
+    /* ---------- Kopfrechnen ---------- */
+    .kr-sichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .kr-sichten .knopf[aria-pressed="true"], .kr-stufen .knopf[aria-pressed="true"], .kr-kat .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .kr-kat { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .kr-chip { padding: 5px 11px; font-size: .85rem; border-radius: 999px; }
+    .kr-stufen { margin: 0 0 10px; }
+    .kr-stufen .kr-stufe-4[aria-pressed="false"] { border-color: #C2410C; color: #C2410C; }
+    .kr-sperre { margin: 0 0 12px; padding: 7px 12px; border-radius: var(--rund-klein); background: var(--achtung-flaeche); font-size: .88rem; font-weight: 600; }
+    .kr-tricks { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); align-items: start; }
+    .kr-trick { min-width: 0; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); padding: 0 14px; }
+    .kr-kurz, .kr-anleitung li, .kr-schritte li { overflow-x: auto; overflow-y: hidden; }
+    .kr-anleitung, .kr-schritte { list-style-position: inside; padding-left: 0 !important; }
+    .kr-anleitung li::marker, .kr-schritte li::marker { font-weight: 700; color: var(--leise); }
+    .kr-trick[open] { padding-bottom: 12px; grid-column: 1 / -1; }
+    .kr-trick > summary { cursor: pointer; padding: 12px 0; display: flex; gap: 10px; align-items: center; justify-content: space-between; font-weight: 600; list-style: none; }
+    .kr-trick > summary::-webkit-details-marker { display: none; }
+    .kr-trick.kr-drueber > summary { opacity: .55; }
+    .kr-trick-titel { min-width: 0; }
+    .kr-marke { flex: none; font-size: .74rem; font-weight: 700; padding: 2px 9px; border-radius: 999px; background: var(--flaeche2); color: var(--leise); white-space: nowrap; }
+    .kr-marke.kr-stufe-1 { background: var(--ergebnis-flaeche); color: var(--ergebnis); }
+    .kr-marke.kr-stufe-2 { background: color-mix(in srgb, #2B7BB9 15%, transparent); color: #2B7BB9; }
+    .kr-marke.kr-stufe-3 { background: var(--achtung-flaeche); color: #B45309; }
+    .kr-marke.kr-stufe-4 { background: var(--fehler-flaeche); color: var(--fehler); }
+    :root[data-thema="dunkel"] .kr-marke.kr-stufe-3 { color: #F2A541; } :root[data-thema="dunkel"] .kr-marke.kr-stufe-2 { color: #6FB1E6; }
+    @media (prefers-color-scheme: dark) { :root:not([data-thema="hell"]) .kr-marke.kr-stufe-3 { color: #F2A541; } :root:not([data-thema="hell"]) .kr-marke.kr-stufe-2 { color: #6FB1E6; } }
+    .kr-kurz { margin: 0 0 8px; font-weight: 600; }
+    .kr-anleitung { margin: 0 0 10px; padding-left: 1.4em; line-height: 1.6; }
+    .kr-anleitung li { margin: 3px 0; }
+    .kr-beispiel, .kr-loesung { background: var(--flaeche2); border-radius: var(--rund-klein); padding: 10px 14px; margin: 0 0 10px; border-left: 4px solid #2B7BB9; overflow-x: auto; }
+    .kr-loesung { border-left-color: var(--ergebnis); margin-top: 10px; }
+    .kr-bsp-kopf { font-size: .82rem; font-weight: 700; color: var(--leise); text-transform: uppercase; letter-spacing: .04em; }
+    .kr-frage-klein { margin: 6px 0; font-size: 1.1rem; }
+    .kr-schritte { margin: 6px 0 0; padding-left: 1.4em; line-height: 1.7; }
+    .kr-schritte li { margin: 2px 0; }
+    .kr-ergebnis { margin: 8px 0 0; font-weight: 700; color: var(--ergebnis); }
+    .kr-karte { min-width: 0; border-left: 5px solid #2B7BB9; background: var(--flaeche2); border-radius: var(--rund-klein); padding: 14px 16px; }
+    .kr-karte-kopf { display: flex; justify-content: space-between; gap: 8px; align-items: center; font-size: .85rem; color: var(--leise); }
+    .kr-text { margin: 8px 0 0; }
+    .kr-frage { font-size: 1.6rem; margin: 10px 0 14px; overflow-x: auto; overflow-y: hidden; }
+    .kr-antwort { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .kr-eingabe { width: 190px; max-width: 100%; padding: 10px 12px; border: 1.5px solid var(--text); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: 600 1.25rem var(--technik); }
+    .kr-einheit { color: var(--leise); font-weight: 600; }
+    .kr-wahl { display: flex; flex-wrap: wrap; gap: 6px; }
+    .kr-wahl .knopf { min-width: 58px; font-weight: 700; }
+    .kr-wahl .knopf.gewaehlt { background: var(--text); color: var(--grund); }
+    .kr-rueck { margin: 12px 0 0; padding: 10px 12px; border-radius: var(--rund-klein); font-weight: 600; }
+    .kr-rueck.gut { background: var(--ergebnis-flaeche); color: var(--ergebnis); }
+    .kr-rueck.schlecht { background: var(--fehler-flaeche); color: var(--fehler); }
+    .kr-karte > .knopf.primaer { margin-top: 4px; }
+    .kr-stand, .kr-best { margin-top: 10px; color: var(--leise); font-size: .9rem; }
+    .kr-nur { margin: 0 0 10px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-weight: 600; }
+    .kr-zeit { height: 10px; border-radius: 999px; background: var(--flaeche2); overflow: hidden; margin: 0 0 6px; }
+    .kr-zeit i { display: block; height: 100%; background: linear-gradient(90deg, #E4572E, #F2A541, #2E8B57); transition: width .2s linear; }
+    .kr-zeit-text { font: 700 1.05rem var(--technik); margin: 0 0 10px; }
+    .kr-rueck-kurz { margin: 8px 0 0; font-weight: 700; min-height: 1.4em; }
+    .kr-rueck-kurz.gut { color: var(--ergebnis); } .kr-rueck-kurz.schlecht { color: var(--fehler); }
+    .kr-schluss { text-align: left; }
+    .kr-gross { font: 800 2.4rem/1.1 var(--technik); color: var(--ergebnis); }
+    .kr-fehler { margin: 6px 0; border: 1px solid var(--linie); border-radius: var(--rund-klein); padding: 6px 10px; background: var(--flaeche); }
+    .kr-fehler > summary { cursor: pointer; }
+    .knopf.gross { font-size: 1.1rem; padding: 12px 22px; }
+    .taschenrechner-gesperrt .tr-knopf, .taschenrechner-gesperrt .tr-fenster { display: none !important; }
+    @media (max-width: 560px) { .kr-frage { font-size: 1.3rem; } .kr-tricks { grid-template-columns: 1fr; } .kr-eingabe { width: 150px; } }
+
     /* ---------- Aufgabenblätter: Übersicht ---------- */
     .blatt-gruppe { margin-top: 14px; }
     .blatt-gruppe h3 { margin: 0 0 8px; font-size: 1rem; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
@@ -195,7 +259,7 @@
   <main class="seite" id="inhalt">
     <section class="held">
       <h1><span class="unterstrichen">Lernen</span></h1>
-      <p>Alle Formeln der Sammlung zum Üben: Aufgaben mit zufälligen Werten, Formelkarten zum Abfragen, die ganze Formelsammlung und Aufgabenblätter zum Ausdrucken. Bereiche und Themen frei wählen – die Rechner helfen hier nicht, erst nach dem Prüfen gibt es den Lösungsweg. Für Zwischenschritte gibt es unten rechts einen Taschenrechner.</p>
+      <p>Alle Formeln der Sammlung zum Üben: Aufgaben mit zufälligen Werten, Formelkarten zum Abfragen, die ganze Formelsammlung, Aufgabenblätter zum Ausdrucken und Kopfrechnen mit Tricks bis zum Profi-Niveau. Bereiche und Themen frei wählen – die Rechner helfen hier nicht, erst nach dem Prüfen gibt es den Lösungsweg. Für Zwischenschritte gibt es unten rechts einen Taschenrechner.</p>
     </section>
 
     <section class="tafel abstand" id="themen-tafel" aria-labelledby="h-themen">
@@ -218,6 +282,7 @@
         <button type="button" class="knopf" data-modus="karten" aria-pressed="false">Formelkarten</button>
         <button type="button" class="knopf" data-modus="sammlung" aria-pressed="false">Formelsammlung</button>
         <button type="button" class="knopf" data-modus="blaetter" aria-pressed="false" hidden>Aufgabenblätter</button>
+        <button type="button" class="knopf" data-modus="kopf" aria-pressed="false">Kopfrechnen</button>
       </div>
 
       <div id="p-aufgaben">
@@ -241,6 +306,8 @@
         <div id="sammlung"></div>
       </div>
 
+      <div id="p-kopf" hidden><div id="kopfrechnen"></div></div>
+
       <div id="p-blaetter" hidden>
         <div id="blatt-uebersicht"></div>
         <div id="blatt-ansicht" hidden>
@@ -262,6 +329,7 @@
   <div id="seitenfuss" data-wurzel=""></div>
 
   <script src="assets/taschenrechner.js"></script>
+  <script src="assets/kopfrechnen.js"></script>
   <script src="assets/katex/katex.min.js"></script>
   <script src="assets/blatt.js"></script>
   <script>
@@ -727,6 +795,16 @@
     qrWahl.addEventListener('change', function () { schreib(S_BLATT_QR, qrWahl.checked); qrSetzen(); }); qrSetzen();
     document.getElementById('blatt-drucken').addEventListener('click', function () { blattDrucken(false); });
     document.getElementById('blatt-drucken-l').addEventListener('click', function () { blattDrucken(true); });
+    // ---------- Kopfrechnen (eigener Reiter, Taschenrechner gesperrt beim Üben) ----------
+    let kopf = null;
+    function kopfStarten() {
+      if (!window.Kopfrechnen) return;
+      if (kopf) { kopf.zeigen(); return; }
+      kopf = Kopfrechnen.baue(document.getElementById('kopfrechnen'), { lies: lies, schreib: schreib, sperren: function (an) {
+        document.documentElement.classList.toggle('taschenrechner-gesperrt', !!an);
+        const f = document.getElementById('tr-fenster'); if (an && f && !f.hidden && window.Taschenrechner) Taschenrechner.schliessen();
+      } });
+    }
     function modusWaehlen(m) { const k = document.querySelector('.modi [data-modus="' + m + '"]'); if (k && !k.hidden) k.click(); }
 
     // ---------- Bedienung ----------
@@ -735,7 +813,9 @@
       k.addEventListener('click', function () {
         modus = k.getAttribute('data-modus');
         Array.prototype.forEach.call(document.querySelectorAll('.modi .knopf'), function (x) { x.setAttribute('aria-pressed', x === k ? 'true' : 'false'); });
-        ['aufgaben', 'karten', 'sammlung', 'blaetter'].forEach(function (m) { document.getElementById('p-' + m).hidden = m !== modus; });
+        ['aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf'].forEach(function (m) { document.getElementById('p-' + m).hidden = m !== modus; });
+        document.getElementById('themen-tafel').hidden = modus === 'kopf';
+        if (modus === 'kopf') kopfStarten(); else if (kopf) kopf.verlassen();
         if (modus === 'aufgaben' && !aktuelle) neueAufgabe();
         if (modus === 'karten') naechsteKarte();
         if (modus === 'sammlung') sammlungZeigen();
@@ -762,6 +842,8 @@
       if (!Array.isArray(gewaehlt)) gewaehlt = themen.map(function (t) { return t.pfad; });
       gewaehlt = gewaehlt.filter(function (p) { return typeof p === 'string' && thema(p); });
       auswahlZeigen(); standZeigen(); blaetterKnopf();
+      if (/^#kopfrechnen\b/.test(location.hash)) modusWaehlen('kopf');
+      window.addEventListener('hashchange', function () { if (/^#kopfrechnen\b/.test(location.hash)) modusWaehlen('kopf'); });
       const sprung = /[#&]blatt=([^&]+)/.exec(location.hash), ziel = sprung && blaetter.filter(function (b) { let n = ''; try { n = decodeURIComponent(sprung[1]); } catch (e) { /* kaputt */ } return b.datei === 'aufgabenblaetter/' + n + '.md'; })[0];
       if (ziel) { modusWaehlen('blaetter'); blattOeffnen(ziel, true); } else neueAufgabe();
     }).catch(function () {
