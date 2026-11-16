@@ -245,7 +245,7 @@
     const platz = document.createElement('div'); platz.className = 'tr-platz'; platz.setAttribute('aria-hidden', 'true'); document.body.append(platz);
     function platzSetzen() { platz.style.height = (!f.hidden && innerWidth <= 560) ? f.offsetHeight + 'px' : '0'; }
     window.addEventListener('resize', platzSetzen);
-    function oeffnen() { f.hidden = false; verlaufAn(false); platzSetzen(); knopf.setAttribute('aria-expanded', 'true'); ueberZeigen(); if (!beruehrung) aus.focus(); else f.querySelector('.tr-zu').focus(); }
+    function oeffnen() { if (document.documentElement.classList.contains('taschenrechner-gesperrt')) return; f.hidden = false; verlaufAn(false); platzSetzen(); knopf.setAttribute('aria-expanded', 'true'); ueberZeigen(); if (!beruehrung) aus.focus(); else f.querySelector('.tr-zu').focus(); }
     function schliessen() { f.hidden = true; platzSetzen(); knopf.setAttribute('aria-expanded', 'false'); knopf.focus(); }
     knopf.addEventListener('click', oeffnen);
     f.querySelector('.tr-zu').addEventListener('click', schliessen);
