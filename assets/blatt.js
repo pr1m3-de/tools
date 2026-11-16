@@ -9,6 +9,8 @@
  *   Rechenweg …
  *   :::
  * Einbinden: <script src="assets/blatt.js"></script>, dann Blatt.baue(text, basisPfad) → DocumentFragment.
+ * Gliederung: Alles vor der ersten ##-Überschrift wird zur Einleitung (Formelkasten), jede ## beginnt einen Abschnitt.
+ * „## Aufgabe 3 – Titel“ wird zur Aufgabenkarte mit Nummer; nummerierte Listen darin erscheinen als a), b), c).
  */
 (function () {
   'use strict';
@@ -166,8 +168,43 @@
     return { daten: daten, text: t };
   }
 
+  // Abschnitte bilden: Titel (h2), Einleitung, je ##-Überschrift (h3) ein Abschnitt; „Aufgabe N – …“ wird nummeriert
+  function gliedern(frag) {
+    const aus = document.createDocumentFragment(), knoten = Array.prototype.slice.call(frag.childNodes);
+    let ziel = null, einleitung = null, nr = 0;
+    knoten.forEach(function (k) {
+      if (k.nodeType === 1 && k.tagName === 'H2' && !ziel && !einleitung) { k.className = 'blatt-titel'; aus.append(k); return; }
+      if (k.nodeType === 1 && k.tagName === 'H3') {
+        const m = /^\s*Aufgabe\s+(\d{1,3})\s*(?:[–—:.-]\s*)?/i.exec(k.textContent);
+        ziel = el('section', m ? 'blatt-abschnitt blatt-aufgabe' : 'blatt-abschnitt');
+        if (m) {
+          nr = parseInt(m[1], 10);
+          // Vorsatz „Aufgabe 3 – “ aus dem ersten Textknoten entfernen, Rest (auch Formeln) bleibt Titel
+          let rest = m[0].length, t = k.firstChild;
+          while (t && rest > 0) { if (t.nodeType === 3) { const n = Math.min(rest, t.nodeValue.length); t.nodeValue = t.nodeValue.slice(n); rest -= n; } t = t.nextSibling; }
+          const kopf = el('h3', 'blatt-aufgabe-kopf'), z = el('span', 'blatt-nr', String(nr)); z.setAttribute('aria-hidden', 'true');
+          const titel = el('span', 'blatt-aufgabe-titel');
+          if (k.textContent.trim()) { titel.append(el('span', 'blatt-unsichtbar', 'Aufgabe ' + nr + ': ')); while (k.firstChild) titel.append(k.firstChild); }
+          else titel.append(document.createTextNode('Aufgabe ' + nr));
+          kopf.append(z, titel); ziel.append(kopf);
+        } else ziel.append(k);
+        aus.append(ziel); return;
+      }
+      if (ziel) { ziel.append(k); return; }
+      if (!einleitung) { einleitung = el('div', 'blatt-einleitung'); aus.append(einleitung); }
+      einleitung.append(k);
+    });
+    // Platz zum Rechnen (nur im Druck sichtbar): je Teilfrage etwas mehr
+    Array.prototype.forEach.call(aus.querySelectorAll ? aus.querySelectorAll('.blatt-aufgabe') : [], function (a) {
+      let n = 0; Array.prototype.forEach.call(a.children, function (c) { if (c.tagName === 'OL' || c.tagName === 'UL') n += c.children.length; });
+      const platz = el('div', 'blatt-platz'); platz.setAttribute('aria-hidden', 'true'); platz.style.setProperty('--teile', String(Math.max(1, Math.min(6, n))));
+      const loes = a.querySelector(':scope > details'); if (loes) a.insertBefore(platz, loes); else a.append(platz);
+    });
+    return aus;
+  }
+
   window.Blatt = {
     zerlege: zerlege,
-    baue: function (text, basis) { const z = zerlege(text); return bloecke(z.text.slice(0, 200000).split('\n'), basis || '', 0); }
+    baue: function (text, basis) { const z = zerlege(text); return gliedern(bloecke(z.text.slice(0, 200000).split('\n'), basis || '', 0)); }
   };
 })();

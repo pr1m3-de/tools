@@ -83,52 +83,99 @@
     .warte { color: var(--leise); padding: 20px 0; }
     #lade-rahmen { position: absolute; left: -10000px; top: 0; width: 1000px; height: 800px; overflow: hidden; visibility: hidden; }
     #lade-rahmen iframe { width: 1000px; height: 800px; border: 0; }
-    .blatt-liste { display: grid; gap: 8px; }
-    .blatt-gruppe h3 { margin: 14px 0 6px; font-size: 1rem; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    /* ---------- Aufgabenblätter: Übersicht ---------- */
+    .blatt-gruppe { margin-top: 14px; }
+    .blatt-gruppe h3 { margin: 0 0 8px; font-size: 1rem; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .blatt-gruppe h3::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--farbe, var(--leise)); flex: none; }
     .blatt-gruppe h3 a { font-weight: 400; font-size: .82rem; color: var(--leise); }
-    .blatt-eintrag { display: flex; gap: 12px; align-items: center; width: 100%; text-align: left; padding: 10px 12px; border: 1px solid var(--linie); border-left: 4px solid var(--leise); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; cursor: pointer; }
-    .blatt-eintrag:hover { border-color: var(--leise); }
-    .blatt-eintrag b { display: block; }
-    .blatt-eintrag small { color: var(--leise); display: block; font-size: .84rem; margin-top: 2px; }
-    .blatt-eintrag .blatt-stufe { margin-left: auto; flex: none; font-size: .78rem; padding: 2px 8px; border-radius: 999px; background: var(--flaeche2); color: var(--leise); }
-    .blatt-kopf { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .blatt-liste { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+    .blatt-eintrag { display: flex; flex-direction: column; gap: 6px; width: 100%; text-align: left; padding: 12px 14px; border: 1px solid var(--linie); border-top: 4px solid var(--farbe, var(--leise)); border-radius: var(--rund); background: var(--flaeche); color: var(--text); font: inherit; cursor: pointer; transition: border-color .15s, transform .15s, box-shadow .15s; }
+    .blatt-eintrag:hover, .blatt-eintrag:focus-visible { border-color: var(--leise); border-top-color: var(--farbe, var(--leise)); transform: translateY(-1px); box-shadow: var(--schatten); }
+    .blatt-eintrag b { font-size: 1rem; line-height: 1.3; }
+    .blatt-eintrag small { color: var(--leise); font-size: .85rem; line-height: 1.4; }
+    .blatt-marken { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: auto; padding-top: 4px; }
+    .blatt-marke { font-size: .76rem; font-weight: 600; padding: 2px 9px; border-radius: 999px; background: var(--flaeche2); color: var(--leise); white-space: nowrap; }
+    .blatt-marke.stufe-leicht { background: var(--ergebnis-flaeche); color: var(--ergebnis); }
+    .blatt-marke.stufe-mittel { background: var(--achtung-flaeche); color: #B45309; }
+    .blatt-marke.stufe-schwer { background: var(--fehler-flaeche); color: var(--fehler); }
+    .blatt-marken .oeffnen { margin-left: auto; font-size: .82rem; color: var(--leise); }
+    @media (prefers-color-scheme: dark) { .blatt-marke.stufe-mittel { color: #F2A541; } }
+    :root[data-thema="dunkel"] .blatt-marke.stufe-mittel { color: #F2A541; }
+    :root[data-thema="hell"] .blatt-marke.stufe-mittel { color: #B45309; }
+
+    /* ---------- Aufgabenblatt ---------- */
+    .blatt-kopf { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
     .blatt-kopf .platz { flex: 1; }
-    .blatt { background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--rund); padding: 18px 20px; overflow-wrap: anywhere; }
-    .blatt .blatt-thema { color: var(--leise); font-size: .85rem; margin: 0 0 4px; }
+    .blatt { --farbe: var(--leise); background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--rund-gross, var(--rund)); overflow: hidden; overflow-wrap: anywhere; }
+    .blatt-band { padding: 18px 22px 16px; border-top: 6px solid var(--farbe); background: linear-gradient(180deg, color-mix(in srgb, var(--farbe) 9%, transparent), transparent); }
+    .blatt .blatt-thema { color: var(--leise); font-size: .85rem; margin: 0 0 6px; }
     .blatt .blatt-thema a { color: inherit; }
-    .blatt h2 { margin: 0 0 10px; font-size: 1.45rem; }
-    .blatt h3 { margin: 22px 0 6px; font-size: 1.12rem; padding-top: 12px; border-top: 1px solid var(--linie); }
+    .blatt .blatt-titel { margin: 0 0 10px; font-size: 1.5rem; line-height: 1.25; }
+    .blatt-inhalt { padding: 4px 22px 18px; }
+    .blatt-einleitung { margin: 4px 0 18px; padding: 12px 16px; border-radius: var(--rund); background: var(--flaeche2); border-left: 4px solid var(--farbe); }
+    .blatt-einleitung p { margin: 6px 0; }
+    .blatt-abschnitt { margin: 0 0 14px; }
+    .blatt-abschnitt > h3 { margin: 22px 0 8px; font-size: 1.12rem; }
+    .blatt-aufgabe { padding: 14px 16px 10px; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--grund); }
+    .blatt-abschnitt > .blatt-aufgabe-kopf { display: flex; gap: 10px; align-items: center; margin: 0 0 8px; font-size: 1.08rem; line-height: 1.3; }
+    .blatt-nr { display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 30px; height: 30px; padding: 0 6px; border-radius: 999px; background: var(--farbe); color: #fff; font-weight: 700; font-size: .95rem; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .blatt-unsichtbar { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     .blatt h4, .blatt h5 { margin: 14px 0 4px; font-size: 1rem; }
     .blatt p, .blatt li { line-height: 1.6; }
+    .blatt-aufgabe > p:first-of-type { margin-top: 0; }
+    .blatt-aufgabe ol { padding-left: 1.9em; }
+    .blatt-aufgabe ol > li { padding-left: .2em; margin: 3px 0; }
+    .blatt-aufgabe ol > li::marker { content: counter(list-item, lower-alpha) ")  "; font-weight: 700; color: var(--farbe); }
     .blatt img { max-width: 100%; height: auto; border-radius: 6px; }
     .blatt code { font-family: var(--technik); background: var(--flaeche2); padding: 1px 5px; border-radius: 4px; font-size: .92em; }
     .blatt pre { background: var(--flaeche2); padding: 10px 12px; border-radius: var(--rund-klein); overflow-x: auto; }
     .blatt pre code { background: none; padding: 0; }
-    .blatt blockquote { margin: 10px 0; padding: 4px 14px; border-left: 4px solid var(--linie); color: var(--leise); }
-    .blatt hr { border: none; border-top: 1px solid var(--linie); margin: 18px 0; }
-    .blatt-tabelle { overflow-x: auto; margin: 8px 0; }
-    .blatt table { border-collapse: collapse; min-width: 50%; }
-    .blatt th, .blatt td { border: 1px solid var(--linie); padding: 5px 10px; text-align: left; }
-    .blatt th { background: var(--flaeche2); }
+    .blatt blockquote { margin: 10px 0; padding: 6px 14px; border-left: 4px solid var(--farbe); background: var(--flaeche2); border-radius: 0 var(--rund-klein) var(--rund-klein) 0; color: var(--text); }
+    .blatt hr { border: none; border-top: 1px dashed var(--linie); margin: 18px 0; }
+    .blatt-tabelle { overflow-x: auto; margin: 10px 0; }
+    .blatt table { border-collapse: separate; border-spacing: 0; min-width: 50%; border: 1px solid var(--linie); border-radius: var(--rund-klein); overflow: hidden; }
+    .blatt th, .blatt td { padding: 6px 12px; text-align: left; border-bottom: 1px solid var(--linie); }
+    .blatt tr:last-child td { border-bottom: none; }
+    .blatt th { background: var(--flaeche2); font-weight: 600; }
+    .blatt tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--flaeche2) 60%, transparent); }
     .blatt-formel-block { display: block; margin: 8px 0; overflow-x: auto; overflow-y: hidden; }
-    .blatt-luecke { display: inline-block; min-width: 7em; border-bottom: 1.5px solid var(--text); margin: 0 4px; height: 1.1em; vertical-align: -3px; }
-    .blatt details { margin: 10px 0; border-radius: var(--rund-klein); border: 1px solid var(--linie); }
-    .blatt details > summary { cursor: pointer; padding: 7px 12px; font-weight: 600; font-size: .92rem; list-style-position: inside; }
+    .blatt-luecke { display: inline-block; min-width: 8em; border-bottom: 1.5px dotted var(--text); margin: 0 4px; height: 1.1em; vertical-align: -3px; }
+    .blatt details { margin: 10px 0 4px; border-radius: var(--rund-klein); border: 1px solid var(--linie); border-left-width: 4px; background: var(--flaeche); }
+    .blatt details > summary { cursor: pointer; padding: 8px 12px; font-weight: 600; font-size: .92rem; list-style: none; display: flex; align-items: center; gap: 8px; }
+    .blatt details > summary::-webkit-details-marker { display: none; }
+    .blatt details > summary::before { content: ""; width: 7px; height: 7px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(-45deg); transition: transform .15s; flex: none; }
+    .blatt details[open] > summary::before { transform: rotate(45deg); }
+    .blatt .blatt-loesung { border-left-color: var(--ergebnis); }
     .blatt .blatt-loesung > summary { color: var(--ergebnis); }
-    .blatt .blatt-loesung[open] { background: var(--ergebnis-flaeche); border-color: transparent; }
-    .blatt .blatt-tipp > summary { color: var(--leise); }
-    .blatt .blatt-tipp[open] { background: var(--achtung-flaeche); border-color: transparent; }
-    .blatt .blatt-innen { padding: 0 14px 8px; }
-    @media (max-width: 560px) { .blatt { padding: 14px 12px; } .blatt h2 { font-size: 1.25rem; } }
+    .blatt .blatt-loesung[open] { background: var(--ergebnis-flaeche); }
+    .blatt .blatt-tipp { border-left-color: #F2A541; }
+    .blatt .blatt-tipp > summary { color: var(--text); }
+    .blatt .blatt-tipp[open] { background: var(--achtung-flaeche); }
+    .blatt .blatt-innen { padding: 0 14px 10px; }
+    .blatt-platz { display: none; }
+    .blatt-fuss { margin: 18px 0 0; padding-top: 10px; border-top: 1px solid var(--linie); color: var(--leise); font-size: .8rem; }
+    @media (max-width: 560px) {
+      .blatt-band { padding: 14px 14px 12px; } .blatt-inhalt { padding: 4px 12px 14px; }
+      .blatt .blatt-titel { font-size: 1.25rem; } .blatt-aufgabe { padding: 12px 12px 8px; } .blatt-einleitung { padding: 10px 12px; }
+    }
     @media print {
       .modi, .leiste, #themen-tafel, .antwort, .stand { display: none !important; }
       body.blatt-druck .seite > *:not(.ueben-tafel), body.blatt-druck .ueben-tafel > *:not(#p-blaetter), body.blatt-druck .blatt-kopf, body.blatt-druck #seitenfuss { display: none !important; }
       body.blatt-druck .ueben-tafel { border: none; padding: 0; box-shadow: none; background: none; }
-      .blatt { border: none; padding: 0; background: none; }
-      .blatt h3 { break-after: avoid; }
-      .blatt details { break-inside: avoid; }
-      body.ohne-loesung .blatt .blatt-loesung, body.ohne-loesung .blatt .blatt-tipp { display: none !important; }
-      .blatt-luecke { min-width: 10em; }
+      .blatt { border: none; background: none; border-radius: 0; overflow: visible; }
+      .blatt-band { padding: 0 0 8px; border-top: none; border-bottom: 2.5px solid var(--farbe); background: none; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .blatt-inhalt { padding: 8px 0 0; }
+      .blatt-einleitung { background: none; border: 1px solid #bbb; border-left: 4px solid var(--farbe); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .blatt-aufgabe { background: none; border: 1px solid #bbb; break-inside: avoid; }
+      .blatt-aufgabe-kopf, .blatt h3 { break-after: avoid; }
+      .blatt details { break-inside: avoid; background: none !important; }
+      .blatt details > summary::before { display: none; }
+      body.ohne-loesung .blatt .blatt-loesung, body.ohne-loesung .blatt .blatt-tipp, body.ohne-loesung .blatt-mit-loesung { display: none !important; }
+      body.ohne-loesung .blatt-platz { display: block; height: calc(var(--teile, 1) * 12mm + 18mm); margin: 8px 0 4px; border: 1px solid #c8c8c8; border-radius: 3px;
+        background-image: linear-gradient(#e2e2e2 1px, transparent 1px), linear-gradient(90deg, #e2e2e2 1px, transparent 1px); background-size: 5mm 5mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .blatt-luecke { min-width: 10em; border-bottom-style: solid; }
+      .blatt tbody tr:nth-child(even) td { background: none; }
+      .blatt-fuss { color: #555; }
     }
   </style>
 </head>
@@ -593,12 +640,15 @@
       sichtbar.forEach(function (b) { if (gruppen.indexOf(b.thema) < 0) gruppen.push(b.thema); });
       gruppen.sort(function (a, c) { const ta = thema(a), tc = thema(c); return (ta.bereich + ta.titel).localeCompare(tc.bereich + tc.titel, 'de'); });
       gruppen.forEach(function (p) {
-        const t = thema(p), g = el('div', 'blatt-gruppe'), h = el('h3', '', t.titel), a = el('a', '', 'zum Rechner'); a.href = p; h.append(a); g.append(h);
+        const t = thema(p), g = el('div', 'blatt-gruppe'), h = el('h3', '', t.titel), a = el('a', '', 'zum Rechner'); a.href = p; h.append(a); g.append(h); g.style.setProperty('--farbe', farbe(t.bereich));
         const l = el('div', 'blatt-liste');
         sichtbar.filter(function (b) { return b.thema === p; }).forEach(function (b) {
-          const k = el('button', 'blatt-eintrag'); k.type = 'button'; k.style.borderLeftColor = farbe(t.bereich);
-          const s = el('span'); s.append(el('b', '', b.titel)); const info = [b.aufgaben ? b.aufgaben + (b.aufgaben === 1 ? ' Aufgabe' : ' Aufgaben') : '', b.beschreibung].filter(Boolean).join(' · '); if (info) s.append(el('small', '', info));
-          k.append(s); if (b.stufe) k.append(el('span', 'blatt-stufe', b.stufe));
+          const k = el('button', 'blatt-eintrag'); k.type = 'button';
+          k.append(el('b', '', b.titel)); if (b.beschreibung) k.append(el('small', '', b.beschreibung));
+          const marken = el('span', 'blatt-marken');
+          if (b.stufe) marken.append(el('span', 'blatt-marke stufe-' + b.stufe, b.stufe));
+          if (b.aufgaben) marken.append(el('span', 'blatt-marke', b.aufgaben + (b.aufgaben === 1 ? ' Aufgabe' : ' Aufgaben')));
+          marken.append(el('span', 'oeffnen', 'Öffnen →')); k.append(marken);
           k.addEventListener('click', function () { blattOeffnen(b); });
           l.append(k);
         });
@@ -620,11 +670,18 @@
       document.getElementById('blatt-uebersicht').hidden = true; document.getElementById('blatt-ansicht').hidden = false;
       fetch(b.datei).then(function (a) { if (!a.ok) throw new Error(a.status); return a.text(); }).then(function (text) {
         if (blattOffen !== b) return;
-        const t = thema(b.thema); art.innerHTML = '';
-        const kopf = el('p', 'blatt-thema'), a = el('a', '', t.titel); a.href = b.thema; kopf.append(a, document.createTextNode(' · ' + t.bereich + (b.stufe ? ' · ' + b.stufe : ''))); art.append(kopf);
-        art.append(Blatt.baue(text, b.datei.replace(/[^/]*$/, '')));
-        // erste Überschrift als Titel des Blatts
-        const h = art.querySelector('h2'); if (!h) { const n = el('h2', '', b.titel); art.insertBefore(n, kopf.nextSibling); }
+        const t = thema(b.thema); art.innerHTML = ''; art.style.setProperty('--farbe', farbe(t.bereich));
+        const band = el('header', 'blatt-band'), kopf = el('p', 'blatt-thema'), a = el('a', '', t.titel); a.href = b.thema; kopf.append(a, document.createTextNode(' · ' + t.bereich)); band.append(kopf);
+        const inhalt = el('div', 'blatt-inhalt'); inhalt.append(Blatt.baue(text, b.datei.replace(/[^/]*$/, '')));
+        // erste Überschrift als Titel des Blatts ins Band
+        let h = inhalt.querySelector('h2.blatt-titel'); if (!h) h = el('h2', 'blatt-titel', b.titel); band.append(h);
+        const marken = el('div', 'blatt-marken'), anzahl = inhalt.querySelectorAll('.blatt-aufgabe').length || b.aufgaben;
+        if (b.stufe) marken.append(el('span', 'blatt-marke stufe-' + b.stufe, b.stufe));
+        if (anzahl) marken.append(el('span', 'blatt-marke', anzahl + (anzahl === 1 ? ' Aufgabe' : ' Aufgaben')));
+        if (inhalt.querySelector('.blatt-loesung')) marken.append(el('span', 'blatt-marke blatt-mit-loesung', 'mit Lösungen'));
+        if (marken.childNodes.length) band.append(marken);
+        const fuss = el('p', 'blatt-fuss', 'Aufgabenblatt aus „Formeln & Rechner“ · tools.pr1m3.de · CC BY 4.0'); inhalt.append(fuss);
+        art.append(band, inhalt);
         loesungenSetzen(false);
         document.getElementById('blatt-loesungen').hidden = !art.querySelector('details');
         document.getElementById('blatt-drucken-l').hidden = !art.querySelector('.blatt-loesung, .blatt-tipp');
