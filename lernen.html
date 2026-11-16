@@ -153,6 +153,12 @@
     .blatt .blatt-tipp[open] { background: var(--achtung-flaeche); }
     .blatt .blatt-innen { padding: 0 14px 10px; }
     .blatt-platz { display: none; }
+    .blatt-qr-wahl { display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; color: var(--leise); cursor: pointer; }
+    .blatt-quelle { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; margin: 18px 0 0; padding-top: 10px; border-top: 1px solid var(--linie); }
+    .blatt-quelle .blatt-fuss { margin: 0; padding: 0; border: none; }
+    .blatt-link { margin: 2px 0 0; color: var(--leise); font-size: .8rem; overflow-wrap: anywhere; }
+    .blatt-qr { display: none; flex: none; }
+    .blatt-qr svg { display: block; }
     .blatt-fuss { margin: 18px 0 0; padding-top: 10px; border-top: 1px solid var(--linie); color: var(--leise); font-size: .8rem; }
     @media (max-width: 560px) {
       .blatt-band { padding: 14px 14px 12px; } .blatt-inhalt { padding: 4px 12px 14px; }
@@ -175,7 +181,11 @@
         background-image: linear-gradient(#e2e2e2 1px, transparent 1px), linear-gradient(90deg, #e2e2e2 1px, transparent 1px); background-size: 5mm 5mm; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .blatt-luecke { min-width: 10em; border-bottom-style: solid; }
       .blatt tbody tr:nth-child(even) td { background: none; }
-      .blatt-fuss { color: #555; }
+      .blatt-fuss, .blatt-link { color: #444; }
+      .blatt .blatt-thema { display: none; }
+      .blatt-quelle { break-inside: avoid; margin-top: 8mm; padding-top: 3mm; border-top: 1px solid #999; }
+      .blatt-qr { display: block; }
+      body.ohne-blatt-qr .blatt-qr, body.ohne-blatt-qr .blatt-link { display: none; }
     }
   </style>
 </head>
@@ -240,6 +250,7 @@
             <button type="button" class="knopf" id="blatt-loesungen" aria-pressed="false">Lösungen zeigen</button>
             <button type="button" class="knopf" id="blatt-drucken">Drucken</button>
             <button type="button" class="knopf" id="blatt-drucken-l">Mit Lösungen drucken</button>
+            <label class="blatt-qr-wahl"><input type="checkbox" id="blatt-qr" data-nicht-merken checked> Link und QR-Code drucken</label>
           </div>
           <article class="blatt" id="blatt" aria-live="polite"></article>
         </div>
@@ -680,7 +691,17 @@
         if (anzahl) marken.append(el('span', 'blatt-marke', anzahl + (anzahl === 1 ? ' Aufgabe' : ' Aufgaben')));
         if (inhalt.querySelector('.blatt-loesung')) marken.append(el('span', 'blatt-marke blatt-mit-loesung', 'mit Lösungen'));
         if (marken.childNodes.length) band.append(marken);
-        const fuss = el('p', 'blatt-fuss', 'Aufgabenblatt aus „Formeln & Rechner“ · tools.pr1m3.de · CC BY 4.0'); inhalt.append(fuss);
+        // Quelle am Ende: Lizenz, Link zum Blatt online und QR-Code (QR nur im Druck, per Haken abschaltbar)
+        const adresse = 'https://tools.pr1m3.de/lernen.html#blatt=' + b.datei.replace(/^aufgabenblaetter\//, '').replace(/\.md$/, '');
+        const quelle = el('div', 'blatt-quelle'), qText = el('div', 'blatt-quelle-text');
+        qText.append(el('p', 'blatt-fuss', 'Aufgabenblatt aus „Formeln & Rechner“ · CC BY 4.0'));
+        const qLink = el('p', 'blatt-link'); qLink.append(document.createTextNode('Online mit Lösungen: '), el('span', 'blatt-adresse', adresse.replace(/^https:\/\//, ''))); qText.append(qLink);
+        quelle.append(qText);
+        try {
+          const q = window.QRCode && QRCode.svg(adresse, { maxMm: 24, minMm: 16 });
+          if (q) { const qr = el('div', 'blatt-qr'); qr.setAttribute('aria-hidden', 'true'); qr.innerHTML = q.svg; quelle.append(qr); }   // svg nur aus eigenen Zahlen gebaut
+        } catch (x) { /* ohne QR-Code */ }
+        inhalt.append(quelle);
         art.append(band, inhalt);
         loesungenSetzen(false);
         document.getElementById('blatt-loesungen').hidden = !art.querySelector('details');
@@ -700,6 +721,10 @@
       window.print();
       setTimeout(zurueck, 1000);
     }
+    const qrWahl = document.getElementById('blatt-qr'), S_BLATT_QR = 'lernen-blatt-qr';
+    qrWahl.checked = lies(S_BLATT_QR, true) !== false;
+    const qrSetzen = function () { document.body.classList.toggle('ohne-blatt-qr', !qrWahl.checked); };
+    qrWahl.addEventListener('change', function () { schreib(S_BLATT_QR, qrWahl.checked); qrSetzen(); }); qrSetzen();
     document.getElementById('blatt-drucken').addEventListener('click', function () { blattDrucken(false); });
     document.getElementById('blatt-drucken-l').addEventListener('click', function () { blattDrucken(true); });
     function modusWaehlen(m) { const k = document.querySelector('.modi [data-modus="' + m + '"]'); if (k && !k.hidden) k.click(); }
