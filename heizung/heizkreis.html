@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Heizkreis und Heizkörper dimensionieren – Formeln &amp; Rechner</title>
+  <meta name="description" content="Heizkreis mit verschiedenen Heizkörpern dimensionieren: Leistung von Platten-, Röhren-, Glieder-, Bad- und Konvektorheizkörpern bei deinen Systemtemperaturen, nötige Baulänge und Vorlauftemperatur, Massenstrom, Rohrweite, Druckverlust und Pumpe.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/heizung/heizkreis.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Heizkreis und Heizkörper dimensionieren">
+  <meta property="og:description" content="Heizkreis mit verschiedenen Heizkörpern dimensionieren: Leistung von Platten-, Röhren-, Glieder-, Bad- und Konvektorheizkörpern bei deinen Systemtemperaturen, nötige Baulänge und Vorlauftemperatur, Massenstrom, Rohrweite, Druckverlust und Pumpe.">
+  <meta property="og:url" content="https://tools.pr1m3.de/heizung/heizkreis.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Heizkreis und Heizkörper dimensionieren">
+  <meta name="twitter:description" content="Heizkreis mit verschiedenen Heizkörpern dimensionieren: Leistung von Platten-, Röhren-, Glieder-, Bad- und Konvektorheizkörpern bei deinen Systemtemperaturen, nötige Baulänge und Vorlauftemperatur, Massenstrom, Rohrweite, Druckverlust und Pumpe.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/heizung/heizkreis.html#seite","name":"Heizkreis und Heizkörper dimensionieren","url":"https://tools.pr1m3.de/heizung/heizkreis.html","inLanguage":"de","description":"Heizkreis mit verschiedenen Heizkörpern dimensionieren: Leistung von Platten-, Röhren-, Glieder-, Bad- und Konvektorheizkörpern bei deinen Systemtemperaturen, nötige Baulänge und Vorlauftemperatur, Massenstrom, Rohrweite, Druckverlust und Pumpe.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/heizung/heizkreis.html#pfad"},"dateModified":"2026-11-16"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/heizung/heizkreis.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Heizkreis und Heizkörper dimensionieren","item":"https://tools.pr1m3.de/heizung/heizkreis.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/heizung/heizkreis.html#fragen","mainEntity":[{"@type":"Question","name":"Wie rechne ich die Normleistung eines Heizkörpers auf meine Temperaturen um?","acceptedAnswer":{"@type":"Answer","text":"Mit der logarithmischen Übertemperatur: Δϑln = (ϑV − ϑR) / ln((ϑV − ϑi) / (ϑR − ϑi)). Die Leistung ist dann Q̇ = Q̇N · (Δϑln / 49,83 K)n. Ein Plattenheizkörper Typ 22 mit 600 × 1000 mm hat bei 75/65/20 °C rund 1 680 W, bei 55/45/20 °C nur noch etwa 860 W – gut die Hälfte."}},{"@type":"Question","name":"Welcher Heizkörpertyp gibt am meisten Wärme ab?","acceptedAnswer":{"@type":"Answer","text":"Bei gleicher Größe steigt die Leistung mit der Zahl der Platten und Konvektorbleche: Typ 10 \u003c 11 \u003c 20 \u003c 21 \u003c 22 \u003c 33. Ein Typ 33 bringt rund 40 % mehr als ein Typ 22, ist aber tiefer. Typ 10 und 20 geben mehr Strahlungswärme ab, Typen mit vielen Konvektorblechen vor allem warme Luft."}},{"@type":"Question","name":"Woher kommen die Leistungen von Bad-, Röhren- und Gliederheizkörpern?","acceptedAnswer":{"@type":"Answer","text":"Vom Typenschild, aus dem Datenblatt des Herstellers oder aus Tabellen im Tabellenbuch. Alte Angaben nach DIN 4703 beziehen sich oft auf 90/70/20 °C – dann im Rechner den Bezug „90/70/20“ wählen, er rechnet um."}},{"@type":"Question","name":"Wie schnell darf das Wasser in den Rohren fließen?","acceptedAnswer":{"@type":"Answer","text":"Übliche Richtwerte: in Anbindeleitungen bis etwa 0,5 m/s, in Verteilleitungen bis etwa 1 m/s, dabei ein Druckgefälle um 100 Pa/m. Schneller wird es laut und die Pumpe braucht mehr Strom."}},{"@type":"Question","name":"Reichen meine Heizkörper für eine Wärmepumpe?","acceptedAnswer":{"@type":"Answer","text":"Der Rechner zeigt je Raum, welche Vorlauftemperatur nötig ist. Liegt der höchste Wert bei 55 °C oder darunter, passt das meist. Einzelne zu kleine Heizkörper lassen sich gezielt tauschen, z. B. Typ 11 gegen Typ 22 oder 33 gleicher Größe."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/heizung/heizkreis.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie rechne ich die Normleistung eines Heizkörpers auf meine Temperaturen um?</summary><p>Mit der logarithmischen Übertemperatur: Δϑ<sub>ln</sub> = (ϑ<sub>V</sub> − ϑ<sub>R</sub>) / ln((ϑ<sub>V</sub> − ϑ<sub>i</sub>) / (ϑ<sub>R</sub> − ϑ<sub>i</sub>)). Die Leistung ist dann Q̇ = Q̇<sub>N</sub> · (Δϑ<sub>ln</sub> / 49,83 K)<sup>n</sup>. Ein Plattenheizkörper Typ 22 mit 600 × 1000 mm hat bei 75/65/20 °C rund 1 680 W, bei 55/45/20 °C nur noch etwa 860 W – gut die Hälfte.</p></details>
+        <details><summary>Welcher Heizkörpertyp gibt am meisten Wärme ab?</summary><p>Bei gleicher Größe steigt die Leistung mit der Zahl der Platten und Konvektorbleche: Typ 10 &lt; 11 &lt; 20 &lt; 21 &lt; 22 &lt; 33. Ein Typ 33 bringt rund 40 % mehr als ein Typ 22, ist aber tiefer. Typ 10 und 20 geben mehr Strahlungswärme ab, Typen mit vielen Konvektorblechen vor allem warme Luft.</p></details>
+        <details><summary>Woher kommen die Leistungen von Bad-, Röhren- und Gliederheizkörpern?</summary><p>Vom Typenschild, aus dem Datenblatt des Herstellers oder aus Tabellen im Tabellenbuch. Alte Angaben nach DIN 4703 beziehen sich oft auf 90/70/20 °C – dann im Rechner den Bezug „90/70/20“ wählen, er rechnet um.</p></details>
+        <details><summary>Wie schnell darf das Wasser in den Rohren fließen?</summary><p>Übliche Richtwerte: in Anbindeleitungen bis etwa 0,5 m/s, in Verteilleitungen bis etwa 1 m/s, dabei ein Druckgefälle um 100 Pa/m. Schneller wird es laut und die Pumpe braucht mehr Strom.</p></details>
+        <details><summary>Reichen meine Heizkörper für eine Wärmepumpe?</summary><p>Der Rechner zeigt je Raum, welche Vorlauftemperatur nötig ist. Liegt der höchste Wert bei 55 °C oder darunter, passt das meist. Einzelne zu kleine Heizkörper lassen sich gezielt tauschen, z. B. Typ 11 gegen Typ 22 oder 33 gleicher Größe.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const ROT = '#E4572E', BLAU = '#2B7BB9', GUT = '#2E8B57', SCHLECHT = '#C0392B', ORANGE = '#C2410C';
+    const C_W = 1.163;          // spezifische Wärmekapazität Wasser in Wh/(kg·K) (Tabellenbuch)
+    const DT_N = { '75': 49.83, '90': 59.44 };   // Norm-Übertemperatur 75/65/20 °C (DIN EN 442) und 90/70/20 °C (alte DIN 4703)
+    const u = function (w, n, e) { return tz(w, n) + '\\,\\text{' + e + '}'; };
+
+    // Plattenheizkörper: Normwärmeleistung je Meter Baulänge bei 75/65/20 °C (Richtwerte, Mittel gängiger Kataloge)
+    const PLATTE = {
+      '10': { 300: 330, 400: 425, 500: 515, 600: 605, 900: 875 },
+      '11': { 300: 550, 400: 710, 500: 860, 600: 1000, 900: 1395 },
+      '20': { 300: 580, 400: 735, 500: 840, 600: 980, 900: 1350 },
+      '21': { 300: 745, 400: 935, 500: 1115, 600: 1290, 900: 1755 },
+      '22': { 300: 965, 400: 1215, 500: 1450, 600: 1680, 900: 2315 },
+      '33': { 300: 1380, 400: 1740, 500: 2080, 600: 2405, 900: 3330 }
+    };
+    const TYPEN = [['10', 'Platte Typ 10'], ['11', 'Platte Typ 11'], ['20', 'Platte Typ 20'], ['21', 'Platte Typ 21'], ['22', 'Platte Typ 22'], ['33', 'Platte Typ 33'],
+      ['roehre', 'Röhrenradiator'], ['glied', 'Gliederheizkörper'], ['bad', 'Badheizkörper'], ['konv', 'Konvektor'], ['eigen', 'anderer']];
+    const EXPONENT = { roehre: 1.3, glied: 1.3, bad: 1.25, konv: 1.4, eigen: 1.3 };   // Platten 1,3
+    const typName = function (t) { for (let i = 0; i < TYPEN.length; i++) if (TYPEN[i][0] === t) return TYPEN[i][1]; return t; };
+    const istPlatte = function (t) { return !!PLATTE[t]; };
+    const exponent = function (t) { return istPlatte(t) ? 1.3 : (EXPONENT[t] || 1.3); };
+
+    // Rohre: [Bezeichnung, Innendurchmesser mm]; Rauheit k in mm
+    const ROHRE = {
+      cu: { name: 'Kupfer', k: 0.0015, d: [['12 × 1', 10], ['15 × 1', 13], ['18 × 1', 16], ['22 × 1', 20], ['28 × 1,5', 25], ['35 × 1,5', 32], ['42 × 1,5', 39], ['54 × 2', 50]] },
+      mv: { name: 'Mehrschichtverbund', k: 0.007, d: [['16 × 2', 12], ['20 × 2', 16], ['26 × 3', 20], ['32 × 3', 26], ['40 × 3,5', 33], ['50 × 4', 42], ['63 × 4,5', 54]] },
+      pex: { name: 'PE-X', k: 0.007, d: [['14 × 2', 10], ['16 × 2', 12], ['17 × 2', 13], ['20 × 2', 16], ['25 × 2,3', 20.4], ['32 × 2,9', 26.2], ['40 × 3,7', 32.6]] },
+      st: { name: 'Stahl (Gewinderohr)', k: 0.045, d: [['DN 10 (⅜″)', 12.5], ['DN 15 (½″)', 16.1], ['DN 20 (¾″)', 21.7], ['DN 25 (1″)', 27.3], ['DN 32 (1¼″)', 36], ['DN 40 (1½″)', 41.9], ['DN 50 (2″)', 53.1]] }
+    };
+    // Stoffwerte Wasser: Dichte kg/m³ und kinematische Zähigkeit mm²/s, linear zwischen den Stützstellen
+    const WASSER = [[20, 998.2, 1.004], [30, 995.7, 0.801], [40, 992.2, 0.658], [50, 988.0, 0.553], [60, 983.2, 0.474], [70, 977.8, 0.413], [80, 971.8, 0.365], [90, 965.3, 0.326]];
+    function wasser(t) {
+      t = Math.max(20, Math.min(90, t));
+      for (let i = 1; i < WASSER.length; i++) if (t <= WASSER[i][0]) { const a = WASSER[i - 1], b = WASSER[i], f = (t - a[0]) / (b[0] - a[0]); return { rho: a[1] + f * (b[1] - a[1]), nu: (a[2] + f * (b[2] - a[2])) * 1e-6 }; }
+      return { rho: 965.3, nu: 0.326e-6 };
+    }
+    // Strömung im Rohr: v, Re, λ (laminar 64/Re, sonst Colebrook-White), R in Pa/m
+    function stroemung(Vlh, di, k, w) {
+      const d = di / 1000, A = Math.PI * d * d / 4, v = Vlh / 3600000 / A, Re = v * d / w.nu;
+      if (!(Re > 1e-9)) return { v: 0, Re: 0, lam: 0, R: 0, A: A };
+      let lam;
+      if (Re < 2320) lam = 64 / Re;
+      else { lam = 0.02; for (let i = 0; i < 40; i++) lam = Math.pow(-2 * Math.log10(2.51 / (Re * Math.sqrt(lam)) + k / di / 3.71), -2); }
+      return { v: v, Re: Re, lam: lam, R: lam / d * w.rho / 2 * v * v, A: A };
+    }
+    function rohrWaehlen(Vlh, e, w) {
+      const R0 = ROHRE[e.rohr] || ROHRE.cu;
+      for (let i = 0; i < R0.d.length; i++) { const s = stroemung(Vlh, R0.d[i][1], R0.k, w); if (s.R <= e.Rmax && s.v <= e.vmax) return { n: R0.d[i][0], di: R0.d[i][1], s: s, ok: true }; }
+      const x = R0.d[R0.d.length - 1]; return { n: x[0], di: x[1], s: stroemung(Vlh, x[1], R0.k, w), ok: false };
+    }
+    // logarithmische Übertemperatur
+    function dtln(tV, tR, ti) { return (tV > tR + 1e-9 && tR > ti + 1e-9) ? (tV - tR) / Math.log((tV - ti) / (tR - ti)) : (Math.abs(tV - tR) < 1e-9 && tV > ti ? tV - ti : NaN); }
+    // nötige Vorlauftemperatur bei gleicher Spreizung, damit der Heizkörper den Bedarf deckt
+    function vorlaufNoetig(QN, dtN, n, bedarf, sigma, ti) {
+      if (!(bedarf > 0) || !(QN > 0)) return NaN;
+      const leist = function (tV) { return QN * Math.pow(dtln(tV, tV - sigma, ti) / dtN, n); };
+      let lo = ti + sigma + 0.01, hi = 110;
+      if (leist(hi) < bedarf) return Infinity;
+      if (leist(lo) >= bedarf) return lo;
+      for (let i = 0; i < 60; i++) { const m = (lo + hi) / 2; if (leist(m) >= bedarf) hi = m; else lo = m; }
+      return hi;
+    }
+    function hk(name, typ, hoehe, laenge, PN, bedarf, ti, L) { return { name: name, typ: typ, hoehe: hoehe, laenge: laenge, PN: PN, bezug: '75', ti: ti, bedarf: bedarf, L: L }; }
+
+    let seite = null;
+    seite = R.seite({
+      titel: 'Heizkreis und Heizkörper dimensionieren',
+      einleitung: 'Heizkörper verschiedener Bauart in einem Heizkreis: Leistung bei deinen Vor- und Rücklauftemperaturen, ob sie den Raum decken, welche Baulänge oder Vorlauftemperatur nötig wäre, Massenstrom, Rohrweite, Druckverlust und Pumpe. Formeln in der Schreibweise des Tabellenbuchs.',
+      hilfe: 'Plattenheizkörper: Typ, Bauhöhe und Baulänge genügen, die Normleistung kommt aus Richtwerten gängiger Kataloge. Andere Heizkörper: Normleistung vom Typenschild oder Datenblatt eintragen. Heizlast je Raum aus der Heizlastberechnung (0 = nicht prüfen).',
+      gruppen: [
+        { titel: 'Anlage', farbe: ORANGE, felder: [
+          { k: 'tV', tex: '\\vartheta_\\text{V}', name: 'Vorlauf', e: '°C', min: 25, max: 95 },
+          { k: 'tR', tex: '\\vartheta_\\text{R}', name: 'Rücklauf', e: '°C', min: 20, max: 90 },
+          { k: 'rohr', name: 'Rohrwerkstoff', wahl: [['cu', 'Kupfer'], ['mv', 'Mehrschichtverbund'], ['pex', 'PE-X'], ['st', 'Stahl (Gewinderohr)']] },
+          { k: 'vmax', tex: 'v_\\text{max}', name: 'höchste Fließgeschwindigkeit', e: 'm/s', min: 0.1, max: 2, hilfe: 'Richtwert Anbindeleitungen 0,5 m/s, Verteilleitungen bis 1 m/s' },
+          { k: 'Rmax', tex: 'R_\\text{max}', name: 'höchstes Druckgefälle', e: 'Pa/m', min: 20, max: 500, hilfe: 'Richtwert 100 Pa/m (wirtschaftlich 50 bis 150 Pa/m)' }
+        ] },
+        { titel: 'Heizkörper', farbe: ROT, liste: { k: 'hks', zeile: 'Heizkörper', max: 20, kopieren: true,
+          spalten: [
+            { k: 'name', name: 'Raum', text: true, breit: true },
+            { k: 'typ', name: 'Bauart', wahl: TYPEN, text: true },
+            { k: 'hoehe', name: 'Bauhöhe (Platte)', e: 'mm', wahl: [[300, '300'], [400, '400'], [500, '500'], [600, '600'], [900, '900']] },
+            { k: 'laenge', name: 'Baulänge (Platte)', e: 'mm', min: 200, max: 3000, ganz: true },
+            { k: 'PN', name: 'Normleistung (0 = aus Katalog)', e: 'W', min: 0, max: 20000 },
+            { k: 'bezug', name: 'Normleistung bei', wahl: [['75', '75/65/20 °C (EN 442)'], ['90', '90/70/20 °C (alt)']], text: true },
+            { k: 'ti', name: 'Raumtemperatur', e: '°C', min: 10, max: 30 },
+            { k: 'bedarf', name: 'Heizlast (0 = ohne)', e: 'W', min: 0, max: 20000 },
+            { k: 'L', name: 'Leitung ab Verteiler, einfach', e: 'm', min: 0.5, max: 100 }
+          ],
+          neu: function (i) { return hk('Raum ' + (i + 1), '22', 600, 1000, 0, 0, 20, 8); } } },
+        { titel: 'Leitungen und Pumpe', farbe: BLAU, felder: [
+          { k: 'lH', tex: 'l_\\text{H}', name: 'Hauptleitung bis Verteiler, einfach', e: 'm', min: 0, max: 200 },
+          { k: 'zA', tex: '\\sum\\zeta_\\text{A}', name: 'Einzelwiderstände je Heizkörperanschluss', e: '', min: 0, max: 50, hilfe: 'z. B. Heizkörper 2,5 + 2 T-Stücke (Abzweig) je 1,5 + 4 Bögen je 0,5 = 7,5' },
+          { k: 'zH', tex: '\\sum\\zeta_\\text{H}', name: 'Einzelwiderstände Hauptleitung', e: '', min: 0, max: 50, hilfe: 'Bögen, Absperrungen, Verteiler – ohne Wärmeerzeuger' },
+          { k: 'dpV', tex: '\\Delta p_\\text{V}', name: 'Thermostatventil', e: 'mbar', min: 0, max: 500, hilfe: 'Richtwert 50 bis 100 mbar für gute Ventilautorität' },
+          { k: 'dpWE', tex: '\\Delta p_\\text{WE}', name: 'Wärmeerzeuger, Mischer', e: 'mbar', min: 0, max: 1000, hilfe: 'Datenblatt; Gaswand-Therme oft 50 bis 150 mbar' }
+        ] }
+      ],
+      beispiel: { tV: 55, tR: 45, rohr: 'cu', vmax: 0.5, Rmax: 100,
+        hks: [hk('Wohnen', '22', 600, 1800, 0, 1500, 20, 8), hk('Küche', '22', 600, 1000, 0, 800, 20, 6), hk('Bad', 'bad', 600, 600, 1200, 500, 24, 5),
+          hk('Schlafen', '22', 600, 800, 0, 600, 18, 10), hk('Kind', '21', 500, 1200, 0, 900, 20, 12)],
+        lH: 12, zA: 7.5, zH: 6, dpV: 80, dpWE: 80 },
+
+      rechne: function (e) {
+        const r = { hks: [], fehler: '' };
+        if (e.tR >= e.tV) { r.fehler = 'Der Rücklauf muss kälter sein als der Vorlauf.'; return r; }
+        const sigma = e.tV - e.tR, w = wasser((e.tV + e.tR) / 2);
+        r.w = w; r.sigma = sigma;
+        let QHK = 0, QHL = 0, mGes = 0, Vges = 0, inhalt = 0, tVmax = -Infinity;
+        e.hks.forEach(function (h, i) {
+          const x = { h: h, i: i, n: exponent(h.typ), dtN: 0 };
+          x.platte = istPlatte(h.typ);
+          x.qm = x.platte ? PLATTE[h.typ][h.hoehe] : NaN;
+          x.PN = h.PN > 0 ? h.PN : (x.platte ? x.qm * h.laenge / 1000 : NaN);
+          x.ausKatalog = !(h.PN > 0) && x.platte;
+          x.dtN = DT_N[h.bezug] || 49.83;
+          x.ln = dtln(e.tV, e.tR, h.ti);
+          x.Q = isFinite(x.PN) && isFinite(x.ln) ? x.PN * Math.pow(x.ln / x.dtN, x.n) : NaN;
+          x.deckung = h.bedarf > 0 && isFinite(x.Q) ? x.Q / h.bedarf : NaN;
+          // nötige Normleistung und Baulänge (Platte) für den Bedarf
+          x.PNnoetig = h.bedarf > 0 && isFinite(x.ln) ? h.bedarf * Math.pow(x.dtN / x.ln, x.n) : NaN;
+          x.Lnoetig = x.platte && isFinite(x.PNnoetig) ? Math.ceil(x.PNnoetig / x.qm * 10 - 1e-9) * 100 : NaN;
+          // stärkerer Plattentyp gleicher Größe, der reicht
+          x.besser = '';
+          if (x.platte && x.deckung < 1 && !(h.PN > 0)) {
+            ['10', '11', '20', '21', '22', '33'].some(function (t) { const q = PLATTE[t][h.hoehe] * h.laenge / 1000 * Math.pow(x.ln / 49.83, 1.3); if (q >= h.bedarf && PLATTE[t][h.hoehe] > x.qm) { x.besser = t; return true; } return false; });
+          }
+          x.tVnoetig = vorlaufNoetig(x.PN * (x.dtN === 49.83 ? 1 : Math.pow(49.83 / x.dtN, x.n)), 49.83, x.n, h.bedarf, sigma, h.ti);
+          // Auslegungsleistung: Heizlast, sonst Heizkörperleistung
+          x.Qa = h.bedarf > 0 ? h.bedarf : (isFinite(x.Q) ? x.Q : 0);
+          x.m = x.Qa / (C_W * sigma);                  // kg/h
+          x.V = x.m / w.rho * 1000;                     // l/h
+          x.rohr = rohrWaehlen(x.V, e, w);
+          x.RL = 2 * h.L * x.rohr.s.R;                  // Pa, Vor- und Rücklauf
+          x.Z = e.zA * w.rho / 2 * x.rohr.s.v * x.rohr.s.v;
+          x.dp = (x.RL + x.Z) / 100;                    // mbar
+          if (isFinite(x.Q)) QHK += x.Q;
+          QHL += h.bedarf; mGes += x.m; Vges += x.V;
+          inhalt += 2 * h.L * x.rohr.s.A * 1000;
+          if (h.bedarf > 0 && isFinite(x.tVnoetig)) tVmax = Math.max(tVmax, x.tVnoetig); else if (h.bedarf > 0) tVmax = Infinity;
+          r.hks.push(x);
+        });
+        r.QHK = QHK; r.QHL = QHL; r.m = mGes; r.V = Vges; r.tVmax = tVmax;
+        r.haupt = rohrWaehlen(Vges, e, w);
+        r.RLH = 2 * e.lH * r.haupt.s.R; r.ZH = e.zH * w.rho / 2 * r.haupt.s.v * r.haupt.s.v;
+        r.dpH = (r.RLH + r.ZH) / 100;
+        inhalt += 2 * e.lH * r.haupt.s.A * 1000; r.inhalt = inhalt;
+        r.krit = null; r.hks.forEach(function (x) { if (!r.krit || x.dp > r.krit.dp) r.krit = x; });
+        r.dpGes = r.dpH + (r.krit ? r.krit.dp : 0) + e.dpV + e.dpWE;
+        r.H = r.dpGes * 100 / (w.rho * 9.81);
+        r.zuKlein = r.hks.filter(function (x) { return x.h.bedarf > 0 && isFinite(x.Q) && !(x.deckung >= 0.995); });
+        r.ohneLeistung = r.hks.filter(function (x) { return !isFinite(x.PN); });
+        return r;
+      },
+
+      ergebnis: function (r, e, H) {
+        if (r.fehler) { H.urteil(false, 'prüfen'); H.meldung(r.fehler, true); return; }
+        const mitBedarf = r.hks.filter(function (x) { return x.h.bedarf > 0; }).length;
+        if (mitBedarf) H.urteil(!r.zuKlein.length, r.zuKlein.length ? r.zuKlein.length + ' von ' + mitBedarf + ' zu knapp' : 'alle Räume gedeckt');
+        else H.urteil(null, z(r.QHK, 0) + ' W');
+        r.ohneLeistung.forEach(function (x) { H.meldung('„' + x.h.name + '“ (' + typName(x.h.typ) + '): bitte die Normleistung eintragen – für diese Bauart gibt es keine Katalogwerte im Rechner.', true); });
+        r.zuKlein.forEach(function (x) {
+          let t = '„' + x.h.name + '“ deckt nur ' + z(x.deckung * 100, 0) + ' % der Heizlast (' + z(x.Q, 0) + ' von ' + z(x.h.bedarf, 0) + ' W). ';
+          if (x.platte && !(x.h.PN > 0)) t += 'Nötig wären ' + z(x.Lnoetig, 0) + ' mm Baulänge' + (x.besser ? ' oder Typ ' + x.besser + ' in gleicher Größe' : '') + '. ';
+          else if (isFinite(x.PNnoetig)) t += 'Nötig wären ' + z(x.PNnoetig, 0) + ' W Normleistung. ';
+          if (isFinite(x.tVnoetig)) t += 'Oder Vorlauf ' + z(Math.ceil(x.tVnoetig), 0) + ' °C.';
+          H.meldung(t);
+        });
+        if (r.tVmax > e.tV + 0.5 && isFinite(r.tVmax)) H.meldung('Damit alle Räume warm werden, braucht der Heizkreis ' + z(Math.ceil(r.tVmax), 0) + ' °C Vorlauf bei ' + z(r.sigma, 0) + ' K Spreizung.');
+        else if (mitBedarf && isFinite(r.tVmax) && r.tVmax < e.tV - 2) H.meldung('Alle Räume werden schon mit ' + z(Math.ceil(r.tVmax), 0) + ' °C Vorlauf warm – die Vorlauftemperatur lässt sich senken, das spart Energie (bei einer Wärmepumpe besonders).');
+        H.kacheln([
+          [z(r.QHK, 0) + ' W', 'Heizkörperleistung bei ' + z(e.tV, 0) + '/' + z(e.tR, 0) + ' °C' + (r.QHL > 0 ? ' (Heizlast ' + z(r.QHL, 0) + ' W)' : ''), ROT],
+          [isFinite(r.tVmax) && mitBedarf ? z(Math.ceil(r.tVmax), 0) + ' °C' : '–', mitBedarf ? 'nötiger Vorlauf, damit alle Räume warm werden' : 'nötiger Vorlauf: Heizlast eintragen', r.tVmax > e.tV + 0.5 ? SCHLECHT : GUT],
+          [z(r.m, 0) + ' kg/h', z(r.V, 0) + ' l/h Volumenstrom im Heizkreis', BLAU],
+          [r.haupt.n, 'Hauptleitung ' + ROHRE[e.rohr].name + ', v = ' + z(r.haupt.s.v, 2) + ' m/s, R = ' + z(r.haupt.s.R, 0) + ' Pa/m', r.haupt.ok ? '#6E6FA6' : SCHLECHT],
+          [z(r.H, 2) + ' m', 'Förderhöhe der Pumpe (' + z(r.dpGes, 0) + ' mbar) bei ' + z(r.V / 1000, 2) + ' m³/h', '#0E6B6A'],
+          [z(r.inhalt, 1) + ' l', 'Wasserinhalt der Rohre (für das Ausdehnungsgefäß)', '#3B5BDB']
+        ]);
+        const nw = [];
+        r.hks.forEach(function (x) { if (x.h.bedarf > 0 && isFinite(x.Q)) nw.push([x.deckung >= 0.995, x.h.name + ': Leistung ≥ Heizlast', z(x.Q, 0) + ' W ≥ ' + z(x.h.bedarf, 0) + ' W']); });
+        nw.push([r.haupt.ok, 'Hauptleitung ' + r.haupt.n + ': v ≤ ' + z(e.vmax, 2) + ' m/s und R ≤ ' + z(e.Rmax, 0) + ' Pa/m', z(r.haupt.s.v, 2) + ' m/s, ' + z(r.haupt.s.R, 0) + ' Pa/m' + (r.haupt.ok ? '' : ' – größte Weite reicht nicht')]);
+        const schlecht = r.hks.filter(function (x) { return !x.rohr.ok; });
+        nw.push([!schlecht.length, 'Anbindeleitungen in Richtwerten', schlecht.length ? schlecht.map(function (x) { return x.h.name; }).join(', ') + ': größte Weite reicht nicht' : 'alle ' + r.hks.length + ' passend']);
+        if (r.krit) nw.push([null, 'Ungünstigster Heizkörper', r.krit.h.name + ': ' + z(r.krit.dp, 0) + ' mbar im Weg']);
+        H.nachweise(nw);
+        H.tabelle('Heizkörper bei ' + z(e.tV, 0) + '/' + z(e.tR, 0) + ' °C', ['Raum', 'Heizkörper', 'Normleistung', 'Leistung', 'Heizlast', 'Deckung', 'nötig', 'Vorlauf nötig'],
+          r.hks.map(function (x) {
+            const h = x.h, art = x.platte ? 'Typ ' + h.typ + ' ' + h.hoehe + '×' + z(h.laenge, 0) : typName(h.typ);
+            const noetig = !(h.bedarf > 0) || !isFinite(x.PNnoetig) ? '–' : (x.platte && !(h.PN > 0) ? z(x.Lnoetig, 0) + ' mm' : z(x.PNnoetig, 0) + ' W');
+            return [h.name, art, isFinite(x.PN) ? z(x.PN, 0) + ' W' + (h.bezug === '90' ? ' (90/70)' : '') : '–', isFinite(x.Q) ? z(x.Q, 0) + ' W' : '–', h.bedarf > 0 ? z(h.bedarf, 0) + ' W' : '–',
+              isFinite(x.deckung) ? z(x.deckung * 100, 0) + ' %' : '–', noetig, isFinite(x.tVnoetig) ? z(Math.ceil(x.tVnoetig), 0) + ' °C' : (h.bedarf > 0 ? 'über 110 °C' : '–')];
+          }), { zahl: [2, 3, 4, 5, 6, 7], klasse: function (i) { const x = r.hks[i]; return x.h.bedarf > 0 && !(x.deckung >= 0.995) ? 'schlecht' : ''; },
+            fuss: 'Normleistung von Plattenheizkörpern: Richtwerte gängiger Kataloge bei 75/65/20 °C – maßgeblich ist das Datenblatt. „nötig“: Baulänge (Platte) oder Normleistung, die die Heizlast deckt.' });
+        H.tabelle('Massenstrom und Anbindeleitungen', ['Raum', 'Massenstrom', 'Volumenstrom', 'Rohr', 'v', 'R', 'Weg Δp'],
+          r.hks.map(function (x) { return [x.h.name, z(x.m, 1) + ' kg/h', z(x.V, 0) + ' l/h', x.rohr.n + (x.rohr.ok ? '' : ' (zu klein)'), z(x.rohr.s.v, 2) + ' m/s', z(x.rohr.s.R, 0) + ' Pa/m', z(x.dp, 1) + ' mbar']; }),
+          { zahl: [1, 2, 4, 5, 6], klasse: function (i) { return r.hks[i] === r.krit ? 'gewaehlt' : (!r.hks[i].rohr.ok ? 'schlecht' : ''); },
+            fuss: 'Massenstrom aus der Heizlast (ohne Heizlast aus der Heizkörperleistung). Weg Δp = R · 2l + Z der Anbindung. Hervorgehoben: ungünstigster Heizkörper, bestimmt die Pumpe.' });
+        H.absatz('Voreinstellung der Thermostatventile und Pumpeneinstellung für den hydraulischen Abgleich: im Rechner „Hydraulischer Abgleich“. Die Heizlast je Raum liefert der Rechner „Heizlast und Heizkörper“.');
+      },
+
+      weg: function (r, e) {
+        if (r.fehler || !r.krit) return [];
+        const x = r.krit, h = x.h, w = r.w, s = x.rohr.s, wg = [];
+        wg.push(['Logarithmische Übertemperatur („' + h.name + '“)', '\\Delta\\vartheta_\\text{ln} = \\frac{\\vartheta_\\text{V} - \\vartheta_\\text{R}}{\\ln\\frac{\\vartheta_\\text{V} - \\vartheta_\\text{i}}{\\vartheta_\\text{R} - \\vartheta_\\text{i}}} = \\frac{' + tz(e.tV) + ' - ' + tz(e.tR) + '}{\\ln\\frac{' + tz(e.tV) + ' - ' + tz(h.ti) + '}{' + tz(e.tR) + ' - ' + tz(h.ti) + '}} = ' + E(u(x.ln, 2, 'K'))]);
+        if (x.ausKatalog) wg.push(['Normleistung aus dem Katalog', '\\dot Q_\\text{N} = \\dot q_\\text{N} \\cdot L = ' + u(x.qm, 0, 'W/m') + ' \\cdot ' + u(h.laenge / 1000, 2, 'm') + ' = ' + E(u(x.PN, 0, 'W'))]);
+        if (isFinite(x.Q)) wg.push(['Leistung bei Betriebstemperaturen', '\\dot Q = \\dot Q_\\text{N} \\cdot \\left(\\frac{\\Delta\\vartheta_\\text{ln}}{\\Delta\\vartheta_\\text{N}}\\right)^{n} = ' + tz(x.PN, 0) + ' \\cdot \\left(\\frac{' + tz(x.ln, 2) + '}{' + tz(x.dtN, 2) + '}\\right)^{' + tz(x.n, 2) + '} = ' + E(u(x.Q, 0, 'W'))]);
+        wg.push(['Massenstrom', '\\dot m = \\frac{\\dot Q}{c \\cdot \\Delta\\vartheta} = \\frac{' + tz(x.Qa, 0) + '\\,\\text{W}}{1{,}163\\,\\frac{\\text{Wh}}{\\text{kg·K}} \\cdot ' + tz(r.sigma, 1) + '\\,\\text{K}} = ' + E(u(x.m, 1, 'kg/h'))]);
+        wg.push(['Volumenstrom', '\\dot V = \\frac{\\dot m}{\\rho} = \\frac{' + tz(x.m, 1) + '\\,\\text{kg/h}}{' + tz(w.rho, 1) + '\\,\\text{kg/m}^3} = ' + E(u(x.V, 0, 'l/h'))]);
+        wg.push(['Fließgeschwindigkeit in ' + x.rohr.n, 'v = \\frac{4 \\cdot \\dot V}{\\pi \\cdot d_\\text{i}^2} = \\frac{4 \\cdot ' + tz(x.V / 3600000, 7) + '\\,\\text{m}^3/\\text{s}}{\\pi \\cdot (' + tz(x.rohr.di / 1000, 4) + '\\,\\text{m})^2} = ' + E(u(s.v, 3, 'm/s'))]);
+        wg.push(['Reynolds-Zahl und Rohrreibungszahl', 'Re = \\frac{v \\cdot d_\\text{i}}{\\nu} = \\frac{' + tz(s.v, 3) + ' \\cdot ' + tz(x.rohr.di / 1000, 4) + '}{' + tz(w.nu * 1e6, 3) + '\\cdot 10^{-6}} = ' + tz(s.Re, 0) + ' \\Rightarrow ' + (s.Re < 2320 ? '\\lambda = \\frac{64}{Re}' : '\\lambda\\ \\text{(Colebrook)}') + ' = ' + E(tz(s.lam, 4))]);
+        wg.push(['Rohrreibungsdruckgefälle', 'R = \\lambda \\cdot \\frac{1}{d_\\text{i}} \\cdot \\frac{\\rho}{2} \\cdot v^2 = ' + tz(s.lam, 4) + ' \\cdot \\frac{1}{' + tz(x.rohr.di / 1000, 4) + '} \\cdot \\frac{' + tz(w.rho, 0) + '}{2} \\cdot ' + tz(s.v, 3) + '^2 = ' + E(u(s.R, 1, 'Pa/m'))]);
+        wg.push(['Druckverlust Anbindung (Vor- und Rücklauf)', '\\Delta p = R \\cdot l + \\sum\\zeta \\cdot \\frac{\\rho}{2} \\cdot v^2 = ' + tz(s.R, 1) + ' \\cdot ' + tz(2 * h.L, 1) + ' + ' + tz(e.zA, 1) + ' \\cdot \\frac{' + tz(w.rho, 0) + '}{2} \\cdot ' + tz(s.v, 3) + '^2 = ' + E(u(x.dp * 100, 0, 'Pa'))]);
+        wg.push(['Hauptleitung ' + r.haupt.n, '\\Delta p_\\text{H} = ' + tz(r.haupt.s.R, 1) + ' \\cdot ' + tz(2 * e.lH, 1) + ' + ' + tz(e.zH, 1) + ' \\cdot \\frac{' + tz(w.rho, 0) + '}{2} \\cdot ' + tz(r.haupt.s.v, 3) + '^2 = ' + E(u(r.dpH * 100, 0, 'Pa'))]);
+        wg.push(['Gesamtdruckverlust', '\\Delta p_\\text{ges} = \\Delta p_\\text{H} + \\Delta p + \\Delta p_\\text{V} + \\Delta p_\\text{WE} = ' + tz(r.dpH, 1) + ' + ' + tz(x.dp, 1) + ' + ' + tz(e.dpV, 0) + ' + ' + tz(e.dpWE, 0) + ' = ' + E(u(r.dpGes, 0, 'mbar'))]);
+        wg.push(['Förderhöhe der Pumpe', 'H = \\frac{\\Delta p_\\text{ges}}{\\rho \\cdot g} = \\frac{' + tz(r.dpGes * 100, 0) + '\\,\\text{Pa}}{' + tz(w.rho, 0) + ' \\cdot 9{,}81} = ' + E(u(r.H, 2, 'm'))]);
+        return wg;
+      },
+
+      loeser: {
+        titel: 'Heizkörper und Massenstrom in jede Richtung',
+        hilfe: 'Bekannte Werte eintragen, z. B. Normleistung und Temperaturen oder Leistung und Spreizung. Der Rest wird berechnet.',
+        felder: [
+          { k: 'Q', tex: '\\dot Q', name: 'Wärmeleistung', e: 'W', min: 1, max: 100000, n: 0 },
+          { k: 'QN', tex: '\\dot Q_\\text{N}', name: 'Normleistung 75/65/20 °C', e: 'W', min: 1, max: 100000, n: 0 },
+          { k: 'tV', tex: '\\vartheta_\\text{V}', name: 'Vorlauf', e: '°C', min: 21, max: 110, n: 1 },
+          { k: 'tR', tex: '\\vartheta_\\text{R}', name: 'Rücklauf', e: '°C', min: 20.5, max: 105, n: 1 },
+          { k: 'ti', tex: '\\vartheta_\\text{i}', name: 'Raumtemperatur', e: '°C', min: 10, max: 30, n: 1, fest: true },
+          { k: 'n', tex: 'n', name: 'Heizkörperexponent', e: '', min: 1, max: 1.6, n: 2, fest: true },
+          { k: 'm', tex: '\\dot m', name: 'Massenstrom', e: 'kg/h', min: 0.1, max: 10000, n: 1 }
+        ],
+        beispiel: { QN: 1680, tV: 55, tR: 45, ti: 20, n: 1.3 },
+        gleichungen: [
+          { name: 'Wärmestrom', v: ['Q', 'm', 'tV', 'tR'], f: function (x) { return [x.Q, x.m * C_W * (x.tV - x.tR)]; },
+            loese: { Q: function (x) { return x.m * C_W * (x.tV - x.tR); }, m: function (x) { return x.Q / (C_W * (x.tV - x.tR)); }, tV: function (x) { return x.tR + x.Q / (C_W * x.m); }, tR: function (x) { return x.tV - x.Q / (C_W * x.m); } },
+            weg: function (k, x) {
+              if (k === 'm') return '\\dot m = \\frac{\\dot Q}{c \\cdot (\\vartheta_\\text{V} - \\vartheta_\\text{R})} = \\frac{' + tz(x.Q, 0) + '}{1{,}163 \\cdot (' + tz(x.tV, 1) + ' - ' + tz(x.tR, 1) + ')} = ' + E(u(x.m, 1, 'kg/h'));
+              if (k === 'Q') return '\\dot Q = \\dot m \\cdot c \\cdot \\Delta\\vartheta = ' + tz(x.m, 1) + ' \\cdot 1{,}163 \\cdot ' + tz(x.tV - x.tR, 1) + ' = ' + E(u(x.Q, 0, 'W'));
+              return k === 'tV' ? '\\vartheta_\\text{V} = \\vartheta_\\text{R} + \\frac{\\dot Q}{c \\cdot \\dot m} = ' + E(u(x.tV, 1, '°C')) : '\\vartheta_\\text{R} = \\vartheta_\\text{V} - \\frac{\\dot Q}{c \\cdot \\dot m} = ' + E(u(x.tR, 1, '°C'));
+            } },
+          { name: 'Heizkörperleistung', v: ['Q', 'QN', 'tV', 'tR', 'ti', 'n'], f: function (x) { return [x.Q, x.QN * Math.pow(dtln(x.tV, x.tR, x.ti) / 49.83, x.n)]; },
+            loese: { Q: function (x) { return x.QN * Math.pow(dtln(x.tV, x.tR, x.ti) / 49.83, x.n); }, QN: function (x) { return x.Q / Math.pow(dtln(x.tV, x.tR, x.ti) / 49.83, x.n); } },
+            weg: function (k, x) {
+              const ln = dtln(x.tV, x.tR, x.ti), t = '\\left(\\frac{' + tz(ln, 2) + '}{49{,}83}\\right)^{' + tz(x.n, 2) + '}';
+              return k === 'QN' ? '\\dot Q_\\text{N} = \\dot Q / ' + t + ' = ' + E(u(x.QN, 0, 'W')) : k === 'Q' ? '\\dot Q = \\dot Q_\\text{N} \\cdot ' + t + ' = ' + tz(x.QN, 0) + ' \\cdot ' + t + ' = ' + E(u(x.Q, 0, 'W')) : k + ' = ' + E(tz(x[k], 2));
+            } }
+        ]
+      },
+
+      sammlung: [
+        ['Wärmestrom', '\\dot Q = \\dot m \\cdot c \\cdot \\Delta\\vartheta', 'c = 1,163 Wh/(kg·K) für Wasser; Δϑ = ϑ_V − ϑ_R (Spreizung)'],
+        ['Massenstrom', '\\dot m = \\frac{\\dot Q}{c \\cdot \\Delta\\vartheta}', 'in kg/h, wenn Q̇ in W und c = 1,163 Wh/(kg·K)'],
+        ['Volumenstrom', '\\dot V = \\frac{\\dot m}{\\rho}', 'Wasser bei 50 °C: ρ ≈ 988 kg/m³'],
+        ['Logarithmische Übertemperatur', '\\Delta\\vartheta_\\text{ln} = \\frac{\\vartheta_\\text{V} - \\vartheta_\\text{R}}{\\ln\\dfrac{\\vartheta_\\text{V} - \\vartheta_\\text{i}}{\\vartheta_\\text{R} - \\vartheta_\\text{i}}}', 'Normzustand 75/65/20 °C (DIN EN 442): 49,83 K; früher 90/70/20 °C (DIN 4703): 59,44 K'],
+        ['Heizkörperleistung', '\\dot Q = \\dot Q_\\text{N} \\cdot \\left(\\frac{\\Delta\\vartheta_\\text{ln}}{\\Delta\\vartheta_\\text{N}}\\right)^{n}', 'n: Heizkörperexponent – Plattenheizkörper 1,3, Badheizkörper 1,25, Konvektoren 1,4'],
+        ['Normleistung aus dem Katalog', '\\dot Q_\\text{N} = \\dot q_\\text{N} \\cdot L', 'Leistung je Meter Baulänge mal Baulänge'],
+        ['Nötige Normleistung', '\\dot Q_\\text{N} = \\dot Q_\\text{HL} \\cdot \\left(\\frac{\\Delta\\vartheta_\\text{N}}{\\Delta\\vartheta_\\text{ln}}\\right)^{n}', 'Raumheizlast auf Normbedingungen umrechnen, dann im Katalog suchen'],
+        ['Fließgeschwindigkeit', 'v = \\frac{\\dot V}{A} = \\frac{4 \\cdot \\dot V}{\\pi \\cdot d_\\text{i}^2}', 'Richtwert Anbindeleitungen bis 0,5 m/s, Verteilleitungen bis 1 m/s'],
+        ['Reynolds-Zahl', 'Re = \\frac{v \\cdot d_\\text{i}}{\\nu}', 'unter 2320 laminar: λ = 64/Re'],
+        ['Rohrreibungsdruckgefälle', 'R = \\lambda \\cdot \\frac{1}{d_\\text{i}} \\cdot \\frac{\\rho}{2} \\cdot v^2', 'λ turbulent nach Colebrook; Richtwert R ≈ 100 Pa/m'],
+        ['Einzelwiderstände', 'Z = \\sum\\zeta \\cdot \\frac{\\rho}{2} \\cdot v^2', 'ζ etwa: Bogen 90° 0,5, T-Stück Abzweig 1,5, Heizkörper 2,5'],
+        ['Druckverlust einer Teilstrecke', '\\Delta p = R \\cdot l + Z', 'Vor- und Rücklauf: Leitungslänge doppelt'],
+        ['Förderhöhe der Pumpe', 'H = \\frac{\\Delta p_\\text{ges}}{\\rho \\cdot g}', '1 m Förderhöhe ≈ 98 mbar ≈ 9,8 kPa'],
+        ['Wasserinhalt der Rohre', 'V = \\frac{\\pi \\cdot d_\\text{i}^2}{4} \\cdot l', 'zusammen mit Heizkörpern und Wärmeerzeuger für das Ausdehnungsgefäß']
+      ],
+      quellen: 'Formeln und Schreibweise nach dem Tabellenbuch Sanitär, Heizung, Lüftung (Q̇ = ṁ · c · Δϑ, Δp = R · l + Z, Z = Σζ · ρ/2 · v², H = Δp/(ρ · g)). Normwärmeleistung nach DIN EN 442 bei 75/65/20 °C; alte Angaben nach DIN 4703 bei 90/70/20 °C. Leistung je Meter von Plattenheizkörpern: gerundete Mittelwerte aus Herstellerkatalogen (Abweichung je Hersteller etwa ±5 %), maßgeblich ist das Datenblatt. Stoffwerte von Wasser bei mittlerer Heizwassertemperatur. Rohrreibung nach Darcy-Weisbach mit λ = 64/Re bzw. Colebrook-White; Rauheit Kupfer 0,0015 mm, Kunststoff und Verbund 0,007 mm, Stahl 0,045 mm. Massenstrom aus der Raumheizlast; vereinfachtes Zweirohrsystem mit sternförmiger Anbindung ab Verteiler. Ersetzt keine Fachplanung nach DIN EN 12828 und DIN EN 12831.',
+
+      bild: {
+        titel: 'Heizkreis', label: 'Schema des Heizkreises: Wärmeerzeuger, Vorlauf rot, Rücklauf blau, Heizkörper mit Leistung und Deckung, Wasser fließt in den Leitungen', animiert: !bewegungAus, hoehe: function (B) { return B < 520 ? 330 : 310; },
+        hinweis: function (r, e) { return r.fehler ? '' : 'Heizkörper grün: Heizlast gedeckt, rot: zu knapp. Die Punkte zeigen den Wasserstrom – je schneller, desto höher die Fließgeschwindigkeit.'; },
+        zeichne: function (cx, B, H, t, r, e) {
+          if (r.fehler || !r.hks.length) { R.Z.text(cx, r.fehler || 'Heizkörper eintragen', B / 2, H / 2, 'center', 14, true); return; }
+          const schmal = B < 520, links = schmal ? 66 : 96, rechts = B - 14, yV = 40, yR = H - 34, n = r.hks.length;
+          const breite = (rechts - links) / n;
+          // Wärmeerzeuger
+          const wx = 10, ww = links - 30;
+          cx.fillStyle = F('--flaeche2'); cx.strokeStyle = F('--text'); cx.lineWidth = 1.5;
+          cx.beginPath(); if (cx.roundRect) cx.roundRect(wx, yV - 6, ww, yR - yV + 12, 8); else cx.rect(wx, yV - 6, ww, yR - yV + 12); cx.fill(); cx.stroke();
+          const flamme = 0.75 + 0.25 * Math.sin(t / 180);
+          cx.fillStyle = 'rgba(228, 87, 46, ' + (0.55 * flamme).toFixed(2) + ')'; cx.beginPath(); cx.ellipse(wx + ww / 2, yR - 26, ww * 0.28, 16 * flamme, 0, 0, 2 * Math.PI); cx.fill();
+          R.Z.text(cx, 'Wärme-', wx + ww / 2, (yV + yR) / 2 - 16, 'center', schmal ? 10 : 11, true);
+          R.Z.text(cx, 'erzeuger', wx + ww / 2, (yV + yR) / 2 - 3, 'center', schmal ? 10 : 11, true);
+          R.Z.text(cx, 'H = ' + z(r.H, 1) + ' m', wx + ww / 2, (yV + yR) / 2 + 14, 'center', schmal ? 10 : 11, false);
+          // Haupt- und Verteilleitungen
+          const rohr = function (y, farbe) { cx.strokeStyle = farbe; cx.lineWidth = 5; cx.lineCap = 'round'; cx.beginPath(); cx.moveTo(wx + ww, y); cx.lineTo(rechts - breite / 2 + 6, y); cx.stroke(); };
+          rohr(yV, ROT); rohr(yR, BLAU); cx.lineCap = 'butt';
+          R.Z.text(cx, 'Vorlauf ' + z(e.tV, 0) + ' °C', wx + ww + 6, yV - 12, 'left', 11, true, ROT);
+          R.Z.text(cx, 'Rücklauf ' + z(e.tR, 0) + ' °C', wx + ww + 6, yR + 20, 'left', 11, true, BLAU);
+          // Punkte im Hauptstrom
+          const vH = Math.max(0.05, r.haupt.s.v), takt = (t / 1000) * vH * 160;
+          for (let p = 0; p < 40; p++) {
+            const s = (p * 34 + takt) % (rechts - wx - ww);
+            cx.fillStyle = '#fff'; cx.globalAlpha = 0.85;
+            cx.beginPath(); cx.arc(wx + ww + s, yV, 1.6, 0, 7); cx.fill();
+            cx.beginPath(); cx.arc(rechts - breite / 2 + 6 - s, yR, 1.6, 0, 7); cx.fill();
+          }
+          cx.globalAlpha = 1;
+          // Heizkörper
+          r.hks.forEach(function (x, i) {
+            const mx = links + breite * (i + 0.5), hMax = yR - yV - 92, hh = Math.max(26, hMax * (x.platte ? x.h.hoehe / 900 : 0.66));
+            const wMax = Math.min(breite - 14, 130), bw = Math.max(18, wMax * (x.platte ? Math.min(1, x.h.laenge / 2000) : 0.45));
+            const y0 = yV + 42 + (hMax - hh) / 2, x0 = mx - bw / 2;
+            // Anbindung
+            cx.strokeStyle = ROT; cx.lineWidth = 2.5; cx.beginPath(); cx.moveTo(x0 + 4, yV); cx.lineTo(x0 + 4, y0 + 4); cx.stroke();
+            cx.strokeStyle = BLAU; cx.beginPath(); cx.moveTo(x0 + bw - 4, y0 + hh - 4); cx.lineTo(x0 + bw - 4, yR); cx.stroke();
+            // Wasser in der Anbindung
+            const vv = Math.max(0.03, x.rohr.s.v), lauf = ((t / 1000) * vv * 120) % 18;
+            cx.fillStyle = '#fff'; cx.globalAlpha = 0.85;
+            for (let y = yV + lauf; y < y0; y += 18) { cx.beginPath(); cx.arc(x0 + 4, y, 1.4, 0, 7); cx.fill(); }
+            for (let y = y0 + hh + lauf; y < yR; y += 18) { cx.beginPath(); cx.arc(x0 + bw - 4, y, 1.4, 0, 7); cx.fill(); }
+            cx.globalAlpha = 1;
+            // Körper mit Temperaturverlauf oben warm, unten kalt
+            const g = cx.createLinearGradient(0, y0, 0, y0 + hh); g.addColorStop(0, 'rgba(228, 87, 46, 0.85)'); g.addColorStop(1, 'rgba(43, 123, 185, 0.75)');
+            cx.fillStyle = g; cx.fillRect(x0, y0, bw, hh);
+            cx.strokeStyle = 'rgba(255,255,255,0.35)'; cx.lineWidth = 1;
+            const rippen = x.platte ? 0 : (x.h.typ === 'bad' ? 6 : 0);
+            if (x.h.typ === 'roehre' || x.h.typ === 'glied') for (let k = x0 + 5; k < x0 + bw; k += 5) { cx.beginPath(); cx.moveTo(k, y0 + 2); cx.lineTo(k, y0 + hh - 2); cx.stroke(); }
+            else if (rippen) for (let k = y0 + 5; k < y0 + hh; k += rippen) { cx.beginPath(); cx.moveTo(x0 + 2, k); cx.lineTo(x0 + bw - 2, k); cx.stroke(); }
+            else for (let k = x0 + 4; k < x0 + bw; k += 4) { cx.beginPath(); cx.moveTo(k, y0 + 3); cx.lineTo(k, y0 + hh - 3); cx.stroke(); }
+            const ok = !(x.h.bedarf > 0) || x.deckung >= 0.995;
+            cx.strokeStyle = !(x.h.bedarf > 0) ? F('--leise') : ok ? GUT : SCHLECHT; cx.lineWidth = 3; cx.strokeRect(x0 - 1.5, y0 - 1.5, bw + 3, hh + 3);
+            // Wärme steigt auf
+            const welle = (t / 900 + i * 0.37) % 1;
+            cx.strokeStyle = 'rgba(228, 87, 46, ' + (0.45 * (1 - welle)).toFixed(2) + ')'; cx.lineWidth = 1.5;
+            for (let k = -1; k <= 1; k++) { const sx = mx + k * bw / 3, sy = y0 - 4 - welle * 20; cx.beginPath(); cx.moveTo(sx, sy + 8); cx.quadraticCurveTo(sx + 4, sy + 4, sx, sy); cx.stroke(); }
+            // Beschriftung
+            const fs = schmal ? 10 : 11, name = x.h.name.length > (schmal ? 7 : 12) ? x.h.name.slice(0, schmal ? 6 : 11) + '…' : x.h.name;
+            const wert = isFinite(x.Q) ? z(x.Q, 0) + ' W' : '?';
+            cx.font = '600 ' + fs + 'px system-ui, sans-serif';
+            const lw = Math.max(cx.measureText(name).width, cx.measureText(wert).width) + 8;
+            cx.fillStyle = F('--flaeche'); cx.fillRect(mx - lw / 2, y0 + hh + 5, lw, 29);
+            R.Z.text(cx, name, mx, y0 + hh + 16, 'center', fs, true);
+            R.Z.text(cx, wert, mx, y0 + hh + 29, 'center', fs, false, !(x.h.bedarf > 0) ? undefined : ok ? GUT : SCHLECHT);
+          });
+        }
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
