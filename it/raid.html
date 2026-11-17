@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>RAID- und Speicherrechner – Formeln &amp; Rechner</title>
-  <meta name="description" content="RAID 0, 1, 5, 6, 10, 50 und 60 berechnen: nutzbare Kapazität, erlaubte Plattenausfälle, Lese- und Schreibleistung, Rebuild-Zeit, Lesefehler-Risiko beim Wiederaufbau und Datenverlust im Jahr – mit Simulation von Ausfall und Rebuild.">
+  <meta name="description" content="RAID 0 bis 60 und eigene Konfigurationen mit gemischten Platten, mehreren Pools und NAS (Hybrid-RAID, ZFS, btrfs, Paritätsplatten-Array): nutzbare Kapazität, ungenutzter Platz, erlaubte Ausfälle, Leistung, Rebuild-Zeit, Lesefehler beim Wiederaufbau und Datenverlust im Jahr – mit Simulation.">
   <!-- seo -->
   <link rel="canonical" href="https://tools.pr1m3.de/it/raid.html">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -12,15 +12,15 @@
   <meta property="og:site_name" content="Formeln &amp; Rechner">
   <meta property="og:locale" content="de_DE">
   <meta property="og:title" content="RAID- und Speicherrechner">
-  <meta property="og:description" content="RAID 0, 1, 5, 6, 10, 50 und 60 berechnen: nutzbare Kapazität, erlaubte Plattenausfälle, Lese- und Schreibleistung, Rebuild-Zeit, Lesefehler-Risiko beim Wiederaufbau und Datenverlust im Jahr – mit Simulation von Ausfall und Rebuild.">
+  <meta property="og:description" content="RAID 0 bis 60 und eigene Konfigurationen mit gemischten Platten, mehreren Pools und NAS (Hybrid-RAID, ZFS, btrfs, Paritätsplatten-Array): nutzbare Kapazität, ungenutzter Platz, erlaubte Ausfälle, Leistung, Rebuild-Zeit, Lesefehler beim Wiederaufbau und Datenverlust im Jahr – mit Simulation.">
   <meta property="og:url" content="https://tools.pr1m3.de/it/raid.html">
   <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
   <meta property="og:image:alt" content="Formeln &amp; Rechner">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="RAID- und Speicherrechner">
-  <meta name="twitter:description" content="RAID 0, 1, 5, 6, 10, 50 und 60 berechnen: nutzbare Kapazität, erlaubte Plattenausfälle, Lese- und Schreibleistung, Rebuild-Zeit, Lesefehler-Risiko beim Wiederaufbau und Datenverlust im Jahr – mit Simulation von Ausfall und Rebuild.">
+  <meta name="twitter:description" content="RAID 0 bis 60 und eigene Konfigurationen mit gemischten Platten, mehreren Pools und NAS (Hybrid-RAID, ZFS, btrfs, Paritätsplatten-Array): nutzbare Kapazität, ungenutzter Platz, erlaubte Ausfälle, Leistung, Rebuild-Zeit, Lesefehler beim Wiederaufbau und Datenverlust im Jahr – mit Simulation.">
   <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/raid.html#seite","name":"RAID- und Speicherrechner","url":"https://tools.pr1m3.de/it/raid.html","inLanguage":"de","description":"RAID 0, 1, 5, 6, 10, 50 und 60 berechnen: nutzbare Kapazität, erlaubte Plattenausfälle, Lese- und Schreibleistung, Rebuild-Zeit, Lesefehler-Risiko beim Wiederaufbau und Datenverlust im Jahr – mit Simulation von Ausfall und Rebuild.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/raid.html#pfad"},"dateModified":"2026-11-06"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/raid.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"RAID- und Speicherrechner","item":"https://tools.pr1m3.de/it/raid.html"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/raid.html#seite","name":"RAID- und Speicherrechner","url":"https://tools.pr1m3.de/it/raid.html","inLanguage":"de","description":"RAID 0 bis 60 und eigene Konfigurationen mit gemischten Platten, mehreren Pools und NAS (Hybrid-RAID, ZFS, btrfs, Paritätsplatten-Array): nutzbare Kapazität, ungenutzter Platz, erlaubte Ausfälle, Leistung, Rebuild-Zeit, Lesefehler beim Wiederaufbau und Datenverlust im Jahr – mit Simulation.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/raid.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/raid.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"RAID- und Speicherrechner","item":"https://tools.pr1m3.de/it/raid.html"}]}]}</script>
   <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
@@ -53,45 +53,154 @@
       r0: ['RAID 0 (Striping)', 2, 1], r1: ['RAID 1 (Spiegel)', 2, 2], r5: ['RAID 5 (einfache Parität)', 3, 4], r6: ['RAID 6 (doppelte Parität)', 4, 6],
       r10: ['RAID 10 (Spiegel + Striping)', 4, 2], r50: ['RAID 50', 6, 4], r60: ['RAID 60', 8, 6], jbod: ['JBOD (einzelne Platten)', 1, 1]
     };
-    const BEISPIEL = { stufe: 'r5', n: 6, tb: 12, gruppe: 4, ure: '15', afr: 1.5, mbs: 250, iops: 180, rebuild: 120, spare: 'nein', tausch: 48 };
+    const BEISPIEL = { modus: 'gleich', stufe: 'r5', n: 6, tb: 12, gruppe: 4, ure: '15', afr: 1.5, mbs: 250, iops: 180, rebuild: 120, spare: 'nein', tausch: 48,
+      pools: [
+        { geraet: 'NAS 1', name: 'Volume 1', stufe: 'raid5', platten: '3×4 + 2×8' },
+        { geraet: 'NAS 1', name: 'SSD-Cache', stufe: 'raid1', platten: '2×1' },
+        { geraet: 'NAS 2', name: 'Array', stufe: 'unraid1', platten: '18 + 2×12 + 8' },
+        { geraet: 'Server', name: 'tank', stufe: 'z2', platten: '6×16' }
+      ] };
+
+    // ---------- Eigene Konfiguration: Stufen für gemischte Platten ----------
+    // art: wie mit unterschiedlich großen Platten gerechnet wird; p: Ausfälle ohne Datenverlust; min: Mindestzahl Platten
+    const STUFEM = {
+      raid0: { name: 'RAID 0 (Striping)', art: 'klassisch', p: 0, min: 2 },
+      raid1: { name: 'RAID 1 (alle gespiegelt)', art: 'spiegel', p: -1, min: 2 },
+      raid5: { name: 'RAID 5', art: 'klassisch', p: 1, min: 3 },
+      raid6: { name: 'RAID 6', art: 'klassisch', p: 2, min: 4 },
+      raid10: { name: 'RAID 10', art: 'raid10', p: 1, min: 4 },
+      shr1: { name: 'Hybrid-RAID, 1 Parität', art: 'schichten', p: 1, min: 2 },
+      shr2: { name: 'Hybrid-RAID, 2 Paritäten', art: 'schichten', p: 2, min: 4 },
+      zmirror: { name: 'ZFS Spiegel-Paare', art: 'paare', p: 1, min: 2 },
+      z1: { name: 'ZFS RAIDZ1', art: 'klassisch', p: 1, min: 3 },
+      z2: { name: 'ZFS RAIDZ2', art: 'klassisch', p: 2, min: 4 },
+      z3: { name: 'ZFS RAIDZ3', art: 'klassisch', p: 3, min: 5 },
+      btrfs1: { name: 'btrfs RAID 1', art: 'btrfs', p: 1, min: 2 },
+      unraid1: { name: 'Paritätsplatten-Array, 1 Parität', art: 'paritaetsplatten', p: 1, min: 2 },
+      unraid2: { name: 'Paritätsplatten-Array, 2 Paritäten', art: 'paritaetsplatten', p: 2, min: 3 },
+      jbod: { name: 'JBOD / Span (verkettet)', art: 'jbod', p: 0, min: 1 }
+    };
+    const STUFEM_LISTE = Object.keys(STUFEM).map(function (k) { return [k, STUFEM[k].name]; });
+
+    // Plattenangabe lesen: „3×4 + 2×8“, „8, 8, 12, 16“, „4x8TB 2x500GB“ → Größen in TB (absteigend)
+    function plattenLesen(text) {
+      let s = String(text || '').trim().replace(/\s*[×xX*]\s*/g, '×').replace(/,\s+/g, '+').replace(/;/g, '+');
+      if (!s) return { fehler: 'keine Platten angegeben' };
+      const teile = s.split(/[+\s]+/).filter(Boolean), liste = [];
+      for (let i = 0; i < teile.length; i++) {
+        const m = /^(?:(\d{1,2})×)?(\d{1,3}(?:[.,]\d{1,3})?)(tb|t|gb|g)?$/i.exec(teile[i]);
+        if (!m) return { fehler: '„' + teile[i].slice(0, 12) + '“ nicht lesbar – Form wie 3×4 + 2×8' };
+        const anz = m[1] ? Number(m[1]) : 1, groesse = Number(m[2].replace(',', '.')) / (/^g/i.test(m[3] || '') ? 1000 : 1);
+        if (anz < 1 || anz > 64 || !(groesse >= 0.05 && groesse <= 100)) return { fehler: 'Größe je Platte 0,05 bis 100 TB, Anzahl 1 bis 64' };
+        for (let k = 0; k < anz; k++) liste.push(groesse);
+        if (liste.length > 64) return { fehler: 'höchstens 64 Platten je Pool' };
+      }
+      return { liste: liste.sort(function (a, b) { return b - a; }) };
+    }
+    // Kapazität eines Pools: nutzbar, Schutz (Parität/Spiegel), ungenutzt, je Platte belegt
+    function poolRechnen(stufe, c) {
+      const S = STUFEM[stufe], n = c.length, summe = c.reduce(function (a, b) { return a + b; }, 0), kmin = c[n - 1], aus = { n: n, summe: summe, c: c, S: S };
+      aus.fehler = n < S.min ? S.name + ' braucht mindestens ' + S.min + ' Platten' : (S.art === 'raid10' || S.art === 'paare') && n % 2 ? S.name + ' braucht eine gerade Anzahl Platten' : '';
+      let nutz = 0, schutz = 0, belegt = c.map(function () { return 0; }), rolle = c.map(function () { return 'd'; });
+      if (S.art === 'klassisch' || S.art === 'spiegel' || S.art === 'raid10') {
+        belegt = c.map(function () { return kmin; });
+        nutz = S.art === 'spiegel' ? kmin : S.art === 'raid10' ? n / 2 * kmin : (n - S.p) * kmin;
+        schutz = n * kmin - nutz;
+      } else if (S.art === 'schichten') {
+        // Schichten zwischen den Plattengrößen: Schicht mit k Platten bringt (k − p)·h, bei k ≤ p bleibt sie ungenutzt
+        const grenze = n > S.p ? c[S.p] : 0;
+        belegt = c.map(function (x) { return Math.min(x, grenze); });
+        nutz = Math.max(0, summe - c.slice(0, S.p).reduce(function (a, b) { return a + b; }, 0));
+        schutz = belegt.reduce(function (a, b) { return a + b; }, 0) - nutz;
+      } else if (S.art === 'paare') {
+        for (let i = 0; i + 1 < n; i += 2) { belegt[i] = c[i + 1]; belegt[i + 1] = c[i + 1]; nutz += c[i + 1]; }
+        schutz = nutz;
+      } else if (S.art === 'btrfs') {
+        const rest = summe - c[0];
+        nutz = Math.min(summe / 2, rest); schutz = nutz;
+        belegt = c.slice(); if (c[0] > rest) belegt[0] = rest;
+      } else if (S.art === 'paritaetsplatten') {
+        belegt = c.slice(); for (let i = 0; i < Math.min(S.p, n); i++) rolle[i] = 'p';
+        schutz = c.slice(0, S.p).reduce(function (a, b) { return a + b; }, 0); nutz = summe - schutz;
+      } else { belegt = c.slice(); nutz = summe; schutz = 0; }
+      aus.nutz = nutz; aus.schutz = schutz; aus.belegt = belegt; aus.rolle = rolle;
+      aus.ungenutzt = Math.max(0, summe - belegt.reduce(function (a, b) { return a + b; }, 0));
+      aus.tol = S.p < 0 ? n - 1 : S.p;
+      aus.tolMax = S.art === 'raid10' || S.art === 'paare' ? Math.floor(n / 2) : aus.tol;
+      return aus;
+    }
+    // Risiko je Pool, gleiches Modell wie oben
+    function poolRisiko(x, e) {
+      const lam = e.afr / 100 / 8760, ure = Math.pow(10, +e.ure), n = x.n, groesste = Math.max.apply(null, x.belegt.concat([0]));
+      const tR = groesste * 1e12 / (e.rebuild * 1e6) / 3600, tA = tR + (e.spare === 'ja' ? 0 : e.tausch);
+      const pd = function (m, t) { return 1 - Math.exp(-Math.max(0, m) * lam * t); };
+      const lesen = (x.nutz + x.schutz) - groesste, pu = function (tb) { return 1 - Math.exp(-Math.max(0, tb) * 8e12 / ure); };
+      let pv, pURE = 0;
+      if (x.tol === 0) pv = 1;
+      else if (x.S.art === 'spiegel' && n > 2) pv = Math.pow(pd(1, tA), n - 1);
+      else if (x.S.art === 'raid10' || x.S.art === 'paare' || x.S.art === 'spiegel') { pURE = pu(groesste); pv = 1 - (1 - pURE) * (1 - pd(1, tA)); }
+      else if (x.tol === 1) { pURE = pu(lesen); pv = 1 - (1 - pURE) * (1 - pd(n - 1, tA)); }
+      else if (x.tol === 2) { pURE = pu(lesen * (n - 2) / Math.max(1, n - 1)); pv = pd(n - 1, tA) * (1 - (1 - pURE) * (1 - pd(n - 2, tR))); }
+      else { pURE = pu(lesen * (n - 3) / Math.max(1, n - 1)); pv = pd(n - 1, tA) * pd(n - 2, tA) * (1 - (1 - pURE) * (1 - pd(n - 3, tR))); }
+      x.tRebuild = tR; x.pURE = pURE; x.pv = pv; x.pJahr = 1 - Math.exp(-n * e.afr / 100 * pv);
+      return x;
+    }
 
     R.seite({
       titel: 'RAID- und Speicherrechner',
-      einleitung: 'Nutzbare Kapazität, Ausfallsicherheit und Geschwindigkeit von RAID 0, 1, 5, 6, 10, 50 und 60 – mit Wiederaufbauzeit, Risiko eines Lesefehlers beim Rebuild und der Wahrscheinlichkeit von Datenverlust im Jahr. Die Simulation lässt eine Platte ausfallen und baut sie neu auf.',
+      einleitung: 'Nutzbare Kapazität, Ausfallsicherheit und Geschwindigkeit von RAID 0, 1, 5, 6, 10, 50 und 60 – mit Wiederaufbauzeit, Risiko eines Lesefehlers beim Rebuild und der Wahrscheinlichkeit von Datenverlust im Jahr. Eigene Konfigurationen: unterschiedlich große Platten, mehrere Pools und Geräte (NAS, Server) mit Hybrid-RAID, ZFS, btrfs, Paritätsplatten-Array oder klassischem RAID.',
       hilfe: 'RAID ersetzt keine Datensicherung: Löschen, Verschlüsselungstrojaner und Brand treffen alle Platten gleichzeitig.',
       gruppen: [
         { titel: 'Verbund', farbe: '#3B5BDB', felder: [
-          { k: 'stufe', name: 'RAID-Stufe', wahl: Object.keys(STUFE).map(function (k) { return [k, STUFE[k][0]]; }) },
-          { k: 'n', tex: 'n', name: 'Anzahl Platten', e: '', min: 1, max: 128, ganz: true },
-          { k: 'gruppe', tex: 'g', name: 'Platten je Untergruppe', e: '', min: 3, max: 32, ganz: true, wenn: function (e) { return e.stufe === 'r50' || e.stufe === 'r60'; } },
-          { k: 'tb', tex: 'c', name: 'Kapazität je Platte', e: 'TB', min: 0.1, max: 100 },
+          { k: 'modus', name: 'Was rechnen?', wahl: [['gleich', 'ein RAID-Verbund mit gleichen Platten'], ['misch', 'eigene Konfiguration: gemischte Platten, mehrere Pools und Geräte']] },
+          { k: 'stufe', name: 'RAID-Stufe', wahl: Object.keys(STUFE).map(function (k) { return [k, STUFE[k][0]]; }), wenn: gleich },
+          { k: 'n', tex: 'n', name: 'Anzahl Platten', e: '', min: 1, max: 128, ganz: true, wenn: gleich },
+          { k: 'gruppe', tex: 'g', name: 'Platten je Untergruppe', e: '', min: 3, max: 32, ganz: true, wenn: function (e) { return gleich(e) && (e.stufe === 'r50' || e.stufe === 'r60'); } },
+          { k: 'tb', tex: 'c', name: 'Kapazität je Platte', e: 'TB', min: 0.1, max: 100, wenn: gleich },
           { k: 'spare', name: 'Hot Spare', wahl: [['nein', 'keine Ersatzplatte'], ['ja', 'Hot Spare vorhanden']] },
           { k: 'tausch', tex: 't_\\text{Tausch}', name: 'Zeit bis zum Plattentausch', e: 'h', min: 0, max: 2000, wenn: function (e) { return e.spare === 'nein'; } }
         ] },
+        { titel: 'Pools und Geräte', farbe: '#E4572E', wenn: function (e) { return e.modus === 'misch'; }, hilfe: 'Je Zeile ein Pool oder Volume. Platten in TB: „3×4 + 2×8“, „8, 8, 12, 16“ oder „4x8TB 2x500GB“. Gleicher Gerätename fasst Pools zu einem Gerät zusammen.',
+          liste: { k: 'pools', zeile: 'Pool', max: 30, kopieren: true,
+            spalten: [
+              { k: 'geraet', name: 'Gerät', text: true },
+              { k: 'name', name: 'Pool / Volume', text: true },
+              { k: 'stufe', name: 'Stufe', wahl: STUFEM_LISTE, text: true, breit: true },
+              { k: 'platten', name: 'Platten in TB', text: true, breit: true }
+            ],
+            neu: function (i) { return { geraet: 'NAS ' + (i + 1), name: 'Pool ' + (i + 1), stufe: 'shr1', platten: '4×8' }; } } },
         { titel: 'Platten', farbe: '#0E6B6A', felder: [
-          { k: 'mbs', tex: 'v', name: 'Lese-/Schreibrate je Platte', e: 'MB/s', min: 1, max: 20000 },
-          { k: 'iops', tex: 'IOPS', name: 'zufällige Zugriffe je Platte', e: '1/s', min: 1, max: 2000000 },
+          { k: 'mbs', tex: 'v', name: 'Lese-/Schreibrate je Platte', e: 'MB/s', min: 1, max: 20000, wenn: gleich },
+          { k: 'iops', tex: 'IOPS', name: 'zufällige Zugriffe je Platte', e: '1/s', min: 1, max: 2000000, wenn: gleich },
           { k: 'rebuild', tex: 'v_\\text{Rebuild}', name: 'Rebuild-Rate', e: 'MB/s', min: 1, max: 20000 },
           { k: 'ure', name: 'Lesefehlerrate (URE)', wahl: [['14', '1 je 10¹⁴ bit (Desktop-Platte)'], ['15', '1 je 10¹⁵ bit (NAS-/Server-Platte)'], ['16', '1 je 10¹⁶ bit (Enterprise, SSD)'], ['17', '1 je 10¹⁷ bit (Enterprise-SSD)']] },
           { k: 'afr', tex: 'AFR', name: 'Ausfallrate im Jahr', e: '%', min: 0.01, max: 50 }
         ] }
       ],
       beispiel: BEISPIEL,
-      rechne: rechne, ergebnis: ergebnis, weg: weg,
+      rechne: function (e) { return gleich(e) ? rechne(e) : rechneMisch(e); },
+      ergebnis: function (r, e, H) { if (gleich(e)) ergebnis(r, e, H); else ergebnisMisch(r, e, H); },
+      weg: function (r, e) { return gleich(e) ? weg(r, e) : wegMisch(r, e); },
       sammlung: [
         ['Nutzbare Kapazität', 'C = (n - p) \\cdot c', 'p = Paritäts- bzw. Spiegelplatten: RAID 5 → 1, RAID 6 → 2, RAID 10 → n/2, RAID 50/60 → 1 bzw. 2 je Gruppe'],
         ['Rebuild-Zeit', 't_\\text{R} = \\frac{c}{v_\\text{Rebuild}}', 'unter Last oft deutlich länger'],
         ['Lesefehler beim Rebuild', 'P_\\text{URE} = 1 - e^{-\\frac{b}{URE}}', 'b = gelesene Bits aller übrigen Platten'],
         ['Zweiter Ausfall beim Rebuild', 'P_2 = 1 - e^{-m \\cdot \\lambda \\cdot t},\\quad \\lambda = \\frac{AFR}{8760\\,\\text{h}}', 'm = Platten, deren Ausfall jetzt zum Verlust führt; t = Tauschzeit + Rebuild'],
         ['Datenverlust im Jahr', 'P_\\text{Jahr} \\approx 1 - e^{-n \\cdot AFR \\cdot P_\\text{Verlust|Ausfall}}', 'vereinfachtes Modell mit unabhängigen Ausfällen; reale Platten aus einer Charge fallen oft gemeinsam aus'],
-        ['Schreibleistung', 'IOPS_\\text{schreiben} = \\frac{n \\cdot IOPS}{s}', 's = Schreibstrafe: RAID 1/10 → 2, RAID 5 → 4, RAID 6 → 6']
+        ['Schreibleistung', 'IOPS_\\text{schreiben} = \\frac{n \\cdot IOPS}{s}', 's = Schreibstrafe: RAID 1/10 → 2, RAID 5 → 4, RAID 6 → 6'],
+        ['Klassisches RAID mit gemischten Platten', 'C = (n - p) \\cdot c_\\text{min}', 'jede Platte zählt nur so groß wie die kleinste; gilt auch für ZFS RAIDZ'],
+        ['Hybrid-RAID und Paritätsplatten-Array', 'C = \\sum c_i - \\sum_{j=1}^{p} c_{\\max,j}', 'Summe aller Platten minus die p größten (p = Zahl der Paritäten)'],
+        ['ZFS Spiegel-Paare', 'C = \\sum_\\text{Paare} \\min(c_a, c_b)', 'jedes Paar zählt so groß wie seine kleinere Platte'],
+        ['btrfs RAID 1', 'C = \\min\\left(\\frac{\\sum c_i}{2};\\ \\sum c_i - c_{\\max}\\right)', 'jeder Block liegt auf zwei verschiedenen Platten']
       ],
       quellen: 'SNIA-Definitionen der RAID-Stufen; Fehlerraten nach Herstellerdatenblättern; Zuverlässigkeitsmodell vereinfacht (exponentielle Ausfälle, unabhängige Platten). TB = 10¹² Byte, das Betriebssystem zeigt TiB (2⁴⁰ Byte) an.',
       bild: { titel: 'Ausfall und Wiederaufbau', label: 'Platten mit Datenblöcken und Parität; eine Platte fällt aus und wird neu aufgebaut', animiert: !bewegungAus,
-        hoehe: function (B) { return Math.max(240, Math.min(320, B * 0.5)); }, zeichne: zeichne,
-        hinweis: function (r) { return r.tol === 0 ? 'Ohne Redundanz: Fällt eine Platte aus, sind die Daten weg.' : 'Fällt eine Platte aus, rechnet der Controller ihren Inhalt aus den übrigen zurück.'; } }
+        hoehe: function (B, e) { return e && e.modus === 'misch' ? Math.max(200, Math.min(620, 70 + 96 * Math.min(6, (e.pools || []).length))) : Math.max(240, Math.min(320, B * 0.5)); },
+        zeichne: function (cx, B, H, t, r, e) { if (gleich(e)) zeichne(cx, B, H, t, r, e); else zeichneMisch(cx, B, H, t, r, e); },
+        hinweis: function (r, e) { if (!gleich(e)) return 'Jede Säule eine Platte, Höhe nach Größe: blau nutzbar, orange Schutz (Parität oder Spiegel), grau schraffiert ungenutzt. Ein Lichtstreifen zeigt den Wiederaufbau der größten Platte.'; return r.tol === 0 ? 'Ohne Redundanz: Fällt eine Platte aus, sind die Daten weg.' : 'Fällt eine Platte aus, rechnet der Controller ihren Inhalt aus den übrigen zurück.'; } }
     });
 
+    function gleich(e) { return e.modus !== 'misch'; }
     function prozent(p) { return p < 0.0001 ? '< 0,01 %' : p > 0.9999 ? '> 99,99 %' : z(p * 100, p < 0.01 ? 3 : p < 0.1 ? 2 : 1) + ' %'; }
     function rechne(e) {
       const r = {}, s = STUFE[e.stufe];
@@ -148,6 +257,122 @@
       const vergleich = ['r5', 'r6', 'r10'].map(function (k) { const e2 = Object.assign({}, e, { stufe: k, n: k === 'r10' && e.n % 2 ? e.n + 1 : Math.max(STUFE[k][1], e.n) }); const x = rechne(e2); return [STUFE[k][0], e2.n + '', z(x.nutz, 1) + ' TB', String(x.tol), prozent(x.pURE), prozent(x.pJahr)]; });
       H.tabelle('Vergleich mit gleichen Platten', ['Stufe', 'Platten', 'nutzbar', 'Ausfälle', 'URE beim Rebuild', 'Verlust/Jahr'], vergleich, { zahl: [1, 2, 3, 4, 5] });
     }
+    // ---------- Eigene Konfiguration ----------
+    function rechneMisch(e) {
+      const r = { pools: [], geraete: [], roh: 0, nutz: 0, schutz: 0, ungenutzt: 0, platten: 0, schlimmste: null };
+      (e.pools || []).forEach(function (pl, i) {
+        const x = { i: i, geraet: String(pl.geraet || '').trim() || 'Gerät', name: String(pl.name || '').trim() || 'Pool ' + (i + 1), stufe: pl.stufe, eingabe: pl.platten };
+        const L = plattenLesen(pl.platten);
+        if (L.fehler) x.fehler = L.fehler;
+        else { Object.assign(x, poolRechnen(pl.stufe, L.liste)); if (!x.fehler) poolRisiko(x, e); }
+        r.pools.push(x);
+        if (x.fehler) return;
+        r.roh += x.summe; r.nutz += x.nutz; r.schutz += x.schutz; r.ungenutzt += x.ungenutzt; r.platten += x.n;
+        if (!r.schlimmste || x.pJahr > r.schlimmste.pJahr) r.schlimmste = x;
+        let g = r.geraete.filter(function (y) { return y.name === x.geraet; })[0];
+        if (!g) { g = { name: x.geraet, pools: 0, n: 0, roh: 0, nutz: 0 }; r.geraete.push(g); }
+        g.pools++; g.n += x.n; g.roh += x.summe; g.nutz += x.nutz;
+      });
+      r.ok = r.pools.filter(function (x) { return !x.fehler; });
+      // Vergleich: der Pool mit dem meisten ungenutzten Platz, sonst der größte
+      const kand = r.ok.slice().sort(function (a, b) { return (b.ungenutzt - a.ungenutzt) || (b.summe - a.summe); })[0];
+      if (kand) {
+        r.vergleichPool = kand;
+        r.vergleich = Object.keys(STUFEM).map(function (k) { const y = poolRechnen(k, kand.c); return y.fehler ? null : poolRisiko(Object.assign(y, { stufe: k }), e); }).filter(Boolean)
+          .sort(function (a, b) { return (b.tol - a.tol) || (b.nutz - a.nutz); });
+      }
+      return r;
+    }
+    const stufeName = function (k) { return STUFEM[k] ? STUFEM[k].name : k; };
+    const plattenText = function (c) { const z2 = {}; c.forEach(function (x) { z2[x] = (z2[x] || 0) + 1; }); return Object.keys(z2).map(Number).sort(function (a, b) { return b - a; }).map(function (g) { return (z2[g] > 1 ? z2[g] + '×' : '') + z(g, g % 1 ? 2 : 0); }).join(' + '); };
+    const ausfaelle = function (x) { return x.tol === x.tolMax ? String(x.tol) : x.tol + ' bis ' + x.tolMax; };
+    function ergebnisMisch(r, e, H) {
+      if (!r.pools.length) { H.urteil(false, 'Pool anlegen'); H.meldung('Mindestens einen Pool anlegen: „Pool hinzufügen“.', true); return; }
+      r.pools.forEach(function (x) { if (x.fehler) H.meldung('„' + x.geraet + ' · ' + x.name + '“: ' + x.fehler + '.', true); });
+      r.ok.forEach(function (x) {
+        const titel = '„' + x.geraet + ' · ' + x.name + '“';
+        if (x.tol === 0) H.meldung(titel + ' (' + x.S.name + '): keine Redundanz – fällt eine Platte aus, ' + (x.S.art === 'jbod' ? 'sind ihre Daten verloren.' : 'ist der ganze Pool verloren.'), true);
+        if (x.ungenutzt > 0.0001) {
+          const besser = (r.vergleichPool === x ? r.vergleich : []).filter(function (y) { return y.tol >= x.tol && y.nutz > x.nutz + 0.0001; }).sort(function (a, b) { return b.nutz - a.nutz; })[0];
+          H.meldung(titel + ': ' + z(x.ungenutzt, 1) + ' TB bleiben ungenutzt, weil ' + (x.S.art === 'klassisch' || x.S.art === 'spiegel' || x.S.art === 'raid10' ? 'jede Platte nur so groß zählt wie die kleinste (' + z(x.c[x.n - 1], 1) + ' TB)' : x.S.art === 'paare' ? 'jedes Paar nur so groß zählt wie seine kleinere Platte' : 'die größten Platten keinen Partner gleicher Größe haben') + '.' + (besser ? ' Mit ' + stufeName(besser.stufe) + ' wären es ' + z(besser.nutz, 1) + ' statt ' + z(x.nutz, 1) + ' TB bei gleicher Ausfallsicherheit.' : ''));
+        }
+        if (x.tol === 1 && x.pURE > 0.05 && x.S.art !== 'paritaetsplatten') H.meldung(titel + ': Beim Wiederaufbau müssen ' + z(x.nutz + x.schutz - Math.max.apply(null, x.belegt), 0) + ' TB fehlerfrei gelesen werden – ein Lesefehler (' + prozent(x.pURE) + ') kann den Rebuild scheitern lassen. Doppelte Parität wählen.', true);
+      });
+      if (r.ok.some(function (x) { return x.S.art === 'paritaetsplatten'; })) H.meldung('Paritätsplatten-Array: Die Paritätsplatte muss mindestens so groß sein wie die größte Datenplatte (der Rechner nimmt die größten als Parität). Fallen mehr Platten aus als Paritäten da sind, gehen nur die Daten der ausgefallenen Platten verloren, nicht das ganze Array.');
+      if (r.geraete.length > 1) H.meldung('Mehrere Geräte schützen nur dann als Datensicherung, wenn das zweite Gerät eine getrennte Sicherung mit älteren Versionen hält – ein Spiegel überträgt Löschen und Verschlüsselungstrojaner sofort mit. Besser noch: ein Gerät an einem anderen Ort.');
+      H.meldung('RAID schützt nur vor Plattenausfall. Für alles andere gilt die 3-2-1-Regel der Datensicherung.');
+      const fehlerhaft = r.pools.length !== r.ok.length, ohneSchutz = r.ok.some(function (x) { return x.tol === 0; });
+      H.urteil(fehlerhaft ? false : (!ohneSchutz && r.schlimmste && r.schlimmste.pJahr < 0.001), fehlerhaft ? 'Eingaben prüfen' : z(r.nutz, 1) + ' TB nutzbar');
+      H.kacheln([
+        [z(r.nutz, 1) + ' TB', 'nutzbar gesamt (' + z(r.nutz * 1e12 / Math.pow(2, 40), 1) + ' TiB, ' + z(r.roh ? r.nutz / r.roh * 100 : 0, 0) + ' % der Rohkapazität)', '#3B5BDB'],
+        [z(r.roh, 1) + ' TB', 'Rohkapazität: ' + r.platten + ' Platten in ' + r.ok.length + (r.ok.length === 1 ? ' Pool' : ' Pools') + (r.geraete.length > 1 ? ' auf ' + r.geraete.length + ' Geräten' : ''), '#0E6B6A'],
+        [z(r.schutz, 1) + ' TB', 'für Schutz (Parität und Spiegel)', '#F2A541'],
+        [z(r.ungenutzt, 1) + ' TB', 'ungenutzt wegen unterschiedlicher Größen', r.ungenutzt > 0.0001 ? '#C0392B' : '#2E8B57'],
+        r.schlimmste ? [prozent(r.schlimmste.pJahr), 'höchstes Verlustrisiko im Jahr: ' + r.schlimmste.geraet + ' · ' + r.schlimmste.name, r.schlimmste.pJahr > 0.01 ? '#C0392B' : '#2E8B57'] : null
+      ]);
+      H.tabelle('Pools', ['Gerät', 'Pool', 'Stufe', 'Platten (TB)', 'roh', 'nutzbar', 'Schutz', 'ungenutzt', 'Ausfälle', 'Rebuild', 'Verlust/Jahr'],
+        r.pools.map(function (x) {
+          if (x.fehler) return [x.geraet, x.name, stufeName(x.stufe), String(x.eingabe || '').slice(0, 40), '–', '–', '–', '–', '–', '–', x.fehler];
+          return [x.geraet, x.name, x.S.name, plattenText(x.c), z(x.summe, 1) + ' TB', z(x.nutz, 1) + ' TB', z(x.schutz, 1) + ' TB', z(x.ungenutzt, 1) + ' TB', ausfaelle(x), z(x.tRebuild, 1) + ' h', prozent(x.pJahr)];
+        }), { zahl: [4, 5, 6, 7, 8, 9], breit: true, klasse: function (i) { const x = r.pools[i]; return x.fehler || x.tol === 0 ? 'schlecht' : x.ungenutzt > 0.0001 ? 'leise' : ''; },
+          fuss: 'Rebuild: größte belegte Platte bei der eingestellten Rebuild-Rate. Verlust/Jahr nach dem Modell oben mit den Werten unter „Platten“.' });
+      if (r.geraete.length > 1) H.tabelle('Geräte', ['Gerät', 'Pools', 'Platten', 'roh', 'nutzbar', 'Anteil'],
+        r.geraete.map(function (g) { return [g.name, String(g.pools), String(g.n), z(g.roh, 1) + ' TB', z(g.nutz, 1) + ' TB', z(r.nutz ? g.nutz / r.nutz * 100 : 0, 0) + ' %']; }), { zahl: [1, 2, 3, 4, 5] });
+      if (r.vergleich && r.vergleich.length) {
+        const x = r.vergleichPool;
+        H.tabelle('Dieselben Platten anders angeordnet: ' + x.geraet + ' · ' + x.name + ' (' + plattenText(x.c) + ' TB)', ['Stufe', 'nutzbar', 'ungenutzt', 'Ausfälle', 'URE beim Rebuild', 'Verlust/Jahr'],
+          r.vergleich.map(function (y) { return [y.S.name, z(y.nutz, 1) + ' TB', z(y.ungenutzt, 1) + ' TB', ausfaelle(y), y.tol ? prozent(y.pURE) : '–', prozent(y.pJahr)]; }),
+          { zahl: [1, 2, 3, 4, 5], klasse: function (i) { return r.vergleich[i].stufe === x.stufe ? 'gewaehlt' : ''; }, fuss: 'Sortiert nach Ausfallsicherheit, dann nach nutzbarer Kapazität. Hervorgehoben: deine Wahl. Nicht jedes System kann jede Anordnung: Hybrid-RAID und Paritätsplatten-Arrays bieten nur bestimmte NAS-Betriebssysteme, Spiegel-Paare und RAIDZ setzen ZFS voraus.' });
+      }
+    }
+    function wegMisch(r, e) {
+      const zeilen = [];
+      r.ok.slice(0, 8).forEach(function (x) {
+        const c = x.c, t = function (v) { return tz(v, v % 1 ? 2 : 0); }, top = c.slice(0, Math.max(0, x.S.p)), titel = x.geraet + ' · ' + x.name + ' (' + x.S.name + ')';
+        let f;
+        if (x.S.art === 'klassisch') f = 'C = (n - p) \\cdot c_\\text{min} = (' + x.n + ' - ' + x.S.p + ') \\cdot ' + t(c[x.n - 1]) + '\\,\\text{TB}';
+        else if (x.S.art === 'spiegel') f = 'C = c_\\text{min} = ' + t(c[x.n - 1]) + '\\,\\text{TB}';
+        else if (x.S.art === 'raid10') f = 'C = \\frac{n}{2} \\cdot c_\\text{min} = \\frac{' + x.n + '}{2} \\cdot ' + t(c[x.n - 1]) + '\\,\\text{TB}';
+        else if (x.S.art === 'schichten' || x.S.art === 'paritaetsplatten') f = 'C = \\sum c_i - ' + (x.S.p === 1 ? 'c_\\text{max}' : '(c_{\\max,1} + c_{\\max,2})') + ' = ' + t(x.summe) + ' - ' + (top.length > 1 ? '(' + top.map(t).join(' + ') + ')' : t(top[0])) + '\\,\\text{TB}';
+        else if (x.S.art === 'paare') { const m = []; for (let i = 0; i + 1 < x.n; i += 2) m.push(t(c[i + 1])); f = 'C = \\sum \\min(c_a, c_b) = ' + (m.length > 8 ? m.slice(0, 8).join(' + ') + ' + \\ldots' : m.join(' + ')) + '\\,\\text{TB}'; }
+        else if (x.S.art === 'btrfs') f = 'C = \\min\\left(\\frac{' + t(x.summe) + '}{2};\\ ' + t(x.summe) + ' - ' + t(c[0]) + '\\right)\\,\\text{TB}';
+        else f = 'C = \\sum c_i = ' + t(x.summe) + '\\,\\text{TB}';
+        zeilen.push([titel, f + ' = ' + E(tz(x.nutz, 1) + '\\,\\text{TB}')]);
+      });
+      if (r.ok.length > 1) zeilen.push(['Alle Pools zusammen', 'C_\\text{ges} = ' + r.ok.slice(0, 10).map(function (x) { return tz(x.nutz, 1); }).join(' + ') + (r.ok.length > 10 ? ' + \\ldots' : '') + ' = ' + E(tz(r.nutz, 1) + '\\,\\text{TB}')]);
+      if (r.schlimmste && r.schlimmste.tol) { const x = r.schlimmste; zeilen.push(['Risiko ' + x.geraet + ' · ' + x.name, 'P_\\text{Jahr} = 1 - e^{-' + x.n + ' \\cdot ' + tz(e.afr / 100, 3) + ' \\cdot ' + tz(x.pv, 5) + '} = ' + E(tz(x.pJahr * 100, 3) + '\\,\\%')]); }
+      return zeilen;
+    }
+    function zeichneMisch(cx, B, H, t, r, e) {
+      const Z = R.Z, f = R.farbe, pools = r.pools.slice(0, 6);
+      if (!pools.length) { Z.text(cx, 'Pool anlegen', B / 2, H / 2, 'center', 13, true); return; }
+      const zeile = (H - 30) / pools.length, saeule = Math.min(64, zeile - 34);
+      const schraffur = function (x, y, w, h) { cx.save(); cx.beginPath(); cx.rect(x, y, w, h); cx.clip(); cx.strokeStyle = f('--leise'); cx.globalAlpha = 0.45; cx.lineWidth = 1; for (let k = -h; k < w; k += 5) { cx.beginPath(); cx.moveTo(x + k, y + h); cx.lineTo(x + k + h, y); cx.stroke(); } cx.restore(); };
+      pools.forEach(function (x, pi) {
+        const y0 = 10 + pi * zeile;
+        Z.text(cx, x.geraet + ' · ' + x.name + (x.S ? ' – ' + x.S.name : ''), 12, y0 + 9, 'left', 11, true);
+        if (x.fehler) { Z.text(cx, x.fehler, 12, y0 + 30, 'left', 11, false, '#C0392B'); return; }
+        Z.text(cx, z(x.nutz, 1) + ' TB nutzbar' + (x.ungenutzt > 0.0001 ? ' · ' + z(x.ungenutzt, 1) + ' TB ungenutzt' : ''), B - 12, y0 + 9, 'right', 11, false, f('--leise'));
+        const n = Math.min(x.n, 32), breite = Math.min(30, (B - 24) / n - 4), basis = y0 + 20 + saeule, cmax = x.c[0];   // je Pool skaliert
+        const anteilSchutz = x.nutz + x.schutz > 0 ? x.schutz / (x.nutz + x.schutz) : 0;
+        for (let i = 0; i < n; i++) {
+          const bx = 12 + i * (breite + 4), h = x.c[i] / cmax * saeule, hb = x.belegt[i] / cmax * saeule;
+          cx.fillStyle = f('--flaeche'); cx.fillRect(bx, basis - h, breite, h);
+          if (x.rolle[i] === 'p') { cx.fillStyle = '#F2A541'; cx.fillRect(bx, basis - hb, breite, hb); }
+          else { const hs = x.S.art === 'paritaetsplatten' ? 0 : hb * anteilSchutz; cx.fillStyle = '#3B5BDB'; cx.fillRect(bx, basis - (hb - hs), breite, hb - hs); cx.fillStyle = '#F2A541'; cx.fillRect(bx, basis - hb, breite, hs); }
+          if (h - hb > 0.5) schraffur(bx, basis - h, breite, h - hb);
+          cx.strokeStyle = f('--linie'); cx.lineWidth = 1; cx.strokeRect(bx + 0.5, basis - h + 0.5, breite - 1, h - 1);
+          if (breite >= 22) Z.text(cx, z(x.c[i], x.c[i] % 1 ? 1 : 0), bx + breite / 2, basis + 10, 'center', 9, false, f('--leise'));
+        }
+        // Wiederaufbau der größten Platte als Lichtstreifen
+        if (x.tol > 0) { const ph = ((t / 3500) + pi * 0.17) % 1, hb = x.belegt[0] / cmax * saeule; cx.fillStyle = 'rgba(255,255,255,0.55)'; cx.fillRect(12, basis - hb * ph - 2, breite, 3); }
+        if (x.n > 32) Z.text(cx, '+' + (x.n - 32) + ' weitere', B - 12, basis, 'right', 10, false, f('--leise'));
+      });
+      if (r.pools.length > 6) Z.text(cx, 'erste 6 von ' + r.pools.length + ' Pools', B - 12, H - 8, 'right', 10, false, f('--leise'));
+      const ly = H - 8; [['#3B5BDB', 'nutzbar'], ['#F2A541', 'Schutz']].forEach(function (l, i) { cx.fillStyle = l[0]; cx.fillRect(12 + i * 80, ly - 5, 10, 10); Z.text(cx, l[1], 26 + i * 80, ly, 'left', 10, false, f('--leise')); });
+      schraffur(172, ly - 5, 10, 10); Z.text(cx, 'ungenutzt', 186, ly, 'left', 10, false, f('--leise'));
+    }
+
     function weg(r, e) {
       return [
         ['Nutzbare Kapazität', 'C = (' + e.n + ' - ' + z(r.paritaet, 0) + ') \\cdot ' + tz(e.tb, 1) + '\\,\\text{TB} = ' + E(tz(r.nutz, 1) + '\\,\\text{TB}')],
