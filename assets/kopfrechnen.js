@@ -645,7 +645,7 @@
   // ---------- Oberfläche ----------
   function baue(wurzel, hilfe) {
     hilfe = hilfe || {};
-    const lies = hilfe.lies || function (k, s) { return s; }, schreib = hilfe.schreib || function () {}, sperren = hilfe.sperren || function () {};
+    const lies = hilfe.lies || function (k, s) { return s; }, schreib = hilfe.schreib || function () {}, sperren = hilfe.sperren || function () {}, gezaehlt = hilfe.gezaehlt || function () {};
     const S = 'lernen-kopfrechnen', zustand = lies(S, {}) || {};
     let kat = typeof zustand.kat === 'string' && (zustand.kat === 'alle' || KATEGORIEN.some(function (k) { return k[0] === zustand.kat; })) ? zustand.kat : 'alle';
     let stufe = [1, 2, 3, 4].indexOf(zustand.stufe) >= 0 ? zustand.stufe : 2;
@@ -764,7 +764,7 @@
         platz.textContent = '';
         const a = aufgabeZu(wahl(pool), stufe), start = Date.now();
         const karte = aufgabeKarte(a, function (wert, ok) {
-          gesamtZ++; if (ok) { richtigZ++; serie++; if (serie > serieBest) { serieBest = serie; merken(); } } else serie = 0;
+          gesamtZ++; gezaehlt(ok); if (ok) { richtigZ++; serie++; if (serie > serieBest) { serieBest = serie; merken(); } } else serie = 0;
           const sek = (Date.now() - start) / 1000;
           const r = el('p', 'kr-rueck ' + (ok ? 'gut' : 'schlecht'), (ok ? 'Richtig' : String(wert).trim() ? 'Leider falsch' : 'Lösung') + ' – ' + (a.ungefaehr ? 'genau: ' : '') + anzeige(a) + (a.einheit ? ' ' + a.einheit : '') + ' · ' + zt(sek, 1) + ' s');
           const z2 = karte.querySelector('.kr-zeige'); if (z2) z2.remove();
@@ -807,7 +807,7 @@
           platz.textContent = '';
           const a = aufgabeZu(wahl(pool), stufe);
           const karte = aufgabeKarte(a, function (wert, ok) {
-            if (ok) { r++; rueck.textContent = '✓ richtig'; rueck.className = 'kr-rueck-kurz gut'; }
+            gezaehlt(ok); if (ok) { r++; rueck.textContent = '✓ richtig'; rueck.className = 'kr-rueck-kurz gut'; }
             else { f++; fehler.push([a, wert]); rueck.textContent = '✗ ' + anzeige(a) + (a.einheit ? ' ' + a.einheit : ''); rueck.className = 'kr-rueck-kurz schlecht'; }
             tick(); naechste();
           }, true);
