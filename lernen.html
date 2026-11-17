@@ -83,6 +83,110 @@
     .warte { color: var(--leise); padding: 20px 0; }
     #lade-rahmen { position: absolute; left: -10000px; top: 0; width: 1000px; height: 800px; overflow: hidden; visibility: hidden; }
     #lade-rahmen iframe { width: 1000px; height: 800px; border: 0; }
+    /* ---------- Lern-App: Navigation, Start, Fortschritt ---------- */
+    .lern-app { padding-top: 4px; }
+    .app-nav { position: sticky; top: 8px; z-index: 40; display: flex; flex-wrap: nowrap; gap: 4px; padding: 5px; margin: 6px 0 18px; width: fit-content; max-width: 100%; overflow-x: auto;
+      background: color-mix(in srgb, var(--flaeche) 90%, transparent); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid var(--linie); border-radius: 999px; box-shadow: var(--schatten); }
+    .app-tab { display: inline-flex; align-items: center; gap: 7px; padding: 8px 15px; border: none; border-radius: 999px; background: none; color: var(--leise); font: 600 .93rem/1.2 inherit; font-family: inherit; cursor: pointer; white-space: nowrap; transition: background .15s, color .15s; }
+    .app-tab svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    .app-tab:hover { color: var(--text); background: var(--flaeche2); }
+    .app-tab[aria-pressed="true"] { background: var(--text); color: var(--grund); }
+    .app-tab:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+    @media (max-width: 760px) {
+      .app-nav { position: fixed; left: 0; right: 0; bottom: 0; top: auto; margin: 0; width: auto; justify-content: space-around; gap: 0; overflow: visible; z-index: 55;
+        border-radius: 20px 20px 0 0; border-bottom: none; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); box-shadow: 0 -8px 28px -14px rgba(0, 0, 0, .35); background: color-mix(in srgb, var(--flaeche) 95%, transparent); }
+      .app-tab { flex: 1 1 0; min-width: 0; flex-direction: column; gap: 3px; padding: 4px 1px; font-size: .68rem; border-radius: 12px; }
+      .app-tab svg { width: 22px; height: 22px; padding: 4px 14px; box-sizing: content-box; border-radius: 999px; transition: background .2s; }
+      .app-tab:hover { background: none; }
+      .app-tab[aria-pressed="true"] { background: none; color: var(--text); }
+      .app-tab[aria-pressed="true"] svg { background: color-mix(in srgb, var(--text) 14%, transparent); }
+      .app-tab-text { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+      html.lern-app-aktiv body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+      html.lern-app-aktiv .tr-knopf { bottom: calc(86px + env(safe-area-inset-bottom)) !important; }
+      .app-meldung { bottom: calc(92px + env(safe-area-inset-bottom)) !important; }
+    }
+    .start-kopf h1 { font-size: 2.1rem; margin: 2px 0 2px; }
+    .start-kopf p { color: var(--leise); margin: 0 0 16px; font-size: 1.02rem; }
+    .start-raster { display: grid; gap: 14px; grid-template-columns: minmax(0, 1fr); }
+    @media (min-width: 900px) {
+      .start-raster .heute { grid-template-columns: auto minmax(0, 1fr) minmax(0, 1.15fr); }
+      .start-raster .heute .woche { grid-column: 3; grid-row: 1; height: 120px; }
+    }
+    .app-karte { background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--rund-gross); padding: 18px; box-shadow: var(--schatten); min-width: 0; }
+    .karte-kopf { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin: 0 0 12px; flex-wrap: wrap; }
+    .karte-kopf h2, .heute-info h2 { margin: 0; font-size: 1.18rem; }
+    .heute { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px 18px; align-items: center; }
+    .ring { position: relative; width: 124px; height: 124px; }
+    .ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring circle { fill: none; stroke-width: 11; }
+    .ring-grund { stroke: var(--flaeche2); }
+    .ring-wert { stroke: #2B7BB9; stroke-linecap: round; transition: stroke-dashoffset .7s ease, stroke .3s; }
+    .ring.voll .ring-wert { stroke: #2E8B57; }
+    .ring-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .ring-text b { font: 800 2.2rem/1 var(--technik); }
+    .ring-text small { color: var(--leise); font-size: .82rem; margin-top: 3px; }
+    .heute-info p { margin: 2px 0 12px; color: var(--leise); }
+    .werte { display: flex; gap: 18px; flex-wrap: wrap; }
+    .werte span { display: flex; flex-direction: column; }
+    .werte b { font: 700 1.3rem/1.15 var(--technik); }
+    .werte small { color: var(--leise); font-size: .76rem; }
+    .ziel-wahl { display: inline-flex; gap: 6px; align-items: center; margin-top: 12px; font-size: .85rem; color: var(--leise); }
+    .ziel-wahl select { font: inherit; color: var(--text); background: var(--grund); border: 1px solid var(--linie); border-radius: 8px; padding: 3px 6px; }
+    .woche { grid-column: 1 / -1; display: flex; gap: 8px; align-items: stretch; height: 84px; }
+    .woche .tag { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .woche .saeule { flex: 1; width: 100%; max-width: 36px; background: var(--flaeche2); border-radius: 9px; display: flex; align-items: flex-end; overflow: hidden; }
+    .woche .saeule i { display: block; width: 100%; background: #2B7BB9; border-radius: 9px; transition: height .6s ease; }
+    .woche .tag.voll .saeule i { background: #2E8B57; }
+    .woche small { font-size: .72rem; color: var(--leise); }
+    .woche .tag.heute small { color: var(--text); font-weight: 700; }
+    .heute .weiter { grid-column: 1 / -1; width: 100%; justify-content: center; padding: 14px 18px; font-size: 1.05rem; border-radius: 14px; }
+    .app-kacheln { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); }
+    .app-kachel { display: flex; gap: 14px; align-items: center; width: 100%; text-align: left; padding: 14px 16px; border: 1px solid var(--linie); border-radius: 18px; background: var(--flaeche); color: var(--text); font: inherit; cursor: pointer; box-shadow: var(--schatten); transition: transform .15s, border-color .15s; }
+    .app-kachel:hover, .app-kachel:focus-visible { transform: translateY(-2px); border-color: var(--farbe); }
+    .kachel-symbol { width: 48px; height: 48px; border-radius: 15px; background: color-mix(in srgb, var(--farbe) 15%, transparent); color: var(--farbe); display: flex; align-items: center; justify-content: center; flex: none; }
+    .kachel-symbol svg { width: 25px; height: 25px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+    .kachel-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .kachel-text b { font-size: 1.03rem; }
+    .kachel-text span { color: var(--leise); font-size: .86rem; line-height: 1.35; }
+    .kachel-text small { color: var(--farbe); font-weight: 700; font-size: .8rem; }
+    .app-kachel::after { content: ""; margin-left: auto; flex: none; width: 8px; height: 8px; border-right: 2px solid var(--leise); border-top: 2px solid var(--leise); transform: rotate(45deg); }
+    .vorschlag { display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; border-left: 6px solid var(--farbe); }
+    .vorschlag-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+    .vorschlag-text small { text-transform: uppercase; letter-spacing: .05em; font-weight: 700; color: var(--leise); font-size: .72rem; }
+    .vorschlag-text b { font-size: 1.08rem; }
+    .vorschlag-text span { color: var(--leise); font-size: .9rem; }
+    .bereich-fortschritt { display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); }
+    @media (min-width: 560px) { .bereich-fortschritt { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } }
+    .bereich-zeile { display: flex; flex-direction: column; gap: 7px; width: 100%; text-align: left; padding: 10px 12px; border-radius: 12px; border: 1px solid var(--linie); background: var(--grund); color: var(--text); font: inherit; cursor: pointer; }
+    .bereich-zeile:hover { border-color: var(--farbe); }
+    .bereich-zeile.aus { opacity: .55; }
+    .bereich-kopf { display: flex; flex-direction: column; gap: 1px; }
+    .bereich-kopf b { font-size: .92rem; display: flex; align-items: center; gap: 7px; }
+    .bereich-kopf b::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--farbe); flex: none; }
+    .bereich-kopf small { color: var(--leise); font-size: .76rem; }
+    .fortschritt { height: 7px; background: var(--flaeche2); border-radius: 99px; overflow: hidden; }
+    .fortschritt i { display: block; height: 100%; background: var(--farbe); border-radius: 99px; transition: width .6s ease; }
+    .erfolge { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 12px 8px; }
+    .erfolg { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+    .medaille { position: relative; isolation: isolate; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font: 700 .76rem var(--technik); color: var(--leise); background: conic-gradient(var(--leise) var(--p, 0deg), var(--flaeche2) 0); }
+    .medaille::before { content: ""; position: absolute; inset: 5px; border-radius: 50%; background: var(--flaeche); z-index: -1; }
+    .erfolg.frei .medaille { background: linear-gradient(135deg, #F2A541, #E4572E); color: #fff; font-size: 1.5rem; box-shadow: 0 6px 16px -8px #E4572E; }
+    .erfolg.frei .medaille::before { display: none; }
+    .erfolg b { font-size: .82rem; line-height: 1.2; }
+    .erfolg:not(.frei) b { color: var(--leise); }
+    .erfolg small { font-size: .7rem; color: var(--leise); line-height: 1.25; }
+    .themen-leiste { display: flex; align-items: center; justify-content: space-between; gap: 8px 12px; flex-wrap: wrap; padding: 10px 14px; border: 1px solid var(--linie); border-radius: 14px; background: var(--flaeche); margin: 0 0 12px; font-size: .92rem; box-shadow: var(--schatten); }
+    .themen-blatt-kopf { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .themen-blatt-kopf h2 { margin: 0; }
+    .knopf.klein { padding: 3px 10px; font-size: .8rem; }
+    .app-meldung { position: fixed; left: 50%; bottom: 26px; transform: translate(-50%, 16px); opacity: 0; pointer-events: none; background: var(--text); color: var(--grund); padding: 12px 20px; border-radius: 999px; font-weight: 700; z-index: 70; transition: opacity .25s, transform .25s; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .5); max-width: calc(100vw - 32px); text-align: center; }
+    .app-meldung.sichtbar { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 420px) { .heute { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; } .heute-info { width: 100%; } .werte { justify-content: center; } .start-kopf h1 { font-size: 1.8rem; } }
+    html.lern-start .tr-knopf { display: none !important; }
+    .app-tab .kurz { display: none; }
+    @media (max-width: 760px) { .app-tab .lang { display: none; } .app-tab .kurz { display: inline; } }
+    @media print { .app-nav, #p-start, .themen-leiste, .app-meldung { display: none !important; } html.lern-app-aktiv body { padding-bottom: 0; } }
+
     /* ---------- Kopfrechnen ---------- */
     .kr-sichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
     .kr-sichten .knopf[aria-pressed="true"], .kr-stufen .knopf[aria-pressed="true"], .kr-kat .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
@@ -256,14 +360,40 @@
 <body>
   <div id="seitenkopf" data-wurzel=""></div>
 
-  <main class="seite" id="inhalt">
-    <section class="held">
-      <h1><span class="unterstrichen">Lernen</span></h1>
-      <p>Alle Formeln der Sammlung zum Üben: Aufgaben mit zufälligen Werten, Formelkarten zum Abfragen, die ganze Formelsammlung, Aufgabenblätter zum Ausdrucken und Kopfrechnen mit Tricks bis zum Profi-Niveau. Bereiche und Themen frei wählen – die Rechner helfen hier nicht, erst nach dem Prüfen gibt es den Lösungsweg. Für Zwischenschritte gibt es unten rechts einen Taschenrechner.</p>
+  <main class="seite lern-app" id="inhalt">
+    <nav class="modi app-nav" aria-label="Lernbereich">
+        <button type="button" class="app-tab" data-modus="start" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9.5h13V10"/><path d="M10 19.5v-5h4v5"/></svg><span class="app-tab-text">Start</span></button>
+        <button type="button" class="app-tab" data-modus="aufgaben" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg><span class="app-tab-text">Aufgaben</span></button>
+        <button type="button" class="app-tab" data-modus="karten" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.5" width="13" height="13" rx="2"/><path d="M7.5 6.5V5a1.5 1.5 0 0 1 1.5-1.5h10A1.5 1.5 0 0 1 20.5 5v10a1.5 1.5 0 0 1-1.5 1.5h-2.5"/></svg><span class="app-tab-text">Karten</span></button>
+        <button type="button" class="app-tab" data-modus="kopf" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/></svg><span class="app-tab-text"><span class="lang">Kopfrechnen</span><span class="kurz">Kopf</span></span></button>
+        <button type="button" class="app-tab" data-modus="blaetter" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8l4.5 4.5v12.5H6z"/><path d="M14 3.5V8h4.5M9 12.5h6M9 16h6"/></svg><span class="app-tab-text">Blätter</span></button>
+        <button type="button" class="app-tab" data-modus="sammlung" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5c2.5-1.3 5-1.3 7.5 0v14c-2.5-1.3-5-1.3-7.5 0z"/><path d="M12 5.5c2.5-1.3 5-1.3 7.5 0v14c-2.5-1.3-5-1.3-7.5 0"/></svg><span class="app-tab-text">Formeln</span></button>
+    </nav>
+
+    <section class="app-start" id="p-start" aria-labelledby="h-start">
+      <div class="start-kopf"><h1 id="h-start">Lernen</h1><p id="gruss">Formeln üben, Aufgaben rechnen, Kopfrechnen trainieren.</p></div>
+      <div class="start-raster">
+        <div class="app-karte heute">
+          <div class="ring" id="ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle class="ring-grund" cx="60" cy="60" r="50"/><circle class="ring-wert" id="ring-wert" cx="60" cy="60" r="50"/></svg><div class="ring-text"><b id="heute-zahl">0</b><small id="heute-ziel">von 20</small></div></div>
+          <div class="heute-info">
+            <h2>Heute</h2><p id="heute-text"></p>
+            <div class="werte"><span><b id="w-serie">0</b><small>Tage in Folge</small></span><span><b id="w-quote">–</b><small>richtig</small></span><span><b id="w-gesamt">0</b><small>Aufgaben</small></span></div>
+            <label class="ziel-wahl">Tagesziel <select id="ziel" data-nicht-merken><option value="10">10</option><option value="20">20</option><option value="30">30</option><option value="50">50</option><option value="100">100</option></select> Aufgaben</label>
+          </div>
+          <div class="woche" id="woche" aria-label="Diese Woche"></div>
+          <button type="button" class="knopf-haupt weiter" id="weiter">Weiterlernen</button>
+        </div>
+        <div class="app-kacheln" id="kacheln"></div>
+        <div class="app-karte vorschlag" id="vorschlag" hidden></div>
+        <div class="app-karte"><div class="karte-kopf"><h2>Deine Themen</h2><button type="button" class="knopf" id="themen-oeffnen2">Themen wählen</button></div><div id="bereich-fortschritt" class="bereich-fortschritt"></div></div>
+        <div class="app-karte"><div class="karte-kopf"><h2>Erfolge</h2><span class="hinweis-klein" id="erfolge-zahl"></span></div><div id="erfolge" class="erfolge"></div></div>
+      </div>
     </section>
 
-    <section class="tafel abstand" id="themen-tafel" aria-labelledby="h-themen">
-      <h2 id="h-themen">Themen</h2>
+    <div class="themen-leiste" id="themen-leiste" hidden><span class="themen-leiste-text" id="themen-leiste-text"></span><button type="button" class="knopf" id="themen-oeffnen">Themen ändern</button></div>
+
+    <section class="tafel abstand themen-blatt" id="themen-tafel" aria-labelledby="h-themen" hidden>
+      <div class="themen-blatt-kopf"><h2 id="h-themen">Themen wählen</h2><button type="button" class="knopf-haupt" id="themen-fertig">Fertig</button></div>
       <p class="hilfe">Bereiche antippen und einzelne Themen an- oder abwählen. Die Auswahl wird auf diesem Gerät gemerkt.</p>
       <div class="chips bereichwahl" id="bereiche" role="group" aria-label="Bereiche"></div>
       <div class="leiste">
@@ -275,16 +405,7 @@
       <div class="themen" id="themen" aria-label="Themen"></div>
     </section>
 
-    <section class="tafel abstand ueben-tafel" aria-labelledby="h-ueben">
-      <h2 id="h-ueben">Üben</h2>
-      <div class="modi" role="group" aria-label="Art des Übens">
-        <button type="button" class="knopf" data-modus="aufgaben" aria-pressed="true">Aufgaben</button>
-        <button type="button" class="knopf" data-modus="karten" aria-pressed="false">Formelkarten</button>
-        <button type="button" class="knopf" data-modus="sammlung" aria-pressed="false">Formelsammlung</button>
-        <button type="button" class="knopf" data-modus="blaetter" aria-pressed="false" hidden>Aufgabenblätter</button>
-        <button type="button" class="knopf" data-modus="kopf" aria-pressed="false">Kopfrechnen</button>
-      </div>
-
+    <section class="tafel abstand ueben-tafel" id="ueben-bereich" aria-label="Üben" hidden>
       <div id="p-aufgaben">
         <div class="leiste stufen" role="group" aria-label="Schwierigkeit">
           <span class="hinweis-klein">Schwierigkeit:</span>
@@ -339,7 +460,7 @@
     // ---------- Speicher (immer mit try, die Seite läuft auch ohne) ----------
     const lies = function (k, standard) { try { const v = JSON.parse(localStorage.getItem(k)); return v === null || v === undefined ? standard : v; } catch (x) { return standard; } };
     const schreib = function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (x) { /* egal */ } };
-    const S_WAHL = 'lernen-auswahl', S_STAND = 'lernen-stand', S_CACHE = 'lernen-formeln', S_STUFE = 'lernen-stufe';
+    const S_WAHL = 'lernen-auswahl', S_STAND = 'lernen-stand', S_CACHE = 'lernen-formeln', S_STUFE = 'lernen-stufe', S_TAGE = 'lernen-tage', S_ZIEL = 'lernen-ziel', S_MODUS = 'lernen-modus';
 
     // ---------- Hilfen ----------
     const el = function (tag, klasse, text) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (text !== undefined) e.textContent = text; return e; };
@@ -404,7 +525,7 @@
       });
       document.getElementById('zahl-gewaehlt').textContent = gewaehlt.length + ' von ' + themen.length + ' Themen gewählt';
     }
-    function wahlGeaendert() { schreib(S_WAHL, gewaehlt); auswahlZeigen(); kartenStapel = null; if (modus === 'aufgaben' && !aktuelle) neueAufgabe(); if (modus === 'karten') naechsteKarte(); if (modus === 'sammlung') sammlungZeigen(); blaetterKnopf(); if (modus === 'blaetter' && document.getElementById('blatt-ansicht').hidden) blaetterZeigen(); }
+    function wahlGeaendert() { fokus = null; schreib(S_WAHL, gewaehlt); auswahlZeigen(); themenLeiste(); if (modus === 'start') startZeigen(); kartenStapel = null; if (modus === 'aufgaben' && !aktuelle) neueAufgabe(); if (modus === 'karten') naechsteKarte(); if (modus === 'sammlung') sammlungZeigen(); blaetterKnopf(); if (modus === 'blaetter' && document.getElementById('blatt-ansicht').hidden) blaetterZeigen(); }
 
     // ---------- Seiten im Hintergrund laden und Formeln und Löser auslesen ----------
     let formelCache = { stand: '', seiten: {} };
@@ -534,9 +655,10 @@
     function neueAufgabe() {
       const nr = ++laufNr, box = document.getElementById('aufgabe');
       aktuelle = null;
-      if (!gewaehlt.length) { box.innerHTML = ''; box.append(el('p', 'warte', 'Oben mindestens ein Thema wählen.')); return; }
+      const quelle = fokus ? [fokus] : gewaehlt;
+      if (!quelle.length) { box.innerHTML = ''; box.append(el('p', 'warte', 'Mindestens ein Thema wählen – oben „Themen ändern“.')); return; }
       box.innerHTML = ''; box.append(el('p', 'warte', 'Aufgabe wird vorbereitet …'));
-      const kandidaten = gewaehlt.filter(function (p) { return !formelCache.seiten[p] || formelCache.seiten[p].aufgaben; });
+      const kandidaten = quelle.filter(function (p) { return !formelCache.seiten[p] || formelCache.seiten[p].aufgaben; });
       if (!kandidaten.length) { box.innerHTML = ''; box.append(el('p', 'warte', 'Die gewählten Themen haben nur Formeln, aber keine Aufgaben. Die Formelkarten und die Formelsammlung gehen trotzdem.')); return; }
       let versuche = 0;
       (function probiere() {
@@ -602,11 +724,11 @@
         }
         if (!gewertet) {
           gewertet = true; stand.gesamt++; if (ok) { stand.richtig++; stand.serie++; stand.beste = Math.max(stand.beste, stand.serie); } else stand.serie = 0;
-          const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; if (ok) tt[0]++; stand.themen[a.pfad] = tt; schreib(S_STAND, stand); standZeigen();
+          const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; if (ok) tt[0]++; stand.themen[a.pfad] = tt; schreib(S_STAND, stand); standZeigen(); zaehle();
         }
         if (ok) { loes.hidden = false; neu.focus(); }
       });
-      zeig.addEventListener('click', function () { loes.hidden = false; if (!gewertet) { gewertet = true; stand.gesamt++; stand.serie = 0; const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; stand.themen[a.pfad] = tt; schreib(S_STAND, stand); standZeigen(); } });
+      zeig.addEventListener('click', function () { loes.hidden = false; if (!gewertet) { gewertet = true; stand.gesamt++; stand.serie = 0; const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; stand.themen[a.pfad] = tt; schreib(S_STAND, stand); standZeigen(); zaehle(); } });
       neu.addEventListener('click', neueAufgabe);
       if (document.activeElement && document.activeElement.closest && document.activeElement.closest('#p-aufgaben')) inp.focus();
     }
@@ -617,7 +739,7 @@
       teil('Serie', String(stand.serie)); teil('Beste Serie', String(stand.beste));
       const schwach = Object.keys(stand.themen).filter(function (p) { return stand.themen[p][1] >= 3 && thema(p); }).sort(function (x, y) { return stand.themen[x][0] / stand.themen[x][1] - stand.themen[y][0] / stand.themen[y][1]; })[0];
       if (schwach && stand.themen[schwach][0] / stand.themen[schwach][1] < 0.7) teil('Üben lohnt bei', thema(schwach).titel);
-      const r = el('button', 'knopf', 'Stand zurücksetzen'); r.type = 'button'; r.addEventListener('click', function () { stand = { richtig: 0, gesamt: 0, serie: 0, beste: 0, themen: {} }; schreib(S_STAND, stand); standZeigen(); }); z.append(r);
+      const r = el('button', 'knopf', 'Stand zurücksetzen'); r.type = 'button'; r.addEventListener('click', function () { stand = { richtig: 0, gesamt: 0, serie: 0, beste: 0, themen: {}, karten: stand.karten || [0, 0] }; schreib(S_STAND, stand); standZeigen(); }); z.append(r);
     }
 
     // ---------- Formelkarten ----------
@@ -641,7 +763,7 @@
     }
     function naechsteKarte() {
       const nr = ++kartenNr, box = document.getElementById('karte');
-      if (!gewaehlt.length) { box.innerHTML = ''; box.append(el('p', 'warte', 'Oben mindestens ein Thema wählen.')); return; }
+      if (!gewaehlt.length) { box.innerHTML = ''; box.append(el('p', 'warte', 'Mindestens ein Thema wählen – oben „Themen ändern“.')); return; }
       if (!kartenStapel) {
         box.innerHTML = ''; const w = el('p', 'warte', 'Formeln werden geladen …'); box.append(w);
         vorladen(gewaehlt.slice(), function (a, b) { w.textContent = 'Formeln werden geladen … ' + a + ' von ' + b; }).then(function () {
@@ -664,8 +786,8 @@
       const gut = el('button', 'knopf', 'Gewusst'); gut.type = 'button'; gut.hidden = true;
       const nochmal = el('button', 'knopf', 'Nochmal'); nochmal.type = 'button'; nochmal.hidden = true;
       auf.addEventListener('click', function () { hinten.hidden = false; auf.hidden = true; gut.hidden = false; nochmal.hidden = false; gut.focus(); });
-      gut.addEventListener('click', function () { kartenStapel.shift(); naechsteKarte(); });
-      nochmal.addEventListener('click', function () { const x = kartenStapel.shift(); kartenStapel.splice(Math.min(kartenStapel.length, 3 + Math.floor(Math.random() * 4)), 0, x); naechsteKarte(); });
+      gut.addEventListener('click', function () { karteGezaehlt(true); kartenStapel.shift(); naechsteKarte(); });
+      nochmal.addEventListener('click', function () { karteGezaehlt(false); const x = kartenStapel.shift(); kartenStapel.splice(Math.min(kartenStapel.length, 3 + Math.floor(Math.random() * 4)), 0, x); naechsteKarte(); });
       leiste.append(auf, gut, nochmal);
       k.append(kopf, vorn, hinten, leiste); box.append(k);
     }
@@ -674,7 +796,7 @@
     let sammlungNr = 0;
     function sammlungZeigen() {
       const nr = ++sammlungNr, box = document.getElementById('sammlung'), balken = document.getElementById('sammlung-balken');
-      if (!gewaehlt.length) { box.innerHTML = ''; box.append(el('p', 'warte', 'Oben mindestens ein Thema wählen.')); return; }
+      if (!gewaehlt.length) { box.innerHTML = ''; box.append(el('p', 'warte', 'Mindestens ein Thema wählen – oben „Themen ändern“.')); return; }
       balken.hidden = false;
       vorladen(gewaehlt.slice(), function (a, b) { if (nr === sammlungNr) balken.firstChild.style.width = Math.round(a / b * 100) + '%'; }).then(function () {
         if (nr !== sammlungNr) return; balken.hidden = true; sammlungFiltern();
@@ -707,7 +829,7 @@
     }
     function blaetterKnopf() {
       const k = document.querySelector('.modi [data-modus="blaetter"]'), n = blaetter.filter(function (b) { return gewaehlt.indexOf(b.thema) >= 0; }).length;
-      k.hidden = !blaetter.length; k.textContent = 'Aufgabenblätter' + (blaetter.length ? ' (' + n + ')' : '');
+      k.hidden = !blaetter.length; k.querySelector('.app-tab-text').textContent = 'Blätter'; k.title = n + ' Aufgabenblätter zu deinen Themen';
     }
     function blaetterZeigen() {
       document.getElementById('blatt-ansicht').hidden = true; blattOffen = null;
@@ -800,28 +922,186 @@
     function kopfStarten() {
       if (!window.Kopfrechnen) return;
       if (kopf) { kopf.zeigen(); return; }
-      kopf = Kopfrechnen.baue(document.getElementById('kopfrechnen'), { lies: lies, schreib: schreib, sperren: function (an) {
+      kopf = Kopfrechnen.baue(document.getElementById('kopfrechnen'), { lies: lies, schreib: schreib, gezaehlt: function () { zaehle(); }, sperren: function (an) {
         document.documentElement.classList.toggle('taschenrechner-gesperrt', !!an);
         const f = document.getElementById('tr-fenster'); if (an && f && !f.hidden && window.Taschenrechner) Taschenrechner.schliessen();
       } });
     }
     function modusWaehlen(m) { const k = document.querySelector('.modi [data-modus="' + m + '"]'); if (k && !k.hidden) k.click(); }
 
-    // ---------- Bedienung ----------
-    let modus = 'aufgaben';
-    Array.prototype.forEach.call(document.querySelectorAll('.modi .knopf'), function (k) {
-      k.addEventListener('click', function () {
-        modus = k.getAttribute('data-modus');
-        Array.prototype.forEach.call(document.querySelectorAll('.modi .knopf'), function (x) { x.setAttribute('aria-pressed', x === k ? 'true' : 'false'); });
-        ['aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf'].forEach(function (m) { document.getElementById('p-' + m).hidden = m !== modus; });
-        document.getElementById('themen-tafel').hidden = modus === 'kopf';
-        if (modus === 'kopf') kopfStarten(); else if (kopf) kopf.verlassen();
-        if (modus === 'aufgaben' && !aktuelle) neueAufgabe();
-        if (modus === 'karten') naechsteKarte();
-        if (modus === 'sammlung') sammlungZeigen();
-        if (modus === 'blaetter') blaetterZeigen();
+    // ---------- Fortschritt: Tage, Serie, Tagesziel ----------
+    const tagSchluessel = function (d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); };
+    let tage = lies(S_TAGE, {}); if (!tage || typeof tage !== 'object' || Array.isArray(tage)) tage = {};
+    Object.keys(tage).forEach(function (k) { if (!/^\d{4}-\d{2}-\d{2}$/.test(k) || !(tage[k] >= 0 && tage[k] < 100000)) delete tage[k]; });
+    let ziel = Number(lies(S_ZIEL, 20)); if ([10, 20, 30, 50, 100].indexOf(ziel) < 0) ziel = 20;
+    if (!Array.isArray(stand.karten) || stand.karten.length !== 2) stand.karten = [0, 0];
+    function heute() { return tage[tagSchluessel(new Date())] || 0; }
+    function serieTage() {
+      const d = new Date(); let n = 0;
+      if (!tage[tagSchluessel(d)]) d.setDate(d.getDate() - 1);
+      while (tage[tagSchluessel(d)] > 0 && n < 4000) { n++; d.setDate(d.getDate() - 1); }
+      return n;
+    }
+    function besteSerieTage() {
+      const k = Object.keys(tage).filter(function (x) { return tage[x] > 0; }).sort(); let best = 0, lauf = 0, vor = null;
+      k.forEach(function (x) { const d = new Date(x + 'T12:00:00'); lauf = vor && Math.round((d - vor) / 864e5) === 1 ? lauf + 1 : 1; best = Math.max(best, lauf); vor = d; });
+      return best;
+    }
+    function zaehle() {
+      const k = tagSchluessel(new Date()), vorher = tage[k] || 0; tage[k] = vorher + 1;
+      const alt = Object.keys(tage).sort(); while (alt.length > 400) delete tage[alt.shift()];
+      schreib(S_TAGE, tage);
+      if (vorher < ziel && tage[k] >= ziel) meldung('Tagesziel geschafft: ' + ziel + ' Aufgaben heute!');
+    }
+    function karteGezaehlt(gewusst) { stand.karten[1]++; if (gewusst) stand.karten[0]++; schreib(S_STAND, stand); zaehle(); }
+    let meldungUhr = null;
+    function meldung(text) {
+      let m = document.getElementById('app-meldung'); if (!m) { m = el('div', 'app-meldung'); m.id = 'app-meldung'; m.setAttribute('role', 'status'); document.body.append(m); }
+      m.textContent = text; m.classList.add('sichtbar'); clearTimeout(meldungUhr); meldungUhr = setTimeout(function () { m.classList.remove('sichtbar'); }, 3500);
+    }
+
+    // ---------- Startbildschirm ----------
+    const ARTEN = [
+      ['aufgaben', 'Aufgaben', 'Rechnen mit zufälligen Werten, Lösungsweg nach dem Prüfen', '#2B7BB9'],
+      ['karten', 'Formelkarten', 'Formel aufdecken, gewusst oder nochmal', '#6E6FA6'],
+      ['kopf', 'Kopfrechnen', '42 Tricks bis Profi, Sprint auf Zeit – ohne Taschenrechner', '#E4572E'],
+      ['blaetter', 'Aufgabenblätter', 'Zum Ausdrucken, mit Lösungen und QR-Code', '#2E8B57'],
+      ['sammlung', 'Formelsammlung', 'Alle Formeln deiner Themen zum Nachschlagen', '#0E6B6A']
+    ];
+    const NAMEN = { aufgaben: 'Aufgaben', karten: 'Formelkarten', kopf: 'Kopfrechnen', blaetter: 'Aufgabenblätter', sammlung: 'Formelsammlung' };
+    let fokus = null;
+    function quote() { return stand.gesamt ? Math.round(stand.richtig / stand.gesamt * 100) : null; }
+    function startZeigen() {
+      const h = new Date().getHours(), n = heute(), serie = serieTage();
+      document.getElementById('gruss').textContent = (h < 11 ? 'Guten Morgen' : h < 18 ? 'Hallo' : 'Guten Abend') + ' – ' + (n >= ziel ? 'Tagesziel geschafft, jede weitere Aufgabe ist ein Bonus.' : n ? 'noch ' + (ziel - n) + ' bis zum Tagesziel.' : serie ? 'halte deine Serie von ' + serie + (serie === 1 ? ' Tag' : ' Tagen') + '.' : 'heute schon geübt?');
+      document.getElementById('heute-zahl').textContent = String(n);
+      document.getElementById('heute-ziel').textContent = 'von ' + ziel;
+      const umfang = 2 * Math.PI * 50, anteil = Math.min(1, n / ziel), ring = document.getElementById('ring-wert');
+      ring.style.strokeDasharray = umfang; ring.style.strokeDashoffset = umfang * (1 - anteil);
+      document.getElementById('ring').classList.toggle('voll', n >= ziel);
+      document.getElementById('heute-text').textContent = n >= ziel ? 'Ziel erreicht – stark!' : n ? 'Weiter so, du bist auf dem Weg.' : 'Noch nichts geübt. Ein paar Minuten reichen.';
+      document.getElementById('w-serie').textContent = String(serie);
+      document.getElementById('w-quote').textContent = quote() === null ? '–' : quote() + ' %';
+      document.getElementById('w-gesamt').textContent = String(stand.gesamt);
+      document.getElementById('ziel').value = String(ziel);
+      // Woche
+      const woche = document.getElementById('woche'); woche.textContent = '';
+      const KURZ = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'], d = new Date(); d.setDate(d.getDate() - 6);
+      let max = ziel; const werte = [];
+      for (let i = 0; i < 7; i++) { const w = tage[tagSchluessel(d)] || 0; werte.push([KURZ[d.getDay()], w, i === 6]); max = Math.max(max, w); d.setDate(d.getDate() + 1); }
+      werte.forEach(function (w) {
+        const s2 = el('div', 'tag' + (w[2] ? ' heute' : '') + (w[1] >= ziel ? ' voll' : '')), saeule = el('i'); saeule.style.height = (w[1] ? Math.max(8, w[1] / max * 100) : 0) + '%';
+        s2.title = w[0] + ': ' + w[1]; const bal = el('span', 'saeule'); bal.append(saeule); s2.append(bal, el('small', '', w[0])); woche.append(s2);
       });
+      // Weiterlernen
+      const letzter = lies(S_MODUS, 'aufgaben'), zuletzt = NAMEN[letzter] && (letzter !== 'blaetter' || blaetter.length) ? letzter : 'aufgaben';
+      const weiter = document.getElementById('weiter'); weiter.textContent = 'Weiterlernen: ' + NAMEN[zuletzt]; weiter.setAttribute('data-ziel', zuletzt);
+      // Kacheln
+      const kz = document.getElementById('kacheln'); kz.textContent = '';
+      const kopfStand = lies('lernen-kopfrechnen', {}) || {}, kopfBest = kopfStand.best && typeof kopfStand.best === 'object' ? Object.keys(kopfStand.best).reduce(function (m, k) { return Math.max(m, Number(kopfStand.best[k]) || 0); }, 0) : 0;
+      const formelZahl = gewaehlt.reduce(function (sum, p) { const x = formelCache.seiten[p]; return sum + (x ? x.formeln.length : 0); }, 0);
+      const info = {
+        aufgaben: stand.gesamt ? stand.richtig + ' von ' + stand.gesamt + ' richtig' : 'noch keine gerechnet',
+        karten: stand.karten[1] ? stand.karten[0] + ' gewusst' : (formelZahl ? formelZahl + ' Formeln bereit' : 'Formeln deiner Themen'),
+        kopf: (Number(kopfStand.serieBest) ? 'beste Serie ' + kopfStand.serieBest : 'noch nicht trainiert') + (kopfBest ? ' · Sprint ' + kopfBest : ''),
+        blaetter: blaetter.length ? blaetter.filter(function (b) { return gewaehlt.indexOf(b.thema) >= 0; }).length + ' von ' + blaetter.length + ' zu deinen Themen' : 'bald verfügbar',
+        sammlung: gewaehlt.length + ' Themen gewählt'
+      };
+      ARTEN.forEach(function (a) {
+        if (a[0] === 'blaetter' && !blaetter.length) return;
+        const k = el('button', 'app-kachel'); k.type = 'button'; k.style.setProperty('--farbe', a[3]);
+        const sym = document.querySelector('.app-nav [data-modus="' + a[0] + '"] svg').cloneNode(true);
+        const ic = el('span', 'kachel-symbol'); ic.append(sym);
+        const t = el('span', 'kachel-text'); t.append(el('b', '', a[1]), el('span', '', a[2]), el('small', '', info[a[0]]));
+        k.append(ic, t); k.addEventListener('click', function () { modusWaehlen(a[0]); }); kz.append(k);
+      });
+      // Vorschlag: schwächstes Thema
+      const vz = document.getElementById('vorschlag'); vz.textContent = '';
+      const schwach = Object.keys(stand.themen).filter(function (p) { return stand.themen[p][1] >= 3 && thema(p) && (!formelCache.seiten[p] || formelCache.seiten[p].aufgaben); }).sort(function (x, y) { return stand.themen[x][0] / stand.themen[x][1] - stand.themen[y][0] / stand.themen[y][1]; })[0];
+      if (schwach && stand.themen[schwach][0] / stand.themen[schwach][1] < 0.8) {
+        const t = thema(schwach), q = Math.round(stand.themen[schwach][0] / stand.themen[schwach][1] * 100);
+        vz.style.setProperty('--farbe', farbe(t.bereich));
+        const tx = el('div', 'vorschlag-text'); tx.append(el('small', '', 'Vorschlag'), el('b', '', t.titel), el('span', '', q + ' % richtig bei ' + stand.themen[schwach][1] + ' Aufgaben – hier lohnt Üben.'));
+        const k = el('button', 'knopf-haupt', 'Gezielt üben'); k.type = 'button'; k.addEventListener('click', function () { fokus = schwach; aktuelle = null; modusWaehlen('aufgaben'); themenLeiste(); });
+        vz.append(tx, k); vz.hidden = false;
+      } else vz.hidden = true;
+      // Fortschritt je Bereich
+      const bf = document.getElementById('bereich-fortschritt'); bf.textContent = '';
+      const bereiche = []; themen.forEach(function (t) { if (bereiche.indexOf(t.bereich) < 0) bereiche.push(t.bereich); });
+      bereiche.forEach(function (b) {
+        const alle = themen.filter(function (t) { return t.bereich === b; }), an = alle.filter(function (t) { return gewaehlt.indexOf(t.pfad) >= 0; }).length;
+        let r = 0, g = 0; alle.forEach(function (t) { const x = stand.themen[t.pfad]; if (x) { r += x[0]; g += x[1]; } });
+        const z2 = el('button', 'bereich-zeile' + (an ? '' : ' aus')); z2.type = 'button'; z2.style.setProperty('--farbe', farbe(b));
+        const kopf2 = el('span', 'bereich-kopf'); kopf2.append(el('b', '', b), el('small', '', an + '/' + alle.length + ' Themen' + (g ? ' · ' + Math.round(r / g * 100) + ' % von ' + g : '')));
+        const bal = el('span', 'fortschritt'), i2 = el('i'); i2.style.width = (g ? Math.round(r / g * 100) : 0) + '%'; bal.append(i2);
+        z2.append(kopf2, bal); z2.addEventListener('click', function () { document.getElementById('themen-suche').value = b; themenOeffnen(); });
+        bf.append(z2);
+      });
+      // Erfolge
+      const kopfSerie = Number(kopfStand.serieBest) || 0, bereicheGeuebt = {}; Object.keys(stand.themen).forEach(function (p) { const t = thema(p); if (t && stand.themen[p][1]) bereicheGeuebt[t.bereich] = 1; });
+      const tagMax = Object.keys(tage).reduce(function (m, k) { return Math.max(m, tage[k]); }, 0), sTage = besteSerieTage();
+      const ERF = [
+        ['Erster Schritt', 'erste Aufgabe gerechnet', stand.gesamt, 1], ['Zehnerserie', '10 richtig in Folge', stand.beste, 10], ['Fleißig', '50 Aufgaben', stand.gesamt, 50], ['Ausdauer', '250 Aufgaben', stand.gesamt, 250],
+        ['Dranbleiben', '3 Tage in Folge', sTage, 3], ['Wochenserie', '7 Tage in Folge', sTage, 7], ['Tagesziel', 'Tagesziel einmal erreicht', tagMax, ziel], ['Kartenprofi', '100 Formelkarten gewusst', stand.karten[0], 100],
+        ['Kopfrechner', '20 richtig in Folge beim Kopfrechnen', kopfSerie, 20], ['Sprinter', '20 richtige in einem Sprint', kopfBest, 20], ['Allrounder', 'Aufgaben aus 5 Bereichen', Object.keys(bereicheGeuebt).length, 5]
+      ];
+      const ez = document.getElementById('erfolge'); ez.textContent = ''; let frei = 0;
+      ERF.forEach(function (x, i) {
+        const ok = x[2] >= x[3]; if (ok) frei++;
+        const e2 = el('div', 'erfolg' + (ok ? ' frei' : '')); e2.title = x[1] + (ok ? ' – geschafft' : ' – ' + Math.min(x[2], x[3]) + ' von ' + x[3]);
+        const m = el('span', 'medaille', ok ? '★' : String(Math.round(Math.min(1, x[2] / x[3]) * 100)) + '%'); m.style.setProperty('--p', Math.min(1, x[2] / x[3]) * 360 + 'deg');
+        e2.append(m, el('b', '', x[0]), el('small', '', x[1])); ez.append(e2);
+      });
+      document.getElementById('erfolge-zahl').textContent = frei + ' von ' + ERF.length;
+    }
+    function themenLeiste() {
+      const t = document.getElementById('themen-leiste-text'); t.textContent = '';
+      if (fokus && thema(fokus)) {
+        t.append(document.createTextNode('Gezielt: ')); t.append(el('b', '', thema(fokus).titel));
+        const x = el('button', 'knopf klein', 'alle Themen'); x.type = 'button'; x.addEventListener('click', function () { fokus = null; themenLeiste(); if (modus === 'aufgaben') neueAufgabe(); }); t.append(document.createTextNode(' '), x);
+        return;
+      }
+      const b = []; themen.forEach(function (x) { if (gewaehlt.indexOf(x.pfad) >= 0 && b.indexOf(x.bereich) < 0) b.push(x.bereich); });
+      t.append(el('b', '', gewaehlt.length + ' von ' + themen.length + ' Themen')); t.append(document.createTextNode(b.length ? ' · ' + (b.length > 3 ? b.slice(0, 3).join(', ') + ' und ' + (b.length - 3) + ' weitere' : b.join(', ')) : ' · keine gewählt'));
+    }
+    function themenOeffnen() { const t = document.getElementById('themen-tafel'); t.hidden = false; auswahlZeigen(); t.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
+    function themenSchliessen() { document.getElementById('themen-tafel').hidden = true; document.getElementById('themen-suche').value = ''; auswahlZeigen(); }
+
+    // ---------- Bedienung ----------
+    let modus = 'start';
+    const MODI = ['start', 'aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf'], ANKER = { start: 'start', aufgaben: 'aufgaben', karten: 'karten', sammlung: 'formeln', blaetter: 'blaetter', kopf: 'kopfrechnen' };
+    function ansicht(m, ohneAnker) {
+      modus = m;
+      Array.prototype.forEach.call(document.querySelectorAll('.modi [data-modus]'), function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-modus') === m ? 'true' : 'false'); });
+      document.getElementById('p-start').hidden = m !== 'start'; document.documentElement.classList.toggle('lern-start', m === 'start');
+      document.getElementById('ueben-bereich').hidden = m === 'start';
+      ['aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf'].forEach(function (x) { document.getElementById('p-' + x).hidden = x !== m; });
+      document.getElementById('themen-leiste').hidden = m === 'start' || m === 'kopf';
+      if (m === 'kopf' || m === 'start') document.getElementById('themen-tafel').hidden = true;
+      if (m === 'kopf') kopfStarten(); else if (kopf) kopf.verlassen();
+      if (m !== 'start') schreib(S_MODUS, m);
+      if (!ohneAnker && !/[#&]blatt=/.test(location.hash) && history.replaceState) history.replaceState(null, '', '#' + ANKER[m]);
+      themenLeiste();
+      if (m === 'start') startZeigen();
+      if (m === 'aufgaben' && !aktuelle) neueAufgabe();
+      if (m === 'karten') naechsteKarte();
+      if (m === 'sammlung') sammlungZeigen();
+      if (m === 'blaetter') blaetterZeigen();
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('.modi [data-modus]'), function (k) {
+      k.addEventListener('click', function () { ansicht(k.getAttribute('data-modus')); if (innerWidth > 760) return; window.scrollTo(0, 0); });
     });
+    document.getElementById('weiter').addEventListener('click', function () { modusWaehlen(this.getAttribute('data-ziel') || 'aufgaben'); });
+    document.getElementById('ziel').addEventListener('change', function () { ziel = Number(this.value) || 20; schreib(S_ZIEL, ziel); startZeigen(); });
+    document.getElementById('themen-oeffnen').addEventListener('click', themenOeffnen);
+    document.getElementById('themen-oeffnen2').addEventListener('click', themenOeffnen);
+    document.getElementById('themen-fertig').addEventListener('click', function () { themenSchliessen(); if (modus === 'start') startZeigen(); });
+    document.documentElement.classList.add('lern-app-aktiv');
+    function ankerModus() {
+      const h = location.hash.replace(/^#/, '').split('&')[0];
+      for (let i = 0; i < MODI.length; i++) if (ANKER[MODI[i]] === h) return MODI[i];
+      return h === 'sammlung' ? 'sammlung' : null;
+    }
     Array.prototype.forEach.call(document.querySelectorAll('.stufen .knopf'), function (k) {
       k.setAttribute('aria-pressed', k.getAttribute('data-stufe') === stufe ? 'true' : 'false');
       k.addEventListener('click', function () { stufe = k.getAttribute('data-stufe'); schreib(S_STUFE, stufe); Array.prototype.forEach.call(document.querySelectorAll('.stufen .knopf'), function (x) { x.setAttribute('aria-pressed', x === k ? 'true' : 'false'); }); neueAufgabe(); });
@@ -841,11 +1121,14 @@
       formelCache.stand = x[1];
       if (!Array.isArray(gewaehlt)) gewaehlt = themen.map(function (t) { return t.pfad; });
       gewaehlt = gewaehlt.filter(function (p) { return typeof p === 'string' && thema(p); });
-      auswahlZeigen(); standZeigen(); blaetterKnopf();
-      if (/^#kopfrechnen\b/.test(location.hash)) modusWaehlen('kopf');
-      window.addEventListener('hashchange', function () { if (/^#kopfrechnen\b/.test(location.hash)) modusWaehlen('kopf'); });
-      const sprung = /[#&]blatt=([^&]+)/.exec(location.hash), ziel = sprung && blaetter.filter(function (b) { let n = ''; try { n = decodeURIComponent(sprung[1]); } catch (e) { /* kaputt */ } return b.datei === 'aufgabenblaetter/' + n + '.md'; })[0];
-      if (ziel) { modusWaehlen('blaetter'); blattOeffnen(ziel, true); } else neueAufgabe();
+      auswahlZeigen(); standZeigen(); blaetterKnopf(); themenLeiste();
+      window.addEventListener('hashchange', function () {
+        const sp = /[#&]blatt=([^&]+)/.exec(location.hash);
+        if (sp) { let n = ''; try { n = decodeURIComponent(sp[1]); } catch (e) { /* kaputt */ } const b = blaetter.filter(function (x) { return x.datei === 'aufgabenblaetter/' + n + '.md'; })[0]; if (b) { ansicht('blaetter', true); blattOeffnen(b, true); } return; }
+        const m = ankerModus(); if (m && m !== modus) ansicht(m, true);
+      });
+      const sprung = /[#&]blatt=([^&]+)/.exec(location.hash), zielBlatt = sprung && blaetter.filter(function (b) { let n = ''; try { n = decodeURIComponent(sprung[1]); } catch (e) { /* kaputt */ } return b.datei === 'aufgabenblaetter/' + n + '.md'; })[0];
+      if (zielBlatt) { ansicht('blaetter', true); blattOeffnen(zielBlatt, true); } else ansicht(ankerModus() || 'start', true);
     }).catch(function () {
       document.getElementById('aufgabe').innerHTML = '';
       document.getElementById('aufgabe').append(el('p', 'warte', location.protocol === 'file:' ? 'Der Lernbereich liest die Formeln aus den Rechnerseiten. Das geht nur, wenn die Sammlung über das Netz geöffnet wird (oder offline aus dem App-Speicher), nicht als lokale Datei.' : 'Die Themenliste ließ sich nicht laden. Bitte die Seite neu laden.'));
