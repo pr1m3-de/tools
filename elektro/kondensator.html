@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kondensator-Rechner – Formeln &amp; Rechner</title>
+  <meta name="description" content="Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und entladen mit Zeitkonstante, Entladezeit auf 60 V, kapazitiver Blindwiderstand, Plattenkondensator und Aufdruck-Codes wie 104 oder 4n7 – mit Animation.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/kondensator.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Kondensator-Rechner">
+  <meta property="og:description" content="Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und entladen mit Zeitkonstante, Entladezeit auf 60 V, kapazitiver Blindwiderstand, Plattenkondensator und Aufdruck-Codes wie 104 oder 4n7 – mit Animation.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/kondensator.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kondensator-Rechner">
+  <meta name="twitter:description" content="Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und entladen mit Zeitkonstante, Entladezeit auf 60 V, kapazitiver Blindwiderstand, Plattenkondensator und Aufdruck-Codes wie 104 oder 4n7 – mit Animation.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/kondensator.html#seite","name":"Kondensator-Rechner","url":"https://tools.pr1m3.de/elektro/kondensator.html","inLanguage":"de","description":"Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und entladen mit Zeitkonstante, Entladezeit auf 60 V, kapazitiver Blindwiderstand, Plattenkondensator und Aufdruck-Codes wie 104 oder 4n7 – mit Animation.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/kondensator.html#pfad"},"dateModified":"2026-11-18"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/kondensator.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Kondensator-Rechner","item":"https://tools.pr1m3.de/elektro/kondensator.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/kondensator.html#fragen","mainEntity":[{"@type":"Question","name":"Wie berechnet man die Zeitkonstante eines RC-Glieds?","acceptedAnswer":{"@type":"Answer","text":"Die Zeitkonstante ist τ = R · C. 100 kΩ und 10 µF ergeben 1 s. Nach einer Zeitkonstante ist der Kondensator auf 63 % geladen oder auf 37 % entladen, nach fünf Zeitkonstanten gilt er mit über 99 % als voll geladen oder entladen."}},{"@type":"Question","name":"Wie rechnet man Kondensatoren in Reihe und parallel?","acceptedAnswer":{"@type":"Answer","text":"Parallel addieren sich die Kapazitäten: C = C₁ + C₂ + … In Reihe addieren sich die Kehrwerte: 1/C = 1/C₁ + 1/C₂ + …, die Gesamtkapazität ist also kleiner als die kleinste Einzelkapazität. In Reihe tragen alle dieselbe Ladung, am kleinsten Kondensator liegt die größte Spannung."}},{"@type":"Question","name":"Was bedeutet der Aufdruck 104 auf einem Kondensator?","acceptedAnswer":{"@type":"Answer","text":"Die ersten beiden Ziffern sind der Wert, die dritte die Zahl der Nullen, alles in Pikofarad: 104 = 10 und vier Nullen = 100 000 pF = 100 nF = 0,1 µF. Ein Buchstabe dahinter gibt die Toleranz an, etwa J = ±5 %, K = ±10 %, M = ±20 %."}},{"@type":"Question","name":"Wie viel Energie speichert ein Kondensator?","acceptedAnswer":{"@type":"Answer","text":"W = ½ · C · U². Ein Elko mit 1 000 µF an 400 V speichert 80 J – genug für einen gefährlichen Schlag. Deshalb müssen Kondensatoren in Geräten nach dem Abschalten entladen werden, nach DIN EN 60204-1 innerhalb von 5 s auf höchstens 60 V."}},{"@type":"Question","name":"Wie groß ist der Blindwiderstand eines Kondensators?","acceptedAnswer":{"@type":"Answer","text":"X_C = 1 / (2 · π · f · C). Ein Kondensator mit 10 µF hat bei 50 Hz etwa 318 Ω. Je höher die Frequenz, desto kleiner der Widerstand; für Gleichspannung sperrt der Kondensator, sobald er geladen ist."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/kondensator.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .code-feld { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 8px 0 12px; }
+    .code-feld input { flex: 1 1 180px; min-width: 0; max-width: 340px; font-family: var(--technik); font-size: 1.05rem; padding: 8px 10px; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); color: var(--text); }
+    .code-beispiele { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .code-beispiele button { font-family: var(--technik); }
+    .code-aus { list-style: none; padding: 0; margin: 0 0 10px; display: grid; gap: 6px; }
+    .code-aus li { border-left: 4px solid var(--farbe, var(--linie)); background: var(--flaeche); padding: 6px 10px; border-radius: 4px; overflow-wrap: anywhere; }
+    .code-aus li b { font-family: var(--technik); }
+    .code-aus li.fehler { --farbe: var(--fehler); }
+    @media print { .code-beispiele, .code-feld .knopf { display: none !important; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie berechnet man die Zeitkonstante eines RC-Glieds?</summary><p>Die Zeitkonstante ist τ = R · C. 100 kΩ und 10 µF ergeben 1 s. Nach einer Zeitkonstante ist der Kondensator auf 63 % geladen oder auf 37 % entladen, nach fünf Zeitkonstanten gilt er mit über 99 % als voll geladen oder entladen.</p></details>
+        <details><summary>Wie rechnet man Kondensatoren in Reihe und parallel?</summary><p>Parallel addieren sich die Kapazitäten: C = C₁ + C₂ + … In Reihe addieren sich die Kehrwerte: 1/C = 1/C₁ + 1/C₂ + …, die Gesamtkapazität ist also kleiner als die kleinste Einzelkapazität. In Reihe tragen alle dieselbe Ladung, am kleinsten Kondensator liegt die größte Spannung.</p></details>
+        <details><summary>Was bedeutet der Aufdruck 104 auf einem Kondensator?</summary><p>Die ersten beiden Ziffern sind der Wert, die dritte die Zahl der Nullen, alles in Pikofarad: 104 = 10 und vier Nullen = 100 000 pF = 100 nF = 0,1 µF. Ein Buchstabe dahinter gibt die Toleranz an, etwa J = ±5 %, K = ±10 %, M = ±20 %.</p></details>
+        <details><summary>Wie viel Energie speichert ein Kondensator?</summary><p>W = ½ · C · U². Ein Elko mit 1 000 µF an 400 V speichert 80 J – genug für einen gefährlichen Schlag. Deshalb müssen Kondensatoren in Geräten nach dem Abschalten entladen werden, nach DIN EN 60204-1 innerhalb von 5 s auf höchstens 60 V.</p></details>
+        <details><summary>Wie groß ist der Blindwiderstand eines Kondensators?</summary><p>X_C = 1 / (2 · π · f · C). Ein Kondensator mit 10 µF hat bei 50 Hz etwa 318 Ω. Je höher die Frequenz, desto kleiner der Widerstand; für Gleichspannung sperrt der Kondensator, sobald er geladen ist.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const GUT = '#2E8B57', WARN = '#F2A541', SCHLECHT = '#C0392B', BLAU = '#3B5BDB', ORANGE = '#C2410C', GRAU = '#6B7785';
+    const T = function (cx, s, x, y, a, g, f, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!f, c); };
+    const eigen = function (o, k) { return Object.prototype.hasOwnProperty.call(o, k); };
+
+    // ---------- Einheiten ----------
+    const C_EINH = { pF: 1e-12, nF: 1e-9, 'µF': 1e-6, mF: 1e-3, F: 1 };
+    const R_EINH = { 'Ω': 1, 'kΩ': 1e3, 'MΩ': 1e6 };
+    const T_EINH = { 'µs': 1e-6, ms: 1e-3, s: 1, min: 60 };
+    const C_WAHL = [['pF', 'pF'], ['nF', 'nF'], ['µF', 'µF'], ['mF', 'mF'], ['F', 'F']];
+    const fakt = function (o, k, d) { return eigen(o, k) ? o[k] : d; };
+    const PRAEF = [[1e-12, 'p'], [1e-9, 'n'], [1e-6, 'µ'], [1e-3, 'm'], [1, ''], [1e3, 'k'], [1e6, 'M'], [1e9, 'G']];
+    // Zahl mit drei gültigen Stellen, Nullen am Ende weg
+    function zs(v) {
+      const a = Math.abs(v), n = a >= 100 ? 0 : a >= 10 ? 1 : 2;
+      let t = z(v, n);
+      if (t.indexOf(',') >= 0) t = t.replace(/0+$/, '').replace(/,$/, '');
+      return t;
+    }
+    function praefix(w) {
+      const a = Math.abs(w);
+      if (!isFinite(a) || a === 0) return [1, ''];
+      let p = PRAEF[0];
+      PRAEF.forEach(function (x) { if (a >= x[0] * 0.9995) p = x; });
+      return p;
+    }
+    // Wert mit passendem Vorsatz: si(4.7e-9, 'F') → „4,7 nF“
+    function si(w, ein) { if (!isFinite(w)) return '–'; const p = praefix(w); return zs(w / p[0]) + ' ' + p[1] + ein; }
+    function einTex(p, ein) {
+      const vor = p === 'µ' ? '\\mu' : p ? '\\text{' + p + '}' : '';
+      const e2 = ein === 'Ω' ? '\\Omega' : ein ? '\\text{' + ein + '}' : '';
+      return vor + e2;
+    }
+    function siT(w, ein) { if (!isFinite(w)) return '\\text{–}'; const p = praefix(w); return Formel.zahl(zs(w / p[0])) + '\\,' + einTex(p[1], ein); }
+    function zeit(s) { return si(s, 's') + (s >= 120 ? ' (' + zs(s / 60) + ' min)' : ''); }
+
+    const BAUART = {
+      folie: { name: 'Folienkondensator', ac: true },
+      keramik: { name: 'Keramikkondensator', ac: true },
+      elko: { name: 'Aluminium-Elektrolytkondensator (Elko)', ac: false },
+      tantal: { name: 'Tantal-Elektrolytkondensator', ac: false },
+      super: { name: 'Doppelschicht-Kondensator (Superkondensator)', ac: false }
+    };
+    const einzeln = function (e) { return e.schaltung === 'einzeln'; };
+
+    function kapazitaeten(e) {
+      if (einzeln(e)) return [{ c: e.cWert * fakt(C_EINH, e.cEinh, 1e-6), un: e.un }];
+      return (Array.isArray(e.kond) ? e.kond : []).map(function (k) { return { c: k.c * fakt(C_EINH, k.einh, 1e-6), un: k.un }; }).filter(function (k) { return isFinite(k.c) && k.c > 0; });
+    }
+
+    // ---------- Aufdruck entschlüsseln ----------
+    const TOL = { B: '±0,1 pF', C: '±0,25 pF', D: '±0,5 pF', F: '±1 %', G: '±2 %', H: '±3 %', J: '±5 %', K: '±10 %', M: '±20 %', Z: '+80 % / −20 %' };
+    const EIA_U = { '0G': 4, '0J': 6.3, '1A': 10, '1C': 16, '1E': 25, '1V': 35, '1H': 50, '1J': 63, '1K': 80, '2A': 100, '2B': 125, '2C': 160, '2D': 200, '2E': 250, '2F': 315, '2V': 350, '2G': 400, '2W': 450, '2H': 500, '2J': 630, '3A': 1000 };
+    const DIEL = {
+      C0G: 'Keramik Klasse 1 (C0G, auch NP0): Kapazität praktisch unabhängig von Temperatur und Spannung (±30 ppm/K), für Filter und Schwingkreise',
+      NP0: 'Keramik Klasse 1 (NP0, auch C0G): Kapazität praktisch unabhängig von Temperatur und Spannung (±30 ppm/K), für Filter und Schwingkreise',
+      X7R: 'Keramik Klasse 2 (X7R): −55 bis +125 °C, Kapazität ändert sich um höchstens ±15 %; sinkt zusätzlich mit der Gleichspannung',
+      X5R: 'Keramik Klasse 2 (X5R): −55 bis +85 °C, Kapazität ändert sich um höchstens ±15 %; sinkt zusätzlich mit der Gleichspannung',
+      X6S: 'Keramik Klasse 2 (X6S): −55 bis +105 °C, Kapazität ändert sich um höchstens ±22 %',
+      Y5V: 'Keramik Klasse 2 (Y5V): −30 bis +85 °C, Kapazität +22 % bis −82 % – nur zum Abblocken',
+      Z5U: 'Keramik Klasse 2 (Z5U): +10 bis +85 °C, Kapazität +22 % bis −56 % – nur zum Abblocken',
+      X1: 'Funkentstörkondensator Klasse X1 zwischen Außenleiter und Neutralleiter, Stoßspannung bis 4 kV (DIN EN 60384-14)',
+      X2: 'Funkentstörkondensator Klasse X2 zwischen Außenleiter und Neutralleiter, Stoßspannung bis 2,5 kV (DIN EN 60384-14)',
+      Y1: 'Funkentstörkondensator Klasse Y1 gegen berührbare Teile oder Schutzleiter, doppelte Isolierung, Stoßspannung bis 8 kV (DIN EN 60384-14)',
+      Y2: 'Funkentstörkondensator Klasse Y2 gegen berührbare Teile oder Schutzleiter, Basisisolierung, Stoßspannung bis 5 kV (DIN EN 60384-14)',
+      MKP: 'Folienkondensator mit Polypropylen-Folie, metallisiert: verlustarm, selbstheilend',
+      MKT: 'Folienkondensator mit Polyester-Folie (PET), metallisiert: klein und günstig',
+      MKS: 'Folienkondensator mit Polyester-Folie (PET), metallisiert',
+      FKP: 'Folienkondensator mit Polypropylen-Folie und Metallbelägen: sehr hohe Impulsfestigkeit'
+    };
+    const VORS = { p: 1e-12, n: 1e-9, u: 1e-6, 'µ': 1e-6, m: 1e-3 };
+    function aufdruck(text) {
+      const aus = [];
+      const roh = String(text || '').slice(0, 60).replace(/μ/g, 'µ').trim();
+      if (!roh) return aus;
+      const teile = vorzerlegen(roh).split(/[\s\/;]+/).filter(Boolean).slice(0, 8);
+      teile.forEach(function (t0) {
+        const t = t0.replace(',', '.'), gross = t.toUpperCase();
+        let m;
+        if (eigen(DIEL, gross)) { aus.push(['Werkstoff ' + gross, DIEL[gross], BLAU]); return; }
+        if (eigen(EIA_U, gross)) { aus.push(['Spannungscode ' + gross, 'Nennspannung ' + z(EIA_U[gross], EIA_U[gross] % 1 ? 1 : 0) + ' V Gleichspannung (EIA-Code)', ORANGE]); return; }
+        if ((m = /^(\d+(?:\.\d+)?)\s*(V|VDC|VAC|V~|V-)$/i.exec(t))) { const w = Number(m[1]); aus.push(['Spannung', 'Nennspannung ' + zs(w) + ' V' + (/AC|~/i.test(m[2]) ? ' Wechselspannung' : ' Gleichspannung'), ORANGE]); return; }
+        if ((m = /^±?(\d+(?:\.\d+)?)%$/.exec(t))) { aus.push(['Toleranz', '±' + zs(Number(m[1])) + ' %', GRAU]); return; }
+        if ((m = /^([BCDFGHJKMZ])$/.exec(t))) { aus.push(['Toleranz ' + m[1], TOL[m[1]], GRAU]); return; }
+        if ((m = /^(\d+(?:\.\d+)?)\s*([pnuµm]?)F?$/i.exec(t)) && (/F$/i.test(t) || /[pnuµm]$/.test(t))) {
+          // Wert mit Einheit: 100nF, 0.1µF, 470uF, 2.2mF
+          const v = m[2] ? (eigen(VORS, m[2]) ? VORS[m[2]] : eigen(VORS, m[2].toLowerCase()) ? VORS[m[2].toLowerCase()] : NaN) : 1;
+          if (m[2] === 'M') { aus.push(['Unklar', '„' + t0 + '“: Großes M steht für Mega, das gibt es bei Kondensatoren nicht. Gemeint ist wohl m (Milli) oder µ.', SCHLECHT]); return; }
+          const c = Number(m[1]) * v;
+          if (isFinite(c) && c > 0) { aus.push(['Kapazität', umrechnen(c), GUT, c]); return; }
+        }
+        if ((m = /^(\d*)([pnuµ])(\d*)([BCDFGHJKMZ])?$/i.exec(t)) && (m[1] || m[3])) {
+          // RKM-Schreibweise nach DIN EN 60062: 4n7 = 4,7 nF, p68 = 0,68 pF, 2u2 = 2,2 µF
+          const vor = m[2].toLowerCase() === 'u' ? 'µ' : m[2].toLowerCase();
+          const c = Number((m[1] || '0') + '.' + (m[3] || '0')) * VORS[vor];
+          aus.push(['Kapazität', umrechnen(c) + ' (Buchstabe als Komma, DIN EN 60062)', GUT, c]);
+          if (m[4]) aus.push(['Toleranz ' + m[4].toUpperCase(), TOL[m[4].toUpperCase()], GRAU]);
+          return;
+        }
+        if ((m = /^(\d{1,2})(\d)?([BCDFGHJKMZ])?$/i.exec(t))) {
+          // Zifferncode in pF: zwei Ziffern Wert, dritte Ziffer = Zahl der Nullen (8 → ·0,01, 9 → ·0,1)
+          let c, erkl;
+          if (m[2] === undefined) { c = Number(m[1]) * 1e-12; erkl = m[1] + ' pF'; }
+          else {
+            const x = Number(m[2]), mal = x === 8 ? 0.01 : x === 9 ? 0.1 : Math.pow(10, x);
+            if (x === 7) { aus.push(['Unklar', '„' + t0 + '“: Die dritte Ziffer 7 kommt im Code nicht vor.', SCHLECHT]); return; }
+            c = Number(m[1]) * mal * 1e-12;
+            erkl = m[1] + (x === 8 ? ' · 0,01' : x === 9 ? ' · 0,1' : x ? ' mit ' + x + (x === 1 ? ' Null' : ' Nullen') : '') + ' in pF';
+          }
+          aus.push(['Kapazität', umrechnen(c) + ' (' + erkl + ')', GUT, c]);
+          if (m[3]) {
+            const tl = m[3].toUpperCase();
+            aus.push(['Toleranz ' + tl, TOL[tl] + (/[BCD]/.test(tl) && c >= 10e-12 ? ' – üblich nur unter 10 pF' : ''), GRAU]);
+          }
+          return;
+        }
+        aus.push(['Nicht erkannt', '„' + t0 + '“ passt zu keinem bekannten Aufdruck.', SCHLECHT]);
+      });
+      return aus;
+    }
+    function umrechnen(c) {
+      const l = [];
+      [[1e-12, 'pF'], [1e-9, 'nF'], [1e-6, 'µF']].forEach(function (x) { const v = c / x[0]; if (v >= 0.001 && v < 1e7) { let s2 = z(v, v >= 100 ? 0 : v >= 1 ? 3 : 4); if (s2.indexOf(',') >= 0) s2 = s2.replace(/0+$/, '').replace(/,$/, ''); l.push(s2 + ' ' + x[1]); } });
+      return l.length ? l.join(' = ') : si(c, 'F');
+    }
+    // Kapazität → Zifferncode (nur bei zwei gültigen Stellen eindeutig)
+    function code(c) {
+      const pf = c / 1e-12;
+      if (!isFinite(pf) || pf <= 0) return '';
+      if (pf < 10) { const t = Math.round(pf * 10) / 10; return t % 1 ? String(Math.floor(t)) + 'p' + String(Math.round((t % 1) * 10)) : String(t); }
+      let ex = Math.floor(Math.log10(pf)) - 1, man = Math.round(pf / Math.pow(10, ex));
+      if (man >= 100) { man = 10; ex++; }
+      if (ex > 6 || ex < 0) return '';
+      const genau = Math.abs(man * Math.pow(10, ex) - pf) / pf < 1e-6;
+      return String(man) + String(ex) + (genau ? '' : ' (gerundet)');
+    }
+
+    let seite = null, codeAusgabe = null, codeFeld = null;
+    function codeZeigen() {
+      if (!codeAusgabe) return;
+      codeAusgabe.innerHTML = '';
+      const l = aufdruck(codeFeld.value);
+      if (!l.length) { const li = document.createElement('li'); li.textContent = 'Aufdruck eingeben, z. B. 104K, 4n7, 2A473J oder 470µF 25V.'; codeAusgabe.append(li); return; }
+      let kap = null;
+      l.forEach(function (x) {
+        const li = document.createElement('li'); li.style.setProperty('--farbe', x[2]); if (x[2] === SCHLECHT) li.className = 'fehler';
+        const b = document.createElement('b'); b.textContent = x[0] + ': '; li.append(b, document.createTextNode(x[1]));
+        if (x[3] && kap === null) kap = x[3];
+        codeAusgabe.append(li);
+      });
+      if (kap !== null && seite) {
+        const li = document.createElement('li'), kn = document.createElement('button'); kn.type = 'button'; kn.className = 'knopf-leise'; kn.textContent = si(kap, 'F') + ' oben übernehmen';
+        kn.setAttribute('data-nicht-merken', '');
+        kn.addEventListener('click', function () { const p = praefix(kap), ein = p[1] === 'µ' ? 'µF' : p[1] + 'F'; seite.setze({ schaltung: 'einzeln', cWert: Math.round(kap / p[0] * 1e6) / 1e6, cEinh: eigen(C_EINH, ein) ? ein : 'µF' }); window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        li.append(kn); codeAusgabe.append(li);
+      }
+    }
+    // Aufdruck nach Codes vom Typ 2A473J zerlegen (Spannungscode direkt vor dem Zifferncode)
+    function vorzerlegen(t) { return String(t).replace(/\b([0-3][A-Z])(\d{3}[BCDFGHJKMZ]?)\b/gi, function (a, u, c) { return eigen(EIA_U, u.toUpperCase()) ? u + ' ' + c : a; }); }
+
+    seite = R.seite({
+      titel: 'Kondensatoren berechnen',
+      einleitung: 'Ladung, Energie, Reihen- und Parallelschaltung, Laden und Entladen über einen Widerstand und der Blindwiderstand an Wechselspannung – alles für denselben Kondensator. Unten in jede Richtung rechnen (auch Plattenkondensator) und Aufdrucke wie 104K oder 4n7 entschlüsseln.',
+      hilfe: 'U ist beim Laden die Gleichspannung der Quelle, beim Entladen die Anfangsspannung des Kondensators. Für den Blindwiderstand gilt U als Effektivwert der Wechselspannung.',
+      gruppen: [
+        { titel: 'Kondensator', farbe: BLAU, felder: [
+          { k: 'schaltung', name: 'Anordnung', wahl: [['einzeln', 'ein Kondensator'], ['reihe', 'mehrere in Reihe'], ['parallel', 'mehrere parallel']] },
+          { k: 'cWert', tex: 'C', name: 'Kapazität', e: '', min: 0.001, max: 999999, wenn: einzeln },
+          { k: 'cEinh', name: 'Einheit der Kapazität', wahl: C_WAHL, wenn: einzeln },
+          { k: 'un', tex: 'U_\\text{N}', name: 'Nennspannung', e: 'V', min: 0.1, max: 1e6, wenn: einzeln, hilfe: 'Die höchste Dauerspannung laut Aufdruck oder Datenblatt.' },
+          { k: 'bauart', name: 'Bauart', wahl: [['folie', 'Folie'], ['keramik', 'Keramik'], ['elko', 'Elko (gepolt)'], ['tantal', 'Tantal (gepolt)'], ['super', 'Superkondensator']] }
+        ] },
+        { titel: 'Kondensatoren der Schaltung', farbe: '#7048E8', wenn: function (e) { return !einzeln(e); },
+          liste: { k: 'kond', zeile: 'Kondensator', max: 20, kopieren: true,
+            spalten: [
+              { k: 'c', name: 'Kapazität', min: 0.001, max: 999999 },
+              { k: 'einh', name: 'Einheit', wahl: C_WAHL, text: true },
+              { k: 'un', name: 'Nennspannung', e: 'V', min: 0.1, max: 1e6 }
+            ],
+            neu: function (i) { return { c: [10, 22, 4.7][i % 3], einh: 'µF', un: 63 }; } } },
+        { titel: 'Spannung', farbe: ORANGE, felder: [
+          { k: 'U', tex: 'U', name: 'Spannung', e: 'V', min: 0.001, max: 1e6 }
+        ] },
+        { titel: 'Laden und Entladen (RC-Glied)', farbe: GUT, felder: [
+          { k: 'vorgang', name: 'Vorgang', wahl: [['laden', 'Laden über R'], ['entladen', 'Entladen über R']] },
+          { k: 'rWert', tex: 'R', name: 'Widerstand', e: '', min: 0.001, max: 999999 },
+          { k: 'rEinh', name: 'Einheit des Widerstands', wahl: [['Ω', 'Ω'], ['kΩ', 'kΩ'], ['MΩ', 'MΩ']] },
+          { k: 'tWert', tex: 't', name: 'Zeitpunkt', e: '', min: 0, max: 999999 },
+          { k: 'tEinh', name: 'Einheit der Zeit', wahl: [['µs', 'µs'], ['ms', 'ms'], ['s', 's'], ['min', 'min']] }
+        ] },
+        { titel: 'Wechselspannung', farbe: '#0E6B6A', felder: [
+          { k: 'f', tex: 'f', name: 'Frequenz', e: 'Hz', min: 0.001, max: 1e10 }
+        ] }
+      ],
+      beispiel: { schaltung: 'einzeln', cWert: 10, cEinh: 'µF', un: 63, bauart: 'folie', kond: [{ c: 10, einh: 'µF', un: 63 }, { c: 22, einh: 'µF', un: 63 }, { c: 4.7, einh: 'µF', un: 63 }], U: 12, vorgang: 'laden', rWert: 100, rEinh: 'kΩ', tWert: 1, tEinh: 's', f: 50 },
+      rechne: function (e) {
+        const r = {}, ks = kapazitaeten(e);
+        if (!ks.length) throw new Error('keine Kapazität');
+        r.ks = ks; r.reihe = e.schaltung === 'reihe';
+        if (einzeln(e)) r.C = ks[0].c;
+        else if (r.reihe) r.C = 1 / ks.reduce(function (s, k) { return s + 1 / k.c; }, 0);
+        else r.C = ks.reduce(function (s, k) { return s + k.c; }, 0);
+        r.Q = r.C * e.U; r.W = 0.5 * r.C * e.U * e.U;
+        // Spannung und Ladung je Kondensator
+        r.teile = ks.map(function (k) { const u = r.reihe ? r.Q / k.c : e.U; return { c: k.c, u: u, q: k.c * u, w: 0.5 * k.c * u * u, un: k.un, ok: u <= k.un * (1 + 1e-9) }; });
+        // höchste zulässige Gesamtspannung: in Reihe begrenzt der Kondensator, der zuerst seine Nennspannung erreicht
+        if (r.reihe) r.uMax = Math.min.apply(null, ks.map(function (k) { return k.un * k.c / r.C; }));
+        else r.uMax = Math.min.apply(null, ks.map(function (k) { return k.un; }));
+        r.ueber = r.teile.some(function (k) { return !k.ok; });
+        // RC-Glied
+        r.R = e.rWert * fakt(R_EINH, e.rEinh, 1e3); r.t = e.tWert * fakt(T_EINH, e.tEinh, 1);
+        r.tau = r.R * r.C; r.I0 = e.U / r.R; r.P0 = e.U * e.U / r.R;
+        r.x = r.tau > 0 ? r.t / r.tau : 0;
+        const ex = Math.exp(-r.x);
+        r.laden = e.vorgang !== 'entladen';
+        r.uC = r.laden ? e.U * (1 - ex) : e.U * ex;
+        r.i = r.I0 * ex; r.Wt = 0.5 * r.C * r.uC * r.uC; r.anteil = r.uC / e.U;
+        r.t5 = 5 * r.tau;
+        r.t60 = e.U > 60 ? r.tau * Math.log(e.U / 60) : 0;
+        r.stufen = [0.5, 1, 2, 3, 4, 5].map(function (n) { const q = Math.exp(-n); return [n, r.laden ? 1 - q : q, q]; });
+        // Wechselspannung
+        r.w = 2 * Math.PI * e.f; r.XC = 1 / (r.w * r.C); r.I = e.U / r.XC; r.QC = e.U * e.U / r.XC;
+        r.bauart = eigen(BAUART, e.bauart) ? BAUART[e.bauart] : BAUART.folie;
+        r.gefahr = e.U > 60 && r.Q > 45e-6;
+        return r;
+      },
+      ergebnis: function (r, e, H) {
+        const reihe = r.reihe, mehrere = !einzeln(e);
+        if (r.ueber) {
+          if (einzeln(e)) H.meldung('Die Spannung von ' + zs(e.U) + ' V liegt über der Nennspannung von ' + zs(e.un) + ' V. Der Kondensator kann durchschlagen; Elkos können dabei platzen. Nennspannung mit Reserve wählen (üblich 20 bis 50 % über der Betriebsspannung).', true);
+          else H.meldung('Mindestens ein Kondensator bekommt mehr als seine Nennspannung (rot in der Tabelle). Die Schaltung verträgt insgesamt höchstens ' + zs(r.uMax) + ' V.' + (reihe ? ' In Reihe liegt am kleinsten Kondensator die größte Spannung.' : ''), true);
+        } else if (einzeln(e) && e.U > e.un * 0.8) H.meldung('Die Spannung liegt nahe an der Nennspannung. Mit 20 bis 50 % Reserve hält der Kondensator deutlich länger.');
+        if (reihe && (e.bauart === 'elko' || e.bauart === 'tantal' || e.bauart === 'super')) H.meldung('Gepolte Kondensatoren und Superkondensatoren in Reihe brauchen Symmetrierwiderstände (oder eine aktive Symmetrierung): Wegen der Leckströme teilt sich die Gleichspannung sonst nicht nach der Kapazität auf.');
+        if (!r.bauart.ac) H.meldung((e.bauart === 'super' ? 'Superkondensatoren' : 'Gepolte Kondensatoren (Elko, Tantal)') + ' sind nur für Gleichspannung. Der Blindwiderstand gilt hier nur für den überlagerten Wechselanteil (Rippelstrom); die Spannung darf nie umgepolt werden.');
+        if (e.bauart === 'super' && e.U > 3 && einzeln(e)) H.meldung('Eine einzelne Zelle eines Superkondensators verträgt meist nur 2,5 bis 3 V. Höhere Spannungen nur mit Modulen aus mehreren Zellen in Reihe.', e.U > e.un);
+        if (r.gefahr) H.meldung('Gefährliche Ladung: über 60 V und mehr als 45 µC (Grenze für berührbare Teile nach DIN EN 61010-1). Vor dem Arbeiten entladen und Spannungsfreiheit messen. Maschinen müssen nach DIN EN 60204-1 innerhalb von 5 s auf höchstens 60 V entladen sein' + (r.t60 > 0 ? ' – über den eingetragenen Widerstand von ' + si(r.R, 'Ω') + ' dauert das ' + zeit(r.t60) + '.' : '.'), r.t60 > 5);
+        if (r.laden && r.P0 > 0.25 && r.tau < 1) H.meldung('Beim Einschalten fließt kurz ' + si(r.I0, 'A') + ' und der Widerstand setzt anfangs ' + si(r.P0, 'W') + ' um. Für kurze Stöße reicht oft ein kleinerer Widerstand, wenn er impulsfest ist; im Datenblatt nachsehen.');
+        H.urteil(!r.ueber, r.ueber ? 'Spannung zu hoch' : 'Spannung zulässig');
+        H.kacheln([
+          [si(r.C, 'F'), mehrere ? (reihe ? 'Gesamtkapazität in Reihe' : 'Gesamtkapazität parallel') : 'Kapazität', BLAU],
+          [si(r.Q, 'As'), 'Ladung Q = C · U', '#7048E8'],
+          [si(r.W, 'J'), 'gespeicherte Energie bei ' + zs(e.U) + ' V' + (r.W >= 3.6 ? ' (' + si(r.W / 3600, 'Wh') + ')' : ''), ORANGE],
+          [zeit(r.tau), 'Zeitkonstante τ = R · C; nach 5 τ = ' + zeit(r.t5) + ' ' + (r.laden ? 'voll' : 'leer'), GUT],
+          [si(r.uC, 'V'), 'Kondensatorspannung nach ' + zeit(r.t) + ' (' + z(r.anteil * 100, 1) + ' %)', '#0E6B6A'],
+          [si(r.i, 'A'), (r.laden ? 'Ladestrom' : 'Entladestrom') + ' nach ' + zeit(r.t) + ', am Anfang ' + si(r.I0, 'A'), '#D4A017'],
+          [si(r.XC, 'Ω'), 'Blindwiderstand bei ' + si(e.f, 'Hz'), GRAU],
+          [si(r.I, 'A'), 'Strom an ' + zs(e.U) + ' V ~ ' + zs(e.f) + ' Hz, Blindleistung ' + si(r.QC, 'var'), '#9C36B5']
+        ]);
+        H.nachweise([
+          [!r.ueber, 'Nennspannung', mehrere ? 'Schaltung verträgt höchstens ' + si(r.uMax, 'V') : zs(e.U) + ' V ≤ ' + zs(e.un) + ' V'],
+          e.U > 60 ? [r.t60 <= 5, 'Entladen auf 60 V (DIN EN 60204-1: ≤ 5 s)', 'über ' + si(r.R, 'Ω') + ': ' + zeit(r.t60)] : null,
+          [null, 'Aufdruck-Code', code(r.C) ? code(r.C).replace(' (gerundet)', ' (gerundet)') + ' = ' + si(r.C, 'F') : 'kein Zifferncode – der Wert steht im Klartext auf dem Bauteil']
+        ]);
+        if (mehrere) {
+          H.tabelle(reihe ? 'Spannungsaufteilung in Reihe' : 'Ladung je Kondensator parallel', ['Nr.', 'Kapazität', 'Spannung', 'Nennspannung', 'Ladung', 'Energie'],
+            r.teile.map(function (k, i) { return [String(i + 1), si(k.c, 'F'), si(k.u, 'V'), si(k.un, 'V'), si(k.q, 'As'), si(k.w, 'J')]; }),
+            { zahl: [1, 2, 3, 4, 5], klasse: function (i) { return r.teile[i].ok ? '' : 'fehler'; },
+              fuss: reihe ? 'In Reihe tragen alle dieselbe Ladung Q; die Spannungen verhalten sich umgekehrt wie die Kapazitäten: U₁ / U₂ = C₂ / C₁.' : 'Parallel liegt an allen dieselbe Spannung; die Ladungen verhalten sich wie die Kapazitäten.' });
+        }
+        H.tabelle(r.laden ? 'Ladekurve' : 'Entladekurve', ['Zeit', 'Vielfaches von τ', 'Spannung uC', 'Anteil', 'Strom i'],
+          r.stufen.map(function (s) { return [zeit(s[0] * r.tau), z(s[0], 1) + ' τ', si(e.U * s[1], 'V'), z(s[1] * 100, 1) + ' %', si(r.I0 * s[2], 'A')]; }),
+          { zahl: [0, 1, 2, 3, 4], fuss: 'Nach 1 τ: 63 % geladen bzw. 37 % übrig. Nach 5 τ gilt der Kondensator als voll geladen bzw. entladen (99,3 %).' });
+      },
+      weg: function (r, e) {
+        const U = tz(e.U, e.U >= 100 ? 0 : 2) + '\\,\\text{V}', C = siT(r.C, 'F'), Rr = siT(r.R, 'Ω'), w = [];
+        if (!einzeln(e)) {
+          const l = r.ks.map(function (k) { return siT(k.c, 'F'); });
+          if (r.reihe) w.push(['Reihenschaltung', '\\frac{1}{C} = ' + l.map(function (x) { return '\\frac{1}{' + x + '}'; }).join(' + ') + ' \\Rightarrow C = ' + E(C)]);
+          else w.push(['Parallelschaltung', 'C = ' + l.join(' + ') + ' = ' + E(C)]);
+        }
+        w.push(['Ladung', 'Q = C \\cdot U = ' + C + ' \\cdot ' + U + ' = ' + E(siT(r.Q, 'As'))]);
+        w.push(['Energie', 'W = \\tfrac{1}{2} \\cdot C \\cdot U^2 = \\tfrac{1}{2} \\cdot ' + C + ' \\cdot (' + U + ')^2 = ' + E(siT(r.W, 'J'))]);
+        if (r.reihe) w.push(['Spannung am kleinsten Kondensator', 'U_i = \\frac{Q}{C_i} = \\frac{' + siT(r.Q, 'As') + '}{' + siT(Math.min.apply(null, r.ks.map(function (k) { return k.c; })), 'F') + '} = ' + E(siT(r.Q / Math.min.apply(null, r.ks.map(function (k) { return k.c; })), 'V'))]);
+        w.push(['Zeitkonstante', '\\tau = R \\cdot C = ' + Rr + ' \\cdot ' + C + ' = ' + E(siT(r.tau, 's'))]);
+        w.push([r.laden ? 'Spannung beim Laden' : 'Spannung beim Entladen', 'u_C = ' + (r.laden ? 'U \\cdot \\left(1 - e^{-t/\\tau}\\right)' : 'U_0 \\cdot e^{-t/\\tau}') + ' = ' + U + ' \\cdot ' + (r.laden ? '\\left(1 - e^{-' + tz(r.x, 3) + '}\\right)' : 'e^{-' + tz(r.x, 3) + '}') + ' = ' + E(siT(r.uC, 'V'))]);
+        w.push(['Strom', 'i = \\frac{U}{R} \\cdot e^{-t/\\tau} = ' + siT(r.I0, 'A') + ' \\cdot e^{-' + tz(r.x, 3) + '} = ' + E(siT(r.i, 'A'))]);
+        if (r.t60 > 0) w.push(['Entladen auf 60 V', 't = \\tau \\cdot \\ln\\frac{U_0}{60\\,\\text{V}} = ' + siT(r.tau, 's') + ' \\cdot \\ln\\frac{' + U + '}{60\\,\\text{V}} = ' + E(siT(r.t60, 's'))]);
+        w.push(['Blindwiderstand', 'X_C = \\frac{1}{2 \\pi \\cdot f \\cdot C} = \\frac{1}{2 \\pi \\cdot ' + tz(e.f, e.f >= 100 ? 0 : 2) + '\\,\\text{Hz} \\cdot ' + C + '} = ' + E(siT(r.XC, 'Ω'))]);
+        w.push(['Strom an Wechselspannung', 'I = \\frac{U}{X_C} = \\frac{' + U + '}{' + siT(r.XC, 'Ω') + '} = ' + E(siT(r.I, 'A'))]);
+        w.push(['Blindleistung', 'Q_C = \\frac{U^2}{X_C} = ' + E(siT(r.QC, 'var'))]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Ladung und Energie – in jede Richtung', hilfe: 'Zum Beispiel: Welche Kapazität speichert 50 J bei 400 V? Wie lange lädt ein Konstantstrom von 2 mA einen Kondensator auf 1 mAs?',
+          felder: [
+            { k: 'C', tex: 'C', name: 'Kapazität', e: 'µF', min: 1e-6, max: 1e10 }, { k: 'U', tex: 'U', name: 'Spannung', e: 'V', min: 0.001, max: 1e6 },
+            { k: 'Q', tex: 'Q', name: 'Ladung', e: 'mAs', min: 1e-9, max: 1e10 }, { k: 'W', tex: 'W', name: 'Energie', e: 'J', min: 1e-12, max: 1e10 },
+            { k: 'I', tex: 'I', name: 'konstanter Ladestrom', e: 'mA', min: 1e-6, max: 1e7 }, { k: 't', tex: 't', name: 'Ladezeit mit konstantem Strom', e: 's', min: 1e-9, max: 1e7 }
+          ],
+          beispiel: { C: 1000, U: 24, I: 10 },
+          gleichungen: [
+            { name: 'Grundgleichung', v: ['Q', 'C', 'U'], f: function (q) { return [q.Q * 1000, q.C * q.U]; }, loese: { Q: function (q) { return q.C * q.U / 1000; }, C: function (q) { return q.Q * 1000 / q.U; }, U: function (q) { return q.Q * 1000 / q.C; } },
+              weg: function (k, q) { return k === 'Q' ? 'Q = C \\cdot U = ' + tz(q.C, 2) + '\\,\\mu\\text{F} \\cdot ' + tz(q.U, 2) + '\\,\\text{V} = ' + E(tz(q.Q, 3) + '\\,\\text{mAs}') : k === 'C' ? 'C = \\frac{Q}{U} = \\frac{' + tz(q.Q, 3) + '\\,\\text{mAs}}{' + tz(q.U, 2) + '\\,\\text{V}} = ' + E(tz(q.C, 2) + '\\,\\mu\\text{F}') : 'U = \\frac{Q}{C} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'Energiegleichung', v: ['W', 'C', 'U'], f: function (q) { return [q.W, 0.5 * q.C * 1e-6 * q.U * q.U]; }, loese: { W: function (q) { return 0.5 * q.C * 1e-6 * q.U * q.U; }, C: function (q) { return 2 * q.W / (q.U * q.U) * 1e6; }, U: function (q) { return Math.sqrt(2 * q.W / (q.C * 1e-6)); } },
+              weg: function (k, q) { return k === 'W' ? 'W = \\tfrac{1}{2} \\cdot C \\cdot U^2 = \\tfrac{1}{2} \\cdot ' + tz(q.C, 2) + '\\,\\mu\\text{F} \\cdot (' + tz(q.U, 2) + '\\,\\text{V})^2 = ' + E(tz(q.W, 4) + '\\,\\text{J}') : k === 'C' ? 'C = \\frac{2 \\cdot W}{U^2} = ' + E(tz(q.C, 2) + '\\,\\mu\\text{F}') : 'U = \\sqrt{\\frac{2 \\cdot W}{C}} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'Konstantstrom', v: ['Q', 'I', 't'], f: function (q) { return [q.Q, q.I * q.t]; }, loese: { Q: function (q) { return q.I * q.t; }, I: function (q) { return q.Q / q.t; }, t: function (q) { return q.Q / q.I; } },
+              weg: function (k, q) { return k === 't' ? 't = \\frac{Q}{I} = \\frac{' + tz(q.Q, 3) + '\\,\\text{mAs}}{' + tz(q.I, 2) + '\\,\\text{mA}} = ' + E(tz(q.t, 3) + '\\,\\text{s}') : k === 'I' ? 'I = \\frac{Q}{t} = ' + E(tz(q.I, 3) + '\\,\\text{mA}') : 'Q = I \\cdot t = ' + E(tz(q.Q, 3) + '\\,\\text{mAs}'); } }
+          ] },
+        { titel: 'RC-Glied laden – in jede Richtung', hilfe: 'Zum Beispiel: Welcher Widerstand lädt 100 µF in 2 s auf 9 V an 12 V? Mit Zeitkonstante, Spannung und Strom zu jedem Zeitpunkt.',
+          felder: [
+            { k: 'R', tex: 'R', name: 'Widerstand', e: 'kΩ', min: 1e-6, max: 1e9 }, { k: 'C', tex: 'C', name: 'Kapazität', e: 'µF', min: 1e-6, max: 1e10 },
+            { k: 'tau', tex: '\\tau', name: 'Zeitkonstante', e: 'ms', min: 1e-9, max: 1e12 }, { k: 't', tex: 't', name: 'Zeit seit dem Einschalten', e: 'ms', min: 0, max: 1e12 },
+            { k: 'U0', tex: 'U', name: 'Spannung der Quelle', e: 'V', min: 0.001, max: 1e6 }, { k: 'uC', tex: 'u_C', name: 'Kondensatorspannung', e: 'V', min: 0, max: 1e6 },
+            { k: 'i', tex: 'i', name: 'Ladestrom', e: 'mA', min: 0, max: 1e9 }
+          ],
+          beispiel: { R: 10, C: 100, t: 1500, U0: 12 },
+          gleichungen: [
+            { name: 'RC-Glied', v: ['tau', 'R', 'C'], f: function (q) { return [q.tau, q.R * q.C]; }, loese: { tau: function (q) { return q.R * q.C; }, R: function (q) { return q.tau / q.C; }, C: function (q) { return q.tau / q.R; } },
+              weg: function (k, q) { return k === 'tau' ? '\\tau = R \\cdot C = ' + tz(q.R, 2) + '\\,\\text{k}\\Omega \\cdot ' + tz(q.C, 2) + '\\,\\mu\\text{F} = ' + E(tz(q.tau, 2) + '\\,\\text{ms}') : k === 'R' ? 'R = \\frac{\\tau}{C} = ' + E(tz(q.R, 3) + '\\,\\text{k}\\Omega') : 'C = \\frac{\\tau}{R} = ' + E(tz(q.C, 3) + '\\,\\mu\\text{F}'); } },
+            { name: 'Ladekurve', v: ['uC', 'U0', 't', 'tau'], f: function (q) { return [q.uC, q.U0 * (1 - Math.exp(-q.t / q.tau))]; },
+              loese: { uC: function (q) { return q.U0 * (1 - Math.exp(-q.t / q.tau)); }, U0: function (q) { return q.uC / (1 - Math.exp(-q.t / q.tau)); }, t: function (q) { return q.uC < q.U0 ? -q.tau * Math.log(1 - q.uC / q.U0) : NaN; }, tau: function (q) { return q.uC < q.U0 && q.uC > 0 ? -q.t / Math.log(1 - q.uC / q.U0) : NaN; } },
+              weg: function (k, q) { return k === 'uC' ? 'u_C = U \\cdot \\left(1 - e^{-t/\\tau}\\right) = ' + tz(q.U0, 2) + '\\,\\text{V} \\cdot \\left(1 - e^{-' + tz(q.t / q.tau, 3) + '}\\right) = ' + E(tz(q.uC, 3) + '\\,\\text{V}') : k === 't' ? 't = -\\tau \\cdot \\ln\\left(1 - \\frac{u_C}{U}\\right) = -' + tz(q.tau, 2) + '\\,\\text{ms} \\cdot \\ln\\left(1 - \\frac{' + tz(q.uC, 2) + '}{' + tz(q.U0, 2) + '}\\right) = ' + E(tz(q.t, 2) + '\\,\\text{ms}') : k === 'tau' ? '\\tau = \\frac{-t}{\\ln\\left(1 - u_C / U\\right)} = ' + E(tz(q.tau, 2) + '\\,\\text{ms}') : 'U = \\frac{u_C}{1 - e^{-t/\\tau}} = ' + E(tz(q.U0, 3) + '\\,\\text{V}'); } },
+            { name: 'Stromkurve', v: ['i', 'U0', 'R', 't', 'tau'], f: function (q) { return [q.i, q.U0 / q.R * Math.exp(-q.t / q.tau)]; },
+              loese: { i: function (q) { return q.U0 / q.R * Math.exp(-q.t / q.tau); }, U0: function (q) { return q.i * q.R / Math.exp(-q.t / q.tau); }, R: function (q) { return q.U0 * Math.exp(-q.t / q.tau) / q.i; } },
+              weg: function (k, q) { return k === 'i' ? 'i = \\frac{U}{R} \\cdot e^{-t/\\tau} = \\frac{' + tz(q.U0, 2) + '\\,\\text{V}}{' + tz(q.R, 2) + '\\,\\text{k}\\Omega} \\cdot e^{-' + tz(q.t / q.tau, 3) + '} = ' + E(tz(q.i, 3) + '\\,\\text{mA}') : ''; } }
+          ] },
+        { titel: 'Blindwiderstand – in jede Richtung', hilfe: 'Zum Beispiel: Welcher Kondensator lässt an 230 V und 50 Hz einen Strom von 100 mA fließen?',
+          felder: [
+            { k: 'X', tex: 'X_C', name: 'Blindwiderstand', e: 'Ω', min: 1e-6, max: 1e12 }, { k: 'f', tex: 'f', name: 'Frequenz', e: 'Hz', min: 0.001, max: 1e10 },
+            { k: 'C', tex: 'C', name: 'Kapazität', e: 'µF', min: 1e-6, max: 1e10 }, { k: 'U', tex: 'U', name: 'Spannung (Effektivwert)', e: 'V', min: 0.001, max: 1e6 },
+            { k: 'I', tex: 'I', name: 'Strom', e: 'mA', min: 1e-6, max: 1e9 }, { k: 'Qc', tex: 'Q_C', name: 'Blindleistung', e: 'var', min: 1e-9, max: 1e10 }
+          ],
+          beispiel: { f: 50, U: 230, I: 100 },
+          gleichungen: [
+            { name: 'Frequenzgleichung', v: ['X', 'f', 'C'], f: function (q) { return [q.X * 2 * Math.PI * q.f * q.C, 1e6]; }, loese: { X: function (q) { return 1e6 / (2 * Math.PI * q.f * q.C); }, C: function (q) { return 1e6 / (2 * Math.PI * q.f * q.X); }, f: function (q) { return 1e6 / (2 * Math.PI * q.C * q.X); } },
+              weg: function (k, q) { return k === 'X' ? 'X_C = \\frac{1}{2 \\pi \\cdot f \\cdot C} = \\frac{1}{2 \\pi \\cdot ' + tz(q.f, 2) + '\\,\\text{Hz} \\cdot ' + tz(q.C, 3) + '\\,\\mu\\text{F}} = ' + E(tz(q.X, 2) + '\\,\\Omega') : k === 'C' ? 'C = \\frac{1}{2 \\pi \\cdot f \\cdot X_C} = \\frac{1}{2 \\pi \\cdot ' + tz(q.f, 2) + '\\,\\text{Hz} \\cdot ' + tz(q.X, 1) + '\\,\\Omega} = ' + E(tz(q.C, 3) + '\\,\\mu\\text{F}') : 'f = \\frac{1}{2 \\pi \\cdot C \\cdot X_C} = ' + E(tz(q.f, 2) + '\\,\\text{Hz}'); } },
+            { name: 'Ohmsches Gesetz', v: ['U', 'I', 'X'], f: function (q) { return [q.U * 1000, q.I * q.X]; }, loese: { X: function (q) { return q.U * 1000 / q.I; }, I: function (q) { return q.U * 1000 / q.X; }, U: function (q) { return q.I * q.X / 1000; } },
+              weg: function (k, q) { return k === 'X' ? 'X_C = \\frac{U}{I} = \\frac{' + tz(q.U, 1) + '\\,\\text{V}}{' + tz(q.I, 2) + '\\,\\text{mA}} = ' + E(tz(q.X, 1) + '\\,\\Omega') : k === 'I' ? 'I = \\frac{U}{X_C} = \\frac{' + tz(q.U, 1) + '\\,\\text{V}}{' + tz(q.X, 1) + '\\,\\Omega} = ' + E(tz(q.I, 3) + '\\,\\text{mA}') : 'U = I \\cdot X_C = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'Leistung', v: ['Qc', 'U', 'I'], f: function (q) { return [q.Qc * 1000, q.U * q.I]; }, loese: { Qc: function (q) { return q.U * q.I / 1000; }, I: function (q) { return q.Qc * 1000 / q.U; }, U: function (q) { return q.Qc * 1000 / q.I; } },
+              weg: function (k, q) { return k === 'Qc' ? 'Q_C = U \\cdot I = ' + tz(q.U, 1) + '\\,\\text{V} \\cdot ' + tz(q.I, 2) + '\\,\\text{mA} = ' + E(tz(q.Qc, 3) + '\\,\\text{var}') : ''; } }
+          ] },
+        { titel: 'Plattenkondensator – in jede Richtung', hilfe: 'Zum Beispiel: Wie groß ist ein Kondensator aus zwei Platten mit 100 cm² und 1 mm Luft dazwischen? Welche Feldstärke herrscht bei 1 kV? Luft schlägt bei etwa 3 kV/mm durch.',
+          felder: [
+            { k: 'C', tex: 'C', name: 'Kapazität', e: 'pF', min: 1e-6, max: 1e15 }, { k: 'er', tex: '\\varepsilon_\\text{r}', name: 'Permittivitätszahl', e: '', min: 1, max: 1e5 },
+            { k: 'A', tex: 'A', name: 'Plattenfläche', e: 'cm²', min: 1e-6, max: 1e9 }, { k: 'd', tex: 'd', name: 'Plattenabstand', e: 'mm', min: 1e-7, max: 1e5 },
+            { k: 'U', tex: 'U', name: 'Spannung', e: 'V', min: 0.001, max: 1e7 }, { k: 'Ef', tex: 'E', name: 'Feldstärke', e: 'kV/mm', min: 1e-9, max: 1e5 }
+          ],
+          beispiel: { er: 1, A: 100, d: 1, U: 1000 },
+          gleichungen: [
+            { name: 'Plattenkondensator', v: ['C', 'er', 'A', 'd'], f: function (q) { return [q.C * q.d, 0.88542 * q.er * q.A]; }, loese: { C: function (q) { return 0.88542 * q.er * q.A / q.d; }, A: function (q) { return q.C * q.d / (0.88542 * q.er); }, d: function (q) { return 0.88542 * q.er * q.A / q.C; }, er: function (q) { return q.C * q.d / (0.88542 * q.A); } },
+              weg: function (k, q) { return k === 'C' ? 'C = \\frac{\\varepsilon_0 \\cdot \\varepsilon_\\text{r} \\cdot A}{d} = \\frac{8{,}854 \\cdot 10^{-12}\\,\\frac{\\text{As}}{\\text{Vm}} \\cdot ' + tz(q.er, 1) + ' \\cdot ' + tz(q.A, 2) + '\\,\\text{cm}^2}{' + tz(q.d, 3) + '\\,\\text{mm}} = ' + E(tz(q.C, 2) + '\\,\\text{pF}') : k === 'd' ? 'd = \\frac{\\varepsilon_0 \\cdot \\varepsilon_\\text{r} \\cdot A}{C} = ' + E(tz(q.d, 4) + '\\,\\text{mm}') : k === 'A' ? 'A = \\frac{C \\cdot d}{\\varepsilon_0 \\cdot \\varepsilon_\\text{r}} = ' + E(tz(q.A, 2) + '\\,\\text{cm}^2') : '\\varepsilon_\\text{r} = \\frac{C \\cdot d}{\\varepsilon_0 \\cdot A} = ' + E(tz(q.er, 2)); } },
+            { name: 'homogenes Feld', v: ['Ef', 'U', 'd'], f: function (q) { return [q.Ef * q.d * 1000, q.U]; }, loese: { Ef: function (q) { return q.U / (q.d * 1000); }, U: function (q) { return q.Ef * q.d * 1000; }, d: function (q) { return q.U / (q.Ef * 1000); } },
+              weg: function (k, q) { return k === 'Ef' ? 'E = \\frac{U}{d} = \\frac{' + tz(q.U, 0) + '\\,\\text{V}}{' + tz(q.d, 3) + '\\,\\text{mm}} = ' + E(tz(q.Ef, 3) + '\\,\\frac{\\text{kV}}{\\text{mm}}') : k === 'd' ? 'd = \\frac{U}{E} = ' + E(tz(q.d, 4) + '\\,\\text{mm}') : 'U = E \\cdot d = ' + E(tz(q.U, 0) + '\\,\\text{V}'); } }
+          ] }
+      ],
+      zusatz: [
+        { titel: 'Aufdruck entschlüsseln', bauen: function (t) {
+          const p = document.createElement('p'); p.className = 'hilfe';
+          p.textContent = 'Zifferncode in Pikofarad (104 = 10 · 10⁴ pF = 100 nF), Buchstabe als Komma (4n7 = 4,7 nF), Toleranzbuchstaben, Spannungscodes (2A = 100 V), Keramik-Klassen (X7R, C0G) und Entstörklassen (X2, Y2). Mehrere Angaben mit Leerzeichen trennen.';
+          const box = document.createElement('div'); box.className = 'code-feld';
+          const lab = document.createElement('label'); lab.htmlFor = 'aufdruck'; lab.textContent = 'Aufdruck';
+          codeFeld = document.createElement('input'); codeFeld.type = 'text'; codeFeld.id = 'aufdruck'; codeFeld.maxLength = 60; codeFeld.autocomplete = 'off'; codeFeld.spellcheck = false; codeFeld.value = '104K 2A';
+          codeFeld.addEventListener('input', codeZeigen);
+          box.append(lab, codeFeld);
+          const bsp = document.createElement('div'); bsp.className = 'code-beispiele';
+          ['104K', '473J 2A', '4n7', '2u2', '100nF X7R', '470µF 25V', '331', '0.1µF X2', '1p5', '222M Y2'].forEach(function (b) {
+            const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf-leise'; k.textContent = b; k.setAttribute('data-nicht-merken', '');
+            k.addEventListener('click', function () { codeFeld.value = b; codeZeigen(); });
+            bsp.append(k);
+          });
+          codeAusgabe = document.createElement('ul'); codeAusgabe.className = 'code-aus'; codeAusgabe.setAttribute('aria-live', 'polite');
+          const tab = document.createElement('div'); tab.className = 'rahmen';
+          const tb = document.createElement('table'); tb.className = 'tabelle';
+          const kopf = document.createElement('tr'); ['Dielektrikum', 'εr', 'typisch'].forEach(function (x) { const th = document.createElement('th'); th.textContent = x; kopf.append(th); });
+          const th0 = document.createElement('thead'); th0.append(kopf); tb.append(th0);
+          const tbody = document.createElement('tbody');
+          [['Vakuum, Luft', '1', 'Drehkondensator, Funkenstrecke'], ['Polypropylen (PP)', '2,2', 'Folienkondensator MKP, Motorkondensator'], ['Polyester (PET)', '3,3', 'Folienkondensator MKT'], ['Papier, ölgetränkt', '4 bis 6', 'ältere Leistungskondensatoren'], ['Glimmer', '6 bis 8', 'Hochfrequenz, Hochspannung'], ['Aluminiumoxid', '9 bis 10', 'Aluminium-Elko'], ['Tantalpentoxid', '27', 'Tantal-Elko'], ['Keramik Klasse 1', '6 bis 200', 'C0G/NP0, stabil'], ['Keramik Klasse 2', '1 000 bis 15 000', 'X7R, X5R, Y5V – klein, aber spannungs- und temperaturabhängig']].forEach(function (z2) {
+            const tr = document.createElement('tr'); z2.forEach(function (x, i) { const td = document.createElement('td'); td.textContent = x; if (i === 1) td.className = 'zahl'; tr.append(td); }); tbody.append(tr);
+          });
+          tb.append(tbody); tab.append(tb);
+          const h3 = document.createElement('h3'); h3.className = 'zwischen'; h3.textContent = 'Permittivitätszahlen';
+          t.append(p, box, bsp, codeAusgabe, h3, tab);
+          setTimeout(codeZeigen, 0);
+        } }
+      ],
+      sammlung: [
+        ['Kapazität', 'C = \\frac{Q}{U}', 'C in Farad (F = As/V), Q in Amperesekunden (As = C), U in Volt'],
+        ['Ladung bei konstantem Strom', 'Q = I \\cdot t', ''],
+        ['Energie', 'W = \\tfrac{1}{2} \\cdot C \\cdot U^2', 'W in Joule (Ws)'],
+        ['Plattenkondensator', 'C = \\frac{\\varepsilon_0 \\cdot \\varepsilon_\\text{r} \\cdot A}{d}', 'ε₀ = 8,854 · 10⁻¹² As/(Vm) elektrische Feldkonstante, εr Permittivitätszahl, A Plattenfläche, d Abstand'],
+        ['Feldstärke', 'E = \\frac{U}{d}', 'Luft schlägt bei etwa 3 kV/mm durch, Polypropylen erst bei etwa 600 kV/mm'],
+        ['Parallelschaltung', 'C = C_1 + C_2 + C_3 + \\ldots', 'gleiche Spannung, Ladungen verhalten sich wie die Kapazitäten'],
+        ['Reihenschaltung', '\\frac{1}{C} = \\frac{1}{C_1} + \\frac{1}{C_2} + \\frac{1}{C_3} + \\ldots', 'gleiche Ladung; zwei Kondensatoren: C = C₁ · C₂ / (C₁ + C₂)'],
+        ['Spannungsteilung in Reihe', '\\frac{U_1}{U_2} = \\frac{C_2}{C_1}', 'am kleinsten Kondensator liegt die größte Spannung'],
+        ['Zeitkonstante', '\\tau = R \\cdot C', 'nach 5 τ gilt der Kondensator als voll geladen bzw. entladen'],
+        ['Laden', 'u_C = U \\cdot \\left(1 - e^{-t/\\tau}\\right)', 'nach 1 τ 63 %, nach 2 τ 86 %, nach 3 τ 95 %'],
+        ['Ladestrom', 'i = \\frac{U}{R} \\cdot e^{-t/\\tau}', 'gilt auch beim Entladen (mit U₀ und umgekehrter Richtung)'],
+        ['Entladen', 'u_C = U_0 \\cdot e^{-t/\\tau}', 'nach 1 τ noch 37 %, nach 5 τ unter 1 %'],
+        ['Entladezeit auf eine Restspannung', 't = \\tau \\cdot \\ln\\frac{U_0}{U_\\text{Rest}}', 'DIN EN 60204-1: höchstens 60 V nach 5 s'],
+        ['Kapazitiver Blindwiderstand', 'X_C = \\frac{1}{\\omega \\cdot C} = \\frac{1}{2 \\pi \\cdot f \\cdot C}', 'Strom eilt der Spannung um 90° voraus'],
+        ['Strom an Wechselspannung', 'I = \\frac{U}{X_C} = U \\cdot 2 \\pi \\cdot f \\cdot C', ''],
+        ['Kapazitive Blindleistung', 'Q_C = U \\cdot I = \\frac{U^2}{X_C} = U^2 \\cdot \\omega \\cdot C', 'Q_C in var'],
+        ['Zifferncode', 'C = \\overline{z_1 z_2} \\cdot 10^{z_3}\\,\\text{pF}', '104 = 10 · 10⁴ pF = 100 nF; Toleranz J ±5 %, K ±10 %, M ±20 %']
+      ],
+      quellen: 'Formeln nach Tabellenbuch Elektrotechnik. Kennzeichnung nach DIN EN 60062 (Zifferncode, Buchstabe als Komma, Toleranzbuchstaben), Spannungscodes nach EIA-198, Keramik-Klassen nach EIA-198 bzw. DIN EN 60384-8/-9, Entstörklassen nach DIN EN 60384-14. Gefährliche Ladung nach DIN EN 61010-1 (über 60 V Gleichspannung und mehr als 45 µC), Entladung nach DIN EN 60204-1 Abschnitt 6.2.4 (5 s, 60 V). Ideale Bauteile: ohne Leckstrom, Serienwiderstand (ESR), Eigeninduktivität und Spannungsabhängigkeit der Kapazität.',
+      bild: { titel: 'Animation: Laden und Entladen', label: 'Schaltung mit Quelle, Schalter, Widerstand und Kondensator und die Lade- oder Entladekurve über fünf Zeitkonstanten', animiert: !bewegungAus,
+        hoehe: function (B) { return B < 560 ? 430 : 300; },
+        hinweis: function (r) { return 'Ein Durchlauf zeigt 5 τ = ' + zeit(r.t5) + '. Blau Spannung am Kondensator, orange Strom, gestrichelt der gewählte Zeitpunkt.'; },
+        zeichne: function (cx, B, H, t, r, e) {
+          const ZYK = 7000, lauf = (t % ZYK) / ZYK, an = Math.min(1, lauf / 0.85), x5 = an * 5;
+          const q = Math.exp(-x5), anteil = r.laden ? 1 - q : q, strom = q;
+          const breit = B >= 560, sw = breit ? Math.min(260, B * 0.38) : B, sh = breit ? H : 190;
+          // ----- Schaltung -----
+          const l = breit ? 34 : Math.max(34, Math.min(B / 2 - 130, B - 330)), rr = l + Math.min(220, sw - 50), o = 40, u = sh - 34, mx = (l + rr) / 2;
+          cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.fillStyle = F('--text');
+          const linie = function (a, b, c, d) { cx.beginPath(); cx.moveTo(a, b); cx.lineTo(c, d); cx.stroke(); };
+          // Quelle links (vertikal), Schalter oben links, Widerstand oben, Kondensator rechts
+          const qy = (o + u) / 2;
+          linie(l, u, l, qy + 10); linie(l, qy - 10, l, o + 26);
+          cx.lineWidth = 3; linie(l - 14, qy - 10, l + 14, qy - 10); cx.lineWidth = 6; linie(l - 7, qy + 10, l + 7, qy + 10); cx.lineWidth = 2;
+          T(cx, '+', l + 18, qy - 14, 'left', 12, true); T(cx, 'U', l - 20, qy, 'right', 12, true, ORANGE);
+          // Schalter: Stellung 1 an die Quelle (Laden), Stellung 2 Kurzschlussbügel (Entladen)
+          const sx = l + 52;
+          cx.beginPath(); cx.arc(l, o + 26, 3, 0, 2 * Math.PI); cx.fill();
+          const k2x = l + 28, k2y = o + 44;
+          linie(sx, o, rr * 0.25 + mx * 0.75 - 60, o);
+          cx.beginPath(); cx.arc(sx, o, 3, 0, 2 * Math.PI); cx.fill();
+          cx.strokeStyle = F('--leise'); linie(k2x + 12, k2y, k2x + 12, u); cx.beginPath(); cx.arc(k2x + 12, k2y, 3, 0, 2 * Math.PI); cx.fillStyle = F('--leise'); cx.fill();
+          cx.strokeStyle = F('--text'); cx.fillStyle = F('--text');
+          if (r.laden) linie(sx, o, l, o + 26); else linie(sx, o, k2x + 12, k2y);
+          T(cx, r.laden ? 'Laden' : 'Entladen', sx + 4, o - 14, 'left', 10, true, F('--leise'));
+          // Widerstand
+          const rx = mx - 30; cx.strokeStyle = F('--text'); cx.strokeRect(rx, o - 8, 60, 16); linie(rx + 60, o, rr, o);
+          T(cx, 'R = ' + si(r.R, 'Ω'), rx + 30, o + 22, 'center', 10, true, F('--leise'));
+          // Kondensator
+          const cy = (o + u) / 2, pb = 46;
+          linie(rr, o, rr, cy - 7); linie(rr, cy + 7, rr, u); linie(rr, u, l, u);
+          cx.lineWidth = 4; cx.strokeStyle = BLAU; linie(rr - pb / 2, cy - 7, rr + pb / 2, cy - 7); linie(rr - pb / 2, cy + 7, rr + pb / 2, cy + 7); cx.lineWidth = 2;
+          const n = Math.round(anteil * 6);
+          for (let k = 0; k < n; k++) { const px = rr - pb / 2 + 4 + k * (pb - 8) / 5; T(cx, '+', px, cy - 16, 'center', 11, true, SCHLECHT); T(cx, '−', px, cy + 19, 'center', 10, true, BLAU); }
+          T(cx, 'C = ' + si(r.C, 'F'), rr - pb / 2 - 8, cy + 14, 'right', 10, true, F('--leise'));
+          T(cx, 'uC = ' + si(e.U * anteil, 'V'), rr - pb / 2 - 8, cy - 6, 'right', 11, true, BLAU);
+          // Ladungsträger im Kreis, Geschwindigkeit nach Strom
+          if (strom > 0.01) {
+            const pfad = r.laden ? [[l, u], [l, o + 26], [sx, o], [rr, o], [rr, cy - 7]] : [[rr, cy + 7], [rr, u], [k2x + 12, u], [k2x + 12, k2y], [sx, o], [rr, o], [rr, cy - 7]];
+            const lang = []; let ges = 0; for (let k = 1; k < pfad.length; k++) { const d = Math.hypot(pfad[k][0] - pfad[k - 1][0], pfad[k][1] - pfad[k - 1][1]); lang.push(d); ges += d; }
+            const weg = (t / 1000) * 60 * (0.3 + strom);
+            cx.fillStyle = '#D4A017';
+            for (let j = 0; j < 9; j++) {
+              let s = ((weg + j * ges / 9) % ges + ges) % ges; if (!r.laden) s = ges - s;
+              let k = 0; while (k < lang.length - 1 && s > lang[k]) { s -= lang[k]; k++; }
+              const a = pfad[k], b = pfad[k + 1], f = lang[k] ? Math.min(1, s / lang[k]) : 0;
+              cx.globalAlpha = 0.35 + 0.65 * strom; cx.beginPath(); cx.arc(a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f, 3.2, 0, 2 * Math.PI); cx.fill();
+            }
+            cx.globalAlpha = 1;
+          }
+          T(cx, 't = ' + zeit(x5 * r.tau) + ' (' + z(x5, 1) + ' τ)', l - 20, u + 20, 'left', 11, true);
+          // ----- Kurve -----
+          const gx = breit ? sw + 46 : 46, gy = breit ? 18 : sh + 18, gw = B - gx - 16, gh = breit ? H - 58 : H - gy - 42;
+          const ach = R.Z.achsen(cx, gx, gy, gw, gh, 0, 5, 0, 100, { xSchritt: 1, xStellen: 0, ySchritt: 25, xName: 't / τ', yName: '%' });
+          const kurve = function (fn, farbe) { cx.strokeStyle = farbe; cx.lineWidth = 2; cx.beginPath(); for (let k = 0; k <= 100; k++) { const xv = k / 20, X = ach.X(xv), Y = ach.Y(fn(xv) * 100); if (k) cx.lineTo(X, Y); else cx.moveTo(X, Y); } cx.stroke(); };
+          kurve(function (xv) { return r.laden ? 1 - Math.exp(-xv) : Math.exp(-xv); }, BLAU);
+          kurve(function (xv) { return Math.exp(-xv); }, ORANGE);
+          cx.strokeStyle = F('--leise'); cx.setLineDash([3, 3]); cx.lineWidth = 1;
+          [1, 2, 3].forEach(function (k) { linie(ach.X(k), gy, ach.X(k), gy + gh); });
+          if (r.x > 0 && r.x <= 5) { cx.strokeStyle = GUT; cx.lineWidth = 2; cx.setLineDash([6, 4]); linie(ach.X(r.x), gy, ach.X(r.x), gy + gh); }
+          cx.setLineDash([]);
+          T(cx, '1 τ: ' + (r.laden ? '63 %' : '37 %'), ach.X(1) + 4, gy + gh - 10, 'left', 10, false, F('--leise'));
+          const X = ach.X(x5);
+          cx.fillStyle = BLAU; cx.beginPath(); cx.arc(X, ach.Y(anteil * 100), 5, 0, 2 * Math.PI); cx.fill();
+          cx.fillStyle = ORANGE; cx.beginPath(); cx.arc(X, ach.Y(strom * 100), 5, 0, 2 * Math.PI); cx.fill();
+          T(cx, 'uC', gx + gw - 4, ach.Y(r.laden ? 96 : 10) - 10, 'right', 11, true, BLAU);
+          T(cx, 'i', gx + gw - 4, ach.Y(4) - 10, 'right', 11, true, ORANGE);
+        } }
+    });
+  })();
+  </script>
+</body>
+</html>

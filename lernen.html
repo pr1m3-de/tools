@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="Lernen">
   <meta name="twitter:description" content="Formeln lernen und üben: Aufgaben mit zufälligen Werten aus allen Rechnern, Formelkarten zum Abfragen und die gesamte Formelsammlung – nach Bereichen und Themen auswählbar, mit Lösungsweg, Punktestand und offline nutzbar.">
   <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/lernen.html#seite","name":"Lernen","url":"https://tools.pr1m3.de/lernen.html","inLanguage":"de","description":"Formeln lernen und üben: Aufgaben mit zufälligen Werten aus allen Rechnern, Formelkarten zum Abfragen und die gesamte Formelsammlung – nach Bereichen und Themen auswählbar, mit Lösungsweg, Punktestand und offline nutzbar.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/lernen.html#pfad"},"dateModified":"2026-11-13"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/lernen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Lernen","item":"https://tools.pr1m3.de/lernen.html"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/lernen.html#seite","name":"Lernen","url":"https://tools.pr1m3.de/lernen.html","inLanguage":"de","description":"Formeln lernen und üben: Aufgaben mit zufälligen Werten aus allen Rechnern, Formelkarten zum Abfragen und die gesamte Formelsammlung – nach Bereichen und Themen auswählbar, mit Lösungsweg, Punktestand und offline nutzbar.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/lernen.html#pfad"},"dateModified":"2026-11-17"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/lernen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Lernen","item":"https://tools.pr1m3.de/lernen.html"}]}]}</script>
   <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
@@ -541,7 +541,7 @@
             if (fertig) return; fertig = true; clearTimeout(zeit);
             let w, d;
             try { w = f.contentWindow; d = f.contentDocument; if (!d) throw new Error('kein Zugriff'); } catch (x) { f.remove(); delete wartend[pfad]; fehler(x); return; }
-            const k = w.Rechner && w.Rechner.konfig, lo = k && k.loeser && k.loeser.gleichungen && k.loeser.gleichungen.length ? k.loeser : null;
+            const k = w.Rechner && w.Rechner.konfig, los = (k && k.loeser ? (Array.isArray(k.loeser) ? k.loeser : [k.loeser]) : []).filter(function (l) { return l && l.felder && l.gleichungen && l.gleichungen.length; }), lo = los.length ? los : null;
             let formeln = [];
             if (k && k.sammlung && k.sammlung.length) formeln = k.sammlung.map(function (x) { return [String(x[0] || ''), String(x[1] || ''), String(x[2] || '')]; });
             else {
@@ -668,9 +668,9 @@
         lade(pfad).then(function (d) {
           if (nr !== laufNr) return;
           if (!d.loeser) { auswahlZeigen(); probiere(); return; }
-          const a = aufgabeAus(d.loeser, stufe);
+          const lo = d.loeser[Math.floor(Math.random() * d.loeser.length)], a = aufgabeAus(lo, stufe);
           if (!a) { probiere(); return; }
-          a.pfad = pfad; a.lo = d.loeser; aktuelle = a; aufgabeZeigen();
+          a.pfad = pfad; a.lo = lo; aktuelle = a; aufgabeZeigen();
         }).catch(function (x) {
           if (nr !== laufNr) return;
           if (location.protocol === 'file:') { box.innerHTML = ''; box.append(el('p', 'warte', 'Der Lernbereich liest die Formeln aus den Rechnerseiten. Das geht nur, wenn die Sammlung über das Netz geöffnet wird (oder offline aus dem App-Speicher), nicht als lokale Datei.')); return; }

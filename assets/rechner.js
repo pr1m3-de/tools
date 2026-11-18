@@ -466,7 +466,7 @@
           benutzt[gi] = true;
           if (!isFinite(w) || w < fd.min * (1 - 1e-9) - 1e-12 || w > fd.max * (1 + 1e-9) + 1e-12) {
             G.v.forEach(function (v) { if (q[v] === 'g') wid[v] = true; });
-            weg.push([G.name + ': keine Lösung', '\\text{' + (fd.name + ' läge außerhalb von ' + zahl(fd.min, 4) + ' bis ' + zahl(fd.max, 4) + ' ' + (fd.e || '')).replace(/[{}\\$&#%_^~]/g, ' ') + '}']);
+            weg.push([G.name + ': keine Lösung', '\\text{' + (fd.name + ' läge außerhalb von ' + zahl(fd.min, 4) + ' bis ' + zahl(fd.max, 4) + ' ' + (fd.e || '')).replace(/[{}\\$&#%_^~]/g, ' ').replace(/[\u00a0\u202f]/g, ' ').replace(/µ/g, '}\\mu\\text{').replace(/²/g, '}^2\\text{').replace(/³/g, '}^3\\text{').replace(/Ω/g, '}\\Omega\\text{') + '}']);
             return;
           }
           x[k] = w; q[k] = 'b'; weiter = true;
