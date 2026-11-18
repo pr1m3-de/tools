@@ -10,13 +10,13 @@ Alle bisher gefundenen Fehler in der Sammlung und wie sie behoben wurden, aus de
 
 - **Ursache:** Der Lernbereich las nur `loeser` als einzelnes Objekt. Seiten mit einer Liste von Lösern (z. B. Klima und Hitze am Arbeitsplatz) galten als Seiten ohne Löser.
 - **Behebung:** Der Lernbereich nimmt jetzt einen Löser oder eine Liste und wählt je Aufgabe zufällig einen davon.
-- **PR:** Kondensatoren
+- **PR:** #75
 
 ### KaTeX-Warnungen bei „keine Lösung“ im Löser
 
 - **Ursache:** Der Hinweistext steht in `\text{…}` und enthielt schmale Leerzeichen aus der Zahlformatierung sowie µ, ², ³ oder Ω aus der Einheit. Dafür hat die KaTeX-Schrift im Textmodus keine Zeichen.
 - **Behebung:** Leerzeichen werden ersetzt, Sonderzeichen der Einheit werden als Formelzeichen gesetzt.
-- **PR:** Kondensatoren
+- **PR:** #75
 
 ### Aufgabenblätter ließen sich online nicht öffnen („Das Blatt ließ sich nicht laden“)
 
