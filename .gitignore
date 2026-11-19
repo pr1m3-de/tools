@@ -1,0 +1,4 @@
+# Testbilder und Druckproben im Hauptordner nicht einchecken
+/*.png
+!/favicon.png
+/*.pdf
