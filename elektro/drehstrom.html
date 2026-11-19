@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drehstrom: Stern, Dreieck und Unsymmetrie – Formeln &amp; Rechner</title>
+  <meta name="description" content="Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/drehstrom.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Drehstrom: Stern, Dreieck und Unsymmetrie">
+  <meta property="og:description" content="Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/drehstrom.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Drehstrom: Stern, Dreieck und Unsymmetrie">
+  <meta name="twitter:description" content="Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/drehstrom.html#seite","name":"Drehstrom: Stern, Dreieck und Unsymmetrie","url":"https://tools.pr1m3.de/elektro/drehstrom.html","inLanguage":"de","description":"Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/drehstrom.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/drehstrom.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Drehstrom: Stern, Dreieck und Unsymmetrie","item":"https://tools.pr1m3.de/elektro/drehstrom.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/drehstrom.html#fragen","mainEntity":[{"@type":"Question","name":"Warum hat Drehstrom 400 V und 230 V?","acceptedAnswer":{"@type":"Answer","text":"230 V liegen zwischen einem Außenleiter und dem Neutralleiter. Zwischen zwei Außenleitern addieren sich zwei um 120° verschobene Spannungen geometrisch: 230 V · √3 = 400 V."}},{"@type":"Question","name":"Warum führt der Neutralleiter bei gleicher Last keinen Strom?","acceptedAnswer":{"@type":"Answer","text":"Drei gleich große, um 120° verschobene Ströme ergeben zu jedem Zeitpunkt zusammen null. Im Zeigerdiagramm schließen sie sich zu einem Dreieck. Erst bei ungleicher Last bleibt ein Rest, der über den Neutralleiter fließt."}},{"@type":"Question","name":"Wie groß wird der Neutralleiterstrom höchstens?","acceptedAnswer":{"@type":"Answer","text":"Bei ohmscher Last nie größer als der größte Außenleiterstrom – etwa wenn nur ein Außenleiter belastet ist. Oberschwingungen von Netzteilen und LED-Treibern (vor allem die dritte) addieren sich im Neutralleiter aber, dort kann er sogar größer als die Außenleiterströme werden."}},{"@type":"Question","name":"Was passiert bei einer Neutralleiterunterbrechung?","acceptedAnswer":{"@type":"Answer","text":"Die Verbraucher an verschiedenen Außenleitern liegen über den Sternpunkt in Reihe an 400 V. Wer den größten Widerstand hat – das kleinste Gerät –, bekommt die meiste Spannung. Ein 100-W-Gerät neben einem 2-kW-Gerät erhält rund 380 V und kann in Brand geraten."}},{"@type":"Question","name":"Rechnet man die Drehstromleistung mit √3 oder mit 3?","acceptedAnswer":{"@type":"Answer","text":"Beides geht: P = √3 · U · I · cos φ mit Leiterspannung (400 V) und Leiterstrom, oder P = 3 · UStr · IStr · cos φ mit den Werten eines Strangs. Bei unsymmetrischer Last addiert man die drei Strangleistungen."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/drehstrom.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .wissen-karte ul { margin: 4px 0; padding-left: 18px; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand" id="ds-wissen" aria-labelledby="h-ds-wissen">
+      <h2 id="h-ds-wissen">Drehstrom verstehen</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#8B5A2B">
+          <h3>Das Drehstromnetz</h3>
+          <p>Drei Wechselspannungen gleicher Größe und Frequenz, um je 120° verschoben, erzeugt von drei Wicklungen im Generator. Außenleiter L1 (braun), L2 (schwarz), L3 (grau), Neutralleiter N (blau), Schutzleiter PE (grün-gelb).</p>
+          <ul>
+            <li><b>Außenleiterspannung</b> U zwischen zwei Außenleitern: 400 V.</li>
+            <li><b>Strangspannung</b> U<sub>Str</sub> zwischen Außenleiter und N: 400 V/√3 = 230 V.</li>
+            <li><b>Verkettungsfaktor</b> √3 ≈ 1,73.</li>
+          </ul>
+        </article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9">
+          <h3>Stern und Dreieck</h3>
+          <div class="rahmen"><table class="tabelle">
+            <thead><tr><th></th><th>Stern (Y)</th><th>Dreieck (Δ)</th></tr></thead>
+            <tbody>
+              <tr><td>Spannung am Strang</td><td>U<sub>Str</sub> = U/√3</td><td>U<sub>Str</sub> = U</td></tr>
+              <tr><td>Strom im Leiter</td><td>I = I<sub>Str</sub></td><td>I = √3 · I<sub>Str</sub></td></tr>
+              <tr><td>Leistung derselben Stränge</td><td>P<sub>Y</sub></td><td>P<sub>Δ</sub> = 3 · P<sub>Y</sub></td></tr>
+              <tr><td>Neutralleiter</td><td>möglich</td><td>keiner</td></tr>
+            </tbody>
+          </table></div>
+          <p>Die Leistung ist in beiden Fällen P = √3 · U · I · cos φ mit Leiterspannung und Leiterstrom. Genutzt beim Stern-Dreieck-Anlauf von Motoren: im Stern nur ein Drittel von Strom und Moment.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#2E8B57">
+          <h3>Symmetrische und unsymmetrische Last</h3>
+          <p><b>Symmetrisch:</b> alle drei Stränge gleich (Motor, Durchlauferhitzer). Die Ströme heben sich im Sternpunkt auf, der Neutralleiter führt keinen Strom.</p>
+          <p><b>Unsymmetrisch:</b> verschiedene Lasten an den drei Außenleitern (Hausinstallation). Der Neutralleiter führt die geometrische Summe der Ströme zurück und hält jeden Strang auf 230 V. Bei rein ohmscher Last:</p>
+          <p style="text-align:center">I<sub>N</sub> = √(I₁² + I₂² + I₃² − I₁I₂ − I₂I₃ − I₃I₁)</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#C0392B">
+          <h3>Neutralleiterunterbrechung</h3>
+          <p>Reißt der Neutralleiter, verschiebt sich der Sternpunkt. Die Strangspannungen richten sich dann nach den Lasten: An wenig belasteten Strängen (großer Widerstand) steigt die Spannung bis gegen 400 V, an stark belasteten fällt sie.</p>
+          <ul>
+            <li>Kleine Geräte bekommen Überspannung: Netzteile, Lampen und Elektronik brennen durch, <b>Brandgefahr</b>.</li>
+            <li>Deshalb: Neutralleiter nie absichern oder einzeln schalten, Klemmen fest anziehen, PEN-Leiter mindestens 10 mm² Cu.</li>
+          </ul>
+        </article>
+        <article class="wissen-karte" style="--farbe:#7048E8">
+          <h3>Ausfall eines Außenleiters</h3>
+          <p>Fällt im Stern mit Neutralleiter ein Außenleiter aus, sind nur dessen Verbraucher spannungslos. Im Stern ohne N liegen die zwei übrigen Stränge in Reihe an 400 V. Im Dreieck liegt ein Strang weiter an 400 V, die beiden anderen in Reihe ebenfalls an 400 V – jeder bekommt dann etwa die halbe Spannung. Ein Drehstrommotor läuft so einphasig weiter, zieht zu viel Strom und überhitzt; der Motorschutz muss Phasenausfall erkennen.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum hat Drehstrom 400 V und 230 V?</summary><p>230 V liegen zwischen einem Außenleiter und dem Neutralleiter. Zwischen zwei Außenleitern addieren sich zwei um 120° verschobene Spannungen geometrisch: 230 V · √3 = 400 V.</p></details>
+        <details><summary>Warum führt der Neutralleiter bei gleicher Last keinen Strom?</summary><p>Drei gleich große, um 120° verschobene Ströme ergeben zu jedem Zeitpunkt zusammen null. Im Zeigerdiagramm schließen sie sich zu einem Dreieck. Erst bei ungleicher Last bleibt ein Rest, der über den Neutralleiter fließt.</p></details>
+        <details><summary>Wie groß wird der Neutralleiterstrom höchstens?</summary><p>Bei ohmscher Last nie größer als der größte Außenleiterstrom – etwa wenn nur ein Außenleiter belastet ist. Oberschwingungen von Netzteilen und LED-Treibern (vor allem die dritte) addieren sich im Neutralleiter aber, dort kann er sogar größer als die Außenleiterströme werden.</p></details>
+        <details><summary>Was passiert bei einer Neutralleiterunterbrechung?</summary><p>Die Verbraucher an verschiedenen Außenleitern liegen über den Sternpunkt in Reihe an 400 V. Wer den größten Widerstand hat – das kleinste Gerät –, bekommt die meiste Spannung. Ein 100-W-Gerät neben einem 2-kW-Gerät erhält rund 380 V und kann in Brand geraten.</p></details>
+        <details><summary>Rechnet man die Drehstromleistung mit √3 oder mit 3?</summary><p>Beides geht: P = √3 · U · I · cos φ mit Leiterspannung (400 V) und Leiterstrom, oder P = 3 · U<sub>Str</sub> · I<sub>Str</sub> · cos φ mit den Werten eines Strangs. Bei unsymmetrischer Last addiert man die drei Strangleistungen.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const T = function (cx, s, x, y, a, g, f, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!f, c); };
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#7048E8', GRAU = '#6B7785';
+    const W3 = Math.sqrt(3), PI2 = 2 * Math.PI, GRAD = Math.PI / 180;
+    const LFARBE = function (i) { return i === 0 ? '#8B5A2B' : i === 1 ? F('--text') : '#8C8C8C'; };
+    const NFARBE = '#3B82D6';
+    const zs = function (v, n) { if (!isFinite(v)) return '–'; let t = z(v, n === undefined ? 2 : n); if (t.indexOf(',') >= 0) t = t.replace(/0+$/, '').replace(/,$/, ''); return t; };
+    const st = function (v) { const a = Math.abs(v); return a >= 1000 ? 0 : a >= 100 ? 1 : a >= 10 ? 2 : 3; };
+    const zz = function (v) { return zs(v, st(v)); };
+
+    // komplexe Zahlen [re, im]
+    const K = {
+      p: function (b, w) { return [b * Math.cos(w), b * Math.sin(w)]; },
+      add: function (a, b) { return [a[0] + b[0], a[1] + b[1]]; },
+      sub: function (a, b) { return [a[0] - b[0], a[1] - b[1]]; },
+      mul: function (a, b) { return [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]]; },
+      div: function (a, b) { const n = b[0] * b[0] + b[1] * b[1]; return n > 0 ? [(a[0] * b[0] + a[1] * b[1]) / n, (a[1] * b[0] - a[0] * b[1]) / n] : [0, 0]; },
+      kon: function (a) { return [a[0], -a[1]]; },
+      b: function (a) { return Math.sqrt(a[0] * a[0] + a[1] * a[1]); },
+      w: function (a) { return Math.atan2(a[1], a[0]); }
+    };
+    const NULL = [0, 0];
+    const sym = function (e) { return e.last === 'sym'; };
+    const istRX = function (e) { return e.eingabe === 'rx'; };
+    const stern = function (e) { return e.schaltung !== 'dreieck'; };
+    const STRANG = function (e) { return stern(e) ? ['L1–N', 'L2–N', 'L3–N'] : ['L1–L2', 'L2–L3', 'L3–L1']; };
+
+    let ansicht = 'schaltung';
+    const ANSICHTEN = [['schaltung', 'Schaltbild'], ['zeiger', 'Zeigerdiagramm']];
+
+    function strangZ(e, i, uNenn) {
+      const j = sym(e) ? 1 : i + 1;
+      if (istRX(e)) return [e['r' + j], e['x' + j]];
+      const p = e['p' + j], c = Math.min(1, Math.max(0.01, e['cos' + j]));
+      if (!(p > 0)) return null;     // Strang leer
+      const zb = uNenn * uNenn * c / p, s = Math.sqrt(1 - c * c);
+      return [zb * c, (e['art' + j] === 'kap' ? -1 : 1) * zb * s];
+    }
+
+    function rechne(e) {
+      const r = { e: e, uStrN: stern(e) ? e.u / W3 : e.u };
+      const Q = [K.p(e.u / W3, 0), K.p(e.u / W3, -120 * GRAD), K.p(e.u / W3, 120 * GRAD)];
+      r.Z = [0, 1, 2].map(function (i) { return strangZ(e, i, r.uStrN); });
+      const Y = r.Z.map(function (zk) { return zk && (zk[0] !== 0 || zk[1] !== 0) ? K.div([1, 0], zk) : NULL; });
+      const offen = [false, false, e.fehler === 'l3'];
+      r.U = []; r.I = []; r.IL = [];
+      if (stern(e)) {
+        const mitN = e.schaltung === 'stern' && e.fehler !== 'n';
+        const Ya = Y.map(function (y, i) { return offen[i] ? NULL : y; });
+        let sp = NULL;
+        if (!mitN) {
+          let zaehler = NULL, nenner = NULL;
+          Ya.forEach(function (y, i) { zaehler = K.add(zaehler, K.mul(Q[i], y)); nenner = K.add(nenner, y); });
+          sp = K.b(nenner) > 1e-15 ? K.div(zaehler, nenner) : NULL;
+        }
+        r.sp = sp;
+        for (let i = 0; i < 3; i++) {
+          r.U.push(offen[i] ? NULL : K.sub(Q[i], sp)); r.I.push(K.mul(r.U[i], Ya[i])); r.IL.push(r.I[i]);
+        }
+        r.IN = mitN ? K.add(K.add(r.I[0], r.I[1]), r.I[2]) : NULL;
+        r.mitN = mitN;
+      } else {
+        const V = Q.slice();
+        if (offen[2]) {
+          const Y31 = Y[2], Y23 = Y[1], n = K.add(Y31, Y23);
+          V[2] = K.b(n) > 1e-15 ? K.div(K.add(K.mul(V[0], Y31), K.mul(V[1], Y23)), n) : K.p(0, 0);
+        }
+        r.U = [K.sub(V[0], V[1]), K.sub(V[1], V[2]), K.sub(V[2], V[0])];
+        r.I = r.U.map(function (u, i) { return K.mul(u, Y[i]); });
+        r.IL = [K.sub(r.I[0], r.I[2]), K.sub(r.I[1], r.I[0]), K.sub(r.I[2], r.I[1])];
+        r.IN = NULL; r.sp = NULL; r.mitN = false; r.V = V;
+      }
+      r.S = r.U.map(function (u, i) { return K.mul(u, K.kon(r.I[i])); });
+      r.P = r.S.reduce(function (a, s) { return a + s[0]; }, 0);
+      r.Q = r.S.reduce(function (a, s) { return a + s[1]; }, 0);
+      r.Sg = Math.sqrt(r.P * r.P + r.Q * r.Q);
+      r.Ub = r.U.map(K.b); r.Ib = r.I.map(K.b); r.ILb = r.IL.map(K.b);
+      r.INb = K.b(r.IN); r.spb = K.b(r.sp);
+      r.uMax = Math.max.apply(null, r.Ub);
+      return r;
+    }
+
+    const PFELD = function (j) {
+      const w = function (e) { return !istRX(e) && (j === 1 || !sym(e)); };
+      return [
+        { k: 'p' + j, tex: 'P_' + j, name: 'Leistung Strang ' + j + ' (bei Nennspannung)', e: 'W', min: 0, max: 1e7, wenn: w, hilfe: j === 1 ? 'Aufnahme bei Nennspannung des Strangs (Stern 230 V, Dreieck 400 V). 0 = Strang leer.' : '' },
+        { k: 'cos' + j, tex: '\\cos\\varphi_' + j, name: 'Leistungsfaktor Strang ' + j, e: '', min: 0.01, max: 1, wenn: w },
+        { k: 'art' + j, name: 'Art Strang ' + j, wahl: [['ind', 'induktiv'], ['kap', 'kapazitiv']], wenn: function (e) { return w(e) && e['cos' + j] < 1; } }
+      ];
+    };
+    const RFELD = function (j) {
+      const w = function (e) { return istRX(e) && (j === 1 || !sym(e)); };
+      return [
+        { k: 'r' + j, tex: 'R_' + j, name: 'Wirkwiderstand Strang ' + j, e: 'Ω', min: 0.001, max: 1e8, wenn: w },
+        { k: 'x' + j, tex: 'X_' + j, name: 'Blindwiderstand Strang ' + j, e: 'Ω', min: -1e8, max: 1e8, wenn: w, hilfe: j === 1 ? 'Positiv = induktiv (Spule), negativ = kapazitiv (Kondensator), 0 = rein ohmsch.' : '' }
+      ];
+    };
+
+    const seite = R.seite({
+      titel: 'Drehstrom: Stern, Dreieck und Unsymmetrie',
+      einleitung: 'Drei Stränge am Drehstromnetz: Strang- und Leiterspannungen, Strang- und Leiterströme, Neutralleiterstrom und Leistung für Stern mit oder ohne Neutralleiter und Dreieck, symmetrisch oder unsymmetrisch – auch bei unterbrochenem Neutralleiter oder ausgefallenem Außenleiter. Unten in jede Richtung: Verkettung, Drehstromleistung, Neutralleiterstrom und Neutralleiterunterbrechung mit zwei Geräten.',
+      hilfe: 'Strang 1 liegt an L1 (im Dreieck zwischen L1 und L2), Strang 2 an L2, Strang 3 an L3. Leistungen gelten bei Nennspannung des Strangs.',
+      gruppen: [
+        { titel: 'Netz und Schaltung', farbe: BLAU, felder: [
+          { k: 'u', tex: 'U', name: 'Außenleiterspannung', e: 'V', min: 1, max: 1e6 },
+          { k: 'schaltung', name: 'Schaltung', wahl: [['stern', 'Stern mit Neutralleiter'], ['sternohne', 'Stern ohne Neutralleiter'], ['dreieck', 'Dreieck']] },
+          { k: 'fehler', name: 'Fehlerfall', wahl: [['kein', 'kein Fehler'], ['n', 'Neutralleiter unterbrochen'], ['l3', 'Außenleiter L3 unterbrochen']] }
+        ] },
+        { titel: 'Last', farbe: GRUEN, felder: [
+          { k: 'last', name: 'Last', wahl: [['sym', 'symmetrisch – drei gleiche Stränge'], ['unsym', 'unsymmetrisch']] },
+          { k: 'eingabe', name: 'Angabe', wahl: [['p', 'Leistung und cos φ'], ['rx', 'Widerstände R und X']] }
+        ].concat(PFELD(1), PFELD(2), PFELD(3), RFELD(1), RFELD(2), RFELD(3)) }
+      ],
+      beispiel: { u: 400, schaltung: 'stern', fehler: 'kein', last: 'unsym', eingabe: 'p', p1: 2000, cos1: 1, art1: 'ind', p2: 1000, cos2: 1, art2: 'ind', p3: 100, cos3: 1, art3: 'ind', r1: 26.45, x1: 0, r2: 52.9, x2: 0, r3: 529, x3: 0 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        const n = STRANG(e), un = r.uStrN;
+        if (e.fehler === 'n' && e.schaltung !== 'stern') H.meldung(e.schaltung === 'dreieck' ? 'Im Dreieck gibt es keinen Neutralleiter – der Fehlerfall ändert nichts.' : 'Ohne Neutralleiter kann er auch nicht unterbrochen werden – gerechnet wie Stern ohne N.');
+        const ueber = r.Ub.some(function (u) { return u > un * 1.1; }), unter = r.Ub.some(function (u, i) { return u > 0.5 && u < un * 0.9 && !(e.fehler === 'l3' && i === 2 && stern(e)); });
+        if (ueber) H.meldung('Überspannung: ' + (function (l) { return l.length > 1 ? 'Die Stränge ' + l.join(' und ') + ' bekommen' : 'Strang ' + l[0] + ' bekommt'; })(r.Ub.map(function (u, i) { return u > un * 1.1 ? (i + 1) : null; }).filter(Boolean)) + ' bis ' + zz(r.uMax) + ' V statt ' + zz(un) + ' V (Grenze +10 %). Geräte können zerstört werden und in Brand geraten.', true);
+        if (unter) H.meldung('Unterspannung an Strang ' + r.Ub.map(function (u, i) { return u > 0.5 && u < un * 0.9 ? (i + 1) : null; }).filter(Boolean).join(' und ') + ': Motoren ziehen zu viel Strom, Geräte arbeiten nicht richtig.', true);
+        if (stern(e) && !r.mitN && r.spb > 1) H.meldung('Der Sternpunkt hat sich um ' + zz(r.spb) + ' V gegenüber dem Neutralpunkt des Netzes verschoben.' + (e.fehler === 'n' ? ' Ursache: unterbrochener Neutralleiter.' : ''), !sym(e));
+        if (r.mitN && !sym(e)) H.meldung('Der Neutralleiter führt ' + zz(r.INb) + ' A zurück und hält alle Stränge auf ' + zz(un) + ' V.');
+        if (sym(e) && e.fehler === 'kein') H.meldung(stern(e) ? 'Dieselben drei Stränge im Dreieck an ' + zz(e.u) + ' V nähmen die dreifache Leistung auf: ' + zz(3 * r.P / 1000) + ' kW.' : 'Dieselben drei Stränge im Stern nähmen nur ein Drittel auf: ' + zz(r.P / 3000) + ' kW. Das nutzt der Stern-Dreieck-Anlauf.');
+        if (e.fehler === 'l3') H.meldung(stern(e) ? (r.mitN ? 'L3 unterbrochen: Strang 3 ist spannungslos, die anderen arbeiten normal weiter.' : 'L3 unterbrochen: Strang 1 und 2 liegen in Reihe an der Außenleiterspannung L1–L2.') : 'L3 unterbrochen: Strang L1–L2 bleibt an ' + zz(e.u) + ' V, die beiden anderen liegen in Reihe ebenfalls an ' + zz(e.u) + ' V. Ein Motor läuft einphasig weiter und überhitzt.', true);
+        H.urteil(!ueber && !unter && e.fehler === 'kein' ? true : ueber || unter ? false : null, ueber ? 'Überspannung' : unter ? 'Unterspannung' : e.fehler !== 'kein' ? 'Fehlerfall' : sym(e) ? 'symmetrisch' : 'unsymmetrisch');
+        const cos = r.Sg > 0 ? r.P / r.Sg : 1;
+        H.kacheln([
+          [zz(r.P / 1000) + ' kW', 'Wirkleistung gesamt', ROT],
+          [zz(Math.abs(r.Q) / 1000) + ' kvar', Math.abs(r.Q) < 1e-6 * Math.max(r.Sg, 1) ? 'keine Blindleistung' : 'Blindleistung gesamt, ' + (r.Q >= 0 ? 'induktiv' : 'kapazitiv'), GRAU],
+          [zz(r.Sg / 1000) + ' kVA', 'Scheinleistung, cos φ = ' + zs(cos, 3), GRAU],
+          [zz(Math.max.apply(null, r.ILb)) + ' A', 'größter Leiterstrom', ORANGE],
+          stern(e) ? (r.mitN ? [zz(r.INb) + ' A', 'Strom im Neutralleiter', NFARBE] : [zz(r.spb) + ' V', 'Sternpunktverschiebung', LILA]) : [zz(e.u) + ' V', 'Spannung am Strang (Dreieck)', BLAU],
+          [zz(r.uMax) + ' V', 'höchste Strangspannung (Nenn ' + zz(un) + ' V)', r.uMax > un * 1.1 ? ROT : GRUEN]
+        ]);
+        const zeilen = [0, 1, 2].map(function (i) {
+          const zk = r.Z[i];
+          return ['Strang ' + (i + 1) + ' (' + n[i] + ')', zk ? zz(K.b(zk)) + ' Ω, ' + zs(Math.atan2(zk[1], zk[0]) / GRAD, 1) + '°' : 'leer', zz(r.Ub[i]) + ' V', zz(r.Ib[i]) + ' A', 'L' + (i + 1) + ': ' + zz(r.ILb[i]) + ' A', zz(r.S[i][0]) + ' W'];
+        });
+        if (r.mitN) zeilen.push(['Neutralleiter', '', '', '', 'N: ' + zz(r.INb) + ' A', '']);
+        zeilen.push(['gesamt', '', '', '', '', zz(r.P) + ' W']);
+        H.tabelle('Stränge und Leiter', ['Strang', 'Z, Winkel', 'U Strang', 'I Strang', 'Leiterstrom', 'P'], zeilen, { zahl: [2, 3, 5], klasse: function (j) { return j < 3 && r.Ub[j] > un * 1.1 ? 'schlecht' : ''; } });
+      },
+      weg: function (r, e) {
+        const w = [], un = r.uStrN;
+        w.push(['Strangnennspannung', stern(e) ? 'U_\\text{Str} = \\frac{U}{\\sqrt{3}} = \\frac{' + tz(e.u, 1) + '\\,\\text{V}}{\\sqrt{3}} = ' + E(tz(un, 1) + '\\,\\text{V}') : 'U_\\text{Str} = U = ' + E(tz(e.u, 1) + '\\,\\text{V}')]);
+        if (!istRX(e)) {
+          const p = e.p1, c = e.cos1;
+          if (p > 0) w.push(['Widerstand Strang 1', 'Z_1 = \\frac{U_\\text{Str}^2 \\cdot \\cos\\varphi}{P_1} = \\frac{(' + tz(un, 1) + '\\,\\text{V})^2 \\cdot ' + tz(c, 3) + '}{' + tz(p, 0) + '\\,\\text{W}} = ' + E(tz(K.b(r.Z[0]), 3) + '\\,\\Omega')]);
+        }
+        const symOk = sym(e) && e.fehler === 'kein';
+        if (symOk) {
+          const zb = K.b(r.Z[0]), cos = r.Z[0][0] / zb;
+          w.push(['Strangstrom', 'I_\\text{Str} = \\frac{U_\\text{Str}}{Z} = \\frac{' + tz(un, 1) + '\\,\\text{V}}{' + tz(zb, 3) + '\\,\\Omega} = ' + E(tz(r.Ib[0], 3) + '\\,\\text{A}')]);
+          w.push(['Leiterstrom', stern(e) ? 'I = I_\\text{Str} = ' + E(tz(r.ILb[0], 3) + '\\,\\text{A}') : 'I = \\sqrt{3} \\cdot I_\\text{Str} = \\sqrt{3} \\cdot ' + tz(r.Ib[0], 3) + '\\,\\text{A} = ' + E(tz(r.ILb[0], 3) + '\\,\\text{A}')]);
+          w.push(['Leistung', 'P = \\sqrt{3} \\cdot U \\cdot I \\cdot \\cos\\varphi = \\sqrt{3} \\cdot ' + tz(e.u, 0) + '\\,\\text{V} \\cdot ' + tz(r.ILb[0], 3) + '\\,\\text{A} \\cdot ' + tz(cos, 3) + ' = ' + E(tz(r.P, 0) + '\\,\\text{W}')]);
+        } else if (stern(e) && r.mitN) {
+          w.push(['Strangströme', [0, 1, 2].map(function (i) { return 'I_' + (i + 1) + ' = \\frac{U_\\text{Str}}{Z_' + (i + 1) + '} = ' + E(tz(r.Ib[i], 3) + '\\,\\text{A}'); }).join(',\\;')]);
+          const ohm = r.Z.every(function (zk) { return !zk || Math.abs(zk[1]) < 1e-9; });
+          if (ohm && e.fehler === 'kein') w.push(['Neutralleiterstrom (ohmsche Last)', 'I_\\text{N} = \\sqrt{I_1^2 + I_2^2 + I_3^2 - I_1 I_2 - I_2 I_3 - I_3 I_1} = ' + E(tz(r.INb, 3) + '\\,\\text{A}')]);
+          else w.push(['Neutralleiterstrom', '\\underline{I}_\\text{N} = \\underline{I}_1 + \\underline{I}_2 + \\underline{I}_3 \\;\\Rightarrow\\; I_\\text{N} = ' + E(tz(r.INb, 3) + '\\,\\text{A}')]);
+          w.push(['Leistung', 'P = P_1 + P_2 + P_3 = ' + r.S.map(function (s) { return tz(s[0], 0); }).join(' + ') + '\\,\\text{W} = ' + E(tz(r.P, 0) + '\\,\\text{W}')]);
+        } else if (stern(e)) {
+          w.push(['Sternpunktverschiebung', '\\underline{U}_\\text{NN\'} = \\frac{\\underline{U}_1 \\underline{Y}_1 + \\underline{U}_2 \\underline{Y}_2 + \\underline{U}_3 \\underline{Y}_3}{\\underline{Y}_1 + \\underline{Y}_2 + \\underline{Y}_3} \\;\\Rightarrow\\; U_\\text{NN\'} = ' + E(tz(r.spb, 1) + '\\,\\text{V}')]);
+          w.push(['Strangspannungen', [0, 1, 2].map(function (i) { return 'U_' + (i + 1) + ' = ' + E(tz(r.Ub[i], 1) + '\\,\\text{V}'); }).join(',\\;')]);
+          w.push(['Ströme', [0, 1, 2].map(function (i) { return 'I_' + (i + 1) + ' = ' + E(tz(r.Ib[i], 3) + '\\,\\text{A}'); }).join(',\\;')]);
+          w.push(['Leistung', 'P = P_1 + P_2 + P_3 = ' + E(tz(r.P, 0) + '\\,\\text{W}')]);
+        } else {
+          w.push(['Strangströme', [0, 1, 2].map(function (i) { return 'I_{' + STRANG(e)[i].replace('–', '').replace(/L/g, '') + '} = \\frac{U_{' + STRANG(e)[i].replace('–', '').replace(/L/g, '') + '}}{Z} = ' + E(tz(r.Ib[i], 3) + '\\,\\text{A}'); }).join(',\\;')]);
+          w.push(['Leiterströme (geometrisch)', '\\underline{I}_1 = \\underline{I}_{12} - \\underline{I}_{31} \\;\\Rightarrow\\; ' + [0, 1, 2].map(function (i) { return 'I_' + (i + 1) + ' = ' + E(tz(r.ILb[i], 3) + '\\,\\text{A}'); }).join(',\\;')]);
+          w.push(['Leistung', 'P = P_{12} + P_{23} + P_{31} = ' + E(tz(r.P, 0) + '\\,\\text{W}')]);
+        }
+        return w;
+      },
+      loeser: [
+        { titel: 'Sternschaltung – in jede Richtung', hilfe: 'Leiterspannung U, Strangspannung, Leiter- und Strangstrom. Beispiel: Drei Heizwiderstände mit je 52,9 Ω im Stern an 400 V.',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Außenleiterspannung', e: 'V', min: 1, max: 1e6 }, { k: 'US', tex: 'U_\\text{Str}', name: 'Strangspannung', e: 'V', min: 0.5, max: 1e6 },
+            { k: 'I', tex: 'I', name: 'Leiterstrom', e: 'A', min: 1e-4, max: 1e5 }, { k: 'IS', tex: 'I_\\text{Str}', name: 'Strangstrom', e: 'A', min: 1e-4, max: 1e5 },
+            { k: 'Z', tex: 'Z', name: 'Widerstand je Strang', e: 'Ω', min: 1e-3, max: 1e8 }
+          ],
+          beispiel: { U: 400, Z: 52.9 },
+          gleichungen: [
+            { name: 'Spannung Stern', v: ['U', 'US'], f: function (q) { return [q.U, W3 * q.US]; }, loese: { U: function (q) { return W3 * q.US; }, US: function (q) { return q.U / W3; } },
+              weg: function (k, q) { return k === 'US' ? 'U_\\text{Str} = \\frac{U}{\\sqrt{3}} = \\frac{' + tz(q.U, 1) + '\\,\\text{V}}{\\sqrt{3}} = ' + E(tz(q.US, 1) + '\\,\\text{V}') : 'U = \\sqrt{3} \\cdot U_\\text{Str} = ' + E(tz(q.U, 1) + '\\,\\text{V}'); } },
+            { name: 'Strom Stern', v: ['I', 'IS'], f: function (q) { return [q.I, q.IS]; }, loese: { I: function (q) { return q.IS; }, IS: function (q) { return q.I; } },
+              weg: function (k, q) { return k === 'I' ? 'I = I_\\text{Str} = ' + E(tz(q.I, 3) + '\\,\\text{A}') : 'I_\\text{Str} = I = ' + E(tz(q.IS, 3) + '\\,\\text{A}'); } },
+            { name: 'Strang', v: ['IS', 'US', 'Z'], f: function (q) { return [q.IS * q.Z, q.US]; }, loese: { IS: function (q) { return q.US / q.Z; }, US: function (q) { return q.IS * q.Z; }, Z: function (q) { return q.US / q.IS; } },
+              weg: function (k, q) { return k === 'IS' ? 'I_\\text{Str} = \\frac{U_\\text{Str}}{Z} = \\frac{' + tz(q.US, 1) + '\\,\\text{V}}{' + tz(q.Z, 3) + '\\,\\Omega} = ' + E(tz(q.IS, 3) + '\\,\\text{A}') : k === 'Z' ? 'Z = \\frac{U_\\text{Str}}{I_\\text{Str}} = ' + E(tz(q.Z, 3) + '\\,\\Omega') : 'U_\\text{Str} = I_\\text{Str} \\cdot Z = ' + E(tz(q.US, 1) + '\\,\\text{V}'); } }
+          ] },
+        { titel: 'Dreieckschaltung – in jede Richtung', hilfe: 'Beispiel: Dieselben drei Heizwiderstände mit je 52,9 Ω im Dreieck an 400 V.',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Außenleiterspannung = Strangspannung', e: 'V', min: 1, max: 1e6 },
+            { k: 'I', tex: 'I', name: 'Leiterstrom', e: 'A', min: 1e-4, max: 1e5 }, { k: 'IS', tex: 'I_\\text{Str}', name: 'Strangstrom', e: 'A', min: 1e-4, max: 1e5 },
+            { k: 'Z', tex: 'Z', name: 'Widerstand je Strang', e: 'Ω', min: 1e-3, max: 1e8 }
+          ],
+          beispiel: { U: 400, Z: 52.9 },
+          gleichungen: [
+            { name: 'Strom Dreieck', v: ['I', 'IS'], f: function (q) { return [q.I, W3 * q.IS]; }, loese: { I: function (q) { return W3 * q.IS; }, IS: function (q) { return q.I / W3; } },
+              weg: function (k, q) { return k === 'I' ? 'I = \\sqrt{3} \\cdot I_\\text{Str} = \\sqrt{3} \\cdot ' + tz(q.IS, 3) + '\\,\\text{A} = ' + E(tz(q.I, 3) + '\\,\\text{A}') : 'I_\\text{Str} = \\frac{I}{\\sqrt{3}} = ' + E(tz(q.IS, 3) + '\\,\\text{A}'); } },
+            { name: 'Strang', v: ['IS', 'U', 'Z'], f: function (q) { return [q.IS * q.Z, q.U]; }, loese: { IS: function (q) { return q.U / q.Z; }, U: function (q) { return q.IS * q.Z; }, Z: function (q) { return q.U / q.IS; } },
+              weg: function (k, q) { return k === 'IS' ? 'I_\\text{Str} = \\frac{U}{Z} = \\frac{' + tz(q.U, 1) + '\\,\\text{V}}{' + tz(q.Z, 3) + '\\,\\Omega} = ' + E(tz(q.IS, 3) + '\\,\\text{A}') : k === 'Z' ? 'Z = \\frac{U}{I_\\text{Str}} = ' + E(tz(q.Z, 3) + '\\,\\Omega') : 'U = I_\\text{Str} \\cdot Z = ' + E(tz(q.U, 1) + '\\,\\text{V}'); } }
+          ] },
+        { titel: 'Drehstromleistung – in jede Richtung', hilfe: 'Gilt für symmetrische Last in Stern und Dreieck mit Leiterspannung und Leiterstrom. Beispiel: Ein Motor nimmt an 400 V 14,5 A bei cos φ = 0,84 auf.',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Außenleiterspannung', e: 'V', min: 1, max: 1e6 }, { k: 'I', tex: 'I', name: 'Leiterstrom', e: 'A', min: 1e-4, max: 1e6 },
+            { k: 'cos', tex: '\\cos\\varphi', name: 'Leistungsfaktor', e: '', min: 0.01, max: 1 },
+            { k: 'P', tex: 'P', name: 'Wirkleistung', e: 'W', min: 1e-3, max: 1e10 }, { k: 'Q', tex: 'Q', name: 'Blindleistung', e: 'var', min: 0, max: 1e10 },
+            { k: 'S', tex: 'S', name: 'Scheinleistung', e: 'VA', min: 1e-3, max: 1e10 }
+          ],
+          beispiel: { U: 400, I: 14.5, cos: 0.84 },
+          gleichungen: [
+            { name: 'Schein', v: ['S', 'U', 'I'], f: function (q) { return [q.S, W3 * q.U * q.I]; }, loese: { S: function (q) { return W3 * q.U * q.I; }, I: function (q) { return q.S / (W3 * q.U); }, U: function (q) { return q.S / (W3 * q.I); } },
+              weg: function (k, q) { return k === 'S' ? 'S = \\sqrt{3} \\cdot U \\cdot I = \\sqrt{3} \\cdot ' + tz(q.U, 0) + '\\,\\text{V} \\cdot ' + tz(q.I, 3) + '\\,\\text{A} = ' + E(tz(q.S, 0) + '\\,\\text{VA}') : k === 'I' ? 'I = \\frac{S}{\\sqrt{3} \\cdot U} = \\frac{' + tz(q.S, 0) + '\\,\\text{VA}}{\\sqrt{3} \\cdot ' + tz(q.U, 0) + '\\,\\text{V}} = ' + E(tz(q.I, 3) + '\\,\\text{A}') : 'U = \\frac{S}{\\sqrt{3} \\cdot I} = ' + E(tz(q.U, 1) + '\\,\\text{V}'); } },
+            { name: 'Wirk', v: ['P', 'S', 'cos'], f: function (q) { return [q.P, q.S * q.cos]; }, loese: { P: function (q) { return q.S * q.cos; }, S: function (q) { return q.P / q.cos; }, cos: function (q) { return q.P <= q.S ? q.P / q.S : NaN; } },
+              weg: function (k, q) { return k === 'P' ? 'P = S \\cdot \\cos\\varphi = ' + tz(q.S, 0) + '\\,\\text{VA} \\cdot ' + tz(q.cos, 3) + ' = ' + E(tz(q.P, 0) + '\\,\\text{W}') : k === 'cos' ? '\\cos\\varphi = \\frac{P}{S} = ' + E(tz(q.cos, 3)) : 'S = \\frac{P}{\\cos\\varphi} = ' + E(tz(q.S, 0) + '\\,\\text{VA}'); } },
+            { name: 'Blind', v: ['Q', 'S', 'P'], f: function (q) { return [q.S * q.S, q.P * q.P + q.Q * q.Q]; }, loese: { Q: function (q) { return q.S >= q.P ? Math.sqrt(q.S * q.S - q.P * q.P) : NaN; }, S: function (q) { return Math.sqrt(q.P * q.P + q.Q * q.Q); }, P: function (q) { return q.S >= q.Q ? Math.sqrt(q.S * q.S - q.Q * q.Q) : NaN; } },
+              weg: function (k, q) { return k === 'Q' ? 'Q = \\sqrt{S^2 - P^2} = \\sqrt{(' + tz(q.S, 0) + '\\,\\text{VA})^2 - (' + tz(q.P, 0) + '\\,\\text{W})^2} = ' + E(tz(q.Q, 0) + '\\,\\text{var}') : k === 'S' ? 'S = \\sqrt{P^2 + Q^2} = ' + E(tz(q.S, 0) + '\\,\\text{VA}') : 'P = \\sqrt{S^2 - Q^2} = ' + E(tz(q.P, 0) + '\\,\\text{W}'); } }
+          ] },
+        { titel: 'Neutralleiterstrom bei ohmscher Last – in jede Richtung', hilfe: 'Nur für rein ohmsche Verbraucher (Heizung, Glühlampen) im Stern mit Neutralleiter. Beispiel: An L1 fließen 8,7 A, an L2 4,35 A, an L3 0,43 A.',
+          felder: [
+            { k: 'I1', tex: 'I_1', name: 'Strom L1', e: 'A', min: 0, max: 1e5 }, { k: 'I2', tex: 'I_2', name: 'Strom L2', e: 'A', min: 0, max: 1e5 },
+            { k: 'I3', tex: 'I_3', name: 'Strom L3', e: 'A', min: 0, max: 1e5 }, { k: 'IN', tex: 'I_\\text{N}', name: 'Neutralleiterstrom', e: 'A', min: 0, max: 1e5 }
+          ],
+          beispiel: { I1: 8.7, I2: 4.35, I3: 0.43 },
+          gleichungen: [
+            { name: 'N-Strom', v: ['IN', 'I1', 'I2', 'I3'], f: function (q) { return [q.IN * q.IN, q.I1 * q.I1 + q.I2 * q.I2 + q.I3 * q.I3 - q.I1 * q.I2 - q.I2 * q.I3 - q.I3 * q.I1]; },
+              loese: {
+                IN: function (q) { return Math.sqrt(Math.max(0, q.I1 * q.I1 + q.I2 * q.I2 + q.I3 * q.I3 - q.I1 * q.I2 - q.I2 * q.I3 - q.I3 * q.I1)); },
+                I1: function (q) { const s = q.I2 + q.I3, d = s * s - 4 * (q.I2 * q.I2 + q.I3 * q.I3 - q.I2 * q.I3 - q.IN * q.IN); return d >= 0 ? (s + Math.sqrt(d)) / 2 : NaN; },
+                I2: function (q) { const s = q.I1 + q.I3, d = s * s - 4 * (q.I1 * q.I1 + q.I3 * q.I3 - q.I1 * q.I3 - q.IN * q.IN); return d >= 0 ? (s + Math.sqrt(d)) / 2 : NaN; },
+                I3: function (q) { const s = q.I1 + q.I2, d = s * s - 4 * (q.I1 * q.I1 + q.I2 * q.I2 - q.I1 * q.I2 - q.IN * q.IN); return d >= 0 ? (s + Math.sqrt(d)) / 2 : NaN; }
+              },
+              weg: function (k, q) { return k === 'IN' ? 'I_\\text{N} = \\sqrt{I_1^2 + I_2^2 + I_3^2 - I_1 I_2 - I_2 I_3 - I_3 I_1} = \\sqrt{' + tz(q.I1, 3) + '^2 + ' + tz(q.I2, 3) + '^2 + ' + tz(q.I3, 3) + '^2 - ' + tz(q.I1, 3) + '\\cdot' + tz(q.I2, 3) + ' - ' + tz(q.I2, 3) + '\\cdot' + tz(q.I3, 3) + ' - ' + tz(q.I3, 3) + '\\cdot' + tz(q.I1, 3) + '}\\,\\text{A} = ' + E(tz(q.IN, 3) + '\\,\\text{A}') : 'I_' + k.charAt(1) + ' = ' + E(tz(q[k], 3) + '\\,\\text{A}') + '\\;\\text{(größere Lösung der quadratischen Gleichung)}'; } }
+          ] },
+        { titel: 'Neutralleiterunterbrechung mit zwei Geräten – in jede Richtung', hilfe: 'Zwei ohmsche Geräte (Nennspannung 230 V) an verschiedenen Außenleitern, Neutralleiter unterbrochen: Sie liegen in Reihe an 400 V. Beispiel: 100 W an L1, 2 000 W an L3.',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Außenleiterspannung', e: 'V', min: 1, max: 1e5 }, { k: 'UN', tex: 'U_\\text{N}', name: 'Nennspannung der Geräte', e: 'V', min: 1, max: 1e5 },
+            { k: 'P1', tex: 'P_1', name: 'Nennleistung Gerät 1', e: 'W', min: 0.01, max: 1e7 }, { k: 'P2', tex: 'P_2', name: 'Nennleistung Gerät 2', e: 'W', min: 0.01, max: 1e7 },
+            { k: 'R1', tex: 'R_1', name: 'Widerstand Gerät 1', e: 'Ω', min: 1e-4, max: 1e9 }, { k: 'R2', tex: 'R_2', name: 'Widerstand Gerät 2', e: 'Ω', min: 1e-4, max: 1e9 },
+            { k: 'I', tex: 'I', name: 'Strom in der Reihe', e: 'A', min: 1e-6, max: 1e6 },
+            { k: 'U1', tex: 'U_1', name: 'Spannung an Gerät 1', e: 'V', min: 0, max: 1e5 }, { k: 'U2', tex: 'U_2', name: 'Spannung an Gerät 2', e: 'V', min: 0, max: 1e5 },
+            { k: 'Pi1', tex: 'P_{1,\\text{ist}}', name: 'tatsächliche Leistung Gerät 1', e: 'W', min: 0, max: 1e8 }
+          ],
+          beispiel: { U: 400, UN: 230, P1: 100, P2: 2000 },
+          gleichungen: [
+            { name: 'R1', v: ['R1', 'UN', 'P1'], f: function (q) { return [q.R1 * q.P1, q.UN * q.UN]; }, loese: { R1: function (q) { return q.UN * q.UN / q.P1; }, P1: function (q) { return q.UN * q.UN / q.R1; }, UN: function (q) { return Math.sqrt(q.R1 * q.P1); } },
+              weg: function (k, q) { return k === 'R1' ? 'R_1 = \\frac{U_\\text{N}^2}{P_1} = \\frac{(' + tz(q.UN, 0) + '\\,\\text{V})^2}{' + tz(q.P1, 1) + '\\,\\text{W}} = ' + E(tz(q.R1, 2) + '\\,\\Omega') : k === 'P1' ? 'P_1 = \\frac{U_\\text{N}^2}{R_1} = ' + E(tz(q.P1, 1) + '\\,\\text{W}') : 'U_\\text{N} = \\sqrt{R_1 P_1} = ' + E(tz(q.UN, 1) + '\\,\\text{V}'); } },
+            { name: 'R2', v: ['R2', 'UN', 'P2'], f: function (q) { return [q.R2 * q.P2, q.UN * q.UN]; }, loese: { R2: function (q) { return q.UN * q.UN / q.P2; }, P2: function (q) { return q.UN * q.UN / q.R2; }, UN: function (q) { return Math.sqrt(q.R2 * q.P2); } },
+              weg: function (k, q) { return k === 'R2' ? 'R_2 = \\frac{U_\\text{N}^2}{P_2} = \\frac{(' + tz(q.UN, 0) + '\\,\\text{V})^2}{' + tz(q.P2, 1) + '\\,\\text{W}} = ' + E(tz(q.R2, 3) + '\\,\\Omega') : k === 'P2' ? 'P_2 = \\frac{U_\\text{N}^2}{R_2} = ' + E(tz(q.P2, 1) + '\\,\\text{W}') : 'U_\\text{N} = \\sqrt{R_2 P_2} = ' + E(tz(q.UN, 1) + '\\,\\text{V}'); } },
+            { name: 'Reihe', v: ['I', 'U', 'R1', 'R2'], f: function (q) { return [q.I * (q.R1 + q.R2), q.U]; }, loese: { I: function (q) { return q.U / (q.R1 + q.R2); }, U: function (q) { return q.I * (q.R1 + q.R2); }, R1: function (q) { return q.U / q.I - q.R2; }, R2: function (q) { return q.U / q.I - q.R1; } },
+              weg: function (k, q) { return k === 'I' ? 'I = \\frac{U}{R_1 + R_2} = \\frac{' + tz(q.U, 0) + '\\,\\text{V}}{' + tz(q.R1, 2) + '\\,\\Omega + ' + tz(q.R2, 3) + '\\,\\Omega} = ' + E(tz(q.I, 4) + '\\,\\text{A}') : k === 'U' ? 'U = I \\cdot (R_1 + R_2) = ' + E(tz(q.U, 1) + '\\,\\text{V}') : k === 'R1' ? 'R_1 = \\frac{U}{I} - R_2 = ' + E(tz(q.R1, 2) + '\\,\\Omega') : 'R_2 = \\frac{U}{I} - R_1 = ' + E(tz(q.R2, 3) + '\\,\\Omega'); } },
+            { name: 'U1', v: ['U1', 'I', 'R1'], f: function (q) { return [q.U1, q.I * q.R1]; }, loese: { U1: function (q) { return q.I * q.R1; }, I: function (q) { return q.U1 / q.R1; }, R1: function (q) { return q.U1 / q.I; } },
+              weg: function (k, q) { return k === 'U1' ? 'U_1 = I \\cdot R_1 = ' + tz(q.I, 4) + '\\,\\text{A} \\cdot ' + tz(q.R1, 2) + '\\,\\Omega = ' + E(tz(q.U1, 1) + '\\,\\text{V}') : k === 'I' ? 'I = \\frac{U_1}{R_1} = ' + E(tz(q.I, 4) + '\\,\\text{A}') : 'R_1 = \\frac{U_1}{I} = ' + E(tz(q.R1, 2) + '\\,\\Omega'); } },
+            { name: 'U2', v: ['U2', 'I', 'R2'], f: function (q) { return [q.U2, q.I * q.R2]; }, loese: { U2: function (q) { return q.I * q.R2; }, I: function (q) { return q.U2 / q.R2; }, R2: function (q) { return q.U2 / q.I; } },
+              weg: function (k, q) { return k === 'U2' ? 'U_2 = I \\cdot R_2 = ' + tz(q.I, 4) + '\\,\\text{A} \\cdot ' + tz(q.R2, 3) + '\\,\\Omega = ' + E(tz(q.U2, 1) + '\\,\\text{V}') : k === 'I' ? 'I = \\frac{U_2}{R_2} = ' + E(tz(q.I, 4) + '\\,\\text{A}') : 'R_2 = \\frac{U_2}{I} = ' + E(tz(q.R2, 3) + '\\,\\Omega'); } },
+            { name: 'Leistung 1', v: ['Pi1', 'U1', 'R1'], f: function (q) { return [q.Pi1 * q.R1, q.U1 * q.U1]; }, loese: { Pi1: function (q) { return q.U1 * q.U1 / q.R1; }, U1: function (q) { return Math.sqrt(q.Pi1 * q.R1); }, R1: function (q) { return q.Pi1 > 0 ? q.U1 * q.U1 / q.Pi1 : NaN; } },
+              weg: function (k, q) { return k === 'Pi1' ? 'P_{1,\\text{ist}} = \\frac{U_1^2}{R_1} = \\frac{(' + tz(q.U1, 1) + '\\,\\text{V})^2}{' + tz(q.R1, 2) + '\\,\\Omega} = ' + E(tz(q.Pi1, 1) + '\\,\\text{W}') : k === 'U1' ? 'U_1 = \\sqrt{P_{1,\\text{ist}} \\cdot R_1} = ' + E(tz(q.U1, 1) + '\\,\\text{V}') : 'R_1 = \\frac{U_1^2}{P_{1,\\text{ist}}} = ' + E(tz(q.R1, 2) + '\\,\\Omega'); } }
+          ] }
+      ],
+      sammlung: [
+        ['Verkettungsfaktor', 'U = \\sqrt{3} \\cdot U_\\text{Str}', '400 V = √3 · 230 V'],
+        ['Sternschaltung', 'U_\\text{Str} = \\frac{U}{\\sqrt{3}} \\qquad I = I_\\text{Str}', ''],
+        ['Dreieckschaltung', 'U_\\text{Str} = U \\qquad I = \\sqrt{3} \\cdot I_\\text{Str}', ''],
+        ['Drehstromleistung', 'P = \\sqrt{3} \\cdot U \\cdot I \\cdot \\cos\\varphi = 3 \\cdot U_\\text{Str} \\cdot I_\\text{Str} \\cdot \\cos\\varphi', 'symmetrische Last'],
+        ['Blind- und Scheinleistung', 'Q = \\sqrt{3} \\cdot U \\cdot I \\cdot \\sin\\varphi \\qquad S = \\sqrt{3} \\cdot U \\cdot I', ''],
+        ['Stern gegen Dreieck', 'P_\\Delta = 3 \\cdot P_\\text{Y} \\qquad I_\\Delta = 3 \\cdot I_\\text{Y}', 'dieselben Stränge, gleiche Netzspannung'],
+        ['Unsymmetrische Last', 'P = P_1 + P_2 + P_3', 'Strangleistungen addieren'],
+        ['Neutralleiterstrom ohmsch', 'I_\\text{N} = \\sqrt{I_1^2 + I_2^2 + I_3^2 - I_1 I_2 - I_2 I_3 - I_3 I_1}', 'nur bei cos φ = 1 in allen Strängen'],
+        ['Neutralleiterstrom allgemein', '\\underline{I}_\\text{N} = \\underline{I}_1 + \\underline{I}_2 + \\underline{I}_3', 'geometrische Summe der Zeiger'],
+        ['Sternpunktverschiebung', '\\underline{U}_\\text{NN\'} = \\frac{\\sum \\underline{U}_k \\cdot \\underline{Y}_k}{\\sum \\underline{Y}_k}', 'Stern ohne oder mit unterbrochenem Neutralleiter'],
+        ['Zwei Geräte bei N-Unterbrechung', 'U_1 = U \\cdot \\frac{R_1}{R_1 + R_2} \\qquad R = \\frac{U_\\text{N}^2}{P_\\text{N}}', 'Reihenschaltung an der Außenleiterspannung']
+      ],
+      quellen: 'Formeln nach Tabellenbuch Elektrotechnik (Drehstromtechnik). Spannungstoleranz ±10 % nach DIN EN 60038. Die Lasten werden als feste Impedanzen gerechnet (aus Nennleistung bei Nennspannung); Geräte mit Netzteil oder Motoren verhalten sich bei falscher Spannung anders. Phasenlage: L1 bei 0°, L2 bei −120°, L3 bei +120°.',
+      bild: { titel: 'Simulation: Schaltbild und Zeiger', label: 'Schaltbild der drei Stränge mit pendelnden Strömen oder Zeigerdiagramm der Spannungen und Ströme', animiert: !bewegungAus,
+        hoehe: function (B) { return ansicht === 'schaltung' ? (B < 560 ? 350 : 300) : (B < 560 ? 380 : 360); },
+        hinweis: function (r, e) {
+          return ansicht === 'schaltung' ? 'Die Punkte pendeln mit dem Strom des jeweiligen Strangs hin und her: Weite = Stromstärke, Takt = Phasenlage. Rot markierte Werte liegen außerhalb ±10 %.'
+            : stern(e) ? 'Grau die Netzspannungen von N aus, farbig die Spannungen an den Strängen vom Sternpunkt ' + (r.mitN ? 'N' : 'N\'') + ' aus (L1 braun, L2 schwarz, L3 grau), gestrichelt die Ströme' + (r.mitN ? ', blau der Neutralleiterstrom.' : '. Der Sternpunkt N\' wandert bei ungleicher Last ohne Neutralleiter weg.')
+              : 'Das Dreieck der Außenleiterspannungen; jede Seite ist eine Strangspannung. Gestrichelt die Strangströme, durchgezogen die Leiterströme.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { if (ansicht === 'schaltung') zeichneSchaltung(cx, B, H, t, r, e); else zeichneZeiger(cx, B, H, t, r, e); } }
+    });
+
+    function rWert(cx, x, y, w, h, farbe) { cx.fillStyle = F('--flaeche2'); cx.strokeStyle = farbe; cx.lineWidth = 2; cx.fillRect(x - w / 2, y - h / 2, w, h); cx.strokeRect(x - w / 2, y - h / 2, w, h); }
+    function bruch(cx, x, y) { cx.strokeStyle = ROT; cx.lineWidth = 2.5; cx.beginPath(); cx.moveTo(x - 7, y - 7); cx.lineTo(x + 7, y + 7); cx.moveTo(x + 7, y - 7); cx.lineTo(x - 7, y + 7); cx.stroke(); }
+    // Punkte pendeln entlang eines Linienzugs
+    function punkte(cx, pfad, t, I, Imax, phase, farbe) {
+      if (!(Imax > 0) || I < Imax * 0.002) return;
+      let laenge = 0; const seg = [];
+      for (let i = 1; i < pfad.length; i++) { const l = Math.hypot(pfad[i][0] - pfad[i - 1][0], pfad[i][1] - pfad[i - 1][1]); seg.push(l); laenge += l; }
+      const hub = 6 + 16 * I / Imax, ab = 16, vers = hub * Math.sin(PI2 * 0.5 * t / 1000 + phase);
+      cx.fillStyle = farbe;
+      for (let s = 0; s < laenge; s += ab) {
+        let d = s + vers; if (d < 0 || d > laenge) continue;
+        let i = 0; while (i < seg.length - 1 && d > seg[i]) { d -= seg[i]; i++; }
+        const a = pfad[i], b = pfad[i + 1], q = seg[i] > 0 ? d / seg[i] : 0;
+        cx.beginPath(); cx.arc(a[0] + (b[0] - a[0]) * q, a[1] + (b[1] - a[1]) * q, 2.6, 0, PI2); cx.fill();
+      }
+    }
+
+    function zeichneSchaltung(cx, B, H, t, r, e) {
+      const klein = B < 560, x0 = klein ? 36 : 70, x1 = B - 14, ys = [24, 46, 68, 90], un = r.uStrN;
+      const n = stern(e) ? 4 : 3, Imax = Math.max.apply(null, r.Ib.concat(r.ILb, [r.INb]));
+      for (let i = 0; i < n; i++) {
+        cx.strokeStyle = i === 3 ? NFARBE : LFARBE(i); cx.lineWidth = 2.4; cx.beginPath(); cx.moveTo(x0, ys[i]); cx.lineTo(x1, ys[i]); cx.stroke();
+        T(cx, i === 3 ? 'N' : 'L' + (i + 1), x0 - 6, ys[i], 'right', 12, true, i === 3 ? NFARBE : LFARBE(i));
+        if (i < 3) T(cx, zz(r.ILb[i]) + ' A', x0 + 4, ys[i] - 8, 'left', 10, true, ORANGE);
+        if (i === 3 && r.mitN) T(cx, zz(r.INb) + ' A', x0 + 4, ys[i] - 8, 'left', 10, true, NFARBE);
+      }
+      if (e.fehler === 'l3') bruch(cx, x0 + (klein ? 70 : 90), ys[2]);
+      if (e.schaltung === 'stern' && e.fehler === 'n') bruch(cx, x0 + (klein ? 70 : 90), ys[3]);
+      const yb = 165, hb = 46, ystp = 238, xs = (klein ? [0.16, 0.44, 0.72] : [0.3, 0.53, 0.76]).map(function (f) { return x0 + (x1 - x0) * f; });
+      if (stern(e)) {
+        for (let i = 0; i < 3; i++) {
+          const x = xs[i], farbe = r.Ub[i] > un * 1.1 || (r.Ub[i] > 0.5 && r.Ub[i] < un * 0.9) ? ROT : F('--text');
+          cx.strokeStyle = F('--text'); cx.lineWidth = 1.6; cx.beginPath(); cx.moveTo(x, ys[i]); cx.lineTo(x, ystp); cx.stroke();
+          cx.fillStyle = F('--text'); cx.beginPath(); cx.arc(x, ys[i], 3.5, 0, PI2); cx.fill();
+          rWert(cx, x, yb, 24, hb, LFARBE(i));
+          const g = klein ? 10 : 11;
+          T(cx, 'Z' + (i + 1) + (r.Z[i] ? '' : ' leer'), x + 16, yb - 14, 'left', g, true);
+          T(cx, zz(r.Ub[i]) + ' V', x + 16, yb + 2, 'left', g, true, farbe);
+          T(cx, zz(r.Ib[i]) + ' A', x + 16, yb + 17, 'left', g, true, ORANGE);
+          punkte(cx, [[x, ys[i]], [x, ystp]], t, r.Ib[i], Imax, K.w(r.I[i]), ORANGE);
+        }
+        cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.beginPath(); cx.moveTo(xs[0], ystp); cx.lineTo(xs[2], ystp); cx.stroke();
+        T(cx, r.mitN ? 'N' : 'N\'', xs[0] - 8, ystp, 'right', 12, true, LILA);
+        if (e.schaltung === 'stern') {
+          const xn = x1 - 10;
+          cx.strokeStyle = NFARBE; cx.lineWidth = 2; cx.setLineDash(e.fehler === 'n' ? [5, 4] : []);
+          cx.beginPath(); cx.moveTo(xs[2], ystp); cx.lineTo(xn, ystp); cx.lineTo(xn, ys[3]); cx.stroke(); cx.setLineDash([]);
+          if (e.fehler === 'n') bruch(cx, xn, (ystp + ys[3]) / 2); else punkte(cx, [[xs[2], ystp], [xn, ystp], [xn, ys[3]]], t, r.INb, Imax, K.w(r.IN) + Math.PI, NFARBE);
+        }
+        if (!r.mitN && r.spb > 1) T(cx, 'U_NN\' = ' + zz(r.spb) + ' V', xs[0], ystp + 20, 'left', 11, true, LILA);
+      } else {
+        const paar = [[0, 1], [1, 2], [2, 0]];
+        for (let i = 0; i < 3; i++) {
+          const x = xs[i], xa = x + (klein ? 24 : 34), a = paar[i][0], b = paar[i][1];
+          const farbe = r.Ub[i] > un * 1.1 || (r.Ub[i] > 0.5 && r.Ub[i] < un * 0.9) ? ROT : F('--text');
+          cx.strokeStyle = F('--text'); cx.lineWidth = 1.6;
+          cx.beginPath(); cx.moveTo(x, ys[a]); cx.lineTo(x, ystp); cx.lineTo(xa, ystp); cx.lineTo(xa, ys[b]); cx.stroke();
+          cx.fillStyle = F('--text'); cx.beginPath(); cx.arc(x, ys[a], 3.5, 0, PI2); cx.arc(xa, ys[b], 3.5, 0, PI2); cx.fill();
+          rWert(cx, x, yb, 24, hb, F('--text'));
+          if (klein) {
+            T(cx, String(i + 1), x, yb, 'center', 11, true);
+            T(cx, (i + 1) + ': ' + STRANG(e)[i] + '  ' + zz(r.Ub[i]) + ' V  ' + zz(r.Ib[i]) + ' A', x0 - 20, ystp + 20 + 16 * i, 'left', 11, true, farbe);
+          } else {
+            T(cx, STRANG(e)[i], x - 16, yb - 14, 'right', 11, true);
+            T(cx, zz(r.Ub[i]) + ' V', x - 16, yb + 2, 'right', 11, true, farbe);
+            T(cx, zz(r.Ib[i]) + ' A', x - 16, yb + 17, 'right', 11, true, ORANGE);
+          }
+          punkte(cx, [[x, ys[a]], [x, ystp], [xa, ystp], [xa, ys[b]]], t, r.Ib[i], Imax, K.w(r.I[i]), ORANGE);
+        }
+      }
+      T(cx, 'P = ' + zz(r.P / 1000) + ' kW', x1, H - 12, 'right', 12, true, ROT);
+    }
+
+    function zeichneZeiger(cx, B, H, t, r, e) {
+      const mx = B / 2, my = H / 2 + (stern(e) ? 0 : 20), rad = Math.min(B, H) / 2 - 40;
+      const ks = rad / (e.u / W3);
+      const P = function (v) { return [mx + v[0] * ks, my - v[1] * ks]; };
+      const Q = [K.p(e.u / W3, 0), K.p(e.u / W3, -120 * GRAD), K.p(e.u / W3, 120 * GRAD)];
+      const Imax = Math.max.apply(null, r.Ib.concat(r.ILb, [r.INb]));
+      const ki = Imax > 0 ? rad * 0.55 / Imax : 0;
+      const pf = function (a, b, farbe, breit, strich, name) {
+        cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = breit; cx.setLineDash(strich || []);
+        if (Math.hypot(b[0] - a[0], b[1] - a[1]) > 3) R.Z.pfeil(cx, a[0], a[1], b[0], b[1], 8);
+        cx.setLineDash([]);
+        if (name) T(cx, name, b[0] + (b[0] >= a[0] ? 6 : -6), b[1] + (b[1] >= a[1] ? 10 : -8), b[0] >= a[0] ? 'left' : 'right', 11, true, farbe);
+      };
+      const N0 = [mx, my];
+      if (stern(e)) {
+        Q.forEach(function (q) { pf(N0, P(q), GRAU, 1, [3, 3]); });
+        const S = P(r.sp);
+        for (let i = 0; i < 3; i++) if (r.Ub[i] > 0.5) pf(S, P(Q[i]), LFARBE(i), 2.6, null, 'U' + (i + 1) + ' ' + zz(r.Ub[i]) + ' V');
+        for (let i = 0; i < 3; i++) if (r.Ib[i] > 0) pf(S, [S[0] + r.I[i][0] * ki, S[1] - r.I[i][1] * ki], ORANGE, 2, [5, 3], 'I' + (i + 1));
+        if (r.mitN && r.INb > Imax * 0.01) pf(N0, [mx + r.IN[0] * ki, my - r.IN[1] * ki], NFARBE, 2.6, null, 'I_N');
+        cx.fillStyle = F('--text'); cx.beginPath(); cx.arc(mx, my, 3.5, 0, PI2); cx.fill(); T(cx, 'N', mx - 8, my + 4, 'right', 12, true, NFARBE);
+        if (!r.mitN) { cx.fillStyle = LILA; cx.beginPath(); cx.arc(S[0], S[1], 4.5, 0, PI2); cx.fill(); T(cx, 'N\'', S[0] + 8, S[1] + 12, 'left', 12, true, LILA); }
+      } else {
+        const V = r.V.map(P);
+        const paar = [[0, 1], [1, 2], [2, 0]];
+        for (let i = 0; i < 3; i++) {
+          const a = V[paar[i][1]], b = V[paar[i][0]], m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2], d = Math.hypot(m[0] - mx, m[1] - my) || 1;
+          pf(a, b, LFARBE(paar[i][0]), 2.6, null, '');
+          T(cx, 'U' + (paar[i][0] + 1) + (paar[i][1] + 1) + ' = ' + zz(r.Ub[i]) + ' V', m[0] + (m[0] - mx) / d * 16, m[1] + (m[1] - my) / d * 16, m[0] >= mx - 5 ? 'left' : 'right', 11, true, LFARBE(paar[i][0]));
+        }
+        V.forEach(function (v, i) { cx.fillStyle = LFARBE(i); cx.beginPath(); cx.arc(v[0], v[1], 4, 0, PI2); cx.fill(); });
+        for (let i = 0; i < 3; i++) if (r.Ib[i] > 0) pf(N0, [mx + r.I[i][0] * ki, my - r.I[i][1] * ki], ORANGE, 1.6, [5, 3], 'I' + ['12', '23', '31'][i]);
+        for (let i = 0; i < 3; i++) if (r.ILb[i] > 0) pf(N0, [mx + r.IL[i][0] * ki, my - r.IL[i][1] * ki], LILA, 2.2, null, 'I' + (i + 1));
+      }
+    }
+
+    // Umschalter für die Ansichten über dem Bild
+    (function () {
+      const ziel = seite && seite.bildZusatz; if (!ziel) return;
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = ANSICHTEN.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === ansicht ? 'true' : 'false');
+        k.addEventListener('click', function () { ansicht = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', ANSICHTEN[i][0] === ansicht ? 'true' : 'false'); }); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas');
+      ziel.parentNode.insertBefore(leiste, cv || ziel);
+    })();
+
+    (function () {
+      const w = document.getElementById('ds-wissen'), faq = document.querySelector('main .seo-info');
+      if (w && faq) faq.parentNode.insertBefore(w, faq);
+    })();
+  })();
+  </script>
+</body>
+</html>

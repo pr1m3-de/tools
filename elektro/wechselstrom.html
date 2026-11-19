@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wechselstrom und RLC-Schaltungen – Formeln &amp; Rechner</title>
+  <meta name="description" content="Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/wechselstrom.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Wechselstrom und RLC-Schaltungen">
+  <meta property="og:description" content="Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/wechselstrom.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Wechselstrom und RLC-Schaltungen">
+  <meta name="twitter:description" content="Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#seite","name":"Wechselstrom und RLC-Schaltungen","url":"https://tools.pr1m3.de/elektro/wechselstrom.html","inLanguage":"de","description":"Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Wechselstrom und RLC-Schaltungen","item":"https://tools.pr1m3.de/elektro/wechselstrom.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#fragen","mainEntity":[{"@type":"Question","name":"Warum hat die Steckdose 230 V, wenn der Scheitelwert 325 V beträgt?","acceptedAnswer":{"@type":"Answer","text":"230 V ist der Effektivwert: Eine Glühlampe an 230 V Wechselspannung leuchtet genauso hell wie an 230 V Gleichspannung. Bei Sinusform ist der Scheitelwert √2-mal so groß, also rund 325 V. Isolierungen und Bauteile müssen für den Scheitelwert ausgelegt sein."}},{"@type":"Question","name":"Warum addiert man Wechselspannungen nicht einfach?","acceptedAnswer":{"@type":"Answer","text":"Weil sie zeitlich verschoben sind. An Spule und Kondensator erreicht die Spannung ihren Höchstwert zu einem anderen Zeitpunkt als am Widerstand. In einer RL-Reihenschaltung mit 30 V am Widerstand und 40 V an der Spule liegt die Gesamtspannung deshalb nicht bei 70 V, sondern bei √(30² + 40²) = 50 V."}},{"@type":"Question","name":"Was passiert bei Resonanz in einer Reihenschaltung?","acceptedAnswer":{"@type":"Answer","text":"Die Blindwiderstände von Spule und Kondensator heben sich auf, nur noch der Wirkwiderstand begrenzt den Strom. An Spule und Kondensator können dabei Spannungen entstehen, die ein Vielfaches der Quellenspannung betragen – um die Güte Q. Das kann Bauteile zerstören."}},{"@type":"Question","name":"Was ist die Grenzfrequenz eines RC-Glieds?","acceptedAnswer":{"@type":"Answer","text":"Die Frequenz, bei der der Blindwiderstand des Kondensators gleich dem Wirkwiderstand ist: fg = 1/(2π·R·C). Dort liefert der Tiefpass noch 70,7 % der Eingangsspannung. Darüber fällt die Ausgangsspannung je Verzehnfachung der Frequenz auf ein Zehntel (−20 dB je Dekade)."}},{"@type":"Question","name":"Was bedeutet ein negativer Phasenwinkel?","acceptedAnswer":{"@type":"Answer","text":"Auf dieser Seite gilt: φ ist der Winkel, um den die Spannung dem Strom vorauseilt. Positiv heißt induktiv (Strom eilt nach), negativ kapazitiv (Strom eilt vor). Der cos φ ist in beiden Fällen positiv; man ergänzt deshalb „induktiv“ oder „kapazitiv“."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .wissen-karte ul { margin: 4px 0; padding-left: 18px; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand" id="ws-wissen" aria-labelledby="h-ws-wissen">
+      <h2 id="h-ws-wissen">Wechselstrom verstehen</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9">
+          <h3>Kennwerte der Sinusspannung</h3>
+          <ul>
+            <li><b>Periodendauer T:</b> Zeit für eine volle Schwingung.</li>
+            <li><b>Frequenz f:</b> Schwingungen je Sekunde, f = 1/T. Netz in Europa 50 Hz, Bahn 16,7 Hz.</li>
+            <li><b>Scheitelwert û:</b> größter Augenblickswert; Spitze-Spitze-Wert 2·û.</li>
+            <li><b>Effektivwert U:</b> der Wert, der in einem Widerstand dieselbe Wärme erzeugt wie eine gleich große Gleichspannung, bei Sinus U = û/√2. 230 V im Netz sind Effektivwerte, der Scheitel liegt bei 325 V.</li>
+            <li><b>Kreisfrequenz ω = 2π·f:</b> Winkelgeschwindigkeit des umlaufenden Zeigers.</li>
+          </ul>
+        </article>
+        <article class="wissen-karte" style="--farbe:#2E8B57">
+          <h3>Die drei Grundbauteile</h3>
+          <div class="rahmen"><table class="tabelle">
+            <thead><tr><th>Bauteil</th><th>Widerstand</th><th>Strom zur Spannung</th></tr></thead>
+            <tbody>
+              <tr><td>Wirkwiderstand R</td><td>unabhängig von f</td><td>in Phase, φ = 0°</td></tr>
+              <tr><td>Spule L</td><td>X<sub>L</sub> = 2π·f·L, steigt mit f</td><td>Strom eilt 90° nach</td></tr>
+              <tr><td>Kondensator C</td><td>X<sub>C</sub> = 1/(2π·f·C), sinkt mit f</td><td>Strom eilt 90° vor</td></tr>
+            </tbody>
+          </table></div>
+          <p>Merkhilfe: Beim Kondensator kommt der Strom zuerst („<b>C</b> – Strom <b>vor</b>“), bei der Induktivität verspätet er sich.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#F2A541">
+          <h3>Zeigerdiagramm</h3>
+          <p>Ein Sinus lässt sich als Zeiger darstellen, der mit ω gegen den Uhrzeigersinn umläuft. Seine senkrechte Projektion ist der Augenblickswert. Die Länge zeigt den Scheitel- oder Effektivwert, der Winkel zwischen zwei Zeigern die Phasenverschiebung.</p>
+          <p>In der <b>Reihenschaltung</b> fließt durch alle Bauteile derselbe Strom: Er ist der Bezugszeiger, die Teilspannungen werden geometrisch addiert. In der <b>Parallelschaltung</b> liegt an allen dieselbe Spannung: Sie ist der Bezug, die Teilströme werden addiert.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#7048E8">
+          <h3>Leistung im Wechselstromkreis</h3>
+          <ul>
+            <li><b>Wirkleistung P = U·I·cos φ</b> in W: wird in Wärme, Licht oder Arbeit umgesetzt, nur im Wirkwiderstand.</li>
+            <li><b>Blindleistung Q = U·I·sin φ</b> in var: pendelt zwischen Quelle und Spule oder Kondensator.</li>
+            <li><b>Scheinleistung S = U·I</b> in VA: belastet Leitungen und Transformatoren, S² = P² + Q².</li>
+            <li><b>Leistungsfaktor cos φ = P/S.</b></li>
+          </ul>
+        </article>
+        <article class="wissen-karte" style="--farbe:#C0392B">
+          <h3>Resonanz</h3>
+          <div class="rahmen"><table class="tabelle">
+            <thead><tr><th></th><th>Reihenschwingkreis</th><th>Parallelschwingkreis</th></tr></thead>
+            <tbody>
+              <tr><td>bei f₀</td><td>X<sub>L</sub> = X<sub>C</sub></td><td>X<sub>L</sub> = X<sub>C</sub></td></tr>
+              <tr><td>Scheinwiderstand</td><td>am kleinsten, Z = R</td><td>am größten, Z = R</td></tr>
+              <tr><td>Strom</td><td>am größten</td><td>am kleinsten</td></tr>
+              <tr><td>Überhöhung</td><td>Spannung an L und C: Q-fach</td><td>Strom in L und C: Q-fach</td></tr>
+              <tr><td>Einsatz</td><td>Saugkreis, Bandpass</td><td>Sperrkreis, Bandsperre</td></tr>
+            </tbody>
+          </table></div>
+          <p>Gefahr: In Netzen mit Kompensationskondensatoren kann eine Oberschwingung Resonanz anregen – siehe <a href="kompensation.html">Blindleistungskompensation</a>.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#0E6B6A">
+          <h3>Filter (Siebschaltungen)</h3>
+          <div class="rahmen"><table class="tabelle">
+            <thead><tr><th>Art</th><th>lässt durch</th><th>Beispiel</th></tr></thead>
+            <tbody>
+              <tr><td>Tiefpass</td><td>tiefe Frequenzen</td><td>Basslautsprecher, Glätten, Netzfilter</td></tr>
+              <tr><td>Hochpass</td><td>hohe Frequenzen</td><td>Hochtöner, Koppeln ohne Gleichanteil</td></tr>
+              <tr><td>Bandpass</td><td>ein Frequenzband</td><td>Sender wählen, Rundsteuerempfänger</td></tr>
+              <tr><td>Bandsperre</td><td>alles außer einem Band</td><td>Störfrequenz unterdrücken</td></tr>
+            </tbody>
+          </table></div>
+          <p>Bei der Grenzfrequenz f<sub>g</sub> sind Wirk- und Blindwiderstand gleich groß: Die Ausgangsspannung ist auf 70,7 % (−3 dB) gefallen, die Phasenverschiebung beträgt 45°.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum hat die Steckdose 230 V, wenn der Scheitelwert 325 V beträgt?</summary><p>230 V ist der Effektivwert: Eine Glühlampe an 230 V Wechselspannung leuchtet genauso hell wie an 230 V Gleichspannung. Bei Sinusform ist der Scheitelwert √2-mal so groß, also rund 325 V. Isolierungen und Bauteile müssen für den Scheitelwert ausgelegt sein.</p></details>
+        <details><summary>Warum addiert man Wechselspannungen nicht einfach?</summary><p>Weil sie zeitlich verschoben sind. An Spule und Kondensator erreicht die Spannung ihren Höchstwert zu einem anderen Zeitpunkt als am Widerstand. In einer RL-Reihenschaltung mit 30 V am Widerstand und 40 V an der Spule liegt die Gesamtspannung deshalb nicht bei 70 V, sondern bei √(30² + 40²) = 50 V.</p></details>
+        <details><summary>Was passiert bei Resonanz in einer Reihenschaltung?</summary><p>Die Blindwiderstände von Spule und Kondensator heben sich auf, nur noch der Wirkwiderstand begrenzt den Strom. An Spule und Kondensator können dabei Spannungen entstehen, die ein Vielfaches der Quellenspannung betragen – um die Güte Q. Das kann Bauteile zerstören.</p></details>
+        <details><summary>Was ist die Grenzfrequenz eines RC-Glieds?</summary><p>Die Frequenz, bei der der Blindwiderstand des Kondensators gleich dem Wirkwiderstand ist: f<sub>g</sub> = 1/(2π·R·C). Dort liefert der Tiefpass noch 70,7 % der Eingangsspannung. Darüber fällt die Ausgangsspannung je Verzehnfachung der Frequenz auf ein Zehntel (−20 dB je Dekade).</p></details>
+        <details><summary>Was bedeutet ein negativer Phasenwinkel?</summary><p>Auf dieser Seite gilt: φ ist der Winkel, um den die Spannung dem Strom vorauseilt. Positiv heißt induktiv (Strom eilt nach), negativ kapazitiv (Strom eilt vor). Der cos φ ist in beiden Fällen positiv; man ergänzt deshalb „induktiv“ oder „kapazitiv“.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const T = function (cx, s, x, y, a, g, f, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!f, c); };
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#7048E8', GRAU = '#6B7785', TUERKIS = '#0E8A88';
+    const PI2 = 2 * Math.PI;
+    const zs = function (v, n) { if (!isFinite(v)) return '–'; let t = z(v, n === undefined ? 3 : n); if (t.indexOf(',') >= 0) t = t.replace(/0+$/, '').replace(/,$/, ''); return t; };
+    // Zahl mit passender Einheit (m, k, M …)
+    const ein = function (v, e, n) {
+      if (!isFinite(v)) return '–';
+      if (v === 0) return '0 ' + e;
+      const a = Math.abs(v), V = [[1e6, 'M'], [1e3, 'k'], [1, ''], [1e-3, 'm'], [1e-6, 'µ'], [1e-9, 'n']];
+      for (let i = 0; i < V.length; i++) if (a >= V[i][0] * 0.9995 || i === V.length - 1) {
+        const w = v / V[i][0], st = n === undefined ? Math.max(0, Math.min(3, 2 - Math.floor(Math.log(Math.abs(w) || 1) / Math.LN10))) : n;
+        return zs(w, st) + ' ' + V[i][1] + e;
+      }
+      return zs(v, n) + ' ' + e;
+    };
+    const hatL = function (e) { return e.bauteile !== 'rc'; };
+    const hatC = function (e) { return e.bauteile !== 'rl'; };
+    const reihe = function (e) { return e.schaltung === 'reihe'; };
+
+    let ansicht = 'zeit';
+    const ANSICHTEN = [['zeit', 'Zeitverlauf und Zeiger'], ['frequenz', 'Frequenzgang']];
+
+    function werte(e, f) {
+      const w = PI2 * f, L = hatL(e) ? e.l / 1000 : 0, C = hatC(e) ? e.c * 1e-6 : 0;
+      const XL = hatL(e) ? w * L : 0, XC = hatC(e) ? 1 / (w * C) : 0;
+      const r = { w: w, XL: XL, XC: XC };
+      if (reihe(e)) {
+        r.X = XL - XC; r.Z = Math.sqrt(e.r * e.r + r.X * r.X); r.I = e.u / r.Z;
+        r.UR = r.I * e.r; r.UL = r.I * XL; r.UC = r.I * XC; r.phi = Math.atan2(r.X, e.r);
+      } else {
+        r.G = 1 / e.r; r.BL = hatL(e) ? 1 / XL : 0; r.BC = hatC(e) ? 1 / XC : 0;
+        r.B = r.BC - r.BL; r.Y = Math.sqrt(r.G * r.G + r.B * r.B); r.Z = 1 / r.Y; r.I = e.u * r.Y;
+        r.IR = e.u * r.G; r.IL = e.u * r.BL; r.IC = e.u * r.BC; r.phi = Math.atan2(r.BL - r.BC, r.G);
+      }
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'Wechselstrom und RLC-Schaltungen',
+      einleitung: 'Widerstand, Spule und Kondensator an Sinusspannung: Blindwiderstände, Scheinwiderstand, Strom, Teilspannungen oder Teilströme, Phasenverschiebung und Leistungen für Reihen- und Parallelschaltung, dazu Resonanzfrequenz, Güte und Bandbreite – mit umlaufenden Zeigern und Frequenzgang. Unten in jede Richtung: Sinusgrößen, Blindwiderstände, Zeigerdreieck, Schwingkreis, Tiefpass und Hochpass.',
+      hilfe: 'Die Spannung ist der Effektivwert (z. B. 230 V). Für eine reine RL- oder RC-Schaltung den nicht benötigten Teil abwählen.',
+      gruppen: [
+        { titel: 'Quelle', farbe: BLAU, felder: [
+          { k: 'u', tex: 'U', name: 'Spannung (Effektivwert)', e: 'V', min: 0.001, max: 1e6 },
+          { k: 'f', tex: 'f', name: 'Frequenz', e: 'Hz', min: 0.01, max: 1e8 }
+        ] },
+        { titel: 'Schaltung', farbe: GRUEN, felder: [
+          { k: 'schaltung', name: 'Schaltung', wahl: [['reihe', 'Reihenschaltung'], ['parallel', 'Parallelschaltung']] },
+          { k: 'bauteile', name: 'Bauteile', wahl: [['rlc', 'R, L und C'], ['rl', 'R und L'], ['rc', 'R und C']] },
+          { k: 'r', tex: 'R', name: 'Wirkwiderstand', e: 'Ω', min: 0.001, max: 1e9, hilfe: 'In der Reihenschaltung einschließlich des Wicklungswiderstands der Spule.' },
+          { k: 'l', tex: 'L', name: 'Induktivität', e: 'mH', min: 1e-6, max: 1e7, wenn: hatL },
+          { k: 'c', tex: 'C', name: 'Kapazität', e: 'µF', min: 1e-7, max: 1e6, wenn: hatC }
+        ] }
+      ],
+      beispiel: { u: 230, f: 50, schaltung: 'reihe', bauteile: 'rlc', r: 40, l: 318, c: 47 },
+      rechne: function (e) {
+        const r = werte(e, e.f);
+        r.e = e; r.uS = Math.SQRT2 * e.u; r.T = 1 / e.f;
+        r.P = e.u * r.I * Math.cos(r.phi); r.Q = e.u * r.I * Math.sin(r.phi); r.S = e.u * r.I; r.cos = Math.cos(r.phi);
+        if (e.bauteile === 'rlc') {
+          const L = e.l / 1000, C = e.c * 1e-6;
+          r.f0 = 1 / (PI2 * Math.sqrt(L * C)); r.X0 = Math.sqrt(L / C);
+          r.guete = reihe(e) ? r.X0 / e.r : e.r / r.X0; r.b = r.f0 / r.guete;
+          const a = 1 / (2 * r.guete), s = Math.sqrt(1 + a * a);
+          r.fu = r.f0 * (s - a); r.fo = r.f0 * (s + a);
+          r.ueber = r.guete * e.u;
+        }
+        return r;
+      },
+      ergebnis: function (r, e, H) {
+        const grad = r.phi * 180 / Math.PI, art = Math.abs(grad) < 0.05 ? 'ohmsch' : grad > 0 ? 'induktiv' : 'kapazitiv';
+        H.urteil(null, art === 'ohmsch' ? 'ohmsch – Resonanz' : art + ' (φ = ' + zs(grad, 1) + '°)');
+        if (reihe(e)) {
+          const um = Math.max(r.UL, r.UC);
+          if (e.bauteile === 'rlc' && um > e.u * 1.001) H.meldung('Spannungsüberhöhung: An ' + (r.UL >= r.UC ? 'der Spule' : 'dem Kondensator') + ' liegen ' + ein(um, 'V') + ', mehr als die Quelle mit ' + ein(e.u, 'V') + ' liefert. Bauteile für diese Spannung auslegen.', um > 2 * e.u);
+        } else {
+          const im = Math.max(r.IL, r.IC);
+          if (e.bauteile === 'rlc' && im > r.I * 1.001) H.meldung('Stromüberhöhung: Durch ' + (r.IL >= r.IC ? 'die Spule' : 'den Kondensator') + ' fließen ' + ein(im, 'A') + ', mehr als die Quelle mit ' + ein(r.I, 'A') + ' liefert. Zwischen L und C pendelt der Blindstrom.');
+        }
+        if (e.bauteile === 'rlc' && Math.abs(e.f / r.f0 - 1) < 0.02) H.meldung('Die Schaltung arbeitet in Resonanz: X_L = X_C, der Scheinwiderstand ist ' + (reihe(e) ? 'am kleinsten' : 'am größten') + ' und gleich R.');
+        H.kacheln([
+          [ein(r.Z, 'Ω'), 'Scheinwiderstand Z', BLAU],
+          [ein(r.I, 'A'), 'Strom aus der Quelle', ORANGE],
+          [zs(grad, 1) + '°', 'Phasenverschiebung φ, ' + art, LILA],
+          [zs(r.cos, 3), 'Leistungsfaktor cos φ', LILA],
+          hatL(e) ? [ein(r.XL, 'Ω'), 'induktiver Blindwiderstand X_L', GRUEN] : null,
+          hatC(e) ? [ein(r.XC, 'Ω'), 'kapazitiver Blindwiderstand X_C', TUERKIS] : null,
+          [ein(r.P, 'W'), 'Wirkleistung P', ROT],
+          [ein(Math.abs(r.Q), 'var'), 'Blindleistung Q, ' + (r.Q >= 0 ? 'induktiv' : 'kapazitiv'), GRAU],
+          [ein(r.S, 'VA'), 'Scheinleistung S', GRAU],
+          [ein(r.uS, 'V'), 'Scheitelwert û = √2 · U', BLAU],
+          r.f0 ? [ein(r.f0, 'Hz'), 'Resonanzfrequenz f₀', ROT] : null,
+          r.f0 ? [zs(r.guete, 2), 'Güte Q, Bandbreite ' + ein(r.b, 'Hz'), ROT] : null
+        ]);
+        const g = function (v) { return zs(v * 180 / Math.PI, 0) + '°'; };
+        if (reihe(e)) {
+          H.tabelle('Teilspannungen (derselbe Strom ' + ein(r.I, 'A') + ' durch alle Bauteile)', ['Bauteil', 'Widerstand', 'Spannung', 'Spannung zum Strom'], [
+            ['R', ein(e.r, 'Ω'), ein(r.UR, 'V'), '0°'],
+            hatL(e) ? ['L', ein(r.XL, 'Ω'), ein(r.UL, 'V'), '+90°'] : null,
+            hatC(e) ? ['C', ein(r.XC, 'Ω'), ein(r.UC, 'V'), '−90°'] : null,
+            ['gesamt', ein(r.Z, 'Ω'), ein(e.u, 'V'), g(r.phi)]
+          ].filter(Boolean), { zahl: [1, 2], fuss: 'Die Teilspannungen ergeben arithmetisch addiert ' + ein(r.UR + r.UL + r.UC, 'V') + ' – geometrisch addiert genau die Quellenspannung.' });
+        } else {
+          H.tabelle('Teilströme (dieselbe Spannung ' + ein(e.u, 'V') + ' an allen Bauteilen)', ['Bauteil', 'Widerstand', 'Strom', 'Strom zur Spannung'], [
+            ['R', ein(e.r, 'Ω'), ein(r.IR, 'A'), '0°'],
+            hatL(e) ? ['L', ein(r.XL, 'Ω'), ein(r.IL, 'A'), '−90°'] : null,
+            hatC(e) ? ['C', ein(r.XC, 'Ω'), ein(r.IC, 'A'), '+90°'] : null,
+            ['gesamt', ein(r.Z, 'Ω'), ein(r.I, 'A'), g(-r.phi)]
+          ].filter(Boolean), { zahl: [1, 2], fuss: 'Die Teilströme ergeben arithmetisch addiert ' + ein(r.IR + r.IL + r.IC, 'A') + ' – geometrisch addiert genau den Gesamtstrom.' });
+        }
+      },
+      weg: function (r, e) {
+        const w = [];
+        w.push(['Kreisfrequenz', '\\omega = 2\\pi \\cdot f = 2\\pi \\cdot ' + tz(e.f, 3) + '\\,\\text{Hz} = ' + E(tz(r.w, 2) + '\\,\\tfrac{1}{\\text{s}}')]);
+        if (hatL(e)) w.push(['Induktiver Blindwiderstand', 'X_L = \\omega \\cdot L = ' + tz(r.w, 2) + '\\,\\tfrac{1}{\\text{s}} \\cdot ' + tz(e.l / 1000, 6) + '\\,\\text{H} = ' + E(tz(r.XL, 3) + '\\,\\Omega')]);
+        if (hatC(e)) w.push(['Kapazitiver Blindwiderstand', 'X_C = \\frac{1}{\\omega \\cdot C} = \\frac{1}{' + tz(r.w, 2) + '\\,\\tfrac{1}{\\text{s}} \\cdot ' + tz(e.c, 4) + '\\cdot 10^{-6}\\,\\text{F}} = ' + E(tz(r.XC, 3) + '\\,\\Omega')]);
+        if (reihe(e)) {
+          w.push(['Scheinwiderstand', 'Z = \\sqrt{R^2 + (X_L - X_C)^2} = \\sqrt{(' + tz(e.r, 3) + '\\,\\Omega)^2 + (' + tz(r.X, 3) + '\\,\\Omega)^2} = ' + E(tz(r.Z, 3) + '\\,\\Omega')]);
+          w.push(['Strom', 'I = \\frac{U}{Z} = \\frac{' + tz(e.u, 3) + '\\,\\text{V}}{' + tz(r.Z, 3) + '\\,\\Omega} = ' + E(tz(r.I, 4) + '\\,\\text{A}')]);
+          w.push(['Teilspannungen', 'U_R = I \\cdot R = ' + E(tz(r.UR, 3) + '\\,\\text{V}') + (hatL(e) ? ',\\; U_L = I \\cdot X_L = ' + E(tz(r.UL, 3) + '\\,\\text{V}') : '') + (hatC(e) ? ',\\; U_C = I \\cdot X_C = ' + E(tz(r.UC, 3) + '\\,\\text{V}') : '')]);
+          w.push(['Phasenverschiebung', '\\varphi = \\arctan\\frac{X_L - X_C}{R} = \\arctan\\frac{' + tz(r.X, 3) + '}{' + tz(e.r, 3) + '} = ' + E(tz(r.phi * 180 / Math.PI, 2) + '^\\circ')]);
+        } else {
+          w.push(['Leitwerte', 'G = \\frac{1}{R} = ' + tz(r.G, 6) + '\\,\\text{S}' + (hatL(e) ? ',\\; B_L = \\frac{1}{X_L} = ' + tz(r.BL, 6) + '\\,\\text{S}' : '') + (hatC(e) ? ',\\; B_C = \\frac{1}{X_C} = ' + tz(r.BC, 6) + '\\,\\text{S}' : '')]);
+          w.push(['Scheinleitwert und -widerstand', 'Y = \\sqrt{G^2 + (B_C - B_L)^2} = ' + tz(r.Y, 6) + '\\,\\text{S}, \\quad Z = \\frac{1}{Y} = ' + E(tz(r.Z, 3) + '\\,\\Omega')]);
+          w.push(['Teilströme', 'I_R = \\frac{U}{R} = ' + E(tz(r.IR, 4) + '\\,\\text{A}') + (hatL(e) ? ',\\; I_L = \\frac{U}{X_L} = ' + E(tz(r.IL, 4) + '\\,\\text{A}') : '') + (hatC(e) ? ',\\; I_C = \\frac{U}{X_C} = ' + E(tz(r.IC, 4) + '\\,\\text{A}') : '')]);
+          w.push(['Gesamtstrom', 'I = \\sqrt{I_R^2 + (I_C - I_L)^2} = ' + E(tz(r.I, 4) + '\\,\\text{A}')]);
+          w.push(['Phasenverschiebung', '\\varphi = \\arctan\\frac{I_L - I_C}{I_R} = ' + E(tz(r.phi * 180 / Math.PI, 2) + '^\\circ')]);
+        }
+        w.push(['Leistungen', 'P = U \\cdot I \\cdot \\cos\\varphi = ' + E(tz(r.P, 3) + '\\,\\text{W}') + ',\\; Q = ' + E(tz(Math.abs(r.Q), 3) + '\\,\\text{var}') + ',\\; S = U \\cdot I = ' + E(tz(r.S, 3) + '\\,\\text{VA}')]);
+        if (r.f0) {
+          w.push(['Resonanzfrequenz', 'f_0 = \\frac{1}{2\\pi\\sqrt{L \\cdot C}} = \\frac{1}{2\\pi\\sqrt{' + tz(e.l / 1000, 6) + '\\,\\text{H} \\cdot ' + tz(e.c, 4) + '\\cdot 10^{-6}\\,\\text{F}}} = ' + E(tz(r.f0, 3) + '\\,\\text{Hz}')]);
+          w.push(['Güte und Bandbreite', (reihe(e) ? 'Q = \\frac{1}{R}\\sqrt{\\frac{L}{C}} = \\frac{' + tz(r.X0, 3) + '\\,\\Omega}{' + tz(e.r, 3) + '\\,\\Omega}' : 'Q = R\\sqrt{\\frac{C}{L}} = \\frac{' + tz(e.r, 3) + '\\,\\Omega}{' + tz(r.X0, 3) + '\\,\\Omega}') + ' = ' + E(tz(r.guete, 3)) + ', \\quad b = \\frac{f_0}{Q} = ' + E(tz(r.b, 3) + '\\,\\text{Hz}')]);
+        }
+        return w;
+      },
+      loeser: [
+        { titel: 'Sinusgrößen – in jede Richtung', hilfe: 'Beispiel: Welchen Augenblickswert hat die Netzspannung (230 V, 50 Hz) 3 ms nach dem Nulldurchgang? Gerechnet wird mit u = û · sin(ω · t), Start im positiven Nulldurchgang.',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Effektivwert', e: 'V', min: 0.001, max: 1e6 }, { k: 'us', tex: '\\hat{u}', name: 'Scheitelwert', e: 'V', min: 0.001, max: 2e6 },
+            { k: 'uss', tex: 'u_\\text{ss}', name: 'Spitze-Spitze-Wert', e: 'V', min: 0.002, max: 4e6 },
+            { k: 'f', tex: 'f', name: 'Frequenz', e: 'Hz', min: 0.01, max: 1e8 }, { k: 'T', tex: 'T', name: 'Periodendauer', e: 'ms', min: 1e-5, max: 1e5 },
+            { k: 'w', tex: '\\omega', name: 'Kreisfrequenz', e: '1/s', min: 0.01, max: 1e9 },
+            { k: 't', tex: 't', name: 'Zeitpunkt', e: 'ms', min: 0, max: 1e5 }, { k: 'u', tex: 'u', name: 'Augenblickswert', e: 'V', min: -2e6, max: 2e6 }
+          ],
+          beispiel: { U: 230, f: 50, t: 3 },
+          gleichungen: [
+            { name: 'Scheitelwert', v: ['us', 'U'], f: function (q) { return [q.us, Math.SQRT2 * q.U]; }, loese: { us: function (q) { return Math.SQRT2 * q.U; }, U: function (q) { return q.us / Math.SQRT2; } },
+              weg: function (k, q) { return k === 'us' ? '\\hat{u} = \\sqrt{2} \\cdot U = \\sqrt{2} \\cdot ' + tz(q.U, 2) + '\\,\\text{V} = ' + E(tz(q.us, 2) + '\\,\\text{V}') : 'U = \\frac{\\hat{u}}{\\sqrt{2}} = \\frac{' + tz(q.us, 2) + '\\,\\text{V}}{\\sqrt{2}} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'Spitze-Spitze', v: ['uss', 'us'], f: function (q) { return [q.uss, 2 * q.us]; }, loese: { uss: function (q) { return 2 * q.us; }, us: function (q) { return q.uss / 2; } },
+              weg: function (k, q) { return k === 'uss' ? 'u_\\text{ss} = 2 \\cdot \\hat{u} = ' + E(tz(q.uss, 2) + '\\,\\text{V}') : '\\hat{u} = \\frac{u_\\text{ss}}{2} = ' + E(tz(q.us, 2) + '\\,\\text{V}'); } },
+            { name: 'Periodendauer', v: ['T', 'f'], f: function (q) { return [q.T * q.f, 1000]; }, loese: { T: function (q) { return 1000 / q.f; }, f: function (q) { return 1000 / q.T; } },
+              weg: function (k, q) { return k === 'T' ? 'T = \\frac{1}{f} = \\frac{1}{' + tz(q.f, 3) + '\\,\\text{Hz}} = ' + E(tz(q.T, 4) + '\\,\\text{ms}') : 'f = \\frac{1}{T} = \\frac{1}{' + tz(q.T, 4) + '\\,\\text{ms}} = ' + E(tz(q.f, 3) + '\\,\\text{Hz}'); } },
+            { name: 'Kreisfrequenz', v: ['w', 'f'], f: function (q) { return [q.w, PI2 * q.f]; }, loese: { w: function (q) { return PI2 * q.f; }, f: function (q) { return q.w / PI2; } },
+              weg: function (k, q) { return k === 'w' ? '\\omega = 2\\pi \\cdot f = 2\\pi \\cdot ' + tz(q.f, 3) + '\\,\\text{Hz} = ' + E(tz(q.w, 2) + '\\,\\tfrac{1}{\\text{s}}') : 'f = \\frac{\\omega}{2\\pi} = ' + E(tz(q.f, 3) + '\\,\\text{Hz}'); } },
+            { name: 'Augenblickswert', v: ['u', 'us', 'w', 't'], f: function (q) { return [q.u, q.us * Math.sin(q.w * q.t / 1000)]; },
+              loese: { u: function (q) { return q.us * Math.sin(q.w * q.t / 1000); }, us: function (q) { const s = Math.sin(q.w * q.t / 1000); return Math.abs(s) > 1e-6 ? q.u / s : NaN; },
+                t: function (q) { return Math.abs(q.u) <= q.us ? 1000 * Math.asin(q.u / q.us) / q.w : NaN; } },
+              weg: function (k, q) { return k === 'u' ? 'u = \\hat{u} \\cdot \\sin(\\omega \\cdot t) = ' + tz(q.us, 2) + '\\,\\text{V} \\cdot \\sin(' + tz(q.w, 2) + '\\,\\tfrac{1}{\\text{s}} \\cdot ' + tz(q.t / 1000, 5) + '\\,\\text{s}) = ' + E(tz(q.u, 2) + '\\,\\text{V}') : k === 't' ? 't = \\frac{\\arcsin(u / \\hat{u})}{\\omega} = ' + E(tz(q.t, 4) + '\\,\\text{ms}') + '\\;\\text{(erster Zeitpunkt)}' : '\\hat{u} = \\frac{u}{\\sin(\\omega t)} = ' + E(tz(q.us, 2) + '\\,\\text{V}'); } }
+          ] },
+        { titel: 'Blindwiderstände und Resonanzfrequenz – in jede Richtung', hilfe: 'Beispiel: Welche Kapazität bildet mit einer Spule von 100 mH bei 50 Hz Resonanz?',
+          felder: [
+            { k: 'f', tex: 'f', name: 'Frequenz', e: 'Hz', min: 0.01, max: 1e8 },
+            { k: 'L', tex: 'L', name: 'Induktivität', e: 'mH', min: 1e-6, max: 1e7 }, { k: 'XL', tex: 'X_L', name: 'induktiver Blindwiderstand', e: 'Ω', min: 1e-6, max: 1e9 },
+            { k: 'C', tex: 'C', name: 'Kapazität', e: 'µF', min: 1e-7, max: 1e6 }, { k: 'XC', tex: 'X_C', name: 'kapazitiver Blindwiderstand', e: 'Ω', min: 1e-6, max: 1e9 },
+            { k: 'f0', tex: 'f_0', name: 'Resonanzfrequenz von L und C', e: 'Hz', min: 0.01, max: 1e8 }
+          ],
+          beispiel: { f: 50, L: 100, f0: 50 },
+          gleichungen: [
+            { name: 'X_L', v: ['XL', 'f', 'L'], f: function (q) { return [q.XL, PI2 * q.f * q.L / 1000]; }, loese: { XL: function (q) { return PI2 * q.f * q.L / 1000; }, f: function (q) { return q.XL * 1000 / (PI2 * q.L); }, L: function (q) { return q.XL * 1000 / (PI2 * q.f); } },
+              weg: function (k, q) { return k === 'XL' ? 'X_L = 2\\pi \\cdot f \\cdot L = 2\\pi \\cdot ' + tz(q.f, 3) + '\\,\\text{Hz} \\cdot ' + tz(q.L / 1000, 6) + '\\,\\text{H} = ' + E(tz(q.XL, 3) + '\\,\\Omega') : k === 'L' ? 'L = \\frac{X_L}{2\\pi \\cdot f} = \\frac{' + tz(q.XL, 3) + '\\,\\Omega}{2\\pi \\cdot ' + tz(q.f, 3) + '\\,\\text{Hz}} = ' + E(tz(q.L, 4) + '\\,\\text{mH}') : 'f = \\frac{X_L}{2\\pi \\cdot L} = ' + E(tz(q.f, 3) + '\\,\\text{Hz}'); } },
+            { name: 'X_C', v: ['XC', 'f', 'C'], f: function (q) { return [q.XC * PI2 * q.f * q.C * 1e-6, 1]; }, loese: { XC: function (q) { return 1e6 / (PI2 * q.f * q.C); }, f: function (q) { return 1e6 / (PI2 * q.XC * q.C); }, C: function (q) { return 1e6 / (PI2 * q.f * q.XC); } },
+              weg: function (k, q) { return k === 'XC' ? 'X_C = \\frac{1}{2\\pi \\cdot f \\cdot C} = \\frac{1}{2\\pi \\cdot ' + tz(q.f, 3) + '\\,\\text{Hz} \\cdot ' + tz(q.C, 4) + '\\cdot 10^{-6}\\,\\text{F}} = ' + E(tz(q.XC, 3) + '\\,\\Omega') : k === 'C' ? 'C = \\frac{1}{2\\pi \\cdot f \\cdot X_C} = \\frac{1}{2\\pi \\cdot ' + tz(q.f, 3) + '\\,\\text{Hz} \\cdot ' + tz(q.XC, 3) + '\\,\\Omega} = ' + E(tz(q.C, 4) + '\\,\\mu\\text{F}') : 'f = \\frac{1}{2\\pi \\cdot X_C \\cdot C} = ' + E(tz(q.f, 3) + '\\,\\text{Hz}'); } },
+            { name: 'Resonanz', v: ['f0', 'L', 'C'], f: function (q) { return [q.f0 * PI2 * Math.sqrt(q.L * q.C * 1e-9), 1]; },
+              loese: { f0: function (q) { return 1 / (PI2 * Math.sqrt(q.L * q.C * 1e-9)); }, C: function (q) { return 1e9 / (Math.pow(PI2 * q.f0, 2) * q.L); }, L: function (q) { return 1e9 / (Math.pow(PI2 * q.f0, 2) * q.C); } },
+              weg: function (k, q) { return k === 'f0' ? 'f_0 = \\frac{1}{2\\pi\\sqrt{L \\cdot C}} = \\frac{1}{2\\pi\\sqrt{' + tz(q.L / 1000, 6) + '\\,\\text{H} \\cdot ' + tz(q.C, 4) + '\\cdot 10^{-6}\\,\\text{F}}} = ' + E(tz(q.f0, 3) + '\\,\\text{Hz}') : k === 'C' ? 'C = \\frac{1}{(2\\pi f_0)^2 \\cdot L} = \\frac{1}{(2\\pi \\cdot ' + tz(q.f0, 3) + '\\,\\text{Hz})^2 \\cdot ' + tz(q.L / 1000, 6) + '\\,\\text{H}} = ' + E(tz(q.C, 4) + '\\,\\mu\\text{F}') : 'L = \\frac{1}{(2\\pi f_0)^2 \\cdot C} = ' + E(tz(q.L, 4) + '\\,\\text{mH}'); } }
+          ] },
+        { titel: 'Reihenschaltung mit Zeigerdreieck – in jede Richtung', hilfe: 'R in Reihe mit einer Spule oder einem Kondensator (X ist dann X_L oder X_C). Beispiel: Eine Leuchtstofflampe mit Drossel nimmt an 230 V 0,4 A auf, an der Lampe liegen 110 V.',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Gesamtspannung', e: 'V', min: 0.001, max: 1e6 }, { k: 'UR', tex: 'U_R', name: 'Spannung am Wirkwiderstand', e: 'V', min: 0, max: 1e6 },
+            { k: 'UX', tex: 'U_X', name: 'Spannung am Blindwiderstand', e: 'V', min: 0, max: 1e6 }, { k: 'I', tex: 'I', name: 'Strom', e: 'A', min: 1e-6, max: 1e5 },
+            { k: 'Rw', tex: 'R', name: 'Wirkwiderstand', e: 'Ω', min: 1e-4, max: 1e9 }, { k: 'X', tex: 'X', name: 'Blindwiderstand', e: 'Ω', min: 0, max: 1e9 },
+            { k: 'Z', tex: 'Z', name: 'Scheinwiderstand', e: 'Ω', min: 1e-4, max: 1e9 }, { k: 'phi', tex: '\\varphi', name: 'Phasenverschiebung', e: '°', min: 0, max: 89.99 },
+            { k: 'P', tex: 'P', name: 'Wirkleistung', e: 'W', min: 0, max: 1e9 }
+          ],
+          beispiel: { U: 230, UR: 110, I: 0.4 },
+          gleichungen: [
+            { name: 'Spannungsdreieck', v: ['U', 'UR', 'UX'], f: function (q) { return [q.U * q.U, q.UR * q.UR + q.UX * q.UX]; },
+              loese: { U: function (q) { return Math.sqrt(q.UR * q.UR + q.UX * q.UX); }, UR: function (q) { return q.U >= q.UX ? Math.sqrt(q.U * q.U - q.UX * q.UX) : NaN; }, UX: function (q) { return q.U >= q.UR ? Math.sqrt(q.U * q.U - q.UR * q.UR) : NaN; } },
+              weg: function (k, q) { return k === 'U' ? 'U = \\sqrt{U_R^2 + U_X^2} = \\sqrt{(' + tz(q.UR, 2) + '\\,\\text{V})^2 + (' + tz(q.UX, 2) + '\\,\\text{V})^2} = ' + E(tz(q.U, 2) + '\\,\\text{V}') : k === 'UX' ? 'U_X = \\sqrt{U^2 - U_R^2} = \\sqrt{(' + tz(q.U, 2) + '\\,\\text{V})^2 - (' + tz(q.UR, 2) + '\\,\\text{V})^2} = ' + E(tz(q.UX, 2) + '\\,\\text{V}') : 'U_R = \\sqrt{U^2 - U_X^2} = \\sqrt{(' + tz(q.U, 2) + '\\,\\text{V})^2 - (' + tz(q.UX, 2) + '\\,\\text{V})^2} = ' + E(tz(q.UR, 2) + '\\,\\text{V}'); } },
+            { name: 'Widerstandsdreieck', v: ['Z', 'Rw', 'X'], f: function (q) { return [q.Z * q.Z, q.Rw * q.Rw + q.X * q.X]; },
+              loese: { Z: function (q) { return Math.sqrt(q.Rw * q.Rw + q.X * q.X); }, Rw: function (q) { return q.Z > q.X ? Math.sqrt(q.Z * q.Z - q.X * q.X) : NaN; }, X: function (q) { return q.Z >= q.Rw ? Math.sqrt(q.Z * q.Z - q.Rw * q.Rw) : NaN; } },
+              weg: function (k, q) { return k === 'Z' ? 'Z = \\sqrt{R^2 + X^2} = ' + E(tz(q.Z, 3) + '\\,\\Omega') : k === 'X' ? 'X = \\sqrt{Z^2 - R^2} = \\sqrt{(' + tz(q.Z, 3) + '\\,\\Omega)^2 - (' + tz(q.Rw, 3) + '\\,\\Omega)^2} = ' + E(tz(q.X, 3) + '\\,\\Omega') : 'R = \\sqrt{Z^2 - X^2} = ' + E(tz(q.Rw, 3) + '\\,\\Omega'); } },
+            { name: 'Ohm Z', v: ['U', 'Z', 'I'], f: function (q) { return [q.U, q.Z * q.I]; }, loese: { U: function (q) { return q.Z * q.I; }, Z: function (q) { return q.U / q.I; }, I: function (q) { return q.U / q.Z; } },
+              weg: function (k, q) { return k === 'Z' ? 'Z = \\frac{U}{I} = \\frac{' + tz(q.U, 2) + '\\,\\text{V}}{' + tz(q.I, 4) + '\\,\\text{A}} = ' + E(tz(q.Z, 3) + '\\,\\Omega') : k === 'I' ? 'I = \\frac{U}{Z} = \\frac{' + tz(q.U, 2) + '\\,\\text{V}}{' + tz(q.Z, 3) + '\\,\\Omega} = ' + E(tz(q.I, 4) + '\\,\\text{A}') : 'U = Z \\cdot I = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'Ohm R', v: ['UR', 'Rw', 'I'], f: function (q) { return [q.UR, q.Rw * q.I]; }, loese: { UR: function (q) { return q.Rw * q.I; }, Rw: function (q) { return q.UR / q.I; }, I: function (q) { return q.UR / q.Rw; } },
+              weg: function (k, q) { return k === 'Rw' ? 'R = \\frac{U_R}{I} = \\frac{' + tz(q.UR, 2) + '\\,\\text{V}}{' + tz(q.I, 4) + '\\,\\text{A}} = ' + E(tz(q.Rw, 3) + '\\,\\Omega') : k === 'UR' ? 'U_R = R \\cdot I = ' + E(tz(q.UR, 2) + '\\,\\text{V}') : 'I = \\frac{U_R}{R} = ' + E(tz(q.I, 4) + '\\,\\text{A}'); } },
+            { name: 'Ohm X', v: ['UX', 'X', 'I'], f: function (q) { return [q.UX, q.X * q.I]; }, loese: { UX: function (q) { return q.X * q.I; }, X: function (q) { return q.UX / q.I; }, I: function (q) { return q.X > 0 ? q.UX / q.X : NaN; } },
+              weg: function (k, q) { return k === 'X' ? 'X = \\frac{U_X}{I} = \\frac{' + tz(q.UX, 2) + '\\,\\text{V}}{' + tz(q.I, 4) + '\\,\\text{A}} = ' + E(tz(q.X, 3) + '\\,\\Omega') : k === 'UX' ? 'U_X = X \\cdot I = ' + E(tz(q.UX, 2) + '\\,\\text{V}') : 'I = \\frac{U_X}{X} = ' + E(tz(q.I, 4) + '\\,\\text{A}'); } },
+            { name: 'Winkel', v: ['phi', 'UR', 'U'], f: function (q) { return [Math.cos(q.phi * Math.PI / 180) * q.U, q.UR]; },
+              loese: { phi: function (q) { return q.UR <= q.U ? Math.acos(q.UR / q.U) * 180 / Math.PI : NaN; }, UR: function (q) { return q.U * Math.cos(q.phi * Math.PI / 180); }, U: function (q) { return q.UR / Math.cos(q.phi * Math.PI / 180); } },
+              weg: function (k, q) { return k === 'phi' ? '\\varphi = \\arccos\\frac{U_R}{U} = \\arccos\\frac{' + tz(q.UR, 2) + '\\,\\text{V}}{' + tz(q.U, 2) + '\\,\\text{V}} = ' + E(tz(q.phi, 2) + '^\\circ') : k === 'UR' ? 'U_R = U \\cdot \\cos\\varphi = ' + E(tz(q.UR, 2) + '\\,\\text{V}') : 'U = \\frac{U_R}{\\cos\\varphi} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'Wirkleistung', v: ['P', 'UR', 'I'], f: function (q) { return [q.P, q.UR * q.I]; }, loese: { P: function (q) { return q.UR * q.I; }, UR: function (q) { return q.P / q.I; }, I: function (q) { return q.UR > 0 ? q.P / q.UR : NaN; } },
+              weg: function (k, q) { return k === 'P' ? 'P = U_R \\cdot I = ' + tz(q.UR, 2) + '\\,\\text{V} \\cdot ' + tz(q.I, 4) + '\\,\\text{A} = ' + E(tz(q.P, 2) + '\\,\\text{W}') : k === 'UR' ? 'U_R = \\frac{P}{I} = ' + E(tz(q.UR, 2) + '\\,\\text{V}') : 'I = \\frac{P}{U_R} = ' + E(tz(q.I, 4) + '\\,\\text{A}'); } }
+          ] },
+        { titel: 'Reihenschwingkreis – in jede Richtung', hilfe: 'Güte, Bandbreite und Spannungsüberhöhung bei Resonanz. Beispiel: Ein Saugkreis mit 20 mH und 2,2 Ω an 12 V soll auf 1 kHz abgestimmt werden.',
+          felder: [
+            { k: 'L', tex: 'L', name: 'Induktivität', e: 'mH', min: 1e-6, max: 1e7 }, { k: 'C', tex: 'C', name: 'Kapazität', e: 'µF', min: 1e-7, max: 1e6 },
+            { k: 'Rw', tex: 'R', name: 'Wirkwiderstand', e: 'Ω', min: 1e-4, max: 1e9 }, { k: 'f0', tex: 'f_0', name: 'Resonanzfrequenz', e: 'Hz', min: 0.01, max: 1e8 },
+            { k: 'Q', tex: 'Q', name: 'Güte', e: '', min: 1e-4, max: 1e6 }, { k: 'b', tex: 'b', name: 'Bandbreite', e: 'Hz', min: 1e-4, max: 1e9 },
+            { k: 'U', tex: 'U', name: 'angelegte Spannung', e: 'V', min: 1e-4, max: 1e6 }, { k: 'UL', tex: 'U_L', name: 'Spannung an L (und C) bei Resonanz', e: 'V', min: 1e-4, max: 1e9 },
+            { k: 'I0', tex: 'I_0', name: 'Strom bei Resonanz', e: 'A', min: 1e-7, max: 1e6 }
+          ],
+          beispiel: { L: 20, Rw: 2.2, f0: 1000, U: 12 },
+          gleichungen: [
+            { name: 'Resonanz', v: ['f0', 'L', 'C'], f: function (q) { return [q.f0 * PI2 * Math.sqrt(q.L * q.C * 1e-9), 1]; },
+              loese: { f0: function (q) { return 1 / (PI2 * Math.sqrt(q.L * q.C * 1e-9)); }, C: function (q) { return 1e9 / (Math.pow(PI2 * q.f0, 2) * q.L); }, L: function (q) { return 1e9 / (Math.pow(PI2 * q.f0, 2) * q.C); } },
+              weg: function (k, q) { return k === 'f0' ? 'f_0 = \\frac{1}{2\\pi\\sqrt{L C}} = ' + E(tz(q.f0, 3) + '\\,\\text{Hz}') : k === 'C' ? 'C = \\frac{1}{(2\\pi f_0)^2 L} = \\frac{1}{(2\\pi \\cdot ' + tz(q.f0, 3) + '\\,\\text{Hz})^2 \\cdot ' + tz(q.L / 1000, 6) + '\\,\\text{H}} = ' + E(tz(q.C, 4) + '\\,\\mu\\text{F}') : 'L = \\frac{1}{(2\\pi f_0)^2 C} = ' + E(tz(q.L, 4) + '\\,\\text{mH}'); } },
+            { name: 'Güte', v: ['Q', 'Rw', 'L', 'C'], f: function (q) { return [q.Q * q.Rw, Math.sqrt(q.L / q.C * 1000)]; },
+              loese: { Q: function (q) { return Math.sqrt(q.L / q.C * 1000) / q.Rw; }, Rw: function (q) { return Math.sqrt(q.L / q.C * 1000) / q.Q; }, L: function (q) { return Math.pow(q.Q * q.Rw, 2) * q.C / 1000; }, C: function (q) { return q.L * 1000 / Math.pow(q.Q * q.Rw, 2); } },
+              weg: function (k, q) { const x = Math.sqrt(q.L / q.C * 1000); return k === 'Q' ? 'Q = \\frac{1}{R}\\sqrt{\\frac{L}{C}} = \\frac{1}{' + tz(q.Rw, 3) + '\\,\\Omega}\\sqrt{\\frac{' + tz(q.L / 1000, 6) + '\\,\\text{H}}{' + tz(q.C, 4) + '\\cdot 10^{-6}\\,\\text{F}}} = \\frac{' + tz(x, 3) + '\\,\\Omega}{' + tz(q.Rw, 3) + '\\,\\Omega} = ' + E(tz(q.Q, 3)) : k === 'Rw' ? 'R = \\frac{1}{Q}\\sqrt{\\frac{L}{C}} = ' + E(tz(q.Rw, 3) + '\\,\\Omega') : k === 'L' ? 'L = (Q R)^2 \\cdot C = ' + E(tz(q.L, 4) + '\\,\\text{mH}') : 'C = \\frac{L}{(Q R)^2} = ' + E(tz(q.C, 4) + '\\,\\mu\\text{F}'); } },
+            { name: 'Bandbreite', v: ['b', 'f0', 'Q'], f: function (q) { return [q.b * q.Q, q.f0]; }, loese: { b: function (q) { return q.f0 / q.Q; }, f0: function (q) { return q.b * q.Q; }, Q: function (q) { return q.f0 / q.b; } },
+              weg: function (k, q) { return k === 'b' ? 'b = \\frac{f_0}{Q} = \\frac{' + tz(q.f0, 3) + '\\,\\text{Hz}}{' + tz(q.Q, 3) + '} = ' + E(tz(q.b, 3) + '\\,\\text{Hz}') : k === 'Q' ? 'Q = \\frac{f_0}{b} = ' + E(tz(q.Q, 3)) : 'f_0 = b \\cdot Q = ' + E(tz(q.f0, 3) + '\\,\\text{Hz}'); } },
+            { name: 'Überhöhung', v: ['UL', 'Q', 'U'], f: function (q) { return [q.UL, q.Q * q.U]; }, loese: { UL: function (q) { return q.Q * q.U; }, Q: function (q) { return q.UL / q.U; }, U: function (q) { return q.UL / q.Q; } },
+              weg: function (k, q) { return k === 'UL' ? 'U_L = U_C = Q \\cdot U = ' + tz(q.Q, 3) + ' \\cdot ' + tz(q.U, 3) + '\\,\\text{V} = ' + E(tz(q.UL, 3) + '\\,\\text{V}') : k === 'Q' ? 'Q = \\frac{U_L}{U} = ' + E(tz(q.Q, 3)) : 'U = \\frac{U_L}{Q} = ' + E(tz(q.U, 3) + '\\,\\text{V}'); } },
+            { name: 'Strom bei Resonanz', v: ['I0', 'U', 'Rw'], f: function (q) { return [q.I0 * q.Rw, q.U]; }, loese: { I0: function (q) { return q.U / q.Rw; }, U: function (q) { return q.I0 * q.Rw; }, Rw: function (q) { return q.U / q.I0; } },
+              weg: function (k, q) { return k === 'I0' ? 'I_0 = \\frac{U}{R} = \\frac{' + tz(q.U, 3) + '\\,\\text{V}}{' + tz(q.Rw, 3) + '\\,\\Omega} = ' + E(tz(q.I0, 4) + '\\,\\text{A}') : k === 'U' ? 'U = I_0 \\cdot R = ' + E(tz(q.U, 3) + '\\,\\text{V}') : 'R = \\frac{U}{I_0} = ' + E(tz(q.Rw, 3) + '\\,\\Omega'); } }
+          ] },
+        { titel: 'RC-Tiefpass und -Hochpass – in jede Richtung', hilfe: 'Tiefpass: Ausgang am Kondensator. Hochpass: Ausgang am Widerstand. Beispiel: 4,7 kΩ und 100 nF – wie viel kommt bei 1 kHz am Ausgang an?',
+          felder: [
+            { k: 'Rw', tex: 'R', name: 'Widerstand', e: 'Ω', min: 1e-3, max: 1e9 }, { k: 'C', tex: 'C', name: 'Kapazität', e: 'µF', min: 1e-7, max: 1e6 },
+            { k: 'fg', tex: 'f_\\text{g}', name: 'Grenzfrequenz', e: 'Hz', min: 1e-3, max: 1e9 }, { k: 'f', tex: 'f', name: 'Frequenz des Signals', e: 'Hz', min: 1e-3, max: 1e9 },
+            { k: 'Ue', tex: 'U_\\text{e}', name: 'Eingangsspannung', e: 'V', min: 1e-6, max: 1e6 },
+            { k: 'kt', tex: 'U_\\text{a}/U_\\text{e}', name: 'Verhältnis beim Tiefpass', e: '', min: 1e-9, max: 0.999999 }, { k: 'Uat', tex: 'U_\\text{a,TP}', name: 'Ausgang Tiefpass', e: 'V', min: 1e-9, max: 1e6 },
+            { k: 'kh', tex: 'U_\\text{a}/U_\\text{e}', name: 'Verhältnis beim Hochpass', e: '', min: 1e-9, max: 0.999999 }, { k: 'Uah', tex: 'U_\\text{a,HP}', name: 'Ausgang Hochpass', e: 'V', min: 1e-9, max: 1e6 }
+          ],
+          beispiel: { Rw: 4700, C: 0.1, f: 1000, Ue: 5 },
+          gleichungen: [
+            { name: 'Grenzfrequenz', v: ['fg', 'Rw', 'C'], f: function (q) { return [q.fg * PI2 * q.Rw * q.C * 1e-6, 1]; }, loese: { fg: function (q) { return 1e6 / (PI2 * q.Rw * q.C); }, Rw: function (q) { return 1e6 / (PI2 * q.fg * q.C); }, C: function (q) { return 1e6 / (PI2 * q.fg * q.Rw); } },
+              weg: function (k, q) { return k === 'fg' ? 'f_\\text{g} = \\frac{1}{2\\pi \\cdot R \\cdot C} = \\frac{1}{2\\pi \\cdot ' + tz(q.Rw, 1) + '\\,\\Omega \\cdot ' + tz(q.C, 4) + '\\cdot 10^{-6}\\,\\text{F}} = ' + E(tz(q.fg, 3) + '\\,\\text{Hz}') : k === 'C' ? 'C = \\frac{1}{2\\pi \\cdot R \\cdot f_\\text{g}} = ' + E(tz(q.C, 5) + '\\,\\mu\\text{F}') : 'R = \\frac{1}{2\\pi \\cdot f_\\text{g} \\cdot C} = ' + E(tz(q.Rw, 2) + '\\,\\Omega'); } },
+            { name: 'Tiefpass', v: ['kt', 'f', 'fg'], f: function (q) { return [q.kt, 1 / Math.sqrt(1 + Math.pow(q.f / q.fg, 2))]; },
+              loese: { kt: function (q) { return 1 / Math.sqrt(1 + Math.pow(q.f / q.fg, 2)); }, f: function (q) { return q.fg * Math.sqrt(1 / (q.kt * q.kt) - 1); }, fg: function (q) { return q.f / Math.sqrt(1 / (q.kt * q.kt) - 1); } },
+              weg: function (k, q) { return k === 'kt' ? '\\frac{U_\\text{a}}{U_\\text{e}} = \\frac{1}{\\sqrt{1 + (f / f_\\text{g})^2}} = \\frac{1}{\\sqrt{1 + (' + tz(q.f, 3) + ' / ' + tz(q.fg, 3) + ')^2}} = ' + E(tz(q.kt, 4)) : k === 'f' ? 'f = f_\\text{g}\\sqrt{\\frac{1}{(U_\\text{a}/U_\\text{e})^2} - 1} = ' + E(tz(q.f, 3) + '\\,\\text{Hz}') : 'f_\\text{g} = \\frac{f}{\\sqrt{1/(U_\\text{a}/U_\\text{e})^2 - 1}} = ' + E(tz(q.fg, 3) + '\\,\\text{Hz}'); } },
+            { name: 'Ausgang TP', v: ['Uat', 'kt', 'Ue'], f: function (q) { return [q.Uat, q.kt * q.Ue]; }, loese: { Uat: function (q) { return q.kt * q.Ue; }, kt: function (q) { return q.Uat / q.Ue; }, Ue: function (q) { return q.Uat / q.kt; } },
+              weg: function (k, q) { return k === 'Uat' ? 'U_\\text{a} = \\frac{U_\\text{a}}{U_\\text{e}} \\cdot U_\\text{e} = ' + tz(q.kt, 4) + ' \\cdot ' + tz(q.Ue, 3) + '\\,\\text{V} = ' + E(tz(q.Uat, 4) + '\\,\\text{V}') : k === 'kt' ? '\\frac{U_\\text{a}}{U_\\text{e}} = ' + E(tz(q.kt, 4)) : 'U_\\text{e} = ' + E(tz(q.Ue, 3) + '\\,\\text{V}'); } },
+            { name: 'Hochpass', v: ['kh', 'f', 'fg'], f: function (q) { return [q.kh, 1 / Math.sqrt(1 + Math.pow(q.fg / q.f, 2))]; },
+              loese: { kh: function (q) { return 1 / Math.sqrt(1 + Math.pow(q.fg / q.f, 2)); }, f: function (q) { return q.fg / Math.sqrt(1 / (q.kh * q.kh) - 1); }, fg: function (q) { return q.f * Math.sqrt(1 / (q.kh * q.kh) - 1); } },
+              weg: function (k, q) { return k === 'kh' ? '\\frac{U_\\text{a}}{U_\\text{e}} = \\frac{1}{\\sqrt{1 + (f_\\text{g} / f)^2}} = \\frac{1}{\\sqrt{1 + (' + tz(q.fg, 3) + ' / ' + tz(q.f, 3) + ')^2}} = ' + E(tz(q.kh, 4)) : k === 'f' ? 'f = \\frac{f_\\text{g}}{\\sqrt{1/(U_\\text{a}/U_\\text{e})^2 - 1}} = ' + E(tz(q.f, 3) + '\\,\\text{Hz}') : 'f_\\text{g} = f\\sqrt{\\frac{1}{(U_\\text{a}/U_\\text{e})^2} - 1} = ' + E(tz(q.fg, 3) + '\\,\\text{Hz}'); } },
+            { name: 'Ausgang HP', v: ['Uah', 'kh', 'Ue'], f: function (q) { return [q.Uah, q.kh * q.Ue]; }, loese: { Uah: function (q) { return q.kh * q.Ue; }, kh: function (q) { return q.Uah / q.Ue; }, Ue: function (q) { return q.Uah / q.kh; } },
+              weg: function (k, q) { return k === 'Uah' ? 'U_\\text{a} = \\frac{U_\\text{a}}{U_\\text{e}} \\cdot U_\\text{e} = ' + tz(q.kh, 4) + ' \\cdot ' + tz(q.Ue, 3) + '\\,\\text{V} = ' + E(tz(q.Uah, 4) + '\\,\\text{V}') : k === 'kh' ? '\\frac{U_\\text{a}}{U_\\text{e}} = ' + E(tz(q.kh, 4)) : 'U_\\text{e} = ' + E(tz(q.Ue, 3) + '\\,\\text{V}'); } }
+          ] }
+      ],
+      sammlung: [
+        ['Periodendauer und Frequenz', 'f = \\frac{1}{T} \\qquad \\omega = 2\\pi \\cdot f', 'ω in 1/s'],
+        ['Effektivwert', 'U = \\frac{\\hat{u}}{\\sqrt{2}} \\qquad I = \\frac{\\hat{\\imath}}{\\sqrt{2}}', 'nur für Sinusform'],
+        ['Augenblickswert', 'u = \\hat{u} \\cdot \\sin(\\omega t + \\varphi_u)', 'Nullphasenwinkel φᵤ'],
+        ['Induktiver Blindwiderstand', 'X_L = \\omega \\cdot L = 2\\pi \\cdot f \\cdot L', 'steigt mit der Frequenz'],
+        ['Kapazitiver Blindwiderstand', 'X_C = \\frac{1}{\\omega \\cdot C} = \\frac{1}{2\\pi \\cdot f \\cdot C}', 'sinkt mit der Frequenz'],
+        ['Reihenschaltung R, L, C', 'Z = \\sqrt{R^2 + (X_L - X_C)^2} \\qquad U = \\sqrt{U_R^2 + (U_L - U_C)^2}', 'gleicher Strom, Spannungen geometrisch addieren'],
+        ['Parallelschaltung R, L, C', 'Y = \\frac{1}{Z} = \\sqrt{G^2 + (B_C - B_L)^2} \\qquad I = \\sqrt{I_R^2 + (I_C - I_L)^2}', 'gleiche Spannung, Ströme geometrisch addieren; G = 1/R, B = 1/X'],
+        ['Phasenverschiebung Reihe', '\\tan\\varphi = \\frac{X_L - X_C}{R} \\qquad \\cos\\varphi = \\frac{R}{Z} = \\frac{U_R}{U}', ''],
+        ['Phasenverschiebung parallel', '\\tan\\varphi = \\frac{I_L - I_C}{I_R} \\qquad \\cos\\varphi = \\frac{I_R}{I} = \\frac{Z}{R}', ''],
+        ['Leistungen', 'P = U I \\cos\\varphi \\qquad Q = U I \\sin\\varphi \\qquad S = U I = \\sqrt{P^2 + Q^2}', 'W, var, VA'],
+        ['Resonanzfrequenz', 'f_0 = \\frac{1}{2\\pi\\sqrt{L \\cdot C}}', 'Thomsonsche Schwingungsgleichung, X_L = X_C'],
+        ['Güte Reihenschwingkreis', 'Q = \\frac{1}{R}\\sqrt{\\frac{L}{C}} = \\frac{U_L}{U} = \\frac{U_C}{U}', 'Spannungsüberhöhung'],
+        ['Güte Parallelschwingkreis', 'Q = R\\sqrt{\\frac{C}{L}} = \\frac{I_L}{I} = \\frac{I_C}{I}', 'Stromüberhöhung'],
+        ['Bandbreite', 'b = f_\\text{o} - f_\\text{u} = \\frac{f_0}{Q}', 'zwischen den −3-dB-Punkten'],
+        ['Grenzfrequenz RC', 'f_\\text{g} = \\frac{1}{2\\pi \\cdot R \\cdot C}', 'X_C = R, U_a = 0,707 · U_e, φ = 45°'],
+        ['Grenzfrequenz RL', 'f_\\text{g} = \\frac{R}{2\\pi \\cdot L}', 'X_L = R'],
+        ['Tiefpass', '\\frac{U_\\text{a}}{U_\\text{e}} = \\frac{1}{\\sqrt{1 + (f / f_\\text{g})^2}}', 'Ausgang am Kondensator (RC) oder am Widerstand (RL)'],
+        ['Hochpass', '\\frac{U_\\text{a}}{U_\\text{e}} = \\frac{1}{\\sqrt{1 + (f_\\text{g} / f)^2}}', 'Ausgang am Widerstand (RC) oder an der Spule (RL)'],
+        ['Dämpfungsmaß', 'a = 20 \\cdot \\lg\\frac{U_\\text{a}}{U_\\text{e}}\\;\\text{dB}', 'bei der Grenzfrequenz −3 dB']
+      ],
+      quellen: 'Formeln nach Tabellenbuch Elektrotechnik (Wechselstromtechnik, Schwingkreise, Siebschaltungen). Ideale Bauteile: Spule ohne Kernverluste, Kondensator ohne Verluste; der Wicklungswiderstand der Spule gehört in der Reihenschaltung zu R. Phasenwinkel φ = Winkel, um den die Spannung dem Strom vorauseilt.',
+      bild: { titel: 'Simulation: Zeiger, Zeitverlauf und Frequenzgang', label: 'Umlaufende Zeiger mit Liniendiagramm von Spannung und Strom oder Frequenzgang der Widerstände und des Stroms', animiert: !bewegungAus,
+        hoehe: function (B) { return ansicht === 'zeit' ? (B < 560 ? 520 : 300) : (B < 560 ? 420 : 380); },
+        hinweis: function (r, e) {
+          return ansicht === 'zeit' ? (reihe(e) ? 'Bezugszeiger ist der gemeinsame Strom I (orange). Die Teilspannungen U_R, U_L und U_C addieren sich geometrisch zu U (blau). Rechts die senkrechten Projektionen über der Zeit.' : 'Bezugszeiger ist die gemeinsame Spannung U (blau). Die Teilströme I_R, I_L und I_C addieren sich geometrisch zum Gesamtstrom I (orange).')
+            : 'Oben die Widerstände über der Frequenz (logarithmisch), unten der Strom aus der Quelle. Die senkrechte Linie zeigt die eingestellte Frequenz' + (r.f0 ? ', gestrichelt die Resonanzfrequenz.' : '.');
+        },
+        zeichne: function (cx, B, H, t, r, e) {
+          if (ansicht === 'zeit') zeichneZeit(cx, B, H, t, r, e); else zeichneFrequenz(cx, B, H, t, r, e);
+        } }
+    });
+
+    function pfeil(cx, x0, y0, dx, dy, farbe, name, breit) {
+      if (Math.sqrt(dx * dx + dy * dy) < 0.5) return;
+      cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = breit || 2.2;
+      R.Z.pfeil(cx, x0, y0, x0 + dx, y0 + dy, 8);
+      if (name) T(cx, name, x0 + dx + (dx >= 0 ? 6 : -6), y0 + dy + (dy >= 0 ? 10 : -8), dx >= 0 ? 'left' : 'right', 11, true, farbe);
+    }
+
+    function zeichneZeit(cx, B, H, t, r, e) {
+      const stapeln = B < 560;
+      const zb = stapeln ? B : Math.min(B * 0.42, 330), zh = stapeln ? H * 0.5 : H;
+      const ox = 30, oy = zh / 2, lx0 = zb - ox - 40, ly0 = zh / 2 - 26;
+      let teile, gesamt, bezug, mBez;
+      if (reihe(e)) {
+        const k = Math.min(lx0 / Math.max(r.UR, 1e-12), ly0 / Math.max(r.UL, r.UC, Math.abs(r.UL - r.UC), 1e-12));
+        teile = [[r.UR * k, 0, ROT, 'U_R'], hatL(e) ? [0, r.UL * k, GRUEN, 'U_L'] : null, hatC(e) ? [0, -r.UC * k, TUERKIS, 'U_C'] : null];
+        gesamt = [r.UR * k, (r.UL - r.UC) * k, BLAU, 'U']; mBez = Math.min(lx0 * 0.6, r.UR * k * 0.6 + 20); bezug = [mBez, 0, ORANGE, 'I'];
+      } else {
+        const k = Math.min(lx0 / Math.max(r.IR, 1e-12), ly0 / Math.max(r.IL, r.IC, Math.abs(r.IC - r.IL), 1e-12));
+        teile = [[r.IR * k, 0, ROT, 'I_R'], hatL(e) ? [0, -r.IL * k, GRUEN, 'I_L'] : null, hatC(e) ? [0, r.IC * k, TUERKIS, 'I_C'] : null];
+        gesamt = [r.IR * k, (r.IC - r.IL) * k, ORANGE, 'I']; mBez = Math.min(lx0 * 0.6, r.IR * k * 0.6 + 20); bezug = [mBez, 0, BLAU, 'U'];
+      }
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1;
+      cx.beginPath(); cx.moveTo(ox - 10, oy); cx.lineTo(zb - 10, oy); cx.moveTo(ox, 12); cx.lineTo(ox, zh - 12); cx.stroke();
+      // Ergänzung zum Dreieck
+      cx.setLineDash([4, 4]); cx.strokeStyle = F('--leise'); cx.lineWidth = 1.2;
+      cx.beginPath(); cx.moveTo(ox + gesamt[0], oy); cx.lineTo(ox + gesamt[0], oy - gesamt[1]); cx.lineTo(ox, oy - gesamt[1]); cx.stroke(); cx.setLineDash([]);
+      // Bezugszeiger leicht versetzt unter dem Wirkanteil
+      cx.strokeStyle = bezug[2]; cx.fillStyle = bezug[2]; cx.lineWidth = 3; R.Z.pfeil(cx, ox, oy + 9, ox + bezug[0], oy + 9, 8);
+      T(cx, bezug[3] + ' (Bezug)', ox + bezug[0] + 6, oy + 14, 'left', 11, true, bezug[2]);
+      teile.forEach(function (q) {
+        if (!q || Math.abs(q[0]) + Math.abs(q[1]) < 0.5) return;
+        cx.strokeStyle = q[2]; cx.fillStyle = q[2]; cx.lineWidth = 2.2; R.Z.pfeil(cx, ox, oy, ox + q[0], oy - q[1], 8);
+        if (q[1] === 0) T(cx, q[3], ox + q[0] / 2, oy - 10, 'center', 11, true, q[2]);
+        else T(cx, q[3], ox + 8, oy - q[1] + (q[1] > 0 ? 4 : -4), 'left', 11, true, q[2]);
+      });
+      cx.strokeStyle = gesamt[2]; cx.fillStyle = gesamt[2]; cx.lineWidth = 3.2; R.Z.pfeil(cx, ox, oy, ox + gesamt[0], oy - gesamt[1], 9);
+      T(cx, gesamt[3], ox + gesamt[0] + 8, oy - gesamt[1] + (gesamt[1] >= 0 ? -6 : 10), 'left', 13, true, gesamt[2]);
+      const wU = Math.atan2(gesamt[1], gesamt[0]);
+      if (Math.abs(wU) > 0.02) {
+        cx.strokeStyle = LILA; cx.lineWidth = 1.5; cx.beginPath(); cx.arc(ox, oy, 34, 0, -wU, wU > 0); cx.stroke();
+        T(cx, 'φ', ox + 44 * Math.cos(wU / 2), oy - 44 * Math.sin(wU / 2), 'center', 12, true, LILA);
+      }
+      // Liniendiagramm mit laufendem Zeitpunkt
+      const lx = stapeln ? 34 : zb + 30, ly = stapeln ? zh + 14 : 24, lb = stapeln ? B - 46 : B - zb - 44, lh = stapeln ? H - zh - 40 : H - 54;
+      const nl = ly + lh / 2, amp = lh / 2 - 8;
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1;
+      cx.beginPath(); cx.moveTo(lx, nl); cx.lineTo(lx + lb, nl); cx.moveTo(lx, ly); cx.lineTo(lx, ly + lh); cx.stroke();
+      for (let i = 1; i <= 4; i++) { const x = lx + i * lb / 4; cx.beginPath(); cx.moveTo(x, nl - 4); cx.lineTo(x, nl + 4); cx.stroke(); T(cx, i * 180 + '°', x - (i === 4 ? 14 : 0), nl + 14, 'center', 10, false, F('--leise')); }
+      T(cx, 'ωt', lx + lb, nl - 12, 'right', 11, false, F('--leise'));
+      const relB = 0.6, relG = 1;
+      const phG = wU;   // Bezug hat Phase 0
+      const kurve = function (ph, rel, farbe, breite) {
+        cx.strokeStyle = farbe; cx.lineWidth = breite; cx.beginPath();
+        for (let i = 0; i <= 180; i++) { const a = i / 180 * 4 * Math.PI, x = lx + i / 180 * lb, y = nl - amp * rel * Math.sin(a + ph); if (i) cx.lineTo(x, y); else cx.moveTo(x, y); }
+        cx.stroke();
+      };
+      kurve(0, relB, bezug[2], 2); kurve(phG, relG, gesamt[2], 2.6);
+      const a = ((t / 1000) * PI2 * 0.25) % (4 * Math.PI), xa = lx + a / (4 * Math.PI) * lb;
+      cx.strokeStyle = F('--leise'); cx.lineWidth = 1; cx.beginPath(); cx.moveTo(xa, ly); cx.lineTo(xa, ly + lh); cx.stroke();
+      [[0, relB, bezug[2]], [phG, relG, gesamt[2]]].forEach(function (q) { cx.fillStyle = q[2]; cx.beginPath(); cx.arc(xa, nl - amp * q[1] * Math.sin(a + q[0]), 4.5, 0, PI2); cx.fill(); });
+      T(cx, reihe(e) ? 'u' : 'i', lx + 6, ly + 6, 'left', 12, true, gesamt[2]);
+      T(cx, reihe(e) ? 'i' : 'u', lx + 20, ly + 6, 'left', 12, true, bezug[2]);
+      T(cx, 'φ = ' + zs(r.phi * 180 / Math.PI, 1) + '°', lx + lb, ly + 6, 'right', 12, true, LILA);
+    }
+
+    function logAchse(cx, x0, b, fa, fb, y0, h) {
+      const X = function (f) { return x0 + Math.log(f / fa) / Math.log(fb / fa) * b; };
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.fillStyle = F('--leise'); cx.font = '10px ' + F('--technik');
+      const d0 = Math.floor(Math.log(fa) / Math.LN10), d1 = Math.ceil(Math.log(fb) / Math.LN10);
+      for (let d = d0; d <= d1 && d - d0 < 30; d++) {
+        for (let m = 1; m <= 9; m++) {
+          const f = m * Math.pow(10, d); if (f < fa * 0.999 || f > fb * 1.001) continue;
+          const x = X(f); cx.globalAlpha = m === 1 ? 1 : 0.35;
+          cx.beginPath(); cx.moveTo(x, y0); cx.lineTo(x, y0 + h); cx.stroke(); cx.globalAlpha = 1;
+          if (m === 1 || (fb / fa < 30 && (m === 2 || m === 5))) { cx.textAlign = 'center'; cx.textBaseline = 'top'; cx.fillText(ein(f, 'Hz', 2).replace(' ', ''), x, y0 + h + 3); }
+        }
+      }
+      return X;
+    }
+
+    // senkrechte Achse mit runden Teilungen; gibt die Umrechnung Wert → y zurück
+    function yAchse(cx, x0, y0, b, h, max, name) {
+      const roh = max / 4, p = Math.pow(10, Math.floor(Math.log(roh) / Math.LN10)), m = roh / p;
+      const schritt = (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p, oben = Math.ceil(max / schritt - 1e-9) * schritt;
+      const Y = function (v) { return y0 + h - v / oben * h; };
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.fillStyle = F('--leise'); cx.font = '10px ' + F('--technik'); cx.textAlign = 'right'; cx.textBaseline = 'middle';
+      for (let v = 0, n = 0; v <= oben + 1e-9 && n < 20; v += schritt, n++) {
+        cx.beginPath(); cx.moveTo(x0, Y(v)); cx.lineTo(x0 + b, Y(v)); cx.stroke();
+        cx.fillText(ein(v, '', 3).trim().replace(/ $/, ''), x0 - 4, Y(v));
+      }
+      cx.textAlign = 'left'; cx.textBaseline = 'bottom'; cx.fillText(name, x0 - 30, y0 - 2);
+      return { Y: Y };
+    }
+
+    function zeichneFrequenz(cx, B, H, t, r, e) {
+      const fm = r.f0 || e.f, fa = fm / 10, fb = fm * 10, N = 240;
+      const x0 = 52, b = B - x0 - 16, h1 = (H - 80) * 0.55, y1 = 18, y2 = y1 + h1 + 40, h2 = H - y2 - 22;
+      const pkt = [];
+      for (let i = 0; i <= N; i++) { const f = fa * Math.pow(fb / fa, i / N); pkt.push([f, werte(e, f)]); }
+      let zmax = 0, imax = 0;
+      pkt.forEach(function (p) { zmax = Math.max(zmax, p[1].Z); imax = Math.max(imax, p[1].I); });
+      const yz = reihe(e) ? 4 * Math.max(r.Z, e.r) : 1.25 * zmax;
+      const yi = reihe(e) ? 1.15 * imax : 4 * Math.max(r.I, e.u / e.r);
+      const X = logAchse(cx, x0, b, fa, fb, y1, h1); logAchse(cx, x0, b, fa, fb, y2, h2);
+      const A1 = yAchse(cx, x0, y1, b, h1, yz, 'Ω'), A2 = yAchse(cx, x0, y2, b, h2, yi, 'A');
+      cx.save(); cx.beginPath(); cx.rect(x0, y1 - 2, b, h1 + 4); cx.clip();
+      const linie = function (wert, farbe, breite, Y) {
+        cx.strokeStyle = farbe; cx.lineWidth = breite; cx.beginPath();
+        pkt.forEach(function (p, i) { const y = Y(Math.min(wert(p[1]), 1e12)); if (i) cx.lineTo(X(p[0]), y); else cx.moveTo(X(p[0]), y); });
+        cx.stroke();
+      };
+      cx.setLineDash([5, 4]);
+      if (hatL(e)) linie(function (q) { return q.XL; }, GRUEN, 1.6, A1.Y);
+      if (hatC(e)) linie(function (q) { return q.XC; }, TUERKIS, 1.6, A1.Y);
+      linie(function () { return e.r; }, ROT, 1.4, A1.Y);
+      cx.setLineDash([]);
+      linie(function (q) { return q.Z; }, BLAU, 2.6, A1.Y);
+      cx.restore();
+      cx.save(); cx.beginPath(); cx.rect(x0, y2 - 2, b, h2 + 4); cx.clip();
+      linie(function (q) { return q.I; }, ORANGE, 2.6, A2.Y);
+      cx.restore();
+      // Marken
+      [[e.f, F('--text'), []], r.f0 ? [r.f0, ROT, [4, 4]] : null].forEach(function (m) {
+        if (!m || m[0] < fa || m[0] > fb) return;
+        cx.strokeStyle = m[1]; cx.lineWidth = 1.4; cx.setLineDash(m[2]);
+        cx.beginPath(); cx.moveTo(X(m[0]), y1); cx.lineTo(X(m[0]), y1 + h1); cx.moveTo(X(m[0]), y2); cx.lineTo(X(m[0]), y2 + h2); cx.stroke(); cx.setLineDash([]);
+      });
+      T(cx, 'Z', x0 + 6, y1 + 8, 'left', 12, true, BLAU);
+      let lx = x0 + 22;
+      if (hatL(e)) { T(cx, 'X_L', lx, y1 + 8, 'left', 11, true, GRUEN); lx += 34; }
+      if (hatC(e)) { T(cx, 'X_C', lx, y1 + 8, 'left', 11, true, TUERKIS); lx += 34; }
+      T(cx, 'R', lx, y1 + 8, 'left', 11, true, ROT);
+      T(cx, 'I', x0 + 6, y2 + 8, 'left', 12, true, ORANGE);
+      T(cx, 'f = ' + ein(e.f, 'Hz'), x0 + b, y2 - 22, 'right', 11, true);
+    }
+
+    // Umschalter für die Ansichten über dem Bild
+    (function () {
+      const ziel = seite && seite.bildZusatz; if (!ziel) return;
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = ANSICHTEN.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === ansicht ? 'true' : 'false');
+        k.addEventListener('click', function () { ansicht = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', ANSICHTEN[i][0] === ansicht ? 'true' : 'false'); }); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas');
+      ziel.parentNode.insertBefore(leiste, cv || ziel);
+    })();
+
+    // Wissen unter den Rechner, vor die häufigen Fragen
+    (function () {
+      const w = document.getElementById('ws-wissen'), faq = document.querySelector('main .seo-info');
+      if (w && faq) faq.parentNode.insertBefore(w, faq);
+    })();
+  })();
+  </script>
+</body>
+</html>

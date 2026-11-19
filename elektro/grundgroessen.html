@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elektrische Grundgrößen und Leiterwiderstand – Formeln &amp; Rechner</title>
+  <meta name="description" content="Elektrische Grundgrößen rechnen: Ladung und Strom, Stromdichte, Leiterwiderstand aus Länge, Querschnitt und Material, Leitwert, Widerstand bei Erwärmung, Leistung, Arbeit, Energiekosten und Wirkungsgrad – mit Elektronen im Kristallgitter, Materialtabelle und Vorsätzen.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/grundgroessen.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Elektrische Grundgrößen und Leiterwiderstand">
+  <meta property="og:description" content="Elektrische Grundgrößen rechnen: Ladung und Strom, Stromdichte, Leiterwiderstand aus Länge, Querschnitt und Material, Leitwert, Widerstand bei Erwärmung, Leistung, Arbeit, Energiekosten und Wirkungsgrad – mit Elektronen im Kristallgitter, Materialtabelle und Vorsätzen.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/grundgroessen.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Elektrische Grundgrößen und Leiterwiderstand">
+  <meta name="twitter:description" content="Elektrische Grundgrößen rechnen: Ladung und Strom, Stromdichte, Leiterwiderstand aus Länge, Querschnitt und Material, Leitwert, Widerstand bei Erwärmung, Leistung, Arbeit, Energiekosten und Wirkungsgrad – mit Elektronen im Kristallgitter, Materialtabelle und Vorsätzen.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/grundgroessen.html#seite","name":"Elektrische Grundgrößen und Leiterwiderstand","url":"https://tools.pr1m3.de/elektro/grundgroessen.html","inLanguage":"de","description":"Elektrische Grundgrößen rechnen: Ladung und Strom, Stromdichte, Leiterwiderstand aus Länge, Querschnitt und Material, Leitwert, Widerstand bei Erwärmung, Leistung, Arbeit, Energiekosten und Wirkungsgrad – mit Elektronen im Kristallgitter, Materialtabelle und Vorsätzen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/grundgroessen.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/grundgroessen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Elektrische Grundgrößen und Leiterwiderstand","item":"https://tools.pr1m3.de/elektro/grundgroessen.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/grundgroessen.html#fragen","mainEntity":[{"@type":"Question","name":"Wie berechnet man den Widerstand einer Leitung?","acceptedAnswer":{"@type":"Answer","text":"R = l / (γ · A) oder R = ρ · l / A. Für 30 m Kupfer mit 1,5 mm² (γ = 56 m/(Ω·mm²)) sind das 30 / (56 · 1,5) = 0,357 Ω je Ader. Bei einer Leitung zählen Hin- und Rückleiter: 0,714 Ω."}},{"@type":"Question","name":"Warum steigt der Widerstand von Kupfer, wenn es warm wird?","acceptedAnswer":{"@type":"Answer","text":"Die Atome im Kristallgitter schwingen stärker und behindern die freien Elektronen öfter. Bei Kupfer steigt der Widerstand um 0,39 % je Kelvin – bei 70 °C Betriebstemperatur also um rund 20 % gegenüber 20 °C."}},{"@type":"Question","name":"Was ist der Unterschied zwischen ρ und γ?","acceptedAnswer":{"@type":"Answer","text":"ρ (rho) ist der spezifische Widerstand: Widerstand eines Leiters von 1 m Länge und 1 mm² Querschnitt. γ (gamma, auch κ) ist die Leitfähigkeit, der Kehrwert: γ = 1/ρ. Kupfer: ρ = 0,0178 Ω·mm²/m, γ = 56 m/(Ω·mm²)."}},{"@type":"Question","name":"Wie schnell fließen die Elektronen im Draht?","acceptedAnswer":{"@type":"Answer","text":"Erstaunlich langsam: In einem Kupferdraht mit 1,5 mm² und 16 A driften die Elektronen nur etwa 0,8 mm je Sekunde. Trotzdem leuchtet die Lampe sofort, weil sich das elektrische Feld fast mit Lichtgeschwindigkeit ausbreitet und alle Elektronen gleichzeitig anschiebt."}},{"@type":"Question","name":"Wie viel Ladung steckt in einem Akku mit 2 000 mAh?","acceptedAnswer":{"@type":"Answer","text":"2 Ah = 2 A · 3 600 s = 7 200 As = 7 200 C. Das sind rund 4,5 · 10²² Elektronen. Die gespeicherte Energie hängt zusätzlich von der Spannung ab: bei 3,7 V sind es 7,4 Wh."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/grundgroessen.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .wissen-karte ul { margin: 4px 0; padding-left: 18px; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand" id="gg-wissen" aria-labelledby="h-gg-wissen">
+      <h2 id="h-gg-wissen">Grundlagen</h2>
+      <h3 class="zwischen">Die Grundgrößen</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Größe</th><th>Zeichen</th><th>Einheit</th><th>Bedeutung</th><th>Messen</th></tr></thead>
+        <tbody>
+          <tr><td>Ladung</td><td>Q</td><td>C = A·s</td><td>Menge der Ladungsträger; ein Elektron trägt e = 1,602 · 10⁻¹⁹ C</td><td>–</td></tr>
+          <tr><td>Spannung</td><td>U</td><td>V</td><td>Ursache des Stroms, Unterschied der Potentiale (Ladungstrennung)</td><td>Spannungsmesser parallel</td></tr>
+          <tr><td>Stromstärke</td><td>I</td><td>A</td><td>Ladung je Zeit durch den Leiterquerschnitt</td><td>Strommesser in Reihe, Zange</td></tr>
+          <tr><td>Widerstand</td><td>R</td><td>Ω</td><td>Hemmt den Strom (Stöße der Elektronen mit dem Gitter)</td><td>Widerstandsmesser, spannungsfrei</td></tr>
+          <tr><td>Leitwert</td><td>G</td><td>S = 1/Ω</td><td>Kehrwert des Widerstands</td><td>–</td></tr>
+          <tr><td>Stromdichte</td><td>J</td><td>A/mm²</td><td>Strom je Querschnitt – bestimmt die Erwärmung</td><td>–</td></tr>
+          <tr><td>Leistung</td><td>P</td><td>W</td><td>Arbeit je Zeit</td><td>Leistungsmesser</td></tr>
+          <tr><td>Arbeit, Energie</td><td>W</td><td>J = W·s, kWh</td><td>umgesetzte Energie; 1 kWh = 3,6 MJ</td><td>Zähler</td></tr>
+        </tbody>
+      </table></div>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9">
+          <h3>Stromrichtung</h3>
+          <p><b>Technische Stromrichtung:</b> vom Pluspol durch den Verbraucher zum Minuspol – so werden Pfeile in Schaltplänen gezeichnet.</p>
+          <p><b>Elektronenstrom:</b> Die Elektronen fließen tatsächlich vom Minus- zum Pluspol. Sie bewegen sich dabei nur wenige Zehntelmillimeter je Sekunde; das Signal breitet sich aber fast mit Lichtgeschwindigkeit aus.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#E07A1F">
+          <h3>Spannung erzeugen</h3>
+          <ul>
+            <li><b>Induktion:</b> Generator, Transformator</li>
+            <li><b>chemisch:</b> Batterie, Akku, Brennstoffzelle</li>
+            <li><b>Licht:</b> Solarzelle</li>
+            <li><b>Wärme:</b> Thermoelement (Temperaturmessung)</li>
+            <li><b>Druck:</b> Piezokristall (Feuerzeug, Sensoren)</li>
+            <li><b>Reibung:</b> elektrostatische Aufladung</li>
+          </ul>
+        </article>
+        <article class="wissen-karte" style="--farbe:#2E8B57">
+          <h3>Wirkungen des Stroms</h3>
+          <ul>
+            <li><b>Wärme:</b> immer – Heizung, Sicherung, aber auch Verluste</li>
+            <li><b>Licht:</b> Glühlampe, LED, Leuchtstofflampe</li>
+            <li><b>Magnetismus:</b> immer – Motor, Relais, Schütz</li>
+            <li><b>chemisch:</b> Laden, Galvanisieren, Elektrolyse</li>
+            <li><b>physiologisch:</b> Wirkung auf Mensch und Tier – siehe <a href="koerperstrom.html">Strom durch den Körper</a></li>
+          </ul>
+        </article>
+        <article class="wissen-karte" style="--farbe:#7048E8">
+          <h3>Leiter, Halbleiter, Isolatoren</h3>
+          <p><b>Leiter</b> (Metalle) haben viele freie Elektronen; ihr Widerstand steigt mit der Temperatur (Kaltleiter, positives α). <b>Halbleiter</b> (Silizium) leiten erst durch Energie oder Dotierung; ihr Widerstand sinkt meist mit der Temperatur (Heißleiter, NTC). <b>Isolatoren</b> (Kunststoffe, Glas, Keramik) haben kaum freie Ladungsträger.</p>
+          <p>Konstantan und Manganin ändern ihren Widerstand fast nicht – ideal für Messwiderstände.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#C0392B">
+          <h3>Vorsätze</h3>
+          <div class="rahmen"><table class="tabelle">
+            <thead><tr><th>Vorsatz</th><th>Zeichen</th><th>Faktor</th></tr></thead>
+            <tbody>
+              <tr><td>Tera</td><td>T</td><td>10¹²</td></tr>
+              <tr><td>Giga</td><td>G</td><td>10⁹</td></tr>
+              <tr><td>Mega</td><td>M</td><td>10⁶</td></tr>
+              <tr><td>Kilo</td><td>k</td><td>10³</td></tr>
+              <tr><td>Milli</td><td>m</td><td>10⁻³</td></tr>
+              <tr><td>Mikro</td><td>µ</td><td>10⁻⁶</td></tr>
+              <tr><td>Nano</td><td>n</td><td>10⁻⁹</td></tr>
+              <tr><td>Piko</td><td>p</td><td>10⁻¹²</td></tr>
+            </tbody>
+          </table></div>
+        </article>
+        <article class="wissen-karte" style="--farbe:#0E6B6A">
+          <h3>Leiterwerkstoffe bei 20 °C</h3>
+          <div class="rahmen"><table class="tabelle" id="gg-stoffe">
+            <thead><tr><th>Werkstoff</th><th>ρ in Ω·mm²/m</th><th>γ in m/(Ω·mm²)</th><th>α in 1/K</th></tr></thead>
+            <tbody></tbody>
+          </table></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie berechnet man den Widerstand einer Leitung?</summary><p>R = l / (γ · A) oder R = ρ · l / A. Für 30 m Kupfer mit 1,5 mm² (γ = 56 m/(Ω·mm²)) sind das 30 / (56 · 1,5) = 0,357 Ω je Ader. Bei einer Leitung zählen Hin- und Rückleiter: 0,714 Ω.</p></details>
+        <details><summary>Warum steigt der Widerstand von Kupfer, wenn es warm wird?</summary><p>Die Atome im Kristallgitter schwingen stärker und behindern die freien Elektronen öfter. Bei Kupfer steigt der Widerstand um 0,39 % je Kelvin – bei 70 °C Betriebstemperatur also um rund 20 % gegenüber 20 °C.</p></details>
+        <details><summary>Was ist der Unterschied zwischen ρ und γ?</summary><p>ρ (rho) ist der spezifische Widerstand: Widerstand eines Leiters von 1 m Länge und 1 mm² Querschnitt. γ (gamma, auch κ) ist die Leitfähigkeit, der Kehrwert: γ = 1/ρ. Kupfer: ρ = 0,0178 Ω·mm²/m, γ = 56 m/(Ω·mm²).</p></details>
+        <details><summary>Wie schnell fließen die Elektronen im Draht?</summary><p>Erstaunlich langsam: In einem Kupferdraht mit 1,5 mm² und 16 A driften die Elektronen nur etwa 0,8 mm je Sekunde. Trotzdem leuchtet die Lampe sofort, weil sich das elektrische Feld fast mit Lichtgeschwindigkeit ausbreitet und alle Elektronen gleichzeitig anschiebt.</p></details>
+        <details><summary>Wie viel Ladung steckt in einem Akku mit 2 000 mAh?</summary><p>2 Ah = 2 A · 3 600 s = 7 200 As = 7 200 C. Das sind rund 4,5 · 10²² Elektronen. Die gespeicherte Energie hängt zusätzlich von der Spannung ab: bei 3,7 V sind es 7,4 Wh.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const T = function (cx, s, x, y, a, g, f, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!f, c); };
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#7048E8', GRAU = '#6B7785', KUPFER = '#C87533';
+    const LADUNG = 1.602e-19;
+    const zs = function (v, n) { if (!isFinite(v)) return '–'; let t = z(v, n === undefined ? 3 : n); if (t.indexOf(',') >= 0) t = t.replace(/0+$/, '').replace(/,$/, ''); return t; };
+    const sig = function (v) { const a = Math.abs(v); return a === 0 ? '0' : zs(v, Math.max(0, Math.min(6, 2 - Math.floor(Math.log(a) / Math.LN10)))); };
+    // Werkstoffe: Schlüssel, Name, ρ in Ω·mm²/m, α in 1/K, freie Elektronen je m³ (für die Driftgeschwindigkeit)
+    const STOFFE = [
+      ['cu', 'Kupfer', 0.0178, 0.0039, 8.5e28],
+      ['al', 'Aluminium', 0.0286, 0.0040, 18.1e28],
+      ['ag', 'Silber', 0.016, 0.0038, 5.86e28],
+      ['au', 'Gold', 0.022, 0.0040, 5.9e28],
+      ['fe', 'Eisen', 0.10, 0.0065, 17e28],
+      ['w', 'Wolfram', 0.055, 0.0044, 0],
+      ['ms', 'Messing', 0.07, 0.0015, 0],
+      ['kon', 'Konstantan', 0.50, -0.00003, 0],
+      ['crni', 'Chromnickel (Heizdraht)', 1.10, 0.00015, 0]
+    ];
+    const stoff = function (k) { for (let i = 0; i < STOFFE.length; i++) if (STOFFE[i][0] === k) return STOFFE[i]; return STOFFE[0]; };
+    (function () {
+      const tb = document.querySelector('#gg-stoffe tbody'); if (!tb) return;
+      STOFFE.forEach(function (s) {
+        const tr = document.createElement('tr');
+        [s[1], zs(s[2], 4), zs(1 / s[2], 2), (s[3] < 0 ? '−' : '') + zs(Math.abs(s[3]), 5)].forEach(function (w) { const td = document.createElement('td'); td.textContent = w; tr.append(td); });
+        tb.append(tr);
+      });
+    })();
+
+    // feste Zufallswerte für die Elektronen
+    const EL = [];
+    for (let i = 0; i < 46; i++) EL.push([Math.abs(Math.sin(i * 12.9898) * 43758.5453) % 1, Math.abs(Math.sin(i * 78.233) * 12345.678) % 1, Math.abs(Math.sin(i * 3.7) * 999.1) % 1]);
+
+    let ansicht = 'gitter';
+    const ANSICHTEN = [['gitter', 'Elektronen im Leiter'], ['kennlinie', 'Widerstand über der Temperatur']];
+
+    const seite = R.seite({
+      titel: 'Elektrische Grundgrößen und Leiterwiderstand',
+      einleitung: 'Ein Leiter aus Kupfer, Aluminium oder Heizdraht: Widerstand aus Länge, Querschnitt und Werkstoff, Erwärmung, Leitwert, Stromdichte, Spannungsfall, Verlustleistung, Ladung und Energie über die Betriebszeit – und wie schnell die Elektronen wirklich fließen. Unten in jede Richtung: Ladung, Stromdichte, Leiterwiderstand, Temperatur, Leistung mit Kosten und Wirkungsgrad.',
+      hilfe: 'Für eine Leitung mit Hin- und Rückleiter die doppelte Länge wählen. Der Widerstand gilt für Gleichstrom bzw. 50 Hz bei kleinen Querschnitten.',
+      gruppen: [
+        { titel: 'Leiter', farbe: KUPFER, felder: [
+          { k: 'stoff', name: 'Werkstoff', wahl: STOFFE.map(function (s) { return [s[0], s[1]]; }) },
+          { k: 'l', tex: 'l', name: 'Länge', e: 'm', min: 0.001, max: 1e6 },
+          { k: 'weg', name: 'Stromweg', wahl: [['ein', 'einfache Länge'], ['zwei', 'Hin- und Rückleiter (2 · l)']] },
+          { k: 'angabe', name: 'Angabe', wahl: [['a', 'Querschnitt'], ['d', 'Durchmesser']] },
+          { k: 'a', tex: 'A', name: 'Querschnitt', e: 'mm²', min: 1e-4, max: 1e4, wenn: function (e) { return e.angabe === 'a'; } },
+          { k: 'd', tex: 'd', name: 'Durchmesser', e: 'mm', min: 0.01, max: 200, wenn: function (e) { return e.angabe === 'd'; } },
+          { k: 'th', tex: '\\vartheta', name: 'Leitertemperatur', e: '°C', min: -200, max: 1500, hilfe: 'Leitungen im Betrieb: bis 70 °C (PVC) bzw. 90 °C (VPE). Glühwendel: rund 2 500 °C (dann nur Näherung).' }
+        ] },
+        { titel: 'Betrieb', farbe: ORANGE, felder: [
+          { k: 'i', tex: 'I', name: 'Strom', e: 'A', min: 0, max: 1e6 },
+          { k: 't', tex: 't', name: 'Betriebsdauer', e: 'h', min: 0, max: 1e6 },
+          { k: 'preis', tex: 'k', name: 'Strompreis', e: 'ct/kWh', min: 0, max: 1000 }
+        ] }
+      ],
+      beispiel: { stoff: 'cu', l: 30, weg: 'zwei', angabe: 'a', a: 1.5, d: 1.38, th: 70, i: 16, t: 2000, preis: 35 },
+      rechne: function (e) {
+        const s = stoff(e.stoff), r = { e: e, s: s };
+        r.A = e.angabe === 'd' ? Math.PI * e.d * e.d / 4 : e.a;
+        r.d = Math.sqrt(4 * r.A / Math.PI);
+        r.lw = e.weg === 'zwei' ? 2 * e.l : e.l;
+        r.R20 = s[2] * r.lw / r.A;
+        r.dth = e.th - 20; r.R = r.R20 * (1 + s[3] * r.dth);
+        r.G = r.R > 0 ? 1 / r.R : Infinity;
+        r.U = e.i * r.R; r.P = e.i * e.i * r.R; r.J = e.i / r.A;
+        r.Q = e.i * e.t * 3600; r.W = r.P * e.t / 1000; r.K = r.W * e.preis / 100;
+        r.n = e.i / LADUNG;
+        r.v = s[4] > 0 ? e.i / (s[4] * LADUNG * r.A * 1e-6) : NaN;   // m/s
+        return r;
+      },
+      ergebnis: function (r, e, H) {
+        const s = r.s;
+        if (r.R <= 0) H.meldung('Bei dieser Temperatur ergibt die lineare Näherung keinen sinnvollen Widerstand – sie gilt nur in der Nähe von 20 °C (etwa −50 bis +200 °C).', true);
+        else if (Math.abs(r.dth) > 200) H.meldung('Die Formel mit α ist eine Näherung für Temperaturen nahe 20 °C. Bei ' + zs(e.th, 0) + ' °C weicht der wahre Widerstand deutlich ab.');
+        if (r.J > 20) H.meldung('Stromdichte ' + zs(r.J, 1) + ' A/mm²: Der Leiter wird sehr heiß. In Leitungen sind je nach Verlegung meist 5 bis 15 A/mm² zulässig – siehe Leitungsdimensionierung.', true);
+        if ((s[0] === 'cu' || s[0] === 'al') && e.th > 70) H.meldung('PVC-isolierte Leitungen dürfen am Leiter höchstens 70 °C erreichen, VPE-isolierte 90 °C.', e.th > 90);
+        H.urteil(null, zs(r.R, r.R < 1 ? 4 : 2) + ' Ω bei ' + zs(e.th, 0) + ' °C');
+        H.kacheln([
+          [sig(r.R20) + ' Ω', 'Widerstand bei 20 °C', BLAU],
+          [sig(r.R) + ' Ω', 'Widerstand bei ' + zs(e.th, 0) + ' °C (' + (r.dth * s[3] >= 0 ? '+' : '−') + zs(Math.abs(r.dth * s[3] * 100), 1) + ' %)', ROT],
+          [sig(r.G) + ' S', 'Leitwert G = 1/R', GRAU],
+          e.angabe === 'd' ? [sig(r.A) + ' mm²', 'Querschnitt aus d = ' + zs(e.d) + ' mm', KUPFER] : [sig(r.d) + ' mm', 'Durchmesser bei ' + zs(e.a) + ' mm² (eindrähtig)', KUPFER],
+          [sig(r.J) + ' A/mm²', 'Stromdichte J', r.J > 20 ? ROT : ORANGE],
+          [sig(r.U) + ' V', 'Spannungsfall am Leiter', ORANGE],
+          [sig(r.P) + ' W', 'Verlustleistung, wird zu Wärme', ROT],
+          e.t > 0 ? [sig(r.W) + ' kWh', 'Energieverlust in ' + zs(e.t, 0) + ' h, ' + zs(r.K, 2) + ' €', LILA] : null,
+          e.t > 0 ? [sig(e.i * e.t) + ' Ah', 'Ladung in der Betriebszeit (' + sig(r.Q) + ' C)', GRUEN] : null,
+          isFinite(r.v) && e.i > 0 ? [sig(r.v * 1000) + ' mm/s', 'Driftgeschwindigkeit der Elektronen', BLAU] : null
+        ]);
+      },
+      weg: function (r, e) {
+        const s = r.s, w = [];
+        if (e.angabe === 'd') w.push(['Querschnitt', 'A = \\frac{\\pi \\cdot d^2}{4} = \\frac{\\pi \\cdot (' + tz(e.d, 3) + '\\,\\text{mm})^2}{4} = ' + E(tz(r.A, 4) + '\\,\\text{mm}^2')]);
+        w.push(['Widerstand bei 20 °C', 'R_{20} = \\frac{\\rho \\cdot l}{A} = \\frac{' + tz(s[2], 4) + '\\,\\frac{\\Omega\\,\\text{mm}^2}{\\text{m}} \\cdot ' + tz(r.lw, 3) + '\\,\\text{m}}{' + tz(r.A, 4) + '\\,\\text{mm}^2} = ' + E(tz(r.R20, 5) + '\\,\\Omega')]);
+        w.push(['Erwärmung', '\\Delta\\vartheta = ' + tz(e.th, 1) + '\\,{}^\\circ\\text{C} - 20\\,{}^\\circ\\text{C} = ' + tz(r.dth, 1) + '\\,\\text{K}, \\quad R_\\vartheta = R_{20} \\cdot (1 + \\alpha \\cdot \\Delta\\vartheta) = ' + tz(r.R20, 5) + '\\,\\Omega \\cdot (1 + ' + tz(s[3], 5) + '\\,\\tfrac{1}{\\text{K}} \\cdot ' + tz(r.dth, 1) + '\\,\\text{K}) = ' + E(tz(r.R, 5) + '\\,\\Omega')]);
+        w.push(['Leitwert', 'G = \\frac{1}{R_\\vartheta} = ' + E(tz(r.G, 4) + '\\,\\text{S}')]);
+        w.push(['Stromdichte', 'J = \\frac{I}{A} = \\frac{' + tz(e.i, 3) + '\\,\\text{A}}{' + tz(r.A, 4) + '\\,\\text{mm}^2} = ' + E(tz(r.J, 3) + '\\,\\tfrac{\\text{A}}{\\text{mm}^2}')]);
+        w.push(['Spannungsfall und Verlust', 'U = I \\cdot R_\\vartheta = ' + E(tz(r.U, 3) + '\\,\\text{V}') + ', \\quad P = I^2 \\cdot R_\\vartheta = (' + tz(e.i, 3) + '\\,\\text{A})^2 \\cdot ' + tz(r.R, 5) + '\\,\\Omega = ' + E(tz(r.P, 3) + '\\,\\text{W}')]);
+        if (e.t > 0) {
+          w.push(['Energie und Kosten', 'W = P \\cdot t = ' + tz(r.P / 1000, 5) + '\\,\\text{kW} \\cdot ' + tz(e.t, 0) + '\\,\\text{h} = ' + E(tz(r.W, 3) + '\\,\\text{kWh}') + ', \\quad K = W \\cdot k = ' + E(tz(r.K, 2) + '\\,\\text{€}')]);
+          w.push(['Ladung', 'Q = I \\cdot t = ' + tz(e.i, 3) + '\\,\\text{A} \\cdot ' + tz(e.t * 3600, 0) + '\\,\\text{s} = ' + E(tz(r.Q, 0) + '\\,\\text{C}')]);
+        }
+        if (isFinite(r.v) && e.i > 0) w.push(['Driftgeschwindigkeit', 'v = \\frac{I}{n \\cdot e \\cdot A} = \\frac{' + tz(e.i, 3) + '\\,\\text{A}}{' + tz(s[4] / 1e28, 2) + '\\cdot 10^{28}\\,\\tfrac{1}{\\text{m}^3} \\cdot 1{,}602\\cdot 10^{-19}\\,\\text{C} \\cdot ' + tz(r.A, 4) + '\\cdot 10^{-6}\\,\\text{m}^2} = ' + E(tz(r.v * 1000, 4) + '\\,\\tfrac{\\text{mm}}{\\text{s}}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Ladung und Strom – in jede Richtung', hilfe: 'Beispiel: Ein Akku mit 2 000 mAh wird mit 0,5 A entladen. Wie lange hält er, und wie viele Elektronen fließen?',
+          felder: [
+            { k: 'I', tex: 'I', name: 'Stromstärke', e: 'A', min: 1e-9, max: 1e6 }, { k: 't', tex: 't', name: 'Zeit', e: 's', min: 1e-6, max: 1e9 },
+            { k: 'Q', tex: 'Q', name: 'Ladung', e: 'C (As)', min: 1e-9, max: 1e12 }, { k: 'Qh', tex: 'Q', name: 'Ladung in Amperestunden', e: 'Ah', min: 1e-12, max: 1e9 },
+            { k: 'n', tex: 'n', name: 'Anzahl der Elektronen', e: '', min: 1, max: 1e40 }
+          ],
+          beispiel: { Qh: 2, I: 0.5 },
+          gleichungen: [
+            { name: 'Ladung', v: ['Q', 'I', 't'], f: function (q) { return [q.Q, q.I * q.t]; }, loese: { Q: function (q) { return q.I * q.t; }, I: function (q) { return q.Q / q.t; }, t: function (q) { return q.Q / q.I; } },
+              weg: function (k, q) { return k === 'Q' ? 'Q = I \\cdot t = ' + tz(q.I, 4) + '\\,\\text{A} \\cdot ' + tz(q.t, 2) + '\\,\\text{s} = ' + E(tz(q.Q, 3) + '\\,\\text{C}') : k === 'I' ? 'I = \\frac{Q}{t} = \\frac{' + tz(q.Q, 3) + '\\,\\text{C}}{' + tz(q.t, 2) + '\\,\\text{s}} = ' + E(tz(q.I, 4) + '\\,\\text{A}') : 't = \\frac{Q}{I} = \\frac{' + tz(q.Q, 3) + '\\,\\text{C}}{' + tz(q.I, 4) + '\\,\\text{A}} = ' + E(tz(q.t, 1) + '\\,\\text{s}') + ' = ' + tz(q.t / 3600, 3) + '\\,\\text{h}'; } },
+            { name: 'Amperestunden', v: ['Qh', 'Q'], f: function (q) { return [q.Qh * 3600, q.Q]; }, loese: { Qh: function (q) { return q.Q / 3600; }, Q: function (q) { return q.Qh * 3600; } },
+              weg: function (k, q) { return k === 'Q' ? 'Q = ' + tz(q.Qh, 4) + '\\,\\text{Ah} \\cdot 3600\\,\\tfrac{\\text{s}}{\\text{h}} = ' + E(tz(q.Q, 2) + '\\,\\text{As}') : 'Q = \\frac{' + tz(q.Q, 2) + '\\,\\text{As}}{3600\\,\\text{s/h}} = ' + E(tz(q.Qh, 4) + '\\,\\text{Ah}'); } },
+            { name: 'Elektronen', v: ['n', 'Q'], f: function (q) { return [q.n * LADUNG, q.Q]; }, loese: { n: function (q) { return q.Q / LADUNG; }, Q: function (q) { return q.n * LADUNG; } },
+              weg: function (k, q) { const ex = Math.floor(Math.log(q.n) / Math.LN10); return k === 'n' ? 'n = \\frac{Q}{e} = \\frac{' + tz(q.Q, 3) + '\\,\\text{C}}{1{,}602 \\cdot 10^{-19}\\,\\text{C}} = ' + E(tz(q.n / Math.pow(10, ex), 3) + ' \\cdot 10^{' + ex + '}') : 'Q = n \\cdot e = ' + E(tz(q.Q, 4) + '\\,\\text{C}'); } }
+          ] },
+        { titel: 'Stromdichte – in jede Richtung', hilfe: 'Beispiel: Ein Draht mit 0,8 mm Durchmesser führt 2 A.',
+          felder: [
+            { k: 'I', tex: 'I', name: 'Strom', e: 'A', min: 1e-6, max: 1e6 }, { k: 'A', tex: 'A', name: 'Querschnitt', e: 'mm²', min: 1e-5, max: 1e5 },
+            { k: 'd', tex: 'd', name: 'Durchmesser', e: 'mm', min: 1e-3, max: 500 }, { k: 'J', tex: 'J', name: 'Stromdichte', e: 'A/mm²', min: 1e-6, max: 1e5 }
+          ],
+          beispiel: { d: 0.8, I: 2 },
+          gleichungen: [
+            { name: 'Querschnitt', v: ['A', 'd'], f: function (q) { return [q.A, Math.PI * q.d * q.d / 4]; }, loese: { A: function (q) { return Math.PI * q.d * q.d / 4; }, d: function (q) { return Math.sqrt(4 * q.A / Math.PI); } },
+              weg: function (k, q) { return k === 'A' ? 'A = \\frac{\\pi \\cdot d^2}{4} = \\frac{\\pi \\cdot (' + tz(q.d, 3) + '\\,\\text{mm})^2}{4} = ' + E(tz(q.A, 4) + '\\,\\text{mm}^2') : 'd = \\sqrt{\\frac{4 \\cdot A}{\\pi}} = \\sqrt{\\frac{4 \\cdot ' + tz(q.A, 4) + '\\,\\text{mm}^2}{\\pi}} = ' + E(tz(q.d, 3) + '\\,\\text{mm}'); } },
+            { name: 'Stromdichte', v: ['J', 'I', 'A'], f: function (q) { return [q.J * q.A, q.I]; }, loese: { J: function (q) { return q.I / q.A; }, I: function (q) { return q.J * q.A; }, A: function (q) { return q.I / q.J; } },
+              weg: function (k, q) { return k === 'J' ? 'J = \\frac{I}{A} = \\frac{' + tz(q.I, 3) + '\\,\\text{A}}{' + tz(q.A, 4) + '\\,\\text{mm}^2} = ' + E(tz(q.J, 3) + '\\,\\tfrac{\\text{A}}{\\text{mm}^2}') : k === 'A' ? 'A = \\frac{I}{J} = ' + E(tz(q.A, 4) + '\\,\\text{mm}^2') : 'I = J \\cdot A = ' + E(tz(q.I, 3) + '\\,\\text{A}'); } }
+          ] },
+        { titel: 'Leiterwiderstand – in jede Richtung', hilfe: 'Beispiel: Welchen Querschnitt braucht eine 25 m lange Kupferleitung (Hin und Rück: 50 m Leiterlänge), wenn sie höchstens 0,4 Ω haben darf?',
+          felder: [
+            { k: 'Rw', tex: 'R', name: 'Widerstand', e: 'Ω', min: 1e-7, max: 1e9 }, { k: 'l', tex: 'l', name: 'Leiterlänge', e: 'm', min: 1e-4, max: 1e7 },
+            { k: 'A', tex: 'A', name: 'Querschnitt', e: 'mm²', min: 1e-5, max: 1e5 },
+            { k: 'rho', tex: '\\rho', name: 'spezifischer Widerstand', e: 'Ω·mm²/m', min: 1e-4, max: 1e3 }, { k: 'g', tex: '\\gamma', name: 'Leitfähigkeit', e: 'm/(Ω·mm²)', min: 1e-3, max: 1e4 },
+            { k: 'G', tex: 'G', name: 'Leitwert', e: 'S', min: 1e-9, max: 1e7 }
+          ],
+          beispiel: { l: 50, Rw: 0.4, g: 56 },
+          gleichungen: [
+            { name: 'Leitfähigkeit', v: ['rho', 'g'], f: function (q) { return [q.rho * q.g, 1]; }, loese: { rho: function (q) { return 1 / q.g; }, g: function (q) { return 1 / q.rho; } },
+              weg: function (k, q) { return k === 'rho' ? '\\rho = \\frac{1}{\\gamma} = \\frac{1}{' + tz(q.g, 2) + '} = ' + E(tz(q.rho, 5) + '\\,\\tfrac{\\Omega\\,\\text{mm}^2}{\\text{m}}') : '\\gamma = \\frac{1}{\\rho} = ' + E(tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\Omega\\,\\text{mm}^2}'); } },
+            { name: 'Widerstand', v: ['Rw', 'l', 'g', 'A'], f: function (q) { return [q.Rw * q.g * q.A, q.l]; },
+              loese: { Rw: function (q) { return q.l / (q.g * q.A); }, l: function (q) { return q.Rw * q.g * q.A; }, A: function (q) { return q.l / (q.g * q.Rw); }, g: function (q) { return q.l / (q.Rw * q.A); } },
+              weg: function (k, q) { return k === 'Rw' ? 'R = \\frac{l}{\\gamma \\cdot A} = \\frac{' + tz(q.l, 3) + '\\,\\text{m}}{' + tz(q.g, 2) + '\\,\\frac{\\text{m}}{\\Omega\\,\\text{mm}^2} \\cdot ' + tz(q.A, 4) + '\\,\\text{mm}^2} = ' + E(tz(q.Rw, 5) + '\\,\\Omega') : k === 'A' ? 'A = \\frac{l}{\\gamma \\cdot R} = \\frac{' + tz(q.l, 3) + '\\,\\text{m}}{' + tz(q.g, 2) + '\\,\\frac{\\text{m}}{\\Omega\\,\\text{mm}^2} \\cdot ' + tz(q.Rw, 4) + '\\,\\Omega} = ' + E(tz(q.A, 4) + '\\,\\text{mm}^2') : k === 'l' ? 'l = R \\cdot \\gamma \\cdot A = ' + E(tz(q.l, 3) + '\\,\\text{m}') : '\\gamma = \\frac{l}{R \\cdot A} = ' + E(tz(q.g, 3) + '\\,\\tfrac{\\text{m}}{\\Omega\\,\\text{mm}^2}'); } },
+            { name: 'Leitwert', v: ['G', 'Rw'], f: function (q) { return [q.G * q.Rw, 1]; }, loese: { G: function (q) { return 1 / q.Rw; }, Rw: function (q) { return 1 / q.G; } },
+              weg: function (k, q) { return k === 'G' ? 'G = \\frac{1}{R} = \\frac{1}{' + tz(q.Rw, 5) + '\\,\\Omega} = ' + E(tz(q.G, 4) + '\\,\\text{S}') : 'R = \\frac{1}{G} = ' + E(tz(q.Rw, 5) + '\\,\\Omega'); } }
+          ] },
+        { titel: 'Widerstand bei Erwärmung – in jede Richtung', hilfe: 'Beispiel: Eine Kupferwicklung hat kalt bei 20 °C 4,2 Ω, nach dem Betrieb misst man 5,1 Ω. Wie warm ist sie?',
+          felder: [
+            { k: 'Rk', tex: 'R_\\text{k}', name: 'Widerstand kalt', e: 'Ω', min: 1e-7, max: 1e9 }, { k: 'Rw', tex: 'R_\\text{w}', name: 'Widerstand warm', e: 'Ω', min: 1e-7, max: 1e9 },
+            { k: 'al', tex: '\\alpha', name: 'Temperaturbeiwert', e: '1/K', min: -0.1, max: 0.1 },
+            { k: 'tk', tex: '\\vartheta_\\text{k}', name: 'Temperatur kalt', e: '°C', min: -273, max: 3000 }, { k: 'tw', tex: '\\vartheta_\\text{w}', name: 'Temperatur warm', e: '°C', min: -273, max: 3000 },
+            { k: 'dt', tex: '\\Delta\\vartheta', name: 'Temperaturänderung', e: 'K', min: -3000, max: 3000 }
+          ],
+          beispiel: { Rk: 4.2, Rw: 5.1, al: 0.0039, tk: 20 },
+          gleichungen: [
+            { name: 'Differenz', v: ['dt', 'tw', 'tk'], f: function (q) { return [q.dt, q.tw - q.tk]; }, loese: { dt: function (q) { return q.tw - q.tk; }, tw: function (q) { return q.tk + q.dt; }, tk: function (q) { return q.tw - q.dt; } },
+              weg: function (k, q) { return k === 'dt' ? '\\Delta\\vartheta = \\vartheta_\\text{w} - \\vartheta_\\text{k} = ' + E(tz(q.dt, 2) + '\\,\\text{K}') : k === 'tw' ? '\\vartheta_\\text{w} = \\vartheta_\\text{k} + \\Delta\\vartheta = ' + tz(q.tk, 1) + '\\,{}^\\circ\\text{C} + ' + tz(q.dt, 2) + '\\,\\text{K} = ' + E(tz(q.tw, 2) + '\\,{}^\\circ\\text{C}') : '\\vartheta_\\text{k} = \\vartheta_\\text{w} - \\Delta\\vartheta = ' + E(tz(q.tk, 2) + '\\,{}^\\circ\\text{C}'); } },
+            { name: 'Erwärmung', v: ['Rw', 'Rk', 'al', 'dt'], f: function (q) { return [q.Rw, q.Rk * (1 + q.al * q.dt)]; },
+              loese: { Rw: function (q) { return q.Rk * (1 + q.al * q.dt); }, Rk: function (q) { return q.Rw / (1 + q.al * q.dt); }, dt: function (q) { return q.al !== 0 ? (q.Rw / q.Rk - 1) / q.al : NaN; }, al: function (q) { return q.dt !== 0 ? (q.Rw / q.Rk - 1) / q.dt : NaN; } },
+              weg: function (k, q) { return k === 'Rw' ? 'R_\\text{w} = R_\\text{k} \\cdot (1 + \\alpha \\cdot \\Delta\\vartheta) = ' + tz(q.Rk, 4) + '\\,\\Omega \\cdot (1 + ' + tz(q.al, 5) + '\\,\\tfrac{1}{\\text{K}} \\cdot ' + tz(q.dt, 2) + '\\,\\text{K}) = ' + E(tz(q.Rw, 4) + '\\,\\Omega') : k === 'dt' ? '\\Delta\\vartheta = \\frac{R_\\text{w}/R_\\text{k} - 1}{\\alpha} = \\frac{' + tz(q.Rw, 4) + ' / ' + tz(q.Rk, 4) + ' - 1}{' + tz(q.al, 5) + '\\,\\tfrac{1}{\\text{K}}} = ' + E(tz(q.dt, 2) + '\\,\\text{K}') : k === 'Rk' ? 'R_\\text{k} = \\frac{R_\\text{w}}{1 + \\alpha \\cdot \\Delta\\vartheta} = ' + E(tz(q.Rk, 4) + '\\,\\Omega') : '\\alpha = \\frac{R_\\text{w}/R_\\text{k} - 1}{\\Delta\\vartheta} = ' + E(tz(q.al, 6) + '\\,\\tfrac{1}{\\text{K}}'); } }
+          ] },
+        { titel: 'Leistung, Arbeit und Kosten – in jede Richtung', hilfe: 'Beispiel: Ein Heizlüfter mit 2 kW an 230 V läuft 3 Stunden am Tag. Strom, Widerstand und Kosten bei 35 ct/kWh?',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Spannung', e: 'V', min: 1e-6, max: 1e6 }, { k: 'I', tex: 'I', name: 'Strom', e: 'A', min: 1e-9, max: 1e6 },
+            { k: 'Rw', tex: 'R', name: 'Widerstand', e: 'Ω', min: 1e-7, max: 1e9 }, { k: 'P', tex: 'P', name: 'Leistung', e: 'W', min: 1e-9, max: 1e9 },
+            { k: 't', tex: 't', name: 'Betriebsdauer', e: 'h', min: 1e-6, max: 1e6 }, { k: 'W', tex: 'W', name: 'Arbeit', e: 'kWh', min: 1e-12, max: 1e9 },
+            { k: 'k', tex: 'k', name: 'Strompreis', e: 'ct/kWh', min: 0, max: 1000 }, { k: 'K', tex: 'K', name: 'Kosten', e: '€', min: 0, max: 1e9 }
+          ],
+          beispiel: { P: 2000, U: 230, t: 3, k: 35 },
+          gleichungen: [
+            { name: 'P = U I', v: ['P', 'U', 'I'], f: function (q) { return [q.P, q.U * q.I]; }, loese: { P: function (q) { return q.U * q.I; }, U: function (q) { return q.P / q.I; }, I: function (q) { return q.P / q.U; } },
+              weg: function (k, q) { return k === 'I' ? 'I = \\frac{P}{U} = \\frac{' + tz(q.P, 2) + '\\,\\text{W}}{' + tz(q.U, 2) + '\\,\\text{V}} = ' + E(tz(q.I, 4) + '\\,\\text{A}') : k === 'P' ? 'P = U \\cdot I = ' + tz(q.U, 2) + '\\,\\text{V} \\cdot ' + tz(q.I, 4) + '\\,\\text{A} = ' + E(tz(q.P, 2) + '\\,\\text{W}') : 'U = \\frac{P}{I} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'P = U²/R', v: ['P', 'U', 'Rw'], f: function (q) { return [q.P * q.Rw, q.U * q.U]; }, loese: { Rw: function (q) { return q.U * q.U / q.P; }, P: function (q) { return q.U * q.U / q.Rw; }, U: function (q) { return Math.sqrt(q.P * q.Rw); } },
+              weg: function (k, q) { return k === 'Rw' ? 'R = \\frac{U^2}{P} = \\frac{(' + tz(q.U, 2) + '\\,\\text{V})^2}{' + tz(q.P, 2) + '\\,\\text{W}} = ' + E(tz(q.Rw, 3) + '\\,\\Omega') : k === 'P' ? 'P = \\frac{U^2}{R} = ' + E(tz(q.P, 2) + '\\,\\text{W}') : 'U = \\sqrt{P \\cdot R} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'W = P t', v: ['W', 'P', 't'], f: function (q) { return [q.W * 1000, q.P * q.t]; }, loese: { W: function (q) { return q.P * q.t / 1000; }, P: function (q) { return q.W * 1000 / q.t; }, t: function (q) { return q.W * 1000 / q.P; } },
+              weg: function (k, q) { return k === 'W' ? 'W = P \\cdot t = ' + tz(q.P / 1000, 4) + '\\,\\text{kW} \\cdot ' + tz(q.t, 3) + '\\,\\text{h} = ' + E(tz(q.W, 4) + '\\,\\text{kWh}') : k === 't' ? 't = \\frac{W}{P} = ' + E(tz(q.t, 3) + '\\,\\text{h}') : 'P = \\frac{W}{t} = ' + E(tz(q.P, 2) + '\\,\\text{W}'); } },
+            { name: 'Kosten', v: ['K', 'W', 'k'], f: function (q) { return [q.K * 100, q.W * q.k]; }, loese: { K: function (q) { return q.W * q.k / 100; }, W: function (q) { return q.k > 0 ? q.K * 100 / q.k : NaN; }, k: function (q) { return q.K * 100 / q.W; } },
+              weg: function (k, q) { return k === 'K' ? 'K = W \\cdot k = ' + tz(q.W, 4) + '\\,\\text{kWh} \\cdot ' + tz(q.k / 100, 4) + '\\,\\tfrac{\\text{€}}{\\text{kWh}} = ' + E(tz(q.K, 2) + '\\,\\text{€}') : k === 'W' ? 'W = \\frac{K}{k} = ' + E(tz(q.W, 4) + '\\,\\text{kWh}') : 'k = \\frac{K}{W} = ' + E(tz(q.k, 2) + '\\,\\tfrac{\\text{ct}}{\\text{kWh}}'); } }
+          ] },
+        { titel: 'Wirkungsgrad – in jede Richtung', hilfe: 'Beispiel: Ein Motor gibt 5,5 kW an der Welle ab und nimmt 6,4 kW auf. Er treibt über ein Getriebe mit 95 % eine Pumpe an.',
+          felder: [
+            { k: 'Pzu', tex: 'P_\\text{zu}', name: 'zugeführte Leistung', e: 'W', min: 1e-9, max: 1e10 }, { k: 'Pab', tex: 'P_\\text{ab}', name: 'abgegebene Leistung', e: 'W', min: 0, max: 1e10 },
+            { k: 'Pv', tex: 'P_\\text{v}', name: 'Verlustleistung', e: 'W', min: 0, max: 1e10 }, { k: 'eta', tex: '\\eta', name: 'Wirkungsgrad', e: '%', min: 0, max: 100 },
+            { k: 'eta2', tex: '\\eta_2', name: 'Wirkungsgrad der zweiten Stufe', e: '%', min: 0.001, max: 100 }, { k: 'etag', tex: '\\eta_\\text{ges}', name: 'Gesamtwirkungsgrad', e: '%', min: 0, max: 100 }
+          ],
+          beispiel: { Pab: 5500, Pzu: 6400, eta2: 95 },
+          gleichungen: [
+            { name: 'Wirkungsgrad', v: ['eta', 'Pab', 'Pzu'], f: function (q) { return [q.eta * q.Pzu, 100 * q.Pab]; }, loese: { eta: function (q) { return 100 * q.Pab / q.Pzu; }, Pab: function (q) { return q.eta * q.Pzu / 100; }, Pzu: function (q) { return q.eta > 0 ? 100 * q.Pab / q.eta : NaN; } },
+              weg: function (k, q) { return k === 'eta' ? '\\eta = \\frac{P_\\text{ab}}{P_\\text{zu}} = \\frac{' + tz(q.Pab, 1) + '\\,\\text{W}}{' + tz(q.Pzu, 1) + '\\,\\text{W}} = ' + E(tz(q.eta, 2) + '\\,\\%') : k === 'Pab' ? 'P_\\text{ab} = \\eta \\cdot P_\\text{zu} = ' + E(tz(q.Pab, 1) + '\\,\\text{W}') : 'P_\\text{zu} = \\frac{P_\\text{ab}}{\\eta} = ' + E(tz(q.Pzu, 1) + '\\,\\text{W}'); } },
+            { name: 'Verlust', v: ['Pv', 'Pzu', 'Pab'], f: function (q) { return [q.Pv, q.Pzu - q.Pab]; }, loese: { Pv: function (q) { return q.Pzu - q.Pab; }, Pzu: function (q) { return q.Pab + q.Pv; }, Pab: function (q) { return q.Pzu - q.Pv; } },
+              weg: function (k, q) { return k === 'Pv' ? 'P_\\text{v} = P_\\text{zu} - P_\\text{ab} = ' + tz(q.Pzu, 1) + '\\,\\text{W} - ' + tz(q.Pab, 1) + '\\,\\text{W} = ' + E(tz(q.Pv, 1) + '\\,\\text{W}') : k === 'Pzu' ? 'P_\\text{zu} = P_\\text{ab} + P_\\text{v} = ' + E(tz(q.Pzu, 1) + '\\,\\text{W}') : 'P_\\text{ab} = P_\\text{zu} - P_\\text{v} = ' + E(tz(q.Pab, 1) + '\\,\\text{W}'); } },
+            { name: 'Gesamt', v: ['etag', 'eta', 'eta2'], f: function (q) { return [q.etag * 100, q.eta * q.eta2]; }, loese: { etag: function (q) { return q.eta * q.eta2 / 100; }, eta: function (q) { return 100 * q.etag / q.eta2; }, eta2: function (q) { return q.eta > 0 ? 100 * q.etag / q.eta : NaN; } },
+              weg: function (k, q) { return k === 'etag' ? '\\eta_\\text{ges} = \\eta_1 \\cdot \\eta_2 = ' + tz(q.eta / 100, 4) + ' \\cdot ' + tz(q.eta2 / 100, 4) + ' = ' + E(tz(q.etag, 2) + '\\,\\%') : k === 'eta' ? '\\eta_1 = \\frac{\\eta_\\text{ges}}{\\eta_2} = ' + E(tz(q.eta, 2) + '\\,\\%') : '\\eta_2 = \\frac{\\eta_\\text{ges}}{\\eta_1} = ' + E(tz(q.eta2, 2) + '\\,\\%'); } }
+          ] }
+      ],
+      sammlung: [
+        ['Ladung', 'Q = I \\cdot t \\qquad Q = n \\cdot e', 'e = 1,602 · 10⁻¹⁹ C; 1 Ah = 3 600 As'],
+        ['Stromdichte', 'J = \\frac{I}{A}', 'A/mm²'],
+        ['Kreisquerschnitt', 'A = \\frac{\\pi \\cdot d^2}{4}', ''],
+        ['Leiterwiderstand', 'R = \\frac{\\rho \\cdot l}{A} = \\frac{l}{\\gamma \\cdot A}', 'Kupfer ρ = 0,0178 Ω·mm²/m, γ = 56 m/(Ω·mm²)'],
+        ['Leitfähigkeit und Leitwert', '\\gamma = \\frac{1}{\\rho} \\qquad G = \\frac{1}{R}', 'G in Siemens'],
+        ['Widerstand bei Erwärmung', 'R_\\text{w} = R_\\text{k} \\cdot (1 + \\alpha \\cdot \\Delta\\vartheta)', 'Kupfer α = 0,0039 1/K'],
+        ['Temperaturänderung', '\\Delta\\vartheta = \\vartheta_\\text{w} - \\vartheta_\\text{k}', 'in Kelvin'],
+        ['Ohmsches Gesetz', 'U = R \\cdot I', ''],
+        ['Leistung', 'P = U \\cdot I = I^2 \\cdot R = \\frac{U^2}{R}', ''],
+        ['Arbeit', 'W = P \\cdot t', '1 kWh = 3,6 · 10⁶ Ws'],
+        ['Energiekosten', 'K = W \\cdot k', 'k Arbeitspreis in €/kWh'],
+        ['Wirkungsgrad', '\\eta = \\frac{P_\\text{ab}}{P_\\text{zu}} \\qquad P_\\text{v} = P_\\text{zu} - P_\\text{ab}', 'immer kleiner als 1'],
+        ['Gesamtwirkungsgrad', '\\eta_\\text{ges} = \\eta_1 \\cdot \\eta_2 \\cdot \\eta_3 \\cdots', 'hintereinander geschaltete Stufen'],
+        ['Driftgeschwindigkeit', 'v = \\frac{I}{n \\cdot e \\cdot A}', 'Kupfer n = 8,5 · 10²⁸ freie Elektronen je m³']
+      ],
+      quellen: 'Werkstoffwerte bei 20 °C nach Tabellenbuch Elektrotechnik (gerundet). Die lineare Temperaturformel gilt in der Nähe von 20 °C; für große Temperaturbereiche ist sie nur eine Näherung. Dichte der freien Elektronen nach physikalischen Tabellen.',
+      bild: { titel: 'Simulation: Elektronen im Leiter und Kennlinie', label: 'Freie Elektronen driften durch das schwingende Kristallgitter; Widerstand über der Temperatur', animiert: !bewegungAus,
+        hoehe: function (B) { return ansicht === 'gitter' ? (B < 560 ? 280 : 260) : (B < 560 ? 300 : 300); },
+        hinweis: function (r, e) {
+          return ansicht === 'gitter' ? 'Die Atomrümpfe (grau) schwingen umso stärker, je wärmer der Leiter ist – die Elektronen (blau) stoßen öfter an und kommen schlechter voran: Der Widerstand steigt. Die Drift ist stark vergrößert dargestellt.'
+            : 'Widerstand bezogen auf 20 °C nach R = R₂₀ · (1 + α · Δϑ). Zum Vergleich gestrichelt Eisen (steigt stark) und Konstantan (Messwiderstand, bleibt nahezu gleich).';
+        },
+        zeichne: function (cx, B, H, t, r, e) { if (ansicht === 'gitter') zeichneGitter(cx, B, H, t, r, e); else zeichneKennlinie(cx, B, H, t, r, e); } }
+    });
+
+    function zeichneGitter(cx, B, H, t, r, e) {
+      const x0 = 20, x1 = B - 20, y0 = 34, y1 = H - 46, ts = t / 1000;
+      const warm = Math.max(0.15, Math.min(3, (e.th + 273) / 293));
+      cx.fillStyle = KUPFER; cx.globalAlpha = 0.12; cx.fillRect(x0, y0, x1 - x0, y1 - y0); cx.globalAlpha = 1;
+      cx.strokeStyle = KUPFER; cx.lineWidth = 2; cx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+      // Gitter
+      const ab = 34, nx = Math.floor((x1 - x0) / ab), ny = Math.floor((y1 - y0) / ab);
+      cx.fillStyle = GRAU;
+      for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) {
+        const ph = i * 1.7 + j * 2.3, a = 2.2 * warm;
+        const x = x0 + ab / 2 + i * ab + a * Math.sin(ts * 9 + ph), y = y0 + ab / 2 + j * ab + 4 + a * Math.cos(ts * 11 + ph * 1.3);
+        cx.beginPath(); cx.arc(x, y, 7, 0, 2 * Math.PI); cx.fill();
+        cx.fillStyle = '#fff'; cx.fillRect(x - 3, y - 0.8, 6, 1.6); cx.fillRect(x - 0.8, y - 3, 1.6, 6); cx.fillStyle = GRAU;
+      }
+      // Elektronen: Drift nach links (Elektronenstrom gegen die technische Richtung) mit Zittern
+      const drift = e.i > 0 ? Math.min(120, 18 + 6 * Math.sqrt(r.J) * 6 / Math.max(0.3, Math.sqrt(warm))) : 0;
+      cx.fillStyle = BLAU;
+      EL.forEach(function (q) {
+        const w = x1 - x0 - 10;
+        let x = x0 + 5 + ((q[0] * w - ts * drift * (0.7 + 0.6 * q[2])) % w + w) % w;
+        const y = y0 + 8 + q[1] * (y1 - y0 - 16) + 5 * warm * Math.sin(ts * 7 + q[2] * 20);
+        x += 4 * warm * Math.sin(ts * 13 + q[1] * 30);
+        cx.beginPath(); cx.arc(x, y, 3.4, 0, 2 * Math.PI); cx.fill();
+      });
+      // Pfeile
+      cx.strokeStyle = ORANGE; cx.fillStyle = ORANGE; cx.lineWidth = 2;
+      R.Z.pfeil(cx, x0 + 10, y0 - 14, x0 + 90, y0 - 14, 8); T(cx, 'technische Stromrichtung I = ' + zs(e.i, 2) + ' A', x0 + 98, y0 - 14, 'left', 11, true, ORANGE);
+      cx.strokeStyle = BLAU; cx.fillStyle = BLAU;
+      R.Z.pfeil(cx, x1 - 10, y1 + 16, x1 - 90, y1 + 16, 8); T(cx, 'Elektronen', x1 - 98, y1 + 16, 'right', 11, true, BLAU);
+      T(cx, r.s[1] + ', ' + zs(e.th, 0) + ' °C, R = ' + sig(r.R) + ' Ω', x0, y1 + 34, 'left', 11, true);
+    }
+
+    function zeichneKennlinie(cx, B, H, t, r, e) {
+      const ta = -50, tb = Math.max(250, Math.ceil((e.th + 30) / 50) * 50);
+      const f = function (al, th) { return 1 + al * (th - 20); };
+      const vergleich = ['kon', 'fe'].filter(function (k) { return k !== r.s[0]; }).map(stoff);
+      let ymax = 0.2;
+      [r.s].concat(vergleich).forEach(function (s) { ymax = Math.max(ymax, f(s[3], tb), f(s[3], ta)); });
+      ymax = Math.ceil(ymax * 2.2) / 2;
+      const A = R.Z.achsen(cx, 52, 22, B - 70, H - 66, ta, tb, 0, ymax, { xSchritt: 50, ySchritt: 0.5, yStellen: 1, xName: 'ϑ in °C', yName: 'R / R₂₀' });
+      cx.save(); cx.beginPath(); cx.rect(52, 22, B - 70, H - 66); cx.clip();
+      vergleich.forEach(function (s) {
+        cx.strokeStyle = GRAU; cx.setLineDash([6, 4]); cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(A.X(ta), A.Y(f(s[3], ta))); cx.lineTo(A.X(tb), A.Y(f(s[3], tb))); cx.stroke(); cx.setLineDash([]);
+        T(cx, s[1].replace(/ \(.*\)/, ''), A.X(tb) - 4, A.Y(f(s[3], tb)) - 9, 'right', 10, true, GRAU);
+      });
+      cx.strokeStyle = ROT; cx.lineWidth = 2.8; cx.beginPath(); cx.moveTo(A.X(ta), A.Y(f(r.s[3], ta))); cx.lineTo(A.X(tb), A.Y(f(r.s[3], tb))); cx.stroke();
+      cx.restore();
+      const th = Math.max(ta, Math.min(tb, e.th)), fy = Math.max(0, Math.min(ymax, f(r.s[3], th)));
+      cx.strokeStyle = F('--leise'); cx.lineWidth = 1; cx.setLineDash([3, 3]);
+      cx.beginPath(); cx.moveTo(A.X(th), A.Y(0)); cx.lineTo(A.X(th), A.Y(fy)); cx.lineTo(A.X(ta), A.Y(fy)); cx.stroke(); cx.setLineDash([]);
+      cx.fillStyle = ROT; cx.beginPath(); cx.arc(A.X(th), A.Y(fy), 5, 0, 2 * Math.PI); cx.fill();
+      T(cx, sig(r.R) + ' Ω bei ' + zs(e.th, 0) + ' °C', A.X(th) + (A.X(th) > B * 0.6 ? -10 : 10), A.Y(fy) + 18, A.X(th) > B * 0.6 ? 'right' : 'left', 12, true, ROT);
+      T(cx, r.s[1], 60, 34, 'left', 12, true, ROT);
+    }
+
+    (function () {
+      const ziel = seite && seite.bildZusatz; if (!ziel) return;
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = ANSICHTEN.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === ansicht ? 'true' : 'false');
+        k.addEventListener('click', function () { ansicht = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', ANSICHTEN[i][0] === ansicht ? 'true' : 'false'); }); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas');
+      ziel.parentNode.insertBefore(leiste, cv || ziel);
+    })();
+
+    (function () {
+      const w = document.getElementById('gg-wissen'), faq = document.querySelector('main .seo-info');
+      if (w && faq) faq.parentNode.insertBefore(w, faq);
+    })();
+  })();
+  </script>
+</body>
+</html>

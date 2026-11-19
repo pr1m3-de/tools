@@ -28,6 +28,15 @@
    "beschreibung": "Brandentstehung, Brandursachen, Rauch aus PVC, die drei Schutzziele, die vier Säulen des Brandschutzes, Feuerwiderstandsklassen, Abschottungen und Funktionserhalt."
   },
   {
+   "datei": "aufgabenblaetter/elektro/drehstrom/01-stern-dreieck-unsymmetrie.md",
+   "thema": "elektro/drehstrom.html",
+   "titel": "Drehstrom – Stern, Dreieck und Unsymmetrie",
+   "stufe": "mittel",
+   "aufgaben": 7,
+   "loesungen": 7,
+   "beschreibung": "Verkettung, Heizwiderstände in Stern und Dreieck, Motorleistung, Neutralleiterstrom bei unsymmetrischer Last, Neutralleiterunterbrechung, Außenleiterausfall und Stern-Dreieck-Anlauf."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/einbruchmeldeanlage/01-ema-grundlagen.md",
    "thema": "elektro/einbruchmeldeanlage.html",
    "titel": "Einbruchmeldeanlage – Grundlagen (Projekt Bäckerei)",
@@ -44,6 +53,15 @@
    "aufgaben": 8,
    "loesungen": 8,
    "beschreibung": "Rechnen an der Meldelinie (Spannungsteiler, zwei Brückenschaltungen), Neutralleiterunterbrechung, Melderanzahl, Melderwahl, Glasbruchmelder-Schaltungen und Alarmierung – im Stil der Abschlussprüfungen."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/grundgroessen/01-grundgroessen-und-leiterwiderstand.md",
+   "thema": "elektro/grundgroessen.html",
+   "titel": "Elektrische Grundgrößen und Leiterwiderstand",
+   "stufe": "leicht",
+   "aufgaben": 8,
+   "loesungen": 8,
+   "beschreibung": "Grundgrößen und Einheiten, Ladung, Stromdichte, Leiterwiderstand, Widerstand bei Erwärmung, Leistung mit Energiekosten und Wirkungsgrad."
   },
   {
    "datei": "aufgabenblaetter/elektro/kleintransformatoren/01-kleintrafos-und-messwandler.md",
@@ -89,6 +107,15 @@
    "aufgaben": 7,
    "loesungen": 7,
    "beschreibung": "Typenschild, Kurzschlussspannung, Bemessungsströme, Schaltgruppe Dyn5, Anzapfungen, Belastung und Kompensation, Parallelbetrieb, Öl oder Gießharz."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/wechselstrom/01-wechselstrom-und-rlc.md",
+   "thema": "elektro/wechselstrom.html",
+   "titel": "Wechselstrom und RLC-Schaltungen",
+   "stufe": "mittel",
+   "aufgaben": 8,
+   "loesungen": 8,
+   "beschreibung": "Sinusgrößen, Blindwiderstände, RL-Reihenschaltung an einer Leuchtstofflampe, RLC in Reihe, RC parallel, Saugkreis mit Güte und Spannungsüberhöhung, Tiefpass und Hochpass."
   },
   {
    "datei": "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
