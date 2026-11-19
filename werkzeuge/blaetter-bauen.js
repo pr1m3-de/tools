@@ -82,3 +82,6 @@ if (fs.existsSync(swDatei)) {
   fs.writeFileSync(swDatei, sw);
   console.log('sw.js: ' + eigene.length + ' Dateien aus aufgabenblaetter/ eingetragen, STAND neu');
 }
+
+// ---------- Stichwortsuche neu bauen (enthält die Blätter) ----------
+require('./suche-bauen.js');

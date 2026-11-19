@@ -170,6 +170,201 @@
     try { localStorage.setItem(ZULETZT_SPEICHER, JSON.stringify(a)); } catch (e) { /* privates Fenster */ }
   });
 
+  // ---------- Stichwortsuche über alle Seiten und Aufgabenblätter ----------
+  // Der Index (suchindex.json) entsteht mit node werkzeuge/suche-bauen.js und wird erst beim ersten Öffnen geladen.
+  const LUPE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>';
+  const Suche = (function () {
+    let index = null, laden = null, dlg = null, feld = null, liste = null, info = null, wurzel = '', auswahl = -1, vorher = null;
+    const ART = { a: 'Abschnitt', f: 'Formel', q: 'Frage', r: 'Rechner', b: 'Aufgabe' };
+    // gleiche Schreibweisen: FI = RCD usw. (alles normalisiert)
+    const SYNONYME = [
+      ['fi', 'rcd', 'fehlerstrom', 'fehlerstromschutzschalter'], ['ls', 'leitungsschutzschalter', 'sicherungsautomat'], ['trafo', 'transformator'],
+      ['pv', 'photovoltaik', 'solar', 'solaranlage'], ['bma', 'brandmeldeanlage', 'brandmelder'], ['ema', 'einbruchmeldeanlage', 'alarmanlage'],
+      ['gma', 'gefahrenmeldeanlage'], ['wp', 'waermepumpe'], ['nym', 'mantelleitung'], ['usv', 'unterbrechungsfreie'], ['wlan', 'funknetz', 'wifi'],
+      ['cos', 'leistungsfaktor'], ['kompensation', 'blindleistung'],
+      ['akku', 'batterie', 'speicher'], ['kabel', 'leitung'], ['ohm', 'widerstand'], ['schwingkreis', 'resonanz'], ['filter', 'tiefpass', 'hochpass', 'siebschaltung'],
+      ['drehstrom', 'dreiphasen', 'stern', 'dreieck'], ['rauchmelder', 'rauchwarnmelder'], ['loeschen', 'feuerloescher'], ['heizlast', 'heizung']
+    ];
+    function norm(t) {
+      return String(t).toLowerCase().replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
+        .normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+    }
+    function abstand1(a, b) {   // höchstens ein Tipp-, Lösch- oder Einfügefehler bzw. vertauschte Nachbarn
+      if (Math.abs(a.length - b.length) > 1) return false;
+      let i = 0; while (i < a.length && i < b.length && a[i] === b[i]) i++;
+      if (a.length === b.length) return a.slice(i + 1) === b.slice(i + 1) || (a[i] === b[i + 1] && a[i + 1] === b[i] && a.slice(i + 2) === b.slice(i + 2));
+      return a.length > b.length ? a.slice(i + 1) === b.slice(i) : a.slice(i) === b.slice(i + 1);
+    }
+    // Güte eines Suchworts in einem Text: ganzes Wort 3, Wortanfang 2, Teilwort 1,2, ein Tippfehler 0,8
+    function guete(wort, t, mitTippfehler) {
+      if (!t) return 0;
+      if (t.indexOf(' ' + wort + ' ') >= 0) return 3;
+      if (wort.length <= 2) return 0;   // ganz kurze Wörter (N, PE, FI) nur als ganzes Wort
+      if (t.indexOf(' ' + wort) >= 0) return 2;
+      if (wort.length <= 3) return 0;
+      if (wort.length >= 3 && t.indexOf(wort) >= 0) return 1.2;
+      if (mitTippfehler && wort.length >= 5) {
+        const w = t.split(' ');
+        for (let i = 0; i < w.length; i++) if (w[i].length >= 4 && (abstand1(wort, w[i]) || (w[i].length > wort.length && abstand1(wort, w[i].slice(0, wort.length))))) return 0.8;
+      }
+      return 0;
+    }
+    function varianten(wort) {
+      const v = [wort];
+      SYNONYME.forEach(function (g) { if (g.indexOf(wort) >= 0) g.forEach(function (x) { if (v.indexOf(x) < 0) v.push(x); }); });
+      return v;
+    }
+    function vorbereiten(roh) {
+      return roh.seiten.map(function (s) {
+        const p = function (t) { return ' ' + norm(t) + ' '; };
+        return { pfad: s[0], titel: s[1], text: s[2], bereich: s[3], nT: p(s[1]), nB: p(s[2]), nS: p(s[4] + ' ' + s[3]), nW: ' ' + s[5] + ' ',
+          teile: s[6].map(function (t) { return { text: t[0], art: t[1], ziel: t[2], n: p(t[0]) }; }) };
+      });
+    }
+    function suchen(anfrage) {
+      let woerter = norm(anfrage).split(' ').filter(Boolean);
+      if (!woerter.length || !index) return [];
+      // zusammengeschrieben (Q-Label → qlabel, J-Y(St)Y → jystY) als eigenes Wort mitsuchen
+      const ganz = woerter.length > 1 ? woerter.join('') : '';
+      // ganz kurze Teile (Q in Q-Label) sind kein Muss, wenn es längere gibt
+      const lang = woerter.filter(function (w) { return w.length > 2; });
+      if (lang.length) woerter = lang;
+      const gruppen = woerter.map(varianten);
+      const ergebnis = [];
+      index.forEach(function (s) {
+        let summe = 0, ok = true;
+        const teilPunkte = s.teile.map(function () { return 0; });
+        for (let g = 0; g < gruppen.length && ok; g++) {
+          let best = 0;
+          gruppen[g].forEach(function (w, vi) {
+            const f = vi ? 0.85 : 1;   // Synonym etwas schwächer
+            best = Math.max(best, f * 10 * guete(w, s.nT, true), f * 6 * guete(w, s.nS, true), f * 3 * guete(w, s.nB, false), f * 1.5 * guete(w, s.nW, w.length >= 6));
+            s.teile.forEach(function (t, i) { const q = f * guete(w, t.n, true); if (q) { teilPunkte[i] += q; best = Math.max(best, 5 * q); } });
+          });
+          if (!best) ok = false; else summe += best;
+        }
+        if (ganz) {
+          const g = Math.max(10 * guete(ganz, s.nT, false), 6 * guete(ganz, s.nS, false), 3 * guete(ganz, s.nB, false), 2 * guete(ganz, s.nW, false));
+          s.teile.forEach(function (t, i) { const q = guete(ganz, t.n, false); if (q) teilPunkte[i] += 2 * q; });
+          if (g) { summe = (ok ? summe : 0) + 2 * g; ok = true; }
+        }
+        if (!ok) return;
+        const treffer = s.teile.map(function (t, i) { return [teilPunkte[i], t]; }).filter(function (x) { return x[0] > 0; })
+          .sort(function (a, b) { return b[0] - a[0]; }).slice(0, 4).map(function (x) { return x[1]; });
+        ergebnis.push({ s: s, punkte: summe + (s.pfad.indexOf('lernen.html#blatt=') === 0 ? -1 : 0), teile: treffer });
+      });
+      return ergebnis.sort(function (a, b) { return b.punkte - a.punkte; }).slice(0, 30);
+    }
+    function link(s, t) {
+      if (s.pfad.indexOf('#') >= 0 || !t) return wurzel + s.pfad;
+      if (t.ziel) return wurzel + s.pfad + t.ziel;
+      // Textfragment: springt zur Stelle und markiert sie (Browser ohne Unterstützung öffnen einfach die Seite)
+      return wurzel + s.pfad + '#:~:text=' + encodeURIComponent(t.text).replace(/-/g, '%2D');
+    }
+    function knoten(tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; }
+    function zeigen() {
+      const q = feld.value;
+      liste.innerHTML = ''; auswahl = -1;
+      if (!index) { info.textContent = laden ? 'Suchindex wird geladen …' : 'Die Suche ist gerade nicht verfügbar.'; return; }
+      if (!norm(q)) {
+        info.textContent = 'Stichwort eingeben – gesucht wird in allen Rechnern, Formeln, Erklärungen, häufigen Fragen und Aufgabenblättern.';
+        const bsp = knoten('div', 'suche-beispiele');
+        ['Resonanz', 'Neutralleiter', 'Q-Label', 'Legionellen', 'Schleifenimpedanz', 'Subnetz', 'Sternpunkt'].forEach(function (b) {
+          const k = knoten('button', 'chip', b); k.type = 'button';
+          k.addEventListener('click', function () { feld.value = b; zeigen(); feld.focus(); });
+          bsp.append(k);
+        });
+        liste.append(bsp);
+        return;
+      }
+      const e = suchen(q);
+      info.textContent = e.length ? e.length + (e.length === 30 ? '+' : '') + ' Treffer' : 'Nichts gefunden. Anderes Wort oder kürzer versuchen (z. B. „Leitung“ statt „Leitungen“).';
+      e.forEach(function (r) {
+        const li = knoten('li', 'suche-treffer');
+        const a = knoten('a', 'suche-haupt'); a.href = link(r.s);
+        a.append(knoten('b', '', r.s.titel));
+        if (r.s.bereich) a.append(knoten('span', 'suche-bereich', r.s.bereich));
+        if (r.s.text) a.append(knoten('small', '', r.s.text.length > 150 ? r.s.text.slice(0, 147) + ' …' : r.s.text));
+        li.append(a);
+        if (r.teile.length) {
+          const u = knoten('div', 'suche-teile');
+          r.teile.forEach(function (t) {
+            const b = knoten('a', 'suche-teil'); b.href = link(r.s, t);
+            b.append(knoten('span', 'suche-art', ART[t.art] || ''), document.createTextNode(t.text));
+            u.append(b);
+          });
+          li.append(u);
+        }
+        liste.append(li);
+      });
+    }
+    function markieren(neu) {
+      const links = liste.querySelectorAll('a');
+      if (!links.length) return;
+      auswahl = Math.max(0, Math.min(links.length - 1, neu));
+      links.forEach(function (l, i) { l.classList.toggle('aktiv', i === auswahl); });
+      links[auswahl].scrollIntoView({ block: 'nearest' });
+    }
+    function bauen() {
+      dlg = knoten('div', 'suche-schicht'); dlg.hidden = true;
+      dlg.setAttribute('role', 'dialog'); dlg.setAttribute('aria-modal', 'true'); dlg.setAttribute('aria-label', 'Stichwortsuche');
+      const box = knoten('div', 'suche-box');
+      const kopf = knoten('div', 'suche-kopf');
+      const l = knoten('span', 'suche-lupe'); l.innerHTML = LUPE;
+      feld = knoten('input'); feld.type = 'search'; feld.placeholder = 'Stichwort, z. B. Resonanz, FI, Taupunkt'; feld.setAttribute('aria-label', 'Stichwort');
+      feld.setAttribute('data-nicht-merken', ''); feld.autocomplete = 'off'; feld.spellcheck = false; feld.enterKeyHint = 'search';
+      const zu = knoten('button', 'suche-zu', 'Schließen'); zu.type = 'button';
+      kopf.append(l, feld, zu);
+      info = knoten('p', 'suche-info'); info.setAttribute('aria-live', 'polite');
+      liste = knoten('ul', 'suche-liste');
+      box.append(kopf, info, liste); dlg.append(box);
+      document.body.append(dlg);
+      feld.addEventListener('input', zeigen);
+      zu.addEventListener('click', schliessen);
+      dlg.addEventListener('click', function (ev) { if (ev.target === dlg) schliessen(); });
+      dlg.addEventListener('keydown', function (ev) {
+        if (ev.key === 'Escape') { ev.preventDefault(); schliessen(); }
+        else if (ev.key === 'ArrowDown') { ev.preventDefault(); markieren(auswahl + 1); }
+        else if (ev.key === 'ArrowUp') { ev.preventDefault(); if (auswahl <= 0) { auswahl = -1; feld.focus(); } else markieren(auswahl - 1); }
+        else if (ev.key === 'Enter' && ev.target === feld) {
+          const links = liste.querySelectorAll('a'); const z = links[auswahl >= 0 ? auswahl : 0];
+          if (z) { ev.preventDefault(); location.href = z.href; }
+        }
+      });
+      liste.addEventListener('click', function (ev) { if (ev.target.closest && ev.target.closest('a')) schliessen(true); });
+    }
+    function oeffnen(w) {
+      wurzel = w || '';
+      if (!dlg) bauen();
+      vorher = document.activeElement;
+      dlg.hidden = false; document.documentElement.classList.add('suche-offen');
+      feld.focus(); feld.select();
+      if (!index && !laden) {
+        laden = fetch(wurzel + 'suchindex.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+          .then(function (roh) { index = vorbereiten(roh); laden = null; zeigen(); })
+          .catch(function () { laden = null; zeigen(); });
+      }
+      zeigen();
+    }
+    function schliessen(beimSprung) {
+      if (!dlg || dlg.hidden) return;
+      dlg.hidden = true; document.documentElement.classList.remove('suche-offen');
+      if (!beimSprung && vorher && vorher.focus) vorher.focus();
+    }
+    document.addEventListener('keydown', function (ev) {
+      const t = ev.target, schreibt = t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName));
+      if ((ev.key === 'k' || ev.key === 'K') && (ev.ctrlKey || ev.metaKey) && !ev.altKey) {
+        const k = document.querySelector('.suche-knopf'); if (!k) return;
+        ev.preventDefault(); k.click();
+      } else if (ev.key === '/' && !schreibt && !ev.ctrlKey && !ev.metaKey && !ev.altKey && (!dlg || dlg.hidden)) {
+        const k = document.querySelector('.suche-knopf'); if (!k) return;
+        ev.preventDefault(); k.click();
+      }
+    });
+    return { oeffnen: oeffnen, suchen: function (q) { return suchen(q).map(function (r) { return [r.s.pfad, r.s.titel, r.teile.map(function (t) { return t.text; })]; }); }, bereit: function () { return !!index; } };
+  })();
+  window.Suche = Suche;
+
   // ---------- Kopf- und Fußzeile ----------
   function kopfBauen() {
     const ziel = document.getElementById('seitenkopf');
@@ -193,9 +388,11 @@
           '<button type="button" class="installieren" hidden>App installieren</button>' +
           (hier === 'start' ? '<span class="netz netz-kopf" role="status"></span>' : '') +
           (hier !== 'start' && favPfadHier() ? '<button type="button" class="favorit-schalter" aria-pressed="false">' + STERN + '</button>' : '') +
+          '<button type="button" class="suche-knopf" aria-haspopup="dialog" title="Stichwortsuche (Strg + K)">' + LUPE + '<span>Suche</span></button>' +
           '<button type="button" class="themenschalter"></button>' +
         '</div>' +
       '</header>';
+    ziel.querySelector('.suche-knopf').addEventListener('click', function () { Suche.oeffnen(wurzel); });
     ziel.querySelector('.themenschalter').addEventListener('click', function () {
       themaSetzen(aktuellesThema() === 'dunkel' ? 'hell' : 'dunkel', true);
     });
