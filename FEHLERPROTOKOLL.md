@@ -10,13 +10,13 @@ Alle bisher gefundenen Fehler in der Sammlung und wie sie behoben wurden, aus de
 
 - **Ursache:** GitHub Pages schickt Dateien mit 10 Minuten Browser-Speicherzeit, auch ein 404. Wurde das Blatt während des Deploys schon einmal abgefragt, bekam der Browser bis zu 10 Minuten das alte 404 aus seinem Speicher. Dazu holte der Service Worker beim Installieren seine Dateien ebenfalls aus diesem Speicher: Ein 404 dort ließ die ganze Installation scheitern, sodass die alte Version weiterlief.
 - **Behebung:** Der Service Worker lädt beim Installieren am Browser-Speicher vorbei (`cache: 'reload'`). Aufgabenblätter und ihre Liste holt er zuerst aus dem Netz und nur ohne Netz aus dem App-Speicher. Die Lernseite versucht es bei einem Fehler einmal am Speicher vorbei. Die Fehlermeldung unterscheidet jetzt „ohne Netz“ von „auf dem Server nicht da“ und hat einen Knopf „Erneut versuchen“.
-- **PR:** Blätter zuverlässig laden
+- **PR:** #77
 
 ### Testbild versehentlich im Repo
 
 - **Ursache:** Ein Screenshot aus den Tests (`ld-e.png`, 1,3 MB) lag im Hauptordner und kam mit `git add -A` in den Commit.
 - **Behebung:** Gelöscht. Eine `.gitignore` hält Bilder und PDFs im Hauptordner künftig heraus (außer `favicon.png`).
-- **PR:** Blätter zuverlässig laden
+- **PR:** #77
 
 ### Leitungsdimensionierung: Zeile „Normquerschnitte“ abgeschnitten
 
