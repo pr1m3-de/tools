@@ -151,6 +151,25 @@
   }
   document.addEventListener('favoritenwechsel', favKnopfAktualisieren);
 
+  // ---------- Zuletzt geöffnet: die letzten Seiten für die Übersicht, nur in diesem Browser ----------
+  const ZULETZT_SPEICHER = 'zuletzt-1';
+  function zuletztLesen() {
+    let a = null;
+    try { a = JSON.parse(localStorage.getItem(ZULETZT_SPEICHER) || 'null'); } catch (e) { a = null; }
+    if (!Array.isArray(a)) return [];
+    return a.filter(function (p, i) { return typeof p === 'string' && FAV_MUSTER.test(p) && p !== 'index.html' && a.indexOf(p) === i; }).slice(0, 8);
+  }
+  window.Zuletzt = {
+    liste: zuletztLesen,
+    leeren: function () { try { localStorage.removeItem(ZULETZT_SPEICHER); } catch (e) { /* egal */ } }
+  };
+  document.addEventListener('DOMContentLoaded', function () {
+    const p = favPfadHier();
+    if (!p) return;
+    const a = [p].concat(zuletztLesen().filter(function (x) { return x !== p; })).slice(0, 8);
+    try { localStorage.setItem(ZULETZT_SPEICHER, JSON.stringify(a)); } catch (e) { /* privates Fenster */ }
+  });
+
   // ---------- Kopf- und Fußzeile ----------
   function kopfBauen() {
     const ziel = document.getElementById('seitenkopf');
