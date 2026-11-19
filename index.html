@@ -33,10 +33,49 @@
 
   <style>
     /* Übersicht: nach Bereichen gegliedert, ohne Hashtags */
-    .werkzeug { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; margin: 22px 0 6px; }
+    .werkzeug { display: flex; flex-direction: column; gap: 10px; margin: 18px 0 6px; position: sticky; top: 0; z-index: 6; background: var(--grund); padding: 10px 0 8px; }
+    .werkzeug.klebt { box-shadow: 0 10px 12px -12px rgba(0, 0, 0, .35); }
+    .such-zeile { display: flex; gap: 10px; align-items: center; }
     .werkzeug input {
-      flex: 1 1 260px; padding: 11px 16px; border: 1px solid var(--linie); border-radius: 999px; background: var(--flaeche); font-size: 1.02rem;
+      flex: 1 1 auto; min-width: 0; padding: 11px 16px; border: 1px solid var(--linie); border-radius: 999px; background: var(--flaeche); font-size: 1.02rem;
     }
+    .ansicht { display: inline-flex; border: 1px solid var(--linie); border-radius: 999px; padding: 3px; background: var(--flaeche); flex: none; }
+    .ansicht button { display: inline-flex; align-items: center; gap: 6px; border: 0; background: none; color: var(--leise); padding: 7px 12px; border-radius: 999px; cursor: pointer; font: inherit; font-family: var(--technik); font-size: .92rem; }
+    .ansicht button svg { width: 16px; height: 16px; fill: currentColor; }
+    .ansicht button[aria-pressed="true"] { background: var(--text); color: var(--grund); }
+    @media (max-width: 560px) { .ansicht button span { display: none; } .ansicht button { padding: 8px 10px; } }
+    /* Handy: Bereiche in einer wischbaren Zeile statt vieler Zeilen */
+    @media (max-width: 700px) {
+      #reiter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 0 18px 2px; scroll-padding: 0 18px; scroll-snap-type: x proximity; -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent 100%); mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent 100%); }
+      #reiter::-webkit-scrollbar { display: none; }
+      #reiter button { flex: none; scroll-snap-align: start; padding: 6px 12px; font-size: .95rem; }
+    }
+    .zuletzt { margin: 20px 0 0; }
+    .zuletzt h2 { font-size: 1rem; font-family: var(--technik); color: var(--leise); margin: 0 0 8px; font-weight: 600; }
+    .zuletzt-liste { display: flex; flex-wrap: wrap; gap: 8px; }
+    .zuletzt-liste a { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border: 1px solid var(--linie); border-left: 4px solid var(--farbe); border-radius: var(--rund-klein, 8px); background: var(--flaeche); color: var(--text); text-decoration: none; font-size: .93rem; max-width: 100%; }
+    .zuletzt-liste a:hover { border-color: var(--leise); border-left-color: var(--farbe); }
+    .zuletzt-liste a span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    /* Listenansicht */
+    .zeilen { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 6px 14px; margin-top: 10px; }
+    .zeile-huelle { position: relative; min-width: 0; }
+    .zeile { display: grid; grid-template-columns: 10px minmax(0, 1fr); gap: 2px 10px; align-items: baseline; padding: 9px 48px 9px 12px; border: 1px solid var(--linie); border-radius: var(--rund-klein, 8px); background: var(--flaeche); color: var(--text); text-decoration: none; min-height: 100%; }
+    .zeile:hover { border-color: var(--farbe); }
+    .zeile i { width: 10px; height: 10px; border-radius: 50%; background: var(--farbe); align-self: center; }
+    .zeile b { font-family: var(--technik); font-size: 1.02rem; font-weight: 600; }
+    .zeile small { grid-column: 2; color: var(--leise); font-size: .86rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    @media (max-width: 700px) { .zeile small { display: none; } .zeile { padding-top: 11px; padding-bottom: 11px; } .zeilen { gap: 6px; } }
+    .bereich.klappbar { margin-top: 10px; }
+    .bereich.klappbar summary { list-style: none; cursor: pointer; }
+    .bereich.klappbar summary::-webkit-details-marker { display: none; }
+    .bereich.klappbar .bereich-kopf { padding: 10px 2px; }
+    .bereich.klappbar .bereich-kopf h2 { font-size: 1.2rem; }
+    .bereich.klappbar .bereich-kopf::after { content: ''; width: 9px; height: 9px; border-right: 2px solid var(--leise); border-bottom: 2px solid var(--leise); transform: rotate(45deg); margin: -4px 4px 0 2px; transition: transform .15s; }
+    .bereich.klappbar details[open] .bereich-kopf::after { transform: rotate(-135deg); margin-top: 4px; }
+    .zeile-huelle .stern { top: 50%; bottom: auto; right: 8px; transform: translateY(-50%); width: 32px; height: 32px; }
+    .mehr { display: flex; justify-content: center; margin: 12px 0 0; }
+    .mehr button { border: 1px dashed var(--linie); background: none; color: var(--text); border-radius: 999px; padding: 8px 16px; font: inherit; font-family: var(--technik); cursor: pointer; }
+    .mehr button:hover { border-style: solid; border-color: var(--farbe); }
     .reiter { display: flex; flex-wrap: wrap; gap: 6px; }
     .reiter button {
       display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--linie);
@@ -87,8 +126,14 @@
     </section>
 
     <div class="werkzeug" id="bereiche">
+      <div class="such-zeile">
+        <input type="search" id="suchfeld" placeholder="Suchen, z. B. Spannungsfall, Legionellen, Kräfte" aria-label="Seiten durchsuchen">
+        <div class="ansicht" role="group" aria-label="Darstellung">
+          <button type="button" data-ansicht="karten" aria-pressed="true" title="Große Karten mit Formel"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg><span>Karten</span></button>
+          <button type="button" data-ansicht="liste" aria-pressed="false" title="Kompakte Liste"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="16" height="3" rx="1.5"/><rect x="2" y="8.5" width="16" height="3" rx="1.5"/><rect x="2" y="14" width="16" height="3" rx="1.5"/></svg><span>Liste</span></button>
+        </div>
+      </div>
       <div class="reiter" id="reiter" role="group" aria-label="Bereich wählen"></div>
-      <input type="search" id="suchfeld" placeholder="Suchen, z. B. Spannungsfall, Legionellen, Kräfte" aria-label="Seiten durchsuchen">
     </div>
 
     <div id="liste"></div>
@@ -1132,6 +1177,26 @@
     }
     function istFavorit(e) { return !!window.Favoriten && window.Favoriten.ist(e.pfad); }
 
+    // Darstellung: große Karten oder kompakte Liste; ohne eigene Wahl auf dem Handy die Liste
+    const ANSICHT = 'uebersicht-ansicht';
+    let ansicht = '';
+    try { ansicht = localStorage.getItem(ANSICHT) || ''; } catch (x) { /* ohne Speicher */ }
+    if (ansicht !== 'karten' && ansicht !== 'liste') ansicht = window.matchMedia && window.matchMedia('(max-width: 700px)').matches ? 'liste' : 'karten';
+    const ansichtKnoepfe = Array.prototype.slice.call(document.querySelectorAll('[data-ansicht]'));
+    function ansichtZeigen() { ansichtKnoepfe.forEach(function (k) { k.setAttribute('aria-pressed', String(k.getAttribute('data-ansicht') === ansicht)); }); }
+    ansichtKnoepfe.forEach(function (k) {
+      k.addEventListener('click', function () {
+        ansicht = k.getAttribute('data-ansicht') === 'liste' ? 'liste' : 'karten';
+        try { localStorage.setItem(ANSICHT, ansicht); } catch (x) { /* ohne Speicher */ }
+        ansichtZeigen(); zeigen();
+      });
+    });
+    ansichtZeigen();
+    // Schatten unter der Suchleiste, sobald sie oben klebt
+    const leiste = document.getElementById('bereiche');
+    const kleben = function () { leiste.classList.toggle('klebt', leiste.getBoundingClientRect().top <= 0.5 && window.scrollY > 40); };
+    window.addEventListener('scroll', kleben, { passive: true });
+
     let auswahl = '';
     try { if (sessionStorage.getItem(FAV_AUSWAHL) === FAV) auswahl = FAV; } catch (x) { /* ohne Speicher */ }
     const reiter = document.getElementById('reiter');
@@ -1164,6 +1229,34 @@
       return (!auswahl || (auswahl === FAV ? istFavorit(e) : imBereich(e, auswahl))) && (!suche || suche.split(/\s+/).every(function (w) { return alles.indexOf(w) >= 0; }));
     }
 
+    function stern(e) {
+      const st = document.createElement('button');
+      st.type = 'button';
+      st.className = 'stern';
+      st.setAttribute('data-pfad', e.pfad);
+      st.innerHTML = window.Favoriten ? window.Favoriten.stern : '\u2605';
+      const an = istFavorit(e);
+      st.setAttribute('aria-pressed', String(an));
+      st.setAttribute('aria-label', (an ? 'Aus den Favoriten entfernen: ' : 'Zu den Favoriten: ') + e.titel);
+      st.title = an ? 'Aus den Favoriten entfernen' : 'Als Favorit merken';
+      st.addEventListener('click', function () { if (window.Favoriten) window.Favoriten.umschalten(e.pfad); });
+      return st;
+    }
+    function zeile(e) {
+      const a = document.createElement('a');
+      a.className = 'zeile'; a.href = e.pfad; a.style.setProperty('--farbe', farbe(e.bereich));
+      const i = document.createElement('i'); i.setAttribute('aria-hidden', 'true');
+      const b = document.createElement('b'); b.textContent = e.titel;
+      const k = document.createElement('small'); k.textContent = e.text;
+      a.append(i, b, k);
+      const huelle = document.createElement('div'); huelle.className = 'zeile-huelle';
+      huelle.append(a, stern(e));
+      return huelle;
+    }
+    // Behälter je nach Darstellung
+    function behaelter() { const d = document.createElement('div'); d.className = ansicht === 'liste' ? 'zeilen' : 'raster'; return d; }
+    function eintrag(e) { return ansicht === 'liste' ? zeile(e) : karte(e); }
+
     function karte(e) {
       const a = document.createElement('a');
       a.className = 'karte';
@@ -1181,17 +1274,7 @@
       a.append(h, p, w);
       const huelle = document.createElement('div');
       huelle.className = 'karte-huelle';
-      const st = document.createElement('button');
-      st.type = 'button';
-      st.className = 'stern';
-      st.setAttribute('data-pfad', e.pfad);
-      st.innerHTML = window.Favoriten ? window.Favoriten.stern : '\u2605';
-      const an = istFavorit(e);
-      st.setAttribute('aria-pressed', String(an));
-      st.setAttribute('aria-label', (an ? 'Aus den Favoriten entfernen: ' : 'Zu den Favoriten: ') + e.titel);
-      st.title = an ? 'Aus den Favoriten entfernen' : 'Als Favorit merken';
-      st.addEventListener('click', function () { if (window.Favoriten) window.Favoriten.umschalten(e.pfad); });
-      huelle.append(a, st);
+      huelle.append(a, stern(e));
       return huelle;
     }
 
@@ -1226,16 +1309,28 @@
       const liste = favoriten().filter(passt);
       if (!liste.length) return false;
       const abschnitt = abschnittBauen('Favoriten', '#F2A541', liste, 'favoriten');
-      const raster = document.createElement('div');
-      raster.className = 'raster';
+      const raster = behaelter();
       raster.style.marginTop = '14px';
-      liste.forEach(function (e) { raster.append(karte(e)); });
+      liste.forEach(function (e) { raster.append(eintrag(e)); });
       abschnitt.append(raster);
       if (mitHinweis) { const t = document.createElement('p'); t.className = 'fav-hinweis'; t.textContent = 'Nur in diesem Browser gespeichert. Stern antippen, um eine Seite zu entfernen.'; abschnitt.append(t); }
       ziel.append(abschnitt);
       return true;
     }
 
+    const schmal = function () { return !!(window.matchMedia && window.matchMedia('(max-width: 700px)').matches); };
+    let offen = [];
+    try { const o = JSON.parse(sessionStorage.getItem('uebersicht-offen') || '[]'); if (Array.isArray(o)) offen = o.filter(function (x) { return typeof x === 'string'; }).slice(0, 30); } catch (x) { offen = []; }
+    const VORSCHAU = window.matchMedia && window.matchMedia('(max-width: 700px)').matches ? 2 : 4;
+    function zuletztZeigen(ziel) {
+      const liste = (window.Zuletzt ? window.Zuletzt.liste() : []).map(function (p) { return eintraege.filter(function (e) { return e.pfad === p; })[0]; }).filter(Boolean).slice(0, 6);
+      if (!liste.length) return;
+      const ab = document.createElement('section'); ab.className = 'zuletzt'; ab.setAttribute('aria-label', 'Zuletzt geöffnet');
+      const h = document.createElement('h2'); h.textContent = 'Zuletzt geöffnet';
+      const l = document.createElement('div'); l.className = 'zuletzt-liste';
+      liste.forEach(function (e) { const a = document.createElement('a'); a.href = e.pfad; a.style.setProperty('--farbe', farbe(e.bereich)); const sp = document.createElement('span'); sp.textContent = e.titel; a.append(sp); l.append(a); });
+      ab.append(h, l); ziel.append(ab);
+    }
     function zeigen() {
       const ziel = document.getElementById('liste');
       ziel.innerHTML = '';
@@ -1253,7 +1348,8 @@
         ziel.innerHTML = '<p class="leer">Nichts gefunden. Anderen Begriff versuchen oder „Alle“ wählen.</p>';
         return;
       }
-      if (!auswahl && !suche) favoritenZeigen(ziel, false);   // Übersicht: Favoriten zuerst
+      const uebersicht = !auswahl && !suche;
+      if (uebersicht) { zuletztZeigen(ziel); favoritenZeigen(ziel, false); }   // Übersicht: zuletzt geöffnet und Favoriten zuerst
       bereiche.forEach(function (b) {
         if (auswahl && b !== auswahl) return;   // gewählter Reiter: nur dieser Bereich
         const liste = treffer.filter(function (e) { return imBereich(e, b); });
@@ -1264,16 +1360,37 @@
         GRUPPEN.concat(liste.map(function (e) { return gruppeIn(e, b); })).forEach(function (gr) {
           if (gruppen.indexOf(gr) < 0 && liste.some(function (e) { return gruppeIn(e, b) === gr; })) gruppen.push(gr);
         });
+        // Übersicht mit Karten: je Bereich nur eine Vorschau, der Rest über „Alle zeigen“
+        if (uebersicht && ansicht === 'karten' && liste.length > VORSCHAU) {
+          const raster = behaelter(); raster.style.marginTop = '14px';
+          gruppen.forEach(function (gr) { liste.filter(function (e) { return gruppeIn(e, b) === gr; }).forEach(function (e) { if (raster.childNodes.length < VORSCHAU) raster.append(eintrag(e)); }); });
+          abschnitt.append(raster);
+          const mehr = document.createElement('div'), k = document.createElement('button');
+          mehr.className = 'mehr'; k.type = 'button'; k.textContent = 'Alle ' + liste.length + ' Seiten in ' + b + ' zeigen';
+          k.addEventListener('click', function () { auswahl = b; reiterBauen(); zeigen(); leiste.scrollIntoView({ block: 'start' }); });
+          mehr.append(k); abschnitt.append(mehr);
+          ziel.append(abschnitt);
+          return;
+        }
         gruppen.forEach(function (gr) {
           if (gr && gruppen.length > 1) {
             const t = document.createElement('div'); t.className = 'gruppe-titel'; t.textContent = gr;
             abschnitt.append(t);
           }
-          const raster = document.createElement('div');
-          raster.className = 'raster';
-          liste.filter(function (e) { return gruppeIn(e, b) === gr; }).forEach(function (e) { raster.append(karte(e)); });
+          const raster = behaelter();
+          liste.filter(function (e) { return gruppeIn(e, b) === gr; }).forEach(function (e) { raster.append(eintrag(e)); });
           abschnitt.append(raster);
         });
+        // Handy, Liste, Übersicht: Bereiche zum Aufklappen, damit die Seite kurz bleibt
+        if (uebersicht && ansicht === 'liste' && schmal()) {
+          const kopf = abschnitt.firstChild, det = document.createElement('details'), sum = document.createElement('summary');
+          det.open = offen.indexOf(b) >= 0;
+          det.addEventListener('toggle', function () { offen = offen.filter(function (x) { return x !== b; }); if (det.open) offen.push(b); try { sessionStorage.setItem('uebersicht-offen', JSON.stringify(offen)); } catch (x) { /* egal */ } });
+          sum.append(kopf);
+          while (abschnitt.firstChild) det.append(abschnitt.firstChild);
+          det.insertBefore(sum, det.firstChild);
+          abschnitt.append(det); abschnitt.classList.add('klappbar');
+        }
         ziel.append(abschnitt);
       });
     }
