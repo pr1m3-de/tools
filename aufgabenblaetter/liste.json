@@ -14,9 +14,18 @@
    "thema": "brandschutz/brandmeldeanlage.html",
    "titel": "Brandmeldeanlage – Aufbau und Planung",
    "stufe": "mittel",
-   "aufgaben": 7,
-   "loesungen": 7,
-   "beschreibung": "Rechtsgrundlagen, Schutzziele, Ablauf einer Brandmeldung, Energieversorgung, Meldebereiche und Meldergruppen, Leitungen, Rauchwarnmelder in Wohnungen und ein Brandschutzkonzept."
+   "aufgaben": 6,
+   "loesungen": 6,
+   "beschreibung": "Rechtsgrundlagen, Schutzziele, Ablauf einer Brandmeldung, Energieversorgung, Meldebereiche und Meldergruppen, Leitungen, Brandmelder und ein Brandschutzkonzept."
+  },
+  {
+   "datei": "aufgabenblaetter/brandschutz/brandsimulation/01-rauchwarnmelder.md",
+   "thema": "brandschutz/brandsimulation.html",
+   "titel": "Rauchwarnmelder in der Wohnung",
+   "stufe": "leicht",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Mit der Raumbrand-Simulation untersuchen, warum Rauchwarnmelder Leben retten; wo sie hingehören, welche Melder geeignet sind, Wartung und Pflicht je Bundesland."
   },
   {
    "datei": "aufgabenblaetter/brandschutz/elektrischer-brandschutz/01-brandschutz-grundlagen.md",

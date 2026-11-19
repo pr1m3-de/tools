@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="Brandsimulation">
   <meta name="twitter:description" content="Raumbrand mit Rauchschicht und Flashover, Gebäudebrand mit Flucht und Feuerwehr, Waldbrand mit Wind und Funkenflug, Löschtrainer, Feuerwiderstand von Stahl, Holz und Beton sowie Gasexplosionen.">
   <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/brandschutz/brandsimulation.html#seite","name":"Brandsimulation","url":"https://tools.pr1m3.de/brandschutz/brandsimulation.html","inLanguage":"de","description":"Raumbrand mit Rauchschicht und Flashover, Gebäudebrand mit Flucht und Feuerwehr, Waldbrand mit Wind und Funkenflug, Löschtrainer, Feuerwiderstand von Stahl, Holz und Beton sowie Gasexplosionen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/brandschutz/brandsimulation.html#pfad"},"dateModified":"2026-11-04"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/brandschutz/brandsimulation.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Brandsimulation","item":"https://tools.pr1m3.de/brandschutz/brandsimulation.html"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/brandschutz/brandsimulation.html#seite","name":"Brandsimulation","url":"https://tools.pr1m3.de/brandschutz/brandsimulation.html","inLanguage":"de","description":"Raumbrand mit Rauchschicht und Flashover, Gebäudebrand mit Flucht und Feuerwehr, Waldbrand mit Wind und Funkenflug, Löschtrainer, Feuerwiderstand von Stahl, Holz und Beton sowie Gasexplosionen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/brandschutz/brandsimulation.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/brandschutz/brandsimulation.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Brandsimulation","item":"https://tools.pr1m3.de/brandschutz/brandsimulation.html"}]}]}</script>
   <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
@@ -158,6 +158,11 @@
     .tabelle td small { display: block; color: var(--leise); font-size: .8rem; }
     .tabelle-rahmen { overflow-x: auto; }
     .anmerkung { color: var(--leise); font-size: .85rem; margin: 12px 0 0; }
+    .rwm-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .rwm-karte { border: 1px solid var(--linie); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .rwm-karte h4 { margin: 2px 0 4px; font-family: var(--technik); font-size: 1rem; }
+    .rwm-karte p { margin: 4px 0; font-size: .92rem; line-height: 1.45; }
+    .rwm caption { caption-side: top; text-align: left; color: var(--leise); font-size: .85rem; padding: 0 0 6px; }
     .ansicht-kopf { margin: 4px 0 14px; color: var(--leise); max-width: 80ch; }
     ol.weg li > * { grid-column: 2; }
     .einst .name, .kachel .titel { hyphens: auto; overflow-wrap: anywhere; }
@@ -230,6 +235,31 @@
           </details>
         </section>
       </div>
+      <section class="tafel abstand rwm" aria-labelledby="h-rwm">
+        <h2 id="h-rwm">Rauchwarnmelder in der Wohnung</h2>
+        <p class="hilfe">Was die Vorlagen „Schlafzimmer nachts“ mit und ohne Rauchmelder zeigen: Wer schläft, riecht keinen Rauch. Ein Rauchwarnmelder weckt rechtzeitig – deshalb ist er in allen Ländern Pflicht.</p>
+        <div class="rwm-raster">
+          <article class="rwm-karte"><h4>Wo?</h4><p>Nach den Landesbauordnungen mindestens in allen Schlafräumen und Kinderzimmern sowie in Fluren, die als Rettungsweg aus Aufenthaltsräumen dienen; manche Länder fordern mehr (z. B. alle Aufenthaltsräume). Montage an der Decke, möglichst in der Raummitte, mindestens 50 cm von Wänden und Einbauten.</p></article>
+          <article class="rwm-karte"><h4>Geeignete Melder</h4><p>Geprüft nach DIN EN 14604 mit CE-Kennzeichnung. Das <b>Q-Label</b> zeigt zusätzlich besondere Qualität: fest eingebaute Batterie mit mindestens 10 Jahren Lebensdauer, erhöhte Stabilität gegen Täuschungsalarme und Umwelteinflüsse.</p></article>
+          <article class="rwm-karte"><h4>Wartung</h4><p>Einbau, Betrieb und Instandhaltung nach DIN 14676: Inspektion und Wartung in der Regel alle 12 Monate (mit Toleranz) oder per Ferninspektion; Funktionsprüfung, Raucheindringöffnungen frei, Batterie. Nach etwa 10 Jahren austauschen. Zuständig für den Einbau ist der Eigentümer; die Wartung je nach Land der Eigentümer oder der Bewohner.</p></article>
+        </div>
+        <div class="rahmen"><table class="tabelle">
+          <caption>Rauchwarnmelderpflicht seit (Neubauten / Bestandsbauten), Quelle: Verbraucherzentrale</caption>
+          <thead><tr><th>Land</th><th>Neubau</th><th>Bestand</th><th>Land</th><th>Neubau</th><th>Bestand</th></tr></thead>
+          <tbody>
+            <tr><td>Baden-Württemberg</td><td>2013</td><td>2015</td><td>Niedersachsen</td><td>2012</td><td>2016</td></tr>
+            <tr><td>Bayern</td><td>2013</td><td>2018</td><td>Nordrhein-Westfalen</td><td>2013</td><td>2017</td></tr>
+            <tr><td>Berlin</td><td>2017</td><td>2021</td><td>Rheinland-Pfalz</td><td>2003</td><td>2012</td></tr>
+            <tr><td>Brandenburg</td><td>2016</td><td>2021</td><td>Saarland</td><td>2004</td><td>2017</td></tr>
+            <tr><td>Bremen</td><td>2010</td><td>2016</td><td>Sachsen</td><td>2016</td><td>2024</td></tr>
+            <tr><td>Hamburg</td><td>2006</td><td>2011</td><td>Sachsen-Anhalt</td><td>2009</td><td>2016</td></tr>
+            <tr><td>Hessen</td><td>2005</td><td>2015</td><td>Schleswig-Holstein</td><td>2005</td><td>2011</td></tr>
+            <tr><td>Mecklenburg-Vorpommern</td><td>2006</td><td>2010</td><td>Thüringen</td><td>2008</td><td>2019</td></tr>
+          </tbody>
+        </table></div>
+        <p class="hilfe">Seit 2024 gilt die Pflicht damit in allen 16 Ländern auch für Bestandswohnungen. Rauchwarnmelder sind kein Teil einer <a href="brandmeldeanlage.html">Brandmeldeanlage</a>: Sie warnen nur vor Ort und melden nichts an eine Zentrale oder die Feuerwehr.</p>
+
+      </section>
     </section>
 
     <!-- ============================================================ Gebäude -->

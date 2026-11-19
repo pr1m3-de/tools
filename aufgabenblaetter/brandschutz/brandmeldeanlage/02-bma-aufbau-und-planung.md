@@ -1,7 +1,7 @@
 ---
 titel: Brandmeldeanlage – Aufbau und Planung
 stufe: mittel
-beschreibung: Rechtsgrundlagen, Schutzziele, Ablauf einer Brandmeldung, Energieversorgung, Meldebereiche und Meldergruppen, Leitungen, Rauchwarnmelder in Wohnungen und ein Brandschutzkonzept.
+beschreibung: Rechtsgrundlagen, Schutzziele, Ablauf einer Brandmeldung, Energieversorgung, Meldebereiche und Meldergruppen, Leitungen, Brandmelder und ein Brandschutzkonzept.
 ---
 # Brandmeldeanlage – Aufbau und Planung
 
@@ -59,21 +59,7 @@ Der Melder erkennt Rauch oder Wärme und meldet an die Brandmelderzentrale. Sie 
 3. Ein Melder mit mehreren Sensoren und gemeinsamer Auswertung, z. B. optisch und thermisch; optisch, thermisch und Gas (CO).
 :::
 
-## Aufgabe 6 – Rauchwarnmelder in Wohnungen
-
-1. In welchen Räumen müssen mindestens Rauchwarnmelder angebracht werden?
-2. Woran erkennt man einen geeigneten Rauchwarnmelder?
-3. Wie oft muss er geprüft werden, und nach welcher Norm?
-4. Ist ein Rauchwarnmelder Teil einer Brandmeldeanlage? Begründe.
-
-:::lösung
-1. Schlafräume, Kinderzimmer und Flure, die als Rettungsweg aus Aufenthaltsräumen dienen (Landesbauordnung).
-2. Prüfung nach DIN EN 14604 mit CE-Kennzeichnung; besser mit Q-Label (fest eingebaute 10-Jahres-Batterie, geringere Täuschungsanfälligkeit).
-3. In der Regel jährlich nach DIN 14676 (Inspektion, Funktionsprüfung, Raucheintritt frei).
-4. Nein. Er warnt nur vor Ort mit eigener Sirene und meldet nichts an eine Zentrale oder die Feuerwehr.
-:::
-
-## Aufgabe 7 – Brandschutzkonzept Bäckerei
+## Aufgabe 6 – Brandschutzkonzept Bäckerei
 
 Erstelle für die Bäckerei Gugelhupfer (Backstube 94,5 m², Verkaufsraum 35 m², Rohstofflager 13,5 m², Raumhöhe 3 m) einen Vorschlag: Melderart und Anzahl je Raum, Handfeuermelder, Zentrale. Darfst du als Elektrofachkraft die Anlage selbst planen und errichten?
 
