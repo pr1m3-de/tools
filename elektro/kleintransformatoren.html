@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kleintransformatoren und Messwandler – Formeln &amp; Rechner</title>
+  <meta name="description" content="Strom- und Spannungswandler berechnen: Übersetzung, Bürde mit Messleitung, Auslastung und Durchfädeln; Spartransformator mit Bau- und Durchgangsleistung; Arten der Kleintransformatoren von Sicherheits- bis Klingeltransformator mit Normen und Merkmalen.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/kleintransformatoren.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Kleintransformatoren und Messwandler">
+  <meta property="og:description" content="Strom- und Spannungswandler berechnen: Übersetzung, Bürde mit Messleitung, Auslastung und Durchfädeln; Spartransformator mit Bau- und Durchgangsleistung; Arten der Kleintransformatoren von Sicherheits- bis Klingeltransformator mit Normen und Merkmalen.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/kleintransformatoren.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kleintransformatoren und Messwandler">
+  <meta name="twitter:description" content="Strom- und Spannungswandler berechnen: Übersetzung, Bürde mit Messleitung, Auslastung und Durchfädeln; Spartransformator mit Bau- und Durchgangsleistung; Arten der Kleintransformatoren von Sicherheits- bis Klingeltransformator mit Normen und Merkmalen.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/kleintransformatoren.html#seite","name":"Kleintransformatoren und Messwandler","url":"https://tools.pr1m3.de/elektro/kleintransformatoren.html","inLanguage":"de","description":"Strom- und Spannungswandler berechnen: Übersetzung, Bürde mit Messleitung, Auslastung und Durchfädeln; Spartransformator mit Bau- und Durchgangsleistung; Arten der Kleintransformatoren von Sicherheits- bis Klingeltransformator mit Normen und Merkmalen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/kleintransformatoren.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/kleintransformatoren.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Kleintransformatoren und Messwandler","item":"https://tools.pr1m3.de/elektro/kleintransformatoren.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/kleintransformatoren.html#fragen","mainEntity":[{"@type":"Question","name":"Warum darf ein Stromwandler nicht offen betrieben werden?","acceptedAnswer":{"@type":"Answer","text":"Ein Stromwandler arbeitet praktisch im Kurzschluss. Fehlt die Bürde, wirkt der ganze Primärstrom als Magnetisierungsstrom: Der Kern geht in die Sättigung, an den Sekundärklemmen entstehen gefährlich hohe Spannungsspitzen, und der Wandler wird heiß. Vor dem Abklemmen des Messgeräts deshalb die Klemmen S1 und S2 kurzschließen. Aus demselben Grund sitzt im Sekundärkreis keine Sicherung."}},{"@type":"Question","name":"Was ist die Bürde eines Messwandlers?","acceptedAnswer":{"@type":"Answer","text":"Die Bürde ist alles, was am Sekundärkreis hängt: Messgeräte, Zähler und die Messleitung. Der Wandler hält seine Genauigkeitsklasse nur, solange die Bürde seine Bemessungsleistung (in VA) nicht übersteigt. Bei einem 5-A-Wandler kostet schon eine lange, dünne Messleitung viel Leistung, deshalb nimmt man bei großen Entfernungen 1-A-Wandler."}},{"@type":"Question","name":"Darf man mit einem Spartransformator Schutzkleinspannung erzeugen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Beim Spartransformator sind Eingang und Ausgang über die gemeinsame Wicklung leitend verbunden. Für SELV und PELV braucht es einen Sicherheitstransformator mit sicherer Trennung nach DIN EN 61558-2-6."}},{"@type":"Question","name":"Wozu das Durchfädeln beim Stromwandler?","acceptedAnswer":{"@type":"Answer","text":"Führt man den Primärleiter n-mal durch den Wandler, wirkt der n-fache Strom. Ein 60/5-A-Wandler misst mit zwei Durchgängen wie ein 30/5-A-Wandler – so lassen sich kleine Ströme mit einem großen Wandler genauer messen."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/kleintransformatoren.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .arten { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .art-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .art-karte h4 { margin: 0 0 2px; font-family: var(--technik); font-size: 1.02rem; display: flex; align-items: center; gap: 10px; }
+    .art-karte svg { width: 42px; height: 30px; flex: none; color: var(--text); }
+    .art-karte .norm { color: var(--leise); font-size: .82rem; margin: 0 0 4px; }
+    .art-karte p { margin: 4px 0; font-size: .92rem; line-height: 1.45; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand" aria-labelledby="h-arten">
+      <h2 id="h-arten">Arten von Kleintransformatoren</h2>
+      <p class="hilfe">Kleintransformatoren nach DIN EN 61558 haben Bemessungsleistungen bis 25 kVA einphasig bzw. 40 kVA mehrphasig (ältere Lehrbücher nennen 16 kVA), Eingangsspannungen bis 1 000 V und Frequenzen bis 500 Hz. Anforderungen nach der Normenreihe DIN EN 61558.</p>
+      <div class="arten" id="arten"></div>
+      <h3 class="zwischen">Verhalten bei Kurzschluss</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Bauart</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>nicht kurzschlussfest</td><td>muss durch eine vorgeschaltete Schutzeinrichtung (Sicherung, Schutzschalter nach Typenschild) gegen Kurzschluss und Überlast geschützt werden</td></tr>
+          <tr><td>bedingt kurzschlussfest</td><td>hat eine eingebaute Schutzeinrichtung (Sicherung, Thermoschalter), die bei Überlast abschaltet</td></tr>
+          <tr><td>unbedingt kurzschlussfest</td><td>so hoher innerer Widerstand (Streuung), dass auch ein Dauerkurzschluss keinen Schaden anrichtet – keine Absicherung nötig</td></tr>
+          <tr><td>fail-safe</td><td>fällt bei Überlastung bleibend aus, ohne gefährlich zu werden (z. B. Spielzeugtransformatoren)</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum darf ein Stromwandler nicht offen betrieben werden?</summary><p>Ein Stromwandler arbeitet praktisch im Kurzschluss. Fehlt die Bürde, wirkt der ganze Primärstrom als Magnetisierungsstrom: Der Kern geht in die Sättigung, an den Sekundärklemmen entstehen gefährlich hohe Spannungsspitzen, und der Wandler wird heiß. Vor dem Abklemmen des Messgeräts deshalb die Klemmen S1 und S2 kurzschließen. Aus demselben Grund sitzt im Sekundärkreis keine Sicherung.</p></details>
+        <details><summary>Was ist die Bürde eines Messwandlers?</summary><p>Die Bürde ist alles, was am Sekundärkreis hängt: Messgeräte, Zähler und die Messleitung. Der Wandler hält seine Genauigkeitsklasse nur, solange die Bürde seine Bemessungsleistung (in VA) nicht übersteigt. Bei einem 5-A-Wandler kostet schon eine lange, dünne Messleitung viel Leistung, deshalb nimmt man bei großen Entfernungen 1-A-Wandler.</p></details>
+        <details><summary>Darf man mit einem Spartransformator Schutzkleinspannung erzeugen?</summary><p>Nein. Beim Spartransformator sind Eingang und Ausgang über die gemeinsame Wicklung leitend verbunden. Für SELV und PELV braucht es einen Sicherheitstransformator mit sicherer Trennung nach DIN EN 61558-2-6.</p></details>
+        <details><summary>Wozu das Durchfädeln beim Stromwandler?</summary><p>Führt man den Primärleiter n-mal durch den Wandler, wirkt der n-fache Strom. Ein 60/5-A-Wandler misst mit zwei Durchgängen wie ein 30/5-A-Wandler – so lassen sich kleine Ströme mit einem großen Wandler genauer messen.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const T = function (cx, s, x, y, a, g, f, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!f, c); };
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#F2A541', KUPFER = '#C87533', GRAU = '#6B7785';
+    const GAMMA = 56;   // Leitfähigkeit Kupfer in m/(Ω·mm²)
+    const strom = function (e) { return e.wandler === 'strom'; };
+    const zs = function (v, n) { let t = z(v, n === undefined ? 3 : n); if (t.indexOf(',') >= 0) t = t.replace(/0+$/, '').replace(/,$/, ''); return t; };
+
+    // ---------- Arten von Kleintransformatoren ----------
+    const ARTEN = [
+      ['Sicherheitstransformator', '61558-2-6', '#2F9E44', 'Ausgang höchstens 50 V Wechselspannung (SELV/PELV), Eingang und Ausgang sicher getrennt (doppelte oder verstärkte Isolierung).', 'Schutzkleinspannung auf Baustellen, in Kesseln, für Handleuchten und Spielzeug.', 'schild'],
+      ['Trenntransformator', '61558-2-4', BLAU, 'Meist 230/230 V (ü ≈ 1); Wicklungen besonders gut gegeneinander isoliert, Ausgang nicht geerdet.', 'Schutztrennung für ein Gerät, z. B. bei Reparaturen oder in engen leitfähigen Räumen.', 'trenn'],
+      ['Steuertransformator', '61558-2-2', '#7048E8', 'Speist Steuerstromkreise mit z. B. 24 V oder 230 V, kurzzeitig hohe Einschaltströme von Schützen.', 'Steuerungen von Maschinen und Anlagen.', 'dreieck'],
+      ['Klingeltransformator', '61558-2-8', '#D4A017', 'Ausgang bis 24 V, im Leerlauf höchstens 33 V; kurzschlussfest; Ausgangsklemmen zugänglich, ohne die Eingangsklemmen freizulegen.', 'Klingel- und Türsprechanlagen, Türöffner.', 'glocke'],
+      ['Spielzeugtransformator', '61558-2-7', '#E4572E', 'Ausgang bis 24 V, Schutzklasse II, meist fail-safe.', 'Modellbahnen, elektrisches Spielzeug.', 'wagen'],
+      ['Handleuchtentransformator', '61558-2-9', '#0E6B6A', 'Sicherheitstransformator für Handleuchten der Schutzklasse III, schutzisoliert und spritzwasser- bzw. wassergeschützt.', 'Arbeiten in Behältern, Kesseln, feuchter Umgebung.', 'leuchte'],
+      ['Medizinischer Trenntransformator', '61558-2-15', '#9C36B5', 'Speist das IT-System in medizinisch genutzten Räumen der Gruppe 2 mit Isolationsüberwachung; sehr geringe Ableitströme.', 'Operationssäle, Intensivstationen.', 'med'],
+      ['Spartransformator', '61558-2-13', GRAU, 'Nur eine Wicklung mit Anzapfung – keine galvanische Trennung, nicht für Schutzkleinspannung. Kleiner und leichter als ein Transformator mit zwei Wicklungen.', 'Anpassen ähnlicher Spannungen, z. B. 230 V auf 210 V, Stelltransformatoren, Motoranlauf.', 'spar'],
+      ['Streufeldtransformator', '–', '#8A6D3B', 'Ein Streujoch lenkt einen Teil des Flusses an der Ausgangswicklung vorbei: hoher innerer Widerstand, spannungsweich, kurzschlussfest, hohe Kurzschlussspannung.', 'Schweißtransformatoren, Zündtransformatoren, Klingeltransformatoren.', 'streu']
+    ];
+    function symbol(art) {
+      const k = '<circle cx="15" cy="15" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="25" cy="15" r="8" fill="none" stroke="currentColor" stroke-width="1.6"/>';
+      const zusatz = {
+        schild: '<path d="M6 4 H34 V18 Q20 30 6 18 Z" fill="none" stroke="currentColor" stroke-width="1.3"/>',
+        trenn: '<path d="M20 2 V28" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2 2"/>',
+        dreieck: '<path d="M4 4 H36 L20 29 Z" fill="none" stroke="currentColor" stroke-width="1.3"/>',
+        glocke: '<path d="M8 26 Q8 6 20 4 Q32 6 32 26 Z" fill="none" stroke="currentColor" stroke-width="1.3"/>',
+        wagen: '<rect x="5" y="5" width="30" height="20" rx="2" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="11" cy="28" r="2" fill="currentColor"/><circle cx="29" cy="28" r="2" fill="currentColor"/>',
+        leuchte: '<path d="M2 15 H6 M34 15 H38" stroke="currentColor" stroke-width="2"/>',
+        med: '<path d="M4 4 H36 L20 29 Z" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="20" y="12" font-size="6" text-anchor="middle" fill="currentColor">med</text>',
+        spar: '',
+        streu: '<path d="M20 4 V26" stroke="currentColor" stroke-width="3"/>'
+      }[art] || '';
+      if (art === 'spar') return '<svg viewBox="0 0 40 30" aria-hidden="true"><circle cx="20" cy="15" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M20 6 V2 M20 24 V29 M29 15 H36" stroke="currentColor" stroke-width="1.6"/></svg>';
+      return '<svg viewBox="0 0 40 30" aria-hidden="true">' + zusatz + k + '</svg>';
+    }
+    const artenZiel = document.getElementById('arten');
+    ARTEN.forEach(function (a) {
+      const d = document.createElement('article'); d.className = 'art-karte'; d.style.setProperty('--farbe', a[2]);
+      const h = document.createElement('h4'); h.innerHTML = symbol(a[5]); h.append(document.createTextNode(a[0]));
+      const n = document.createElement('p'); n.className = 'norm'; n.textContent = a[1] === '–' ? 'keine eigene Norm, Bauart' : 'DIN EN ' + a[1];
+      const p1 = document.createElement('p'); p1.textContent = a[3];
+      const p2 = document.createElement('p'); const b = document.createElement('b'); b.textContent = 'Einsatz: '; p2.append(b, document.createTextNode(a[4]));
+      d.append(h, n, p1, p2); artenZiel.append(d);
+    });
+
+    // ---------- Rechner Messwandler ----------
+    R.seite({
+      titel: 'Kleintransformatoren und Messwandler',
+      einleitung: 'Strom- und Spannungswandler auslegen: Übersetzung, Strom im Messgerät, Bürde mit Messleitung und Auslastung. Unten in jede Richtung: Spartransformator, Kopplungsfaktor und Übersetzung im Leerlauf.',
+      hilfe: 'Stromwandler: Der Primärleiter geht durch den Wandler (eine Windung, mit Durchfädeln mehrere). Die Messleitung zählt mit Hin- und Rückleiter zur Bürde.',
+      gruppen: [
+        { titel: 'Wandler', farbe: BLAU, felder: [
+          { k: 'wandler', name: 'Art', wahl: [['strom', 'Stromwandler'], ['spannung', 'Spannungswandler']] },
+          { k: 'i1n', tex: 'I_\\text{1N}', name: 'Bemessungsstrom primär', e: 'A', min: 1, max: 1e5, wenn: strom },
+          { k: 'i2n', name: 'Bemessungsstrom sekundär', wahl: [[5, '5 A'], [1, '1 A']], wenn: strom },
+          { k: 'n', tex: 'n', name: 'Durchgänge des Primärleiters', e: '', min: 1, max: 20, wenn: strom, hilfe: 'Wie oft der Leiter durch den Wandler gefädelt ist.' },
+          { k: 'u1n', tex: 'U_\\text{1N}', name: 'Bemessungsspannung primär', e: 'V', min: 100, max: 1e6, wenn: function (e) { return !strom(e); } },
+          { k: 'u2n', name: 'Bemessungsspannung sekundär', wahl: [[100, '100 V'], [110, '110 V'], [57.735, '100/√3 V']], wenn: function (e) { return !strom(e); } },
+          { k: 'sn', tex: 'S_\\text{N}', name: 'Bemessungsleistung', e: 'VA', min: 0.5, max: 500 },
+          { k: 'klasse', name: 'Genauigkeitsklasse', wahl: [[0.2, '0,2'], [0.5, '0,5'], [1, '1'], [3, '3']] }
+        ] },
+        { titel: 'Messkreis', farbe: ORANGE, felder: [
+          { k: 'messwert', tex: 'I', name: 'Strom bzw. Spannung im Netz', e: '', min: 0, max: 1e6, hilfe: 'Stromwandler: Primärstrom in A. Spannungswandler: Netzspannung in V.' },
+          { k: 'sm', tex: 'S_\\text{M}', name: 'Eigenverbrauch der Messgeräte', e: 'VA', min: 0, max: 500 },
+          { k: 'l', tex: 'l', name: 'Länge der Messleitung (einfach)', e: 'm', min: 0, max: 2000 },
+          { k: 'a', name: 'Querschnitt der Messleitung', wahl: [[1.5, '1,5 mm²'], [2.5, '2,5 mm²'], [4, '4 mm²'], [6, '6 mm²']] }
+        ] }
+      ],
+      beispiel: { wandler: 'strom', i1n: 300, i2n: 5, n: 1, u1n: 10000, u2n: 100, sn: 10, klasse: 0.5, messwert: 240, sm: 1.5, l: 12, a: 2.5 },
+      rechne: function (e) {
+        const r = {};
+        r.RL = 2 * e.l / (GAMMA * e.a);
+        if (strom(e)) {
+          r.kn = e.i1n / e.i2n; r.bereich = e.i1n / e.n; r.ue = r.bereich / e.i2n;
+          r.i2 = e.messwert / r.ue; r.sl = e.i2n * e.i2n * r.RL; r.sges = e.sm + r.sl;
+          r.rmax = e.sn / (e.i2n * e.i2n); r.lmax = Math.max(0, (e.sn - e.sm) / (e.i2n * e.i2n)) * GAMMA * e.a / 2;
+          r.ueber = e.messwert > r.bereich * 1.2;
+        } else {
+          r.kn = e.u1n / e.u2n; r.u2 = e.messwert / r.kn; r.i2 = e.sm > 0 ? e.sm / e.u2n : 0;
+          r.sl = r.i2 * r.i2 * r.RL; r.sges = e.sm + r.sl; r.rmin = e.u2n * e.u2n / e.sn; r.lmax = Infinity;
+          r.ueber = e.messwert > e.u1n * 1.2;
+        }
+        r.ausl = r.sges / e.sn;
+        return r;
+      },
+      ergebnis: function (r, e, H) {
+        const s = strom(e);
+        if (r.ausl > 1) H.meldung('Die Bürde (' + zs(r.sges, 2) + ' VA) übersteigt die Bemessungsleistung von ' + zs(e.sn) + ' VA. Der Wandler hält Klasse ' + z(e.klasse, e.klasse < 1 ? 1 : 0) + ' nicht mehr ein – größere Bemessungsleistung, dickere oder kürzere Messleitung' + (s && e.i2n === 5 ? ' oder einen 1-A-Wandler wählen.' : ' wählen.'), true);
+        else if (r.ausl < 0.25) H.meldung('Die Bürde liegt unter 25 % der Bemessungsleistung. Die Genauigkeitsklasse gilt nur zwischen 25 % und 100 % der Bemessungsbürde; darunter steigt außerdem die Überstromzahl (FS), das Messgerät ist bei Kurzschluss schlechter geschützt.');
+        if (r.ueber) H.meldung(s ? 'Der Strom liegt über dem 1,2-Fachen des Messbereichs. Der Wandler ist dafür nicht ausgelegt – größeren Wandler oder weniger Durchgänge wählen.' : 'Die Netzspannung liegt über dem 1,2-Fachen der Bemessungsspannung.', true);
+        if (s) H.meldung('Sekundärkreis nie öffnen, solange Strom fließt: vor dem Abklemmen des Messgeräts S1 und S2 kurzschließen. Keine Sicherung im Sekundärkreis, Klemme S1 (k) erden.');
+        else H.meldung('Spannungswandler nie sekundär kurzschließen: primär zweipolig, sekundär einpolig absichern; eine Sekundärklemme und das Gehäuse erden.');
+        H.urteil(r.ausl <= 1 && !r.ueber, r.ausl <= 1 ? 'Bürde zulässig' : 'Bürde zu groß');
+        H.kacheln(s ? [
+          [zs(r.bereich, 1) + '/' + e.i2n + ' A', e.n > 1 ? 'Messbereich mit ' + e.n + ' Durchgängen (Typenschild ' + zs(e.i1n, 0) + '/' + e.i2n + ' A)' : 'Übersetzung K_N = ' + zs(r.kn, 1), BLAU],
+          [zs(r.i2, 3) + ' A', 'Strom im Messgerät bei ' + zs(e.messwert, 1) + ' A', ORANGE],
+          [zs(r.RL * 1000, 0) + ' mΩ', 'Widerstand der Messleitung (hin und zurück)', GRAU],
+          [zs(r.sges, 2) + ' VA', 'Bürde: ' + zs(e.sm, 2) + ' VA Geräte + ' + zs(r.sl, 2) + ' VA Leitung', r.ausl > 1 ? ROT : GRUEN],
+          [z(r.ausl * 100, 0) + ' %', 'Auslastung der Bemessungsleistung', r.ausl > 1 ? ROT : GRUEN],
+          [zs(r.lmax, 0) + ' m', 'größte Leitungslänge bei diesem Querschnitt', '#7048E8']
+        ] : [
+          [zs(r.kn, 1), 'Übersetzung ' + zs(e.u1n, 0) + ' V / ' + zs(e.u2n, 1) + ' V', BLAU],
+          [zs(r.u2, 2) + ' V', 'Spannung am Messgerät bei ' + zs(e.messwert, 0) + ' V', ORANGE],
+          [zs(r.rmin, 0) + ' Ω', 'kleinster zulässiger Belastungswiderstand R = U₂² / S_N', '#7048E8'],
+          [zs(r.sges, 2) + ' VA', 'Bürde mit Leitung', r.ausl > 1 ? ROT : GRUEN],
+          [z(r.ausl * 100, 0) + ' %', 'Auslastung der Bemessungsleistung', r.ausl > 1 ? ROT : GRUEN]
+        ]);
+      },
+      weg: function (r, e) {
+        const w = [];
+        if (strom(e)) {
+          if (e.n > 1) w.push(['Durchfädeln', 'I_\\text{1,wirk} = \\frac{I_\\text{1N}}{n} = \\frac{' + tz(e.i1n, 0) + '\\,\\text{A}}{' + e.n + '} = ' + E(tz(r.bereich, 1) + '\\,\\text{A}')]);
+          w.push(['Übersetzung', 'K_\\text{N} = \\frac{I_\\text{1}}{I_\\text{2}} = \\frac{' + tz(r.bereich, 1) + '\\,\\text{A}}{' + e.i2n + '\\,\\text{A}} = ' + E(tz(r.ue, 2))]);
+          w.push(['Strom im Messgerät', 'I_2 = \\frac{I}{K_\\text{N}} = \\frac{' + tz(e.messwert, 1) + '\\,\\text{A}}{' + tz(r.ue, 2) + '} = ' + E(tz(r.i2, 3) + '\\,\\text{A}')]);
+          w.push(['Messleitung', 'R_\\text{L} = \\frac{2 \\cdot l}{\\gamma \\cdot A} = \\frac{2 \\cdot ' + tz(e.l, 1) + '\\,\\text{m}}{56\\,\\frac{\\text{m}}{\\Omega\\,\\text{mm}^2} \\cdot ' + tz(e.a, 1) + '\\,\\text{mm}^2} = ' + E(tz(r.RL, 4) + '\\,\\Omega')]);
+          w.push(['Leistung der Leitung', 'S_\\text{L} = I_\\text{2N}^2 \\cdot R_\\text{L} = (' + e.i2n + '\\,\\text{A})^2 \\cdot ' + tz(r.RL, 4) + '\\,\\Omega = ' + E(tz(r.sl, 3) + '\\,\\text{VA}')]);
+          w.push(['Bürde', 'S = S_\\text{M} + S_\\text{L} = ' + tz(e.sm, 2) + '\\,\\text{VA} + ' + tz(r.sl, 3) + '\\,\\text{VA} = ' + E(tz(r.sges, 3) + '\\,\\text{VA}') + ' \\;' + (r.ausl <= 1 ? '\\le' : '>') + '\\; S_\\text{N} = ' + tz(e.sn, 1) + '\\,\\text{VA}']);
+          w.push(['Größte Bürde als Widerstand', 'R_\\text{max} = \\frac{S_\\text{N}}{I_\\text{2N}^2} = \\frac{' + tz(e.sn, 1) + '\\,\\text{VA}}{(' + e.i2n + '\\,\\text{A})^2} = ' + E(tz(r.rmax, 3) + '\\,\\Omega')]);
+        } else {
+          w.push(['Übersetzung', 'K_\\text{N} = \\frac{U_\\text{1N}}{U_\\text{2N}} = \\frac{' + tz(e.u1n, 0) + '\\,\\text{V}}{' + tz(e.u2n, 1) + '\\,\\text{V}} = ' + E(tz(r.kn, 1))]);
+          w.push(['Spannung am Messgerät', 'U_2 = \\frac{U}{K_\\text{N}} = \\frac{' + tz(e.messwert, 0) + '\\,\\text{V}}{' + tz(r.kn, 1) + '} = ' + E(tz(r.u2, 2) + '\\,\\text{V}')]);
+          w.push(['Kleinster Belastungswiderstand', 'R_\\text{min} = \\frac{U_\\text{2N}^2}{S_\\text{N}} = \\frac{(' + tz(e.u2n, 1) + '\\,\\text{V})^2}{' + tz(e.sn, 1) + '\\,\\text{VA}} = ' + E(tz(r.rmin, 0) + '\\,\\Omega')]);
+        }
+        return w;
+      },
+      loeser: [
+        { titel: 'Stromwandler – in jede Richtung', hilfe: 'Primär ein Durchgang (oder n Durchgänge), sekundär N₂ Windungen. Beispiel: Wie viele Windungen hat die Ausgangswicklung eines 60/5-A-Wandlers?',
+          felder: [
+            { k: 'I1', tex: 'I_1', name: 'Primärstrom', e: 'A', min: 0.01, max: 1e5 }, { k: 'I2', tex: 'I_2', name: 'Sekundärstrom', e: 'A', min: 0.001, max: 100 },
+            { k: 'N1', tex: 'N_1', name: 'Windungen primär (Durchgänge)', e: '', min: 1, max: 100, n: 0 }, { k: 'N2', tex: 'N_2', name: 'Windungen sekundär', e: '', min: 1, max: 1e5, n: 0 },
+            { k: 'Sb', tex: 'S', name: 'Bürde', e: 'VA', min: 0.01, max: 500 }, { k: 'Rb', tex: 'R', name: 'Bürde als Widerstand', e: 'Ω', min: 0.001, max: 1e4 }
+          ],
+          beispiel: { I1: 60, I2: 5, N1: 1, Sb: 5 },
+          gleichungen: [
+            { name: 'Durchflutung', v: ['I1', 'I2', 'N1', 'N2'], f: function (q) { return [q.I1 * q.N1, q.I2 * q.N2]; },
+              loese: { I1: function (q) { return q.I2 * q.N2 / q.N1; }, I2: function (q) { return q.I1 * q.N1 / q.N2; }, N1: function (q) { return q.I2 * q.N2 / q.I1; }, N2: function (q) { return q.I1 * q.N1 / q.I2; } },
+              weg: function (k, q) { return k === 'N2' ? 'N_2 = \\frac{I_1 \\cdot N_1}{I_2} = \\frac{' + tz(q.I1, 2) + '\\,\\text{A} \\cdot ' + tz(q.N1, 0) + '}{' + tz(q.I2, 2) + '\\,\\text{A}} = ' + E(tz(q.N2, 1)) : k === 'I2' ? 'I_2 = \\frac{I_1 \\cdot N_1}{N_2} = ' + E(tz(q.I2, 3) + '\\,\\text{A}') : k === 'I1' ? 'I_1 = \\frac{I_2 \\cdot N_2}{N_1} = ' + E(tz(q.I1, 2) + '\\,\\text{A}') : 'N_1 = \\frac{I_2 \\cdot N_2}{I_1} = ' + E(tz(q.N1, 1)); } },
+            { name: 'Bürde', v: ['Sb', 'I2', 'Rb'], f: function (q) { return [q.Sb, q.I2 * q.I2 * q.Rb]; },
+              loese: { Sb: function (q) { return q.I2 * q.I2 * q.Rb; }, Rb: function (q) { return q.Sb / (q.I2 * q.I2); }, I2: function (q) { return Math.sqrt(q.Sb / q.Rb); } },
+              weg: function (k, q) { return k === 'Rb' ? 'R = \\frac{S}{I_2^2} = \\frac{' + tz(q.Sb, 2) + '\\,\\text{VA}}{(' + tz(q.I2, 2) + '\\,\\text{A})^2} = ' + E(tz(q.Rb, 3) + '\\,\\Omega') : k === 'Sb' ? 'S = I_2^2 \\cdot R = ' + E(tz(q.Sb, 3) + '\\,\\text{VA}') : 'I_2 = \\sqrt{\\frac{S}{R}} = ' + E(tz(q.I2, 3) + '\\,\\text{A}'); } }
+          ] },
+        { titel: 'Spannungswandler – in jede Richtung', hilfe: 'Beispiel: Ein 10-kV-Netz wird mit einem 10 000/100-V-Wandler mit 25 VA gemessen. Welcher Strom darf sekundär höchstens fließen?',
+          felder: [
+            { k: 'U1', tex: 'U_1', name: 'Primärspannung', e: 'V', min: 1, max: 1e6 }, { k: 'U2', tex: 'U_2', name: 'Sekundärspannung', e: 'V', min: 1, max: 1000 },
+            { k: 'ue', tex: '\\ddot{u}', name: 'Übersetzung', e: '', min: 1, max: 1e5 }, { k: 'S', tex: 'S_\\text{N}', name: 'Bemessungsleistung', e: 'VA', min: 0.1, max: 1000 },
+            { k: 'I2', tex: 'I_2', name: 'größter Sekundärstrom', e: 'A', min: 1e-5, max: 100 }, { k: 'R', tex: 'R_\\text{min}', name: 'kleinster Belastungswiderstand', e: 'Ω', min: 0.01, max: 1e7 }
+          ],
+          beispiel: { U1: 10000, U2: 100, S: 25 },
+          gleichungen: [
+            { name: 'Übersetzung', v: ['ue', 'U1', 'U2'], f: function (q) { return [q.ue * q.U2, q.U1]; }, loese: { ue: function (q) { return q.U1 / q.U2; }, U1: function (q) { return q.ue * q.U2; }, U2: function (q) { return q.U1 / q.ue; } },
+              weg: function (k, q) { return k === 'ue' ? '\\ddot{u} = \\frac{U_1}{U_2} = \\frac{' + tz(q.U1, 0) + '\\,\\text{V}}{' + tz(q.U2, 1) + '\\,\\text{V}} = ' + E(tz(q.ue, 1)) : k === 'U2' ? 'U_2 = \\frac{U_1}{\\ddot{u}} = ' + E(tz(q.U2, 2) + '\\,\\text{V}') : 'U_1 = \\ddot{u} \\cdot U_2 = ' + E(tz(q.U1, 0) + '\\,\\text{V}'); } },
+            { name: 'Sekundärstrom', v: ['I2', 'S', 'U2'], f: function (q) { return [q.I2 * q.U2, q.S]; }, loese: { I2: function (q) { return q.S / q.U2; }, S: function (q) { return q.I2 * q.U2; }, U2: function (q) { return q.S / q.I2; } },
+              weg: function (k, q) { return k === 'I2' ? 'I_2 = \\frac{S_\\text{N}}{U_2} = \\frac{' + tz(q.S, 1) + '\\,\\text{VA}}{' + tz(q.U2, 1) + '\\,\\text{V}} = ' + E(tz(q.I2, 3) + '\\,\\text{A}') : k === 'S' ? 'S_\\text{N} = U_2 \\cdot I_2 = ' + E(tz(q.S, 2) + '\\,\\text{VA}') : 'U_2 = \\frac{S_\\text{N}}{I_2} = ' + E(tz(q.U2, 1) + '\\,\\text{V}'); } },
+            { name: 'Belastungswiderstand', v: ['R', 'U2', 'S'], f: function (q) { return [q.R * q.S, q.U2 * q.U2]; }, loese: { R: function (q) { return q.U2 * q.U2 / q.S; }, S: function (q) { return q.U2 * q.U2 / q.R; }, U2: function (q) { return Math.sqrt(q.R * q.S); } },
+              weg: function (k, q) { return k === 'R' ? 'R_\\text{min} = \\frac{U_2^2}{S_\\text{N}} = \\frac{(' + tz(q.U2, 1) + '\\,\\text{V})^2}{' + tz(q.S, 1) + '\\,\\text{VA}} = ' + E(tz(q.R, 1) + '\\,\\Omega') : k === 'S' ? 'S_\\text{N} = \\frac{U_2^2}{R} = ' + E(tz(q.S, 2) + '\\,\\text{VA}') : 'U_2 = \\sqrt{R \\cdot S_\\text{N}} = ' + E(tz(q.U2, 1) + '\\,\\text{V}'); } }
+          ] },
+        { titel: 'Spartransformator – in jede Richtung', hilfe: 'Spannung absenken: Durchgangsleistung S_D = U₂ · I₂ geht zum Verbraucher, nur die Bauleistung S_B wird übertragen und bestimmt die Baugröße.',
+          felder: [
+            { k: 'U1', tex: 'U_1', name: 'Eingangsspannung', e: 'V', min: 1, max: 1e5 }, { k: 'U2', tex: 'U_2', name: 'Ausgangsspannung (kleiner als U₁)', e: 'V', min: 0.1, max: 1e5 },
+            { k: 'SD', tex: 'S_\\text{D}', name: 'Durchgangsleistung', e: 'VA', min: 0.1, max: 1e7 }, { k: 'SB', tex: 'S_\\text{B}', name: 'Bauleistung', e: 'VA', min: 0.01, max: 1e7 },
+            { k: 'I1', tex: 'I_1', name: 'Eingangsstrom', e: 'A', min: 1e-4, max: 1e5 }, { k: 'I2', tex: 'I_2', name: 'Ausgangsstrom', e: 'A', min: 1e-4, max: 1e5 }
+          ],
+          beispiel: { U1: 230, U2: 210, SD: 2000 },
+          gleichungen: [
+            { name: 'Bauleistung', v: ['SB', 'SD', 'U1', 'U2'], f: function (q) { return [q.SB, q.SD * (1 - q.U2 / q.U1)]; },
+              loese: { SB: function (q) { return q.U2 < q.U1 ? q.SD * (1 - q.U2 / q.U1) : NaN; }, SD: function (q) { return q.U2 < q.U1 ? q.SB / (1 - q.U2 / q.U1) : NaN; }, U2: function (q) { return q.SB < q.SD ? q.U1 * (1 - q.SB / q.SD) : NaN; }, U1: function (q) { return q.SB < q.SD ? q.U2 / (1 - q.SB / q.SD) : NaN; } },
+              weg: function (k, q) { return k === 'SB' ? 'S_\\text{B} = S_\\text{D} \\cdot \\left(1 - \\frac{U_2}{U_1}\\right) = ' + tz(q.SD, 0) + '\\,\\text{VA} \\cdot \\left(1 - \\frac{' + tz(q.U2, 1) + '}{' + tz(q.U1, 1) + '}\\right) = ' + E(tz(q.SB, 1) + '\\,\\text{VA}') : k === 'SD' ? 'S_\\text{D} = \\frac{S_\\text{B}}{1 - U_2 / U_1} = ' + E(tz(q.SD, 0) + '\\,\\text{VA}') : k === 'U2' ? 'U_2 = U_1 \\cdot \\left(1 - \\frac{S_\\text{B}}{S_\\text{D}}\\right) = ' + E(tz(q.U2, 1) + '\\,\\text{V}') : 'U_1 = \\frac{U_2}{1 - S_\\text{B}/S_\\text{D}} = ' + E(tz(q.U1, 1) + '\\,\\text{V}'); } },
+            { name: 'Eingangsstrom', v: ['I1', 'SD', 'U1'], f: function (q) { return [q.I1 * q.U1, q.SD]; }, loese: { I1: function (q) { return q.SD / q.U1; }, SD: function (q) { return q.I1 * q.U1; }, U1: function (q) { return q.SD / q.I1; } },
+              weg: function (k, q) { return k === 'I1' ? 'I_1 = \\frac{S_\\text{D}}{U_1} = \\frac{' + tz(q.SD, 0) + '\\,\\text{VA}}{' + tz(q.U1, 1) + '\\,\\text{V}} = ' + E(tz(q.I1, 2) + '\\,\\text{A}') : k === 'SD' ? 'S_\\text{D} = U_1 \\cdot I_1 = ' + E(tz(q.SD, 0) + '\\,\\text{VA}') : 'U_1 = \\frac{S_\\text{D}}{I_1} = ' + E(tz(q.U1, 1) + '\\,\\text{V}'); } },
+            { name: 'Ausgangsstrom', v: ['I2', 'SD', 'U2'], f: function (q) { return [q.I2 * q.U2, q.SD]; }, loese: { I2: function (q) { return q.SD / q.U2; }, SD: function (q) { return q.I2 * q.U2; }, U2: function (q) { return q.SD / q.I2; } },
+              weg: function (k, q) { return k === 'I2' ? 'I_2 = \\frac{S_\\text{D}}{U_2} = \\frac{' + tz(q.SD, 0) + '\\,\\text{VA}}{' + tz(q.U2, 1) + '\\,\\text{V}} = ' + E(tz(q.I2, 2) + '\\,\\text{A}') : k === 'SD' ? 'S_\\text{D} = U_2 \\cdot I_2 = ' + E(tz(q.SD, 0) + '\\,\\text{VA}') : 'U_2 = \\frac{S_\\text{D}}{I_2} = ' + E(tz(q.U2, 1) + '\\,\\text{V}'); } }
+          ] },
+        { titel: 'Realer Transformator: Kopplung und Leerlauf – in jede Richtung', hilfe: 'Beispiel: 1 200 und 600 Windungen an 230 V liefern unter Last nur 66 V. Wie groß ist der Kopplungsfaktor? Oder: Ein Trenntransformator 230/230 V liefert im Leerlauf 7 % mehr.',
+          felder: [
+            { k: 'U1', tex: 'U_1', name: 'Eingangsspannung', e: 'V', min: 0.1, max: 1e6 }, { k: 'U2', tex: 'U_2', name: 'Ausgangsspannung', e: 'V', min: 0.01, max: 1e6 },
+            { k: 'N1', tex: 'N_1', name: 'Windungen Eingang', e: '', min: 1, max: 1e6, n: 0 }, { k: 'N2', tex: 'N_2', name: 'Windungen Ausgang', e: '', min: 1, max: 1e6, n: 0 },
+            { k: 'K', tex: 'K', name: 'Kopplungsfaktor', e: '', min: 0.01, max: 1 },
+            { k: 'p', tex: 'p', name: 'Spannungserhöhung im Leerlauf', e: '%', min: 0, max: 200 }, { k: 'U20', tex: 'U_{20}', name: 'Leerlaufspannung', e: 'V', min: 0.01, max: 1e6 }
+          ],
+          beispiel: { U1: 230, U2: 66, N1: 1200, N2: 600, p: 7 },
+          gleichungen: [
+            { name: 'Kopplung', v: ['K', 'U1', 'U2', 'N1', 'N2'], f: function (q) { return [q.K * q.U1 * q.N2, q.U2 * q.N1]; },
+              loese: { K: function (q) { return q.U2 * q.N1 / (q.U1 * q.N2); }, U2: function (q) { return q.K * q.U1 * q.N2 / q.N1; }, U1: function (q) { return q.U2 * q.N1 / (q.K * q.N2); }, N2: function (q) { return q.U2 * q.N1 / (q.K * q.U1); }, N1: function (q) { return q.K * q.U1 * q.N2 / q.U2; } },
+              weg: function (k, q) { return k === 'K' ? 'K = \\frac{U_2 \\cdot N_1}{U_1 \\cdot N_2} = \\frac{' + tz(q.U2, 1) + '\\,\\text{V} \\cdot ' + tz(q.N1, 0) + '}{' + tz(q.U1, 1) + '\\,\\text{V} \\cdot ' + tz(q.N2, 0) + '} = ' + E(tz(q.K, 3)) : k === 'U2' ? 'U_2 = K \\cdot U_1 \\cdot \\frac{N_2}{N_1} = ' + E(tz(q.U2, 2) + '\\,\\text{V}') : k === 'U1' ? 'U_1 = \\frac{U_2 \\cdot N_1}{K \\cdot N_2} = ' + E(tz(q.U1, 2) + '\\,\\text{V}') : k === 'N2' ? 'N_2 = \\frac{U_2 \\cdot N_1}{K \\cdot U_1} = ' + E(tz(q.N2, 0)) : 'N_1 = \\frac{K \\cdot U_1 \\cdot N_2}{U_2} = ' + E(tz(q.N1, 0)); } },
+            { name: 'Leerlauf', v: ['U20', 'U2', 'p'], f: function (q) { return [q.U20, q.U2 * (1 + q.p / 100)]; },
+              loese: { U20: function (q) { return q.U2 * (1 + q.p / 100); }, U2: function (q) { return q.U20 / (1 + q.p / 100); }, p: function (q) { return (q.U20 / q.U2 - 1) * 100; } },
+              weg: function (k, q) { return k === 'U20' ? 'U_{20} = U_2 \\cdot \\left(1 + \\frac{p}{100\\,\\%}\\right) = ' + tz(q.U2, 1) + '\\,\\text{V} \\cdot ' + tz(1 + q.p / 100, 3) + ' = ' + E(tz(q.U20, 2) + '\\,\\text{V}') : k === 'p' ? 'p = \\left(\\frac{U_{20}}{U_2} - 1\\right) \\cdot 100\\,\\% = ' + E(tz(q.p, 2) + '\\,\\%') : 'U_2 = \\frac{U_{20}}{1 + p/100\\,\\%} = ' + E(tz(q.U2, 2) + '\\,\\text{V}'); } }
+          ] }
+      ],
+      sammlung: [
+        ['Übersetzung', '\\ddot{u} = \\frac{U_1}{U_2} = \\frac{N_1}{N_2} = \\frac{I_2}{I_1}', 'idealer Transformator'],
+        ['Kopplungsfaktor', 'K = \\frac{U_2 \\cdot N_1}{U_1 \\cdot N_2}', 'ideal K = 1, real K < 1 wegen Streufluss'],
+        ['Stromwandler', 'I_1 \\cdot N_1 = I_2 \\cdot N_2 \\qquad K_\\text{N} = \\frac{I_\\text{1N}}{I_\\text{2N}}', 'Sekundär 5 A oder 1 A; Primär meist ein Durchgang'],
+        ['Durchfädeln', 'I_\\text{1,wirk} = \\frac{I_\\text{1N}}{n}', 'n Durchgänge des Primärleiters verkleinern den Messbereich'],
+        ['Bürde Stromwandler', 'S = I_2^2 \\cdot R \\qquad R_\\text{max} = \\frac{S_\\text{N}}{I_\\text{2N}^2}', 'Messgeräte und Messleitung zusammen'],
+        ['Messleitung', 'R_\\text{L} = \\frac{2 \\cdot l}{\\gamma \\cdot A}', 'γ Kupfer = 56 m/(Ω·mm²)'],
+        ['Spannungswandler', 'R_\\text{min} = \\frac{U_\\text{2N}^2}{S_\\text{N}} \\qquad I_2 = \\frac{S_\\text{N}}{U_\\text{2N}}', 'sekundär meist 100 V oder 100/√3 V'],
+        ['Spartransformator', 'S_\\text{B} = S_\\text{D} \\cdot \\left(1 - \\frac{U_2}{U_1}\\right)', 'Bauleistung bei Absenkung; je näher U₂ an U₁, desto kleiner der Transformator'],
+        ['Leerlaufspannung', 'U_{20} = U_2 \\cdot \\left(1 + \\frac{p}{100\\,\\%}\\right)', 'bei Kleintransformatoren steigt die Spannung im Leerlauf um einige Prozent']
+      ],
+      quellen: 'Normenreihe DIN EN 61558 (Sicherheit von Transformatoren, Teile 2-x je Bauart), DIN EN 61869-2 (Stromwandler), DIN EN 61869-3 (induktive Spannungswandler), DIN VDE 0100-410 und -413 (Schutzkleinspannung, Schutztrennung). Leitfähigkeit Kupfer 56 m/(Ω·mm²) bei 20 °C. Werte für den Eigenverbrauch der Messgeräte aus deren Datenblatt.',
+      bild: { titel: 'Animation: Wandler im Betrieb', label: 'Stromwandler mit durchgeführtem Primärleiter und Strommesser oder Spannungswandler mit Spannungsmesser', animiert: !bewegungAus,
+        hoehe: function () { return 280; },
+        hinweis: function (r, e) { return strom(e) ? 'Der Primärstrom (orange) erzeugt im Ringkern einen Wechselfluss; die Sekundärwicklung treibt den kleinen Strom durch das Messgerät.' : 'Die Primärwicklung liegt an der Netzspannung, die Sekundärwicklung liefert 100 V an den Spannungsmesser.'; },
+        zeichne: function (cx, B, H, t, r, e) {
+          const ph = (t / 1000) * 2 * Math.PI * 0.6, s = Math.sin(ph), mx = B * 0.42, my = H * 0.45;
+          cx.lineWidth = 2;
+          if (strom(e)) {
+            // Primärleiter
+            cx.strokeStyle = KUPFER; cx.lineWidth = 6; cx.beginPath(); cx.moveTo(16, my); cx.lineTo(B - 16, my); cx.stroke();
+            T(cx, 'P1 (K)', 18, my - 14, 'left', 11, true); T(cx, 'P2 (L)', B - 18, my - 14, 'right', 11, true);
+            T(cx, 'I = ' + zs(e.messwert, 1) + ' A', 18, my + 18, 'left', 11, true, ORANGE);
+            // Ringkern
+            cx.lineWidth = 12; cx.strokeStyle = GRAU; cx.beginPath(); cx.ellipse(mx, my, 34, 58, 0, 0, 2 * Math.PI); cx.stroke();
+            cx.lineWidth = 2; cx.strokeStyle = F('--text');
+            for (let i = 0; i < 9; i++) { const a = Math.PI * 0.6 + i * 0.09 * Math.PI; cx.beginPath(); cx.moveTo(mx + 28 * Math.cos(a), my + 52 * Math.sin(a)); cx.lineTo(mx + 42 * Math.cos(a), my + 66 * Math.sin(a)); cx.stroke(); }
+            // Fluss
+            cx.strokeStyle = BLAU; cx.globalAlpha = 0.35 + 0.65 * Math.abs(s); cx.lineWidth = 3; cx.beginPath(); cx.ellipse(mx, my, 34, 58, 0, s > 0 ? 0.2 : 3.4, s > 0 ? 1.2 : 4.4); cx.stroke(); cx.globalAlpha = 1;
+            T(cx, 'Φ', mx + 40, my - 50, 'left', 12, true, BLAU);
+            // Sekundärkreis
+            const ax = mx + 150 > B - 60 ? B - 60 : mx + 150, ay = H - 50;
+            cx.strokeStyle = F('--text'); cx.lineWidth = 2;
+            cx.beginPath(); cx.moveTo(mx - 30, my + 62); cx.lineTo(mx - 30, ay); cx.lineTo(ax - 22, ay); cx.stroke();
+            cx.beginPath(); cx.moveTo(mx + 30, my + 62); cx.lineTo(mx + 30, ay - 26); cx.lineTo(ax, ay - 26); cx.lineTo(ax, ay - 22); cx.stroke();
+            cx.beginPath(); cx.arc(ax, ay, 22, 0, 2 * Math.PI); cx.stroke(); T(cx, 'A', ax, ay, 'center', 14, true);
+            T(cx, zs(Math.abs(r.i2), 2) + ' A', ax + 28, ay, 'left', 12, true, ORANGE);
+            T(cx, 'S1 (k)', mx - 36, my + 80, 'right', 10, true); T(cx, 'S2 (l)', mx + 36, my + 80, 'left', 10, true);
+            // Erdung an S1
+            cx.beginPath(); cx.moveTo(mx - 30, ay); cx.lineTo(mx - 30, ay + 14); cx.moveTo(mx - 40, ay + 14); cx.lineTo(mx - 20, ay + 14); cx.moveTo(mx - 36, ay + 19); cx.lineTo(mx - 24, ay + 19); cx.stroke();
+            // Strompunkte
+            cx.fillStyle = ORANGE; for (let i = 0; i < 8; i++) { const x = 16 + (((t / 1000) * 80 * Math.sign(s) + i * (B - 32) / 8) % (B - 32) + (B - 32)) % (B - 32); cx.beginPath(); cx.arc(x, my, 3, 0, 2 * Math.PI); cx.fill(); }
+            T(cx, 'Sekundärkreis nie öffnen!', 16, H - 12, 'left', 11, true, ROT);
+          } else {
+            // Spannungswandler: zwei Wicklungen auf Kern
+            const kx = mx - 50, kb = 100, kh = 120, ky = my - 60;
+            cx.lineWidth = 10; cx.strokeStyle = GRAU; cx.strokeRect(kx, ky, kb, kh);
+            cx.lineWidth = 2; cx.strokeStyle = F('--text');
+            for (let i = 0; i < 9; i++) { cx.beginPath(); cx.ellipse(kx, ky + 18 + i * 10, 12, 5, 0, 0, 2 * Math.PI); cx.stroke(); }
+            for (let i = 0; i < 4; i++) { cx.beginPath(); cx.ellipse(kx + kb, ky + 40 + i * 12, 12, 6, 0, 0, 2 * Math.PI); cx.stroke(); }
+            cx.beginPath(); cx.moveTo(kx - 12, ky + 18); cx.lineTo(16, ky + 18); cx.moveTo(kx - 12, ky + 98); cx.lineTo(16, ky + 98); cx.stroke();
+            T(cx, 'A (U)', 18, ky + 8, 'left', 10, true); T(cx, 'B (V)', 18, ky + 112, 'left', 10, true);
+            T(cx, zs(e.messwert / 1000, 2) + ' kV', 18, my, 'left', 12, true, ORANGE);
+            const vx = Math.min(B - 50, kx + kb + 110);
+            cx.beginPath(); cx.moveTo(kx + kb + 12, ky + 40); cx.lineTo(vx, ky + 40); cx.lineTo(vx, my - 22); cx.moveTo(kx + kb + 12, ky + 76); cx.lineTo(vx, ky + 76 + 30); cx.lineTo(vx, my + 22); cx.stroke();
+            cx.beginPath(); cx.arc(vx, my, 22, 0, 2 * Math.PI); cx.stroke(); T(cx, 'V', vx, my, 'center', 14, true);
+            T(cx, zs(r.u2 * (0.92 + 0.08 * Math.abs(s)), 1) + ' V', vx - 28, my, 'right', 12, true, ORANGE);
+            cx.strokeStyle = BLAU; cx.globalAlpha = 0.35 + 0.65 * Math.abs(s); cx.lineWidth = 3; cx.strokeRect(kx + 8, ky + 8, kb - 16, kh - 16); cx.globalAlpha = 1;
+            T(cx, 'Sekundärseite nie kurzschließen!', 16, H - 12, 'left', 11, true, ROT);
+          }
+        } }
+    });
+    // Arten der Kleintransformatoren unter den Rechner stellen (vor die häufigen Fragen)
+    const artenTafel = document.querySelector('[aria-labelledby="h-arten"]'), faq = document.querySelector('.seo-info');
+    if (artenTafel && faq) faq.parentNode.insertBefore(artenTafel, faq);
+  })();
+  </script>
+</body>
+</html>

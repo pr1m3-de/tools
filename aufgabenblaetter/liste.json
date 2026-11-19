@@ -10,6 +10,15 @@
    "beschreibung": "Internalarm, Externalarm und Fernalarm, Rauch-, Wärme- und Flammenmelder, Rauchansaugsysteme – mit der Auswahl der Melder für eine Bäckerei."
   },
   {
+   "datei": "aufgabenblaetter/elektro/kleintransformatoren/01-kleintrafos-und-messwandler.md",
+   "thema": "elektro/kleintransformatoren.html",
+   "titel": "Kleintransformatoren und Messwandler",
+   "stufe": "mittel",
+   "aufgaben": 9,
+   "loesungen": 9,
+   "beschreibung": "Steuer-, Klingel-, Trenn- und Sicherheitstransformator, Spartransformator, Strom- und Spannungswandler mit Bürde und Durchfädeln."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
    "thema": "elektro/leitungsdimensionierung.html",
    "titel": "Leitungsdimensionierung in fünf Schritten – Drehstrommotor",
@@ -26,6 +35,24 @@
    "aufgaben": 5,
    "loesungen": 5,
    "beschreibung": "Strom, Spannung und Widerstand, Reihen- und Parallelschaltung, Knotenregel und Spannungsfall auf der Leitung."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/transformator/01-einphasentransformator.md",
+   "thema": "elektro/transformator.html",
+   "titel": "Einphasentransformator – Wiederholung",
+   "stufe": "mittel",
+   "aufgaben": 8,
+   "loesungen": 8,
+   "beschreibung": "Induktionsgesetz, Hauptgleichung, Spannungs-, Strom- und Widerstandsübersetzung, Kopplungsfaktor, Kurzschlussspannung, Wirkungsgrad und Leistungsschild."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/transformator/02-drehstromtransformator.md",
+   "thema": "elektro/transformator.html",
+   "titel": "Drehstromtransformator – Prüfungsaufgaben",
+   "stufe": "schwer",
+   "aufgaben": 7,
+   "loesungen": 7,
+   "beschreibung": "Typenschild, Kurzschlussspannung, Bemessungsströme, Schaltgruppe Dyn5, Anzapfungen, Belastung und Kompensation, Parallelbetrieb, Öl oder Gießharz."
   },
   {
    "datei": "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",

@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="Transformator">
   <meta name="twitter:description" content="Idealer Transformator in jede Richtung gerechnet, Eisen- und Kupferverluste mit bester Auslastung, Kurzschlussversuch und Kapp-Dreieck, Drehstrom mit Schaltgruppe und Kennzahl.">
   <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/transformator.html#seite","name":"Transformator","url":"https://tools.pr1m3.de/elektro/transformator.html","inLanguage":"de","description":"Idealer Transformator in jede Richtung gerechnet, Eisen- und Kupferverluste mit bester Auslastung, Kurzschlussversuch und Kapp-Dreieck, Drehstrom mit Schaltgruppe und Kennzahl.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/transformator.html#pfad"},"dateModified":"2026-11-04"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/transformator.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Transformator","item":"https://tools.pr1m3.de/elektro/transformator.html"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/transformator.html#seite","name":"Transformator","url":"https://tools.pr1m3.de/elektro/transformator.html","inLanguage":"de","description":"Idealer Transformator in jede Richtung gerechnet, Eisen- und Kupferverluste mit bester Auslastung, Kurzschlussversuch und Kapp-Dreieck, Drehstrom mit Schaltgruppe und Kennzahl.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/transformator.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/transformator.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Transformator","item":"https://tools.pr1m3.de/elektro/transformator.html"}]}]}</script>
   <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
@@ -85,6 +85,12 @@
 
     details.formeln { margin-top: 18px; }
     details.formeln summary { cursor: pointer; font-family: var(--technik); font-weight: 600; font-size: 1.15rem; margin-bottom: 10px; }
+    .trafo-wissen .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 12px; margin-top: 8px; }
+    .trafo-wissen .wissen-karte { border: 1px solid var(--linie); border-radius: var(--rund); padding: 10px 14px; background: var(--flaeche2); min-width: 0; }
+    .trafo-wissen .wissen-karte h3 { margin: 2px 0 6px; font-size: 1.05rem; }
+    .trafo-wissen .wissen-karte p, .trafo-wissen .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .trafo-wissen .wissen-karte ul { margin: 4px 0; padding-left: 1.2em; }
+    .trafo-wissen .formel-block { margin: 6px 0; overflow-x: auto; }
   </style>
 </head>
 
@@ -134,6 +140,72 @@
         </details>
       </section>
     </div>
+    <section class="tafel abstand formelsammlung trafo-wissen" aria-labelledby="h-trafo-wissen">
+      <h2 id="h-trafo-wissen">Wissen rund um den Transformator</h2>
+      <p class="hilfe">Was nicht in den Rechner passt, aber in jede Prüfung: vom Induktionsgesetz bis zum Parallelbetrieb.</p>
+      <div class="wissen-raster">
+        <section class="wissen-karte">
+          <h3>Induktionsgesetz</h3>
+          <div class="formel-block" data-tex="u_\text{i} = -N \cdot \frac{\Delta \Phi}{\Delta t}"></div>
+          <p>Ändert sich der magnetische Fluss Φ in einer Spule mit N Windungen, wird eine Spannung induziert. Nur ein <b>sich ändernder</b> Fluss induziert – deshalb arbeitet ein Transformator nur mit Wechselspannung. Einheit: 1 Vs/s = 1 V.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Kopplungsfaktor</h3>
+          <div class="formel-block" data-tex="K = \frac{U_2 \cdot N_1}{U_1 \cdot N_2}"></div>
+          <p>Ein Teil des Flusses schließt sich als Streufluss durch die Luft und erreicht die Ausgangswicklung nicht. Beim idealen Transformator ist K = 1, beim realen K &lt; 1.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Widerstandsübersetzung</h3>
+          <div class="formel-block" data-tex="\ddot{u}^2 = \frac{Z_1}{Z_2}"></div>
+          <p>Ein Widerstand auf der Ausgangsseite wirkt am Eingang mit ü² multipliziert. So passt ein Übertrager einen Lautsprecher an einen Verstärker an.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Leerlauf und Last</h3>
+          <p><b>Leerlauf:</b> Es fließt nur der kleine Magnetisierungsstrom; die Leistungsaufnahme deckt die Eisenverluste (Ummagnetisierung, Wirbelströme). Zu hohe Spannung treibt den Kern in die Sättigung – der Magnetisierungsstrom steigt stark, die Wicklung wird heiß.</p>
+          <p><b>Last:</b> Der Ausgangsstrom erzeugt einen Gegenfluss, der Eingangsstrom steigt. Streufluss und Wicklungswiderstand lassen die Ausgangsspannung etwas sinken.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Leerlauf- und Kurzschlussversuch</h3>
+          <p><b>Leerlaufversuch</b> bei Bemessungsspannung: Die gemessene Wirkleistung sind die Eisenverluste P₀.</p>
+          <p><b>Kurzschlussversuch:</b> Ausgang kurzschließen, Eingangsspannung über einen Stelltransformator von 0 an erhöhen, bis der Bemessungsstrom fließt. Die Spannung ist U<sub>k</sub>, die Wirkleistung sind die Wicklungsverluste P<sub>k</sub>.</p>
+          <div class="formel-block" data-tex="u_\text{k} = \frac{U_\text{k}}{U_\text{1N}} \cdot 100\,\%"></div>
+        </section>
+        <section class="wissen-karte">
+          <h3>Leistungsschild</h3>
+          <p>Art (z. B. LT Leistungstransformator, SpT Spartransformator), Hersteller, Baujahr, <b>Bemessungsleistung</b> S<sub>N</sub> (abgegebene Scheinleistung), <b>Bemessungsspannungen</b> mit Anzapfungen, <b>Bemessungsströme</b>, Frequenz, <b>Kurzschlussspannung</b> u<sub>k</sub>, <b>Schaltgruppe</b>, Betriebsart (S1 Dauerbetrieb), Isolierstoffklasse, Kühlungsart (z. B. ONAN), zulässige Kurzschlussdauer, Gewichte.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Anzapfungen</h3>
+          <div class="formel-block" data-tex="U_1 = U_\text{1N} \cdot (1 \pm n \cdot 2{,}5\,\%)"></div>
+          <p>Die Angabe 20 kV ± 2 × 2,5 % heißt: Die Oberspannungswicklung hat zwei Anzapfungen nach oben und unten. Liegt das Netz dauerhaft höher oder tiefer, stellt man (spannungslos) so um, dass auf der Unterspannungsseite wieder 400 V ankommen: 19,0 – 19,5 – 20 – 20,5 – 21,0 kV.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Schaltgruppen und unsymmetrische Last</h3>
+          <p>Großbuchstabe = Oberspannung, Kleinbuchstabe = Unterspannung (D/d Dreieck, Y/y Stern, z Zickzack), n = Sternpunkt herausgeführt, Kennzahl × 30° = Nacheilen der Unterspannung.</p>
+          <p>Haushalte belasten die Außenleiter ungleich. Bei <b>Dyn5</b> belastet jeder Strang der Unterspannung genau einen Strang der Oberspannung – der Sternpunkt bleibt stabil, deshalb ist Dyn5 der Standard in Ortsnetzen. <b>Yzn5</b> verteilt die Last über die Zickzackwicklung, gut für kleine Leistungen. <b>Yyn0</b> ist für starke Schieflast ungeeignet: Der Sternpunkt verschiebt sich.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Parallelbetrieb</h3>
+          <p>Zwei Transformatoren dürfen nur parallel arbeiten, wenn</p>
+          <ul><li>Bemessungsspannungen und Frequenz gleich sind,</li><li>die Übersetzungen gleich sind,</li><li>die Kurzschlussspannungen höchstens 10 % voneinander abweichen,</li><li>die Leistungen höchstens im Verhältnis 3 : 1 stehen,</li><li>die Kennzahlen der Schaltgruppe gleich sind (5 und 11 nur mit Umklemmen).</li></ul>
+          <p>Sonst fließen Ausgleichsströme oder der kleinere Transformator wird überlastet.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Kühlung und Schutz</h3>
+          <p>Große Transformatoren stehen in einem Ölkessel; das Öl kühlt und isoliert und dehnt sich in ein Ausdehnungsgefäß aus. Der <b>Buchholzschutz</b> in der Leitung dazwischen meldet Gasbildung bei einem Windungsschluss (Warnung) und schaltet bei starker Ölströmung durch einen Kurzschluss ab. Kühlungsart als Code, z. B. <b>ONAN</b>: Öl, natürlicher Umlauf, Luft, natürlicher Umlauf.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Öl oder Gießharz?</h3>
+          <p><b>Öltransformator:</b> günstiger, sehr gute Kühlung und Überlastbarkeit, aber brennbares Öl – Auffangwanne, Brandschutz und Gewässerschutz nötig.</p>
+          <p><b>Gießharztransformator:</b> schwer entflammbar und ohne Öl, darf in Gebäuden nah am Verbraucher stehen, wartungsarm – aber teurer, lauter und empfindlicher gegen Überspannung.</p>
+        </section>
+        <section class="wissen-karte">
+          <h3>Galvanische Trennung</h3>
+          <p>Eingangs- und Ausgangswicklung sind elektrisch nicht verbunden, die Energie geht nur über das Magnetfeld. Fehler auf der Oberspannungsseite gelangen so nicht leitend auf die Unterspannungsseite – Voraussetzung für Schutztrennung und Schutzkleinspannung. Der Spartransformator hat <b>keine</b> galvanische Trennung.</p>
+        </section>
+      </div>
+      <p class="hilfe">Kleintransformatoren (Sicherheits-, Trenn-, Steuer-, Klingel-, Spartransformator) und Messwandler: <a href="kleintransformatoren.html">Kleintransformatoren und Messwandler</a>.</p>
+    </section>
   </main>
 
   <div id="seitenfuss" data-wurzel="../"></div>
@@ -1353,6 +1425,9 @@
     modusWaehlen(MODI[anker] ? anker : 'ideal');
     requestAnimationFrame(schleife);
   })();
+  </script>
+  <script>
+    Array.prototype.forEach.call(document.querySelectorAll('.trafo-wissen [data-tex]'), function (el) { Formel.setze(el, el.getAttribute('data-tex'), true); });
   </script>
 </body>
 </html>
