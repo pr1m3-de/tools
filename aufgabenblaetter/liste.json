@@ -1,6 +1,15 @@
 {
  "blaetter": [
   {
+   "datei": "aufgabenblaetter/brandschutz/brandmeldeanlage/01-melder-und-alarmierung.md",
+   "thema": "brandschutz/brandmeldeanlage.html",
+   "titel": "Brandmeldeanlage – Melder und Alarmierung (Projekt Bäckerei)",
+   "stufe": "mittel",
+   "aufgaben": 7,
+   "loesungen": 7,
+   "beschreibung": "Internalarm, Externalarm und Fernalarm, Rauch-, Wärme- und Flammenmelder, Rauchansaugsysteme – mit der Auswahl der Melder für eine Bäckerei."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
    "thema": "elektro/leitungsdimensionierung.html",
    "titel": "Leitungsdimensionierung in fünf Schritten – Drehstrommotor",
