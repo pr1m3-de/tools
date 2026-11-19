@@ -195,7 +195,7 @@
     <div class="rechnen">
       <section class="tafel" aria-labelledby="h-werte">
         <h2 id="h-werte">Was ist bekannt?</h2>
-        <p class="hilfe">Gesuchtes einfach leer lassen. Ausgerechnete Werte darfst du überschreiben, dann wird von dort aus weitergerechnet. Leere Felder für κ, m, f und A füllt der Rechner aus den Tabellen.</p>
+        <p class="hilfe">Gesuchtes einfach leer lassen. Ausgerechnete Werte darfst du überschreiben, dann wird von dort aus weitergerechnet. Leere Felder für γ, m, f und A füllt der Rechner aus den Tabellen.</p>
         <div class="zeichenerklaerung"><span><i></i>eingetragen</span><span><i class="ergebnis"></i>ausgerechnet</span></div>
         <div id="felder"></div>
         <button type="button" class="knopf-leise" id="allesLeeren">Alle Eingaben löschen</button>
@@ -256,6 +256,7 @@
       fT:    { name: 'Umrechnungsfaktor Temperatur',   einheiten: [['–', 1]] },
       nH:    { name: 'Stromkreise gebündelt',          einheiten: [['Anzahl', 1]] },
       fH:    { name: 'Umrechnungsfaktor Häufung',      einheiten: [['–', 1]] },
+      fW:    { name: 'Umrechnungsfaktor Kabelwanne/-pritsche', einheiten: [['–', 1]] },
       Iz:    { name: 'Strombelastbarkeit der Leitung', einheiten: [['A', 1]] },
       U0:    { name: 'Spannung Außenleiter gegen Erde', einheiten: [['V', 1]] },
       ZV:    { name: 'Schleifenimpedanz vor der Leitung', einheiten: [['Ω', 1], ['mΩ', 0.001]] },
@@ -276,7 +277,7 @@
       { titel: 'Verbraucher und Netz', farbe: '#F2A541', felder: ['P', 'Pab', 'eta', 'S', 'cos', 'U', 'Ib'] },
       { titel: 'Leitung', farbe: '#E4572E', felder: ['l', 'A', 'kappa', 'RL'] },
       { titel: 'Spannungsfall', farbe: '#2B7BB9', felder: ['dU', 'du', 'duz', 'dUz', 'Amin', 'lmax'] },
-      { titel: 'Belastbarkeit und Überlastschutz', farbe: '#0E6B6A', felder: ['In', 'Ir', 'thU', 'fT', 'nH', 'fH', 'Iz'] },
+      { titel: 'Belastbarkeit und Überlastschutz', farbe: '#0E6B6A', felder: ['In', 'Ir', 'thU', 'fT', 'nH', 'fH', 'fW', 'Iz'] },
       { titel: 'Kurzschluss und Abschaltung', farbe: '#C0392B', felder: ['U0', 'ZV', 'ZS', 'Ik', 'm', 'Ia', 'lmaxA'] },
       { titel: 'Verluste und Kosten', farbe: 'var(--text)', felder: ['PV', 'pV', 'tB', 'WV', 'preis', 'KV'] }
     ];
@@ -284,9 +285,9 @@
     // Formelzeichen für LaTeX
     const TEX = {
       P: 'P', Pab: 'P_\\text{ab}', eta: '\\eta', S: 'S', cos: '\\cos\\varphi', U: 'U', Ib: 'I_\\text{b}',
-      l: 'l', A: 'A', kappa: '\\kappa', RL: 'R_\\text{L}',
+      l: 'l', A: 'A', kappa: '\\gamma', RL: 'R_\\text{L}',
       dU: '\\Delta U', du: '\\Delta u', duz: '\\Delta u_\\text{zul}', dUz: '\\Delta U_\\text{zul}', Amin: 'A_\\text{min}', lmax: 'l_\\text{max}',
-      In: 'I_\\text{n}', Ir: 'I_\\text{r}', thU: '\\vartheta_\\text{U}', fT: 'f_\\vartheta', nH: 'n_\\text{H}', fH: 'f_\\text{H}', Iz: 'I_\\text{z}',
+      In: 'I_\\text{n}', Ir: 'I_\\text{r}', thU: '\\vartheta_\\text{U}', fT: 'f_1', nH: 'n_\\text{H}', fH: 'f_2', fW: 'f_3', Iz: 'I_\\text{z}',
       U0: 'U_0', ZV: 'Z_\\text{V}', ZS: 'Z_\\text{S}', Ik: 'I_\\text{k}', m: 'm', Ia: 'I_\\text{a}', lmaxA: 'l_\\text{max,A}',
       PV: 'P_\\text{V}', pV: 'p_\\text{V}', tB: 't_\\text{B}', WV: 'W_\\text{V}', preis: 'k_\\text{E}', KV: 'K_\\text{V}'
     };
@@ -294,7 +295,7 @@
     // Einheiten, in denen die Formeln rechnen (für den Rechenweg)
     const OHM_MM = '\\tfrac{\\text{m}}{\\Omega\\cdot\\text{mm}^2}';
     const TEX_EINHEIT = {
-      P: '\\text{W}', Pab: '\\text{W}', PV: '\\text{W}', S: '\\text{VA}', eta: '', cos: '', fT: '', fH: '', m: '', nH: '',
+      P: '\\text{W}', Pab: '\\text{W}', PV: '\\text{W}', S: '\\text{VA}', eta: '', cos: '', fT: '', fH: '', fW: '', m: '', nH: '',
       U: '\\text{V}', dU: '\\text{V}', dUz: '\\text{V}', U0: '\\text{V}',
       Ib: '\\text{A}', In: '\\text{A}', Ir: '\\text{A}', Iz: '\\text{A}', Ik: '\\text{A}', Ia: '\\text{A}',
       l: '\\text{m}', lmax: '\\text{m}', lmaxA: '\\text{m}', A: '\\text{mm}^2', Amin: '\\text{mm}^2', kappa: OHM_MM,
@@ -367,10 +368,10 @@
     };
 
     const SCHUTZ = {
-      B:  { name: 'LS-Schalter Typ B', kurz: 'B', m: 5, f2: 1.45, text: 'löst sicher bei 5 · I_n sofort aus' },
-      C:  { name: 'LS-Schalter Typ C', kurz: 'C', m: 10, f2: 1.45, text: 'löst sicher bei 10 · I_n sofort aus' },
-      D:  { name: 'LS-Schalter Typ D', kurz: 'D', m: 20, f2: 1.45, text: 'löst sicher bei 20 · I_n sofort aus' },
-      gG: { name: 'Schmelzsicherung gG', kurz: 'gG', m: NaN, f2: 1.6, text: 'Abschaltstrom aus der Kennlinie ablesen' }
+      B:  { name: 'LS-Schalter Typ B', kurz: 'B', einsatz: 'ohmsche Lasten: Steckdosen, Beleuchtung, Heizung', m: 5, f2: 1.45, text: 'löst sicher bei 5 · I_n sofort aus' },
+      C:  { name: 'LS-Schalter Typ C', kurz: 'C', einsatz: 'induktive Lasten mit Einschaltstrom: Motoren, Trafos, Lampengruppen', m: 10, f2: 1.45, text: 'löst sicher bei 10 · I_n sofort aus' },
+      D:  { name: 'LS-Schalter Typ D', kurz: 'D', einsatz: 'sehr hohe Einschaltströme: große Motoren, Schweißgeräte, Trafos mit hohem Einschaltstrom', m: 20, f2: 1.45, text: 'löst sicher bei 20 · I_n sofort aus' },
+      gG: { name: 'Schmelzsicherung gG', kurz: 'gG', einsatz: 'Hauptleitungen, Vorsicherungen, Ganzbereichsschutz von Kabeln', m: NaN, f2: 1.6, text: 'Abschaltstrom aus der Kennlinie ablesen' }
     };
 
     function normstroeme() { return einst.schutz === 'gG' ? NORMSTROEME_GG : NORMSTROEME_LS; }
@@ -483,11 +484,12 @@
       U:   { tex: '\\frac{@dUz \\cdot 100\\,\\%}{@duz}', rechne: function (v) { return v.dUz * 100 / v.duz; } } } });
 
     // --- Belastbarkeit ---
-    gl({ titel: 'Strombelastbarkeit mit Umrechnungsfaktoren', thema: 'schutz', formel: '@Iz = @Ir \\cdot @fT \\cdot @fH', loese: {
-      Iz: { tex: '@Ir \\cdot @fT \\cdot @fH',          rechne: function (v) { return v.Ir * v.fT * v.fH; } },
-      Ir: { tex: '\\frac{@Iz}{@fT \\cdot @fH}',         rechne: function (v) { return v.Iz / (v.fT * v.fH); } },
-      fT: { tex: '\\frac{@Iz}{@Ir \\cdot @fH}',         rechne: function (v) { return v.Iz / (v.Ir * v.fH); } },
-      fH: { tex: '\\frac{@Iz}{@Ir \\cdot @fT}',         rechne: function (v) { return v.Iz / (v.Ir * v.fT); } } } });
+    gl({ titel: 'Strombelastbarkeit mit Umrechnungsfaktoren', thema: 'schutz', formel: '@Iz = @Ir \\cdot @fT \\cdot @fH \\cdot @fW', loese: {
+      Iz: { tex: '@Ir \\cdot @fT \\cdot @fH \\cdot @fW',          rechne: function (v) { return v.Ir * v.fT * v.fH * v.fW; } },
+      Ir: { tex: '\\frac{@Iz}{@fT \\cdot @fH \\cdot @fW}',         rechne: function (v) { return v.Iz / (v.fT * v.fH * v.fW); } },
+      fT: { tex: '\\frac{@Iz}{@Ir \\cdot @fH \\cdot @fW}',         rechne: function (v) { return v.Iz / (v.Ir * v.fH * v.fW); } },
+      fH: { tex: '\\frac{@Iz}{@Ir \\cdot @fT \\cdot @fW}',         rechne: function (v) { return v.Iz / (v.Ir * v.fT * v.fW); } },
+      fW: { tex: '\\frac{@Iz}{@Ir \\cdot @fT \\cdot @fH}',         rechne: function (v) { return v.Iz / (v.Ir * v.fT * v.fH); } } } });
 
     // --- Kurzschluss und Abschaltung ---
     gl({ titel: 'Spannung gegen Erde', thema: 'abschalt', nurBei: ['dc', 'ac1'], formel: '@U0 = @U', loese: {
@@ -563,10 +565,11 @@
     ];
 
     const KONSTANTEN = [
-      '\\kappa_\\text{Cu} = 56\\,' + OHM_MM + ' \\qquad \\kappa_\\text{Al} = 35\\,' + OHM_MM,
-      '\\rho = \\frac{1}{\\kappa} \\qquad \\rho_\\text{Cu} \\approx 0{,}0179\\,\\tfrac{\\Omega\\cdot\\text{mm}^2}{\\text{m}}',
+      '\\gamma_\\text{Cu} = 56\\,' + OHM_MM + ' \\qquad \\gamma_\\text{Al} = 35\\,' + OHM_MM,
+      '\\rho = \\frac{1}{\\gamma} \\qquad \\rho_\\text{Cu} \\approx 0{,}0179\\,\\tfrac{\\Omega\\cdot\\text{mm}^2}{\\text{m}}',
       '\\sqrt{3} \\approx 1{,}732 \\qquad 400\\,\\text{V} = \\sqrt{3} \\cdot 230\\,\\text{V}',
-      '\\text{Normquerschnitte: } 1{,}5 \\;\\; 2{,}5 \\;\\; 4 \\;\\; 6 \\;\\; 10 \\;\\; 16 \\;\\; 25 \\;\\; 35 \\;\\; 50 \\;\\; 70 \\;\\; 95 \\;\\; 120\\,\\text{mm}^2',
+      '\\text{Normquerschnitte in mm}^2\\text{: } 1{,}5 \\;\\; 2{,}5 \\;\\; 4 \\;\\; 6 \\;\\; 10 \\;\\; 16',
+      '25 \\;\\; 35 \\;\\; 50 \\;\\; 70 \\;\\; 95 \\;\\; 120\\,\\text{mm}^2',
       '\\text{Normströme: } 6 \\;\\; 10 \\;\\; 13 \\;\\; 16 \\;\\; 20 \\;\\; 25 \\;\\; 32 \\;\\; 40 \\;\\; 50 \\;\\; 63\\,\\text{A}'
     ];
 
@@ -632,7 +635,7 @@
       const cos = n.cos ? (hat(w, 'cos') ? w.cos : NaN) : 1;
       const kappa = w.kappa;
       const Ir = irTabelle(A);
-      const Iz = Ir * (hat(w, 'fT') ? w.fT : NaN) * (hat(w, 'fH') ? w.fH : NaN);
+      const Iz = Ir * (hat(w, 'fT') ? w.fT : NaN) * (hat(w, 'fH') ? w.fH : NaN) * (hat(w, 'fW') ? w.fW : NaN);
       const RL = w.l / (kappa * A);
       const dU = n.k * RL * w.Ib * cos;
       const du = dU / w.U * 100;
@@ -655,7 +658,7 @@
         if (hat(w, 'kappa')) return null;
         const m = MATERIAL[einst.material];
         return { ziel: 'kappa', wert: m.kappa, titel: 'Leitfähigkeit aus dem Werkstoff (' + m.name + ')',
-                 zeilen: ['\\kappa_\\text{' + m.kurz + '} \\text{ bei } 20\\,{}^\\circ\\text{C}'] };
+                 zeilen: ['\\gamma_\\text{' + m.kurz + '} \\text{ bei } 20\\,{}^\\circ\\text{C}'] };
       },
       function ausloesefaktor(w) {
         if (hat(w, 'm') || hat(w, 'Ia')) return null;
@@ -679,6 +682,12 @@
         return { ziel: 'fH', wert: f, titel: 'Umrechnungsfaktor für Häufung (gebündelt, Tabelle)',
                  zeilen: ['n_\\text{H} = ' + texZahl(Math.round(w.nH)) + ' \\text{ Stromkreis' + (Math.round(w.nH) === 1 ? '' : 'e') + '}'] };
       },
+      function wanne(w) {
+        if (hat(w, 'fW') || (hat(w, 'Iz') && hat(w, 'Ir') && hat(w, 'fT') && hat(w, 'fH'))) return null;
+        const e = einst.verlegung === 'E';
+        return { ziel: 'fW', wert: 1, titel: e ? 'Umrechnungsfaktor für Kabelwannen und -pritschen' : 'Kein Umrechnungsfaktor für Kabelwannen und -pritschen',
+                 zeilen: [e ? '\\text{eine Lage, Leitungen mit Abstand: } f_3 = 1 \\text{ (sonst Wert aus der Tabelle eintragen)}' : '\\text{Verlegeart ' + einst.verlegung + ' ohne Wanne oder Pritsche: } f_3 = 1'] };
+      },
       function schutzorgan(w) {
         if (hat(w, 'In') || !hat(w, 'Ib')) return null;
         const In = normstroeme().filter(function (x) { return x >= w.Ib - 1e-9; })[0];
@@ -695,14 +704,14 @@
                  zeilen: ['\\text{Verlegeart ' + einst.verlegung + ', ' + n.adern + ' belastete Adern, ' + MATERIAL[einst.material].kurz + ', } A = ' + texZahl(w.A) + '\\,\\text{mm}^2'] };
       },
       function querschnitt(w) {
-        if (hat(w, 'A') || !hat(w, 'In') || !hat(w, 'fT') || !hat(w, 'fH')) return null;
+        if (hat(w, 'A') || !hat(w, 'In') || !hat(w, 'fT') || !hat(w, 'fH') || !hat(w, 'fW')) return null;
         const s = SCHUTZ[einst.schutz], mat = MATERIAL[einst.material];
         const kandidaten = QUERSCHNITTE.filter(function (q) { return q >= mat.mindest - 1e-9 && isFinite(irTabelle(q)); });
         const erst = function (bed) { return kandidaten.filter(bed)[0]; };
 
         const kriterien = [];
-        const aLast = erst(function (q) { const Iz = irTabelle(q) * w.fT * w.fH; return w.In <= Iz + 1e-9 && s.f2 * w.In <= 1.45 * Iz + 1e-9; });
-        kriterien.push({ name: 'Belastbarkeit', A: aLast, tex: 'I_\\text{r} \\cdot f_\\vartheta \\cdot f_\\text{H} \\ge I_\\text{n} = ' + texZahl(w.In) + '\\,\\text{A}' });
+        const aLast = erst(function (q) { const Iz = irTabelle(q) * w.fT * w.fH * w.fW; return w.In <= Iz + 1e-9 && s.f2 * w.In <= 1.45 * Iz + 1e-9; });
+        kriterien.push({ name: 'Belastbarkeit', A: aLast, tex: 'I_\\text{r} \\cdot f_1 \\cdot f_2 \\cdot f_3 \\ge I_\\text{n} = ' + texZahl(w.In) + '\\,\\text{A}' });
         if (hat(w, 'Amin')) {
           kriterien.push({ name: 'Spannungsfall', A: erst(function (q) { return q >= w.Amin - 1e-9; }),
                            tex: 'A \\ge A_\\text{min} = ' + texZahl(w.Amin) + '\\,\\text{mm}^2' });
@@ -918,13 +927,13 @@
     }
 
     function texWert(k, werte) {
-      if (k === 'eta' || k === 'cos' || k === 'fT' || k === 'fH' || k === 'm') return texZahl(werte[k], 4);
+      if (k === 'eta' || k === 'cos' || k === 'fT' || k === 'fH' || k === 'fW' || k === 'm') return texZahl(werte[k], 4);
       return texZahl(werte[k]) + (TEX_EINHEIT[k] ? '\\,' + TEX_EINHEIT[k] : '');
     }
 
     function texErgebnis(k, w) {
       if (k === 'eta') return texZahl(w, 4) + ' = ' + texZahl(w * 100, 4) + '\\,\\%';
-      if (k === 'cos' || k === 'fT' || k === 'fH' || k === 'm') return texZahl(w, 4);
+      if (k === 'cos' || k === 'fT' || k === 'fH' || k === 'fW' || k === 'm') return texZahl(w, 4);
       let text = texZahl(w) + (TEX_EINHEIT[k] ? '\\,' + TEX_EINHEIT[k] : '');
       if ((k === 'P' || k === 'Pab' || k === 'PV') && Math.abs(w) >= 1000) text += ' = ' + texZahl(w / 1000, 4) + '\\,\\text{kW}';
       if (k === 'S' && Math.abs(w) >= 1000) text += ' = ' + texZahl(w / 1000, 4) + '\\,\\text{kVA}';
@@ -978,8 +987,8 @@
 
     // Formelzeichen als HTML für Hinweise
     function symbolHtml(k) {
-      const sonder = { dU: 'ΔU', du: 'Δu', duz: 'Δu<sub>zul</sub>', dUz: 'ΔU<sub>zul</sub>', kappa: 'κ', eta: 'η', cos: 'cos φ',
-                       thU: 'ϑ<sub>U</sub>', fT: 'f<sub>ϑ</sub>', U0: 'U<sub>0</sub>', lmaxA: 'l<sub>max,A</sub>' };
+      const sonder = { dU: 'ΔU', du: 'Δu', duz: 'Δu<sub>zul</sub>', dUz: 'ΔU<sub>zul</sub>', kappa: 'γ', eta: 'η', cos: 'cos φ',
+                       thU: 'ϑ<sub>U</sub>', fT: 'f<sub>1</sub>', fH: 'f<sub>2</sub>', fW: 'f<sub>3</sub>', U0: 'U<sub>0</sub>', lmaxA: 'l<sub>max,A</sub>' };
       if (sonder[k]) return sonder[k];
       return TEX[k].replace(/_\\text\{([^}]*)\}/, '<sub>$1</sub>');
     }
@@ -1207,26 +1216,30 @@
       html += '</tbody></table></div>';
 
       const fT = hat(w, 'thU') ? TEMPERATURFAKTOR.filter(function (z) { return w.thU <= z[0] + 1e-9; })[0] : null;
-      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Umrechnungsfaktor f<sub>ϑ</sub> für die Umgebungstemperatur (PVC)</caption><tbody><tr><th>ϑ<sub>U</sub> in °C</th>';
+      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Umrechnungsfaktor f<sub>1</sub> für die Umgebungstemperatur (PVC, bezogen auf 30 °C)</caption><tbody><tr><th>ϑ<sub>U</sub> in °C</th>';
       TEMPERATURFAKTOR.forEach(function (z) { html += '<td class="' + (fT === z ? 'treffer' : '') + '">' + z[0] + '</td>'; });
-      html += '</tr><tr><th>f<sub>ϑ</sub></th>';
+      html += '</tr><tr><th>f<sub>1</sub></th>';
       TEMPERATURFAKTOR.forEach(function (z) { html += '<td class="' + (fT === z ? 'treffer' : '') + '">' + zahl(z[1], 3) + '</td>'; });
       html += '</tr></tbody></table></div>';
 
       const nH = hat(w, 'nH') ? Math.max(1, Math.round(w.nH)) : NaN;
       const fH = isFinite(nH) ? HAEUFUNGSFAKTOR.filter(function (z) { return nH <= z[0]; })[0] : null;
-      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Umrechnungsfaktor f<sub>H</sub> für Häufung (gebündelt auf oder in der Wand)</caption><tbody><tr><th>Stromkreise</th>';
+      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Umrechnungsfaktor f<sub>2</sub> für Häufung (gebündelt auf oder in der Wand, auch mehrere Stromkreise in einem Rohr)</caption><tbody><tr><th>Stromkreise</th>';
       HAEUFUNGSFAKTOR.forEach(function (z) { html += '<td class="' + (fH === z ? 'treffer' : '') + '">' + z[0] + '</td>'; });
-      html += '</tr><tr><th>f<sub>H</sub></th>';
+      html += '</tr><tr><th>f<sub>2</sub></th>';
       HAEUFUNGSFAKTOR.forEach(function (z) { html += '<td class="' + (fH === z ? 'treffer' : '') + '">' + zahl(z[1], 3) + '</td>'; });
       html += '</tr></tbody></table></div>';
 
-      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Schutzorgane</caption><thead><tr><th>Art</th><th>Abschaltstrom I<sub>a</sub></th><th>I<sub>2</sub></th></tr></thead><tbody>';
+      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Schutzorgane</caption><thead><tr><th>Art</th><th>Abschaltstrom I<sub>a</sub></th><th>I<sub>2</sub></th><th style="text-align:left">Einsatz</th></tr></thead><tbody>';
       Object.keys(SCHUTZ).forEach(function (id) {
         const s = SCHUTZ[id], cls = id === einst.schutz ? 'treffer' : '';
-        html += '<tr><td class="' + cls + '">' + s.name + '</td><td class="' + cls + '">' + (isFinite(s.m) ? s.m + ' · I<sub>n</sub>' : 'aus der Kennlinie') + '</td><td class="' + cls + '">' + zahl(s.f2, 3) + ' · I<sub>n</sub></td></tr>';
+        html += '<tr><td class="' + cls + '">' + s.name + '</td><td class="' + cls + '">' + (isFinite(s.m) ? s.m + ' · I<sub>n</sub>' : 'aus der Kennlinie') + '</td><td class="' + cls + '">' + zahl(s.f2, 3) + ' · I<sub>n</sub></td><td class="' + cls + '" style="text-align:left;min-width:14em">' + s.einsatz + '</td></tr>';
       });
       html += '</tbody></table></div>';
+      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Typische Stromkreise im Wohnbau (Kupfer, Verlegeart B2 oder C, 30 °C, ohne Häufung)</caption><thead><tr><th>Stromkreis</th><th style="text-align:left">Leitung</th><th style="text-align:left">Schutz</th></tr></thead><tbody>'
+        + [['Beleuchtung', 'NYM-J 3 × 1,5 mm²', 'B10 oder B13'], ['Steckdosen', 'NYM-J 3 × 2,5 mm² (1,5 mm² nur bei kurzer Leitung)', 'B16'], ['Elektroherd', 'NYM-J 5 × 2,5 mm²', '3 × B16 (Drehstrom)'], ['Drehstrommotor bis etwa 5,5 kW', 'NYM-J 5 × 2,5 mm²', 'C16 oder Motorschutzschalter'], ['Hauptleitung zum Zählerplatz', '10 bis 16 mm² (DIN 18015-1)', 'nach Anschlusswert']]
+          .map(function (z) { return '<tr><td>' + z[0] + '</td><td style="text-align:left">' + z[1] + '</td><td style="text-align:left">' + z[2] + '</td></tr>'; }).join('')
+        + '</tbody></table><p class="hilfe">Richtwerte. Ob sie passen, entscheiden immer Belastbarkeit mit Umrechnungsfaktoren, Spannungsfall und Abschaltbedingung – also der Rechner oben.</p></div>';
       ziel.innerHTML = html;
     }
 

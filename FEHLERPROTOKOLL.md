@@ -6,6 +6,12 @@ Alle bisher gefundenen Fehler in der Sammlung und wie sie behoben wurden, aus de
 
 ## Fehler
 
+### Leitungsdimensionierung: Zeile „Normquerschnitte“ abgeschnitten
+
+- **Ursache:** Die Formel mit allen zwölf Querschnitten war breiter als die Formelsammlung; das Ende „120 mm²“ war abgeschnitten.
+- **Behebung:** Auf zwei Zeilen aufgeteilt.
+- **PR:** #76
+
 ### Lernbereich: Seiten mit mehreren Lösern bekamen keine Aufgaben
 
 - **Ursache:** Der Lernbereich las nur `loeser` als einzelnes Objekt. Seiten mit einer Liste von Lösern (z. B. Klima und Hitze am Arbeitsplatz) galten als Seiten ohne Löser.
