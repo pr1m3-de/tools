@@ -187,6 +187,47 @@ button b, button strong, .karte h3 { hyphens: auto; -webkit-hyphens: auto; }
 .favorit-schalter[aria-pressed="true"], .stern[aria-pressed="true"] { color: #D98A0B; border-color: #D98A0B; }
 .favorit-schalter[aria-pressed="true"] svg, .stern[aria-pressed="true"] svg { fill: #F2A541; stroke: #D98A0B; }
 
+/* ---------- Stichwortsuche ---------- */
+.suche-knopf {
+  height: 38px; padding: 0 14px 0 11px;
+  border: 1px solid var(--linie); border-radius: 19px;
+  background: var(--flaeche); color: var(--text);
+  cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+  font: inherit; font-size: .92rem; font-weight: 600;
+}
+.suche-knopf svg { width: 17px; height: 17px; flex: none; }
+.suche-knopf:hover { border-color: var(--leise); }
+html.suche-offen { overflow: hidden; }
+.suche-schicht { position: fixed; inset: 0; z-index: 1000; background: rgba(10, 12, 16, .45); display: flex; justify-content: center; align-items: flex-start; padding: 8vh 12px 12px; }
+.suche-schicht[hidden] { display: none; }
+.suche-box { width: min(680px, 100%); max-height: 84vh; display: flex; flex-direction: column; background: var(--grund); border: 1px solid var(--linie); border-radius: 14px; box-shadow: 0 20px 60px rgba(0, 0, 0, .3); overflow: hidden; }
+.suche-kopf { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-bottom: 1px solid var(--linie); }
+.suche-lupe svg { width: 20px; height: 20px; color: var(--leise); display: block; }
+.suche-kopf input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--text); font: inherit; font-size: 1.08rem; padding: 6px 2px; outline: none; }
+.suche-zu { border: 1px solid var(--linie); background: var(--flaeche); color: var(--leise); border-radius: 8px; padding: 5px 10px; font: inherit; font-size: .85rem; cursor: pointer; }
+.suche-info { margin: 0; padding: 8px 14px; color: var(--leise); font-size: .88rem; }
+.suche-liste { list-style: none; margin: 0; padding: 0 8px 10px; overflow-y: auto; overscroll-behavior: contain; }
+.suche-beispiele { display: flex; flex-wrap: wrap; gap: 6px; padding: 2px 6px 8px; }
+.suche-treffer { padding: 4px 0; border-top: 1px solid var(--linie); }
+.suche-treffer:first-child { border-top: 0; }
+.suche-liste a { display: block; text-decoration: none; color: var(--text); border-radius: 8px; padding: 7px 8px; }
+.suche-liste a:hover, .suche-liste a.aktiv { background: var(--flaeche); }
+.suche-liste a.aktiv { outline: 2px solid var(--skala-akzent, #2B7BB9); outline-offset: -2px; }
+.suche-haupt b { font-family: var(--technik); font-size: 1rem; }
+.suche-haupt small { display: block; color: var(--leise); font-size: .84rem; line-height: 1.35; margin-top: 2px; }
+.suche-bereich { margin-left: 8px; font-size: .74rem; color: var(--leise); border: 1px solid var(--linie); border-radius: 10px; padding: 1px 7px; white-space: nowrap; }
+.suche-teile { display: flex; flex-direction: column; padding-left: 12px; }
+.suche-liste a.suche-teil { padding: 4px 8px; font-size: .9rem; }
+.suche-art { display: inline-block; min-width: 72px; margin-right: 6px; font-size: .74rem; color: var(--leise); text-transform: uppercase; letter-spacing: .03em; }
+@media (max-width: 560px) {
+  .suche-knopf { width: 38px; padding: 0; justify-content: center; }
+  .suche-knopf span { display: none; }
+  .suche-schicht { padding: 0; align-items: stretch; }
+  .suche-box { max-height: none; height: 100%; border-radius: 0; border: 0; }
+  .suche-art { min-width: 0; display: block; }
+}
+@media print { .suche-schicht, .suche-knopf { display: none !important; } }
+
 @media (max-width: 560px) {
   /* Handy: Logo und Knöpfe oben, alle Reiter als eigene Zeile darunter */
   .seitenkopf { flex-wrap: wrap; row-gap: 8px; }
@@ -200,6 +241,9 @@ button b, button strong, .karte h3 { hyphens: auto; -webkit-hyphens: auto; }
 }
 @media (max-width: 360px) {
   .seitenkopf .marke { font-size: .95rem; gap: 8px; }
+  .seitenkopf { column-gap: 6px; }
+  .seitenkopf .marke-zeichen { width: 26px; height: 26px; }
+  .seitenkopf .themenschalter, .seitenkopf .favorit-schalter, .seitenkopf .suche-knopf, .seitenkopf .netz-kopf { width: 32px; height: 32px; }
   .seitenkopf .kopf-knoepfe { gap: 2px; }
   .seitenkopf nav.reiter a { font-size: .84rem; padding: 6px 2px; }
   .seitenkopf nav.reiter a.neu { padding: 5px .5px; }
