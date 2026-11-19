@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="Brandmeldeanlage planen und simulieren">
   <meta name="twitter:description" content="Brandmeldeanlage planen und simulieren: Melder je Raum nach DIN VDE 0833-2, frei einstellbare Steuerungen (Hausalarm, Wählgerät zur Feuerwehr, Rauchabzug, Türen, Klima, Aufzug, Löschanlage), Ringleitung, Notstrom, dann einen Brand legen und den Ablauf von Melder über Zentrale bis Feuerwehr verfolgen.">
   <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#seite","name":"Brandmeldeanlage planen und simulieren","url":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html","inLanguage":"de","description":"Brandmeldeanlage planen und simulieren: Melder je Raum nach DIN VDE 0833-2, frei einstellbare Steuerungen (Hausalarm, Wählgerät zur Feuerwehr, Rauchabzug, Türen, Klima, Aufzug, Löschanlage), Ringleitung, Notstrom, dann einen Brand legen und den Ablauf von Melder über Zentrale bis Feuerwehr verfolgen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#pfad"},"dateModified":"2026-11-05"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Brandmeldeanlage planen und simulieren","item":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#seite","name":"Brandmeldeanlage planen und simulieren","url":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html","inLanguage":"de","description":"Brandmeldeanlage planen und simulieren: Melder je Raum nach DIN VDE 0833-2, frei einstellbare Steuerungen (Hausalarm, Wählgerät zur Feuerwehr, Rauchabzug, Türen, Klima, Aufzug, Löschanlage), Ringleitung, Notstrom, dann einen Brand legen und den Ablauf von Melder über Zentrale bis Feuerwehr verfolgen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Brandmeldeanlage planen und simulieren","item":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html"}]}]}</script>
   <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
@@ -77,12 +77,25 @@
     .raeume-wahl label { display: inline-flex; gap: 4px; align-items: center; color: var(--text); }
     .karte-klein.aus { opacity: .6; }
     .unterkopf { margin: 8px 0 2px; font-size: .85rem; font-weight: 600; font-family: var(--technik); }
+    .kabel-rahmen { position: relative; }
+    #kabel { display: block; width: 100%; border-radius: var(--rund); background: var(--flaeche2); }
+    .kabel-text { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 18px; margin-top: 10px; align-items: start; }
+    @media (max-width: 760px) { .kabel-text { grid-template-columns: minmax(0, 1fr); } }
+    .kabel-legende { margin: 0; padding: 0; list-style: none; display: grid; gap: 6px; counter-reset: teil; }
+    .kabel-legende li { display: grid; grid-template-columns: 26px 18px minmax(0, 1fr); gap: 8px; align-items: start; font-size: .92rem; }
+    .kabel-legende .nr { width: 22px; height: 22px; border-radius: 50%; background: var(--text); color: var(--grund); font: 700 .78rem/22px var(--technik); text-align: center; }
+    .kabel-legende .muster { width: 16px; height: 16px; border-radius: 4px; margin-top: 3px; border: 1px solid var(--linie); }
+    .kabel-legende b { font-family: var(--technik); }
+    .kabel-hinweise { margin: 10px 0 0; padding-left: 1.2em; font-size: .92rem; }
+    .kabel-hinweise li { margin: 4px 0; }
     [hidden] { display: none !important; }
     @media print {
       .planer { display: block; }
       .einstellungen, .werkzeug-leiste, .status { display: none !important; }
       #plan { max-height: 120mm; width: auto; max-width: 100%; }
       .protokoll-liste { max-height: none; }
+      .kabel-abschnitt { break-inside: avoid; break-before: page; }
+      #kabel { max-height: 150mm; width: auto; max-width: 100%; }
     }
   </style>
 </head>
@@ -152,6 +165,40 @@
         </div>
       </section>
     </div>
+
+    <section class="tafel abstand kabel-abschnitt" aria-labelledby="h-leitung">
+      <h2 id="h-leitung">Leitung: J-Y(St)Y 2 × 2 × 0,8 Lg – Brandmeldekabel</h2>
+      <p class="hilfe">Installationskabel für Melderlinien nach DIN VDE 0815: vier Kupferadern mit 0,8 mm Durchmesser, verseilt zum Sternvierer, statischer Schirm aus Alufolie mit Beidraht, roter PVC-Mantel mit dem Aufdruck „Brandmeldekabel“. Der Querschnitt ist maßstäblich (Außendurchmesser etwa 5 mm), daneben die Verlegung.</p>
+      <div class="werkzeug-leiste" role="group" aria-label="Verlegung der Leitung">
+        <button type="button" class="knopf" data-verlegung="putz" aria-pressed="true">Im Putz</button>
+        <button type="button" class="knopf" data-verlegung="rohr-up" aria-pressed="false">Schutzrohr unter Putz</button>
+        <button type="button" class="knopf" data-verlegung="rohr-ap" aria-pressed="false">Schutzrohr auf Putz</button>
+        <select id="rohrGroesse" aria-label="Größe des Schutzrohrs"><option value="16">Rohr M16</option><option value="20" selected>Rohr M20</option><option value="25">Rohr M25</option></select>
+        <select id="rohrAnzahl" aria-label="Leitungen im Rohr"><option value="1">1 Leitung im Rohr</option><option value="2">2 Leitungen im Rohr</option><option value="3">3 Leitungen im Rohr</option><option value="4">4 Leitungen im Rohr</option></select>
+      </div>
+      <div class="kabel-rahmen"><canvas id="kabel" role="img" aria-label="Querschnitt der Leitung J-Y(St)Y 2 × 2 × 0,8 mit Aufbau, Seitenansicht mit Aufdruck und Einbau im Putz oder im Schutzrohr"></canvas></div>
+      <p class="status" id="kabelInfo" aria-live="polite"></p>
+      <div class="kabel-text">
+        <ol class="kabel-legende" id="kabelLegende"></ol>
+        <div>
+          <div class="rahmen"><table class="tabelle">
+            <caption>Kenndaten (übliche Herstellerangaben)</caption>
+            <tbody>
+              <tr><td>Bauart</td><td>J-Y(St)Y nach DIN VDE 0815, „Lg“ = Lagenverseilung, hier ein Sternvierer</td></tr>
+              <tr><td>Leiter</td><td>Kupfer blank, eindrähtig, Ø 0,8 mm (0,5 mm²) – Mindestdurchmesser für Brandmeldeanlagen nach DIN VDE 0833-2</td></tr>
+              <tr><td>Aderfarben</td><td>Paar 1 rot/schwarz, Paar 2 weiß/gelb; die Adern eines Paars liegen sich im Vierer gegenüber</td></tr>
+              <tr><td>Außendurchmesser</td><td>etwa 5 mm</td></tr>
+              <tr><td>Schleifenwiderstand</td><td>höchstens 73,2 Ω/km bei 20 °C (Hin- und Rückleiter)</td></tr>
+              <tr><td>Betriebsspannung</td><td>höchstens 300 V (Scheitelwert), nur für Fernmelde- und Signalstromkreise, nicht für Starkstrom</td></tr>
+              <tr><td>Biegeradius</td><td>mindestens 7,5 × Außendurchmesser ≈ 38 mm</td></tr>
+              <tr><td>Temperatur</td><td>fest verlegt −30 bis +70 °C, beim Verlegen −5 bis +50 °C</td></tr>
+              <tr><td>Brandverhalten</td><td>PVC, kein Funktionserhalt; im Brandfall entstehen korrosive, giftige Gase</td></tr>
+            </tbody>
+          </table></div>
+          <ul class="kabel-hinweise" id="kabelHinweise"></ul>
+        </div>
+      </div>
+    </section>
 
     <section class="tafel abstand" aria-labelledby="h-pruef">
       <div class="kopf-zeile"><h2 id="h-pruef">Prüfung der Planung</h2><span class="urteil" id="urteil"></span></div>
@@ -1122,6 +1169,270 @@
       status('Planung aus dem Link geladen und gespeichert.' + (gesichert ? ' Deine vorherige Planung ist gesichert.' : ''));
     }).catch(function () { status('Der Link ist unvollständig oder beschädigt – es gilt die gespeicherte Planung.'); });
     void bewegungAus;
+  })();
+  </script>
+  <script>
+  // ---------- Leitung J-Y(St)Y 2 × 2 × 0,8: Querschnitt, Seitenansicht, Verlegung ----------
+  (function () {
+    'use strict';
+    const cv = document.getElementById('kabel');
+    if (!cv) return;
+    const cx = cv.getContext('2d');
+    const F = function (n) { return Thema.farbe(n); };
+    const SCHRIFT = function () { return F('--technik') || 'sans-serif'; };
+    // Maße in mm
+    const MASS = { R: 2.5, rMantelInnen: 2.03, rAlu: 2.01, rBei: 0.2, rBeiLage: 1.8, rWickel: 1.6, rAder: 0.65, rLeiter: 0.4, dVierer: 0.92 };
+    const ROT = '#C8102E', ROT_D = '#8E0B20', KUPFER = '#C87533', ALU = '#C9CED6', ZINN = '#A9AFB8';
+    const ADERN = [['rot', '#D7263D', -135], ['weiß', '#F4F4F2', -45], ['schwarz', '#232323', 45], ['gelb', '#F2C200', 135]];
+    const ROHRE = { 16: 10.7, 20: 14.1, 25: 18.3 };   // Innendurchmesser flexibler Elektroinstallationsrohre in mm (ungefähr)
+    let verlegung = 'putz', rohr = 20, anzahl = 1;
+
+    const TEILE = [
+      [KUPFER, 'Kupferleiter', 'Ø 0,8 mm, eindrähtig, blank (0,5 mm²).'],
+      ['#D7263D', 'Aderisolierung', 'PVC in den Farben rot, schwarz, weiß und gelb.'],
+      ['#F2C200', 'Sternvierer', 'Die vier Adern sind miteinander verseilt. Paar 1 (rot/schwarz) und Paar 2 (weiß/gelb) liegen jeweils über Kreuz – das hält das Übersprechen zwischen den Paaren klein.'],
+      ['#EDEDED', 'Kunststofffolie', 'Bewicklung über dem Vierer, hält ihn zusammen und trennt ihn vom Schirm.'],
+      [ALU, 'Statischer Schirm', 'Kunststoffkaschierte Alufolie gegen elektrische Störfelder.'],
+      [ZINN, 'Beidraht', 'Verzinntes Kupfer, längs unter der Folie. Macht den Schirm anschließbar: an jedem Melder durchverbinden und nach Herstellerangabe an der Zentrale auflegen.'],
+      [ROT, 'Mantel', 'PVC, rot – Leitungen der Brandmeldeanlage sind so auf einen Blick erkennbar.'],
+      ['#1A1A1A', 'Aufdruck', '„BRANDMELDEKABEL“ mit Typ und Hersteller in regelmäßigen Abständen auf dem Mantel.']
+    ];
+    const leg = document.getElementById('kabelLegende');
+    TEILE.forEach(function (t, i) {
+      const li = document.createElement('li'), nr = document.createElement('span'), mu = document.createElement('span'), tx = document.createElement('span'), b = document.createElement('b');
+      nr.className = 'nr'; nr.textContent = String(i + 1); mu.className = 'muster'; mu.style.background = t[0];
+      b.textContent = t[1] + ': '; tx.append(b, document.createTextNode(t[2])); li.append(nr, mu, tx); leg.append(li);
+    });
+
+    function kreis(x, y, r, fuell, linie, breite) {
+      cx.beginPath(); cx.arc(x, y, Math.max(0.5, r), 0, 2 * Math.PI);
+      if (fuell) { cx.fillStyle = fuell; cx.fill(); }
+      if (linie) { cx.strokeStyle = linie; cx.lineWidth = breite || 1; cx.stroke(); }
+    }
+    function text(t, x, y, ausr, groesse, fett, farbe) {
+      cx.fillStyle = farbe || F('--text'); cx.textAlign = ausr || 'left'; cx.textBaseline = 'middle';
+      cx.font = (fett ? '700 ' : '500 ') + (groesse || 12) + 'px ' + SCHRIFT(); cx.fillText(t, x, y);
+    }
+    function marke(n, x, y) { kreis(x, y, 10, F('--text')); text(String(n), x, y + 0.5, 'center', 11, true, F('--grund')); }
+    function linie(a, b, c, d, farbe, breite, strich) {
+      cx.beginPath(); cx.moveTo(a, b); cx.lineTo(c, d); cx.strokeStyle = farbe || F('--leise'); cx.lineWidth = breite || 1;
+      cx.setLineDash(strich || []); cx.stroke(); cx.setLineDash([]);
+    }
+    const pol = function (x, y, r, w) { const a = w * Math.PI / 180; return [x + r * Math.cos(a), y + r * Math.sin(a)]; };
+
+    // Querschnitt der Leitung, Mittelpunkt x/y, s = Pixel je mm; liefert Zielpunkte für die Beschriftung
+    function querschnitt(x, y, s) {
+      const M = MASS, fein = s > 12;
+      kreis(x, y, M.R * s, ROT, ROT_D, Math.max(1, s * 0.04));
+      kreis(x, y, M.rMantelInnen * s, '#3A2A2C');
+      kreis(x, y, M.rAlu * s, null, ALU, Math.max(1.2, s * 0.07));
+      const bei = pol(x, y, M.rBeiLage * s, 180);
+      kreis(bei[0], bei[1], M.rBei * s, ZINN, '#6E747C', fein ? 1 : 0.5);
+      kreis(x, y, M.rWickel * s, 'rgba(255,255,255,0.10)', 'rgba(240,240,240,0.85)', Math.max(1, s * 0.035));
+      const ziele = {};
+      ADERN.forEach(function (a, i) {
+        const p = pol(x, y, M.dVierer * s, a[2]);
+        kreis(p[0], p[1], M.rAder * s, a[1], i === 1 ? '#9AA0A6' : 'rgba(0,0,0,0.45)', fein ? 1.2 : 0.6);
+        kreis(p[0], p[1], M.rLeiter * s, KUPFER, fein ? '#8A4E1E' : null, 1);
+        if (fein) { cx.globalAlpha = 0.35; kreis(p[0] - M.rLeiter * s * 0.3, p[1] - M.rLeiter * s * 0.3, M.rLeiter * s * 0.35, '#FFE1C0'); cx.globalAlpha = 1; }
+        ziele['ader' + i] = p;
+      });
+      if (fein) {
+        // Paare über Kreuz andeuten
+        const r = pol(x, y, M.dVierer * s, -135), sw = pol(x, y, M.dVierer * s, 45), w = pol(x, y, M.dVierer * s, -45), g = pol(x, y, M.dVierer * s, 135);
+        cx.globalAlpha = 0.55; linie(r[0], r[1], sw[0], sw[1], '#FFFFFF', 1, [3, 3]); linie(w[0], w[1], g[0], g[1], '#FFFFFF', 1, [3, 3]); cx.globalAlpha = 1;
+      }
+      ziele.leiter = ziele.ader0; ziele.iso = pol(ziele.ader3[0], ziele.ader3[1], M.rAder * s * 0.82, 180);
+      ziele.vierer = pol(ziele.ader2[0], ziele.ader2[1], M.rAder * s * 0.8, 45); ziele.wickel = pol(x, y, M.rWickel * s, -12); ziele.alu = pol(x, y, M.rAlu * s, 14);
+      ziele.bei = bei; ziele.mantel = pol(x, y, (M.R - 0.22) * s, -50);
+      return ziele;
+    }
+
+    function tafelA(x0, y0, w, h) {
+      text('Querschnitt (maßstäblich)', x0 + 12, y0 + 16, 'left', 13, true);
+      const s = Math.max(12, Math.min((w - 150) / (2 * MASS.R), (h - 70) / (2 * MASS.R), 46));
+      const mx = x0 + w / 2, my = y0 + 34 + MASS.R * s + 4;
+      const z = querschnitt(mx, my, s);
+      const R = MASS.R * s, links = mx - R - 40, rechts = mx + R + 40;
+      const L = [[1, z.leiter, -R * 0.75], [6, z.bei, 0], [2, z.iso, R * 0.75]], Rr = [[7, z.mantel, -R * 0.8], [4, z.wickel, -R * 0.27], [5, z.alu, R * 0.27], [3, z.vierer, R * 0.8]];
+      L.forEach(function (m) { const ly = my + m[2]; linie(links + 10, ly, m[1][0], m[1][1], F('--text'), 1); kreis(m[1][0], m[1][1], 2.2, F('--text')); marke(m[0], links, ly); });
+      Rr.forEach(function (m) { const ly = my + m[2]; linie(rechts - 10, ly, m[1][0], m[1][1], F('--text'), 1); kreis(m[1][0], m[1][1], 2.2, F('--text')); marke(m[0], rechts, ly); });
+      // Maßlinie Außendurchmesser
+      const uy = my + R + 18;
+      linie(mx - R, uy - 6, mx - R, uy + 4, F('--leise')); linie(mx + R, uy - 6, mx + R, uy + 4, F('--leise')); linie(mx - R, uy, mx + R, uy, F('--leise'));
+      text('≈ 5 mm', mx, uy + 12, 'center', 11, true, F('--leise'));
+    }
+
+    function schraffur(x, y, w, h, farbe, abstand) {
+      cx.save(); cx.beginPath(); cx.rect(x, y, w, h); cx.clip(); cx.strokeStyle = farbe; cx.lineWidth = 1;
+      for (let i = -h; i < w; i += abstand) { cx.beginPath(); cx.moveTo(x + i, y + h); cx.lineTo(x + i + h, y); cx.stroke(); }
+      cx.restore();
+    }
+    function bemassung(x, ya, yb, t, rand, xLinks) {
+      cx.font = '700 11px ' + SCHRIFT();
+      const links = x + 8 + cx.measureText(t).width > rand;
+      if (links) x = xLinks;
+      linie(x - 5, ya, x + 5, ya, F('--text')); linie(x - 5, yb, x + 5, yb, F('--text')); linie(x, ya, x, yb, F('--text'));
+      text(t, links ? x - 8 : x + 8, (ya + yb) / 2, links ? 'right' : 'left', 11, true);
+    }
+    function lagen(n, Ri) {
+      if (n === 1) return [[0, Ri - 2.5]];
+      const yb = Math.sqrt(Math.max(0, (Ri - 2.5) * (Ri - 2.5) - 6.25));
+      const l = [[-2.5, yb], [2.5, yb]];
+      if (n >= 3) l.push(n === 3 ? [0, yb - 4.33] : [-2.5, yb - 5]);
+      if (n === 4) l.push([2.5, yb - 5]);
+      return l;
+    }
+    function rohrZeichnen(x, y, k, D, Ri) {
+      // gewelltes Rohr: Außenkontur mit kleinen Wellen, innen glatt
+      cx.beginPath();
+      for (let i = 0; i <= 120; i++) { const a = i / 120 * 2 * Math.PI, r = (D / 2 - 0.35 + 0.35 * Math.cos(a * 18)) * k; const px = x + r * Math.cos(a), py = y + r * Math.sin(a); if (i) cx.lineTo(px, py); else cx.moveTo(px, py); }
+      cx.closePath(); cx.fillStyle = '#7C8A99'; cx.fill(); cx.strokeStyle = '#4B5663'; cx.lineWidth = 1; cx.stroke();
+      kreis(x, y, Ri / 2 * k, F('--flaeche2'));
+      const pos = lagen(anzahl, Ri / 2);
+      pos.forEach(function (p) { querschnitt(x + p[0] * k, y + p[1] * k, k); });
+      return pos.every(function (p) { return Math.hypot(p[0], p[1]) + 2.5 <= Ri / 2 + 1e-6; }) && (anzahl === 1 || Ri / 2 - 2.5 >= 2.5);
+    }
+
+    function tafelB(x0, y0, w, h) {
+      const titel = verlegung === 'putz' ? 'Verlegung im Putz' : verlegung === 'rohr-up' ? 'Im Schutzrohr unter Putz' : 'Im Schutzrohr auf Putz';
+      text(titel + (w > 520 ? ' (Schnitt quer zur Wand)' : ''), x0 + 12, y0 + 16, 'left', 13, true);
+      const D = verlegung === 'putz' ? 5 : rohr, Ri = ROHRE[rohr];
+      const putz = verlegung === 'rohr-ap' ? 15 : 15 + (verlegung === 'putz' ? 5 : 0);
+      const raum = verlegung === 'rohr-ap' ? D + 6 : 8;
+      const tief = putz + (verlegung === 'rohr-up' ? D + 2 : 0) + 18;
+      const k = Math.max(3, Math.min((h - 44) / (raum + tief), (w - 40) / 70, 9));
+      const oben = y0 + 30, flaeche = oben + raum * k, mauerOben = flaeche + putz * k;
+      // Mauerwerk mit Schlitz
+      const mx = x0 + w / 2;
+      cx.fillStyle = '#B4876B'; cx.fillRect(x0 + 8, mauerOben, w - 16, y0 + h - 8 - mauerOben);
+      schraffur(x0 + 8, mauerOben, w - 16, y0 + h - 8 - mauerOben, 'rgba(60,30,20,0.35)', 9);
+      text('Mauerwerk', x0 + 16, y0 + h - 18, 'left', 11, true, '#3B2015');
+      // Putz
+      cx.fillStyle = '#D9D4CB'; cx.fillRect(x0 + 8, flaeche, w - 16, putz * k);
+      if (verlegung === 'rohr-up') {
+        const sb = (D + 4) * k; cx.fillStyle = '#D9D4CB'; cx.fillRect(mx - sb / 2, mauerOben - 1, sb, (D + 2) * k + 1);
+      }
+      cx.globalAlpha = 0.5; for (let i = 0; i < 60; i++) { const px = x0 + 10 + ((i * 97) % (w - 20)), py = flaeche + 2 + ((i * 53) % Math.max(4, putz * k - 4)); kreis(px, py, 0.9, '#A8A196'); } cx.globalAlpha = 1;
+      text('Putz (mineralisch)', x0 + 16, flaeche + 10, 'left', 11, true, '#4A4438');
+      linie(x0 + 8, flaeche, x0 + w - 8, flaeche, F('--text'), 1.5);
+      text('Raum', x0 + 16, oben + Math.min(12, raum * k / 2), 'left', 11, true, F('--leise'));
+      let passt = true, info = '';
+      if (verlegung === 'putz') {
+        const cy = mauerOben - 2.5 * k;
+        querschnitt(mx, cy, k);
+        bemassung(mx + 2.5 * k + 22, flaeche, cy - 2.5 * k, '15 mm Putzüberdeckung', x0 + w - 10, mx - 2.5 * k - 22);
+        info = 'Leitung direkt im Putz. In Rettungswegen (notwendige Flure, Treppenräume) nach MLAR mit mindestens 15 mm mineralischem Putz überdeckt.';
+      } else if (verlegung === 'rohr-up') {
+        const cy = mauerOben + (D / 2 + 1) * k;
+        passt = rohrZeichnen(mx, cy, k, D, Ri);
+        bemassung(mx + D / 2 * k + 22, flaeche, cy - D / 2 * k, '15 mm Putz', x0 + w - 10, mx - (D / 2 + 2) * k - 12);
+        text('Schlitz', mx - D / 2 * k - 8, cy + D / 2 * k + 2, 'right', 11, true, '#3B2015');
+      } else {
+        const cy = flaeche - D / 2 * k;
+        // Rohrschelle
+        cx.strokeStyle = '#6B7785'; cx.lineWidth = Math.max(2, k * 0.6);
+        cx.beginPath(); cx.arc(mx, cy, (D / 2 + 0.6) * k, Math.PI, 2 * Math.PI); cx.stroke();
+        linie(mx - (D / 2 + 0.6) * k, cy, mx - (D / 2 + 0.6) * k, flaeche, '#6B7785', Math.max(2, k * 0.6));
+        linie(mx + (D / 2 + 0.6) * k, cy, mx + (D / 2 + 0.6) * k, flaeche, '#6B7785', Math.max(2, k * 0.6));
+        cx.fillStyle = '#6B7785'; cx.fillRect(mx - (D / 2 + 4) * k, flaeche - 1.2 * k, (D + 8) * k, 1.2 * k);
+        passt = rohrZeichnen(mx, cy, k, D, Ri);
+        linie(mx, flaeche - 1.2 * k, mx, mauerOben + 10 * k, '#4B5663', Math.max(1.5, k * 0.4), [4, 3]);
+        text('Schelle mit Dübel', mx + (D / 2 + 5) * k, flaeche - 1.2 * k, 'left', 11, true, F('--leise'));
+      }
+      if (verlegung !== 'putz') {
+        const fuell = anzahl * 25 / (Ri * Ri) * 100;
+        info = 'Rohr M' + rohr + ', innen etwa ' + String(Ri).replace('.', ',') + ' mm: ' + anzahl + (anzahl === 1 ? ' Leitung füllt ' : ' Leitungen füllen ') + Math.round(fuell) + ' % des Querschnitts. ' +
+          (!passt ? 'Die Leitungen passen nicht hinein – größeres Rohr wählen.' : fuell > 34 ? 'Mehr als etwa ein Drittel: schwer einzuziehen und später kaum zu tauschen – größeres Rohr wählen.' : 'Unter einem Drittel – lässt sich gut einziehen und später tauschen (Faustregel).');
+        if (!passt || fuell > 34) text(!passt ? 'passt nicht' : 'zu voll', mx, verlegung === 'rohr-ap' ? oben + 6 : mauerOben + (D + 2) * k + 14, 'center', 12, true, '#C0392B');
+      }
+      return info;
+    }
+
+    function seitenansicht(x0, y0, w, h) {
+      text('Seitenansicht, abgesetzt', x0 + 12, y0 + 14, 'left', 13, true);
+      const kS = Math.max(5, Math.min(8, h / 12)), T = 5 * kS, my = y0 + 28 + T / 2 + 6, l = x0 + 14, r = x0 + w - 14, L = r - l;
+      const xM = l + L * 0.6, xA = l + L * 0.7, xW = l + L * 0.78;
+      // Mantel mit Aufdruck
+      cx.fillStyle = ROT; cx.beginPath(); cx.moveTo(l + T / 2, my - T / 2); cx.lineTo(xM, my - T / 2); cx.lineTo(xM, my + T / 2); cx.lineTo(l + T / 2, my + T / 2); cx.arc(l + T / 2, my, T / 2, Math.PI / 2, 1.5 * Math.PI); cx.fill();
+      const g = cx.createLinearGradient(0, my - T / 2, 0, my + T / 2); g.addColorStop(0, 'rgba(255,255,255,0.28)'); g.addColorStop(0.45, 'rgba(255,255,255,0)'); g.addColorStop(1, 'rgba(0,0,0,0.25)');
+      cx.fillStyle = g; cx.fillRect(l + T / 2, my - T / 2, xM - l - T / 2, T);
+      cx.save(); cx.beginPath(); cx.rect(l + T / 2, my - T / 2, xM - l - T / 2, T); cx.clip();
+      cx.font = '700 ' + Math.max(9, Math.round(T * 0.36)) + 'px ' + SCHRIFT(); cx.textBaseline = 'middle'; cx.textAlign = 'left'; cx.fillStyle = '#111';
+      const druck = 'BRANDMELDEKABEL  J-Y(St)Y 2x2x0,8 Lg  ', dw = cx.measureText(druck).width;
+      for (let x = l + T / 2 + 6; x < xM; x += dw) cx.fillText(druck, x, my + 0.5);
+      cx.restore();
+      // Alufolie mit Beidraht
+      cx.fillStyle = ALU; cx.fillRect(xM, my - T * 0.41, xA - xM, T * 0.82);
+      cx.globalAlpha = 0.35; for (let x = xM; x < xA; x += 7) linie(x, my - T * 0.41, x + 5, my + T * 0.41, '#FFFFFF', 1); cx.globalAlpha = 1;
+      linie(xM, my + T * 0.36, xW + 10, my + T * 0.36, ZINN, Math.max(2, kS * 0.4));
+      // Kunststofffolie
+      cx.fillStyle = 'rgba(240,240,240,0.9)'; cx.fillRect(xA, my - T * 0.33, xW - xA, T * 0.66);
+      // Adern, verseilt und am Ende gespreizt
+      const n = ADERN.length;
+      ADERN.forEach(function (a, i) {
+        const spreiz = (i - (n - 1) / 2) * T * 0.32;
+        cx.beginPath();
+        for (let t = 0; t <= 40; t++) { const x = xW + (r - 26 - xW) * t / 40, f = t / 40, wel = Math.sin(f * 7 + i * Math.PI / 2) * T * 0.12 * (1 - f); const y = my + wel + spreiz * f; if (t) cx.lineTo(x, y); else cx.moveTo(x, y); }
+        cx.strokeStyle = a[1]; cx.lineWidth = Math.max(4, kS * 1.3); cx.lineCap = 'round'; cx.stroke();
+        if (i === 1) { cx.strokeStyle = 'rgba(0,0,0,0.25)'; cx.lineWidth = 1; cx.stroke(); }
+        const ey = my + spreiz; linie(r - 26, ey, r - 12, ey, KUPFER, Math.max(2.5, kS * 0.8));
+        cx.lineCap = 'butt';
+      });
+      // Marken
+      const mY = my + T / 2 + 16;
+      const mk = [[8, l + (xM - l) * 0.35, my], [7, xM - 18, my - T / 2 + 3], [5, xM + (xA - xM) * 0.3, my - T * 0.3], [6, xM + (xA - xM) * 0.8, my + T * 0.36], [4, (xA + xW) / 2, my], [1, r - 18, my + T * 0.48]];
+      // Marken auseinanderschieben, damit sie sich nicht überdecken
+      const xs = mk.map(function (m) { return m[1]; });
+      for (let i = 1; i < xs.length; i++) xs[i] = Math.max(xs[i], xs[i - 1] + 24);
+      if (xs[xs.length - 1] > r - 10) { xs[xs.length - 1] = r - 10; for (let i = xs.length - 2; i >= 0; i--) xs[i] = Math.min(xs[i], xs[i + 1] - 24); }
+      mk.forEach(function (m, i) { linie(xs[i], mY - 10, m[1], m[2], F('--text'), 1); marke(m[0], xs[i], mY); });
+    }
+
+    function zeichnen() {
+      const B = Math.max(280, cv.parentNode.clientWidth), dpr = window.devicePixelRatio || 1, breit = B >= 720;
+      const hA = breit ? 330 : Math.round(Math.max(12, Math.min((B - 150) / 5, 46)) * 5 + 110), hB = breit ? 330 : 300, hS = 120;
+      const H = (breit ? hA : hA + hB) + hS;
+      cv.style.height = H + 'px'; cv.width = Math.round(B * dpr); cv.height = Math.round(H * dpr); cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      cx.clearRect(0, 0, B, H);
+      let info;
+      if (breit) { tafelA(0, 0, B * 0.48, hA); linie(B * 0.48, 16, B * 0.48, hA - 10, F('--linie')); info = tafelB(B * 0.48, 0, B * 0.52, hB); }
+      else { tafelA(0, 0, B, hA); linie(12, hA, B - 12, hA, F('--linie')); info = tafelB(0, hA, B, hB); }
+      const yS = breit ? hA : hA + hB;
+      linie(12, yS, B - 12, yS, F('--linie'));
+      seitenansicht(0, yS, B, hS);
+      document.getElementById('kabelInfo').textContent = info;
+      hinweise();
+    }
+
+    function hinweise() {
+      const l = [
+        'Kennzeichnung: Leitungen der Brandmeldeanlage müssen als solche erkennbar sein – roter Mantel und Aufdruck „Brandmeldekabel“ (DIN VDE 0833-2).',
+        'Ringleitungen: Hin- und Rückweg getrennt führen, damit ein Schaden nicht beide Wege zugleich trifft (DIN VDE 0833-2).',
+        'Nicht mit Starkstromleitungen im selben Rohr oder ohne Trennung im selben Kanal verlegen.',
+        'Kein Funktionserhalt: Leitungen, die im Brandfall weiterarbeiten müssen (z. B. Stichleitungen zu Signalgebern), brauchen Kabel mit Funktionserhalt (E30/E90 nach DIN 4102-12) im geprüften Tragsystem.'
+      ];
+      if (verlegung === 'putz') l.unshift('Im Putz: Leitung flach auf dem Mauerwerk befestigen und vollständig einputzen. Zulässig in trockenen und feuchten Räumen; nicht in Erde und nicht ungeschützt im Freien.', 'In Rettungswegen gilt eine Leitung unter mindestens 15 mm mineralischem Putz nicht als offen verlegt (MLAR).');
+      if (verlegung === 'rohr-up') l.unshift('Im Rohr unter Putz bleibt die Leitung austauschbar. Rohr im Schlitz befestigen und einputzen; in Rettungswegen mindestens 15 mm mineralischer Putz darüber (MLAR).', 'Biegeradius der Leitung (mindestens etwa 38 mm) und des Rohrs beachten; lange Strecken mit Zugdosen unterbrechen.');
+      if (verlegung === 'rohr-ap') l.unshift('Auf Putz: Rohr mit Schellen in den vom Hersteller genannten Abständen befestigen. Mechanisch gut geschützt, leicht nachzurüsten.', 'Kunststoffrohre und PVC-Leitungen sind brennbar: in notwendigen Fluren und Treppenräumen nicht offen auf Putz (MLAR) – dort unter Putz, über einer Unterdecke mit Feuerwiderstand oder in Kanälen mit Feuerwiderstand.');
+      const ul = document.getElementById('kabelHinweise'); ul.innerHTML = '';
+      l.forEach(function (t) { const li = document.createElement('li'); li.textContent = t; ul.append(li); });
+      document.getElementById('rohrGroesse').disabled = verlegung === 'putz';
+      document.getElementById('rohrAnzahl').disabled = verlegung === 'putz';
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll('[data-verlegung]'), function (k) {
+      k.addEventListener('click', function () {
+        verlegung = k.getAttribute('data-verlegung');
+        Array.prototype.forEach.call(document.querySelectorAll('[data-verlegung]'), function (x) { x.setAttribute('aria-pressed', String(x === k)); });
+        zeichnen();
+      });
+    });
+    document.getElementById('rohrGroesse').addEventListener('change', function () { const v = Number(this.value); rohr = ROHRE[v] ? v : 20; zeichnen(); });
+    document.getElementById('rohrAnzahl').addEventListener('change', function () { const v = Math.round(Number(this.value)); anzahl = v >= 1 && v <= 4 ? v : 1; zeichnen(); });
+    window.addEventListener('resize', zeichnen);
+    document.addEventListener('themawechsel', zeichnen);
+    zeichnen();
   })();
   </script>
 </body>
