@@ -10,7 +10,7 @@ Alle bisher gefundenen Fehler in der Sammlung und wie sie behoben wurden, aus de
 
 - **Ursache:** Die Formel mit allen zwölf Querschnitten war breiter als die Formelsammlung; das Ende „120 mm²“ war abgeschnitten.
 - **Behebung:** Auf zwei Zeilen aufgeteilt.
-- **PR:** Leitungsdimensionierung nach Tabellenbuch
+- **PR:** #76
 
 ### Lernbereich: Seiten mit mehreren Lösern bekamen keine Aufgaben
 
