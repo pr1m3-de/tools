@@ -20,7 +20,7 @@
   <meta name="twitter:title" content="Brandmeldeanlage planen und simulieren">
   <meta name="twitter:description" content="Brandmeldeanlage planen und simulieren: Melder je Raum nach DIN VDE 0833-2, frei einstellbare Steuerungen (Hausalarm, Wählgerät zur Feuerwehr, Rauchabzug, Türen, Klima, Aufzug, Löschanlage), Ringleitung, Notstrom, dann einen Brand legen und den Ablauf von Melder über Zentrale bis Feuerwehr verfolgen.">
   <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#seite","name":"Brandmeldeanlage planen und simulieren","url":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html","inLanguage":"de","description":"Brandmeldeanlage planen und simulieren: Melder je Raum nach DIN VDE 0833-2, frei einstellbare Steuerungen (Hausalarm, Wählgerät zur Feuerwehr, Rauchabzug, Türen, Klima, Aufzug, Löschanlage), Ringleitung, Notstrom, dann einen Brand legen und den Ablauf von Melder über Zentrale bis Feuerwehr verfolgen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Brandmeldeanlage planen und simulieren","item":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#seite","name":"Brandmeldeanlage planen und simulieren","url":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html","inLanguage":"de","description":"Brandmeldeanlage planen und simulieren: Melder je Raum nach DIN VDE 0833-2, frei einstellbare Steuerungen (Hausalarm, Wählgerät zur Feuerwehr, Rauchabzug, Türen, Klima, Aufzug, Löschanlage), Ringleitung, Notstrom, dann einen Brand legen und den Ablauf von Melder über Zentrale bis Feuerwehr verfolgen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Brandmeldeanlage planen und simulieren","item":"https://tools.pr1m3.de/brandschutz/brandmeldeanlage.html"}]}]}</script>
   <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
@@ -33,7 +33,25 @@
   <script src="../assets/basis.js"></script>
   <style>
     .planer { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 18px; margin-top: 18px; align-items: start; }
-    @media (max-width: 1000px) { .planer { grid-template-columns: minmax(0, 1fr); } .planer > section:last-child { order: -1; } }
+    .spalte-links, .spalte-rechts { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+    .spalte-rechts > .tafel.abstand { margin-top: 0; }
+    /* Einstellungen bleiben beim Lesen rechts sichtbar und scrollen für sich */
+    @media (min-width: 1001px) { .spalte-links { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow-y: auto; overscroll-behavior: contain; border-radius: var(--rund); } }
+    /* Handy: Simulation zuerst, dann Einstellungen, dann Wissen und Leitung */
+    @media (max-width: 1000px) {
+      .planer { display: flex; flex-direction: column; }
+      .spalte-links, .spalte-rechts { display: contents; }
+      .spalte-rechts > section:first-child { order: 1; } .spalte-links > section { order: 2; } .spalte-rechts > .wissen { order: 3; } .spalte-rechts > .kabel-abschnitt { order: 4; }
+    }
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); gap: 12px; margin: 8px 0 4px; }
+    .melder-karte { border: 1px solid var(--linie); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .melder-karte.breit { grid-column: 1 / -1; }
+    .melder-karte svg { display: block; width: 100%; height: auto; max-height: 120px; color: var(--text); margin-bottom: 6px; }
+    .melder-karte.breit svg { max-height: 130px; }
+    .melder-karte h4 { margin: 2px 0 4px; font-family: var(--technik); font-size: 1rem; }
+    .melder-karte p { margin: 4px 0; font-size: .92rem; line-height: 1.45; }
+    .alarm-bild { display: block; width: 100%; height: auto; max-height: 190px; color: var(--text); margin: 4px 0 8px; font-family: var(--technik); }
+    .melder-karte svg text { font-family: var(--technik); }
     .einstellungen details { border-top: 1px solid var(--linie); padding: 8px 0; }
     .einstellungen details:first-of-type { border-top: none; }
     .einstellungen summary { cursor: pointer; font-family: var(--technik); font-weight: 600; font-size: 1.05rem; padding: 4px 0; }
@@ -91,6 +109,9 @@
     [hidden] { display: none !important; }
     @media print {
       .planer { display: block; }
+      .spalte-links { position: static; max-height: none; overflow: visible; }
+      .spalte-links, .spalte-rechts { display: block; }
+      .melder-karte { break-inside: avoid; }
       .einstellungen, .werkzeug-leiste, .status { display: none !important; }
       #plan { max-height: 120mm; width: auto; max-width: 100%; }
       .protokoll-liste { max-height: none; }
@@ -110,95 +131,261 @@
     </section>
 
     <div class="planer">
-      <section class="tafel einstellungen" aria-labelledby="h-ein">
-        <h2 id="h-ein">Anlage</h2>
-        <p class="hilfe">Alles wird in diesem Browser gespeichert. Maße in Metern.</p>
-        <details open><summary>Räume</summary><div id="raeume"></div><button type="button" class="knopf" id="neuerRaum">+ Raum</button></details>
-        <details open><summary>Steuerungen der Zentrale</summary>
-          <p class="hilfe">Was die Zentrale im Brandfall schaltet. Jede Steuerung lässt sich ein- und ausschalten, auf einzelne Räume begrenzen, verzögern und mit Strom für den Notstrom versehen.</p>
-          <div id="ausgaenge"></div>
-          <div class="werkzeug-leiste"><select id="neuTyp" aria-label="Art der neuen Steuerung"></select><button type="button" class="knopf" id="neuerAusgang">+ Steuerung</button></div>
-        </details>
-        <details><summary>Meldebereiche, Meldergruppen, Meldelinien</summary>
-          <p class="hilfe">Meldebereich: zusammenhängender Bereich für die Feuerwehr (höchstens 1 600 m²). Meldergruppe: gemeinsam angezeigte Melder (höchstens 32 automatische oder 10 Handfeuermelder, nie gemischt). Meldelinie: Ring- oder Stichleitung an der Zentrale. Die Zuordnung der Räume steht bei den Räumen.</p>
-          <h4 class="unterkopf">Meldebereiche</h4><div id="bereiche"></div><button type="button" class="knopf-leise" id="neuerBereich">+ Meldebereich</button>
-          <h4 class="unterkopf">Meldergruppen</h4><div id="gruppen"></div><button type="button" class="knopf-leise" id="neueGruppe">+ Meldergruppe</button>
-          <h4 class="unterkopf">Meldelinien</h4><div id="linien"></div><button type="button" class="knopf-leise" id="neueLinie">+ Meldelinie</button>
-          <h4 class="unterkopf">Leitungen allgemein</h4><div class="raster" id="ring"></div>
-        </details>
-        <details><summary>Energieversorgung</summary>
-          <p class="hilfe">Zwei voneinander unabhängige Energiequellen (DIN EN 54-4, DIN VDE 0833-1): das Netz über einen eigenen, gekennzeichneten Stromkreis und als Ersatz der Akku in der Zentrale, auf Wunsch zusätzlich eine Netzersatzanlage (Notstromaggregat).</p>
-          <div class="raster" id="energie"></div><div class="raster" id="strom"></div>
-        </details>
-        <details open><summary>Betrieb und Simulation</summary><div class="raster" id="betrieb"></div></details>
-        <div class="werkzeug-leiste">
-          <button type="button" class="knopf-leise" id="beispiel">Beispiel laden</button>
-          <button type="button" class="knopf-leise" id="teilen">Link kopieren</button>
-          <span class="teilen-meldung" id="teilenMeldung" aria-live="polite"></span>
-        </div>
-      </section>
+      <div class="spalte-links">
+        <section class="tafel einstellungen" aria-labelledby="h-ein">
+          <h2 id="h-ein">Anlage</h2>
+          <p class="hilfe">Alles wird in diesem Browser gespeichert. Maße in Metern.</p>
+          <details open><summary>Räume</summary><div id="raeume"></div><button type="button" class="knopf" id="neuerRaum">+ Raum</button></details>
+          <details open><summary>Steuerungen der Zentrale</summary>
+            <p class="hilfe">Was die Zentrale im Brandfall schaltet. Jede Steuerung lässt sich ein- und ausschalten, auf einzelne Räume begrenzen, verzögern und mit Strom für den Notstrom versehen.</p>
+            <div id="ausgaenge"></div>
+            <div class="werkzeug-leiste"><select id="neuTyp" aria-label="Art der neuen Steuerung"></select><button type="button" class="knopf" id="neuerAusgang">+ Steuerung</button></div>
+          </details>
+          <details><summary>Meldebereiche, Meldergruppen, Meldelinien</summary>
+            <p class="hilfe">Meldebereich: zusammenhängender Bereich für die Feuerwehr (höchstens 1 600 m²). Meldergruppe: gemeinsam angezeigte Melder (höchstens 32 automatische oder 10 Handfeuermelder, nie gemischt). Meldelinie: Ring- oder Stichleitung an der Zentrale. Die Zuordnung der Räume steht bei den Räumen.</p>
+            <h4 class="unterkopf">Meldebereiche</h4><div id="bereiche"></div><button type="button" class="knopf-leise" id="neuerBereich">+ Meldebereich</button>
+            <h4 class="unterkopf">Meldergruppen</h4><div id="gruppen"></div><button type="button" class="knopf-leise" id="neueGruppe">+ Meldergruppe</button>
+            <h4 class="unterkopf">Meldelinien</h4><div id="linien"></div><button type="button" class="knopf-leise" id="neueLinie">+ Meldelinie</button>
+            <h4 class="unterkopf">Leitungen allgemein</h4><div class="raster" id="ring"></div>
+          </details>
+          <details><summary>Energieversorgung</summary>
+            <p class="hilfe">Zwei voneinander unabhängige Energiequellen (DIN EN 54-4, DIN VDE 0833-1): das Netz über einen eigenen, gekennzeichneten Stromkreis und als Ersatz der Akku in der Zentrale, auf Wunsch zusätzlich eine Netzersatzanlage (Notstromaggregat).</p>
+            <div class="raster" id="energie"></div><div class="raster" id="strom"></div>
+          </details>
+          <details open><summary>Betrieb und Simulation</summary><div class="raster" id="betrieb"></div></details>
+          <div class="werkzeug-leiste">
+            <button type="button" class="knopf-leise" id="beispiel">Beispiel laden</button>
+            <button type="button" class="knopf-leise" id="teilen">Link kopieren</button>
+            <span class="teilen-meldung" id="teilenMeldung" aria-live="polite"></span>
+          </div>
+        </section>
 
-      <section class="tafel" aria-labelledby="h-plan">
-        <h2 id="h-plan">Grundriss und Simulation</h2>
-        <p class="hilfe">„Brand legen“ und in einen Raum tippen, dann „Start“. Mit „Melder setzen“ fügst du Melder hinzu oder entfernst sie, mit „Störung“ trennst oder kurzschließt du die Ringleitung zwischen zwei Teilnehmern.</p>
-        <div class="werkzeug-leiste" role="toolbar" aria-label="Werkzeuge">
-          <button type="button" class="knopf" id="mBrand" aria-pressed="true">Brand legen</button>
-          <button type="button" class="knopf" id="mMelder" aria-pressed="false">Melder setzen</button>
-          <select id="melderArt" aria-label="Art des Melders"><option value="rauch">Rauchmelder</option><option value="waerme">Wärmemelder</option><option value="multi">Mehrkriterienmelder</option><option value="hfm">Handfeuermelder</option></select>
-          <button type="button" class="knopf" id="mStoer" aria-pressed="false">Störung</button>
-          <button type="button" class="knopf-leise" id="auto">Melder neu verteilen</button>
-        </div>
-        <div class="plan-rahmen"><canvas id="plan" role="img" aria-label="Grundriss mit Meldern, Ringleitung und Brand"></canvas></div>
-        <div class="werkzeug-leiste" data-nicht-merken>
-          <button type="button" class="knopf" id="start">▶ Start</button>
-          <button type="button" class="knopf-leise" id="zurueck">Zurücksetzen</button>
-          <label class="status" for="tempo">Zeitraffer</label>
-          <select id="tempo" aria-label="Zeitraffer"><option value="10">10-fach</option><option value="30" selected>30-fach</option><option value="60">60-fach</option><option value="120">120-fach</option></select>
-          <input type="range" id="zeit" min="0" max="1200" step="1" value="0" aria-label="Zeit in der Simulation" style="flex:1 1 160px">
-        </div>
-        <div class="status" id="status" aria-live="polite"></div>
-        <h3 class="zwischen">Signalfluss</h3>
-        <div id="fluss" class="fluss" aria-label="Signalfluss von den Meldern über die Zentrale zu den Steuerungen"></div>
-        <div class="bmz">
-          <div class="anzeige" id="anzeige" aria-live="polite"></div>
-          <ol class="protokoll-liste" id="ereignisse" aria-label="Ereignisse der Simulation"></ol>
-        </div>
-      </section>
-    </div>
-
-    <section class="tafel abstand kabel-abschnitt" aria-labelledby="h-leitung">
-      <h2 id="h-leitung">Leitung: J-Y(St)Y 2 × 2 × 0,8 Lg – Brandmeldekabel</h2>
-      <p class="hilfe">Installationskabel für Melderlinien nach DIN VDE 0815: vier Kupferadern mit 0,8 mm Durchmesser, verseilt zum Sternvierer, statischer Schirm aus Alufolie mit Beidraht, roter PVC-Mantel mit dem Aufdruck „Brandmeldekabel“. Der Querschnitt ist maßstäblich (Außendurchmesser etwa 5 mm), daneben die Verlegung.</p>
-      <div class="werkzeug-leiste" role="group" aria-label="Verlegung der Leitung">
-        <button type="button" class="knopf" data-verlegung="putz" aria-pressed="true">Im Putz</button>
-        <button type="button" class="knopf" data-verlegung="rohr-up" aria-pressed="false">Schutzrohr unter Putz</button>
-        <button type="button" class="knopf" data-verlegung="rohr-ap" aria-pressed="false">Schutzrohr auf Putz</button>
-        <select id="rohrGroesse" aria-label="Größe des Schutzrohrs"><option value="16">Rohr M16</option><option value="20" selected>Rohr M20</option><option value="25">Rohr M25</option></select>
-        <select id="rohrAnzahl" aria-label="Leitungen im Rohr"><option value="1">1 Leitung im Rohr</option><option value="2">2 Leitungen im Rohr</option><option value="3">3 Leitungen im Rohr</option><option value="4">4 Leitungen im Rohr</option></select>
       </div>
-      <div class="kabel-rahmen"><canvas id="kabel" role="img" aria-label="Querschnitt der Leitung J-Y(St)Y 2 × 2 × 0,8 mit Aufbau, Seitenansicht mit Aufdruck und Einbau im Putz oder im Schutzrohr"></canvas></div>
-      <p class="status" id="kabelInfo" aria-live="polite"></p>
-      <div class="kabel-text">
-        <ol class="kabel-legende" id="kabelLegende"></ol>
-        <div>
-          <div class="rahmen"><table class="tabelle">
-            <caption>Kenndaten (übliche Herstellerangaben)</caption>
+      <div class="spalte-rechts">
+        <section class="tafel" aria-labelledby="h-plan">
+          <h2 id="h-plan">Grundriss und Simulation</h2>
+          <p class="hilfe">„Brand legen“ und in einen Raum tippen, dann „Start“. Mit „Melder setzen“ fügst du Melder hinzu oder entfernst sie, mit „Störung“ trennst oder kurzschließt du die Ringleitung zwischen zwei Teilnehmern.</p>
+          <div class="werkzeug-leiste" role="toolbar" aria-label="Werkzeuge">
+            <button type="button" class="knopf" id="mBrand" aria-pressed="true">Brand legen</button>
+            <button type="button" class="knopf" id="mMelder" aria-pressed="false">Melder setzen</button>
+            <select id="melderArt" aria-label="Art des Melders"><option value="rauch">Rauchmelder</option><option value="waerme">Wärmemelder</option><option value="multi">Mehrkriterienmelder</option><option value="hfm">Handfeuermelder</option></select>
+            <button type="button" class="knopf" id="mStoer" aria-pressed="false">Störung</button>
+            <button type="button" class="knopf-leise" id="auto">Melder neu verteilen</button>
+          </div>
+          <div class="plan-rahmen"><canvas id="plan" role="img" aria-label="Grundriss mit Meldern, Ringleitung und Brand"></canvas></div>
+          <div class="werkzeug-leiste" data-nicht-merken>
+            <button type="button" class="knopf" id="start">▶ Start</button>
+            <button type="button" class="knopf-leise" id="zurueck">Zurücksetzen</button>
+            <label class="status" for="tempo">Zeitraffer</label>
+            <select id="tempo" aria-label="Zeitraffer"><option value="10">10-fach</option><option value="30" selected>30-fach</option><option value="60">60-fach</option><option value="120">120-fach</option></select>
+            <input type="range" id="zeit" min="0" max="1200" step="1" value="0" aria-label="Zeit in der Simulation" style="flex:1 1 160px">
+          </div>
+          <div class="status" id="status" aria-live="polite"></div>
+          <h3 class="zwischen">Signalfluss</h3>
+          <div id="fluss" class="fluss" aria-label="Signalfluss von den Meldern über die Zentrale zu den Steuerungen"></div>
+          <div class="bmz">
+            <div class="anzeige" id="anzeige" aria-live="polite"></div>
+            <ol class="protokoll-liste" id="ereignisse" aria-label="Ereignisse der Simulation"></ol>
+          </div>
+        </section>
+        <section class="tafel abstand wissen" aria-labelledby="h-wissen">
+          <h2 id="h-wissen">Alarmierung und Melderarten</h2>
+          <p class="hilfe">Was eine Brandmeldeanlage meldet, wen sie alarmiert und welcher Melder wofür taugt. Grundlage: DIN VDE 0833-2, DIN 14675 und die Melder-Normen der Reihe DIN EN 54.</p>
+
+          <h3 class="zwischen">Alarmierung</h3>
+          <svg class="alarm-bild" viewBox="0 0 640 170" role="img" aria-label="Die Zentrale alarmiert intern still oder laut, extern nach außen und fern über die Übertragungseinrichtung die Leitstelle">
+            <rect x="250" y="62" width="140" height="46" rx="10" fill="#C0392B"/><text x="320" y="84" text-anchor="middle" fill="#fff" font-weight="700" font-size="15">Zentrale (BMZ)</text><text x="320" y="100" text-anchor="middle" fill="#fff" font-size="11">wertet Melder aus</text>
+            <g stroke="currentColor" stroke-width="2" fill="none"><path d="M250 75 L170 38"/><path d="M250 95 L170 132"/><path d="M390 75 L470 38"/><path d="M390 95 L470 132"/></g>
+            <g font-size="12"><rect x="8" y="14" width="162" height="48" rx="8" fill="#2B7BB9" opacity=".15" stroke="#2B7BB9"/><text x="18" y="33" font-weight="700" fill="currentColor">Internalarm – still</text><text x="18" y="50" fill="currentColor">Personal, Pförtner</text>
+            <rect x="8" y="108" width="162" height="48" rx="8" fill="#F2A541" opacity=".2" stroke="#F2A541"/><text x="18" y="127" font-weight="700" fill="currentColor">Internalarm – laut</text><text x="18" y="144" fill="currentColor">Sirenen, Blitz, Sprache</text>
+            <rect x="470" y="14" width="162" height="48" rx="8" fill="#7048E8" opacity=".15" stroke="#7048E8"/><text x="480" y="33" font-weight="700" fill="currentColor">Externalarm (selten)</text><text x="480" y="50" fill="currentColor">Sirene nach außen</text>
+            <rect x="470" y="108" width="162" height="48" rx="8" fill="#C0392B" opacity=".15" stroke="#C0392B"/><text x="480" y="127" font-weight="700" fill="currentColor">Fernalarm</text><text x="480" y="144" fill="currentColor">ÜE → Leitstelle</text></g>
+          </svg>
+          <div class="wissen-raster">
+            <article class="melder-karte"><h4>Internalarm – stiller Alarm</h4><p>Nur bestimmte Personen werden benachrichtigt, etwa Pförtner oder Schichtleitung über Anzeige, Telefon oder Personenruf. Mit einer <b>Alarmorganisation</b> nach DIN VDE 0833-2 bleibt Zeit zur Erkundung: Quittieren innerhalb von 30 s, Erkunden höchstens 3 min, sonst geht der Alarm automatisch weiter. So lassen sich Fehlalarme abfangen, ohne alle zu beunruhigen.</p></article>
+            <article class="melder-karte"><h4>Internalarm – lauter Alarm</h4><p>Alle Personen im Gebäude werden gewarnt und zur Räumung aufgefordert: Sirenen und Blitzleuchten nach DIN EN 54-3 und 54-23 oder eine Sprachalarmanlage (SAA) mit Durchsagen. Der Pegel muss überall hörbar sein, in Schlafräumen am Kopfende mindestens 75 dB(A).</p></article>
+            <article class="melder-karte"><h4>Externalarm</h4><p>Lauter Alarm nach außen, damit Menschen in der Umgebung aufmerksam werden und Hilfe holen. Bei Brandmeldeanlagen <b>selten</b>, denn die Feuerwehr kommt über den Fernalarm; typisch ist er bei Einbruchmeldeanlagen ohne Aufschaltung.</p></article>
+            <article class="melder-karte"><h4>Fernalarm</h4><p>Die Übertragungseinrichtung (ÜE) meldet den Brand an die ständig besetzte Leitstelle der Feuerwehr, nach DIN 14675 und den Anschlussbedingungen der Feuerwehr. Dazu gehören Feuerwehr-Schlüsseldepot (FSD), Feuerwehr-Bedienfeld (FBF), Anzeigetableau (FAT), Laufkarten und eine Blitzleuchte am Zugang.</p></article>
+          </div>
+
+          <h3 class="zwischen">Rauchmelder</h3>
+          <div class="wissen-raster">
+            <article class="melder-karte">
+              <svg viewBox="0 0 240 96" role="img" aria-label="Streulichtprinzip: Licht der Leuchtdiode trifft auf Rauch und wird zur Fotodiode gestreut">
+                <circle cx="120" cy="48" r="40" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="6 4"/>
+                <rect x="60" y="40" width="18" height="16" rx="3" fill="#F2A541"/><text x="40" y="52" font-size="10" fill="currentColor">LED</text>
+                <path d="M78 48 L170 48" stroke="#F2A541" stroke-width="3"/>
+                <rect x="132" y="80" width="18" height="12" rx="3" fill="#2B7BB9"/><text x="156" y="91" font-size="10" fill="currentColor">Fotodiode</text>
+                <g fill="#6B7785"><circle cx="128" cy="46" r="4"/><circle cx="116" cy="54" r="3"/><circle cx="138" cy="51" r="3.5"/></g>
+                <g stroke="#F2A541" stroke-width="1.5" stroke-dasharray="3 3"><path d="M128 46 L140 80"/><path d="M138 51 L142 80"/></g>
+                <text x="180" y="30" font-size="10" fill="currentColor">Rauch streut</text><text x="180" y="42" font-size="10" fill="currentColor">Licht um</text>
+              </svg>
+              <h4>Optischer Rauchmelder</h4>
+              <p><b>Prinzip:</b> Streulicht. In einer abgedunkelten Messkammer sendet eine Leuchtdiode Licht, das die Fotodiode im Normalfall nicht erreicht. Rauchteilchen streuen das Licht um, die Fotodiode empfängt es: Alarm.</p>
+              <p><b>Gut für:</b> Schwelbrände mit hellem Rauch, also die meisten Räume (Büro, Verkauf, Flure). <b>Schwächer bei</b> sehr dunklem Rauch. <b>Störgrößen:</b> Staub, Dampf, Insekten. Norm DIN EN 54-7.</p>
+            </article>
+            <article class="melder-karte">
+              <svg viewBox="0 0 240 96" role="img" aria-label="Rauchwarnmelder: Einzelgerät mit Batterie und eigener Sirene in der Wohnung">
+                <path d="M30 60 L120 14 L210 60" fill="none" stroke="currentColor" stroke-width="2"/><rect x="48" y="58" width="144" height="34" fill="none" stroke="currentColor" stroke-width="2"/>
+                <circle cx="120" cy="66" r="12" fill="#F4F4F2" stroke="#6B7785" stroke-width="2"/><circle cx="120" cy="66" r="3" fill="#C0392B"/>
+                <g stroke="#C0392B" stroke-width="2" fill="none"><path d="M138 60 q6 6 0 12"/><path d="M144 56 q10 10 0 20"/></g>
+                <rect x="70" y="72" width="18" height="10" rx="2" fill="#2F9E44"/><text x="64" y="90" font-size="9" fill="currentColor">Batterie</text>
+                <text x="152" y="88" font-size="9" fill="currentColor">nur vor Ort</text>
+              </svg>
+              <h4>Rauchwarnmelder</h4>
+              <p><b>Kein Teil einer Brandmeldeanlage.</b> Ein Einzelgerät mit Batterie, eigenem optischem Sensor und eingebautem Signalgeber für Wohnungen (DIN EN 14604, Einbau und Wartung nach DIN 14676). Er weckt die Menschen vor Ort, alarmiert aber <b>niemanden von außen</b> – keine Zentrale, keine Feuerwehr. Pflicht in Wohnungen nach den Landesbauordnungen.</p>
+            </article>
+            <article class="melder-karte">
+              <svg viewBox="0 0 240 96" role="img" aria-label="Ionisationsprinzip: radioaktive Quelle ionisiert die Luft zwischen zwei Platten, Rauch verringert den Ionenstrom">
+                <rect x="60" y="18" width="120" height="8" fill="#6B7785"/><rect x="60" y="70" width="120" height="8" fill="#6B7785"/>
+                <text x="186" y="25" font-size="11" fill="currentColor">+</text><text x="186" y="78" font-size="11" fill="currentColor">−</text>
+                <circle cx="70" cy="48" r="7" fill="#F2C200"/><text x="70" y="52" text-anchor="middle" font-size="9" font-weight="700" fill="#222">☢</text>
+                <g font-size="10" fill="#2B7BB9" font-weight="700"><text x="96" y="40">+</text><text x="120" y="56">−</text><text x="144" y="38">+</text><text x="110" y="62">+</text><text x="160" y="58">−</text></g>
+                <g fill="#6B7785" opacity=".7"><circle cx="134" cy="48" r="5"/><circle cx="156" cy="44" r="4"/></g>
+                <text x="6" y="92" font-size="9" fill="currentColor">Rauch bremst die Ionen → Strom sinkt → Alarm</text>
+              </svg>
+              <h4>Ionisationsrauchmelder</h4>
+              <p><b>Prinzip:</b> Ein schwach radioaktiver Strahler (meist Americium-241) macht die Luft zwischen zwei Elektroden leitfähig, es fließt ein kleiner Ionenstrom. Rauchteilchen lagern Ionen an, der Strom sinkt: Alarm.</p>
+              <p><b>Erkennt</b> auch sehr kleine, unsichtbare Teilchen offener Brände früh. <b>Heute kaum noch eingesetzt:</b> radioaktiver Strahler (Strahlenschutz, Entsorgung als radioaktiver Abfall), dazu empfindlich gegen Luftzug. Ersetzt durch optische und Mehrkriterienmelder.</p>
+            </article>
+            <article class="melder-karte">
+              <svg viewBox="0 0 240 96" role="img" aria-label="Linearer Rauchmelder: Sender und Empfänger mit Reflektor an gegenüberliegenden Wänden, Rauch schwächt den Lichtstrahl">
+                <rect x="8" y="30" width="26" height="30" rx="4" fill="#2B7BB9"/><text x="8" y="76" font-size="9" fill="currentColor">Sender/</text><text x="8" y="86" font-size="9" fill="currentColor">Empfänger</text>
+                <rect x="212" y="28" width="16" height="34" fill="#C9CED6" stroke="#6B7785"/><text x="190" y="80" font-size="9" fill="currentColor">Reflektor</text>
+                <path d="M34 40 L212 40" stroke="#F2A541" stroke-width="3"/><path d="M212 50 L34 50" stroke="#F2A541" stroke-width="3" stroke-dasharray="4 5" opacity=".6"/>
+                <g fill="#6B7785" opacity=".55"><circle cx="120" cy="44" r="12"/><circle cx="104" cy="40" r="9"/><circle cx="136" cy="48" r="9"/></g>
+                <text x="96" y="22" font-size="9" fill="currentColor">Rauch schwächt den Strahl</text>
+              </svg>
+              <h4>Linearer Rauchmelder</h4>
+              <p><b>Prinzip:</b> Durchlicht. Ein Infrarot-Lichtstrahl läuft quer durch den Raum zum Empfänger oder über einen Reflektor zurück. Rauch schwächt den Strahl (Extinktion); sinkt das Signal unter eine Schwelle: Alarm.</p>
+              <p><b>Gut für:</b> große, hohe Hallen, Atrien, Lager, Kirchen – ein Melder überwacht eine lange Strecke (je nach Gerät bis etwa 100 m). <b>Grenzen:</b> Strahl muss frei bleiben, Gebäude dürfen sich nicht verziehen. Norm DIN EN 54-12.</p>
+            </article>
+          </div>
+
+          <h3 class="zwischen">Rauchansaugsysteme</h3>
+          <div class="wissen-raster">
+            <article class="melder-karte breit">
+              <svg viewBox="0 0 480 96" role="img" aria-label="Rauchansaugsystem: Rohr mit Ansaugöffnungen unter der Decke, ein Lüfter saugt Luft zur Auswerteeinheit">
+                <path d="M10 14 L470 14" stroke="currentColor" stroke-width="2"/><text x="14" y="10" font-size="9" fill="currentColor">Decke</text>
+                <rect x="20" y="30" width="360" height="12" rx="6" fill="#C0392B"/>
+                <g fill="currentColor"><circle cx="70" cy="42" r="3"/><circle cx="150" cy="42" r="3"/><circle cx="230" cy="42" r="3"/><circle cx="310" cy="42" r="3"/></g>
+                <g stroke="#2B7BB9" stroke-width="2" fill="none"><path d="M70 66 L70 48 m-4 6 l4 -6 l4 6"/><path d="M150 66 L150 48 m-4 6 l4 -6 l4 6"/><path d="M230 66 L230 48 m-4 6 l4 -6 l4 6"/><path d="M310 66 L310 48 m-4 6 l4 -6 l4 6"/></g>
+                <rect x="380" y="24" width="86" height="54" rx="8" fill="#6B7785"/><circle cx="404" cy="51" r="14" fill="none" stroke="#fff" stroke-width="2"/><path d="M404 37 L404 65 M390 51 L418 51" stroke="#fff" stroke-width="2"/>
+                <text x="424" y="46" font-size="10" fill="#fff">Lüfter +</text><text x="424" y="60" font-size="10" fill="#fff">Detektor</text>
+                <text x="70" y="86" font-size="10" fill="currentColor">Raumluft wird durch die Öffnungen angesaugt</text>
+              </svg>
+              <h4>Rauchansaugsystem (RAS)</h4>
+              <p><b>Prinzip:</b> Ein Lüfter saugt über ein Rohrnetz mit kleinen Öffnungen ständig Luft aus dem überwachten Bereich und führt sie zu einer zentralen Auswerteeinheit mit sehr empfindlichem Detektor (oft Laser-Streulicht). Schon kleinste Rauchmengen fallen auf, lange bevor ein Punktmelder anspricht.</p>
+              <p><b>Gut für:</b> Serverräume und Rechenzentren, Reinräume, Hochregallager, Zellen und Bereiche mit Vandalismusgefahr, schwer zugängliche Decken und Kühlbereiche – gewartet wird nur die Auswerteeinheit außerhalb. Norm DIN EN 54-20.</p>
+            </article>
+          </div>
+
+          <h3 class="zwischen">Wärmemelder</h3>
+          <div class="wissen-raster">
+            <article class="melder-karte">
+              <svg viewBox="0 0 240 96" role="img" aria-label="Thermomaximalmelder: Alarm, wenn eine feste Temperatur erreicht wird">
+                <rect x="30" y="10" width="14" height="62" rx="7" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="37" cy="80" r="11" fill="#C0392B"/><rect x="34" y="34" width="6" height="40" fill="#C0392B"/>
+                <path d="M24 30 L200 30" stroke="#C0392B" stroke-width="2" stroke-dasharray="5 4"/><text x="58" y="26" font-size="10" fill="#C0392B" font-weight="700">feste Ansprechtemperatur, z. B. 58 °C → Alarm</text>
+                <text x="58" y="60" font-size="10" fill="currentColor">egal wie schnell die Temperatur steigt</text>
+              </svg>
+              <h4>Thermomaximalmelder</h4>
+              <p><b>Prinzip:</b> Alarm, sobald am Melder eine <b>feste Temperatur</b> überschritten ist – je nach Klasse etwa 54 bis 65 °C (Klasse A1/A2) oder höher für warme Räume (Klassen B bis G).</p>
+              <p><b>Gut für:</b> Räume, in denen die Temperatur betriebsbedingt schnell schwankt: neben Öfen, in Küchen, Heizräumen. Spricht aber erst spät an. Norm DIN EN 54-5 (Suffix S).</p>
+            </article>
+            <article class="melder-karte">
+              <svg viewBox="0 0 240 96" role="img" aria-label="Thermodifferentialmelder: Alarm bei schnellem Temperaturanstieg">
+                <path d="M30 84 L30 10 M30 84 L230 84" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M30 76 L220 64" stroke="#2F9E44" stroke-width="2.5"/><text x="150" y="58" font-size="9" fill="#2F9E44">langsam: kein Alarm</text>
+                <path d="M30 76 L110 18" stroke="#C0392B" stroke-width="2.5"/><text x="112" y="20" font-size="9" fill="#C0392B" font-weight="700">schnell: Alarm</text>
+                <text x="6" y="14" font-size="9" fill="currentColor">ϑ</text><text x="214" y="94" font-size="9" fill="currentColor">t</text>
+              </svg>
+              <h4>Thermodifferentialmelder</h4>
+              <p><b>Prinzip:</b> Alarm bei <b>schnellem Temperaturanstieg</b> (Anstiegsgeschwindigkeit in K/min), auch wenn die absolute Temperatur noch niedrig ist. Meist mit einer Maximalstufe kombiniert (Klasse mit Suffix R), damit auch ein langsamer Brand erkannt wird.</p>
+              <p><b>Gut für:</b> Werkstätten, Garagen, staubige Räume – schneller als ein reiner Maximalmelder. <b>Ungeeignet,</b> wo die Temperatur betriebsbedingt springt (Ofentür, Gärraum).</p>
+            </article>
+            <article class="melder-karte">
+              <svg viewBox="0 0 240 96" role="img" aria-label="Linienförmiger Wärmemelder: Sensorkabel entlang einer Strecke">
+                <path d="M10 22 C60 22 60 22 230 22" stroke="currentColor" stroke-width="2"/>
+                <path d="M14 34 L226 34" stroke="#C0392B" stroke-width="4"/>
+                <g fill="#F2C200"><circle cx="50" cy="34" r="4"/><circle cx="100" cy="34" r="4"/><circle cx="150" cy="34" r="4"/><circle cx="200" cy="34" r="4"/></g>
+                <rect x="20" y="60" width="200" height="16" rx="3" fill="#6B7785" opacity=".5"/><text x="120" y="72" text-anchor="middle" font-size="9" fill="currentColor">Förderband, Kabeltrasse, Tunnel</text>
+                <text x="120" y="52" text-anchor="middle" font-size="9" fill="currentColor">Sensorkabel misst überall</text>
+              </svg>
+              <h4>Linienförmiger Wärmemelder</h4>
+              <p><b>Prinzip:</b> Statt eines Punkts überwacht ein <b>Sensorkabel</b> oder Fühlerrohr eine ganze Strecke – über Widerstandsänderung, Lichtwellenleiter (Temperatur je Meter) oder Luftdruck im Rohr. Viele Systeme zeigen auch die Stelle des Brandes.</p>
+              <p><b>Gut für:</b> Tunnel, Kabelkanäle, Förderbänder, Parkhäuser, Kühllager, raue Umgebung mit Staub und Feuchte. Norm DIN EN 54-22.</p>
+            </article>
+          </div>
+
+          <h3 class="zwischen">Flammenmelder</h3>
+          <div class="wissen-raster">
+            <article class="melder-karte breit">
+              <svg viewBox="0 0 480 96" role="img" aria-label="Strahlung einer Flamme: Ultraviolett links, sichtbares Licht in der Mitte, Infrarot rechts">
+                <path d="M60 80 C40 60 52 40 60 26 C64 42 74 40 70 22 C88 40 92 62 76 80 Z" fill="#F2A541" stroke="#C2410C" stroke-width="2"/>
+                <rect x="130" y="34" width="90" height="24" fill="#7048E8"/><text x="175" y="50" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">UV 185–260 nm</text>
+                <rect x="220" y="34" width="110" height="24" fill="url(#regenbogen)"/><text x="275" y="50" text-anchor="middle" font-size="11" fill="#222">sichtbar</text>
+                <rect x="330" y="34" width="140" height="24" fill="#C0392B"/><text x="400" y="50" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">IR um 4,4 µm (CO₂)</text>
+                <defs><linearGradient id="regenbogen"><stop offset="0" stop-color="#8E44AD"/><stop offset=".3" stop-color="#2B7BB9"/><stop offset=".55" stop-color="#2F9E44"/><stop offset=".75" stop-color="#F2C200"/><stop offset="1" stop-color="#E4572E"/></linearGradient></defs>
+                <text x="130" y="78" font-size="10" fill="currentColor">Flammen strahlen und flackern typisch mit etwa 1 bis 15 Hz</text>
+              </svg>
+              <h4>Flammenmelder: Ultraviolett und Infrarot</h4>
+              <p><b>UV-Melder:</b> erkennt die ultraviolette Strahlung offener Flammen, sehr schnell (Millisekunden bis Sekunden), auch bei rußfreien Bränden wie Wasserstoff, Alkohol oder Erdgas. <b>Störgrößen:</b> Schweißen, Blitze, Röntgen; Rauch und Öl auf der Optik schwächen die UV-Strahlung.</p>
+              <p><b>IR-Melder:</b> erkennt die Infrarotstrahlung heißer Verbrennungsgase (CO₂-Bande um 4,4 µm) und ihr typisches Flackern. Unempfindlich gegen Rauch, gut für Brände kohlenstoffhaltiger Stoffe (Öl, Benzin, Holz). <b>Störgrößen:</b> Sonne, heiße Flächen – Mehrbereichs-IR und Flackerauswertung helfen. Einsatz: Hallen, Lager für brennbare Flüssigkeiten, Lackierereien, Freiflächen. Norm DIN EN 54-10. Flammenmelder brauchen freie Sicht auf den Bereich.</p>
+            </article>
+          </div>
+
+          <h3 class="zwischen">Welcher Melder wohin?</h3>
+          <div class="rahmen"><table class="tabelle melder-wahl">
+            <thead><tr><th>Raum oder Bereich</th><th>Geeignet</th><th>Warum</th></tr></thead>
             <tbody>
-              <tr><td>Bauart</td><td>J-Y(St)Y nach DIN VDE 0815, „Lg“ = Lagenverseilung, hier ein Sternvierer</td></tr>
-              <tr><td>Leiter</td><td>Kupfer blank, eindrähtig, Ø 0,8 mm (0,5 mm²) – Mindestdurchmesser für Brandmeldeanlagen nach DIN VDE 0833-2</td></tr>
-              <tr><td>Aderfarben</td><td>Paar 1 rot/schwarz, Paar 2 weiß/gelb; die Adern eines Paars liegen sich im Vierer gegenüber</td></tr>
-              <tr><td>Außendurchmesser</td><td>etwa 5 mm</td></tr>
-              <tr><td>Schleifenwiderstand</td><td>höchstens 73,2 Ω/km bei 20 °C (Hin- und Rückleiter)</td></tr>
-              <tr><td>Betriebsspannung</td><td>höchstens 300 V (Scheitelwert), nur für Fernmelde- und Signalstromkreise, nicht für Starkstrom</td></tr>
-              <tr><td>Biegeradius</td><td>mindestens 7,5 × Außendurchmesser ≈ 38 mm</td></tr>
-              <tr><td>Temperatur</td><td>fest verlegt −30 bis +70 °C, beim Verlegen −5 bis +50 °C</td></tr>
-              <tr><td>Brandverhalten</td><td>PVC, kein Funktionserhalt; im Brandfall entstehen korrosive, giftige Gase</td></tr>
+              <tr><td>Büro, Flur, Verkaufsraum</td><td>optischer Rauchmelder, Mehrkriterienmelder</td><td>Schwelbrände früh erkennen, saubere Luft</td></tr>
+              <tr><td>Küche, Backstube, Gärraum</td><td>Thermomaximalmelder</td><td>Dampf und Mehlstaub würden Rauchmelder täuschen; Temperatur springt am Ofen</td></tr>
+              <tr><td>Werkstatt, Garage</td><td>Thermodifferentialmelder (mit Maximalstufe)</td><td>Abgase und Staub, aber gleichmäßige Temperatur</td></tr>
+              <tr><td>Große Halle, Atrium</td><td>linearer Rauchmelder, Rauchansaugsystem</td><td>Punktmelder unter hoher Decke zu träge, schwer zu warten</td></tr>
+              <tr><td>Serverraum, Reinraum</td><td>Rauchansaugsystem</td><td>sehr früh erkennen, hoher Luftwechsel verdünnt Rauch</td></tr>
+              <tr><td>Kühl- und Tiefkühlraum</td><td>Rauchansaugsystem oder für Kälte zugelassene Wärmemelder</td><td>Kondenswasser und Frost; Auswertung außerhalb</td></tr>
+              <tr><td>Tunnel, Kabelkanal, Förderband</td><td>linienförmiger Wärmemelder</td><td>lange Strecke, raue Umgebung</td></tr>
+              <tr><td>Lager brennbarer Flüssigkeiten, Lackiererei</td><td>Flammenmelder (IR oder UV)</td><td>sehr schnelle Brände mit wenig Rauch zu Beginn</td></tr>
+              <tr><td>Wohnung</td><td>Rauchwarnmelder (ohne Zentrale)</td><td>Pflicht nach Landesbauordnung, weckt die Bewohner</td></tr>
             </tbody>
           </table></div>
-          <ul class="kabel-hinweise" id="kabelHinweise"></ul>
+        </section>
+      <section class="tafel abstand kabel-abschnitt" aria-labelledby="h-leitung">
+        <h2 id="h-leitung">Leitung: J-Y(St)Y 2 × 2 × 0,8 Lg – Brandmeldekabel</h2>
+        <p class="hilfe">Installationskabel für Melderlinien nach DIN VDE 0815: vier Kupferadern mit 0,8 mm Durchmesser, verseilt zum Sternvierer, statischer Schirm aus Alufolie mit Beidraht, roter PVC-Mantel mit dem Aufdruck „Brandmeldekabel“. Der Querschnitt ist maßstäblich (Außendurchmesser etwa 5 mm), daneben die Verlegung.</p>
+        <div class="werkzeug-leiste" role="group" aria-label="Verlegung der Leitung">
+          <button type="button" class="knopf" data-verlegung="putz" aria-pressed="true">Im Putz</button>
+          <button type="button" class="knopf" data-verlegung="rohr-up" aria-pressed="false">Schutzrohr unter Putz</button>
+          <button type="button" class="knopf" data-verlegung="rohr-ap" aria-pressed="false">Schutzrohr auf Putz</button>
+          <select id="rohrGroesse" aria-label="Größe des Schutzrohrs"><option value="16">Rohr M16</option><option value="20" selected>Rohr M20</option><option value="25">Rohr M25</option></select>
+          <select id="rohrAnzahl" aria-label="Leitungen im Rohr"><option value="1">1 Leitung im Rohr</option><option value="2">2 Leitungen im Rohr</option><option value="3">3 Leitungen im Rohr</option><option value="4">4 Leitungen im Rohr</option></select>
         </div>
+        <div class="kabel-rahmen"><canvas id="kabel" role="img" aria-label="Querschnitt der Leitung J-Y(St)Y 2 × 2 × 0,8 mit Aufbau, Seitenansicht mit Aufdruck und Einbau im Putz oder im Schutzrohr"></canvas></div>
+        <p class="status" id="kabelInfo" aria-live="polite"></p>
+        <div class="kabel-text">
+          <ol class="kabel-legende" id="kabelLegende"></ol>
+          <div>
+            <div class="rahmen"><table class="tabelle">
+              <caption>Kenndaten (übliche Herstellerangaben)</caption>
+              <tbody>
+                <tr><td>Bauart</td><td>J-Y(St)Y nach DIN VDE 0815, „Lg“ = Lagenverseilung, hier ein Sternvierer</td></tr>
+                <tr><td>Leiter</td><td>Kupfer blank, eindrähtig, Ø 0,8 mm (0,5 mm²) – Mindestdurchmesser für Brandmeldeanlagen nach DIN VDE 0833-2</td></tr>
+                <tr><td>Aderfarben</td><td>Paar 1 rot/schwarz, Paar 2 weiß/gelb; die Adern eines Paars liegen sich im Vierer gegenüber</td></tr>
+                <tr><td>Außendurchmesser</td><td>etwa 5 mm</td></tr>
+                <tr><td>Schleifenwiderstand</td><td>höchstens 73,2 Ω/km bei 20 °C (Hin- und Rückleiter)</td></tr>
+                <tr><td>Betriebsspannung</td><td>höchstens 300 V (Scheitelwert), nur für Fernmelde- und Signalstromkreise, nicht für Starkstrom</td></tr>
+                <tr><td>Biegeradius</td><td>mindestens 7,5 × Außendurchmesser ≈ 38 mm</td></tr>
+                <tr><td>Temperatur</td><td>fest verlegt −30 bis +70 °C, beim Verlegen −5 bis +50 °C</td></tr>
+                <tr><td>Brandverhalten</td><td>PVC, kein Funktionserhalt; im Brandfall entstehen korrosive, giftige Gase</td></tr>
+              </tbody>
+            </table></div>
+            <ul class="kabel-hinweise" id="kabelHinweise"></ul>
+          </div>
+        </div>
+      </section>
       </div>
-    </section>
+    </div>
+
 
     <section class="tafel abstand" aria-labelledby="h-pruef">
       <div class="kopf-zeile"><h2 id="h-pruef">Prüfung der Planung</h2><span class="urteil" id="urteil"></span></div>
