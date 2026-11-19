@@ -1,6 +1,15 @@
 {
  "blaetter": [
   {
+   "datei": "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
+   "thema": "elektro/leitungsdimensionierung.html",
+   "titel": "Leitungsdimensionierung in fünf Schritten – Drehstrommotor",
+   "stufe": "mittel",
+   "aufgaben": 6,
+   "loesungen": 6,
+   "beschreibung": "Ein Beispiel von vorn bis hinten: Betriebsstrom, Umrechnungsfaktoren, Querschnitt, LS-Schalter und Spannungsfall für einen Motor, dazu eine Beleuchtungsanlage zum Selbstrechnen."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",
    "thema": "elektro/ohmsches-gesetz.html",
    "titel": "Ohmsches Gesetz und Kirchhoff – Grundlagen",

@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = '9c03e1677b';
+const STAND = 'acb29d7c44';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -50,9 +50,6 @@ const DATEIEN = [
   "assets/symbol-apple.png",
   "assets/symbol-maskable.png",
   "assets/taschenrechner.js",
-  "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",
-  "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
-  "aufgabenblaetter/liste.json",
   "brandschutz/brandmeldeanlage.html",
   "brandschutz/brandsimulation.html",
   "brandschutz/feuerloescher.html",
@@ -154,7 +151,11 @@ const DATEIEN = [
   "sanitaer/gasleitung.html",
   "sanitaer/regenwasser.html",
   "sanitaer/trinkwasser-rohrnetz.html",
-  "sanitaer/trinkwasserschutz.html"
+  "sanitaer/trinkwasserschutz.html",
+  "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
+  "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",
+  "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
+  "aufgabenblaetter/liste.json"
 ];
 
 self.addEventListener('install', function (ev) {
