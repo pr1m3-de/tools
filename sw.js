@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = '16e9a8403b';
+const STAND = '9ffeef6c91';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -66,9 +66,11 @@ const DATEIEN = [
   "elektro/batteriespeicher.html",
   "elektro/beleuchtung.html",
   "elektro/blitzschutz.html",
+  "elektro/drehstrom.html",
   "elektro/einbruchmeldeanlage.html",
   "elektro/erdung.html",
   "elektro/kondensator.html",
+  "elektro/grundgroessen.html",
   "elektro/kleintransformatoren.html",
   "elektro/koerperstrom.html",
   "elektro/kompensation.html",
@@ -86,6 +88,7 @@ const DATEIEN = [
   "elektro/spannungsfall.html",
   "elektro/transformator.html",
   "elektro/wallbox.html",
+  "elektro/wechselstrom.html",
   "elektro/warmwasser.html",
   "favicon.png",
   "geld/amortisation.html",
@@ -158,13 +161,16 @@ const DATEIEN = [
   "aufgabenblaetter/brandschutz/brandmeldeanlage/01-melder-und-alarmierung.md",
   "aufgabenblaetter/brandschutz/brandmeldeanlage/02-bma-aufbau-und-planung.md",
   "aufgabenblaetter/brandschutz/elektrischer-brandschutz/01-brandschutz-grundlagen.md",
+  "aufgabenblaetter/elektro/drehstrom/01-stern-dreieck-unsymmetrie.md",
   "aufgabenblaetter/elektro/einbruchmeldeanlage/01-ema-grundlagen.md",
   "aufgabenblaetter/elektro/einbruchmeldeanlage/02-gma-pruefungsaufgaben.md",
+  "aufgabenblaetter/elektro/grundgroessen/01-grundgroessen-und-leiterwiderstand.md",
   "aufgabenblaetter/elektro/kleintransformatoren/01-kleintrafos-und-messwandler.md",
   "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
   "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",
   "aufgabenblaetter/elektro/transformator/01-einphasentransformator.md",
   "aufgabenblaetter/elektro/transformator/02-drehstromtransformator.md",
+  "aufgabenblaetter/elektro/wechselstrom/01-wechselstrom-und-rlc.md",
   "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
   "aufgabenblaetter/liste.json"
 ];

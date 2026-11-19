@@ -245,6 +245,9 @@
         <li><a href="elektro/kleintransformatoren.html">Kleintransformatoren und Messwandler</a> – Strom- und Spannungswandler berechnen: Übersetzung, Bürde mit Messleitung, Auslastung und Durchfädeln; Spartransformator mit Bau- und Durchgangsleistung; Arten der Kleintransformatoren von Sicherheits- bis Klingeltransformator mit Normen und Merkmalen.</li>
         <li><a href="elektro/einbruchmeldeanlage.html">Einbruchmeldeanlage</a> – Einbruchmeldeanlage verstehen und berechnen: Meldelinie im Ruhestromprinzip mit Abschlusswiderstand, Spannungsteiler und Brückenschaltung, Alarm, Sabotage und Kurzschluss simulieren, Notstrom-Akku, Überwachungsbereiche, Melder, Grade und VdS-Klassen.</li>
         <li><a href="brandschutz/elektrischer-brandschutz.html">Brandschutz in der Elektroinstallation</a> – Brandschutz in der Elektroinstallation: Rauch, Salzsäure und Brandlast aus PVC-Leitungen berechnen, Funktionserhalt E30 oder E90 je Anlage, Feuerwiderstandsklassen alt und neu, Schutzziele, vier Säulen des Brandschutzes, Brandabschnitte und Abschottungen.</li>
+        <li><a href="elektro/grundgroessen.html">Elektrische Grundgrößen und Leiterwiderstand</a> – Elektrische Grundgrößen rechnen: Ladung und Strom, Stromdichte, Leiterwiderstand aus Länge, Querschnitt und Material, Leitwert, Widerstand bei Erwärmung, Leistung, Arbeit, Energiekosten und Wirkungsgrad – mit Elektronen im Kristallgitter, Materialtabelle und Vorsätzen.</li>
+        <li><a href="elektro/wechselstrom.html">Wechselstrom und RLC-Schaltungen</a> – Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.</li>
+        <li><a href="elektro/drehstrom.html">Drehstrom: Stern, Dreieck und Unsymmetrie</a> – Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.</li>
       </ul>
     </section>
   </noscript>
@@ -1181,6 +1184,33 @@
         themen: ['Brandschutz', 'Funktionserhalt', 'E30', 'E90', 'MLAR', 'Leitungsanlagen-Richtlinie', 'Brandabschnitt', 'Abschottung', 'Feuerwiderstand', 'Brandlast', 'PVC', 'Rauch', 'Schutzziele'],
         text: 'Brandschutz in der Elektroinstallation: Rauch, Salzsäure und Brandlast aus PVC-Leitungen berechnen, Funktionserhalt E30 oder E90 je Anlage, Feuerwiderstandsklassen alt und neu, Schutzziele, vier Säulen des Brandschutzes, Brandabschnitte und Abschottungen.',
         tex: 'V_\\text{R} = m \\cdot 500\\,\\tfrac{\\text{m}^3}{\\text{kg}}'
+      },
+      {
+        titel: 'Elektrische Grundgrößen und Leiterwiderstand',
+        gruppe: 'Grundlagen',
+        pfad: 'elektro/grundgroessen.html',
+        bereich: 'Elektrotechnik',
+        themen: ['Ladung', 'Stromdichte', 'Leiterwiderstand', 'spezifischer Widerstand', 'Leitfähigkeit', 'Leitwert', 'Temperaturbeiwert', 'Kaltleiter', 'Leistung', 'Arbeit', 'Energiekosten', 'Wirkungsgrad', 'Vorsätze', 'Driftgeschwindigkeit'],
+        text: 'Elektrische Grundgrößen rechnen: Ladung und Strom, Stromdichte, Leiterwiderstand aus Länge, Querschnitt und Material, Leitwert, Widerstand bei Erwärmung, Leistung, Arbeit, Energiekosten und Wirkungsgrad – mit Elektronen im Kristallgitter, Materialtabelle und Vorsätzen.',
+        tex: 'R = \\frac{l}{\\gamma \\cdot A}'
+      },
+      {
+        titel: 'Wechselstrom und RLC-Schaltungen',
+        gruppe: 'Grundlagen',
+        pfad: 'elektro/wechselstrom.html',
+        bereich: 'Elektrotechnik',
+        themen: ['Wechselstrom', 'Sinus', 'Effektivwert', 'Scheitelwert', 'Kreisfrequenz', 'Blindwiderstand', 'Scheinwiderstand', 'Zeigerdiagramm', 'Phasenverschiebung', 'RLC', 'Reihenschaltung', 'Parallelschaltung', 'Resonanz', 'Schwingkreis', 'Güte', 'Bandbreite', 'Tiefpass', 'Hochpass', 'Grenzfrequenz', 'Filter'],
+        text: 'Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.',
+        tex: 'Z = \\sqrt{R^2 + (X_L - X_C)^2}'
+      },
+      {
+        titel: 'Drehstrom: Stern, Dreieck und Unsymmetrie',
+        gruppe: 'Grundlagen',
+        pfad: 'elektro/drehstrom.html',
+        bereich: 'Elektrotechnik',
+        themen: ['Drehstrom', 'Sternschaltung', 'Dreieckschaltung', 'Verkettungsfaktor', 'Strangspannung', 'Leiterstrom', 'Drehstromleistung', 'unsymmetrische Last', 'Neutralleiterstrom', 'Neutralleiterunterbrechung', 'Sternpunktverschiebung', 'Phasenausfall'],
+        text: 'Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.',
+        tex: 'P = \\sqrt{3} \\cdot U \\cdot I \\cdot \\cos\\varphi'
       }
     ];
 
