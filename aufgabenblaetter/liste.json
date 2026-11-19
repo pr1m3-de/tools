@@ -10,6 +10,42 @@
    "beschreibung": "Internalarm, Externalarm und Fernalarm, Rauch-, Wärme- und Flammenmelder, Rauchansaugsysteme – mit der Auswahl der Melder für eine Bäckerei."
   },
   {
+   "datei": "aufgabenblaetter/brandschutz/brandmeldeanlage/02-bma-aufbau-und-planung.md",
+   "thema": "brandschutz/brandmeldeanlage.html",
+   "titel": "Brandmeldeanlage – Aufbau und Planung",
+   "stufe": "mittel",
+   "aufgaben": 7,
+   "loesungen": 7,
+   "beschreibung": "Rechtsgrundlagen, Schutzziele, Ablauf einer Brandmeldung, Energieversorgung, Meldebereiche und Meldergruppen, Leitungen, Rauchwarnmelder in Wohnungen und ein Brandschutzkonzept."
+  },
+  {
+   "datei": "aufgabenblaetter/brandschutz/elektrischer-brandschutz/01-brandschutz-grundlagen.md",
+   "thema": "brandschutz/elektrischer-brandschutz.html",
+   "titel": "Brandschutz in der Elektroinstallation",
+   "stufe": "leicht",
+   "aufgaben": 6,
+   "loesungen": 6,
+   "beschreibung": "Brandentstehung, Brandursachen, Rauch aus PVC, die drei Schutzziele, die vier Säulen des Brandschutzes, Feuerwiderstandsklassen, Abschottungen und Funktionserhalt."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/einbruchmeldeanlage/01-ema-grundlagen.md",
+   "thema": "elektro/einbruchmeldeanlage.html",
+   "titel": "Einbruchmeldeanlage – Grundlagen (Projekt Bäckerei)",
+   "stufe": "leicht",
+   "aufgaben": 7,
+   "loesungen": 7,
+   "beschreibung": "Überwachungsbereiche, Grade und VdS-Klassen, Bestandteile, Scharfschaltung, Melder, Ruhestrom- und Arbeitsstromprinzip, Sabotagelinie und ein Konzept für die Bäckerei."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/einbruchmeldeanlage/02-gma-pruefungsaufgaben.md",
+   "thema": "elektro/einbruchmeldeanlage.html",
+   "titel": "Gefahrenmeldeanlagen – Prüfungsaufgaben",
+   "stufe": "schwer",
+   "aufgaben": 8,
+   "loesungen": 8,
+   "beschreibung": "Rechnen an der Meldelinie (Spannungsteiler, zwei Brückenschaltungen), Neutralleiterunterbrechung, Melderanzahl, Melderwahl, Glasbruchmelder-Schaltungen und Alarmierung – im Stil der Abschlussprüfungen."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/kleintransformatoren/01-kleintrafos-und-messwandler.md",
    "thema": "elektro/kleintransformatoren.html",
    "titel": "Kleintransformatoren und Messwandler",
