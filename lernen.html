@@ -869,7 +869,9 @@
       blattOffen = b;
       const art = document.getElementById('blatt'); art.innerHTML = ''; art.append(el('p', 'warte', 'Blatt wird geladen …'));
       document.getElementById('blatt-uebersicht').hidden = true; document.getElementById('blatt-ansicht').hidden = false;
-      fetch(b.datei).then(function (a) { if (!a.ok) throw new Error(a.status); return a.text(); }).then(function (text) {
+      // erst normal, bei Fehler am Browser-Speicher vorbei neu holen (ein zwischengespeichertes 404 hält sonst bis zu 10 min)
+      const holen = function (modus) { return fetch(b.datei, { cache: modus }).then(function (a) { if (!a.ok) { const f = new Error('HTTP ' + a.status); f.status = a.status; throw f; } return a.text(); }); };
+      holen('no-cache').catch(function () { return holen('reload'); }).then(function (text) {
         if (blattOffen !== b) return;
         const t = thema(b.thema); art.innerHTML = ''; art.style.setProperty('--farbe', farbe(t.bereich));
         const band = el('header', 'blatt-band'), kopf = el('p', 'blatt-thema'), a = el('a', '', t.titel); a.href = b.thema; kopf.append(a, document.createTextNode(' · ' + t.bereich)); band.append(kopf);
@@ -898,7 +900,17 @@
         document.getElementById('blatt-drucken-l').hidden = !art.querySelector('.blatt-loesung, .blatt-tipp');
         try { history.replaceState(null, '', '#blatt=' + encodeURIComponent(b.datei.replace(/^aufgabenblaetter\//, '').replace(/\.md$/, '')).replace(/%2F/g, '/')); } catch (x) { /* egal */ }
         if (!ohneSprung) document.getElementById('h-ueben').scrollIntoView({ block: 'start' });
-      }).catch(function () { if (blattOffen !== b) return; art.innerHTML = ''; art.append(el('p', 'warte', 'Das Blatt ließ sich nicht laden. Ohne Netz sind nur Blätter da, die schon einmal geöffnet wurden oder im App-Speicher liegen.')); });
+      }).catch(function (f) {
+        if (blattOffen !== b) return;
+        art.innerHTML = '';
+        const offline = navigator.onLine === false || !(f && f.status);
+        art.append(el('p', 'warte', offline
+          ? 'Das Blatt ließ sich nicht laden. Ohne Netz sind nur Blätter da, die schon einmal geöffnet wurden oder im App-Speicher liegen.'
+          : 'Das Blatt ist auf dem Server gerade nicht abrufbar (Fehler ' + f.status + '). Nach einer Änderung kann es ein paar Minuten dauern, bis neue Blätter online sind.'));
+        const nochmal = el('button', 'knopf', 'Erneut versuchen'); nochmal.type = 'button';
+        nochmal.addEventListener('click', function () { blattOeffnen(b, true); });
+        art.append(nochmal);
+      });
     }
     document.getElementById('blatt-zurueck').addEventListener('click', function () { try { history.replaceState(null, '', location.pathname + location.search); } catch (x) { /* egal */ } blaetterZeigen(); });
     document.getElementById('blatt-loesungen').addEventListener('click', function () { loesungenSetzen(this.getAttribute('aria-pressed') !== 'true'); });

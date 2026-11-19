@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = 'acb29d7c44';
+const STAND = '8bc6dadc04';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -158,8 +158,9 @@ const DATEIEN = [
   "aufgabenblaetter/liste.json"
 ];
 
+// Beim Installieren am Browser-Speicher vorbei laden: sonst landen bis zu 10 min alte Dateien (oder ein altes 404) im App-Speicher
 self.addEventListener('install', function (ev) {
-  ev.waitUntil(caches.open(SPEICHER).then(function (c) { return c.addAll(DATEIEN); }).then(function () { return self.skipWaiting(); }));
+  ev.waitUntil(caches.open(SPEICHER).then(function (c) { return c.addAll(DATEIEN.map(function (d) { return new Request(d, { cache: 'reload' }); })); }).then(function () { return self.skipWaiting(); }));
 });
 
 self.addEventListener('activate', function (ev) {
@@ -179,6 +180,16 @@ self.addEventListener('fetch', function (ev) {
       return antwort;
     }).catch(function () {
       return caches.match(anfrage, { ignoreSearch: true }).then(function (t) { return t || caches.match('index.html'); });
+    }));
+    return;
+  }
+  // Aufgabenblätter und ihre Liste: zuerst das Netz, damit neue und geänderte Blätter sofort da sind; ohne Netz der Speicher
+  if (new URL(anfrage.url).pathname.indexOf('/aufgabenblaetter/') >= 0) {
+    ev.respondWith(fetch(anfrage).then(function (antwort) {
+      if (antwort.ok) { const kopie = antwort.clone(); caches.open(SPEICHER).then(function (c) { c.put(anfrage, kopie); }); return antwort; }
+      return caches.match(anfrage, { ignoreSearch: true }).then(function (t) { return t || antwort; });
+    }).catch(function () {
+      return caches.match(anfrage, { ignoreSearch: true }).then(function (t) { return t || Response.error(); });
     }));
     return;
   }
