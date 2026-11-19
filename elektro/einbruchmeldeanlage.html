@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Einbruchmeldeanlage – Formeln &amp; Rechner</title>
+  <meta name="description" content="Einbruchmeldeanlage verstehen und berechnen: Meldelinie im Ruhestromprinzip mit Abschlusswiderstand, Spannungsteiler und Brückenschaltung, Alarm, Sabotage und Kurzschluss simulieren, Notstrom-Akku, Überwachungsbereiche, Melder, Grade und VdS-Klassen.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Einbruchmeldeanlage">
+  <meta property="og:description" content="Einbruchmeldeanlage verstehen und berechnen: Meldelinie im Ruhestromprinzip mit Abschlusswiderstand, Spannungsteiler und Brückenschaltung, Alarm, Sabotage und Kurzschluss simulieren, Notstrom-Akku, Überwachungsbereiche, Melder, Grade und VdS-Klassen.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Einbruchmeldeanlage">
+  <meta name="twitter:description" content="Einbruchmeldeanlage verstehen und berechnen: Meldelinie im Ruhestromprinzip mit Abschlusswiderstand, Spannungsteiler und Brückenschaltung, Alarm, Sabotage und Kurzschluss simulieren, Notstrom-Akku, Überwachungsbereiche, Melder, Grade und VdS-Klassen.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html#seite","name":"Einbruchmeldeanlage","url":"https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html","inLanguage":"de","description":"Einbruchmeldeanlage verstehen und berechnen: Meldelinie im Ruhestromprinzip mit Abschlusswiderstand, Spannungsteiler und Brückenschaltung, Alarm, Sabotage und Kurzschluss simulieren, Notstrom-Akku, Überwachungsbereiche, Melder, Grade und VdS-Klassen.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Einbruchmeldeanlage","item":"https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html#fragen","mainEntity":[{"@type":"Question","name":"Warum arbeiten Einbruchmeldeanlagen nach dem Ruhestromprinzip?","acceptedAnswer":{"@type":"Answer","text":"Weil damit auch ein Leitungsbruch Alarm auslöst. Beim Arbeitsstromprinzip würde ein durchgeschnittenes Kabel nicht auffallen – der Melder könnte danach nicht mehr melden. Mit einem Abschlusswiderstand am Linienende erkennt die Zentrale zusätzlich Kurzschluss und Überbrückung."}},{"@type":"Question","name":"Wozu dient der Abschlusswiderstand?","acceptedAnswer":{"@type":"Answer","text":"Er legt den Ruhewert der Meldelinie fest. Die Zentrale misst ständig Spannung oder Strom: Unterbrechung (Melder offen, Draht durch) und Kurzschluss (Brücke, Sabotage) liegen beide außerhalb des Ruhefensters. Ohne Abschlusswiderstand am Ende könnte ein Täter die Linie einfach kurzschließen."}},{"@type":"Question","name":"Was bedeutet Zwangsläufigkeit?","acceptedAnswer":{"@type":"Answer","text":"Die Anlage lässt sich nur scharf schalten, wenn alles geschlossen und in Ruhe ist, und der überwachte Bereich lässt sich nur betreten, nachdem sie unscharf geschaltet wurde – zum Beispiel mit einem Sperrelement, das die Tür blockiert. So löst der Betreiber selbst keinen Alarm aus."}},{"@type":"Question","name":"Welche Melder für die Außenhaut?","acceptedAnswer":{"@type":"Answer","text":"Magnetkontakte für das Öffnen von Fenstern und Türen, Glasbruchmelder für das Einschlagen, Riegelkontakte für den Verschluss, dazu Erschütterungsmelder an Wänden oder Tresoren. Erst Öffnen und Durchbruch zusammen ergeben eine vollständige Außenhautüberwachung."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .ema-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .ema-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .ema-karte h4 { margin: 0 0 4px; font-family: var(--technik); font-size: 1.02rem; }
+    .ema-karte p, .ema-karte li { margin: 4px 0; font-size: .92rem; line-height: 1.45; }
+    .ema-karte ul { padding-left: 1.2em; margin: 4px 0; }
+    .bereiche-bild { display: block; width: 100%; max-height: 260px; height: auto; color: var(--text); font-family: var(--technik); margin: 6px 0 10px; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand" aria-labelledby="h-ema-wissen" id="ema-wissen">
+      <h2 id="h-ema-wissen">So ist eine Einbruchmeldeanlage aufgebaut</h2>
+      <p class="hilfe">Grundlagen nach DIN EN 50131-1 und DIN VDE 0833-3, Richtlinien des VdS (Vertrauen durch Sicherheit, Prüfstelle der Versicherer).</p>
+
+      <h3 class="zwischen">Überwachungsbereiche</h3>
+      <svg class="bereiche-bild" viewBox="0 0 640 230" role="img" aria-label="Grundstück mit Vorfeld, Gebäudehülle (Außenhaut) und Innenraum">
+        <rect x="8" y="8" width="624" height="214" rx="14" fill="#2F9E44" opacity=".12" stroke="#2F9E44" stroke-dasharray="8 6"/>
+        <text x="22" y="30" font-size="14" font-weight="700" fill="#2F9E44">Vorfeld – Grundstück, Zaun, Zufahrt</text>
+        <rect x="150" y="50" width="340" height="150" fill="#2B7BB9" opacity=".12" stroke="#2B7BB9" stroke-width="6"/>
+        <text x="160" y="72" font-size="14" font-weight="700" fill="#2B7BB9">Außenhaut – Türen, Fenster, Wände</text>
+        <rect x="230" y="96" width="180" height="86" rx="6" fill="#C0392B" opacity=".12" stroke="#C0392B"/>
+        <text x="240" y="118" font-size="14" font-weight="700" fill="#C0392B">Raum (Fallen)</text>
+        <text x="240" y="138" font-size="11" fill="currentColor">Bewegungsmelder, Lichtschranken</text>
+        <text x="240" y="154" font-size="11" fill="currentColor">wo der Täter vorbei muss</text>
+        <text x="22" y="212" font-size="11" fill="currentColor">Lichtschranken, Kameras, Zaunsensoren</text>
+        <text x="502" y="120" font-size="11" fill="currentColor">Magnetkontakte</text><text x="502" y="136" font-size="11" fill="currentColor">Glasbruchmelder</text><text x="502" y="152" font-size="11" fill="currentColor">Riegelkontakte</text>
+      </svg>
+      <div class="ema-raster">
+        <article class="ema-karte" style="--farbe:#2F9E44"><h4>Vorfeldüberwachung</h4><p>Meldet, bevor der Täter das Gebäude erreicht: Infrarot-Lichtschranken, Zaun- und Bodensensoren, Videoüberwachung mit Bildauswertung. Frühe Warnung, aber anfällig für Tiere und Wetter – meist nur ergänzend.</p></article>
+        <article class="ema-karte" style="--farbe:#2B7BB9"><h4>Außenhautüberwachung</h4><p>Meldet den Versuch, in das Gebäude einzudringen – Alarm, bevor jemand drinnen ist; Personen im Gebäude können sich frei bewegen (Hüllschutz bei Anwesenheit). Melder: Magnetkontakte (Öffnen), Riegelschaltkontakte (Verschluss), Glasbruchmelder, Alarmdrahtglas, Körperschall- und Erschütterungsmelder.</p></article>
+        <article class="ema-karte" style="--farbe:#C0392B"><h4>Raumüberwachung</h4><p>Meldet Bewegung im Inneren, als „Falle“ dort, wo ein Täter vorbei muss (Flur, Treppe, Raum mit Wertgegenständen). Nur bei Abwesenheit scharf. Melder: Passiv-Infrarot (PIR), Mikrowelle, Ultraschall, Dualmelder, Lichtschranken.</p></article>
+      </div>
+
+      <h3 class="zwischen">Bestandteile</h3>
+      <div class="ema-raster">
+        <article class="ema-karte" style="--farbe:#6E6FA6"><h4>Zentrale (EMZ)</h4><p>Wertet alle Meldelinien aus, zeigt Zustände an, steuert die Alarmierung und speichert Ereignisse.</p></article>
+        <article class="ema-karte" style="--farbe:#2E8B57"><h4>Energieversorgung</h4><p>Immer zwei voneinander unabhängige Quellen: Netz und Akku (oder Lithiumzelle bei Funk). Der Akku muss die Anlage je nach Grad und Übertragung viele Stunden im Ruhezustand versorgen und danach noch Alarm geben können (Akku-Rechner unten).</p></article>
+        <article class="ema-karte" style="--farbe:#D4A017"><h4>Scharfschalteinrichtung</h4><p>Blockschloss, Code-Tastatur, Transponder oder Biometrie, bei Grad 3 und 4 außerhalb des überwachten Bereichs. <b>Zwangsläufigkeit:</b> Scharfschalten geht nur, wenn alle Melder in Ruhe und alle Türen verschlossen sind; der gesicherte Bereich lässt sich im scharfen Zustand nicht betreten, ohne vorher unscharf zu schalten. So werden Fehlalarme durch den Betreiber vermieden.</p></article>
+        <article class="ema-karte" style="--farbe:#C0392B"><h4>Alarmierung</h4><p><b>Intern:</b> Summer, Anzeige. <b>Extern:</b> Sirene und Blitzleuchte am Gebäude, die Sirene nach Vorgabe höchstens 3 Minuten. <b>Fern (still):</b> Übertragungsgerät oder Wählgerät meldet an eine Notruf- und Serviceleitstelle (NSL) oder einen Wachdienst – der Täter merkt nichts.</p></article>
+      </div>
+
+      <h3 class="zwischen">Meldelinie, Ruhestrom und Sabotage</h3>
+      <div class="ema-raster">
+        <article class="ema-karte" style="--farbe:#2B7BB9"><h4>Ruhestromprinzip</h4><p>Die Melder haben <b>Öffner</b> und liegen in <b>Reihe</b>. Im Ruhezustand fließt ein kleiner Strom über alle Kontakte und den Abschlusswiderstand am Ende der Linie. Öffnet ein Melder <b>oder wird die Leitung durchtrennt</b>, ändert sich der Strom – Alarm. Ein Drahtbruch bleibt so nie unbemerkt.</p></article>
+        <article class="ema-karte" style="--farbe:#F2A541"><h4>Arbeitsstromprinzip</h4><p>Die Melder haben <b>Schließer</b> und liegen <b>parallel</b> zum Abschlusswiderstand. Im Alarmfall schließt der Kontakt und schließt den Widerstand kurz. Typisch für Glasbruchmelder oder Wassermelder in derselben Linie wie Öffner.</p></article>
+        <article class="ema-karte" style="--farbe:#7048E8"><h4>Abschlusswiderstand</h4><p>Sitzt im <b>letzten</b> Melder. Die Zentrale kennt seinen Wert und überwacht die Linie auf ein Spannungsfenster: zu hoch = Unterbrechung (Alarm), zu niedrig = Kurzschluss oder Überbrückung (Sabotage). Sitzt er versehentlich in der Zentrale, sind Drahtbruch und Kurzschluss der Leitung nicht mehr erkennbar.</p></article>
+        <article class="ema-karte" style="--farbe:#C0392B"><h4>Sabotagelinie</h4><p>Eine zweite Linie verbindet die Deckelkontakte aller Melder, der Zentrale und der Signalgeber und ist <b>immer scharf</b> (24 h). Wird ein Gehäuse geöffnet oder ein Kabel durchtrennt, gibt es auch im unscharfen Zustand eine Sabotagemeldung.</p></article>
+      </div>
+
+      <h3 class="zwischen">Melder</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Melder</th><th>Bereich</th><th>Funktion</th></tr></thead>
+        <tbody>
+          <tr><td>Magnetkontakt</td><td>Außenhaut</td><td>Reedkontakt im Rahmen, Magnet im Flügel; öffnet die Tür, entfernt sich der Magnet und der Kontakt öffnet. VdS-Klasse C: zusätzlich gegen Fremdmagnete geschützt.</td></tr>
+          <tr><td>Riegelschaltkontakt</td><td>Außenhaut</td><td>meldet, ob der Riegel des Schlosses ausgefahren ist – Voraussetzung für die Zwangsläufigkeit.</td></tr>
+          <tr><td>Passiver Glasbruchmelder</td><td>Außenhaut</td><td>auf die Scheibe geklebt, erkennt die typischen Körperschallfrequenzen des Bruchs; ein Melder je Scheibe, Wirkradius beachten.</td></tr>
+          <tr><td>Aktiver Glasbruchmelder</td><td>Außenhaut</td><td>sendet ständig Ultraschall in die Scheibe und empfängt ihn; bricht das Glas, ändert sich das Signal. Erkennt auch Schneiden und Bohren.</td></tr>
+          <tr><td>Akustischer Glasbruchmelder</td><td>Außenhaut</td><td>im Raum montiert, wertet das Geräusch berstenden Glases aus; überwacht mehrere Scheiben, aber anfälliger für Täuschung.</td></tr>
+          <tr><td>Alarmdrahtglas, -tapete</td><td>Außenhaut</td><td>feiner Draht in Glas oder Wand im Ruhestrom; reißt er, wird Alarm ausgelöst.</td></tr>
+          <tr><td>Passiv-Infrarot-Melder (PIR)</td><td>Raum</td><td>erkennt die Wärmestrahlung eines bewegten Körpers über Spiegel- oder Linsensegmente; am besten quer zur Laufrichtung ausrichten, in einer Ecke 2 bis 3 m hoch.</td></tr>
+          <tr><td>Mikrowellenmelder</td><td>Raum</td><td>sendet Mikrowellen und wertet die Frequenzverschiebung (Doppler) bewegter Objekte aus; am besten in Laufrichtung, durchdringt aber dünne Wände.</td></tr>
+          <tr><td>Ultraschallmelder</td><td>Raum</td><td>wie Mikrowelle mit Ultraschall, bleibt im Raum (dringt nicht durch Wände); empfindlich gegen Luftbewegung, gut in staubigen, warmen Räumen wie Backstuben.</td></tr>
+          <tr><td>Dualmelder</td><td>Raum</td><td>PIR und Mikrowelle; Alarm nur, wenn beide melden – sehr wenige Falschalarme.</td></tr>
+          <tr><td>Infrarot-Lichtschranke</td><td>Vorfeld, Raum</td><td>Sender und Empfänger; wird der unsichtbare Strahl unterbrochen, löst sie aus.</td></tr>
+          <tr><td>Überfallmelder</td><td>Personen</td><td>von Hand oder Fuß betätigt, meldet still an die NSL.</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="zwischen">Grade und VdS-Klassen</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Grad (DIN EN 50131-1)</th><th>Risiko, Täter</th><th>VdS-Klasse</th><th>typisch</th></tr></thead>
+        <tbody>
+          <tr><td>Grad 1</td><td>gering; Täter mit wenig Kenntnis</td><td>–</td><td>einfache Anlagen</td></tr>
+          <tr><td>Grad 2</td><td>niedrig bis mittel; Täter mit begrenzter Kenntnis</td><td>A</td><td>Wohnungen, kleines Gewerbe (VdS Home für Privat)</td></tr>
+          <tr><td>Grad 3</td><td>mittel bis hoch; Täter mit Kenntnis und Werkzeug</td><td>B</td><td>Gewerbe mit Warenwert, Bäckerei, Werkstatt</td></tr>
+          <tr><td>Grad 4</td><td>hoch; organisierte Täter</td><td>C</td><td>Banken, Juweliere, Hochsicherheit</td></tr>
+        </tbody>
+      </table></div>
+      <p class="hilfe">Damit eine Versicherung die Anlage anerkennt, müssen die Geräte VdS-anerkannt sein und die Errichterfirma VdS-zertifiziert. Mit höherem Grad steigen die Anforderungen an Sabotageschutz, Energieversorgung, Übertragung und Scharfschaltung.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum arbeiten Einbruchmeldeanlagen nach dem Ruhestromprinzip?</summary><p>Weil damit auch ein Leitungsbruch Alarm auslöst. Beim Arbeitsstromprinzip würde ein durchgeschnittenes Kabel nicht auffallen – der Melder könnte danach nicht mehr melden. Mit einem Abschlusswiderstand am Linienende erkennt die Zentrale zusätzlich Kurzschluss und Überbrückung.</p></details>
+        <details><summary>Wozu dient der Abschlusswiderstand?</summary><p>Er legt den Ruhewert der Meldelinie fest. Die Zentrale misst ständig Spannung oder Strom: Unterbrechung (Melder offen, Draht durch) und Kurzschluss (Brücke, Sabotage) liegen beide außerhalb des Ruhefensters. Ohne Abschlusswiderstand am Ende könnte ein Täter die Linie einfach kurzschließen.</p></details>
+        <details><summary>Was bedeutet Zwangsläufigkeit?</summary><p>Die Anlage lässt sich nur scharf schalten, wenn alles geschlossen und in Ruhe ist, und der überwachte Bereich lässt sich nur betreten, nachdem sie unscharf geschaltet wurde – zum Beispiel mit einem Sperrelement, das die Tür blockiert. So löst der Betreiber selbst keinen Alarm aus.</p></details>
+        <details><summary>Welche Melder für die Außenhaut?</summary><p>Magnetkontakte für das Öffnen von Fenstern und Türen, Glasbruchmelder für das Einschlagen, Riegelkontakte für den Verschluss, dazu Erschütterungsmelder an Wänden oder Tresoren. Erst Öffnen und Durchbruch zusammen ergeben eine vollständige Außenhautüberwachung.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const T = function (cx, s, x, y, a, g, f, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!f, c); };
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', GELB = '#D4A017', ORANGE = '#F2A541', GRAU = '#6B7785', LILA = '#7048E8';
+    const RHO = 0.0178;
+    const bruecke = function (e) { return e.schaltung === 'bruecke'; };
+    const zs = function (v, n) { if (!isFinite(v)) return '∞'; let t = z(v, n === undefined ? 3 : n); if (t.indexOf(',') >= 0) t = t.replace(/0+$/, '').replace(/,$/, ''); return t; };
+    const ohm = function (r) { return !isFinite(r) ? '∞' : r >= 1000 ? zs(r / 1000) + ' kΩ' : zs(r, 1) + ' Ω'; };
+    const ZUSTAENDE = { ruhe: 'Ruhe', offen: 'Melder öffnet / Draht durchtrennt', kurz: 'Kurzschluss / Überbrückung / Arbeitsstrom-Melder schließt' };
+
+    function linie(e) {
+      const A = Math.PI * Math.pow(e.d / 2, 2), rl = 2 * e.l * RHO / A;
+      return { rl: rl, ruhe: e.ra * 1000 + rl, offen: Infinity, kurz: 0 };
+    }
+    function messen(e, rLinie, r4) {
+      if (bruecke(e)) {
+        const R1 = e.r1 * 1000, R2 = e.r2 * 1000;
+        const va = e.u * R2 / (R1 + R2), vb = !isFinite(rLinie) ? 0 : e.u * r4 / (rLinie + r4);
+        const i = !isFinite(rLinie) ? 0 : e.u / (rLinie + r4);
+        return { u: va - vb, i: i };
+      }
+      const RV = e.rv * 1000;
+      if (!isFinite(rLinie)) return { u: e.u, i: 0 };
+      return { u: e.u * rLinie / (RV + rLinie), i: e.u / (RV + rLinie) };
+    }
+
+    R.seite({
+      titel: 'Einbruchmeldeanlage: Meldelinie',
+      einleitung: 'Meldelinie im Ruhestromprinzip mit Abschlusswiderstand: Was misst die Zentrale in Ruhe, bei Alarm und bei Sabotage? Einfacher Spannungsteiler oder Brückenschaltung, mit Leitungswiderstand und Zustand zum Durchschalten. Unten Brückenabgleich, Spannungsteiler und Notstrom-Akku in jede Richtung.',
+      hilfe: 'Die Zentrale vergleicht die gemessene Spannung mit dem Ruhewert. Liegt sie außerhalb des Fensters, meldet sie im scharfen Zustand Alarm, im unscharfen Zustand Sabotage oder Störung.',
+      gruppen: [
+        { titel: 'Zentrale', farbe: LILA, felder: [
+          { k: 'schaltung', name: 'Auswertung', wahl: [['teiler', 'Spannungsteiler mit Vorwiderstand'], ['bruecke', 'Brückenschaltung']] },
+          { k: 'u', tex: 'U', name: 'Betriebsspannung', e: 'V', min: 1, max: 60 },
+          { k: 'rv', tex: 'R_\\text{V}', name: 'Vorwiderstand in der Zentrale', e: 'kΩ', min: 0.001, max: 1000, wenn: function (e) { return !bruecke(e); } },
+          { k: 'r1', tex: 'R_1', name: 'Brückenwiderstand oben', e: 'kΩ', min: 0.001, max: 1000, wenn: bruecke },
+          { k: 'r2', tex: 'R_2', name: 'Brückenwiderstand unten', e: 'kΩ', min: 0.001, max: 1000, wenn: bruecke },
+          { k: 'abgleich', name: 'Abgleichwiderstand R₄', wahl: [['auto', 'automatisch abgleichen'], ['fest', 'fester Wert']], wenn: bruecke },
+          { k: 'r4', tex: 'R_4', name: 'Abgleichwiderstand', e: 'kΩ', min: 0.001, max: 1000, wenn: function (e) { return bruecke(e) && e.abgleich === 'fest'; } },
+          { k: 'fenster', tex: '\\pm', name: 'Toleranzfenster der Auswertung', e: '% von U', min: 1, max: 50 },
+          { k: 'scharf', name: 'Anlage', wahl: [['scharf', 'scharf'], ['unscharf', 'unscharf']] }
+        ] },
+        { titel: 'Meldelinie', farbe: BLAU, felder: [
+          { k: 'ra', tex: 'R_\\text{A}', name: 'Abschlusswiderstand', e: 'kΩ', min: 0.001, max: 1000 },
+          { k: 'n', tex: 'n', name: 'Melder in der Linie', e: '', min: 1, max: 20, hilfe: 'Für die Zeichnung; Öffner in Reihe.' },
+          { k: 'l', tex: 'l', name: 'Leitungslänge (einfach)', e: 'm', min: 0, max: 5000 },
+          { k: 'd', name: 'Aderdurchmesser', wahl: [[0.6, '0,6 mm'], [0.8, '0,8 mm']] },
+          { k: 'zustand', name: 'Zustand', wahl: [['ruhe', 'Ruhe – alle Melder geschlossen'], ['offen', 'Melder öffnet oder Draht durchtrennt'], ['kurz', 'Kurzschluss, Überbrückung oder Arbeitsstrom-Melder']] }
+        ] }
+      ],
+      beispiel: { schaltung: 'teiler', u: 12, rv: 2.7, r1: 1, r2: 1, abgleich: 'auto', r4: 0.5, fenster: 20, scharf: 'scharf', ra: 2.7, n: 4, l: 40, d: 0.6, zustand: 'ruhe' },
+      rechne: function (e) {
+        const L = linie(e), r = { L: L };
+        r.r4 = bruecke(e) ? (e.abgleich === 'auto' ? L.ruhe * e.r2 / e.r1 : e.r4 * 1000) : NaN;
+        r.m = { ruhe: messen(e, L.ruhe, r.r4), offen: messen(e, L.offen, r.r4), kurz: messen(e, L.kurz, r.r4) };
+        r.soll = r.m.ruhe.u; r.tol = e.u * e.fenster / 100;
+        const zu = ZUSTAENDE[e.zustand] ? e.zustand : 'ruhe';
+        r.zustand = zu; r.jetzt = r.m[zu];
+        r.erkannt = function (m) { return Math.abs(m.u - r.soll) <= r.tol ? 'ruhe' : (bruecke(e) ? (m.u > r.soll ? 'offen' : 'kurz') : (m.u > r.soll ? 'offen' : 'kurz')); };
+        r.meldung = r.erkannt(r.jetzt);
+        r.unterscheidbar = Math.abs(r.m.offen.u - r.soll) > r.tol && Math.abs(r.m.kurz.u - r.soll) > r.tol;
+        return r;
+      },
+      ergebnis: function (r, e, H) {
+        const name = function (k) { return k === 'ruhe' ? 'Ruhe' : k === 'offen' ? (e.scharf === 'scharf' ? 'Alarm (Unterbrechung)' : 'Störung/Sabotage (Unterbrechung)') : (e.scharf === 'scharf' ? 'Alarm/Sabotage (Kurzschluss)' : 'Sabotage (Kurzschluss)'); };
+        if (!r.unterscheidbar) H.meldung('Mit diesen Werten liegt ein Fehlerfall im Toleranzfenster des Ruhezustands – die Zentrale würde ihn nicht erkennen. Fenster verkleinern oder Widerstände anpassen.', true);
+        if (r.L.rl > e.ra * 1000 * 0.2) H.meldung('Der Leitungswiderstand (' + ohm(r.L.rl) + ') ist groß gegenüber dem Abschlusswiderstand. Er verschiebt den Ruhewert; die Zentrale muss darauf eingemessen werden.');
+        if (bruecke(e) && e.abgleich === 'fest' && Math.abs(r.soll) > r.tol) H.meldung('Die Brücke ist nicht abgeglichen: In Ruhe liegt schon ' + zs(r.soll, 2) + ' V an. Abgleichwiderstand R₄ = ' + ohm(r.L.ruhe * e.r2 / e.r1) + ' einstellen.', true);
+        H.urteil(r.meldung === 'ruhe', 'Zentrale meldet: ' + name(r.meldung));
+        H.kacheln([
+          [zs(r.jetzt.u, 2) + ' V', bruecke(e) ? 'Brückenspannung U_AB jetzt' : 'Spannung an der Linie U_Z jetzt', r.meldung === 'ruhe' ? GRUEN : ROT],
+          [zs(r.jetzt.i * 1000, 2) + ' mA', 'Linienstrom jetzt', BLAU],
+          [zs(r.soll, 2) + ' V ± ' + zs(r.tol, 2) + ' V', 'Ruhefenster der Zentrale', LILA],
+          [ohm(r.L.rl), 'Leitungswiderstand hin und zurück (' + zs(e.l, 0) + ' m, Ø ' + z(e.d, 1) + ' mm)', GRAU],
+          bruecke(e) ? [ohm(r.r4), e.abgleich === 'auto' ? 'Abgleichwiderstand R₄ für U_AB = 0 in Ruhe' : 'eingestellter Abgleichwiderstand R₄', ORANGE] : [ohm(r.L.ruhe), 'Widerstand der Linie in Ruhe (Abschluss + Leitung)', ORANGE]
+        ]);
+        H.tabelle('Was die Zentrale in jedem Zustand misst', ['Zustand', 'Linienwiderstand', bruecke(e) ? 'U_AB' : 'U_Z', 'Strom', 'Zentrale meldet'],
+          ['ruhe', 'offen', 'kurz'].map(function (k) { const m = r.m[k]; return [ZUSTAENDE[k], ohm(r.L[k]), zs(m.u, 2) + ' V', zs(m.i * 1000, 2) + ' mA', name(r.erkannt(m))]; }),
+          { zahl: [1, 2, 3], klasse: function (i) { return i === ['ruhe', 'offen', 'kurz'].indexOf(r.zustand) ? 'hervor' : ''; } });
+      },
+      weg: function (r, e) {
+        const w = [], A = Math.PI * Math.pow(e.d / 2, 2);
+        w.push(['Leiterquerschnitt', 'A = \\frac{\\pi \\cdot d^2}{4} = \\frac{\\pi \\cdot (' + tz(e.d, 1) + '\\,\\text{mm})^2}{4} = ' + E(tz(A, 3) + '\\,\\text{mm}^2')]);
+        w.push(['Leitungswiderstand', 'R_\\text{L} = \\frac{2 \\cdot l \\cdot \\rho}{A} = \\frac{2 \\cdot ' + tz(e.l, 0) + '\\,\\text{m} \\cdot 0{,}0178\\,\\frac{\\Omega\\,\\text{mm}^2}{\\text{m}}}{' + tz(A, 3) + '\\,\\text{mm}^2} = ' + E(tz(r.L.rl, 2) + '\\,\\Omega')]);
+        w.push(['Linie in Ruhe', 'R_\\text{Linie} = R_\\text{A} + R_\\text{L} = ' + tz(e.ra * 1000, 0) + '\\,\\Omega + ' + tz(r.L.rl, 2) + '\\,\\Omega = ' + E(tz(r.L.ruhe, 1) + '\\,\\Omega')]);
+        if (bruecke(e)) {
+          if (e.abgleich === 'auto') w.push(['Abgleich', 'R_1 \\cdot R_4 = R_2 \\cdot R_\\text{Linie} \\Rightarrow R_4 = \\frac{R_2 \\cdot R_\\text{Linie}}{R_1} = ' + E(tz(r.r4, 1) + '\\,\\Omega')]);
+          w.push(['Potenzial A', 'U_\\text{A} = U \\cdot \\frac{R_2}{R_1 + R_2} = ' + tz(e.u, 1) + '\\,\\text{V} \\cdot \\frac{' + tz(e.r2, 2) + '}{' + tz(e.r1 + e.r2, 2) + '} = ' + E(tz(e.u * e.r2 / (e.r1 + e.r2), 2) + '\\,\\text{V}')]);
+          w.push(['Brückenspannung in Ruhe', 'U_\\text{AB} = U_\\text{A} - U \\cdot \\frac{R_4}{R_\\text{Linie} + R_4} = ' + E(tz(r.m.ruhe.u, 3) + '\\,\\text{V}')]);
+          w.push(['Melder öffnet', 'R_\\text{Linie} \\to \\infty \\Rightarrow U_\\text{B} = 0 \\Rightarrow U_\\text{AB} = U_\\text{A} = ' + E(tz(r.m.offen.u, 2) + '\\,\\text{V}')]);
+          w.push(['Überbrückung', 'R_\\text{Linie} = 0 \\Rightarrow U_\\text{B} = U \\Rightarrow U_\\text{AB} = ' + E(tz(r.m.kurz.u, 2) + '\\,\\text{V}')]);
+        } else {
+          w.push(['Spannung an der Linie in Ruhe', 'U_\\text{Z} = U \\cdot \\frac{R_\\text{Linie}}{R_\\text{V} + R_\\text{Linie}} = ' + tz(e.u, 1) + '\\,\\text{V} \\cdot \\frac{' + tz(r.L.ruhe, 0) + '\\,\\Omega}{' + tz(e.rv * 1000 + r.L.ruhe, 0) + '\\,\\Omega} = ' + E(tz(r.m.ruhe.u, 2) + '\\,\\text{V}')]);
+          w.push(['Melder öffnet', 'I = 0 \\Rightarrow U_\\text{Z} = U = ' + E(tz(e.u, 1) + '\\,\\text{V}')]);
+          w.push(['Kurzschluss', 'U_\\text{Z} = 0 \\qquad I = \\frac{U}{R_\\text{V}} = \\frac{' + tz(e.u, 1) + '\\,\\text{V}}{' + tz(e.rv * 1000, 0) + '\\,\\Omega} = ' + E(tz(r.m.kurz.i * 1000, 2) + '\\,\\text{mA}')]);
+        }
+        return w;
+      },
+      loeser: [
+        { titel: 'Brückenabgleich – in jede Richtung', hilfe: 'Abgeglichen ist die Brücke, wenn die Brückenspannung null ist: R₁ · R₄ = R₂ · R₃. R₃ ist hier die Meldelinie mit Abschlusswiderstand.',
+          felder: [
+            { k: 'R1', tex: 'R_1', name: 'Widerstand oben links', e: 'Ω', min: 0.1, max: 1e7 }, { k: 'R2', tex: 'R_2', name: 'Widerstand unten links', e: 'Ω', min: 0.1, max: 1e7 },
+            { k: 'R3', tex: 'R_3', name: 'Meldelinie (oben rechts)', e: 'Ω', min: 0.1, max: 1e7 }, { k: 'R4', tex: 'R_4', name: 'Abgleichwiderstand (unten rechts)', e: 'Ω', min: 0.1, max: 1e7 }
+          ],
+          beispiel: { R1: 1000, R2: 1000, R3: 500 },
+          gleichungen: [
+            { name: 'Abgleichbedingung', v: ['R1', 'R2', 'R3', 'R4'], f: function (q) { return [q.R1 * q.R4, q.R2 * q.R3]; },
+              loese: { R4: function (q) { return q.R2 * q.R3 / q.R1; }, R3: function (q) { return q.R1 * q.R4 / q.R2; }, R1: function (q) { return q.R2 * q.R3 / q.R4; }, R2: function (q) { return q.R1 * q.R4 / q.R3; } },
+              weg: function (k, q) { const t = { R4: 'R_4 = \\frac{R_2 \\cdot R_3}{R_1}', R3: 'R_3 = \\frac{R_1 \\cdot R_4}{R_2}', R1: 'R_1 = \\frac{R_2 \\cdot R_3}{R_4}', R2: 'R_2 = \\frac{R_1 \\cdot R_4}{R_3}' }[k]; return t + ' = ' + E(tz(q[k], 1) + '\\,\\Omega'); } }
+          ] },
+        { titel: 'Brückenspannung – in jede Richtung', hilfe: 'U_AB = U · (R₂/(R₁+R₂) − R₄/(R₃+R₄)). Beispiel: Wie groß ist U_AB, wenn ein Melder auslöst (R₃ sehr groß)?',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Betriebsspannung', e: 'V', min: 0.1, max: 100 },
+            { k: 'R1', tex: 'R_1', name: 'oben links', e: 'Ω', min: 0.1, max: 1e7 }, { k: 'R2', tex: 'R_2', name: 'unten links', e: 'Ω', min: 0.1, max: 1e7 },
+            { k: 'R3', tex: 'R_3', name: 'Meldelinie', e: 'Ω', min: 0.1, max: 1e9 }, { k: 'R4', tex: 'R_4', name: 'unten rechts', e: 'Ω', min: 0.1, max: 1e7 },
+            { k: 'UAB', tex: 'U_\\text{AB}', name: 'Brückenspannung', e: 'V', min: -100, max: 100 }
+          ],
+          beispiel: { U: 24, R1: 1000, R2: 1000, R3: 1500, R4: 500 },
+          gleichungen: [
+            { name: 'Brückenspannung', v: ['UAB', 'U', 'R1', 'R2', 'R3', 'R4'], f: function (q) { return [q.UAB, q.U * (q.R2 / (q.R1 + q.R2) - q.R4 / (q.R3 + q.R4))]; },
+              loese: { UAB: function (q) { return q.U * (q.R2 / (q.R1 + q.R2) - q.R4 / (q.R3 + q.R4)); },
+                R3: function (q) { const x = q.R2 / (q.R1 + q.R2) - q.UAB / q.U; return x > 0 && x < 1 ? q.R4 / x - q.R4 : NaN; },
+                U: function (q) { const d = q.R2 / (q.R1 + q.R2) - q.R4 / (q.R3 + q.R4); return Math.abs(d) > 1e-12 ? q.UAB / d : NaN; } },
+              weg: function (k, q) { return k === 'UAB' ? 'U_\\text{AB} = U \\cdot \\left(\\frac{R_2}{R_1 + R_2} - \\frac{R_4}{R_3 + R_4}\\right) = ' + tz(q.U, 1) + '\\,\\text{V} \\cdot \\left(' + tz(q.R2 / (q.R1 + q.R2), 3) + ' - ' + tz(q.R4 / (q.R3 + q.R4), 3) + '\\right) = ' + E(tz(q.UAB, 2) + '\\,\\text{V}') : k === 'R3' ? 'R_3 = \\frac{R_4}{\\frac{R_2}{R_1 + R_2} - \\frac{U_\\text{AB}}{U}} - R_4 = ' + E(tz(q.R3, 1) + '\\,\\Omega') : 'U = \\frac{U_\\text{AB}}{\\frac{R_2}{R_1+R_2} - \\frac{R_4}{R_3+R_4}} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } }
+          ] },
+        { titel: 'Meldelinie mit Vorwiderstand – in jede Richtung', hilfe: 'Spannungsteiler aus Vorwiderstand in der Zentrale und Abschlusswiderstand der Linie. Beispiel: 12 V, je 2,7 kΩ.',
+          felder: [
+            { k: 'U', tex: 'U', name: 'Betriebsspannung', e: 'V', min: 0.1, max: 100 },
+            { k: 'RV', tex: 'R_\\text{V}', name: 'Vorwiderstand', e: 'Ω', min: 0.1, max: 1e7 }, { k: 'RA', tex: 'R_\\text{A}', name: 'Abschlusswiderstand', e: 'Ω', min: 0.1, max: 1e7 },
+            { k: 'UZ', tex: 'U_\\text{Z}', name: 'Spannung an der Linie', e: 'V', min: 0.001, max: 100 }, { k: 'I', tex: 'I', name: 'Linienstrom', e: 'mA', min: 1e-4, max: 1e4 }
+          ],
+          beispiel: { U: 12, RV: 2700, RA: 2700 },
+          gleichungen: [
+            { name: 'Spannungsteiler', v: ['UZ', 'U', 'RV', 'RA'], f: function (q) { return [q.UZ * (q.RV + q.RA), q.U * q.RA]; },
+              loese: { UZ: function (q) { return q.U * q.RA / (q.RV + q.RA); }, U: function (q) { return q.UZ * (q.RV + q.RA) / q.RA; }, RA: function (q) { return q.UZ < q.U ? q.UZ * q.RV / (q.U - q.UZ) : NaN; }, RV: function (q) { return q.RA * (q.U - q.UZ) / q.UZ; } },
+              weg: function (k, q) { return k === 'UZ' ? 'U_\\text{Z} = U \\cdot \\frac{R_\\text{A}}{R_\\text{V} + R_\\text{A}} = ' + tz(q.U, 1) + '\\,\\text{V} \\cdot \\frac{' + tz(q.RA, 0) + '\\,\\Omega}{' + tz(q.RV + q.RA, 0) + '\\,\\Omega} = ' + E(tz(q.UZ, 2) + '\\,\\text{V}') : k === 'RA' ? 'R_\\text{A} = \\frac{U_\\text{Z} \\cdot R_\\text{V}}{U - U_\\text{Z}} = ' + E(tz(q.RA, 0) + '\\,\\Omega') : k === 'RV' ? 'R_\\text{V} = \\frac{R_\\text{A} \\cdot (U - U_\\text{Z})}{U_\\text{Z}} = ' + E(tz(q.RV, 0) + '\\,\\Omega') : 'U = U_\\text{Z} \\cdot \\frac{R_\\text{V} + R_\\text{A}}{R_\\text{A}} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } },
+            { name: 'Linienstrom', v: ['I', 'U', 'RV', 'RA'], f: function (q) { return [q.I * (q.RV + q.RA), q.U * 1000]; },
+              loese: { I: function (q) { return q.U * 1000 / (q.RV + q.RA); } },
+              weg: function (k, q) { return 'I = \\frac{U}{R_\\text{V} + R_\\text{A}} = \\frac{' + tz(q.U, 1) + '\\,\\text{V}}{' + tz(q.RV + q.RA, 0) + '\\,\\Omega} = ' + E(tz(q.I, 3) + '\\,\\text{mA}'); } }
+          ] },
+        { titel: 'Notstrom-Akku – in jede Richtung', hilfe: 'Der Akku versorgt die Anlage im Ruhezustand über die geforderte Überbrückungszeit und muss danach noch die Alarmierung speisen. Zeiten nach Grad und Richtlinie (DIN EN 50131-6, VdS) festlegen.',
+          felder: [
+            { k: 'C', tex: 'C', name: 'nötige Kapazität', e: 'Ah', min: 0.01, max: 1000 },
+            { k: 'IR', tex: 'I_\\text{R}', name: 'Ruhestrom der Anlage', e: 'mA', min: 0.1, max: 1e5 }, { k: 'tR', tex: 't_\\text{R}', name: 'Überbrückungszeit', e: 'h', min: 0.1, max: 500 },
+            { k: 'IA', tex: 'I_\\text{A}', name: 'Strom bei Alarm', e: 'mA', min: 0, max: 1e5 }, { k: 'tA', tex: 't_\\text{A}', name: 'Alarmdauer', e: 'min', min: 0, max: 600 }
+          ],
+          beispiel: { IR: 180, tR: 60, IA: 900, tA: 15 },
+          gleichungen: [
+            { name: 'Akkukapazität', v: ['C', 'IR', 'tR', 'IA', 'tA'], f: function (q) { return [q.C * 1000, q.IR * q.tR + q.IA * q.tA / 60]; },
+              loese: { C: function (q) { return (q.IR * q.tR + q.IA * q.tA / 60) / 1000; }, tR: function (q) { return (q.C * 1000 - q.IA * q.tA / 60) / q.IR; }, IR: function (q) { return (q.C * 1000 - q.IA * q.tA / 60) / q.tR; } },
+              weg: function (k, q) { return k === 'C' ? 'C = I_\\text{R} \\cdot t_\\text{R} + I_\\text{A} \\cdot t_\\text{A} = ' + tz(q.IR, 0) + '\\,\\text{mA} \\cdot ' + tz(q.tR, 0) + '\\,\\text{h} + ' + tz(q.IA, 0) + '\\,\\text{mA} \\cdot \\frac{' + tz(q.tA, 0) + '}{60}\\,\\text{h} = ' + E(tz(q.C, 2) + '\\,\\text{Ah}') : k === 'tR' ? 't_\\text{R} = \\frac{C - I_\\text{A} \\cdot t_\\text{A}}{I_\\text{R}} = ' + E(tz(q.tR, 1) + '\\,\\text{h}') : 'I_\\text{R} = \\frac{C - I_\\text{A} \\cdot t_\\text{A}}{t_\\text{R}} = ' + E(tz(q.IR, 1) + '\\,\\text{mA}'); } }
+          ] }
+      ],
+      sammlung: [
+        ['Leitungswiderstand der Meldelinie', 'R_\\text{L} = \\frac{2 \\cdot l \\cdot \\rho}{A} \\qquad A = \\frac{\\pi \\cdot d^2}{4}', 'ρ Kupfer = 0,0178 Ω·mm²/m; Hin- und Rückleiter'],
+        ['Spannungsteiler (Vorwiderstand und Linie)', 'U_\\text{Z} = U \\cdot \\frac{R_\\text{Linie}}{R_\\text{V} + R_\\text{Linie}}', 'offen: U_Z = U; Kurzschluss: U_Z = 0'],
+        ['Brückenspannung', 'U_\\text{AB} = U \\cdot \\left(\\frac{R_2}{R_1 + R_2} - \\frac{R_4}{R_3 + R_4}\\right)', 'R₃ ist die Meldelinie'],
+        ['Abgleichbedingung', 'R_1 \\cdot R_4 = R_2 \\cdot R_3', 'abgeglichen: U_AB = 0'],
+        ['Akkukapazität', 'C = I_\\text{R} \\cdot t_\\text{R} + I_\\text{A} \\cdot t_\\text{A}', 'Ruhe über die Überbrückungszeit plus Alarm']
+      ],
+      quellen: 'DIN EN 50131-1 (Grade), DIN EN 50131-6 (Energieversorgung), DIN VDE 0833-1 und -3 (Gefahrenmeldeanlagen, Einbruch- und Überfallmeldeanlagen), VdS 2311 (Planung und Einbau), Klassen A, B, C nach VdS. Die Auswertung echter Zentralen ist herstellerabhängig; das Toleranzfenster hier ist ein Modell.',
+      bild: { titel: 'Simulation: Meldelinie', label: 'Zentrale mit Meldelinie aus Öffnerkontakten und Abschlusswiderstand, Zustand und gemessene Spannung', animiert: !bewegungAus,
+        hoehe: function (B) { return B < 560 ? 300 : 260; },
+        hinweis: function (r) { return 'Punkte zeigen den Linienstrom. Zustand oben bei „Meldelinie“ umschalten: offen = Alarm, Kurzschluss = Sabotage.'; },
+        zeichne: function (cx, B, H, t, r, e) {
+          const zu = r.zustand, n = Math.max(1, Math.min(20, Math.round(e.n)));
+          const zx = 14, zb = Math.min(150, B * 0.32), zy = 30, zh = H - 70;
+          // Zentrale
+          cx.fillStyle = F('--flaeche'); cx.strokeStyle = LILA; cx.lineWidth = 2; cx.fillRect(zx, zy, zb, zh); cx.strokeRect(zx, zy, zb, zh);
+          T(cx, 'Zentrale', zx + 8, zy + 14, 'left', 12, true, LILA);
+          T(cx, (bruecke(e) ? 'Brücke' : 'R_V ' + ohm(e.rv * 1000)), zx + 8, zy + 32, 'left', 10, false);
+          T(cx, 'U = ' + zs(e.u, 1) + ' V', zx + 8, zy + 48, 'left', 10, false);
+          // Anzeige
+          const farbe = r.meldung === 'ruhe' ? GRUEN : r.meldung === 'offen' ? ROT : GELB;
+          cx.fillStyle = farbe; cx.beginPath(); cx.arc(zx + 16, zy + zh - 46, 7, 0, 2 * Math.PI); cx.fill();
+          T(cx, r.meldung === 'ruhe' ? 'Ruhe' : r.meldung === 'offen' ? (e.scharf === 'scharf' ? 'ALARM' : 'Störung') : 'SABOTAGE', zx + 28, zy + zh - 46, 'left', 12, true, farbe);
+          T(cx, (bruecke(e) ? 'U_AB = ' : 'U_Z = ') + zs(r.jetzt.u, 2) + ' V', zx + 8, zy + zh - 24, 'left', 12, true);
+          T(cx, 'I = ' + zs(r.jetzt.i * 1000, 2) + ' mA', zx + 8, zy + zh - 8, 'left', 10, false, F('--leise'));
+          // Linie
+          const x0 = zx + zb, x1 = B - 30, yo = zy + 26, yu = zy + zh - 10;
+          const stueck = (x1 - x0) / (n + 1);
+          cx.strokeStyle = F('--text'); cx.lineWidth = 2;
+          // untere Rückleitung
+          cx.beginPath(); cx.moveTo(x0, yu); cx.lineTo(x1, yu); cx.stroke();
+          // obere Leitung mit Meldern
+          let x = x0;
+          for (let i = 0; i < n; i++) {
+            const mx = x0 + stueck * (i + 1), offen = zu === 'offen' && i === Math.floor(n / 2);
+            cx.beginPath(); cx.moveTo(x, yo); cx.lineTo(mx - 12, yo); cx.stroke();
+            // Öffner
+            cx.beginPath(); cx.moveTo(mx - 12, yo); cx.lineTo(mx + 10, offen ? yo - 14 : yo); cx.stroke();
+            cx.beginPath(); cx.moveTo(mx + 12, yo); cx.lineTo(mx + 12, yo + 0.1); cx.stroke();
+            cx.fillStyle = offen ? ROT : F('--text'); cx.beginPath(); cx.arc(mx - 12, yo, 2.5, 0, 2 * Math.PI); cx.arc(mx + 12, yo, 2.5, 0, 2 * Math.PI); cx.fill();
+            cx.fillStyle = offen ? ROT : GRAU; cx.fillRect(mx - 9, yo + 10, 18, 12); T(cx, 'M' + (i + 1), mx, yo + 34, 'center', 9, true, offen ? ROT : F('--leise'));
+            x = mx + 12;
+          }
+          cx.beginPath(); cx.moveTo(x, yo); cx.lineTo(x1, yo); cx.stroke();
+          // Abschlusswiderstand senkrecht
+          const ry = (yo + yu) / 2;
+          cx.beginPath(); cx.moveTo(x1, yo); cx.lineTo(x1, ry - 22); cx.moveTo(x1, ry + 22); cx.lineTo(x1, yu); cx.stroke();
+          cx.strokeStyle = LILA; cx.strokeRect(x1 - 7, ry - 22, 14, 44); T(cx, 'R_A ' + ohm(e.ra * 1000), x1 - 12, ry, 'right', 10, true, LILA);
+          // Kurzschluss/Überbrückung
+          if (zu === 'kurz') { cx.strokeStyle = GELB; cx.lineWidth = 3; const kx = x0 + stueck * 0.5; cx.beginPath(); cx.moveTo(kx, yo); cx.lineTo(kx, yu); cx.stroke(); T(cx, 'Brücke', kx + 6, ry, 'left', 11, true, GELB); }
+          // Strompunkte
+          if (r.jetzt.i > 1e-9) {
+            const weg = zu === 'kurz' ? [[x0, yo], [x0 + stueck * 0.5, yo], [x0 + stueck * 0.5, yu], [x0, yu]] : [[x0, yo], [x1, yo], [x1, yu], [x0, yu]];
+            const len = []; let ges = 0; for (let k = 1; k < weg.length; k++) { const d = Math.hypot(weg[k][0] - weg[k - 1][0], weg[k][1] - weg[k - 1][1]); len.push(d); ges += d; }
+            const v = 30 + 400 * Math.min(1, r.jetzt.i / 0.01);
+            cx.fillStyle = ORANGE;
+            for (let j = 0; j < 14; j++) {
+              let s = ((t / 1000) * v + j * ges / 14) % ges, k = 0;
+              while (k < len.length - 1 && s > len[k]) { s -= len[k]; k++; }
+              const a = weg[k], b2 = weg[k + 1], f = len[k] ? s / len[k] : 0;
+              cx.beginPath(); cx.arc(a[0] + (b2[0] - a[0]) * f, a[1] + (b2[1] - a[1]) * f, 3, 0, 2 * Math.PI); cx.fill();
+            }
+          }
+          T(cx, 'Meldelinie (Ruhestrom, Öffner in Reihe)', x0 + 8, zy + 6, 'left', 11, true, BLAU);
+        } }
+    });
+    const wissen = document.getElementById('ema-wissen'), faq = document.querySelector('.seo-info');
+    if (wissen && faq) faq.parentNode.insertBefore(wissen, faq);
+  })();
+  </script>
+</body>
+</html>

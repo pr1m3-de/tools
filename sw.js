@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = '7e0cbf6fd7';
+const STAND = '16e9a8403b';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -52,6 +52,7 @@ const DATEIEN = [
   "assets/taschenrechner.js",
   "brandschutz/brandmeldeanlage.html",
   "brandschutz/brandsimulation.html",
+  "brandschutz/elektrischer-brandschutz.html",
   "brandschutz/feuerloescher.html",
   "brandschutz/fluchtwege.html",
   "dach/absturz.html",
@@ -65,6 +66,7 @@ const DATEIEN = [
   "elektro/batteriespeicher.html",
   "elektro/beleuchtung.html",
   "elektro/blitzschutz.html",
+  "elektro/einbruchmeldeanlage.html",
   "elektro/erdung.html",
   "elektro/kondensator.html",
   "elektro/kleintransformatoren.html",
@@ -154,6 +156,10 @@ const DATEIEN = [
   "sanitaer/trinkwasser-rohrnetz.html",
   "sanitaer/trinkwasserschutz.html",
   "aufgabenblaetter/brandschutz/brandmeldeanlage/01-melder-und-alarmierung.md",
+  "aufgabenblaetter/brandschutz/brandmeldeanlage/02-bma-aufbau-und-planung.md",
+  "aufgabenblaetter/brandschutz/elektrischer-brandschutz/01-brandschutz-grundlagen.md",
+  "aufgabenblaetter/elektro/einbruchmeldeanlage/01-ema-grundlagen.md",
+  "aufgabenblaetter/elektro/einbruchmeldeanlage/02-gma-pruefungsaufgaben.md",
   "aufgabenblaetter/elektro/kleintransformatoren/01-kleintrafos-und-messwandler.md",
   "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
   "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",
