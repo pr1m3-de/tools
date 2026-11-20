@@ -76,6 +76,8 @@
     .prio-feld b { font-family: var(--technik); }
     .prio-feld .w { font-family: var(--technik); font-weight: 700; }
     .pv { font-family: var(--technik); font-size: 1.4rem; font-weight: 700; }
+    .sim-raster > * { min-width: 0; }
+    #hausbild { width: 100%; max-width: 100%; height: 340px; display: block; border-radius: var(--rund); margin: 6px 0 4px; touch-action: manipulation; }
     .meldung-sim { min-height: 1.4em; font-weight: 600; margin: 6px 0 0; }
     .meldung-sim.schlecht { color: #C0392B; }
     .meldung-sim.gut { color: #2F9E44; }
@@ -103,6 +105,8 @@
           <label>Springe zu <input id="springe" type="time" value="06:00" data-nicht-merken></label>
         </div>
         <p class="hilfe" id="sonneText"></p>
+        <canvas id="hausbild" role="img" aria-label="Haus im Schnitt mit Flur, Wohnzimmer und Keller, PV-Anlage auf dem Dach, Sonne oder Mond, Auto vor dem Haus; zeigt alle Zustände der Geräte"></canvas>
+        <p class="hilfe">Ins Bild tippen: Haustür, Fenster, Flur (Bewegung), Rauchmelder an der Decke, Leuchten, Waschmaschine, Sirene und Auto (zu Hause oder weg) lassen sich direkt schalten.</p>
         <div class="ents" id="ents"></div>
       </section>
 
@@ -322,7 +326,7 @@
     };
     function setzen(id, v, quelle) {
       if (Z[id] === v && E[id][2] !== 'melden') return false;
-      Z[id] = v; seit[id] = minute;
+      Z[id] = v; seit[id] = minute; if (id === 'handy') handyZeit = minute;
       protokoll(quelle, E[id][4], wertText(id, v), quelle !== 'Gerät' && quelle !== 'Simulation');
       return true;
     }
@@ -495,6 +499,171 @@
       if (unten) box.scrollTop = box.scrollHeight;
     }
 
+    // ---------- Hausbild (Canvas) ----------
+    const cv = $('hausbild'), cx = cv.getContext('2d');
+    let BB = 600, HH = 360, ziele = [], handyZeit = -1e9;
+    function F(n) { return Thema.farbe(n); }
+    function groesse() { const d = window.devicePixelRatio || 1; BB = cv.clientWidth || 600; HH = Math.round(Math.max(300, Math.min(400, BB * 0.72))); cv.style.height = HH + 'px'; cv.width = Math.round(BB * d); cv.height = Math.round(HH * d); cx.setTransform(d, 0, 0, d, 0, 0); }
+    const mischen = function (a, b, f) { const h = function (s, i) { return parseInt(s.slice(1 + 2 * i, 3 + 2 * i), 16); }; const c = [0, 1, 2].map(function (i) { return Math.round(h(a, i) + (h(b, i) - h(a, i)) * f); }); return 'rgb(' + c.join(',') + ')'; };
+    function TX(t, x, y, a, g, fett, farbe) { cx.font = (fett ? '700 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif'); cx.textAlign = a || 'left'; cx.textBaseline = 'middle'; cx.fillStyle = farbe || F('--text'); cx.fillText(t, x, y); }
+    function rrect(x, y, w, h, r) { cx.beginPath(); cx.moveTo(x + r, y); cx.arcTo(x + w, y, x + w, y + h, r); cx.arcTo(x + w, y + h, x, y + h, r); cx.arcTo(x, y + h, x, y, r); cx.arcTo(x, y, x + w, y, r); cx.closePath(); }
+    function glut(x, y, r, staerke) { if (staerke <= 0) return; const g = cx.createRadialGradient(x, y, 2, x, y, r); g.addColorStop(0, 'rgba(255,214,110,' + (0.85 * staerke) + ')'); g.addColorStop(1, 'rgba(255,214,110,0)'); cx.fillStyle = g; cx.beginPath(); cx.arc(x, y, r, 0, 2 * Math.PI); cx.fill(); }
+    function ziel(x, y, w, h, fn) { ziele.push([x, y, w, h, fn]); }
+    function hausZeichnen(ms) {
+      const B = BB, H = HH, s = ms / 1000, klein = B < 440, fs = klein ? 10 : 12;
+      ziele = [];
+      cx.clearRect(0, 0, B, H);
+      const t = ((minute % 1440) + 1440) % 1440, p = (t - SA) / (SU - SA), tag = p > 0 && p < 1 ? Math.sin(Math.PI * p) : 0;
+      const daemmer = Math.max(0, Math.min(1, tag * 4));
+      const boden = H - 66, kellerU = H - 6;
+      const hx0 = B * 0.04, hx1 = B * (klein ? 0.76 : 0.74), hb = hx1 - hx0;
+      const stock = Math.min(140, H * 0.4), hTop = boden - stock, dachH = Math.min(84, H * 0.22), first = hTop - dachH;
+      // Himmel
+      const him = cx.createLinearGradient(0, 0, 0, boden);
+      him.addColorStop(0, mischen('#0B1630', '#5FAEE3', daemmer)); him.addColorStop(1, mischen('#26375E', '#CFEAF8', daemmer));
+      cx.fillStyle = him; rrect(0, 0, B, kellerU, 10); cx.fill();
+      if (daemmer < 0.6) { cx.fillStyle = 'rgba(255,255,255,' + (0.8 * (1 - daemmer / 0.6)) + ')'; for (let i = 0; i < 26; i++) cx.fillRect((i * 0.6180339 % 1) * B, (i * 0.381966 * 7 % 1) * (first - 12) + 6, 1.6, 1.6); }
+      if (tag > 0) {
+        const sx = B * 0.06 + p * B * 0.88, sy = boden - 14 - tag * (boden - 34);
+        glut(sx, sy, 36, 0.5); cx.fillStyle = '#FFD24A'; cx.beginPath(); cx.arc(sx, sy, klein ? 11 : 14, 0, 2 * Math.PI); cx.fill();
+      } else { cx.fillStyle = '#F2F0D8'; cx.beginPath(); cx.arc(B - 34, 30, 12, 0, 2 * Math.PI); cx.fill(); cx.fillStyle = mischen('#0B1630', '#5FAEE3', daemmer); cx.beginPath(); cx.arc(B - 29, 26, 11, 0, 2 * Math.PI); cx.fill(); }
+      // Erde und Keller
+      cx.fillStyle = '#7A5A3C'; cx.fillRect(0, boden, B, kellerU - boden);
+      cx.fillStyle = '#4E9A3F'; cx.fillRect(0, boden - 3, B, 5);
+      cx.fillStyle = F('--flaeche2') || '#eee'; cx.fillRect(hx0 + 6, boden + 4, hb - 12, kellerU - boden - 10);
+      cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.strokeRect(hx0 + 6, boden + 4, hb - 12, kellerU - boden - 10);
+      TX('Keller', hx0 + 12, boden + 14, 'left', fs - 1, false, F('--leise'));
+      // Waschmaschine
+      const wmB = Math.min(44, (kellerU - boden) - 18), wmx = hx0 + hb * 0.62, wmy = kellerU - 8 - wmB;
+      cx.fillStyle = '#F4F6F8'; cx.strokeStyle = '#555'; cx.lineWidth = 1.5; rrect(wmx, wmy, wmB, wmB, 4); cx.fill(); cx.stroke();
+      cx.fillStyle = Z.waschm ? '#2E8B57' : '#999'; cx.fillRect(wmx + 4, wmy + 4, 6, 3);
+      const tr = wmB * 0.3, tx0 = wmx + wmB / 2, ty0 = wmy + wmB * 0.58;
+      cx.fillStyle = '#9FC7E8'; cx.beginPath(); cx.arc(tx0, ty0, tr, 0, 2 * Math.PI); cx.fill(); cx.stroke();
+      if (Z.waschm) { const w = s * 7; cx.strokeStyle = '#2B7BB9'; cx.lineWidth = 2; for (let i = 0; i < 3; i++) { const a = w + i * 2.09; cx.beginPath(); cx.moveTo(tx0, ty0); cx.lineTo(tx0 + Math.cos(a) * tr * 0.85, ty0 + Math.sin(a) * tr * 0.85); cx.stroke(); } }
+      TX(Z.waschm ? 'läuft' : 'Waschm.', wmx - 4, wmy + wmB / 2, 'right', fs - 1, Z.waschm, Z.waschm ? '#2E8B57' : F('--leise'));
+      ziel(wmx, wmy, wmB, wmB, function () { setzen('waschm', Z.waschm ? 0 : 1, 'Gerät'); });
+      // Dach mit PV
+      cx.fillStyle = '#9A4A36'; cx.beginPath(); cx.moveTo(hx0 - 10, hTop + 2); cx.lineTo(hx0 + hb / 2, first); cx.lineTo(hx1 + 10, hTop + 2); cx.closePath(); cx.fill();
+      cx.strokeStyle = '#5E2C20'; cx.lineWidth = 2; cx.stroke();
+      const ax = hx0 + hb / 2, ay = first, ex = hx1 + 10, ey = hTop + 2, lang = Math.hypot(ex - ax, ey - ay), wink = Math.atan2(ey - ay, ex - ax);
+      cx.save(); cx.translate(ax, ay); cx.rotate(wink);
+      const pvN = 3, pvL = (lang * 0.78) / pvN;
+      for (let i = 0; i < pvN; i++) {
+        const x = lang * 0.12 + i * pvL;
+        cx.fillStyle = '#1F3B63'; cx.fillRect(x + 1, -9, pvL - 3, 8);
+        if (Z.pv > 0) { cx.fillStyle = 'rgba(255,240,170,' + Math.min(0.6, Z.pv / 9000) + ')'; cx.fillRect(x + 1, -9, pvL - 3, 8); }
+        cx.strokeStyle = '#A8BBD4'; cx.lineWidth = 0.8; cx.strokeRect(x + 1, -9, pvL - 3, 8);
+      }
+      cx.restore();
+      TX('PV ' + zahl(Z.pv, 0) + ' W', ax + Math.cos(wink) * lang * 0.5 + 8, ay + Math.sin(wink) * lang * 0.5 - 22, 'left', fs, true, daemmer > 0.5 ? '#13243F' : '#F2F0D8');
+      // Hauswände
+      const flurB = hb * 0.38, fx1 = hx0 + flurB;
+      const lichtWz = Z.licht_wz / 100, lichtFl = Z.licht_flur ? 1 : 0;
+      const innen = F('--flaeche') || '#fff';
+      cx.fillStyle = innen; cx.fillRect(hx0, hTop, hb, stock);
+      cx.fillStyle = 'rgba(255,205,110,' + (0.06 + lichtFl * 0.22) + ')'; cx.fillRect(hx0, hTop, flurB, stock);
+      cx.fillStyle = 'rgba(255,205,110,' + (0.06 + lichtWz * 0.24) + ')'; cx.fillRect(fx1, hTop, hb - flurB, stock);
+      if (daemmer < 0.5) { cx.fillStyle = 'rgba(10,20,45,' + (0.28 * (1 - daemmer * 2) * (1 - lichtFl)) + ')'; cx.fillRect(hx0, hTop, flurB, stock); cx.fillStyle = 'rgba(10,20,45,' + (0.28 * (1 - daemmer * 2) * (1 - lichtWz)) + ')'; cx.fillRect(fx1, hTop, hb - flurB, stock); }
+      cx.strokeStyle = F('--text'); cx.lineWidth = 3; cx.strokeRect(hx0, hTop, hb, stock);
+      cx.lineWidth = 2; cx.beginPath(); cx.moveTo(fx1, hTop); cx.lineTo(fx1, boden - stock * 0.62); cx.stroke();
+      TX('Flur', hx0 + 6, hTop + 12, 'left', fs - 1, false, F('--leise')); TX('Wohnen', fx1 + 6, hTop + 12, 'left', fs - 1, false, F('--leise'));
+      // Flur: Leuchte, Rauchmelder, Bewegungsmelder, Tür, Person
+      const lfx = hx0 + flurB * 0.62;
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(lfx, hTop); cx.lineTo(lfx, hTop + 14); cx.stroke();
+      cx.save(); cx.beginPath(); cx.rect(hx0, hTop, flurB, stock); cx.clip(); glut(lfx, hTop + 18, stock * 0.75, lichtFl * 0.75); cx.restore();
+      cx.fillStyle = lichtFl ? '#FFD86B' : '#BFC4CA'; cx.beginPath(); cx.arc(lfx, hTop + 18, 6, 0, 2 * Math.PI); cx.fill(); cx.stroke();
+      ziel(lfx - 14, hTop, 28, 32, function () { setzen('licht_flur', Z.licht_flur ? 0 : 1, 'Gerät'); });
+      const rmx = hx0 + flurB * 0.3;
+      const alarmAn = Z.rauch && Math.floor(s * 3) % 2 === 0;
+      cx.fillStyle = alarmAn ? '#E03131' : '#E9ECEF'; cx.strokeStyle = '#666'; cx.lineWidth = 1; cx.beginPath(); cx.ellipse(rmx, hTop + 5, 9, 4, 0, 0, 2 * Math.PI); cx.fill(); cx.stroke();
+      ziel(rmx - 14, hTop, 28, 18, function () { setzen('rauch', Z.rauch ? 0 : 1, 'Gerät'); });
+      if (Z.rauch) for (let i = 0; i < 7; i++) { const k = (s * 0.35 + i / 7) % 1; cx.fillStyle = 'rgba(120,120,120,' + (0.45 * (1 - k)) + ')'; cx.beginPath(); cx.arc(hx0 + flurB * (0.2 + 0.6 * ((i * 0.37) % 1)), boden - 10 - k * (stock - 30), 7 + k * 12, 0, 2 * Math.PI); cx.fill(); }
+      const bmx = fx1 - 10;
+      cx.fillStyle = Z.bewegung ? '#E07A1F' : '#E9ECEF'; cx.strokeStyle = '#666'; cx.beginPath(); cx.arc(bmx, hTop + 3, 6, 0, Math.PI); cx.fill(); cx.stroke();
+      if (Z.bewegung) { cx.strokeStyle = 'rgba(224,122,31,.35)'; cx.lineWidth = 1; cx.beginPath(); cx.moveTo(bmx, hTop + 6); cx.lineTo(hx0 + 6, boden - 2); cx.moveTo(bmx, hTop + 6); cx.lineTo(bmx - 4, boden - 2); cx.stroke(); }
+      const tb = Math.min(34, flurB * 0.3), th = stock * 0.66, tx = hx0 + flurB * 0.12, ty = boden - th;
+      cx.fillStyle = Z.tuer ? (daemmer > 0.5 ? '#CFEAF8' : '#26375E') : '#8B5E3C'; cx.fillRect(tx, ty, tb, th);
+      if (Z.tuer) { cx.fillStyle = '#8B5E3C'; cx.beginPath(); cx.moveTo(tx, ty); cx.lineTo(tx + tb * 0.35, ty + 6); cx.lineTo(tx + tb * 0.35, boden - 4); cx.lineTo(tx, boden); cx.closePath(); cx.fill(); }
+      else { cx.fillStyle = '#E8C34A'; cx.beginPath(); cx.arc(tx + tb - 6, ty + th * 0.55, 2.2, 0, 2 * Math.PI); cx.fill(); }
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.strokeRect(tx, ty, tb, th);
+      ziel(tx - 4, ty, tb + 8, th, function () { setzen('tuer', Z.tuer ? 0 : 1, 'Gerät'); });
+      if (Z.bewegung) {
+        const px = hx0 + flurB * 0.45 + Math.sin(s * 1.3) * flurB * 0.18, py = boden, gr = Math.min(stock * 0.52, 62), sch = Math.sin(s * 6) * 0.45;
+        cx.strokeStyle = '#2B7BB9'; cx.fillStyle = '#2B7BB9'; cx.lineWidth = 3; cx.lineCap = 'round';
+        cx.beginPath(); cx.arc(px, py - gr, gr * 0.13, 0, 2 * Math.PI); cx.fill();
+        cx.beginPath(); cx.moveTo(px, py - gr * 0.86); cx.lineTo(px, py - gr * 0.42);
+        cx.moveTo(px, py - gr * 0.42); cx.lineTo(px + Math.sin(sch) * gr * 0.42, py);
+        cx.moveTo(px, py - gr * 0.42); cx.lineTo(px - Math.sin(sch) * gr * 0.42, py);
+        cx.moveTo(px, py - gr * 0.76); cx.lineTo(px - Math.sin(sch) * gr * 0.35, py - gr * 0.45);
+        cx.moveTo(px, py - gr * 0.76); cx.lineTo(px + Math.sin(sch) * gr * 0.35, py - gr * 0.45); cx.stroke(); cx.lineCap = 'butt';
+      }
+      ziel(tx + tb + 4, hTop + 22, flurB - tb - 30, stock - 22, function () { setzen('bewegung', Z.bewegung ? 0 : 1, 'Gerät'); });
+      // Wohnen: Fenster mit Rollladen, Heizkörper, Leuchte, Thermometer
+      const wB = hb - flurB, fb = Math.min(96, wB * 0.36), fh = stock * 0.36, fxx = fx1 + wB * 0.1, fy = hTop + stock * 0.32;
+      const draussen = cx.createLinearGradient(0, fy, 0, fy + fh); draussen.addColorStop(0, mischen('#0B1630', '#5FAEE3', daemmer)); draussen.addColorStop(1, mischen('#26375E', '#CFEAF8', daemmer));
+      cx.fillStyle = draussen; cx.fillRect(fxx, fy, fb, fh);
+      if (Z.fenster) {
+        cx.fillStyle = 'rgba(160,200,230,.55)'; cx.strokeStyle = F('--text'); cx.lineWidth = 1.5;
+        cx.beginPath(); cx.moveTo(fxx + fb / 2, fy); cx.lineTo(fxx + fb / 2 + fb * 0.22, fy + 8); cx.lineTo(fxx + fb / 2 + fb * 0.22, fy + fh + 6); cx.lineTo(fxx + fb / 2, fy + fh); cx.closePath(); cx.fill(); cx.stroke();
+        cx.strokeStyle = '#4DABF7'; cx.lineWidth = 1.5; for (let i = 0; i < 3; i++) { const k = (s * 0.8 + i / 3) % 1, yy = fy + fh * (0.25 + 0.25 * i); cx.beginPath(); cx.moveTo(fxx + fb * 0.1 + k * 40, yy); cx.lineTo(fxx + fb * 0.1 + k * 40 + 14, yy); cx.lineTo(fxx + fb * 0.1 + k * 40 + 10, yy - 3); cx.stroke(); }
+      }
+      const zu = Z.rollladen / 100;
+      if (zu > 0) { cx.fillStyle = '#8C939B'; cx.fillRect(fxx, fy, fb, fh * zu); cx.strokeStyle = '#6B7280'; cx.lineWidth = 1; for (let y = fy + 4; y < fy + fh * zu; y += 4) { cx.beginPath(); cx.moveTo(fxx, y); cx.lineTo(fxx + fb, y); cx.stroke(); } }
+      cx.fillStyle = '#6B7280'; cx.fillRect(fxx - 3, fy - 7, fb + 6, 7);
+      cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.strokeRect(fxx, fy, fb, fh);
+      if (!Z.fenster) { cx.lineWidth = 1.2; cx.beginPath(); cx.moveTo(fxx + fb / 2, fy); cx.lineTo(fxx + fb / 2, fy + fh); cx.stroke(); }
+      TX(Z.fenster ? 'offen' : 'Rollladen ' + zahl(Z.rollladen, 0) + ' %', fxx + fb / 2, fy - 15, 'center', fs - 1, false, F('--leise'));
+      ziel(fxx, fy - 8, fb, fh + 10, function () { setzen('fenster', Z.fenster ? 0 : 1, 'Gerät'); });
+      const hzB = fb * 0.9, hzH = Math.min(28, stock * 0.2), hzx = fxx + (fb - hzB) / 2, hzy = boden - hzH - 8;
+      const heizt = Z.heizung > Z.temp + 0.05;
+      cx.fillStyle = heizt ? '#F08C6B' : '#D5D9DE'; cx.strokeStyle = '#666'; cx.lineWidth = 1; cx.fillRect(hzx, hzy, hzB, hzH); cx.strokeRect(hzx, hzy, hzB, hzH);
+      for (let x = hzx + 5; x < hzx + hzB; x += 6) { cx.beginPath(); cx.moveTo(x, hzy + 2); cx.lineTo(x, hzy + hzH - 2); cx.stroke(); }
+      if (heizt) { cx.strokeStyle = 'rgba(224,49,49,.55)'; cx.lineWidth = 1.5; for (let i = 0; i < 3; i++) { const bx = hzx + hzB * (0.25 + 0.25 * i), k = (s * 0.7 + i * 0.3) % 1; cx.beginPath(); for (let j = 0; j <= 10; j++) { const yy = hzy - 4 - j * 2 - k * 6; const xx = bx + Math.sin(j * 0.9 + s * 4) * 3; if (j) cx.lineTo(xx, yy); else cx.moveTo(xx, yy); } cx.stroke(); } }
+      const lwx = fx1 + wB * 0.72;
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(lwx, hTop); cx.lineTo(lwx, hTop + 22); cx.stroke();
+      cx.save(); cx.beginPath(); cx.rect(fx1, hTop, wB, stock); cx.clip(); glut(lwx, hTop + 28, stock * 0.85, lichtWz * 0.8); cx.restore();
+      cx.fillStyle = lichtWz > 0 ? mischen('#BFC4CA', '#FFD86B', Math.min(1, lichtWz * 1.5)) : '#BFC4CA';
+      cx.beginPath(); cx.moveTo(lwx - 14, hTop + 32); cx.lineTo(lwx - 6, hTop + 22); cx.lineTo(lwx + 6, hTop + 22); cx.lineTo(lwx + 14, hTop + 32); cx.closePath(); cx.fill(); cx.stroke();
+      TX(zahl(Z.licht_wz, 0) + ' %', lwx, hTop + 44, 'center', fs - 1, false, F('--leise'));
+      ziel(lwx - 18, hTop, 36, 40, function () { setzen('licht_wz', Z.licht_wz > 0 ? 0 : 80, 'Gerät'); });
+      const thx = hx1 - 12;
+      TX(zahl(Math.round(Z.temp * 10) / 10, 1) + ' °C', thx, boden - stock * 0.42, 'right', fs + 2, true, Z.temp < 18 ? '#2B7BB9' : Z.temp > 23 ? '#C0392B' : F('--text'));
+      TX('Soll ' + zahl(Z.heizung, 0) + ' °C', thx, boden - stock * 0.42 + fs + 4, 'right', fs - 1, false, F('--leise'));
+      // Sirene außen
+      const six = hx1 + 2, siy = hTop + 14;
+      const sAn = Z.sirene && Math.floor(s * 4) % 2 === 0;
+      if (Z.sirene) { cx.fillStyle = sAn ? 'rgba(224,49,49,.35)' : 'rgba(43,123,185,.35)'; cx.beginPath(); cx.moveTo(six + 8, siy); cx.lineTo(six + 40, siy - 16); cx.lineTo(six + 40, siy + 16); cx.closePath(); cx.fill(); }
+      cx.fillStyle = Z.sirene ? (sAn ? '#E03131' : '#2B7BB9') : '#ADB5BD'; cx.fillRect(six, siy - 7, 9, 14);
+      ziel(six - 2, siy - 10, 16, 20, function () { setzen('sirene', Z.sirene ? 0 : 1, 'Gerät'); });
+      // Auto: jemand zu Hause
+      const ax0 = hx1 + B * 0.04, aw = Math.min(90, B - ax0 - 6), ahh = aw * 0.32, ayy = boden - 4 - ahh;
+      if (Z.zuhause) {
+        cx.fillStyle = '#C0392B'; rrect(ax0, ayy + ahh * 0.35, aw, ahh * 0.55, 5); cx.fill();
+        cx.beginPath(); cx.moveTo(ax0 + aw * 0.2, ayy + ahh * 0.38); cx.lineTo(ax0 + aw * 0.32, ayy); cx.lineTo(ax0 + aw * 0.7, ayy); cx.lineTo(ax0 + aw * 0.82, ayy + ahh * 0.38); cx.closePath(); cx.fill();
+        cx.fillStyle = '#CFE8F7'; cx.fillRect(ax0 + aw * 0.36, ayy + 3, aw * 0.3, ahh * 0.3);
+        cx.fillStyle = '#222'; [0.24, 0.76].forEach(function (k) { cx.beginPath(); cx.arc(ax0 + aw * k, ayy + ahh * 0.9, ahh * 0.2, 0, 2 * Math.PI); cx.fill(); });
+      } else { cx.strokeStyle = 'rgba(255,255,255,.6)'; cx.setLineDash([4, 4]); cx.lineWidth = 1.5; cx.strokeRect(ax0, ayy, aw, ahh + 2); cx.setLineDash([]); }
+      const at = Z.zuhause ? 'zu Hause' : 'niemand da'; cx.font = '700 ' + (fs - 1) + 'px ' + (F('--technik') || 'sans-serif'); const aMitte = Math.min(ax0 + aw / 2, B - 4 - cx.measureText(at).width / 2);
+      TX(at, aMitte, boden + 14, 'center', fs - 1, true, '#F4EDE4');
+      ziel(ax0, ayy - 6, aw, ahh + 30, function () { setzen('zuhause', Z.zuhause ? 0 : 1, 'Gerät'); });
+      // Nachricht aufs Handy
+      if (Z.handy && minute - handyZeit < 90) {
+        const txt = String(Z.handy), w = Math.min(B - 20, txt.length * (fs * 0.62) + 40), bx = (B - w) / 2;
+        cx.fillStyle = 'rgba(17,18,20,.86)'; rrect(bx, 8, w, 26, 13); cx.fill();
+        TX('✉ ' + (txt.length * fs * 0.62 + 40 > B - 20 ? txt.slice(0, Math.floor((B - 60) / (fs * 0.62))) + '…' : txt), B / 2, 21, 'center', fs, true, '#fff');
+      }
+    }
+    cv.addEventListener('click', function (e) {
+      const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      for (let i = ziele.length - 1; i >= 0; i--) { const z = ziele[i]; if (x >= z[0] && x <= z[0] + z[2] && y >= z[1] && y <= z[1] + z[3]) { z[4](); jetztPruefen(); return; } }
+    });
+    cv.addEventListener('mousemove', function (e) {
+      const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      cv.style.cursor = ziele.some(function (z) { return x >= z[0] && x <= z[0] + z[2] && y >= z[1] && y <= z[1] + z[3]; }) ? 'pointer' : 'default';
+    });
+    window.addEventListener('resize', function () { groesse(); });
+    groesse();
+
     // ---------- Zeit ----------
     function jetztPruefen() { regelnPruefen(minute); werteZeigen(); }
     let letzt = performance.now(), rest = 0;
@@ -514,6 +683,7 @@
         }
       }
       if (protNeu) { protNeu = false; protZeigen(); werteZeigen(); }
+      hausZeichnen(t);
       requestAnimationFrame(schleife);
     }
     function regelnZeitAnzeigen() { if (!document.activeElement || !document.activeElement.closest || !document.activeElement.closest('#regeln')) regelnAufbauen(); }
