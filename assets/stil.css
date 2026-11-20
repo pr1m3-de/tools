@@ -226,7 +226,28 @@ html.suche-offen { overflow: hidden; }
   .suche-box { max-height: none; height: 100%; border-radius: 0; border: 0; }
   .suche-art { min-width: 0; display: block; }
 }
-@media print { .suche-schicht, .suche-knopf { display: none !important; } }
+@media print { .suche-schicht, .suche-knopf, .daten-hinweis, .daten-knopf { display: none !important; } }
+
+/* ---------- Daten sichern ---------- */
+.link-knopf { border: 0; background: none; padding: 0; font: inherit; color: inherit; text-decoration: underline; cursor: pointer; }
+.daten-box { width: min(560px, 100%); }
+.daten-titel { flex: 1; margin: 0; font-size: 1.15rem; }
+.daten-inhalt { padding: 6px 16px 16px; overflow-y: auto; }
+.daten-inhalt p { margin: 8px 0; font-size: .93rem; line-height: 1.45; }
+.daten-stand { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 10px 0; padding: 10px 12px; background: var(--flaeche); border: 1px solid var(--linie); border-radius: 10px; font-size: .9rem; }
+.daten-stand dt { color: var(--leise); }
+.daten-stand dd { margin: 0; font-weight: 600; }
+.daten-stand dd.gut { color: #2F9E44; }
+.daten-stand dd.warnung { color: #C2410C; }
+.daten-knoepfe { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 12px 0; }
+.daten-knoepfe label.knopf-leise { padding: 4px 0; }
+.daten-meldung { padding: 8px 10px; border-radius: 8px; background: color-mix(in srgb, #2F9E44 14%, transparent); }
+.daten-meldung.schlecht { background: color-mix(in srgb, #C0392B 16%, transparent); }
+.daten-tipp { color: var(--text); }
+.daten-klein { color: var(--leise); font-size: .84rem !important; }
+.daten-hinweis { position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 900; width: min(560px, calc(100% - 20px)); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 10px 14px; background: var(--grund); color: var(--text); border: 1px solid var(--linie); border-left: 4px solid #F2A541; border-radius: 12px; box-shadow: 0 10px 30px rgba(0, 0, 0, .22); font-size: .92rem; }
+.daten-hinweis span { flex: 1 1 220px; }
+@media (max-width: 560px) { .daten-stand { grid-template-columns: 1fr; } .daten-stand dd { margin-bottom: 4px; } }
 
 @media (max-width: 560px) {
   /* Handy: Logo und Knöpfe oben, alle Reiter als eigene Zeile darunter */

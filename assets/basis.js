@@ -365,6 +365,193 @@
   })();
   window.Suche = Suche;
 
+  // ---------- Eigene Daten schützen: dauerhafter Speicher, Gesamtsicherung, Erinnerung ----------
+  // Alles, was die Seiten merken, liegt im localStorage dieses Geräts. Die Sicherung schreibt alle Schlüssel
+  // dieser Adresse in eine Datei; Wiederherstellen liest sie geprüft ein (vorheriger Stand bleibt zum Zurückholen).
+  const Daten = (function () {
+    const APP = 'formeln-rechner', ZULETZT_GESICHERT = 'sicherung-datum', ERINNERT = 'sicherung-erinnert', DAUERHAFT = 'sicherung-dauerhaft',
+      VOR_IMPORT = 'sicherung-vor-import', ERSTE_DATEN = 'sicherung-erste-daten', TAGE = 30, TAG = 864e5;
+    // zählen nicht als eigene Daten
+    const NEBENSACHE = function (k) { return k === 'sammlung-thema' || k === 'zuletzt-1' || k.indexOf('sicherung-') === 0 || /:vorher$/.test(k); };
+    let dlg = null;
+    function schluessel() { const a = []; try { for (let i = 0; i < localStorage.length; i++) a.push(localStorage.key(i)); } catch (e) { /* ohne Speicher */ } return a.filter(function (k) { return typeof k === 'string'; }); }
+    function eigene() { return schluessel().filter(function (k) { return !NEBENSACHE(k); }); }
+    const iOS = function () { return /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); };
+    const alsApp = function () { return navigator.standalone === true || (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches); };
+    function datum(ms) { const d = new Date(ms); return d.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }); }
+    function tageSeit(ms) { return Math.floor((Date.now() - ms) / TAG); }
+    // 1. Browser bitten, die Daten nicht von selbst zu löschen (einmal, sobald es eigene Daten gibt)
+    function dauerhaftAnfordern() {
+      if (!navigator.storage || !navigator.storage.persist || lsLesen(DAUERHAFT)) return;
+      if (!eigene().length) return;
+      navigator.storage.persisted().then(function (ja) { return ja || navigator.storage.persist(); })
+        .then(function (ja) { lsSchreiben(DAUERHAFT, ja ? 'ja' : 'nein'); }).catch(function () { /* egal */ });
+    }
+    function paket() {
+      const daten = {};
+      schluessel().forEach(function (k) { if (k.indexOf('sicherung-') !== 0) { const v = lsLesen(k); if (v !== null) daten[k] = v; } });
+      return { app: APP, version: 1, erstellt: new Date().toISOString(), adresse: location.origin, daten: daten };
+    }
+    // 2. Gesamtsicherung als Datei
+    function sichern() {
+      const p = paket(), text = JSON.stringify(p);
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([text], { type: 'application/json' }));
+      a.download = 'formeln-rechner-sicherung-' + new Date().toISOString().slice(0, 10) + '.json';
+      document.body.append(a); a.click(); a.remove();
+      setTimeout(function () { URL.revokeObjectURL(a.href); }, 4000);
+      lsSchreiben(ZULETZT_GESICHERT, String(Date.now()));
+      hinweisWeg();
+      return Object.keys(p.daten).length;
+    }
+    // strenge Prüfung der Datei: nur Text-Schlüssel und Text-Werte in vernünftiger Größe
+    function pruefen(roh) {
+      let p; try { p = JSON.parse(roh); } catch (e) { throw new Error('Die Datei ist keine gültige Sicherung (kein JSON).'); }
+      if (!p || typeof p !== 'object' || p.app !== APP || !p.daten || typeof p.daten !== 'object' || Array.isArray(p.daten)) throw new Error('Die Datei ist keine Sicherung dieser Sammlung.');
+      const d = {}; let summe = 0, n = 0;
+      Object.keys(p.daten).forEach(function (k) {
+        const v = p.daten[k];
+        if (typeof k !== 'string' || !k || k.length > 200 || k.indexOf('sicherung-') === 0 || typeof v !== 'string' || v.length > 2e6) return;
+        summe += k.length + v.length; n++; d[k] = v;
+      });
+      if (!n) throw new Error('In der Datei stehen keine Daten.');
+      if (summe > 4.5e6) throw new Error('Die Sicherung ist zu groß für den Speicher des Browsers.');
+      return { daten: d, erstellt: typeof p.erstellt === 'string' ? Date.parse(p.erstellt) : NaN };
+    }
+    // 3. Wiederherstellen: vorher den jetzigen Stand sichern, dann übernehmen (vorhandene Schlüssel werden ersetzt, andere bleiben)
+    function einspielen(daten) {
+      const vorher = paket();
+      try { localStorage.setItem(VOR_IMPORT, JSON.stringify(vorher)); } catch (e) { /* zu groß: ohne Rückweg */ }
+      let ok = 0;
+      Object.keys(daten).forEach(function (k) { try { localStorage.setItem(k, daten[k]); ok++; } catch (e) { /* voll */ } });
+      return ok;
+    }
+    function zurueck() {
+      const t = lsLesen(VOR_IMPORT); if (!t) return false;
+      let p; try { p = JSON.parse(t); } catch (e) { return false; }
+      if (!p || !p.daten) return false;
+      schluessel().forEach(function (k) { if (k.indexOf('sicherung-') !== 0) lsSchreiben(k, null); });
+      Object.keys(p.daten).forEach(function (k) { if (typeof p.daten[k] === 'string') lsSchreiben(k, p.daten[k]); });
+      lsSchreiben(VOR_IMPORT, null);
+      return true;
+    }
+    function knoten(tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; }
+    // neu laden, ohne dass die Seiten beim Verlassen (pagehide) ihren alten Stand über den eingespielten schreiben
+    function neuLaden() {
+      setTimeout(function () {
+        try { Storage.prototype.setItem = function () {}; Storage.prototype.removeItem = function () {}; } catch (e) { /* egal */ }
+        location.reload();
+      }, 1600);
+    }
+    const eintraege = function (n) { return n + (n === 1 ? ' Eintrag' : ' Einträge'); };
+    function zusammenfassung() {
+      const k = eigene();
+      let fav = 0; try { fav = (JSON.parse(lsLesen('favoriten-1') || '[]') || []).length; } catch (e) { fav = 0; }
+      const rechner = k.filter(function (x) { return x.indexOf('eingaben:') === 0; }).length;
+      const teile = [];
+      if (fav) teile.push(fav + (fav === 1 ? ' Favorit' : ' Favoriten'));
+      if (rechner) teile.push(rechner + ' Rechner mit gemerkten Eingaben');
+      const rest = k.length - rechner - (lsLesen('favoriten-1') ? 1 : 0);
+      if (rest > 0) teile.push(rest + (rest === 1 ? ' weiterer Eintrag' : ' weitere Einträge') + ' (Planer, Projektmappe, Protokolle …)');
+      return teile.length ? teile.join(', ') : 'noch nichts gespeichert';
+    }
+    function bauen() {
+      dlg = knoten('div', 'suche-schicht daten-schicht'); dlg.hidden = true;
+      dlg.setAttribute('role', 'dialog'); dlg.setAttribute('aria-modal', 'true'); dlg.setAttribute('aria-labelledby', 'daten-titel');
+      const box = knoten('div', 'suche-box daten-box');
+      const kopf = knoten('div', 'suche-kopf');
+      const h = knoten('h2', 'daten-titel', 'Deine Daten sichern'); h.id = 'daten-titel';
+      const zu = knoten('button', 'suche-zu', 'Schließen'); zu.type = 'button';
+      kopf.append(h, zu);
+      const inhalt = knoten('div', 'daten-inhalt');
+      box.append(kopf, inhalt); dlg.append(box); document.body.append(dlg);
+      zu.addEventListener('click', schliessen);
+      dlg.addEventListener('click', function (ev) { if (ev.target === dlg) schliessen(); });
+      dlg.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') { ev.preventDefault(); schliessen(); } });
+    }
+    function fuellen(meldung, schlecht) {
+      const inhalt = dlg.querySelector('.daten-inhalt'); inhalt.innerHTML = '';
+      const p = function (t, k) { const e = knoten('p', k, t); inhalt.append(e); return e; };
+      p('Gemerkte Eingaben, Favoriten, Planer und die Projektmappe liegen nur in diesem Browser auf diesem Gerät. Wer die Websitedaten löscht oder den Browser wechselt, verliert sie – außer es gibt eine Sicherung.');
+      const stand = knoten('dl', 'daten-stand');
+      const zeile = function (a, b, klasse) { const dt = knoten('dt', '', a), dd = knoten('dd', klasse || '', b); stand.append(dt, dd); };
+      zeile('Gespeichert', zusammenfassung());
+      const g = +lsLesen(ZULETZT_GESICHERT);
+      zeile('Letzte Sicherung', g ? datum(g) + ' (vor ' + tageSeit(g) + (tageSeit(g) === 1 ? ' Tag)' : ' Tagen)') : 'noch keine', g && tageSeit(g) <= TAGE ? 'gut' : eigene().length ? 'warnung' : '');
+      zeile('Vor automatischem Löschen geschützt', '…');
+      inhalt.append(stand);
+      if (navigator.storage && navigator.storage.persisted) {
+        navigator.storage.persisted().then(function (ja) { const dd = stand.querySelectorAll('dd')[2]; if (dd) { dd.textContent = ja ? 'ja' : iOS() && !alsApp() ? 'nein – als App installieren hilft' : 'nein (der Browser entscheidet selbst)'; dd.className = ja ? 'gut' : ''; } }).catch(function () { /* egal */ });
+      } else { const dd = stand.querySelectorAll('dd')[2]; dd.textContent = 'unbekannt'; }
+      if (meldung) p(meldung, 'daten-meldung' + (schlecht ? ' schlecht' : ''));
+      const knoepfe = knoten('div', 'daten-knoepfe');
+      const s = knoten('button', 'knopf', 'Alles sichern (Datei)'); s.type = 'button';
+      s.addEventListener('click', function () { const n = sichern(); fuellen(eintraege(n) + ' gesichert. Die Datei liegt bei deinen Downloads – am besten in die Cloud oder auf einen Stick kopieren.'); });
+      const w = knoten('label', 'knopf', 'Sicherung wiederherstellen …'); w.style.cursor = 'pointer';
+      const f = knoten('input'); f.type = 'file'; f.accept = '.json,application/json'; f.hidden = true; f.setAttribute('data-nicht-merken', '');
+      w.append(f);
+      f.addEventListener('change', function () {
+        const datei = f.files && f.files[0]; if (!datei) return;
+        if (datei.size > 6e6) { fuellen('Die Datei ist zu groß für eine Sicherung.', true); return; }
+        const r = new FileReader();
+        r.onload = function () {
+          try {
+            const e = pruefen(String(r.result));
+            const n = einspielen(e.daten);
+            lsSchreiben(ZULETZT_GESICHERT, String(isFinite(e.erstellt) ? e.erstellt : Date.now()));
+            fuellen(eintraege(n) + ' wiederhergestellt' + (isFinite(e.erstellt) ? ' (Sicherung vom ' + datum(e.erstellt) + ')' : '') + '. Die Seite lädt gleich neu.');
+            neuLaden();
+          } catch (err) { fuellen(err.message, true); }
+        };
+        r.onerror = function () { fuellen('Die Datei ließ sich nicht lesen.', true); };
+        r.readAsText(datei);
+      });
+      knoepfe.append(s, w);
+      if (lsLesen(VOR_IMPORT)) {
+        const z = knoten('button', 'knopf-leise', 'Stand vor dem letzten Wiederherstellen zurückholen'); z.type = 'button';
+        z.addEventListener('click', function () { if (zurueck()) { fuellen('Der vorherige Stand ist zurück. Die Seite lädt gleich neu.'); neuLaden(); } });
+        knoepfe.append(z);
+      }
+      inhalt.append(knoepfe);
+      if (iOS() && !alsApp()) p('Tipp für iPhone und iPad: Safari löscht die Daten von Seiten, die 7 Tage nicht geöffnet wurden. Über Teilen → „Zum Home-Bildschirm“ wird die Sammlung zur App – dann bleiben die Daten erhalten.', 'daten-tipp');
+      else p('Tipp: Als App installieren (Knopf auf der Startseite oder im Browsermenü) – dann bleibt die Sammlung samt Daten besser erhalten und läuft offline.', 'daten-tipp');
+      p('„Nur Bilder und Dateien im Cache leeren“ löscht nichts davon. Erst „Cookies und Websitedaten löschen“ entfernt die Daten.', 'daten-klein');
+    }
+    function oeffnen() {
+      if (!dlg) bauen();
+      fuellen();
+      dlg.hidden = false; document.documentElement.classList.add('suche-offen');
+      const k = dlg.querySelector('.daten-knoepfe .knopf'); if (k) k.focus();
+    }
+    function schliessen() { if (!dlg || dlg.hidden) return; dlg.hidden = true; document.documentElement.classList.remove('suche-offen'); }
+    // 4. Erinnerung: eigene Daten da, keine Sicherung seit 30 Tagen (oder noch nie, Daten älter als 7 Tage), höchstens alle 14 Tage
+    let hinweis = null;
+    function hinweisWeg() { if (hinweis) { hinweis.remove(); hinweis = null; } }
+    function erinnern() {
+      const k = eigene(); if (!k.length) { lsSchreiben(ERSTE_DATEN, null); return; }
+      let erste = +lsLesen(ERSTE_DATEN); if (!erste) { erste = Date.now(); lsSchreiben(ERSTE_DATEN, String(erste)); }
+      const g = +lsLesen(ZULETZT_GESICHERT), e = +lsLesen(ERINNERT);
+      const faellig = g ? tageSeit(g) > TAGE : tageSeit(erste) >= 7;
+      if (!faellig || (e && tageSeit(e) < 14) || document.body.hasAttribute('data-ohne-erinnerung')) return;
+      hinweis = knoten('div', 'daten-hinweis'); hinweis.setAttribute('role', 'status');
+      hinweis.append(knoten('span', '', g ? 'Letzte Sicherung deiner gespeicherten Daten vor ' + tageSeit(g) + ' Tagen.' : 'Deine gespeicherten Daten sind noch nicht gesichert.'));
+      const a = knoten('button', 'knopf', 'Jetzt sichern'); a.type = 'button';
+      a.addEventListener('click', function () { lsSchreiben(ERINNERT, String(Date.now())); hinweisWeg(); oeffnen(); });
+      const b = knoten('button', 'knopf-leise', 'Später'); b.type = 'button';
+      b.addEventListener('click', function () { lsSchreiben(ERINNERT, String(Date.now())); hinweisWeg(); });
+      hinweis.append(a, b);
+      document.body.append(hinweis);
+    }
+    function start() {
+      dauerhaftAnfordern();
+      // auch später anfordern, sobald jemand das erste Mal etwas speichert
+      window.addEventListener('pagehide', dauerhaftAnfordern);
+      setTimeout(erinnern, 1500);
+    }
+    return { oeffnen: oeffnen, sichern: sichern, pruefen: pruefen, start: start, eigene: eigene };
+  })();
+  window.Daten = Daten;
+
   // ---------- Kopf- und Fußzeile ----------
   function kopfBauen() {
     const ziel = document.getElementById('seitenkopf');
@@ -455,11 +642,13 @@
         'Ergebnisse vor der Ausführung prüfen; maßgeblich sind die gültigen Normen, Herstellerangaben und die Fachplanung. ' +
         'Etwas passt nicht? Bitte melden an <a href="mailto:support@pr1m3.de?subject=' + encodeURIComponent('Hinweis zu: ' + document.title) + '">support@pr1m3.de</a>.</p>' +
         '<span class="netz" role="status"></span>' +
+        '<span><button type="button" class="link-knopf daten-knopf">Daten sichern oder wiederherstellen</button> – gemerkte Eingaben, Favoriten und Planer liegen nur auf diesem Gerät.</span>' +
         '<span>Läuft komplett offline, ohne externe Dateien' + (/^https?:$/.test(location.protocol) && 'serviceWorker' in navigator ? ', einmal geladen auch ohne Netz' : '') + '.</span>' +
         '<span>Offen: <a href="https://github.com/pr1m3-de/tools" rel="noopener">Quelltext auf GitHub</a> · Code MIT, Aufgabenblätter CC BY 4.0.</span>' +
         '<span>Formelsatz mit KaTeX (MIT-Lizenz), lokal in assets/katex.</span>' +
       '</footer>';
     netzZeigen();
+    ziel.querySelector('.daten-knopf').addEventListener('click', function () { Daten.oeffnen(); });
   }
 
   // ---------- Links zum Teilen: ein Muster für alle Seiten ----------
@@ -1020,5 +1209,6 @@
     // nach pdfEinrichten, damit eingeklappte Bereiche schon offen sind
     window.addEventListener('beforeprint', druckErsatzBauen);
     window.addEventListener('afterprint', druckErsatzWeg);
+    Daten.start();
   });
 })();
