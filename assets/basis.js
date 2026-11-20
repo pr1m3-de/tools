@@ -822,7 +822,22 @@
     try {
       if (k.slice(0, 2) !== 'z.') return Promise.resolve(b64ZuText(k));
       if (typeof DecompressionStream === 'undefined') return Promise.reject(new Error('Dieser Browser kann komprimierte Links nicht entpacken.'));
-      return new Response(new Blob([b64zuBytes(k.slice(2))]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+      // Begrenzt beim Entpacken lesen: ein kleiner Link darf nicht zu Gigabytes aufgehen (Entpack-Bombe)
+      const leser = new Blob([b64zuBytes(k.slice(2))]).stream().pipeThrough(new DecompressionStream('deflate-raw')).getReader();
+      const teile = []; let n = 0;
+      const weiter = function () {
+        return leser.read().then(function (r) {
+          if (r.done) return;
+          n += r.value.length;
+          if (n > 2000000) { leser.cancel(); throw new Error('zu groß'); }
+          teile.push(r.value); return weiter();
+        });
+      };
+      return weiter().then(function () {
+        const alle = new Uint8Array(n); let o = 0;
+        teile.forEach(function (t) { alle.set(t, o); o += t.length; });
+        return new TextDecoder().decode(alle);
+      });
     } catch (e) { return Promise.reject(e); }
   }
   // Strukturierte Daten entschärfen: Texte ohne < > " ' ` und begrenzt, Listen und Tiefe begrenzt, keine gefährlichen Schlüssel
