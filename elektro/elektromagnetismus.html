@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elektromagnetismus: Animationen zu Magnetfeld, Lorentzkraft, Motor, Induktion und Generator – Formeln &amp; Rechner</title>
+  <meta name="description" content="Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/elektromagnetismus.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Elektromagnetismus: Animationen zu Magnetfeld, Lorentzkraft, Motor, Induktion und Generator">
+  <meta property="og:description" content="Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/elektromagnetismus.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Elektromagnetismus: Animationen zu Magnetfeld, Lorentzkraft, Motor, Induktion und Generator">
+  <meta name="twitter:description" content="Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/elektromagnetismus.html#seite","name":"Elektromagnetismus: Animationen zu Magnetfeld, Lorentzkraft, Motor, Induktion und Generator","url":"https://tools.pr1m3.de/elektro/elektromagnetismus.html","inLanguage":"de","description":"Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/elektromagnetismus.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/elektromagnetismus.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Elektromagnetismus: Animationen zu Magnetfeld, Lorentzkraft, Motor, Induktion und Generator","item":"https://tools.pr1m3.de/elektro/elektromagnetismus.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/elektromagnetismus.html#fragen","mainEntity":[{"@type":"Question","name":"Warum braucht ein Gleichstrommotor einen Kommutator?","acceptedAnswer":{"@type":"Answer","text":"Ohne ihn würde die Spule nur bis zu der Stellung drehen, in der ihre Ebene quer zum Feld steht, und dort pendelnd stehen bleiben. Der Kommutator polt den Strom in der Spule genau an diesem Punkt um, sodass das Drehmoment immer in dieselbe Richtung wirkt."}},{"@type":"Question","name":"Warum entsteht beim ruhenden Magneten in der Spule keine Spannung?","acceptedAnswer":{"@type":"Answer","text":"Induziert wird nur bei einer Änderung des magnetischen Flusses. Steht der Magnet still, ist der Fluss groß, aber konstant – die Spannung ist null."}},{"@type":"Question","name":"Was ist der Unterschied zwischen Schleifringen und Kommutator beim Generator?","acceptedAnswer":{"@type":"Answer","text":"Schleifringe geben die Spannung der Spule unverändert weiter: Wechselspannung. Der Kommutator polt bei jeder halben Umdrehung um: Es entsteht eine pulsierende Gleichspannung."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/elektromagnetismus.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .szenen { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
+    .szenen .knopf { font-size: .88rem; padding: 6px 11px; }
+    .szenen .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .em-leiste { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin: 8px 0; min-height: 38px; }
+    .em-leiste label { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .em-leiste select { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; min-width: 0; }
+    .em-leiste input[type=range] { width: 150px; min-height: 30px; }
+    .em-leiste output { font-family: var(--technik); font-weight: 700; min-width: 4.5em; }
+    .em-bild { width: 100%; display: block; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); touch-action: manipulation; }
+    .em-text { margin: 8px 0; line-height: 1.55; }
+    .em-meldung { min-height: 1.4em; font-weight: 600; margin: 6px 0; font-family: var(--technik); }
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    @media print { .szenen, .em-leiste { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite">
+    <section class="tafel">
+      <h1><span class="unterstrichen">Elektromagnetismus</span></h1>
+      <p>Strom erzeugt ein Magnetfeld, ein Magnetfeld übt Kraft auf Strom aus, und ein sich änderndes Magnetfeld erzeugt Spannung. Aus diesen drei Effekten bestehen Motor, Generator, Transformator und Klingel. Wähle eine Animation, verstelle die Werte und beobachte die Messkurve daneben.</p>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-anim">
+      <h2 id="h-anim">Animationen</h2>
+      <div class="szenen" id="szenen" role="group" aria-label="Animation wählen"></div>
+      <p class="em-text" id="emText"></p>
+      <div class="em-leiste" id="emRegler"></div>
+      <canvas id="emBild" class="em-bild" role="img" aria-label="Animation zum Elektromagnetismus"></canvas>
+      <p class="em-meldung" id="emMeldung" role="status"></p>
+    </section>
+
+    <section class="tafel abstand formelsammlung" id="em-formeln" aria-labelledby="h-em-f">
+      <h2 id="h-em-f">Formeln</h2>
+      <div class="wissen-raster">
+        <section class="wissen-karte" style="--farbe:#2B7BB9"><h3>Magnetfeld um einen langen Leiter</h3><div data-tex="B = \frac{\mu_0 \cdot I}{2 \pi \cdot r}"></div><p>μ₀ = 4π · 10⁻⁷ V·s/(A·m). Rechte-Faust-Regel: Daumen in Stromrichtung, die Finger zeigen die Feldrichtung.</p></section>
+        <section class="wissen-karte" style="--farbe:#2B7BB9"><h3>Magnetfeld einer langen Spule</h3><div data-tex="B = \mu_0 \cdot \mu_\text{r} \cdot \frac{N \cdot I}{l}"></div><p>Im Inneren nahezu gleichmäßig; ein Eisenkern verstärkt es um μᵣ.</p></section>
+        <section class="wissen-karte" style="--farbe:#C0392B"><h3>Kraft auf einen Leiter im Magnetfeld</h3><div data-tex="F = B \cdot I \cdot l \cdot z"></div><p>Leiter senkrecht zum Feld, l wirksame Länge, z Anzahl der Leiter. Richtung nach der Drei-Finger-Regel (rechte Hand: Daumen I, Zeigefinger B, Mittelfinger F).</p></section>
+        <section class="wissen-karte" style="--farbe:#C0392B"><h3>Kraft auf eine bewegte Ladung</h3><div data-tex="F_\text{L} = q \cdot v \cdot B"></div><p>Lorentzkraft, senkrecht zu Geschwindigkeit und Feld.</p></section>
+        <section class="wissen-karte" style="--farbe:#2E8B57"><h3>Magnetischer Fluss</h3><div data-tex="\Phi = B \cdot A \cdot \cos\alpha"></div><p>α Winkel zwischen Feld und Flächennormale; Einheit Weber, 1 Wb = 1 V·s.</p></section>
+        <section class="wissen-karte" style="--farbe:#2E8B57"><h3>Induktionsgesetz</h3><div data-tex="u_\text{i} = -N \cdot \frac{\Delta \Phi}{\Delta t}"></div><p>Spannung entsteht nur, solange sich der Fluss ändert. Das Minuszeichen ist die Lenzsche Regel: Der Induktionsstrom wirkt seiner Ursache entgegen.</p></section>
+        <section class="wissen-karte" style="--farbe:#2E8B57"><h3>Bewegter Leiter</h3><div data-tex="u_\text{i} = B \cdot l \cdot v"></div><p>Leiter der Länge l bewegt sich mit v senkrecht durch das Feld.</p></section>
+        <section class="wissen-karte" style="--farbe:#9333EA"><h3>Generator: Scheitelwert</h3><div data-tex="\hat{u} = N \cdot B \cdot A \cdot \omega"></div><p>Rotierende Spule, ω = 2π · n; die Spannung ist sinusförmig: u = û · sin(ω t).</p></section>
+        <section class="wissen-karte" style="--farbe:#9333EA"><h3>Frequenz eines Generators</h3><div data-tex="f = \frac{p \cdot n}{60}"></div><p>n in 1/min, p Polpaarzahl. 50 Hz bei 3 000 1/min mit einem Polpaar.</p></section>
+        <section class="wissen-karte" style="--farbe:#E07A1F"><h3>Drehmoment eines Gleichstrommotors</h3><div data-tex="M = k \cdot \Phi \cdot I"></div><p>Läuft der Motor, induziert er selbst eine Gegenspannung U_q = k · Φ · ω; der Strom sinkt mit der Drehzahl.</p></section>
+      </div>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-em-w">
+      <h2 id="h-em-w">Zusammenhänge</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Strom → Magnetfeld</h3><p>Jeder Strom ist von einem Magnetfeld umgeben (Ørsted 1820). Wickelt man den Leiter zur Spule, addieren sich die Felder der Windungen; mit Eisenkern entsteht ein Elektromagnet – Grundlage von Relais, Schütz, Klingel und Lautsprecher.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Magnetfeld + Strom → Kraft</h3><p>Ein Strom im Magnetfeld erfährt eine Kraft quer zu Strom und Feld. Das nutzt der Elektromotor: Zwei Leiterseiten einer drehbaren Spule werden gegensinnig gedrückt, es entsteht ein Drehmoment.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Bewegung + Magnetfeld → Spannung</h3><p>Ändert sich der Fluss durch eine Spule – weil sich ein Magnet bewegt, die Spule dreht oder der Strom in einer Nachbarspule ändert –, wird eine Spannung induziert. So arbeiten Generator, Transformator und Fahrraddynamo.</p></article>
+        <article class="wissen-karte" style="--farbe:#9333EA"><h3>Motor und Generator sind dieselbe Maschine</h3><p>Ein Gleichstrommotor, den man von außen antreibt, liefert Spannung. Ein Generator, an den man Spannung legt, dreht sich. Beim Drehstrom ist das genauso: siehe <a href="drehfeldmaschinen.html">Drehfeldmaschinen</a>.</p></article>
+      </div>
+      <p class="hilfe">Weiter: <a href="transformator.html">Transformator</a>, <a href="drehstrom.html">Drehstrom</a>, <a href="motorpruefstand.html">Motorprüfstand</a>.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum braucht ein Gleichstrommotor einen Kommutator?</summary><p>Ohne ihn würde die Spule nur bis zu der Stellung drehen, in der ihre Ebene quer zum Feld steht, und dort pendelnd stehen bleiben. Der Kommutator polt den Strom in der Spule genau an diesem Punkt um, sodass das Drehmoment immer in dieselbe Richtung wirkt.</p></details>
+        <details><summary>Warum entsteht beim ruhenden Magneten in der Spule keine Spannung?</summary><p>Induziert wird nur bei einer Änderung des magnetischen Flusses. Steht der Magnet still, ist der Fluss groß, aber konstant – die Spannung ist null.</p></details>
+        <details><summary>Was ist der Unterschied zwischen Schleifringen und Kommutator beim Generator?</summary><p>Schleifringe geben die Spannung der Spule unverändert weiter: Wechselspannung. Der Kommutator polt bei jeder halben Umdrehung um: Es entsteht eine pulsierende Gleichspannung.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const $ = function (id) { return document.getElementById(id); };
+    const PI2 = 2 * Math.PI, MU0 = 4e-7 * Math.PI;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333';
+    const F = function (n) { return Thema.farbe(n); };
+    const zs = function (v, n) {
+      if (typeof v !== 'number' || !isFinite(v)) return '–';
+      n = n || 0; const t = (Math.round(v * Math.pow(10, n)) / Math.pow(10, n)).toFixed(n).replace('.', ',').replace('-', '−'), q = t.split(',');
+      q[0] = q[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' '); return q.join(',').replace(/^−(0(,0*)?)$/, '$1');
+    };
+    function TX(cx, t, x, y, a, g, fett, farbe) { cx.font = (fett ? '700 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif'); cx.textAlign = a || 'left'; cx.textBaseline = 'middle'; cx.fillStyle = farbe || F('--text'); cx.fillText(t, x, y); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) {
+      b = b || 2; const a = Math.atan2(y2 - y1, x2 - x1), k = 5 + b * 2;
+      cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b; cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2 - Math.cos(a) * k * 0.6, y2 - Math.sin(a) * k * 0.6); cx.stroke();
+      cx.beginPath(); cx.moveTo(x2, y2); cx.lineTo(x2 - k * Math.cos(a - 0.42), y2 - k * Math.sin(a - 0.42)); cx.lineTo(x2 - k * Math.cos(a + 0.42), y2 - k * Math.sin(a + 0.42)); cx.closePath(); cx.fill();
+    }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, r, 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    // Leiter im Querschnitt: rein = Kreuz, raus = Punkt
+    function leiterQ(cx, x, y, r, richtung, farbe) {
+      kreis(cx, x, y, r, farbe || KUPFER, '#5A3A1A', 1.5);
+      cx.strokeStyle = '#fff'; cx.fillStyle = '#fff'; cx.lineWidth = 2;
+      if (richtung > 0) { const d = r * 0.5; cx.beginPath(); cx.moveTo(x - d, y - d); cx.lineTo(x + d, y + d); cx.moveTo(x + d, y - d); cx.lineTo(x - d, y + d); cx.stroke(); }
+      else if (richtung < 0) kreis(cx, x, y, r * 0.25, '#fff');
+    }
+    function magnet(cx, x, y, b, h, nOben, quer) {
+      // Stabmagnet: quer = waagerecht (N rechts, wenn nOben)
+      cx.save(); cx.translate(x, y); if (quer) cx.rotate(Math.PI / 2);
+      cx.fillStyle = nOben ? ROT : BLAU; cx.fillRect(-b / 2, -h / 2, b, h / 2);
+      cx.fillStyle = nOben ? BLAU : ROT; cx.fillRect(-b / 2, 0, b, h / 2);
+      cx.restore();
+      const off = h / 4;
+      if (quer) { TX(cx, nOben ? 'S' : 'N', x + off, y, 'center', Math.min(16, b * 0.6), true, '#fff'); TX(cx, nOben ? 'N' : 'S', x - off, y, 'center', Math.min(16, b * 0.6), true, '#fff'); }
+      else { TX(cx, nOben ? 'N' : 'S', x, y - off, 'center', Math.min(16, b * 0.6), true, '#fff'); TX(cx, nOben ? 'S' : 'N', x, y + off, 'center', Math.min(16, b * 0.6), true, '#fff'); }
+    }
+    // Diagramm: Reihen [{name, farbe, punkte:[[x,y]]}]
+    function diagramm(cx, x, y, w, h, reihen, opt) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 44, x1 = x + w - 10, y0 = y + 26, y1 = y + h - 30;
+      const xr = opt.xr, yr = opt.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      for (let i = 0; i <= 4; i++) { const v = yr[0] + (yr[1] - yr[0]) * i / 4; cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); TX(cx, zs(v, Math.abs(yr[1] - yr[0]) < 4 ? 1 : 0), x0 - 4, Y(v), 'right', 9, false, GRAU); }
+      cx.stroke();
+      if (yr[0] < 0 && yr[1] > 0) { cx.strokeStyle = F('--text'); cx.lineWidth = 1; cx.beginPath(); cx.moveTo(x0, Y(0)); cx.lineTo(x1, Y(0)); cx.stroke(); }
+      cx.strokeStyle = F('--text'); cx.beginPath(); cx.moveTo(x0, y0); cx.lineTo(x0, y1); cx.stroke();
+      TX(cx, opt.titel, x + 8, y + 12, 'left', 11, true);
+      TX(cx, opt.xl, x1, y1 + 16, 'right', 10, false, GRAU);
+      if (opt.xt) opt.xt.forEach(function (v) { TX(cx, zs(v, 0), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      let lx = x + w - 10;
+      reihen.slice().reverse().forEach(function (r) { cx.font = '700 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; TX(cx, r.name, lx, y + 12, 'right', 10, true, r.farbe); lx -= bw + 12; });
+      reihen.forEach(function (r) {
+        cx.strokeStyle = r.farbe; cx.lineWidth = r.breite || 2; cx.beginPath(); let an = false;
+        r.punkte.forEach(function (p) { if (p[0] < xr[0] || p[0] > xr[1]) { an = false; return; } if (an) cx.lineTo(X(p[0]), Y(p[1])); else { cx.moveTo(X(p[0]), Y(p[1])); an = true; } });
+        cx.stroke();
+        if (r.punkt) { kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe); }
+      });
+      return { X: X, Y: Y };
+    }
+    // Zeitverlauf
+    function verlauf() { return { t: 0, d: [] }; }
+    function schreibe(v, dt, werte, dauer) { v.t += dt; v.d.push([v.t].concat(werte)); while (v.d.length && v.t - v.d[0][0] > dauer) v.d.shift(); }
+    function reihe(v, i, dauer) { return v.d.map(function (p) { return [p[0] - v.t + dauer, p[i + 1]]; }); }
+    // Aufteilung: Bild (virtuell 440 × 330) und Diagramm
+    function aufteilung(B, H) {
+      if (B >= 700) { const bw = B * 0.56, s = Math.min(bw / 440, H / 330); return { s: s, ox: (bw - 440 * s) / 2, oy: (H - 330 * s) / 2, px: bw + 6, py: 10, pw: B - bw - 16, ph: H - 20 }; }
+      const s = B / 440; return { s: s, ox: 0, oy: 0, px: 8, py: 330 * s + 8, pw: B - 16, ph: H - 330 * s - 16 };
+    }
+
+    // =====================================================================
+    // Szenen
+    // =====================================================================
+    const SZ = {};
+    let W = {};   // Werte der Regler
+
+    SZ.leiter = {
+      titel: 'Magnetfeld um einen Leiter',
+      text: 'Ein langer gerader Leiter, von vorn gesehen. Kreuz: Der Strom fließt in die Bildebene hinein, Punkt: heraus. Die Feldlinien sind Kreise um den Leiter; die Kompassnadeln drehen sich in Feldrichtung (rot = Nordpol). Mit dem Abstand nimmt die Flussdichte ab.',
+      regler: [['I', 'Strom', -20, 20, 1, 10, ' A'], ['r', 'Abstand der Sonde', 1, 10, 0.5, 3, ' cm']],
+      neu: function () { this.phase = 0; this.nadel = []; for (let i = 0; i < 8; i++) this.nadel.push(-Math.PI / 2); },
+      schritt: function (dt) { this.phase += dt * W.I / 10; },
+      zeichne: function (cx, A) {
+        const I = W.I, mx = 220, my = 165, rich = I > 0 ? 1 : I < 0 ? -1 : 0;
+        // Feldlinien
+        [45, 75, 105, 135].forEach(function (rr, k) {
+          cx.globalAlpha = Math.min(1, 0.15 + Math.abs(I) / 20 * 30 / rr * 1.4); kreis(cx, mx, my, rr, null, BLAU, 1.6);
+          if (rich) for (let j = 0; j < 4; j++) {
+            const a = j * Math.PI / 2 + k * 0.4 + this.phase * 40 / rr * rich;
+            const x = mx + Math.cos(a) * rr, y = my + Math.sin(a) * rr, tx = -Math.sin(a) * rich, ty = Math.cos(a) * rich;   // im Uhrzeigersinn bei Strom hinein
+            pfeil(cx, x - tx * 8, y - ty * 8, x + tx * 8, y + ty * 8, BLAU, 1.5);
+          }
+          cx.globalAlpha = 1;
+        }, this);
+        leiterQ(cx, mx, my, 18, rich);
+        // Kompassnadeln auf r = 120 … gedreht in Feldrichtung (Feld im Uhrzeigersinn bei Strom hinein); Erdfeld nach oben
+        for (let i = 0; i < 8; i++) {
+          const a = i * Math.PI / 4 + Math.PI / 8, x = mx + Math.cos(a) * 120, y = my + Math.sin(a) * 120;
+          // Flussdichte des Leiters in µT (Nadeln bei etwa 5 cm), Tangente im Uhrzeigersinn (y nach unten): (−sin, cos)
+          const bL = Math.abs(I) * 2e-7 / 0.05 * 1e6, tx = -Math.sin(a) * rich, ty = Math.cos(a) * rich;
+          const ziel = Math.atan2(ty * bL + (-20), tx * bL);   // Erdfeld ≈ 20 µT nach oben
+          let d = ziel - this.nadel[i]; while (d > Math.PI) d -= PI2; while (d < -Math.PI) d += PI2; this.nadel[i] += d * 0.12;
+          const na = this.nadel[i];
+          kreis(cx, x, y, 15, F('--flaeche'), GRAU, 1.2);
+          cx.save(); cx.translate(x, y); cx.rotate(na);
+          cx.fillStyle = ROT; cx.beginPath(); cx.moveTo(12, 0); cx.lineTo(0, -3.5); cx.lineTo(0, 3.5); cx.closePath(); cx.fill();
+          cx.fillStyle = GRAU; cx.beginPath(); cx.moveTo(-12, 0); cx.lineTo(0, -3.5); cx.lineTo(0, 3.5); cx.closePath(); cx.fill();
+          cx.restore();
+        }
+        // Sonde
+        const r = W.r / 100, B = MU0 * Math.abs(I) / (PI2 * r), rp = 20 + W.r * 13;
+        cx.setLineDash([3, 3]); cx.strokeStyle = ORANGE; cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(mx, my); cx.lineTo(mx + rp, my); cx.stroke(); cx.setLineDash([]);
+        kreis(cx, mx + rp, my, 5, ORANGE);
+        TX(cx, 'r = ' + zs(W.r, 1) + ' cm', mx + rp, my + 16, 'center', 11, true, ORANGE);
+        TX(cx, 'Rechte-Faust-Regel: Daumen = Strom, Finger = Feld', mx, 318, 'center', 11, false, GRAU);
+        this.B = B;
+      },
+      plot: function (cx, A) {
+        const pts = []; for (let r = 0.5; r <= 10; r += 0.1) pts.push([r, MU0 * Math.abs(W.I) / (PI2 * r / 100) * 1e6]);
+        diagramm(cx, A.px, A.py, A.pw, A.ph, [{ name: 'B in µT', farbe: BLAU, punkte: pts, punkt: [W.r, this.B * 1e6] }, { name: 'Erdfeld', farbe: GRAU, punkte: [[0, 50], [10, 50]], breite: 1 }], { titel: 'Flussdichte über dem Abstand', xl: 'r in cm', xr: [0, 10], yr: [0, 400], xt: [2, 4, 6, 8, 10] });
+        return 'B = μ₀ · I / (2π · r) = ' + zs(this.B * 1e6, 1) + ' µT' + (this.B * 1e6 < 50 ? ' – schwächer als das Erdmagnetfeld (≈ 50 µT)' : '') + (W.I === 0 ? ' – ohne Strom kein Feld, die Nadeln zeigen nach Norden.' : '');
+      }
+    };
+
+    SZ.schaukel = {
+      titel: 'Leiterschaukel (Lorentzkraft)',
+      text: 'Ein Leiterstück hängt an zwei Drähten zwischen den Polen eines Hufeisenmagneten, Blick in Leiterrichtung. Fließt Strom, drückt das Magnetfeld den Leiter seitlich heraus. Richtung: Drei-Finger-Regel der rechten Hand (Daumen Strom, Zeigefinger Feld, Mittelfinger Kraft).',
+      regler: [['I', 'Strom', 0, 10, 0.5, 5, ' A'], ['dir', 'Stromrichtung', [['1', 'in die Bildebene (×)'], ['-1', 'aus der Bildebene (•)']]], ['pol', 'Magnet', [['1', 'Nordpol oben'], ['-1', 'Südpol oben']]]],
+      neu: function () { this.th = 0; this.om = 0; this.v = verlauf(); },
+      kraft: function () { const B = 0.12, l = 0.06; return B * W.I * l; },
+      schritt: function (dt) {
+        const m = 0.012, g = 9.81, L = 0.12, Fk = this.kraft() * (+W.dir) * (+W.pol) * -1;   // + = nach rechts
+        const al = (Fk * Math.cos(this.th) - m * g * Math.sin(this.th)) / (m * L) - 1.6 * this.om;
+        this.om += al * dt; this.th += this.om * dt; this.th = Math.max(-1.2, Math.min(1.2, this.th));
+        schreibe(this.v, dt, [this.th * 180 / Math.PI], 6);
+      },
+      zeichne: function (cx) {
+        const nob = +W.pol > 0, rich = +W.dir;
+        // Hufeisen
+        cx.fillStyle = GRAU; cx.fillRect(40, 40, 40, 250); cx.fillRect(40, 40, 230, 36); cx.fillRect(40, 254, 230, 36);
+        cx.fillStyle = nob ? ROT : BLAU; cx.fillRect(130, 76, 140, 26); cx.fillStyle = nob ? BLAU : ROT; cx.fillRect(130, 228, 140, 26);
+        TX(cx, nob ? 'N' : 'S', 200, 89, 'center', 14, true, '#fff'); TX(cx, nob ? 'S' : 'N', 200, 241, 'center', 14, true, '#fff');
+        for (let i = 0; i < 5; i++) { const x = 145 + i * 27; cx.globalAlpha = 0.5; pfeil(cx, x, nob ? 108 : 222, x, nob ? 222 : 108, BLAU, 1.4); cx.globalAlpha = 1; }
+        TX(cx, 'B', 282, 165, 'left', 13, true, BLAU);
+        // Schaukel: Aufhängung bei (200, 20)
+        const L = 145, px = 200, py = 20, lx = px + Math.sin(this.th) * L, ly = py + Math.cos(this.th) * L;
+        cx.strokeStyle = F('--text'); cx.lineWidth = 3; cx.beginPath(); cx.moveTo(150, py); cx.lineTo(250, py); cx.stroke();
+        cx.strokeStyle = GRAU; cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(px, py); cx.lineTo(lx, ly); cx.stroke();
+        leiterQ(cx, lx, ly, 13, W.I > 0 ? rich : 0);
+        const Fk = this.kraft() * rich * (nob ? 1 : -1) * -1;
+        if (W.I > 0) { pfeil(cx, lx + Math.sign(Fk) * 16, ly, lx + Math.sign(Fk) * (22 + Math.abs(Fk) * 900), ly, ROT, 3); TX(cx, 'F', lx + Math.sign(Fk) * (30 + Math.abs(Fk) * 900), ly - 12, 'center', 13, true, ROT); }
+        // Stromkreis-Symbol
+        TX(cx, 'Stromquelle ' + zs(W.I, 1) + ' A', 340, 30, 'center', 11, true);
+        TX(cx, 'Ausschlag ' + zs(this.th * 180 / Math.PI, 1) + '°', 340, 310, 'center', 12, true, ROT);
+      },
+      plot: function (cx, A) {
+        diagramm(cx, A.px, A.py, A.pw, A.ph, [{ name: 'Ausschlag in °', farbe: ROT, punkte: reihe(this.v, 0, 6) }], { titel: 'Auslenkung über der Zeit', xl: 't (letzte 6 s)', xr: [0, 6], yr: [-40, 40] });
+        const Fk = this.kraft();
+        return 'F = B · I · l = 0,12 T · ' + zs(W.I, 1) + ' A · 0,06 m = ' + zs(Fk * 1000, 1) + ' mN → ' + (W.I > 0 ? (Fk * (+W.dir) * (+W.pol) > 0 ? 'nach links' : 'nach rechts') : 'kein Strom, keine Kraft');
+      }
+    };
+
+    SZ.motor = {
+      titel: 'Gleichstrommotor',
+      text: 'Eine drehbare Spule (hier eine Windung, von vorn gesehen) liegt im Feld zwischen Nord- und Südpol. Die Kräfte auf die beiden Leiterseiten bilden ein Drehmoment. Der Kommutator unten rechts polt den Strom immer dann um, wenn die Spule quer zum Feld steht (Totpunkt) – ohne ihn bleibt die Spule pendelnd stehen.',
+      regler: [['U', 'Spannung', 0, 12, 0.5, 6, ' V'], ['pol', 'Polung', [['1', '+ links'], ['-1', '+ rechts']]], ['kom', 'Kommutator', [['1', 'eingebaut'], ['0', 'weggelassen']]]],
+      neu: function () { this.ph = 0.3; this.om = 0; this.v = verlauf(); this.I = 0; },
+      stromRichtung: function () { const c = Math.cos(this.ph); return (+W.kom ? (c >= 0 ? 1 : -1) : 1) * (+W.pol); },
+      schritt: function (dt) {
+        const R = 4, k = 0.6, J = 0.02, b = 0.003, reib = 0.01;
+        const r = this.stromRichtung(), c = Math.cos(this.ph);
+        // Gegenspannung: wirkt nur mit der Komponente, die gerade Moment bildet
+        const uq = -k * this.om * c * r;
+        this.I = (W.U - uq) / R;
+        if (+W.kom) this.I = Math.max(0, this.I);
+        const tau = -k * this.I * r * c;   // Kraft auf Seite A: Strom hinein → nach unten
+        const al = (tau - b * this.om - reib * Math.max(-1, Math.min(1, this.om * 5))) / J;
+        this.om += al * dt; this.om = Math.max(-60, Math.min(60, this.om)); this.ph += this.om * dt;
+        schreibe(this.v, dt, [-this.om * 60 / PI2 * (+W.pol), Math.abs(this.I)], 6);
+      },
+      zeichne: function (cx) {
+        const mx = 200, my = 165, r = 85, rich = this.stromRichtung() * (W.U > 0 ? 1 : 0);
+        cx.fillStyle = ROT; cx.fillRect(20, 80, 60, 170); cx.fillStyle = BLAU; cx.fillRect(320, 80, 60, 170);
+        TX(cx, 'N', 50, 165, 'center', 18, true, '#fff'); TX(cx, 'S', 350, 165, 'center', 18, true, '#fff');
+        for (let i = 0; i < 5; i++) { cx.globalAlpha = 0.35; pfeil(cx, 86, 105 + i * 30, 314, 105 + i * 30, BLAU, 1.2); cx.globalAlpha = 1; }
+        kreis(cx, mx, my, r, null, GRAU, 1); cx.setLineDash([]);
+        const ax = mx + Math.cos(this.ph) * r, ay = my - Math.sin(this.ph) * r, bx = mx - Math.cos(this.ph) * r, by = my + Math.sin(this.ph) * r;
+        cx.strokeStyle = KUPFER; cx.lineWidth = 4; cx.beginPath(); cx.moveTo(ax, ay); cx.lineTo(bx, by); cx.stroke();
+        kreis(cx, mx, my, 6, F('--text'));
+        leiterQ(cx, ax, ay, 13, rich); leiterQ(cx, bx, by, 13, -rich);
+        if (rich) { const Fv = 40 * Math.min(1, Math.abs(this.I) / 2 + 0.2); pfeil(cx, ax, ay + rich * 16, ax, ay + rich * (16 + Fv), ROT, 2.6); pfeil(cx, bx, by - rich * 16, bx, by - rich * (16 + Fv), ROT, 2.6); }
+        TX(cx, 'A', ax + 18, ay - 14, 'left', 12, true); TX(cx, 'B', bx + 18, by - 14, 'left', 12, true);
+        // Kommutator
+        const kx = 395, ky = 290, kr = 22;
+        if (+W.kom) {
+          const a0 = -this.ph + Math.PI / 2;
+          cx.lineWidth = 9; cx.strokeStyle = KUPFER; cx.beginPath(); cx.arc(kx, ky, kr, a0 + 0.15, a0 + Math.PI - 0.15); cx.stroke();
+          cx.strokeStyle = '#8A5524'; cx.beginPath(); cx.arc(kx, ky, kr, a0 + Math.PI + 0.15, a0 + PI2 - 0.15); cx.stroke();
+        } else { kreis(cx, kx, ky, kr, null, KUPFER, 9); }
+        const pl = +W.pol > 0;
+        cx.fillStyle = pl ? ROT : BLAU; cx.fillRect(kx - kr - 18, ky - 6, 12, 12); cx.fillStyle = pl ? BLAU : ROT; cx.fillRect(kx + kr + 6, ky - 6, 12, 12);
+        TX(cx, pl ? '+' : '−', kx - kr - 12, ky - 16, 'center', 12, true, pl ? ROT : BLAU); TX(cx, pl ? '−' : '+', kx + kr + 12, ky - 16, 'center', 12, true, pl ? BLAU : ROT);
+        TX(cx, +W.kom ? 'Kommutator' : 'Schleifringe', kx, ky + 34, 'center', 10, false, GRAU);
+        TX(cx, zs(Math.abs(this.om) * 60 / PI2, 0) + ' 1/min', 200, 20, 'center', 13, true);
+      },
+      plot: function (cx, A) {
+        diagramm(cx, A.px, A.py, A.pw, A.ph, [{ name: 'n in 1/min', farbe: GRUEN, punkte: reihe(this.v, 0, 6) }, { name: 'I · 100 in A', farbe: ORANGE, punkte: reihe(this.v, 1, 6).map(function (p) { return [p[0], p[1] * 100]; }) }], { titel: 'Drehzahl und Strom', xl: 't (letzte 6 s)', xr: [0, 6], yr: [-100, 400] });
+        if (!+W.kom) return 'Ohne Kommutator pendelt die Spule in die Stellung quer zum Feld und bleibt dort: Das Drehmoment wechselt nach jeder halben Umdrehung die Richtung.';
+        return 'Drehzahl ' + zs(Math.abs(this.om) * 60 / PI2, 0) + ' 1/min, Strom ' + zs(this.I, 2) + ' A. Je schneller der Motor, desto größer seine Gegenspannung und desto kleiner der Strom.';
+      }
+    };
+
+    SZ.induktion = {
+      titel: 'Induktion: Magnet und Spule',
+      text: 'Ein Stabmagnet bewegt sich in eine Spule hinein und wieder heraus; das Messgerät mit Nullpunkt in der Mitte zeigt die induzierte Spannung. Nur solange sich der Magnet bewegt, ändert sich der Fluss – und nur dann gibt es Spannung. Schneller bewegen, mehr Windungen: mehr Spannung.',
+      regler: [['art', 'Bewegung', [['auto', 'hin und her'], ['hand', 'von Hand']]], ['v', 'Tempo', 0.2, 2, 0.1, 1, ' ×'], ['pos', 'Position (von Hand)', 0, 100, 1, 20, ' %'], ['N', 'Windungen', [['300', '300'], ['600', '600'], ['1200', '1 200']]], ['pol', 'Magnet', [['1', 'Nordpol vorn'], ['-1', 'Südpol vorn']]]],
+      neu: function () { this.t = 0; this.x = 0.2; this.phiAlt = null; this.u = 0; this.v = verlauf(); this.zeiger = 0; },
+      umax: function () { return (+W.N) * (W.art === 'auto' ? W.v : 1) * 6.5e-4; },
+      fluss: function (x) { const d = (x - 0.78) / 0.18; return 1 / Math.pow(1 + d * d, 1.5); },
+      schritt: function (dt) {
+        this.t += dt * W.v;
+        const ziel = W.art === 'auto' ? 0.45 + 0.4 * Math.sin(this.t * 1.6) : W.pos / 100 * 0.85 + 0.05;
+        this.x += (ziel - this.x) * Math.min(1, dt * (W.art === 'auto' ? 30 : 8));
+        const phi = this.fluss(this.x) * 2e-4 * (+W.pol);
+        const uRoh = this.phiAlt === null || dt <= 0 ? 0 : -(+W.N) * (phi - this.phiAlt) / dt;
+        this.phiAlt = phi; this.u += (uRoh - this.u) * Math.min(1, dt * 25);
+        this.zeiger += (this.u - this.zeiger) * Math.min(1, dt * 10);
+        schreibe(this.v, dt, [this.u * 1000, phi * 1e6 * 4], 6);
+      },
+      zeichne: function (cx) {
+        // Spule: Achse waagerecht bei y = 130, Spule von x = 260 bis 380
+        const y = 130, sx0 = 270, sx1 = 400;
+        cx.fillStyle = 'rgba(184,115,51,.12)'; cx.fillRect(sx0, y - 40, sx1 - sx0, 80);
+        const nW = 12; cx.strokeStyle = KUPFER; cx.lineWidth = 3;
+        for (let i = 0; i < nW; i++) { const x = sx0 + 5 + i * (sx1 - sx0 - 10) / (nW - 1); cx.beginPath(); cx.ellipse(x, y, 5, 42, 0, 0, PI2); cx.stroke(); }
+        // Magnet
+        const mx = 120 + this.x * 280, mb = 110;
+        cx.save(); cx.fillStyle = +W.pol > 0 ? BLAU : ROT; cx.fillRect(mx - mb, y - 15, mb / 2, 30); cx.fillStyle = +W.pol > 0 ? ROT : BLAU; cx.fillRect(mx - mb / 2, y - 15, mb / 2, 30); cx.restore();
+        TX(cx, +W.pol > 0 ? 'S' : 'N', mx - mb * 0.75, y, 'center', 13, true, '#fff'); TX(cx, +W.pol > 0 ? 'N' : 'S', mx - mb * 0.25, y, 'center', 13, true, '#fff');
+        // Zuleitungen zum Messgerät
+        const gx = 335, gy = 260, gr = 52;
+        cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.beginPath(); cx.moveTo(sx0 + 5, y + 42); cx.lineTo(sx0 + 5, gy); cx.lineTo(gx - gr, gy); cx.moveTo(sx1 - 5, y + 42); cx.lineTo(sx1 - 5, gy); cx.lineTo(gx + gr, gy); cx.stroke();
+        kreis(cx, gx, gy, gr, F('--flaeche'), F('--text'), 2);
+        cx.strokeStyle = GRAU; cx.lineWidth = 1; for (let i = -4; i <= 4; i++) { const a = -Math.PI / 2 + i * 0.25; cx.beginPath(); cx.moveTo(gx + Math.cos(a) * gr * 0.78, gy + Math.sin(a) * gr * 0.78); cx.lineTo(gx + Math.cos(a) * gr * 0.9, gy + Math.sin(a) * gr * 0.9); cx.stroke(); }
+        const skal = Math.max(-1, Math.min(1, this.zeiger / this.umax())), a = -Math.PI / 2 + skal * 1.0;
+        cx.strokeStyle = ROT; cx.lineWidth = 2.5; cx.beginPath(); cx.moveTo(gx, gy + 8); cx.lineTo(gx + Math.cos(a) * gr * 0.85, gy + 8 + Math.sin(a) * gr * 0.85); cx.stroke();
+        TX(cx, 'mV', gx, gy + 24, 'center', 10, true, GRAU);
+        // Induktionsstrom-Richtung (Lenz)
+        if (Math.abs(this.u) > 2e-4) {
+          const naht = this.u * (+W.pol) < 0;   // Fluss nimmt zu
+          TX(cx, naht ? 'Spule stößt ab' : 'Spule zieht an', (sx0 + sx1) / 2, y - 58, 'center', 11, true, GRUEN);
+          const pol = naht ? (+W.pol > 0 ? 'N' : 'S') : (+W.pol > 0 ? 'S' : 'N');
+          TX(cx, pol, sx0 - 10, y - 50, 'center', 14, true, pol === 'N' ? ROT : BLAU);
+        }
+        TX(cx, 'Windungen: ' + zs(+W.N, 0), 335, 20, 'center', 11, true);
+      },
+      plot: function (cx, A) {
+        const max = Math.ceil(this.umax() * 1000 / 10) * 10;
+        diagramm(cx, A.px, A.py, A.pw, A.ph, [{ name: 'u in mV', farbe: GRUEN, punkte: reihe(this.v, 0, 6) }, { name: 'Fluss (relativ)', farbe: BLAU, punkte: reihe(this.v, 1, 6).map(function (p) { return [p[0], p[1] * max / 1000 * 1.2]; }), breite: 1.4 }], { titel: 'Induzierte Spannung', xl: 't (letzte 6 s)', xr: [0, 6], yr: [-Math.max(1, max), Math.max(1, max)] });
+        return 'u = −N · ΔΦ/Δt: aktuell ' + zs(this.u * 1000, 2) + ' mV.' + (Math.abs(this.u) < 2e-5 ? ' Magnet in Ruhe → keine Spannung.' : ' Lenz: Der Induktionsstrom macht die Spule zu einem Magneten, der die Bewegung bremst.');
+      }
+    };
+
+    SZ.generator = {
+      titel: 'Wechselstromgenerator',
+      text: 'Eine Spule dreht sich im Feld zwischen zwei Polen. Der Fluss durch die Spule ändert sich sinusförmig, die induzierte Spannung auch – am größten, wenn die Spulenebene parallel zum Feld liegt und die Leiterseiten das Feld senkrecht durchschneiden. Mit Schleifringen entsteht Wechselspannung, mit einem Kommutator pulsierende Gleichspannung. Darstellung in Zeitlupe.',
+      regler: [['n', 'Drehzahl', 0, 3000, 50, 1500, ' 1/min'], ['N', 'Windungen', 20, 400, 10, 100, ''], ['abn', 'Abnahme', [['ring', 'Schleifringe'], ['kom', 'Kommutator']]]],
+      neu: function () { this.a = 0; this.v = verlauf(); this.zeitAnz = 0; },
+      werte: function () { const Bf = 0.25, Af = 0.0025, om = PI2 * W.n / 60; return { uh: W.N * Bf * Af * om, om: om }; },
+      schritt: function (dt) {
+        // Zeitlupe: dargestellte Zeit 1/50 der echten; Diagramm in echter Zeit über 2 Perioden bei 50 Hz
+        const g = this.werte(); this.a += g.om * dt / 50;
+        let u = g.uh * Math.sin(this.a); if (W.abn === 'kom') u = Math.abs(u);
+        this.u = u; schreibe(this.v, dt / 50 * 1000, [u], 40);
+      },
+      zeichne: function (cx) {
+        const mx = 200, my = 150;
+        cx.fillStyle = ROT; cx.fillRect(20, 70, 55, 160); cx.fillStyle = BLAU; cx.fillRect(325, 70, 55, 160);
+        TX(cx, 'N', 47, 150, 'center', 18, true, '#fff'); TX(cx, 'S', 352, 150, 'center', 18, true, '#fff');
+        for (let i = 0; i < 4; i++) { cx.globalAlpha = 0.3; pfeil(cx, 80, 95 + i * 36, 320, 95 + i * 36, BLAU, 1.2); cx.globalAlpha = 1; }
+        // Spule als Rechteck, drehbar um die senkrechte Achse; sichtbare Breite = cos
+        const w = 100 * Math.cos(this.a), h = 120, vorne = Math.sin(this.a) >= 0;
+        cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.setLineDash([4, 4]); cx.beginPath(); cx.moveTo(mx, my - h / 2 - 25); cx.lineTo(mx, my + h / 2 + 40); cx.stroke(); cx.setLineDash([]);
+        cx.fillStyle = 'rgba(184,115,51,' + (0.08 + 0.18 * Math.abs(Math.sin(this.a))) + ')'; cx.fillRect(mx - Math.abs(w), my - h / 2, 2 * Math.abs(w), h);
+        cx.strokeStyle = KUPFER; cx.lineWidth = 5; cx.strokeRect(mx - w, my - h / 2, 2 * w, h);
+        const st = Math.sin(this.a);
+        if (Math.abs(st) > 0.1) { TX(cx, st > 0 ? '↑' : '↓', mx + w + (w > 0 ? 10 : -10), my, 'center', 16, true, GRUEN); TX(cx, st > 0 ? '↓' : '↑', mx - w + (w > 0 ? -10 : 10), my, 'center', 16, true, GRUEN); }
+        // Schleifringe / Kommutator
+        const ry = my + h / 2 + 22;
+        if (W.abn === 'ring') { cx.fillStyle = KUPFER; cx.fillRect(mx - 18, ry - 6, 36, 8); cx.fillRect(mx - 18, ry + 6, 36, 8); }
+        else { cx.fillStyle = KUPFER; cx.fillRect(mx - 18, ry, 36, 12); cx.fillStyle = F('--flaeche2'); cx.fillRect(mx - 2 + 14 * Math.sin(this.a), ry, 4, 12); }
+        cx.fillStyle = GRAU; cx.fillRect(mx - 32, ry - 2, 10, 10); cx.fillRect(mx + 22, ry + 4, 10, 10);
+        // Lampe
+        const lx = 380, ly = 290, hell = Math.min(1, Math.pow(this.u / Math.max(0.3, this.werte().uh), 2));
+        cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(mx - 27, ry + 8); cx.lineTo(mx - 27, 318); cx.lineTo(lx, 318); cx.lineTo(lx, ly + 14); cx.moveTo(mx + 27, ry + 14); cx.lineTo(mx + 27, 306); cx.lineTo(lx - 30, 306); cx.lineTo(lx - 30, ly); cx.lineTo(lx - 14, ly); cx.stroke();
+        kreis(cx, lx, ly, 14, 'rgba(255,200,0,' + (0.1 + 0.85 * hell) + ')', F('--text'), 1.5);
+        TX(cx, zs(W.n, 0) + ' 1/min · f = ' + zs(W.n / 60, 1) + ' Hz', 200, 18, 'center', 12, true);
+      },
+      plot: function (cx, A) {
+        const g = this.werte(), m = Math.max(0.5, Math.ceil(g.uh));
+        diagramm(cx, A.px, A.py, A.pw, A.ph, [{ name: 'u in V', farbe: LILA, punkte: reihe(this.v, 0, 40) }], { titel: 'Spannung (letzte 40 ms)', xl: 't in ms', xr: [0, 40], yr: [W.abn === 'kom' ? -m * 0.2 : -m, m], xt: [0, 10, 20, 30, 40] });
+        return 'û = N · B · A · ω = ' + zs(W.N, 0) + ' · 0,25 T · 25 cm² · ' + zs(g.om, 1) + ' 1/s = ' + zs(g.uh, 2) + ' V, Effektivwert ' + zs(g.uh / Math.SQRT2 * (W.abn === 'kom' ? 1 : 1), 2) + ' V' + (W.abn === 'kom' ? ' (Kommutator: Mittelwert ' + zs(g.uh * 2 / Math.PI, 2) + ' V)' : '') + '.';
+      }
+    };
+
+    SZ.drehstrom = {
+      titel: 'Drehstromgenerator',
+      text: 'Ein Polrad (Magnet) dreht sich in der Mitte; drei Spulen sind um 120° versetzt angeordnet. Jede Spule bekommt dieselbe Spannung, aber jeweils eine Drittelumdrehung später: drei um 120° verschobene Spannungen. In jedem Augenblick ist ihre Summe null. Darstellung in Zeitlupe.',
+      regler: [['n', 'Drehzahl', 0, 3000, 50, 3000, ' 1/min'], ['p', 'Polpaare', [['1', '1'], ['2', '2']]]],
+      neu: function () { this.a = 0; this.v = verlauf(); },
+      schritt: function (dt) {
+        const om = PI2 * W.n / 60; this.a += om * dt / 50;
+        const p = +W.p, uh = 325 * W.n / 3000;
+        this.u = [0, 1, 2].map(function (k) { return uh * Math.sin(p * this.a - k * PI2 / 3); }, this);
+        schreibe(this.v, dt / 50 * 1000, this.u, 40);
+      },
+      zeichne: function (cx) {
+        const mx = 200, my = 165, R = 120, p = +W.p;
+        kreis(cx, mx, my, R + 18, 'rgba(107,119,133,.15)', GRAU, 2); kreis(cx, mx, my, R - 18, F('--flaeche2'), GRAU, 1.5);
+        const FAR = [GELB, GRUEN, LILA], NAM = ['U', 'V', 'W'];
+        for (let j = 0; j < p; j++) for (let k = 0; k < 3; k++) {
+          const ang = -Math.PI / 2 + (j * PI2 + k * PI2 / 3) / p, x = mx + Math.cos(ang) * R, y = my + Math.sin(ang) * R;
+          cx.save(); cx.translate(x, y); cx.rotate(ang + Math.PI / 2);
+          const hell = Math.abs(this.u ? this.u[k] : 0) / 325;
+          cx.fillStyle = FAR[k]; cx.globalAlpha = 0.35 + 0.65 * hell; cx.fillRect(-16, -12, 32, 24); cx.globalAlpha = 1;
+          cx.restore();
+          TX(cx, NAM[k] + (p > 1 ? (j + 1) : ''), mx + Math.cos(ang) * (R + 34), my + Math.sin(ang) * (R + 34), 'center', 12, true, FAR[k]);
+        }
+        cx.save(); cx.translate(mx, my); cx.rotate(this.a);
+        for (let j = 0; j < 2 * p; j++) { cx.save(); cx.rotate(j * Math.PI / p); cx.fillStyle = j % 2 ? BLAU : ROT; cx.fillRect(-14, -R + 26, 28, R - 30); cx.restore(); }
+        cx.restore();
+        for (let j = 0; j < 2 * p; j++) { const a = this.a + j * Math.PI / p - Math.PI / 2; TX(cx, j % 2 ? 'S' : 'N', mx + Math.cos(a) * (R - 40), my + Math.sin(a) * (R - 40), 'center', 12, true, '#fff'); }
+        kreis(cx, mx, my, 10, F('--text'));
+        // Lampen
+        [0, 1, 2].forEach(function (k) { const h = Math.abs(this.u ? this.u[k] : 0) / 325; kreis(cx, 380, 60 + k * 70, 16, 'rgba(255,200,0,' + (0.1 + 0.85 * h * h) + ')', FAR[k], 2.5); TX(cx, 'L' + (k + 1), 380, 88 + k * 70, 'center', 10, true, FAR[k]); }, this);
+        TX(cx, zs(W.n, 0) + ' 1/min · f = ' + zs(p * W.n / 60, 1) + ' Hz', 380, 318, 'center', 11, true);
+      },
+      plot: function (cx, A) {
+        const FAR = [GELB, GRUEN, LILA], v = this.v;
+        const sum = this.u ? this.u[0] + this.u[1] + this.u[2] : 0;
+        diagramm(cx, A.px, A.py, A.pw, A.ph, [0, 1, 2].map(function (k) { return { name: 'u' + (k + 1), farbe: FAR[k], punkte: reihe(v, k, 40) }; }), { titel: 'Strangspannungen (letzte 40 ms)', xl: 't in ms', xr: [0, 40], yr: [-350, 350], xt: [0, 10, 20, 30, 40] });
+        return 'u1 = ' + zs(this.u ? this.u[0] : 0, 0) + ' V, u2 = ' + zs(this.u ? this.u[1] : 0, 0) + ' V, u3 = ' + zs(this.u ? this.u[2] : 0, 0) + ' V, Summe ' + zs(Math.abs(sum) < 0.5 ? 0 : sum, 0) + ' V. f = p · n / 60 = ' + zs(+W.p * W.n / 60, 1) + ' Hz.';
+      }
+    };
+
+    SZ.klingel = {
+      titel: 'Elektrische Klingel',
+      text: 'Wird der Taster gedrückt, fließt Strom über den Unterbrecherkontakt durch den Elektromagneten. Er zieht den Anker an, der Hammer schlägt auf die Glocke – und dabei öffnet sich der Kontakt. Der Strom bricht ab, die Blattfeder zieht den Anker zurück, der Kontakt schließt wieder: Selbstunterbrecher, wie beim Summer und Wagnerschen Hammer.',
+      regler: [['taster', 'Taster', [['0', 'offen'], ['1', 'gedrückt']]], ['U', 'Spannung', 3, 12, 0.5, 6, ' V'], ['abst', 'Kontaktschraube', 0.1, 0.6, 0.05, 0.3, '']],
+      neu: function () { this.a = 0; this.va = 0; this.schlaege = []; this.t = 0; this.v = verlauf(); this.i = 0; this.klang = 0; },
+      schritt: function (dt) {
+        const n = Math.max(1, Math.ceil(dt / 0.001)), h = dt / n;
+        for (let k = 0; k < n; k++) {
+          this.t += h;
+          const kontakt = this.a < W.abst, ein = +W.taster && kontakt;
+          const iz = ein ? W.U / 3 : 0; this.i += (iz - this.i) * Math.min(1, h / 0.004);
+          const Fm = 900 * this.i * this.i / Math.pow(1.2 - this.a * 0.5, 2), Ff = 600 * this.a + 4;
+          this.va += (Fm - Ff - 8 * this.va) * h; this.a += this.va * h;
+          if (this.a < 0) { this.a = 0; this.va = Math.abs(this.va) * 0.2; }
+          if (this.a > 1) { this.a = 1; if (this.va > 1) { this.schlaege.push(this.t); this.klang = 1; } this.va = -Math.abs(this.va) * 0.45; }
+        }
+        this.klang *= Math.exp(-dt * 6);
+        while (this.schlaege.length && this.t - this.schlaege[0] > 1) this.schlaege.shift();
+        schreibe(this.v, dt, [this.i, this.a], 1);
+      },
+      zeichne: function (cx) {
+        const ein = +W.taster && this.a < W.abst, strom = this.i > 0.05, LF = strom ? ROT : F('--text');
+        // Elektromagnet (U-Kern mit Spulen)
+        cx.fillStyle = GRAU; cx.fillRect(150, 160, 120, 16); cx.fillRect(150, 100, 22, 76); cx.fillRect(248, 100, 22, 76);
+        cx.fillStyle = KUPFER; cx.globalAlpha = strom ? 1 : 0.6; cx.fillRect(144, 118, 34, 40); cx.fillRect(242, 118, 34, 40); cx.globalAlpha = 1;
+        // Anker an Blattfeder (Lager links bei x = 120, y = 70), Hammer rechts
+        const kipp = -this.a * 0.22, ax = 120, ay = 80;
+        cx.save(); cx.translate(ax, ay); cx.rotate(-kipp);
+        cx.fillStyle = '#5C6670'; cx.fillRect(10, 0, 180, 10);   // Anker
+        cx.strokeStyle = GRAU; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(190, 5); cx.lineTo(250, 5); cx.stroke();   // Hammerstiel
+        kreis(cx, 258, 5, 10, F('--text'));                         // Hammerkopf
+        cx.fillStyle = KUPFER; cx.fillRect(60, -8, 10, 8);           // Kontaktfeder
+        cx.restore();
+        cx.fillStyle = GRAU; cx.fillRect(100, 60, 20, 60); TX(cx, 'Blattfeder', 110, 135, 'center', 9, false, GRAU);
+        // Kontaktschraube oberhalb des Ankers
+        const kx = ax + 65 * Math.cos(kipp), ky = ay - 65 * Math.sin(kipp);
+        cx.fillStyle = '#868E96'; cx.fillRect(kx - 5, 34, 10, ky - 8 - 34 - (this.a < W.abst ? 0 : 2) - 4 + 2);
+        TX(cx, 'Unterbrecher', kx + 10, 34, 'left', 9, false, GRAU);
+        kreis(cx, kx, ky - 9, 3, ein ? GRUEN : ROT);
+        // Glocke
+        const gx = 400, gy = 80 - Math.sin(-0.22) * 0, sch = Math.sin(this.t * 90) * this.klang * 3;
+        cx.fillStyle = GELB; cx.beginPath(); cx.arc(gx + sch, gy + 20, 32, Math.PI, 0); cx.lineTo(gx + 36 + sch, gy + 26); cx.lineTo(gx - 36 + sch, gy + 26); cx.closePath(); cx.fill();
+        if (this.klang > 0.2) { cx.strokeStyle = GELB; cx.lineWidth = 2; for (let i = 1; i <= 2; i++) { cx.beginPath(); cx.arc(gx, gy + 10, 40 + i * 9, -0.6, 0.6); cx.stroke(); } }
+        // Stromkreis: Batterie unten, Taster
+        cx.strokeStyle = LF; cx.lineWidth = 2;
+        cx.beginPath(); cx.moveTo(kx, 34); cx.lineTo(kx, 22); cx.lineTo(30, 22); cx.lineTo(30, 280); cx.lineTo(90, 280); cx.stroke();
+        cx.fillStyle = F('--text'); cx.fillRect(90, 266, 4, 28); cx.fillRect(100, 272, 4, 16); TX(cx, zs(W.U, 1) + ' V', 97, 304, 'center', 10, true);
+        cx.beginPath(); cx.moveTo(104, 280); cx.lineTo(160, 280); cx.stroke();
+        kreis(cx, 160, 280, 3, LF); kreis(cx, 200, 280, 3, LF);
+        cx.beginPath(); cx.moveTo(160, 280); if (+W.taster) cx.lineTo(200, 280); else cx.lineTo(196, 262); cx.stroke();
+        TX(cx, 'Taster', 180, 298, 'center', 10, false, GRAU);
+        cx.beginPath(); cx.moveTo(200, 280); cx.lineTo(300, 280); cx.lineTo(300, 140); cx.lineTo(276, 140); cx.moveTo(178, 140); cx.lineTo(196, 140); cx.lineTo(196, 200); cx.lineTo(110, 200); cx.lineTo(110, 120); cx.stroke();
+        TX(cx, 'Elektromagnet', 210, 196, 'center', 10, false, GRAU);
+        TX(cx, 'Glocke', gx, gy + 44, 'center', 10, false, GRAU);
+        TX(cx, this.schlaege.length + ' Schläge/s', 400, 300, 'center', 12, true, GELB);
+      },
+      plot: function (cx, A) {
+        diagramm(cx, A.px, A.py, A.pw, A.ph, [{ name: 'i in A', farbe: ROT, punkte: reihe(this.v, 0, 1) }, { name: 'Anker', farbe: GRAU, punkte: reihe(this.v, 1, 1).map(function (p) { return [p[0], p[1] * 4]; }), breite: 1.4 }], { titel: 'Strom und Ankerweg (letzte Sekunde)', xl: 't in s', xr: [0, 1], yr: [0, 4.5] });
+        if (!+W.taster) return 'Taster offen: kein Strom, die Feder hält den Anker am Kontakt.';
+        return 'Selbstunterbrecher: ' + this.schlaege.length + ' Schläge je Sekunde. Mit der Kontaktschraube ändert sich, wie weit der Anker ausholt – und damit der Takt.';
+      }
+    };
+
+    // =====================================================================
+    // Rahmen: Auswahl, Regler, Schleife
+    // =====================================================================
+    const REIHE = ['leiter', 'schaukel', 'motor', 'induktion', 'generator', 'drehstrom', 'klingel'];
+    let aktiv = 'leiter';
+    const cv = $('emBild'), cx = cv.getContext('2d');
+    let BB = 600, HH = 420;
+    const knoepfe = REIHE.map(function (k) {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'knopf'; b.textContent = SZ[k].titel; b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', function () { waehle(k); try { history.replaceState(null, '', '#' + k); } catch (e) { /* egal */ } });
+      $('szenen').append(b); return b;
+    });
+    function waehle(k) {
+      if (!SZ[k]) k = 'leiter';
+      aktiv = k; const s = SZ[k]; W = {};
+      knoepfe.forEach(function (b, i) { b.setAttribute('aria-pressed', REIHE[i] === k ? 'true' : 'false'); });
+      $('emText').textContent = s.text;
+      const ziel = $('emRegler'); ziel.textContent = '';
+      s.regler.forEach(function (r) {
+        const l = document.createElement('label'); l.append(document.createTextNode(r[1] + ' '));
+        if (Array.isArray(r[2])) {
+          const sel = document.createElement('select'); sel.setAttribute('data-nicht-merken', '');
+          r[2].forEach(function (o) { const op = document.createElement('option'); op.value = o[0]; op.textContent = o[1]; sel.append(op); });
+          W[r[0]] = r[2][0][0];
+          sel.addEventListener('change', function () { W[r[0]] = sel.value; });
+          l.append(sel);
+        } else {
+          const inp = document.createElement('input'); inp.type = 'range'; inp.min = r[2]; inp.max = r[3]; inp.step = r[4]; inp.value = r[5]; inp.setAttribute('data-nicht-merken', '');
+          const out = document.createElement('output'); const fmt = function () { out.textContent = zs(+inp.value, r[4] < 1 ? (r[4] < 0.1 ? 2 : 1) : 0) + r[6]; };
+          W[r[0]] = +inp.value; fmt();
+          inp.addEventListener('input', function () { W[r[0]] = +inp.value; fmt(); });
+          l.append(inp, out);
+        }
+        ziel.append(l);
+      });
+      const nb = document.createElement('button'); nb.type = 'button'; nb.className = 'knopf-leise'; nb.textContent = 'Neu starten';
+      nb.addEventListener('click', function () { s.neu(); }); ziel.append(nb);
+      s.neu();
+      cv.setAttribute('aria-label', 'Animation: ' + s.titel);
+    }
+    function groesse() {
+      const d = Math.min(2, window.devicePixelRatio || 1); BB = cv.clientWidth || 600;
+      HH = BB >= 700 ? 400 : Math.round(BB * 330 / 440 + 240);
+      cv.style.height = HH + 'px'; cv.width = Math.round(BB * d); cv.height = Math.round(HH * d); cx.setTransform(d, 0, 0, d, 0, 0);
+    }
+    let breiteAlt = 0, letzt = performance.now(), meldungAlt = '', meldZeit = 0;
+    function schleife(t) {
+      if (cv.clientWidth !== breiteAlt) { breiteAlt = cv.clientWidth; groesse(); }
+      const dt = Math.min(0.05, Math.max(0, (t - letzt) / 1000)); letzt = t;
+      const s = SZ[aktiv];
+      try {
+        s.schritt(dt);
+        const d = Math.min(2, window.devicePixelRatio || 1); cx.setTransform(d, 0, 0, d, 0, 0); cx.clearRect(0, 0, BB, HH);
+        const A = aufteilung(BB, HH);
+        cx.save(); cx.translate(A.ox, A.oy); cx.scale(A.s, A.s); s.zeichne(cx, A); cx.restore();
+        const m = s.plot(cx, A);
+        if (m !== meldungAlt && t - meldZeit > 250) { $('emMeldung').textContent = m; meldungAlt = m; meldZeit = t; }
+      } catch (e) { s.neu(); }
+      requestAnimationFrame(schleife);
+    }
+    Array.prototype.forEach.call(document.querySelectorAll('#em-formeln [data-tex]'), function (el) { Formel.setze(el, el.getAttribute('data-tex'), true); });
+    waehle(REIHE.indexOf(location.hash.slice(1)) >= 0 ? location.hash.slice(1) : 'leiter');
+    requestAnimationFrame(schleife);
+  })();
+  </script>
+</body>
+</html>

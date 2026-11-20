@@ -254,6 +254,9 @@
         <li><a href="gebaeudeautomation/smart-home.html">Gebäudeautomation und Smart Home</a> – Gebäudeautomation und Smart Home verstehen und selbst bauen: Automationspyramide, zentrale und dezentrale Systeme, KNX, LON, BACnet, Modbus, DALI, EnOcean, Zigbee, Z-Wave, Thread und Matter, MQTT und Open-Source-Zentralen – mit Smart-Home-Simulator: eigene Räume, Geschosse und 18 Gerätearten, Wenn-Und-Dann-Regeln mit Verzögerung, Zeitraum, Sonne und Ereignisprotokoll, sowie BACnet-Prioritäten.</li>
         <li><a href="steuerung/sps.html">SPS-Simulator: Strukturierter Text und Zyklus</a> – SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, Signale, Öffner und Schließer, Adressen, Datentypen und die Sprachen nach IEC 61131-3 – mit realistischem SPS-Simulator: Strukturierter Text mit eigenen Funktionsbausteinen, Funktionen, Feldern, globalen Variablen und AT-Adressen, Timer, Zähler, Watchdog, Forcen und Anlagenmodellen vom Motor bis zum Mischbehälter.</li>
         <li><a href="steuerung/kleinsteuerung.html">Kleinsteuerung (Logikmodul): Funktionsplan</a> – Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.</li>
+        <li><a href="elektro/drehfeldmaschinen.html">Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</a> – Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment und Wirkungsgrad vom Typenschild, Stern und Dreieck am Klemmbrett, Drehrichtung, Kennlinie der Asynchronmaschine mit Motor-, Generator- und Bremsbetrieb und die Synchronmaschine mit Lastwinkel – mit Animationen zum Ausprobieren.</li>
+        <li><a href="elektro/motorpruefstand.html">Motorprüfstand: Asynchronmotor messen</a> – Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor: Typenschild auswerten, sicher anschließen, Stern oder Dreieck am Klemmbrett, Arbeitspunkte von Hand anfahren und Kennlinien im Hochlauf aufnehmen – Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad, Generatorbetrieb, Strombegrenzung und Erwärmung, mit Messtabelle und CSV.</li>
+        <li><a href="elektro/elektromagnetismus.html">Elektromagnetismus: Animationen</a> – Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.</li>
       </ul>
     </section>
   </noscript>
@@ -1257,6 +1260,33 @@
         themen: ['Kleinsteuerung', 'Logikmodul', 'Steuerrelais', 'Funktionsplan', 'FUP', 'UND', 'ODER', 'NICHT', 'XOR', 'Einschaltverzögerung', 'Ausschaltverzögerung', 'Wischrelais', 'Treppenlichtschalter', 'Stromstoßrelais', 'Selbsthaltung', 'Taktgeber', 'Zähler', 'Schaltuhr', 'Analogschwellwert', 'Hysterese', 'Rolltor'],
         text: 'Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.',
         tex: 'f = \\frac{1}{T_\\text{ein} + T_\\text{aus}}'
+      },
+      {
+        titel: 'Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine',
+        gruppe: 'Grundlagen',
+        pfad: 'elektro/drehfeldmaschinen.html',
+        bereich: 'Elektrotechnik',
+        themen: ['Drehfeld', 'Drehfeldmaschine', 'Asynchronmaschine', 'Synchronmaschine', 'Käfigläufer', 'Schleifringläufer', 'Polrad', 'Polpaarzahl', 'synchrone Drehzahl', 'Schlupf', 'Klemmbrett', 'Stern', 'Dreieck', 'Drehrichtung', 'Rechtslauf', 'Kippmoment', 'Generatorbetrieb', 'Lastwinkel', 'Typenschild', 'DIN EN 60034'],
+        text: 'Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment und Wirkungsgrad vom Typenschild, Stern und Dreieck am Klemmbrett, Drehrichtung, Kennlinie der Asynchronmaschine mit Motor-, Generator- und Bremsbetrieb und die Synchronmaschine mit Lastwinkel – mit Animationen zum Ausprobieren.',
+        tex: 'n_0 = \\frac{60 \\cdot f}{p}'
+      },
+      {
+        titel: 'Motorprüfstand: Asynchronmotor messen',
+        gruppe: 'Grundlagen',
+        pfad: 'elektro/motorpruefstand.html',
+        bereich: 'Elektrotechnik',
+        themen: ['Motorprüfstand', 'Prüfstand', 'Asynchronmotor', 'Kennlinie', 'Hochlauf', 'Drehmoment', 'Wirkungsgrad', 'Leistungsfaktor', 'Phasenwinkel', 'Scheinleistung', 'Wirkleistung', 'mechanische Leistung', 'Generatorbetrieb', 'Typenschild', 'Toleranz', 'Erwärmung', 'Motorschutz', 'Messung', 'Versuch'],
+        text: 'Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor: Typenschild auswerten, sicher anschließen, Stern oder Dreieck am Klemmbrett, Arbeitspunkte von Hand anfahren und Kennlinien im Hochlauf aufnehmen – Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad, Generatorbetrieb, Strombegrenzung und Erwärmung, mit Messtabelle und CSV.',
+        tex: '\\eta = \\frac{P_\\text{mech}}{\\sqrt{3}\\, U I \\cos\\varphi}'
+      },
+      {
+        titel: 'Elektromagnetismus: Animationen',
+        gruppe: 'Grundlagen',
+        pfad: 'elektro/elektromagnetismus.html',
+        bereich: 'Elektrotechnik',
+        themen: ['Elektromagnetismus', 'Magnetfeld', 'Leiter', 'Rechte-Faust-Regel', 'Lorentzkraft', 'Leiterschaukel', 'Drei-Finger-Regel', 'Gleichstrommotor', 'Kommutator', 'Induktion', 'Induktionsgesetz', 'Lenzsche Regel', 'Generator', 'Wechselstromgenerator', 'Drehstromgenerator', 'Schleifringe', 'Elektromagnet', 'Klingel', 'Selbstunterbrecher', 'Fluss'],
+        text: 'Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.',
+        tex: 'u_\\text{i} = -N \\cdot \\frac{\\Delta \\Phi}{\\Delta t}'
       }
     ];
 

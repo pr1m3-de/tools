@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motorprüfstand: Drehstrom-Asynchronmotor messen – Formeln &amp; Rechner</title>
+  <meta name="description" content="Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor: Typenschild auswerten, sicher anschließen, Stern oder Dreieck am Klemmbrett, Arbeitspunkte von Hand anfahren und Kennlinien im Hochlauf aufnehmen – Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad, Generatorbetrieb, Strombegrenzung und Erwärmung, mit Messtabelle und CSV.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/motorpruefstand.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Motorprüfstand: Drehstrom-Asynchronmotor messen">
+  <meta property="og:description" content="Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor: Typenschild auswerten, sicher anschließen, Stern oder Dreieck am Klemmbrett, Arbeitspunkte von Hand anfahren und Kennlinien im Hochlauf aufnehmen – Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad, Generatorbetrieb, Strombegrenzung und Erwärmung, mit Messtabelle und CSV.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/motorpruefstand.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Motorprüfstand: Drehstrom-Asynchronmotor messen">
+  <meta name="twitter:description" content="Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor: Typenschild auswerten, sicher anschließen, Stern oder Dreieck am Klemmbrett, Arbeitspunkte von Hand anfahren und Kennlinien im Hochlauf aufnehmen – Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad, Generatorbetrieb, Strombegrenzung und Erwärmung, mit Messtabelle und CSV.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/motorpruefstand.html#seite","name":"Motorprüfstand: Drehstrom-Asynchronmotor messen","url":"https://tools.pr1m3.de/elektro/motorpruefstand.html","inLanguage":"de","description":"Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor: Typenschild auswerten, sicher anschließen, Stern oder Dreieck am Klemmbrett, Arbeitspunkte von Hand anfahren und Kennlinien im Hochlauf aufnehmen – Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad, Generatorbetrieb, Strombegrenzung und Erwärmung, mit Messtabelle und CSV.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/motorpruefstand.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/motorpruefstand.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Motorprüfstand: Drehstrom-Asynchronmotor messen","item":"https://tools.pr1m3.de/elektro/motorpruefstand.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/motorpruefstand.html#fragen","mainEntity":[{"@type":"Question","name":"Warum ist die aufgenommene Leistung größer als die auf dem Typenschild?","acceptedAnswer":{"@type":"Answer","text":"Auf dem Typenschild steht die mechanische Leistung an der Welle. Aufgenommen wird zusätzlich alles, was im Motor als Wärme verloren geht. Beim Beispielmotor sind das rund 130 W bei 250 W Abgabe."}},{"@type":"Question","name":"Was bedeutet ein Phasenwinkel über 90°?","acceptedAnswer":{"@type":"Answer","text":"Die Wirkleistung ist negativ: Der Motor gibt elektrische Leistung ans Netz ab und arbeitet als Generator. Den Blindstrom für sein Magnetfeld nimmt er weiter aus dem Netz."}},{"@type":"Question","name":"Wie kehre ich die Drehrichtung um?","acceptedAnswer":{"@type":"Answer","text":"Zwei Außenleiter tauschen, üblicherweise L1 und L3. Das Drehfeld läuft dann andersherum, der Läufer folgt."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/motorpruefstand.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3, .wissen-karte h4 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .ps-raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+    @media (max-width: 1000px) { .ps-raster { grid-template-columns: minmax(0, 1fr); } }
+    .ps-raster > * { min-width: 0; }
+    .typenschild { border: 2px solid #8C939B; border-radius: 10px; padding: 10px 14px; background: linear-gradient(135deg, #E9ECEF, #F8F9FA); color: #1B1E21; font-family: var(--technik); max-width: 460px; }
+    .typenschild .kopf { display: flex; justify-content: space-between; font-weight: 700; border-bottom: 1px solid #8C939B; padding-bottom: 4px; margin-bottom: 6px; }
+    .typenschild table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+    .typenschild td { padding: 2px 4px; border-bottom: 1px dotted #ADB5BD; }
+    .typenschild td:nth-child(2n) { font-weight: 700; text-align: right; }
+    .schritte-liste { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 6px; }
+    .schritte-liste label { display: flex; gap: 8px; align-items: flex-start; padding: 7px 9px; border: 1px solid var(--linie); border-radius: 8px; background: var(--flaeche2); cursor: pointer; font-size: .93rem; line-height: 1.4; }
+    .schritte-liste input { width: 20px; height: 20px; flex: none; margin-top: 1px; }
+    .schritte-liste .erledigt { border-color: #2F9E44; }
+    .ps-leiste { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 8px 0; }
+    .ps-leiste label { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .ps-leiste select, .ps-leiste input:not([type=range]):not([type=checkbox]) { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; min-width: 0; }
+    .ps-leiste input.zahl { width: 6em; font-family: var(--technik); }
+    .ps-leiste input[type=range] { width: 180px; min-height: 30px; }
+    .ps-leiste input[type=checkbox] { width: 22px; height: 22px; }
+    .ps-leiste label:has(input[type=checkbox]) { min-height: 32px; }
+    .reiter { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0 10px; }
+    .reiter .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .knopf.start { background: #2F9E44; color: #fff; border-color: #2F9E44; }
+    .knopf.stopp { background: #E03131; color: #fff; border-color: #E03131; }
+    .anzeige { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(112px, 100%), 1fr)); gap: 6px; margin: 8px 0; }
+    .anzeige div { background: #11161B; color: #E9ECEF; border-radius: 8px; padding: 6px 8px; font-family: var(--technik); }
+    .anzeige small { display: block; color: #8C939B; font-size: .72rem; }
+    .anzeige b { font-size: 1.15rem; }
+    .status { display: inline-block; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-family: var(--technik); }
+    .status.bereit { background: #2F9E44; color: #fff; }
+    .status.teste { background: #F59F00; color: #fff; }
+    .status.aus { background: #ADB5BD; color: #fff; }
+    .status.fehler { background: #E03131; color: #fff; }
+    .sim-bild { width: 100%; display: block; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); touch-action: manipulation; }
+    .kurven-wahl { display: flex; flex-wrap: wrap; gap: 6px 12px; margin: 6px 0; font-size: .9rem; }
+    .kurven-wahl label { display: inline-flex; gap: 5px; align-items: center; min-height: 30px; }
+    .kurven-wahl input { width: 18px; height: 18px; }
+    .meldung-ps { min-height: 1.4em; font-weight: 600; margin: 6px 0; }
+    .meldung-ps.schlecht { color: #C0392B; }
+    .meldung-ps.gut { color: #2F9E44; }
+    .meldung-ps.warn { color: #B35C00; }
+    .messtab { max-height: 340px; overflow: auto; }
+    @media print { .ps-leiste, .reiter, .schritte-liste { display: none !important; } .messtab { max-height: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite">
+    <section class="tafel">
+      <h1><span class="unterstrichen">Motorprüfstand</span></h1>
+      <p>Ein Drehstrom-Asynchronmotor ist mit einer Belastungsmaschine gekuppelt, die jede Drehzahl erzwingen kann – bremsend oder antreibend. Gemessen werden Klemmenspannung, Strom, Phasenwinkel, Drehmoment und Drehzahl; daraus folgen Schein-, Wirk- und mechanische Leistung und der Wirkungsgrad. Erst anschließen, dann Arbeitspunkte von Hand anfahren oder Kennlinien im Hochlauf aufnehmen. Grundlagen: <a href="drehfeldmaschinen.html">Drehfeldmaschinen</a>.</p>
+    </section>
+
+    <div class="ps-raster">
+      <section class="tafel abstand" aria-labelledby="h-ts">
+        <h2 id="h-ts">Prüfling: Typenschild</h2>
+        <div class="typenschild" role="table" aria-label="Typenschild des Prüflings">
+          <div class="kopf"><span>3~ Motor · Käfigläufer</span><span>Lernmodell</span></div>
+          <table><tbody>
+            <tr><td>Δ / Y</td><td>230 / 400 V</td><td>Frequenz</td><td>50 Hz</td></tr>
+            <tr><td>Strom</td><td>1,30 / 0,75 A</td><td>Leistung</td><td>0,25 kW</td></tr>
+            <tr><td>cos φ</td><td>0,74</td><td>Drehzahl</td><td>1 380 1/min</td></tr>
+            <tr><td>Betriebsart</td><td>S1</td><td>Wärmeklasse</td><td>F</td></tr>
+            <tr><td>Schutzart</td><td>IP 54</td><td>Thermoschutz</td><td>110 °C</td></tr>
+          </tbody></table>
+        </div>
+        <p class="hilfe">Die Leistung auf dem Typenschild ist die mechanische Leistung an der Welle. Für einzelne Werte sind nach DIN EN 60034-1 Abweichungen von etwa 10 % zulässig.</p>
+      </section>
+
+      <section class="tafel abstand" aria-labelledby="h-auf">
+        <h2 id="h-auf">Aufbau und Anschluss</h2>
+        <ol class="schritte-liste" id="schritte"></ol>
+        <canvas id="kbBild" class="sim-bild" role="img" aria-label="Klemmbrett des Prüflings mit den Klemmen U1, V1, W1, W2, U2, V2 und Brückenplätzen"></canvas>
+        <div class="ps-leiste">
+          <span class="hilfe">Brücken antippen.</span>
+          <button type="button" class="knopf-leise" id="kbStern">Stern</button>
+          <button type="button" class="knopf-leise" id="kbDreieck">Dreieck</button>
+          <button type="button" class="knopf" id="test">Anschlusstest</button>
+        </div>
+        <p class="meldung-ps" id="testMeldung" role="status"></p>
+      </section>
+    </div>
+
+    <section class="tafel abstand" aria-labelledby="h-ps">
+      <h2 id="h-ps">Prüfstand</h2>
+      <div class="reiter" role="group" aria-label="Testmodus">
+        <button type="button" class="knopf" id="modusManuell" aria-pressed="true">Manuell: Arbeitspunkte</button>
+        <button type="button" class="knopf" id="modusAuto" aria-pressed="false">Automatisch: Hochlauf</button>
+      </div>
+      <div class="ps-leiste">
+        <label>Schaltung <select id="schaltung" data-nicht-merken><option value="dreieck">Dreieck (Δ)</option><option value="stern">Stern (Y)</option></select></label>
+        <label>Testspannung <input class="zahl" id="spannung" inputmode="decimal" value="230" data-nicht-merken> V</label>
+        <label>Testfrequenz <input class="zahl" id="frequenz" inputmode="decimal" value="50" data-nicht-merken> Hz</label>
+        <label>Maximaldrehzahl <input class="zahl" id="nmax" inputmode="decimal" value="1600" data-nicht-merken> 1/min</label>
+        <label>Drehrichtung <select id="richtung" data-nicht-merken><option value="rechts">rechts (CW)</option><option value="links">links (CCW)</option></select></label>
+        <label><input type="checkbox" id="raffer" data-nicht-merken> Erwärmung im Zeitraffer</label>
+      </div>
+      <p class="hilfe" id="refDrehzahl"></p>
+      <div class="ps-leiste" id="manuellLeiste">
+        <label>Drehzahl <input type="range" id="nSoll" min="0" max="1600" step="10" value="1380" data-nicht-merken> <input class="zahl" id="nSollZahl" inputmode="numeric" value="1380" aria-label="Drehzahl in 1/min" data-nicht-merken> 1/min</label>
+        <button type="button" class="knopf" id="speichern">Messpunkt speichern</button>
+      </div>
+      <div class="ps-leiste">
+        <button type="button" class="knopf start" id="start">START</button>
+        <button type="button" class="knopf stopp" id="stopp">STOP</button>
+        <span class="status aus" id="status">AUS</span>
+        <span class="hilfe" id="temperatur"></span>
+      </div>
+      <canvas id="maschine" class="sim-bild" role="img" aria-label="Maschinensatz: Prüfling, Kupplung und Belastungsmaschine, mit Drehrichtung und Richtung des Leistungsflusses"></canvas>
+      <div class="anzeige" id="anzeige" aria-live="off"></div>
+      <p class="meldung-ps" id="meldung" role="status"></p>
+      <div class="kurven-wahl" id="kurvenWahl" role="group" aria-label="Kurven im Diagramm"></div>
+      <canvas id="diagramm" class="sim-bild" role="img" aria-label="Kennlinien über der Drehzahl: Drehmoment und weitere Messgrößen"></canvas>
+      <h3 class="zwischen">Messwerte</h3>
+      <div class="rahmen messtab"><table class="tabelle"><thead><tr><th>n 1/min</th><th>U V</th><th>I A</th><th>φ °</th><th>cos φ</th><th>M N·m</th><th>S VA</th><th>P<sub>el</sub> W</th><th>P<sub>mech</sub> W</th><th>η %</th><th>Schaltung</th></tr></thead><tbody id="tabelle"></tbody></table></div>
+      <div class="ps-leiste">
+        <button type="button" class="knopf-leise" id="csv">Als CSV herunterladen</button>
+        <button type="button" class="knopf-leise" id="leeren">Messwerte löschen</button>
+        <button type="button" class="knopf-leise" id="teilen">Link mit den Messwerten kopieren</button>
+        <span id="teilenMeldung" class="hilfe" role="status"></span>
+      </div>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-vgl">
+      <h2 id="h-vgl">Typenschild und Messung vergleichen</h2>
+      <p>Den Nennpunkt anfahren (Dreieck, 230 V, 50 Hz, 1 380 1/min) und die Werte mit dem Typenschild vergleichen. Die Tabelle nimmt den zuletzt gespeicherten Messpunkt nahe 1 380 1/min.</p>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Leistungsdaten</th><th>Typenschild</th><th>gemessen</th><th>Abweichung</th></tr></thead><tbody id="vergleich"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand formelsammlung" id="ps-wissen" aria-labelledby="h-ps-wissen">
+      <h2 id="h-ps-wissen">Auswerten</h2>
+      <div class="wissen-raster">
+        <section class="wissen-karte" style="--farbe:#2B7BB9"><h3>Polpaarzahl aus der Nenndrehzahl</h3><div class="formel-block" data-tex="p = \frac{60 \cdot f}{n_\text{N}} \;\rightarrow\; \text{nächste kleinere ganze Zahl}"></div><p>1 380 1/min bei 50 Hz ergibt 2,17, also p = 2 und n₀ = 1 500 1/min. Der Motor dreht wegen des Schlupfs immer etwas langsamer als das Feld.</p></section>
+        <section class="wissen-karte" style="--farbe:#C0392B"><h3>Nenndrehmoment</h3><div class="formel-block" data-tex="M_\text{N} = \frac{P_\text{N}}{2 \pi \cdot n_\text{N}} = \frac{9\,549 \cdot P_\text{N}\,[\text{kW}]}{n_\text{N}\,[1/\text{min}]}"></div><p>0,25 kW bei 1 380 1/min: 1,73 N·m. Einheit: 1 N·m = 1 W·s = 1 W / (1/s).</p></section>
+        <section class="wissen-karte" style="--farbe:#2E8B57"><h3>Aufgenommene Leistung</h3><div class="formel-block" data-tex="P_\text{el} = \sqrt{3} \cdot U \cdot I \cdot \cos\varphi"></div><p>Δ: √3 · 230 V · 1,3 A · 0,74 ≈ 383 W. Y: √3 · 400 V · 0,75 A · 0,74 ≈ 385 W – beide Schaltungen nehmen bei richtiger Spannung gleich viel auf.</p></section>
+        <section class="wissen-karte" style="--farbe:#9333EA"><h3>Wirkungsgrad und Verluste</h3><div class="formel-block" data-tex="\eta = \frac{P_\text{mech}}{P_\text{el}} \qquad P_\text{V} = P_\text{el} - P_\text{mech}"></div><p>Verluste: Kupfer in Ständer und Läufer, Eisen (Ummagnetisierung), Reibung und Lüftung. Kleine Motoren haben deutlich schlechtere Wirkungsgrade als große. Im Generatorbetrieb kehrt sich die Rechnung um: η = P<sub>el</sub> / P<sub>mech</sub>.</p></section>
+        <section class="wissen-karte" style="--farbe:#E07A1F"><h3>Mechanische Leistung</h3><div class="formel-block" data-tex="P_\text{mech} = M \cdot \omega = M \cdot 2 \pi \cdot n"></div><p>Sie ist am größten zwischen Nennpunkt und Kippmoment. Darunter fällt sie wieder, während die aufgenommene Leistung weiter steigt: Der Wirkungsgrad bricht ein, der Motor wird heiß.</p></section>
+        <section class="wissen-karte" style="--farbe:#6B7785"><h3>Erwärmung</h3><div class="formel-block" data-tex="R_\vartheta = R_{20} \cdot (1 + \alpha \cdot (\vartheta - 20\,°\text{C}))"></div><p>Wärmere Wicklungen haben mehr Widerstand: höherer Ständerwiderstand wirkt wie weniger Spannung, höherer Läuferwiderstand macht die Kennlinie flacher – die Drehzahl unter Last sinkt etwas. Kupfer: α ≈ 0,0039 1/K.</p></section>
+      </div>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Sicher anschließen</h3><p>Erst alles spannungsfrei. Zuerst den Schutzleiter, dann den Neutralleiter, zuletzt die Außenleiter verbinden; Abbauen in umgekehrter Reihenfolge. Nur Sicherheitsmessleitungen verwenden und Spannungsfestigkeit beachten. Maschinensatz fest kuppeln, Wellen abdecken.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Generatorbetrieb</h3><p>Treibt die Belastungsmaschine den Prüfling über die synchrone Drehzahl, werden Drehmoment, mechanische und elektrische Wirkleistung negativ: Der Motor speist Leistung zurück, der Phasenwinkel wird größer als 90°. Das Drehmoment wechselt kurz vor 1 500 1/min das Vorzeichen – dort deckt der Motor nur noch seine eigene Reibung. Die elektrische Wirkleistung wird erst etwas darüber negativ, weil die Verluste im Motor weiter aus dem Netz gedeckt werden.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Warum im Stern messen?</h3><p>Im Dreieck mit Nennspannung steigt der Strom unterhalb von etwa 1 000 1/min über das Doppelte des Nennstroms; der Prüfstand senkt dann die Spannung, um die Wicklung zu schützen – die Kennlinie ist dort verfälscht. Im Stern mit kleinerer Spannung, etwa 230 V statt 400 V, bekommt jede Wicklung nur 133 V: Der Strom bleibt unter der Grenze und die ganze Kennlinie lässt sich aufnehmen. Das Moment ist dann um (133/230)² ≈ 1/3 kleiner, die Form der Kennlinie bleibt.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Schutz in der Praxis</h3><p>Gegen Überlast im unteren Kennlinienbereich (Blockieren, Kippen) schützt der Motorschutzschalter – ein Wicklungsfühler wäre zu träge. Gegen dauernde leichte Überlast und schlechte Kühlung schützt der Fühler in der Wicklung (Thermokontakt, PTC oder NTC).</p></article>
+      </div>
+      <p class="hilfe">Der Prüfstand ist eine Simulation mit einem einfachen Ersatzschaltbild, angepasst an typische Messwerte eines 0,25-kW-Käfigläufers. Er bildet kein bestimmtes Gerät nach.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum ist die aufgenommene Leistung größer als die auf dem Typenschild?</summary><p>Auf dem Typenschild steht die mechanische Leistung an der Welle. Aufgenommen wird zusätzlich alles, was im Motor als Wärme verloren geht. Beim Beispielmotor sind das rund 130 W bei 250 W Abgabe.</p></details>
+        <details><summary>Was bedeutet ein Phasenwinkel über 90°?</summary><p>Die Wirkleistung ist negativ: Der Motor gibt elektrische Leistung ans Netz ab und arbeitet als Generator. Den Blindstrom für sein Magnetfeld nimmt er weiter aus dem Netz.</p></details>
+        <details><summary>Wie kehre ich die Drehrichtung um?</summary><p>Zwei Außenleiter tauschen, üblicherweise L1 und L3. Das Drehfeld läuft dann andersherum, der Läufer folgt.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const $ = function (id) { return document.getElementById(id); };
+    const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
+    const zs = function (v, n) {
+      if (typeof v !== 'number' || !isFinite(v)) return '–';
+      n = n || 0; const t = (Math.round(v * Math.pow(10, n)) / Math.pow(10, n)).toFixed(n).replace('.', ',').replace('-', '−'), q = t.split(',');
+      q[0] = q[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' '); return q.join(',').replace(/^−(0(,0*)?)$/, '$1');
+    };
+    const W3 = Math.sqrt(3), PI2 = 2 * Math.PI;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', TUERKIS = '#0E7C86', BRAUN = '#8B5A2B';
+    const F = function (n) { return Thema.farbe(n); };
+    function TX(cx, t, x, y, a, g, fett, farbe) { cx.font = (fett ? '700 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif'); cx.textAlign = a || 'left'; cx.textBaseline = 'middle'; cx.fillStyle = farbe || F('--text'); cx.fillText(t, x, y); }
+
+    // =====================================================================
+    // Motormodell: Ersatzschaltbild je Strang (Werte für 230 V je Strang, 50 Hz, 40 °C)
+    // =====================================================================
+    const ESB = { R1: 45.5, X1: 5.0, Xh: 448.5, R2: 33.3, X2: 88.2, Rfe: 6529, Pr: 8, p: 2 };
+    const NENN = { U: { dreieck: 230, stern: 400 }, I: { dreieck: 1.30, stern: 0.75 }, cos: 0.74, n: 1380, P: 250, f: 50, eta: 65 };
+    const c = function (a, b) { return [a, b]; }, add = function (a, b) { return [a[0] + b[0], a[1] + b[1]]; }, mul = function (a, b) { return [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]]; }, div = function (a, b) { const d = b[0] * b[0] + b[1] * b[1]; return [(a[0] * b[0] + a[1] * b[1]) / d, (a[1] * b[0] - a[0] * b[1]) / d]; }, betrag = function (a) { return Math.hypot(a[0], a[1]); };
+    // n: Drehzahl in Drehrichtung des Felds (1/min), uStr: Strangspannung, f: Frequenz, temp: Wicklungstemperatur
+    function strang(n, uStr, f, temp) {
+      const kf = f / 50, ns = 60 * f / ESB.p;
+      let s = ns > 0 ? (ns - n) / ns : 0; if (Math.abs(s) < 1e-7) s = 1e-7;
+      const kt = (1 + 0.0039 * (temp - 20)) / (1 + 0.0039 * 20);
+      const R1 = ESB.R1 * kt, R2 = ESB.R2 * kt;
+      const Z2 = c(R2 / s, ESB.X2 * kf), Ym = add(div(c(1, 0), c(0, ESB.Xh * kf)), c(1 / (ESB.Rfe * Math.max(0.2, kf)), 0)), Zm = div(c(1, 0), Ym);
+      const Zp = div(mul(Zm, Z2), add(Zm, Z2)), Z = add(c(R1, ESB.X1 * kf), Zp), I1 = div(c(uStr, 0), Z), Em = mul(I1, Zp), I2 = div(Em, Z2);
+      const Pag = 3 * Math.pow(betrag(I2), 2) * R2 / s, Pmi = Pag * (1 - s), om = PI2 * n / 60;
+      const reib = ESB.Pr * n / 1500 * Math.abs(n / 1500);
+      const Pm = Pmi - reib;
+      const M = Math.abs(n) > 0.5 ? Pm / om : Pag / (PI2 * ns / 60);
+      const S = 3 * uStr * betrag(I1), Pel = 3 * uStr * I1[0], phi = -Math.atan2(I1[1], I1[0]);
+      return { I1: betrag(I1), M: M, Pm: Pm, Pel: Pel, S: S, phi: phi, s: s, Pcu: 3 * Math.pow(betrag(I1), 2) * R1 + 3 * Math.pow(betrag(I2), 2) * R2 };
+    }
+    // Klemmenwerte für Schaltung und Leiterspannung, mit Strombegrenzung auf 2 × Nennstrom
+    function messen(n, uLeiter, f, schaltung, temp) {
+      const uStr = schaltung === 'stern' ? uLeiter / W3 : uLeiter, kI = schaltung === 'stern' ? 1 : W3;
+      let k = 1, a = strang(n, uStr, f, temp), il = a.I1 * kI;
+      const grenze = 2 * NENN.I[schaltung];
+      let begrenzt = false;
+      if (il > grenze) { for (let i = 0; i < 4; i++) { k *= grenze / il; a = strang(n, uStr * k, f, temp); il = a.I1 * kI; } begrenzt = true; }
+      const eta = a.Pel > 0 && a.Pm > 0 ? a.Pm / a.Pel : a.Pel < 0 && a.Pm < 0 ? a.Pel / a.Pm : 0;
+      return { n: n, U: uLeiter * k, I: il, phi: a.phi * 180 / Math.PI, cos: Math.cos(a.phi), M: a.M, S: a.S, Pel: a.Pel, Pm: a.Pm, eta: eta * 100, begrenzt: begrenzt, Pcu: a.Pcu, Pv: Math.abs(a.Pel - a.Pm) };
+    }
+
+    // =====================================================================
+    // Zustand
+    // =====================================================================
+    const SPEICHER = 'motorpruefstand-1';
+    let ZST = { modus: 'manuell', laeuft: false, nIst: 0, temp: 40, getestet: false, fehler: '', hochlaufN: 0, aufzeichnung: [], ruhig: 0 };
+    let PUNKTE = [];
+    try { const roh = JSON.parse(localStorage.getItem(SPEICHER) || 'null'); if (roh && Array.isArray(roh.punkte)) PUNKTE = pruefPunkte(roh.punkte); } catch (e) { PUNKTE = []; }
+    function pruefPunkte(l) {
+      return l.slice(0, 300).map(function (p) {
+        if (!p || typeof p !== 'object') return null;
+        const o = {}; let ok = true;
+        ['n', 'U', 'I', 'phi', 'cos', 'M', 'S', 'Pel', 'Pm', 'eta'].forEach(function (k) { const v = Number(p[k]); if (!isFinite(v) || Math.abs(v) > 1e6) ok = false; o[k] = v; });
+        o.sch = p.sch === 'stern' ? 'stern' : 'dreieck';
+        return ok ? o : null;
+      }).filter(function (p) { return p; });
+    }
+    function speichern() { try { localStorage.setItem(SPEICHER, JSON.stringify({ v: 1, punkte: PUNKTE })); } catch (e) { /* ohne Speicher */ } }
+
+    // ---------- Sicherheitsschritte ----------
+    const SCHRITTE = ['Netzschalter des Prüfstands steht auf AUS (0).', 'Prüfling und Belastungsmaschine fest gekuppelt, Klemmknebel angezogen, Wellenabdeckung ohne Spalt.', 'Schutzleiter (PE) verbunden – immer zuerst.', 'Neutralleiter (N) verbunden.', 'Außenleiter L1, L2, L3 verbunden – zuletzt.', 'Temperaturfühler des Prüflings an die Belastungsmaschine angeschlossen.'];
+    const erledigt = SCHRITTE.map(function () { return false; });
+    SCHRITTE.forEach(function (t, i) {
+      const li = kn('li'), l = kn('label'), c2 = kn('input'); c2.type = 'checkbox'; c2.setAttribute('data-nicht-merken', '');
+      c2.addEventListener('change', function () {
+        if (c2.checked && i > 0 && !erledigt[i - 1]) { c2.checked = false; meldTest('Reihenfolge einhalten: erst „' + SCHRITTE[i - 1].replace(/ –.*$/, '') + '“.', 'schlecht'); return; }
+        if (!c2.checked) for (let j = i; j < SCHRITTE.length; j++) { erledigt[j] = false; $('schritte').querySelectorAll('input')[j].checked = false; $('schritte').querySelectorAll('label')[j].className = ''; }
+        erledigt[i] = c2.checked; l.className = c2.checked ? 'erledigt' : ''; ZST.getestet = false; meldTest('', '');
+      });
+      l.append(c2, document.createTextNode((i + 1) + '. ' + t)); li.append(l); $('schritte').append(li);
+    });
+    function meldTest(t, art) { $('testMeldung').textContent = t; $('testMeldung').className = 'meldung-ps ' + (art || ''); }
+
+    // ---------- Klemmbrett ----------
+    const kbCv = $('kbBild'), kbCx = kbCv.getContext('2d');
+    const KLEMMEN = { U1: [0, 0], V1: [1, 0], W1: [2, 0], W2: [0, 1], U2: [1, 1], V2: [2, 1] };
+    const PLAETZE = [['W2', 'U2'], ['U2', 'V2'], ['U1', 'W2'], ['V1', 'U2'], ['W1', 'V2']];
+    let BR = {}, kbB = 400, kbZiele = [];
+    function kbArt() {
+      const k = Object.keys(BR).filter(function (x) { return BR[x]; }).sort().join(',');
+      if (k === ['U2-V2', 'W2-U2'].sort().join(',')) return 'stern';
+      if (k === ['U1-W2', 'V1-U2', 'W1-V2'].sort().join(',')) return 'dreieck';
+      if (BR['U1-W2'] && BR['W2-U2'] || BR['V1-U2'] && (BR['W2-U2'] || BR['U2-V2']) || BR['W1-V2'] && BR['U2-V2']) return 'kurz';
+      return k ? 'falsch' : 'leer';
+    }
+    function kbZeichnen() {
+      const d = Math.min(2, window.devicePixelRatio || 1); kbB = kbCv.clientWidth || 400; const H = 200;
+      kbCv.style.height = H + 'px'; kbCv.width = Math.round(kbB * d); kbCv.height = Math.round(H * d); kbCx.setTransform(d, 0, 0, d, 0, 0);
+      const cx = kbCx, B = kbB; cx.clearRect(0, 0, B, H); kbZiele = [];
+      const dx = Math.min(110, (B - 60) / 3), bx = (B - dx * 3) / 2, by = 60, dy = 90;
+      const pos = function (n) { const p = KLEMMEN[n]; return [bx + dx * (p[0] + 0.5), by + dy * p[1]]; };
+      const links = $('richtung').value === 'links', LF = ['#8B5A2B', '#222', '#888'], fol = links ? [2, 1, 0] : [0, 1, 2];
+      ['U1', 'V1', 'W1'].forEach(function (n, i) { const p = pos(n); cx.strokeStyle = LF[fol[i]]; cx.lineWidth = 3; cx.beginPath(); cx.moveTo(p[0], 6); cx.lineTo(p[0], p[1] - 11); cx.stroke(); TX(cx, 'L' + (fol[i] + 1), p[0] - 6, 14, 'right', 11, true, fol[i] === 1 ? F('--text') : LF[fol[i]]); });
+      cx.fillStyle = 'rgba(107,119,133,.14)'; cx.fillRect(bx, by - 26, dx * 3, dy + 52); cx.strokeStyle = GRAU; cx.lineWidth = 1.5; cx.strokeRect(bx, by - 26, dx * 3, dy + 52);
+      [['U1', 'U2', GELB], ['V1', 'V2', GRUEN], ['W1', 'W2', LILA]].forEach(function (w) { const a = pos(w[0]), b = pos(w[1]); cx.strokeStyle = w[2]; cx.lineWidth = 2; cx.setLineDash([5, 4]); cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.setLineDash([]); });
+      PLAETZE.forEach(function (pl) {
+        const a = pos(pl[0]), b = pos(pl[1]), k = pl[0] + '-' + pl[1];
+        if (BR[k]) { cx.strokeStyle = '#B87333'; cx.lineWidth = 8; cx.lineCap = 'round'; cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.lineCap = 'butt'; }
+        else { cx.strokeStyle = F('--leise'); cx.lineWidth = 2; cx.setLineDash([3, 4]); cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.setLineDash([]); }
+        kbZiele.push([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, k]);
+      });
+      Object.keys(KLEMMEN).forEach(function (n) { const p = pos(n); cx.fillStyle = '#C9CDD2'; cx.beginPath(); cx.arc(p[0], p[1], 11, 0, PI2); cx.fill(); cx.strokeStyle = '#555'; cx.lineWidth = 1.5; cx.stroke(); if (KLEMMEN[n][1]) TX(cx, n, p[0], p[1] + 22, 'center', 11, true); else TX(cx, n, p[0] + 14, p[1] - 14, 'left', 11, true); });
+      const art = kbArt();
+      TX(cx, art === 'stern' ? 'Stern' : art === 'dreieck' ? 'Dreieck' : art === 'kurz' ? 'Kurzschluss!' : art === 'leer' ? 'keine Brücken' : 'unvollständig', B - 8, H - 10, 'right', 12, true, art === 'kurz' || art === 'falsch' ? ROT : art === 'leer' ? GRAU : GRUEN);
+    }
+    kbCv.addEventListener('click', function (ev) {
+      if (ZST.laeuft) return meld('Nicht unter Spannung umklemmen! Erst STOP.', 'schlecht');
+      const r = kbCv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+      let best = null, d = 26; kbZiele.forEach(function (z) { const dd = Math.hypot(z[0] - x, z[1] - y); if (dd < d) { d = dd; best = z[2]; } });
+      if (best) { BR[best] = !BR[best]; ZST.getestet = false; kbZeichnen(); meldTest('Anschluss geändert – Anschlusstest wiederholen.', 'warn'); }
+    });
+    $('kbStern').addEventListener('click', function () { if (ZST.laeuft) return; BR = { 'W2-U2': true, 'U2-V2': true }; ZST.getestet = false; kbZeichnen(); });
+    $('kbDreieck').addEventListener('click', function () { if (ZST.laeuft) return; BR = { 'U1-W2': true, 'V1-U2': true, 'W1-V2': true }; ZST.getestet = false; kbZeichnen(); });
+    $('test').addEventListener('click', function () {
+      const offen = erledigt.indexOf(false);
+      if (offen >= 0) return meldTest('Erst Schritt ' + (offen + 1) + ' erledigen: ' + SCHRITTE[offen], 'schlecht');
+      const art = kbArt(), soll = $('schaltung').value;
+      if (art === 'kurz') return meldTest('Test nicht bestanden: Die Brücken schließen eine Wicklung oder zwei Außenleiter kurz.', 'schlecht');
+      if (art !== 'stern' && art !== 'dreieck') return meldTest('Test nicht bestanden: Das Klemmbrett ist weder vollständig in Stern noch in Dreieck gebrückt.', 'schlecht');
+      if (art !== soll) return meldTest('Test nicht bestanden: Am Klemmbrett ist ' + (art === 'stern' ? 'Stern' : 'Dreieck') + ' gebrückt, eingestellt ist aber ' + (soll === 'stern' ? 'Stern' : 'Dreieck') + '.', 'schlecht');
+      ZST.getestet = true; meldTest('Anschluss- und Drehrichtungstest bestanden: ' + (art === 'stern' ? 'Stern' : 'Dreieck') + ', ' + ($('richtung').value === 'rechts' ? 'Rechtslauf' : 'Linkslauf (L1 und L3 getauscht)') + '. Bereit für die Messung.', 'gut');
+    });
+
+    // ---------- Einstellungen ----------
+    function einst() {
+      const sch = $('schaltung').value, umax = Math.min(NENN.U[sch], 400);
+      let u = parseFloat($('spannung').value.replace(',', '.')); if (!isFinite(u)) u = umax; u = Math.max(0, Math.min(umax, u));
+      let f = parseFloat($('frequenz').value.replace(',', '.')); if (!isFinite(f)) f = 50; f = Math.max(5, Math.min(60, f));
+      const n0 = 60 * f / ESB.p;
+      let nmax = parseFloat($('nmax').value.replace(',', '.')); if (!isFinite(nmax)) nmax = 1600; nmax = Math.max(100, Math.min(Math.round(n0 * 1.4), nmax));
+      return { sch: sch, u: u, f: f, n0: n0, nmax: nmax, umax: umax };
+    }
+    function einstAnzeigen() {
+      const e = einst();
+      $('spannung').value = String(e.u).replace('.', ','); $('frequenz').value = String(e.f).replace('.', ','); $('nmax').value = String(e.nmax);
+      $('nSoll').max = e.nmax; if (+$('nSoll').value > e.nmax) { $('nSoll').value = e.nmax; $('nSollZahl').value = e.nmax; }
+      $('refDrehzahl').textContent = 'Referenzdrehzahl (synchron): ' + zs(e.n0, 0) + ' 1/min bei ' + zs(e.f, 1) + ' Hz und 2 Polpaaren. Höchste Testspannung in ' + (e.sch === 'stern' ? 'Stern' : 'Dreieck') + ': ' + e.umax + ' V' + (e.f < 50 ? ' – bei kleinerer Frequenz die Spannung im gleichen Verhältnis senken (U/f konstant), sonst wird der Motor übermagnetisiert.' : '.');
+    }
+    ['schaltung', 'spannung', 'frequenz', 'nmax', 'richtung'].forEach(function (id) { $(id).addEventListener('change', function () {
+      if (ZST.laeuft && (id === 'schaltung' || id === 'richtung')) { stopp('Schaltung oder Drehrichtung nur im Stillstand ändern.'); }
+      if (id === 'schaltung') { $('spannung').value = NENN.U[$('schaltung').value]; ZST.getestet = false; meldTest('Schaltung geändert – Klemmbrett anpassen und Anschlusstest wiederholen.', 'warn'); }
+      if (id === 'richtung') { ZST.getestet = false; kbZeichnen(); meldTest('Drehrichtung geändert – Anschlusstest wiederholen.', 'warn'); }
+      einstAnzeigen();
+    }); });
+    $('nSoll').addEventListener('input', function () { $('nSollZahl').value = $('nSoll').value; });
+    $('nSollZahl').addEventListener('change', function () { const v = Math.max(0, Math.min(+$('nSoll').max, Math.round(+$('nSollZahl').value || 0))); $('nSollZahl').value = v; $('nSoll').value = v; });
+    function modus(m) { if (ZST.laeuft) stopp(); ZST.modus = m; $('modusManuell').setAttribute('aria-pressed', m === 'manuell' ? 'true' : 'false'); $('modusAuto').setAttribute('aria-pressed', m === 'auto' ? 'true' : 'false'); $('manuellLeiste').style.display = m === 'manuell' ? '' : 'none'; }
+    $('modusManuell').addEventListener('click', function () { modus('manuell'); });
+    $('modusAuto').addEventListener('click', function () { modus('auto'); });
+
+    function meld(t, art) { $('meldung').textContent = t; $('meldung').className = 'meldung-ps ' + (art || ''); }
+    $('start').addEventListener('click', function () {
+      if (!ZST.getestet) return meld('Start gesperrt: Erst Aufbau abschließen und den Anschlusstest bestehen.', 'schlecht');
+      if (ZST.temp >= 110) return meld('Wicklung noch zu heiß (' + zs(ZST.temp, 0) + ' °C). Abkühlen lassen.', 'schlecht');
+      ZST.laeuft = true; ZST.fehler = ''; ZST.ruhig = 0;
+      if (ZST.modus === 'auto') { ZST.hochlaufN = 0; ZST.aufzeichnung = []; ZST.nIst = 0; meld('Hochlauf läuft: Die Belastungsmaschine hält den Motor zuerst fest und lässt ihn dann langsam bis zur Maximaldrehzahl laufen.', ''); }
+      else meld('Läuft. Drehzahl einstellen, warten bis BEREIT, dann „Messpunkt speichern“.', '');
+    });
+    function stopp(grund) { ZST.laeuft = false; if (grund) meld(grund, 'schlecht'); }
+    $('stopp').addEventListener('click', function () { stopp(); meld('Gestoppt.', ''); });
+
+    // ---------- Anzeige ----------
+    let AKT = null;
+    const ANZ = [['U', 'U', 'V', 0], ['I', 'I', 'mA', 0], ['phi', 'φ', '°', 1], ['M', 'M', 'mN·m', 0], ['n', 'n', '1/min', 0], ['S', 'S', 'VA', 0], ['Pel', 'P_el', 'W', 0], ['Pm', 'P_mech', 'W', 1], ['eta', 'η', '%', 1]];
+    (function () { ANZ.forEach(function (a) { const d = kn('div'); d.id = 'anz-' + a[0]; d.append(kn('small', '', a[1] + ' [' + a[2] + ']'), kn('b', '', '–')); $('anzeige').append(d); }); })();
+    function anzeigen() {
+      ANZ.forEach(function (a) {
+        const el = $('anz-' + a[0]).querySelector('b'); if (!AKT) { el.textContent = '–'; return; }
+        let v = AKT[a[0]]; if (a[0] === 'I') v *= 1000; if (a[0] === 'M') v *= 1000;
+        el.textContent = zs(v, a[3]);
+      });
+      const st = $('status');
+      if (!ZST.laeuft) { st.textContent = ZST.fehler ? 'FEHLER' : 'AUS'; st.className = 'status ' + (ZST.fehler ? 'fehler' : 'aus'); }
+      else { const b = ZST.ruhig > 0.8; st.textContent = b ? 'BEREIT' : 'TESTE'; st.className = 'status ' + (b ? 'bereit' : 'teste'); }
+      $('temperatur').textContent = 'Wicklung ' + zs(ZST.temp, 0) + ' °C' + (ZST.temp > 100 ? ' – heiß!' : '');
+    }
+
+    // ---------- Maschinensatz ----------
+    const msCv = $('maschine'), msCx = msCv.getContext('2d');
+    let msB = 600, winkel = 0;
+    function msZeichnen(dt) {
+      const d = Math.min(2, window.devicePixelRatio || 1); msB = msCv.clientWidth || 600; const H = 170, B = msB;
+      if (msCv.width !== Math.round(B * d)) { msCv.width = Math.round(B * d); msCv.height = Math.round(H * d); msCv.style.height = H + 'px'; }
+      const cx = msCx; cx.setTransform(d, 0, 0, d, 0, 0); cx.clearRect(0, 0, B, H);
+      const n = ZST.laeuft ? ZST.nIst : 0, links = $('richtung').value === 'links';
+      winkel += (links ? -1 : 1) * PI2 * n / 60 * dt * 0.08;
+      const mw = Math.min(170, B * 0.3), y = 80;
+      const mx = B * 0.06, lx = B - mx - mw;
+      // Prüfling
+      cx.fillStyle = '#5C6670'; cx.fillRect(mx, y - 42, mw, 84); for (let i = 1; i < 8; i++) { cx.fillStyle = '#4A535C'; cx.fillRect(mx + i * mw / 8, y - 42, 3, 84); }
+      const sm = B < 500; TX(cx, sm ? 'Prüfling' : 'Prüfling M 3~', mx + mw / 2, y - 52, 'center', sm ? 10 : 12, true);
+      // Belastungsmaschine
+      cx.fillStyle = '#2F3E4E'; cx.fillRect(lx, y - 42, mw, 84); TX(cx, sm ? 'Belastung' : 'Belastungsmaschine', lx + mw / 2, y - 52, 'center', sm ? 10 : 12, true);
+      // Welle und Kupplung
+      cx.fillStyle = '#ADB5BD'; cx.fillRect(mx + mw, y - 6, lx - mx - mw, 12);
+      const kx = (mx + mw + lx) / 2;
+      cx.fillStyle = '#868E96'; cx.fillRect(kx - 14, y - 20, 28, 40);
+      for (let i = 0; i < 4; i++) { const a = winkel + i * Math.PI / 2, yy = y + Math.sin(a) * 16; if (Math.cos(a) > 0) { cx.fillStyle = '#343A40'; cx.fillRect(kx - 14, yy - 2, 28, 4); } }
+      // Leistungsfluss
+      if (AKT && ZST.laeuft) {
+        const gen = AKT.Pm < 0, farbe = gen ? BLAU : GRUEN, fx0 = mx + mw + 8, fx1 = lx - 8, ay = y + 34;
+        cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = 3; cx.beginPath(); cx.moveTo(gen ? fx1 : fx0, ay); cx.lineTo(gen ? fx0 : fx1, ay); cx.stroke();
+        const ex = gen ? fx0 : fx1, r2 = gen ? 1 : -1; cx.beginPath(); cx.moveTo(ex, ay); cx.lineTo(ex + r2 * 10, ay - 6); cx.lineTo(ex + r2 * 10, ay + 6); cx.closePath(); cx.fill();
+        TX(cx, (gen ? 'Generator: ' : 'Motor: ') + zs(Math.abs(AKT.Pm), 0) + ' W mechanisch', (fx0 + fx1) / 2, ay + 16, 'center', 11, true, farbe);
+        TX(cx, (AKT.Pel >= 0 ? '← ' : '→ ') + zs(Math.abs(AKT.Pel), 0) + ' W elektrisch', mx + mw / 2, y + 58, 'center', 11, true, AKT.Pel >= 0 ? GRUEN : BLAU);
+      }
+      TX(cx, ZST.laeuft ? zs(n, 0) + ' 1/min ' + (links ? '↺' : '↻') : 'Stillstand', kx, 14, 'center', 13, true);
+      // Temperaturbalken
+      const t = Math.max(0, Math.min(1, (ZST.temp - 20) / 100));
+      cx.fillStyle = F('--linie'); cx.fillRect(mx, y + 46, mw, 6); cx.fillStyle = ZST.temp > 100 ? ROT : ZST.temp > 80 ? ORANGE : GRUEN; cx.fillRect(mx, y + 46, mw * t, 6);
+    }
+
+    // ---------- Diagramm ----------
+    const KURVEN = [['M', 'Drehmoment M', 'N·m', ROT, true], ['U', 'Spannung U', 'V', BLAU, false], ['I', 'Strom I', 'A', ORANGE, true], ['phi', 'Phasenwinkel φ', '°', GRUEN, false], ['S', 'Scheinleistung S', 'VA', TUERKIS, false], ['Pel', 'Wirkleistung P_el', 'W', GELB, false], ['Pm', 'mech. Leistung P_mech', 'W', BRAUN, true], ['eta', 'Wirkungsgrad η', '%', LILA, false]];
+    const sichtbar = {};
+    KURVEN.forEach(function (k) {
+      sichtbar[k[0]] = k[4];
+      const l = kn('label'), c2 = kn('input'); c2.type = 'checkbox'; c2.checked = k[4]; c2.setAttribute('data-nicht-merken', '');
+      c2.addEventListener('change', function () { sichtbar[k[0]] = c2.checked; });
+      const fl = kn('span'); fl.style.cssText = 'display:inline-block;width:14px;height:4px;background:' + k[3];
+      l.append(c2, fl, document.createTextNode(k[1])); $('kurvenWahl').append(l);
+    });
+    const dgCv = $('diagramm'), dgCx = dgCv.getContext('2d');
+    function bereich(werte) { let lo = Math.min.apply(null, werte.concat([0])), hi = Math.max.apply(null, werte.concat([0])); if (hi - lo < 1e-9) hi = lo + 1; const sch = Math.pow(10, Math.floor(Math.log10((hi - lo) / 4))); const st = [1, 2, 2.5, 5, 10].map(function (x) { return x * sch; }).filter(function (x) { return (hi - lo) / x <= 6; })[0] || sch * 10; return [Math.floor(lo / st) * st, Math.ceil(hi / st) * st, st]; }
+    function dgZeichnen() {
+      const d = Math.min(2, window.devicePixelRatio || 1), B = dgCv.clientWidth || 600, H = B < 560 ? 340 : 400;
+      if (dgCv.width !== Math.round(B * d) || dgCv.height !== Math.round(H * d)) { dgCv.width = Math.round(B * d); dgCv.height = Math.round(H * d); dgCv.style.height = H + 'px'; }
+      const cx = dgCx; cx.setTransform(d, 0, 0, d, 0, 0); cx.clearRect(0, 0, B, H);
+      const e = einst(), aktiv = KURVEN.filter(function (k) { return sichtbar[k[0]]; });
+      const achsen = Math.min(aktiv.length, B < 560 ? 2 : 4);
+      const x0 = 50, x1 = B - 12 - (achsen > 1 ? (achsen - 1) * 44 : 0), y0 = 20, y1 = H - 40;
+      const daten = ZST.modus === 'auto' ? ZST.aufzeichnung : PUNKTE.filter(function (p) { return p.sch === e.sch; });
+      const nMax = Math.max(e.nmax, 100);
+      const X = function (n) { return x0 + n / nMax * (x1 - x0); };
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1;
+      for (let n = 0; n <= nMax; n += nMax > 1000 ? 250 : 100) { cx.beginPath(); cx.moveTo(X(n), y0); cx.lineTo(X(n), y1); cx.stroke(); TX(cx, zs(n, 0), X(n), y1 + 12, 'center', 10, false, GRAU); }
+      TX(cx, 'Drehzahl in 1/min', (x0 + x1) / 2, y1 + 28, 'center', 11, true);
+      cx.setLineDash([4, 3]); cx.strokeStyle = BLAU; cx.beginPath(); cx.moveTo(X(e.n0), y0); cx.lineTo(X(e.n0), y1); cx.stroke(); cx.setLineDash([]); TX(cx, 'n₀', X(e.n0) + 3, y0 + 8, 'left', 10, true, BLAU);
+      aktiv.forEach(function (k, i) {
+        const werte = daten.map(function (p) { return p[k[0]]; }).concat(k[0] === 'M' ? [0, 2] : k[0] === 'U' ? [0, e.u] : []);
+        const b = bereich(werte), Y = function (v) { return y1 - (v - b[0]) / (b[1] - b[0]) * (y1 - y0); };
+        if (i < achsen) {
+          const ax = i === 0 ? x0 : x1 + (i - 1) * 44;
+          cx.strokeStyle = k[3]; cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(ax, y0); cx.lineTo(ax, y1); cx.stroke();
+          for (let v = b[0]; v <= b[1] + 1e-9; v += b[2]) TX(cx, zs(v, b[2] < 1 ? 1 : 0), i === 0 ? ax - 4 : ax + 4, Y(v), i === 0 ? 'right' : 'left', 9, false, k[3]);
+          TX(cx, k[2], i === 0 ? ax - 4 : ax + 4, y0 - 8, i === 0 ? 'right' : 'left', 10, true, k[3]);
+        }
+        if (k[0] === 'M' || k[0] === 'Pm' || k[0] === 'Pel') { cx.strokeStyle = F('--text'); cx.lineWidth = 0.8; cx.beginPath(); cx.moveTo(x0, Y(0)); cx.lineTo(x1, Y(0)); cx.stroke(); }
+        cx.strokeStyle = k[3]; cx.fillStyle = k[3]; cx.lineWidth = 2.2;
+        if (ZST.modus === 'auto') { cx.beginPath(); daten.forEach(function (p, j) { if (j) cx.lineTo(X(p.n), Y(p[k[0]])); else cx.moveTo(X(p.n), Y(p[k[0]])); }); cx.stroke(); }
+        else daten.forEach(function (p) { cx.beginPath(); cx.arc(X(p.n), Y(p[k[0]]), 4, 0, PI2); cx.fill(); });
+      });
+      if (!daten.length) TX(cx, ZST.modus === 'auto' ? 'START drücken: Der Hochlauf zeichnet die Kennlinien auf.' : 'Gespeicherte Messpunkte erscheinen hier.', (x0 + x1) / 2, (y0 + y1) / 2, 'center', 12, false, GRAU);
+      if (ZST.laeuft && AKT) { cx.strokeStyle = F('--text'); cx.setLineDash([2, 3]); cx.beginPath(); cx.moveTo(X(AKT.n), y0); cx.lineTo(X(AKT.n), y1); cx.stroke(); cx.setLineDash([]); }
+    }
+
+    // ---------- Tabelle, Vergleich, CSV ----------
+    function tabelle() {
+      const tb = $('tabelle'); tb.innerHTML = '';
+      PUNKTE.forEach(function (p) { const tr = kn('tr'); [zs(p.n, 0), zs(p.U, 0), zs(p.I, 3), zs(p.phi, 1), zs(p.cos, 2), zs(p.M, 3), zs(p.S, 0), zs(p.Pel, 1), zs(p.Pm, 1), zs(p.eta, 1), p.sch === 'stern' ? 'Y' : 'Δ'].forEach(function (x) { tr.append(kn('td', 'zahl', x)); }); tb.append(tr); });
+      if (!PUNKTE.length) { const tr = kn('tr'), td = kn('td', 'hilfe', 'Noch keine Messpunkte.'); td.colSpan = 11; tr.append(td); tb.append(tr); }
+      const np = PUNKTE.filter(function (p) { return Math.abs(p.n - 1380) <= 15; }).slice(-1)[0];
+      const vb = $('vergleich'); vb.innerHTML = '';
+      const sch = np ? np.sch : 'dreieck';
+      [['Nenndrehzahl', NENN.n, np && np.n, '1/min', 0], ['Klemmenspannung', NENN.U[sch], np && np.U, 'V', 0], ['Strom', NENN.I[sch], np && np.I, 'A', 3], ['cos φ', NENN.cos, np && np.cos, '', 2], ['mechanische Leistung', NENN.P, np && np.Pm, 'W', 0], ['Wirkungsgrad', NENN.eta, np && np.eta, '%', 1]].forEach(function (z) {
+        const tr = kn('tr'); tr.append(kn('td', '', z[0]), kn('td', 'zahl', zs(z[1], z[4]) + ' ' + z[3]), kn('td', 'zahl', z[2] !== undefined && z[2] !== null ? zs(z[2], z[4]) + ' ' + z[3] : '–'));
+        const ab = z[2] ? (z[2] - z[1]) / z[1] * 100 : NaN; const td = kn('td', 'zahl', isFinite(ab) ? (ab >= 0 ? '+' : '') + zs(ab, 1) + ' %' : '–'); if (Math.abs(ab) > 10) td.className = 'zahl schlecht'; tr.append(td); vb.append(tr);
+      });
+    }
+    $('speichern').addEventListener('click', function () {
+      if (!ZST.laeuft || !AKT) return meld('Erst starten und einen Arbeitspunkt anfahren.', 'warn');
+      if (ZST.ruhig <= 0.8) return meld('Noch nicht BEREIT – warten, bis der Arbeitspunkt stabil ist.', 'warn');
+      if (PUNKTE.length >= 300) return meld('Höchstens 300 Messpunkte.', 'warn');
+      const p = {}; ['n', 'U', 'I', 'phi', 'cos', 'M', 'S', 'Pel', 'Pm', 'eta'].forEach(function (k) { p[k] = Math.round(AKT[k] * 1000) / 1000; }); p.sch = einst().sch;
+      PUNKTE.push(p); PUNKTE.sort(function (a, b) { return a.n - b.n; }); speichern(); tabelle(); meld('Messpunkt bei ' + zs(p.n, 0) + ' 1/min gespeichert.', 'gut');
+    });
+    $('leeren').addEventListener('click', function () { if (PUNKTE.length && !window.confirm('Alle Messpunkte löschen?')) return; PUNKTE = []; speichern(); tabelle(); });
+    $('csv').addEventListener('click', function () {
+      const zeilen = [['n_1/min', 'U_V', 'I_A', 'phi_Grad', 'cos_phi', 'M_Nm', 'S_VA', 'Pel_W', 'Pmech_W', 'eta_Prozent', 'Schaltung']];
+      (ZST.modus === 'auto' && ZST.aufzeichnung.length ? ZST.aufzeichnung.map(function (p) { const o = Object.assign({}, p); o.sch = einst().sch; return o; }) : PUNKTE).forEach(function (p) { zeilen.push([p.n, p.U, p.I, p.phi, p.cos, p.M, p.S, p.Pel, p.Pm, p.eta].map(function (v) { return String(Math.round(v * 1000) / 1000).replace('.', ','); }).concat([p.sch === 'stern' ? 'Stern' : 'Dreieck'])); });
+      const a = kn('a'); a.href = URL.createObjectURL(new Blob(['﻿' + zeilen.map(function (z) { return z.join(';'); }).join('\r\n')], { type: 'text/csv;charset=utf-8' })); a.download = 'motorpruefstand.csv';
+      document.body.append(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    });
+    $('teilen').addEventListener('click', function () { Teilen.url('plan', { v: 1, punkte: PUNKTE }).then(function (url) { Teilen.kopieren(url, function (t) { $('teilenMeldung').textContent = t; setTimeout(function () { $('teilenMeldung').textContent = ''; }, 5000); }); }); });
+    const vorherKnopf = Teilen.knopf($('teilen').parentNode, SPEICHER, function (roh) {
+      let p = null; try { p = JSON.parse(roh); } catch (e) { p = null; }
+      if (!p || !Array.isArray(p.punkte)) return meld('Keine gültigen vorherigen Messwerte gefunden.', 'schlecht');
+      PUNKTE = pruefPunkte(p.punkte); speichern(); tabelle(); meld('Vorherige Messwerte wiederhergestellt.', 'gut');
+    }, 'Messreihe');
+
+    // ---------- Schleife ----------
+    let letzt = performance.now();
+    function schleife(t) {
+      const dt = Math.min(0.1, (t - letzt) / 1000); letzt = t;
+      const e = einst();
+      // Erwärmung: Kupferverluste heizen, Kühlung abhängig von der Drehzahl (Eigenlüfter)
+      const raffer = $('raffer').checked ? 40 : 1;
+      if (ZST.laeuft) {
+        const ziel = ZST.modus === 'auto' ? ZST.hochlaufN : +$('nSoll').value;
+        const vorher = ZST.nIst;
+        ZST.nIst += Math.max(-600 * dt, Math.min(600 * dt, ziel - ZST.nIst));
+        if (ZST.modus === 'auto') { ZST.hochlaufN = Math.min(e.nmax, ZST.hochlaufN + 150 * dt); }
+        ZST.ruhig = Math.abs(ZST.nIst - vorher) < 1e-6 ? ZST.ruhig + dt : 0;
+        AKT = messen(ZST.nIst, e.u, e.f, e.sch, ZST.temp);
+        if (ZST.modus === 'auto') {
+          const letzterP = ZST.aufzeichnung[ZST.aufzeichnung.length - 1];
+          if (!letzterP || AKT.n - letzterP.n >= 10) ZST.aufzeichnung.push(AKT);
+          if (ZST.hochlaufN >= e.nmax && ZST.nIst >= e.nmax - 0.5) { ZST.ruhig = 1; meld('Hochlauf fertig bis ' + zs(e.nmax, 0) + ' 1/min. Kurven unten an- und abwählen. STOP beendet die Messung.' + (ZST.aufzeichnung.some(function (p) { return p.begrenzt; }) ? ' Achtung: Im unteren Drehzahlbereich hat der Prüfstand den Strom auf das Doppelte des Nennstroms begrenzt und dafür die Spannung gesenkt – dort ist die Kennlinie verfälscht.' : ''), 'gut'); }
+        }
+        const kuehl = 0.6 + 2.4 * Math.min(1, Math.abs(ZST.nIst) / 1500);
+        const ende = 20 + AKT.Pcu * 0.75 / kuehl * 2.1;   // Nennpunkt ≈ 75 °C
+        ZST.temp += (ende - ZST.temp) * Math.min(1, dt * raffer / 240);
+        if (ZST.temp >= 110) { stopp('Thermoschutz hat ausgelöst: Wicklung 110 °C erreicht. Abkühlen lassen.'); ZST.fehler = 'heiß'; }
+        if (AKT.begrenzt && ZST.modus === 'manuell') meld('Strombegrenzung aktiv: Der Strom läge über dem Doppelten des Nennstroms, der Prüfstand senkt die Spannung auf ' + zs(AKT.U, 0) + ' V.', 'warn');
+      } else {
+        ZST.nIst = Math.max(0, ZST.nIst - 900 * dt);
+        ZST.temp += (20 - ZST.temp) * Math.min(1, dt * raffer / 600);
+        AKT = null;
+      }
+      msZeichnen(dt); dgZeichnen(); anzeigen();
+      requestAnimationFrame(schleife);
+    }
+    window.addEventListener('resize', kbZeichnen);
+    window.addEventListener('pagehide', speichern);
+    einstAnzeigen(); kbZeichnen(); tabelle(); modus('manuell');
+    Array.prototype.forEach.call(document.querySelectorAll('#ps-wissen [data-tex]'), function (el) { Formel.setze(el, el.getAttribute('data-tex'), true); });
+    requestAnimationFrame(schleife);
+    Teilen.lesen('plan').then(function (roh) {
+      if (!roh) return;
+      if (!roh || !Array.isArray(roh.punkte)) throw new Error('ungültig');
+      const l = pruefPunkte(roh.punkte), text = JSON.stringify({ v: 1, punkte: l }); Teilen.sichern(SPEICHER, text);
+      PUNKTE = l; speichern(); tabelle(); vorherKnopf.zeigen(); meld('Messwerte aus dem Link geladen.', 'gut');
+    }).catch(function () { meld('Der Link ist unvollständig oder beschädigt – es gelten die gespeicherten Messwerte.', 'schlecht'); });
+  })();
+  </script>
+</body>
+</html>
