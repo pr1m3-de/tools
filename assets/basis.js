@@ -76,6 +76,18 @@
       if (!window.katex) { element.textContent = tex; return; }
       element.setAttribute('data-formel', tex);   // Quelle bleibt lesbar (Lernbereich)
       tex = String(tex).replace(/€/g, 'Euro');   // KaTeX kennt kein Eurozeichen
+      // In \text{…} kennt KaTeX keine Mathezeichen: „N·m“ erschien sonst als „N\cdotpm“, „\mu F“ als „\muF“.
+      // Solche Zeichen aus dem Text herauslösen und im Formelsatz setzen.
+      tex = tex.replace(/\\text\{([^{}]*)\}/g, function (ganz, inhalt) {
+        if (!/[·µ≠∑]|\\mu/.test(inhalt)) return ganz;
+        return inhalt.split(/(·|µ|≠|∑|\\mu ?)/).map(function (t) {
+          if (t === '·') return '\\cdot ';
+          if (t === 'µ' || /^\\mu ?$/.test(t)) return '\\mu ';
+          if (t === '≠') return '\\neq ';
+          if (t === '∑') return '\\sum ';
+          return t ? '\\text{' + t + '}' : '';
+        }).join('');
+      });
       try {
         window.katex.render(tex, element, {
           displayMode: !!block, throwOnError: false, strict: 'ignore', output: 'html',
