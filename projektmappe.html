@@ -127,6 +127,7 @@
       ['elektro/leitungsdimensionierung.html', 'Leitungsdimensionierung', '#2B7BB9'], ['elektro/selektivitaet.html', 'Selektivität', '#2B7BB9'],
       ['elektro/schleifenimpedanz.html', 'Schleifenimpedanz und Kurzschlussstrom', '#2B7BB9'], ['elektro/blitzschutz.html', 'Blitzschutz', '#2B7BB9'],
       ['elektro/beleuchtung.html', 'Beleuchtung planen', '#2B7BB9'], ['elektro/warmwasser.html', 'Warmwasser-Rechner', '#2B7BB9'],
+      ['steuerung/sps.html', 'SPS-Simulator', '#0E7C86', 'sps-1'], ['steuerung/kleinsteuerung.html', 'Kleinsteuerung', '#0E7C86', 'kleinsteuerung-1'],
       ['gebaeudeautomation/knx-planung.html', 'KNX-Planung', '#9333EA'], ['gebaeudeautomation/knx-simulator.html', 'KNX-Simulator', '#9333EA', 'knx-simulator-1'], ['gebaeudeautomation/smart-home.html', 'Smart Home', '#9333EA', 'automation-2'],
       ['elektro/pv-notstrom.html', 'PV und Notstrom', '#2B7BB9'], ['elektro/pv-dach.html', 'PV-Dachplaner', '#2B7BB9', 'pv-dachplaner-2'], ['elektro/pv-verschaltung.html', 'PV-Verschaltung', '#2B7BB9', 'pv-verschaltung-1'],
       ['elektro/pv-string.html', 'PV-Strings auslegen', '#2B7BB9'], ['elektro/pv-verschattung.html', 'PV-Verschattung', '#2B7BB9'],
@@ -248,7 +249,7 @@
         const kn = document.createElement('span'); kn.className = 'knoepfe';
         const a = document.createElement('a'); a.className = 'knopf'; a.textContent = 'Öffnen';
         // Link nach dem gemeinsamen Muster (#werte=… bzw. #plan=…), geht nicht an den Server
-        const LINKNAME = { 'pv-dachplaner-2': 'dach', 'pv-verschaltung-1': 'plan', 'gasleitung-1': 'anlage', 'brandmeldeanlage-1': 'anlage', 'gefaehrdungsbeurteilung-1': 'plan', 'homelab-1': 'plan', 'homelab-server-1': 'plan', 'knx-simulator-1': 'anlage', 'automation-2': 'plan' };
+        const LINKNAME = { 'pv-dachplaner-2': 'dach', 'pv-verschaltung-1': 'plan', 'gasleitung-1': 'anlage', 'brandmeldeanlage-1': 'anlage', 'gefaehrdungsbeurteilung-1': 'plan', 'homelab-1': 'plan', 'homelab-server-1': 'plan', 'knx-simulator-1': 'anlage', 'automation-2': 'plan', 'sps-1': 'plan', 'kleinsteuerung-1': 'plan' };
         a.href = v ? Teilen.urlSofort(s[0], 'werte', v) : eigen && LINKNAME[s[3]] ? Teilen.urlSofort(s[0], LINKNAME[s[3]], eigen) : s[0];
         const weg = document.createElement('button'); weg.type = 'button'; weg.className = 'knopf-leise'; weg.textContent = 'zurücksetzen';
         weg.addEventListener('click', function () { schreiben(schluessel(s[0]), null); if (s[3]) schreiben(s[3], null); seitenZeigen(); melden('meldung1', s[1] + ' zurückgesetzt.'); });

@@ -170,6 +170,33 @@
    "aufgaben": 5,
    "loesungen": 5,
    "beschreibung": "Mehrwertsteuer herausrechnen und aufschlagen, Skonto als Jahreszins, Rabatt und Skonto hintereinander."
+  },
+  {
+   "datei": "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",
+   "thema": "steuerung/kleinsteuerung.html",
+   "titel": "Kleinsteuerung im Funktionsplan",
+   "stufe": "leicht",
+   "aufgaben": 5,
+   "loesungen": 5,
+   "beschreibung": "Grundverknüpfungen und Wahrheitstabellen, negierte Eingänge, Treppenlicht, Stromstoßrelais, Ein- und Ausschaltverzögerung, Rolltor mit Verriegelung, Schaltuhr und Analogschwellwert – mit dem Kleinsteuerungs-Simulator."
+  },
+  {
+   "datei": "aufgabenblaetter/steuerung/sps/01-sps-grundlagen.md",
+   "thema": "steuerung/sps.html",
+   "titel": "SPS-Grundlagen – Aufbau, Zyklus und Signale",
+   "stufe": "leicht",
+   "aufgaben": 6,
+   "loesungen": 6,
+   "beschreibung": "Aufbau einer SPS, Zyklus mit Prozessabbild, Reaktionszeit, Öffner und Schließer, Drahtbruchsicherheit, Adressen, Datentypen, Analogwerte skalieren und die Sprachen der IEC 61131-3."
+  },
+  {
+   "datei": "aufgabenblaetter/steuerung/sps/02-st-programmieren.md",
+   "thema": "steuerung/sps.html",
+   "titel": "SPS in Strukturiertem Text programmieren",
+   "stufe": "mittel",
+   "aufgaben": 6,
+   "loesungen": 6,
+   "beschreibung": "Selbsthaltung, Wendeschützschaltung mit Verriegelung, Timer TON, TOF und TP, Flanken, Zähler, Schrittkette mit CASE und Zweipunktregelung – mit dem SPS-Simulator."
   }
  ]
 }

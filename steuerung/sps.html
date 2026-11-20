@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler – Formeln &amp; Rechner</title>
+  <meta name="description" content="SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, digitale und analoge Signale, Öffner und Schließer, Adressierung, Datentypen und die Sprachen nach IEC 61131-3 – mit SPS-Simulator in Strukturiertem Text, Timern, Zählern, Flanken, Schrittketten und Anlagenmodellen (Motor, Ampel, Tank, Tor, Förderband).">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/steuerung/sps.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler">
+  <meta property="og:description" content="SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, digitale und analoge Signale, Öffner und Schließer, Adressierung, Datentypen und die Sprachen nach IEC 61131-3 – mit SPS-Simulator in Strukturiertem Text, Timern, Zählern, Flanken, Schrittketten und Anlagenmodellen (Motor, Ampel, Tank, Tor, Förderband).">
+  <meta property="og:url" content="https://tools.pr1m3.de/steuerung/sps.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler">
+  <meta name="twitter:description" content="SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, digitale und analoge Signale, Öffner und Schließer, Adressierung, Datentypen und die Sprachen nach IEC 61131-3 – mit SPS-Simulator in Strukturiertem Text, Timern, Zählern, Flanken, Schrittketten und Anlagenmodellen (Motor, Ampel, Tank, Tor, Förderband).">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/steuerung/sps.html#seite","name":"SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler","url":"https://tools.pr1m3.de/steuerung/sps.html","inLanguage":"de","description":"SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, digitale und analoge Signale, Öffner und Schließer, Adressierung, Datentypen und die Sprachen nach IEC 61131-3 – mit SPS-Simulator in Strukturiertem Text, Timern, Zählern, Flanken, Schrittketten und Anlagenmodellen (Motor, Ampel, Tank, Tor, Förderband).","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/steuerung/sps.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/steuerung/sps.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler","item":"https://tools.pr1m3.de/steuerung/sps.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/steuerung/sps.html#fragen","mainEntity":[{"@type":"Question","name":"Warum schaltet mein Ausgang nicht, obwohl die Zeile stimmt?","acceptedAnswer":{"@type":"Answer","text":"Wahrscheinlich wird derselbe Ausgang weiter unten im Programm noch einmal beschrieben. In der SPS gewinnt die letzte Zuweisung im Zyklus. Jeden Ausgang nur an einer Stelle zuweisen – oder mit Merkern arbeiten."}},{"@type":"Question","name":"Warum ist der Stopp-Taster ein Öffner?","acceptedAnswer":{"@type":"Answer","text":"Damit ein Drahtbruch oder ein abgefallener Stecker wie „Stopp“ wirkt. Mit einem Schließer würde die Maschine bei Drahtbruch nicht mehr abschaltbar sein. Im Programm wird deshalb mit „AND Stopp“ (nicht „AND NOT Stopp“) verknüpft."}},{"@type":"Question","name":"Was ist der Unterschied zwischen SPS und Kleinsteuerung?","acceptedAnswer":{"@type":"Answer","text":"Kleinsteuerungen (Logikmodule) haben wenige feste Ein- und Ausgänge, eingebaute Funktionen und werden meist grafisch mit Funktionsbausteinen programmiert – ideal für Treppenlicht, Tore, Pumpen. Eine SPS ist modular erweiterbar, schneller, kommuniziert über Feldbusse und wird in allen Sprachen der IEC 61131-3 programmiert."}},{"@type":"Question","name":"Was ist eine Schrittkette?","acceptedAnswer":{"@type":"Answer","text":"Ein Ablauf, der in Schritte zerlegt ist. Immer ist genau ein Schritt aktiv; eine Übergangsbedingung (z. B. „Endschalter erreicht“ oder „Zeit abgelaufen“) schaltet zum nächsten. In ST baut man sie mit einer Schrittvariable und CASE – siehe Beispiel „Ampel“."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/steuerung/sps.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3, .wissen-karte h4 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .wissen-karte ul { margin: 4px 0; padding-left: 18px; }
+    .wissen-karte pre { margin: 6px 0; }
+    .bild-svg { width: 100%; height: auto; max-width: 760px; display: block; margin: 8px auto; }
+    .bild-svg text { font-family: var(--technik); fill: var(--text); }
+    .sps-leiste { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 8px 0; }
+    .sps-leiste label { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .sps-leiste select, .sps-tab input, .sps-tab select { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; min-width: 0; }
+    .sps-raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+    @media (max-width: 1000px) { .sps-raster { grid-template-columns: minmax(0, 1fr); } }
+    .sps-raster > * { min-width: 0; }
+    .editor-rahmen { position: relative; border: 1.5px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); overflow: hidden; }
+    #code { width: 100%; min-height: 360px; resize: vertical; border: 0; padding: 10px 10px 10px 46px; font-family: var(--technik); font-size: .9rem; line-height: 1.45; background: transparent; color: var(--text); tab-size: 2; white-space: pre; overflow: auto; box-sizing: border-box; display: block; }
+    #zeilen { position: absolute; left: 0; top: 0; width: 36px; padding: 10px 4px 0 0; text-align: right; font-family: var(--technik); font-size: .9rem; line-height: 1.45; color: var(--leise); pointer-events: none; white-space: pre; background: var(--flaeche2); height: 100%; box-sizing: border-box; overflow: hidden; }
+    .cpu { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin: 8px 0; }
+    .led { display: inline-flex; align-items: center; gap: 5px; font-family: var(--technik); font-weight: 700; font-size: .85rem; }
+    .led i { width: 12px; height: 12px; border-radius: 50%; background: #9AA1A8; display: inline-block; box-shadow: inset 0 0 2px rgba(0,0,0,.4); }
+    .led.gruen i { background: #2F9E44; box-shadow: 0 0 8px #2F9E44; }
+    .led.rot i { background: #E03131; box-shadow: 0 0 8px #E03131; }
+    .led.gelb i { background: #F59F00; box-shadow: 0 0 8px #F59F00; }
+    .zyklus { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; margin: 6px 0; font-family: var(--technik); font-size: .82rem; text-align: center; }
+    .zyklus span { padding: 6px 4px; border: 1px solid var(--linie); border-radius: 8px; background: var(--flaeche2); transition: background .08s; }
+    .zyklus span.an { background: #2B7BB9; color: #fff; border-color: #2B7BB9; }
+    .meldung-sps { min-height: 1.4em; font-weight: 600; margin: 6px 0; font-family: var(--technik); font-size: .88rem; white-space: pre-wrap; }
+    .meldung-sps.schlecht { color: #C0392B; }
+    .meldung-sps.gut { color: #2F9E44; }
+    .io { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); gap: 6px; margin: 6px 0; }
+    .io-feld { border: 1px solid var(--linie); border-radius: 8px; padding: 6px 8px; background: var(--flaeche2); font-size: .85rem; min-width: 0; }
+    .io-feld b { display: block; font-family: var(--technik); font-size: .78rem; color: var(--leise); }
+    .io-feld .name { font-weight: 700; overflow-wrap: anywhere; }
+    .io-feld button { margin-top: 4px; min-height: 34px; width: 100%; border: 1.5px solid var(--linie); border-radius: 8px; background: var(--flaeche); color: var(--text); font: inherit; font-weight: 700; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
+    .io-feld button.gedrueckt { background: #2B7BB9; color: #fff; border-color: #2B7BB9; }
+    .io-feld .sig { font-family: var(--technik); font-weight: 700; }
+    .io-feld .sig.eins { color: #2F9E44; }
+    .io-feld input[type=range] { width: 100%; min-height: 30px; }
+    #anlage { width: 100%; height: 300px; display: block; border-radius: var(--rund); background: var(--flaeche2); border: 1px solid var(--linie); touch-action: manipulation; }
+    .beob { max-height: 340px; overflow: auto; border: 1px solid var(--linie); border-radius: var(--rund); }
+    .beob table { width: 100%; border-collapse: collapse; font-family: var(--technik); font-size: .84rem; }
+    .beob th { position: sticky; top: 0; background: var(--flaeche); text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--linie); }
+    .beob td { padding: 3px 6px; border-bottom: 1px solid var(--linie); }
+    .beob td.w1 { color: #2F9E44; font-weight: 700; }
+    .sps-tab { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .sps-tab th, .sps-tab td { padding: 4px 5px; border-bottom: 1px solid var(--linie); text-align: left; }
+    .sps-tab input { width: 100%; font-family: var(--technik); }
+    .sps-tab td.adr { font-family: var(--technik); white-space: nowrap; }
+    pre.code { background: var(--flaeche2); border: 1px solid var(--linie); border-radius: 8px; padding: 8px 10px; font-family: var(--technik); font-size: .85rem; overflow: auto; }
+    .schritte { counter-reset: s; list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 8px; }
+    .schritte li { counter-increment: s; position: relative; padding: 8px 10px 8px 44px; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); font-size: .93rem; line-height: 1.45; }
+    .schritte li::before { content: counter(s); position: absolute; left: 10px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #0E7C86; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
+    @media print { .sps-leiste, .io-feld button, #anlage { display: none !important; } #code { min-height: 0; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite">
+    <section class="tafel">
+      <h1><span class="unterstrichen">SPS verstehen und programmieren</span></h1>
+      <p>Eine speicherprogrammierbare Steuerung (SPS) liest Eingänge, rechnet ein Programm und schaltet Ausgänge – immer wieder, im Zyklus. Unten ein SPS-Simulator: Programm in Strukturiertem Text (ST) nach IEC 61131-3 schreiben, mit Timern, Zählern, Flanken und Schrittketten, und an Anlagenmodellen testen. Grafisch mit Funktionsbausteinen: <a href="kleinsteuerung.html">Kleinsteuerung</a>.</p>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-sim">
+      <h2 id="h-sim">SPS-Simulator</h2>
+      <div class="sps-leiste">
+        <label>Beispiel <select id="beispiel" data-nicht-merken></select></label>
+        <button type="button" class="knopf" id="laden">Laden</button>
+        <label>Zykluszeit <select id="zyklusZeit" data-nicht-merken><option value="20">20 ms</option><option value="100" selected>100 ms</option><option value="500">500 ms</option><option value="2000">2 s (zum Zuschauen)</option></select></label>
+      </div>
+      <p class="hilfe" id="beispielText"></p>
+      <div class="sps-raster">
+        <div>
+          <h3 class="zwischen">Programm (Strukturierter Text)</h3>
+          <div class="editor-rahmen"><div id="zeilen" aria-hidden="true"></div><textarea id="code" spellcheck="false" autocapitalize="off" autocomplete="off" aria-label="SPS-Programm in Strukturiertem Text" data-nicht-merken></textarea></div>
+          <div class="sps-leiste">
+            <button type="button" class="knopf" id="uebersetzen">Übersetzen und laden</button>
+            <button type="button" class="knopf" id="runStop" aria-pressed="false">▶ RUN</button>
+            <button type="button" class="knopf-leise" id="einzel">Einzelzyklus</button>
+            <button type="button" class="knopf-leise" id="teilen">Link kopieren</button>
+            <span id="teilenMeldung" class="hilfe" role="status"></span>
+          </div>
+          <p class="meldung-sps" id="meldung" role="status"></p>
+        </div>
+        <div>
+          <h3 class="zwischen">CPU und Anlage</h3>
+          <div class="cpu">
+            <span class="led" id="ledRun"><i></i>RUN</span>
+            <span class="led rot" id="ledStop"><i></i>STOP</span>
+            <span class="led" id="ledSf"><i></i>Fehler</span>
+            <span class="hilfe" id="zyklusInfo"></span>
+          </div>
+          <div class="zyklus" aria-label="Phasen des SPS-Zyklus"><span id="ph1">1 Eingänge lesen (PAE)</span><span id="ph2">2 Programm abarbeiten</span><span id="ph3">3 Ausgänge schreiben (PAA)</span></div>
+          <canvas id="anlage" role="img" aria-label="Modell der gesteuerten Anlage"></canvas>
+          <h3 class="zwischen">Eingänge</h3>
+          <div class="io" id="eingaenge"></div>
+          <h3 class="zwischen">Ausgänge</h3>
+          <div class="io" id="ausgaenge"></div>
+        </div>
+      </div>
+      <div class="sps-raster">
+        <div>
+          <h3 class="zwischen">Beobachten (Variablen online)</h3>
+          <div class="beob"><table><thead><tr><th>Variable</th><th>Typ</th><th>Wert</th></tr></thead><tbody id="beob"></tbody></table></div>
+        </div>
+        <div>
+          <h3 class="zwischen">Symboltabelle</h3>
+          <p class="hilfe">Namen statt Adressen: Im Programm darfst du beides verwenden, z. B. <code>Start</code> oder <code>%IX0.0</code>. Öffner liefern im Ruhezustand 1.</p>
+          <div class="rahmen"><table class="sps-tab"><thead><tr><th>Adresse</th><th>Name</th><th>Bedienung</th></tr></thead><tbody id="symbole"></tbody></table></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tafel abstand formelsammlung" id="sps-wissen" aria-labelledby="h-sps-wissen">
+      <h2 id="h-sps-wissen">SPS-Grundlagen</h2>
+      <h3 class="zwischen">Aufbau</h3>
+      <svg class="bild-svg" viewBox="0 0 760 220" role="img" aria-label="Aufbau einer SPS: Stromversorgung, CPU, digitale und analoge Ein- und Ausgabebaugruppen und Kommunikation; Sensoren links, Aktoren rechts">
+        <g font-size="12">
+          <rect x="190" y="30" width="70" height="150" rx="6" fill="#6B7785" fill-opacity=".18" stroke="#6B7785" stroke-width="2"/><text x="225" y="100" text-anchor="middle" font-weight="700">Netz-</text><text x="225" y="116" text-anchor="middle" font-weight="700">teil</text><text x="225" y="134" text-anchor="middle">24 V DC</text>
+          <rect x="266" y="30" width="110" height="150" rx="6" fill="#0E7C86" fill-opacity=".18" stroke="#0E7C86" stroke-width="2"/><text x="321" y="80" text-anchor="middle" font-weight="700">CPU</text><text x="321" y="100" text-anchor="middle">Programm</text><text x="321" y="116" text-anchor="middle">Prozessabbild</text><text x="321" y="132" text-anchor="middle">Merker, Timer</text><text x="321" y="148" text-anchor="middle">RUN / STOP</text>
+          <rect x="382" y="30" width="80" height="150" rx="6" fill="#2B7BB9" fill-opacity=".18" stroke="#2B7BB9" stroke-width="2"/><text x="422" y="100" text-anchor="middle" font-weight="700">DI</text><text x="422" y="118" text-anchor="middle">digitale</text><text x="422" y="132" text-anchor="middle">Eingänge</text>
+          <rect x="468" y="30" width="80" height="150" rx="6" fill="#E07A1F" fill-opacity=".18" stroke="#E07A1F" stroke-width="2"/><text x="508" y="100" text-anchor="middle" font-weight="700">DO</text><text x="508" y="118" text-anchor="middle">digitale</text><text x="508" y="132" text-anchor="middle">Ausgänge</text>
+          <rect x="554" y="30" width="80" height="150" rx="6" fill="#9333EA" fill-opacity=".16" stroke="#9333EA" stroke-width="2"/><text x="594" y="100" text-anchor="middle" font-weight="700">AI / AO</text><text x="594" y="118" text-anchor="middle">0–10 V</text><text x="594" y="132" text-anchor="middle">4–20 mA</text>
+          <rect x="640" y="30" width="90" height="150" rx="6" fill="#2E8B57" fill-opacity=".16" stroke="#2E8B57" stroke-width="2"/><text x="685" y="100" text-anchor="middle" font-weight="700">Komm.</text><text x="685" y="118" text-anchor="middle">Feldbus,</text><text x="685" y="132" text-anchor="middle">Ethernet</text>
+          <text x="20" y="60" font-weight="700">Sensoren</text><text x="20" y="78">Taster, Schalter</text><text x="20" y="94">Endschalter</text><text x="20" y="110">Näherungsschalter</text><text x="20" y="126">Lichtschranke</text><text x="20" y="142">Füllstand, Druck</text>
+          <path d="M140 100 H190" stroke="currentColor" stroke-width="1.6" marker-end="url(#pf)"/>
+          <text x="380" y="205" text-anchor="middle">Aktoren: Schütze, Ventile, Lampen, Frequenzumrichter, Stellantriebe</text>
+        </g>
+        <defs><marker id="pf" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker></defs>
+      </svg>
+
+      <h3 class="zwischen">Der Zyklus</h3>
+      <ol class="schritte">
+        <li><b>Prozessabbild der Eingänge (PAE)</b> lesen: Alle Eingänge werden auf einmal in den Speicher kopiert. Ändert sich ein Eingang während des Zyklus, merkt das Programm es erst im nächsten Zyklus.</li>
+        <li><b>Programm abarbeiten</b>: von oben nach unten, Anweisung für Anweisung. Spätere Zuweisungen überschreiben frühere – die letzte gewinnt.</li>
+        <li><b>Prozessabbild der Ausgänge (PAA)</b> schreiben: Erst jetzt schalten die Ausgänge. Dann beginnt der nächste Zyklus. Ein Watchdog stoppt die CPU, wenn ein Zyklus zu lange dauert (z. B. Endlosschleife).</li>
+      </ol>
+      <div class="wissen-raster">
+        <section class="wissen-karte" style="--farbe:#0E7C86">
+          <h4>Reaktionszeit</h4>
+          <div class="formel-block" data-tex="t_\text{R,max} \approx 2 \cdot t_\text{Zyklus} + t_\text{E} + t_\text{A}"></div>
+          <p>Im ungünstigsten Fall ändert sich der Eingang gleich nach dem Lesen: Er wird erst im nächsten Zyklus gelesen und am Ende davon ausgegeben. Dazu kommen die Verzögerungen der Eingangs- und Ausgangsbaugruppe.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#9333EA">
+          <h4>Analogwert skalieren</h4>
+          <div class="formel-block" data-tex="y = \frac{x - x_\text{min}}{x_\text{max} - x_\text{min}} \cdot (y_\text{max} - y_\text{min}) + y_\text{min}"></div>
+          <p>Der Rohwert x der Baugruppe (z. B. 0 … 10 000) wird in die physikalische Größe y umgerechnet, etwa 0 … 100 % Füllstand oder 0 … 6 bar.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#E07A1F">
+          <h4>Stromsignal 4 … 20 mA</h4>
+          <div class="formel-block" data-tex="y = \frac{I - 4\,\text{mA}}{16\,\text{mA}} \cdot (y_\text{max} - y_\text{min}) + y_\text{min}"></div>
+          <p>Der „lebende Nullpunkt“: 4 mA bedeuten Messbereichsanfang. Unter etwa 3,6 mA liegt ein Drahtbruch vor – das erkennt die SPS, anders als bei 0 … 20 mA oder 0 … 10 V.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#2B7BB9">
+          <h4>Blinktakt und Zähler</h4>
+          <div class="formel-block" data-tex="f = \frac{1}{t_\text{ein} + t_\text{aus}}"></div>
+          <p>Zwei Einschaltverzögerungen, die sich gegenseitig zurücksetzen, ergeben einen Taktgeber. Ein Zähler (CTU) zählt steigende Flanken bis zum Sollwert PV und meldet dann Q = 1.</p>
+        </section>
+      </div>
+
+      <h3 class="zwischen">Öffner, Schließer und Drahtbruchsicherheit</h3>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h4>Schließer (NO)</h4><p>Unbetätigt offen, Signal 0. Betätigt: 1. Typisch für Start- und Ein-Taster.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h4>Öffner (NC)</h4><p>Unbetätigt geschlossen, Signal 1. Betätigt: 0. Pflicht für Stopp, Not-Halt, Endschalter und Lichtschranken: Ein Drahtbruch wirkt dann wie „Stopp“ – die Anlage bleibt sicher stehen.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h4>Sicherheit</h4><p>Not-Halt und Schutztüren gehören nicht allein in eine normale SPS. Sie werden über Sicherheitsschaltgeräte oder eine Sicherheits-SPS mit zweikanaliger Abschaltung ausgeführt (Maschinenrichtlinie, EN ISO 13849, EN 60204-1).</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h4>PNP oder NPN</h4><p>In Europa schalten Sensoren meist plusschaltend (PNP): Der Ausgang legt 24 V an den Eingang. NPN-Sensoren schalten nach 0 V und passen nur an minusschaltende Eingänge.</p></article>
+      </div>
+
+      <h3 class="zwischen">Adressen und Datentypen</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Bereich</th><th>IEC-Schreibweise</th><th>deutsche Schreibweise</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>Eingang (Bit)</td><td><code>%IX0.3</code></td><td>E 0.3</td><td>Byte 0, Bit 3 des Eingangsabbilds</td></tr>
+          <tr><td>Ausgang (Bit)</td><td><code>%QX1.0</code></td><td>A 1.0</td><td>Byte 1, Bit 0 des Ausgangsabbilds</td></tr>
+          <tr><td>Merker (Bit)</td><td><code>%MX10.2</code></td><td>M 10.2</td><td>interner Speicher, behält den Wert zwischen den Zyklen</td></tr>
+          <tr><td>Eingangswort</td><td><code>%IW64</code></td><td>EW 64</td><td>16 Bit, z. B. Analogwert</td></tr>
+        </tbody>
+      </table></div>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Datentyp</th><th>Größe</th><th>Wertebereich / Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td>BOOL</td><td>1 Bit</td><td>TRUE / FALSE</td></tr>
+          <tr><td>BYTE, WORD, DWORD</td><td>8, 16, 32 Bit</td><td>Bitmuster, z. B. 16#FF</td></tr>
+          <tr><td>INT</td><td>16 Bit</td><td>−32 768 … 32 767</td></tr>
+          <tr><td>DINT</td><td>32 Bit</td><td>−2 147 483 648 … 2 147 483 647</td></tr>
+          <tr><td>REAL</td><td>32 Bit</td><td>Gleitkommazahl, z. B. 3.14</td></tr>
+          <tr><td>TIME</td><td>32 Bit</td><td>T#5s, T#1m30s, T#250ms</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="zwischen">Programmiersprachen nach IEC 61131-3</h3>
+      <p>Dieselbe Selbsthaltung (Start = Schließer, Stopp = Öffner) in vier Sprachen:</p>
+      <svg class="bild-svg" viewBox="0 0 760 330" role="img" aria-label="Selbsthaltung als Kontaktplan, Funktionsplan, Strukturierter Text und Anweisungsliste">
+        <g font-size="12" stroke="currentColor" fill="none" stroke-width="1.6">
+          <text x="10" y="18" font-weight="700" stroke="none" fill="currentColor">KOP / LD (Kontaktplan)</text>
+          <path d="M20 40 V140 M360 40 V140"/>
+          <path d="M20 70 H70 M90 70 H160 M180 70 H260 M300 70 H360"/>
+          <path d="M70 58 V82 M90 58 V82"/><path d="M160 58 V82 M180 58 V82"/><path d="M164 80 L176 60"/>
+          <circle cx="280" cy="70" r="14"/>
+          <path d="M45 70 V115 H70 M90 115 H120 V70"/><path d="M70 103 V127 M90 103 V127"/>
+          <g stroke="none" fill="currentColor"><text x="80" y="52" text-anchor="middle">Start</text><text x="170" y="52" text-anchor="middle">Stopp</text><text x="280" y="52" text-anchor="middle">Motor</text><text x="80" y="143" text-anchor="middle">Motor</text></g>
+          <text x="400" y="18" font-weight="700" stroke="none" fill="currentColor">FUP / FBD (Funktionsplan)</text>
+          <rect x="470" y="40" width="50" height="50"/><rect x="580" y="40" width="50" height="60"/>
+          <path d="M420 55 H470 M520 65 H580 M630 70 H700 M440 75 H470 M560 90 H580"/><path d="M440 75 V120 H700 V70"/>
+          <g stroke="none" fill="currentColor"><text x="495" y="70" text-anchor="middle" font-weight="700">≥1</text><text x="605" y="75" text-anchor="middle" font-weight="700">&amp;</text><text x="420" y="50">Start</text><text x="520" y="105">Stopp</text><text x="704" y="66">Motor</text></g>
+          <text x="10" y="190" font-weight="700" stroke="none" fill="currentColor">ST (Strukturierter Text)</text>
+          <text x="10" y="215" stroke="none" fill="currentColor" font-family="monospace">Motor := (Start OR Motor) AND Stopp;</text>
+          <text x="400" y="190" font-weight="700" stroke="none" fill="currentColor">AWL / IL (Anweisungsliste, auslaufend)</text>
+          <g stroke="none" fill="currentColor" font-family="monospace"><text x="400" y="215">LD  Start</text><text x="400" y="233">OR  Motor</text><text x="400" y="251">AND Stopp</text><text x="400" y="269">ST  Motor</text></g>
+          <text x="10" y="300" stroke="none" fill="currentColor">Dazu kommt AS / SFC (Ablaufsprache) für Schrittketten: Schritte mit Aktionen, verbunden durch Übergangsbedingungen.</text>
+        </g>
+      </svg>
+
+      <h3 class="zwischen">Bausteine im Simulator</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Baustein</th><th>Eingänge</th><th>Ausgänge</th><th>Funktion</th></tr></thead>
+        <tbody>
+          <tr><td>TON</td><td>IN, PT</td><td>Q, ET</td><td>Einschaltverzögerung: Q wird 1, wenn IN die Zeit PT lang 1 ist</td></tr>
+          <tr><td>TOF</td><td>IN, PT</td><td>Q, ET</td><td>Ausschaltverzögerung: Q folgt IN sofort auf 1 und fällt erst PT nach IN = 0</td></tr>
+          <tr><td>TP</td><td>IN, PT</td><td>Q, ET</td><td>Impuls: steigende Flanke an IN gibt einen Impuls der Länge PT</td></tr>
+          <tr><td>CTU / CTD / CTUD</td><td>CU, CD, R, LD, PV</td><td>Q, QU, QD, CV</td><td>Vorwärts-, Rückwärts-, Vor-/Rückwärtszähler auf steigende Flanken</td></tr>
+          <tr><td>R_TRIG / F_TRIG</td><td>CLK</td><td>Q</td><td>Q ist genau einen Zyklus lang 1 bei steigender bzw. fallender Flanke</td></tr>
+          <tr><td>SR / RS</td><td>S1, R / S, R1</td><td>Q1</td><td>Speicher: SR setzdominant, RS rücksetzdominant</td></tr>
+          <tr><td>Funktionen</td><td colspan="3">ABS, MIN, MAX, LIMIT(MN, IN, MX), SEL(G, IN0, IN1), INT_TO_REAL, REAL_TO_INT, TRUNC; Operatoren NOT, AND (&amp;), OR, XOR, = &lt;&gt; &lt; &gt; &lt;= &gt;=, + − * / MOD; IF, CASE, FOR</td></tr>
+        </tbody>
+      </table></div>
+      <p class="hilfe">Die Bezeichnungen folgen der Norm IEC 61131-3 (DIN EN 61131-3). Jede Herstellersoftware hat eigene Erweiterungen und Darstellungen; der Simulator ist ein Lernwerkzeug und ersetzt keine Inbetriebnahme mit der Originalsoftware. Programmbeispiele und Texte sind eigenständig geschrieben.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum schaltet mein Ausgang nicht, obwohl die Zeile stimmt?</summary><p>Wahrscheinlich wird derselbe Ausgang weiter unten im Programm noch einmal beschrieben. In der SPS gewinnt die letzte Zuweisung im Zyklus. Jeden Ausgang nur an einer Stelle zuweisen – oder mit Merkern arbeiten.</p></details>
+        <details><summary>Warum ist der Stopp-Taster ein Öffner?</summary><p>Damit ein Drahtbruch oder ein abgefallener Stecker wie „Stopp“ wirkt. Mit einem Schließer würde die Maschine bei Drahtbruch nicht mehr abschaltbar sein. Im Programm wird deshalb mit „AND Stopp“ (nicht „AND NOT Stopp“) verknüpft.</p></details>
+        <details><summary>Was ist der Unterschied zwischen SPS und Kleinsteuerung?</summary><p>Kleinsteuerungen (Logikmodule) haben wenige feste Ein- und Ausgänge, eingebaute Funktionen und werden meist grafisch mit Funktionsbausteinen programmiert – ideal für Treppenlicht, Tore, Pumpen. Eine SPS ist modular erweiterbar, schneller, kommuniziert über Feldbusse und wird in allen Sprachen der IEC 61131-3 programmiert.</p></details>
+        <details><summary>Was ist eine Schrittkette?</summary><p>Ein Ablauf, der in Schritte zerlegt ist. Immer ist genau ein Schritt aktiv; eine Übergangsbedingung (z. B. „Endschalter erreicht“ oder „Zeit abgelaufen“) schaltet zum nächsten. In ST baut man sie mit einer Schrittvariable und CASE – siehe Beispiel „Ampel“.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const $ = function (id) { return document.getElementById(id); };
+    const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
+    const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 2 : n }); };
+    const BLAU = '#2B7BB9', ORANGE = '#E07A1F', GRUEN = '#2F9E44', ROT = '#E03131', GELB = '#F59F00', GRAU = '#9AA1A8', TUERKIS = '#0E7C86';
+
+    // =====================================================================
+    // Strukturierter Text: Zerleger, Parser, Prüfer, Interpreter
+    // =====================================================================
+    const SCHLUESSEL = ['VAR', 'END_VAR', 'IF', 'THEN', 'ELSIF', 'ELSE', 'END_IF', 'CASE', 'OF', 'END_CASE', 'FOR', 'TO', 'BY', 'DO', 'END_FOR', 'AND', 'OR', 'XOR', 'NOT', 'MOD', 'TRUE', 'FALSE', 'PROGRAM', 'END_PROGRAM', 'WHILE', 'END_WHILE', 'REPEAT', 'UNTIL', 'END_REPEAT', 'EXIT', 'RETURN'];
+    const TYPEN = { BOOL: 'b', INT: 'i', DINT: 'i', UINT: 'i', WORD: 'i', BYTE: 'i', REAL: 'r', LREAL: 'r', TIME: 't' };
+    const FB = {
+      TON: { ein: ['IN', 'PT'], aus: ['Q', 'ET'] }, TOF: { ein: ['IN', 'PT'], aus: ['Q', 'ET'] }, TP: { ein: ['IN', 'PT'], aus: ['Q', 'ET'] },
+      CTU: { ein: ['CU', 'R', 'PV'], aus: ['Q', 'CV'] }, CTD: { ein: ['CD', 'LD', 'PV'], aus: ['Q', 'CV'] }, CTUD: { ein: ['CU', 'CD', 'R', 'LD', 'PV'], aus: ['QU', 'QD', 'CV'] },
+      R_TRIG: { ein: ['CLK'], aus: ['Q'] }, F_TRIG: { ein: ['CLK'], aus: ['Q'] }, SR: { ein: ['S1', 'R'], aus: ['Q1'] }, RS: { ein: ['S', 'R1'], aus: ['Q1'] }
+    };
+    const FUNKTIONEN = {
+      ABS: [1, function (a) { return Math.abs(a[0]); }], MIN: [2, function (a) { return Math.min(a[0], a[1]); }], MAX: [2, function (a) { return Math.max(a[0], a[1]); }],
+      LIMIT: [3, function (a) { return Math.min(Math.max(a[1], a[0]), a[2]); }], SEL: [3, function (a) { return a[0] ? a[2] : a[1]; }],
+      INT_TO_REAL: [1, function (a) { return +a[0]; }], REAL_TO_INT: [1, function (a) { return Math.round(a[0]); }], TRUNC: [1, function (a) { return Math.trunc(a[0]); }],
+      BOOL_TO_INT: [1, function (a) { return a[0] ? 1 : 0; }], INT_TO_BOOL: [1, function (a) { return a[0] !== 0; }], TIME_TO_INT: [1, function (a) { return Math.trunc(a[0]); }], INT_TO_TIME: [1, function (a) { return Math.trunc(a[0]); }],
+      SQRT: [1, function (a) { if (a[0] < 0) throw new Laufzeitfehler('Wurzel aus negativer Zahl'); return Math.sqrt(a[0]); }]
+    };
+    function Fehler(text, zeile) { this.text = text; this.zeile = zeile; }
+    function Laufzeitfehler(text) { this.text = text; }
+
+    function zerlegen(q) {
+      const t = []; let i = 0, z = 1;
+      const fehler = function (m) { throw new Fehler(m, z); };
+      while (i < q.length) {
+        const c = q[i];
+        if (c === '\n') { z++; i++; continue; }
+        if (/\s/.test(c)) { i++; continue; }
+        if (c === '(' && q[i + 1] === '*') { const e = q.indexOf('*)', i + 2); if (e < 0) fehler('Kommentar (* … *) nicht geschlossen'); z += (q.slice(i, e).match(/\n/g) || []).length; i = e + 2; continue; }
+        if (c === '/' && q[i + 1] === '/') { while (i < q.length && q[i] !== '\n') i++; continue; }
+        let m;
+        const rest = q.slice(i, i + 80);
+        if ((m = /^(T|TIME)#(-?)((\d+(\.\d+)?)(ms|h|m|s|d)_?)+/i.exec(rest))) {
+          let ms = 0; const re = /(\d+(?:\.\d+)?)(ms|h|m|s|d)/gi; let x;
+          while ((x = re.exec(m[0].slice(m[0].indexOf('#') + 1)))) { const f = { ms: 1, s: 1000, m: 60000, h: 3600000, d: 86400000 }[x[2].toLowerCase()]; ms += parseFloat(x[1]) * f; }
+          t.push({ a: 'zahl', w: m[2] ? -ms : ms, typ: 't', z: z }); i += m[0].length; continue;
+        }
+        if ((m = /^16#[0-9A-F_]+/i.exec(rest))) { t.push({ a: 'zahl', w: parseInt(m[0].slice(3).replace(/_/g, ''), 16), typ: 'i', z: z }); i += m[0].length; continue; }
+        if ((m = /^2#[01_]+/.exec(rest))) { t.push({ a: 'zahl', w: parseInt(m[0].slice(2).replace(/_/g, ''), 2), typ: 'i', z: z }); i += m[0].length; continue; }
+        if ((m = /^\d[\d_]*(\.\d+)?([eE][-+]?\d+)?/.exec(rest))) { t.push({ a: 'zahl', w: parseFloat(m[0].replace(/_/g, '')), typ: m[1] || m[2] ? 'r' : 'i', z: z }); i += m[0].length; continue; }
+        if ((m = /^%([IQM])([XW]?)(\d{1,2})(\.(\d))?/i.exec(rest))) {
+          const ber = m[1].toUpperCase(), art = (m[2] || 'X').toUpperCase();
+          if (art === 'X' && m[4] === undefined) fehler('Bitadresse braucht Byte.Bit, z. B. %IX0.0');
+          if (art === 'W' && m[4] !== undefined) fehler('Wortadresse ohne Bit, z. B. %IW0');
+          t.push({ a: 'adr', w: '%' + ber + art + m[3] + (art === 'X' ? '.' + m[5] : ''), z: z }); i += m[0].length; continue;
+        }
+        if ((m = /^[A-Za-z_ÄÖÜäöüß][A-Za-z0-9_ÄÖÜäöüß]*/.exec(rest))) {
+          const gross = m[0].toUpperCase();
+          if (SCHLUESSEL.indexOf(gross) >= 0) t.push({ a: 'sw', w: gross, z: z }); else t.push({ a: 'name', w: m[0], z: z });
+          i += m[0].length; continue;
+        }
+        if ((m = /^(:=|<=|>=|<>|\.\.|=>|[-+*\/()=<>;:,.&\[\]])/.exec(rest))) { t.push({ a: 'op', w: m[0], z: z }); i += m[0].length; continue; }
+        if (c === "'") fehler('Texte (STRING) kann der Simulator nicht');
+        fehler('Unbekanntes Zeichen „' + c + '“');
+      }
+      t.push({ a: 'ende', w: '', z: z });
+      return t;
+    }
+
+    function parsen(q) {
+      const t = zerlegen(q); let p = 0;
+      const jetzt = function () { return t[p]; };
+      const ist = function (a, w) { const x = t[p]; return x.a === a && (w === undefined || x.w === w); };
+      const nimm = function (a, w) { if (ist(a, w)) return t[p++]; return null; };
+      const muss = function (a, w, was) { const x = nimm(a, w); if (!x) throw new Fehler((was || '„' + w + '“') + ' erwartet, gefunden: ' + (jetzt().w || 'Ende'), w === ';' && p > 0 ? t[p - 1].z : jetzt().z); return x; };
+      const deklarationen = [];
+      while (nimm('sw', 'PROGRAM')) { muss('name', undefined, 'Programmname'); }
+      while (ist('sw', 'VAR')) {
+        p++;
+        while (!ist('sw', 'END_VAR')) {
+          if (ist('ende')) throw new Fehler('END_VAR fehlt', jetzt().z);
+          const namen = [muss('name', undefined, 'Variablenname')];
+          while (nimm('op', ',')) namen.push(muss('name', undefined, 'Variablenname'));
+          muss('op', ':');
+          const typT = muss('name', undefined, 'Datentyp'), typ = typT.w.toUpperCase();
+          if (!TYPEN[typ] && !FB[typ]) throw new Fehler('Unbekannter Datentyp „' + typT.w + '“ (möglich: BOOL, INT, REAL, TIME, TON, TOF, TP, CTU, CTD, CTUD, R_TRIG, F_TRIG, SR, RS)', typT.z);
+          let init = null;
+          if (nimm('op', ':=')) { if (FB[typ]) throw new Fehler('Bausteine haben keinen Startwert', typT.z); init = ausdruck(); }
+          muss('op', ';');
+          namen.forEach(function (n) { deklarationen.push({ name: n.w, typ: typ, init: init, z: n.z }); });
+        }
+        p++;
+      }
+      const anw = anweisungen(['ende', 'END_PROGRAM']);
+      nimm('sw', 'END_PROGRAM');
+      if (!ist('ende')) throw new Fehler('Unerwartet: „' + jetzt().w + '“', jetzt().z);
+      return { dekl: deklarationen, anw: anw };
+
+      function anweisungen(stopp) {
+        const l = [];
+        for (;;) {
+          const x = jetzt();
+          if (x.a === 'ende' || (x.a === 'sw' && stopp.indexOf(x.w) >= 0)) return l;
+          if (nimm('op', ';')) continue;
+          l.push(anweisung());
+          if (l.length > 2000) throw new Fehler('Programm zu lang', x.z);
+        }
+      }
+      function anweisung() {
+        const x = jetzt();
+        if (nimm('sw', 'IF')) {
+          const zweige = []; let sonst = null;
+          const b = ausdruck(); muss('sw', 'THEN'); zweige.push([b, anweisungen(['ELSIF', 'ELSE', 'END_IF'])]);
+          while (nimm('sw', 'ELSIF')) { const b2 = ausdruck(); muss('sw', 'THEN'); zweige.push([b2, anweisungen(['ELSIF', 'ELSE', 'END_IF'])]); }
+          if (nimm('sw', 'ELSE')) sonst = anweisungen(['END_IF']);
+          muss('sw', 'END_IF'); nimm('op', ';');
+          return { a: 'if', zweige: zweige, sonst: sonst, z: x.z };
+        }
+        if (nimm('sw', 'CASE')) {
+          const w = ausdruck(); muss('sw', 'OF'); const faelle = []; let sonst = null;
+          while (!ist('sw', 'END_CASE') && !ist('sw', 'ELSE')) {
+            if (ist('ende')) throw new Fehler('END_CASE fehlt', x.z);
+            const marken = [];
+            do { const a = vorzeichenZahl(); if (nimm('op', '..')) marken.push([a, vorzeichenZahl()]); else marken.push([a, a]); } while (nimm('op', ','));
+            muss('op', ':');
+            faelle.push([marken, anweisungenCase()]);
+          }
+          if (nimm('sw', 'ELSE')) sonst = anweisungen(['END_CASE']);
+          muss('sw', 'END_CASE'); nimm('op', ';');
+          return { a: 'case', w: w, faelle: faelle, sonst: sonst, z: x.z };
+        }
+        if (nimm('sw', 'FOR')) {
+          const v = muss('name', undefined, 'Zählvariable'); muss('op', ':='); const von = ausdruck(); muss('sw', 'TO'); const bis = ausdruck(); let schritt = null;
+          if (nimm('sw', 'BY')) schritt = ausdruck();
+          muss('sw', 'DO'); const k = anweisungen(['END_FOR']); muss('sw', 'END_FOR'); nimm('op', ';');
+          return { a: 'for', v: v.w, von: von, bis: bis, schritt: schritt, k: k, z: x.z };
+        }
+        if (ist('sw', 'WHILE') || ist('sw', 'REPEAT')) throw new Fehler('WHILE und REPEAT gibt es im Simulator nicht – in einer SPS bitte vermeiden, sie können den Zyklus blockieren. FOR mit fester Grenze geht.', x.z);
+        if (ist('sw', 'EXIT') || ist('sw', 'RETURN')) throw new Fehler(x.w + ' unterstützt der Simulator nicht', x.z);
+        if (x.a === 'name' && t[p + 1].a === 'op' && t[p + 1].w === '(') {
+          p += 2; const par = [];
+          if (!nimm('op', ')')) {
+            do { const n = muss('name', undefined, 'Parametername'); muss('op', ':='); par.push([n.w.toUpperCase(), ausdruck(), n.z]); } while (nimm('op', ','));
+            muss('op', ')');
+          }
+          muss('op', ';');
+          return { a: 'aufruf', name: x.w, par: par, z: x.z };
+        }
+        if (x.a === 'name' || x.a === 'adr') {
+          const ziel = operand(); muss('op', ':=', '„:=“'); const w = ausdruck(); muss('op', ';', '„;“ am Zeilenende');
+          return { a: 'zuw', ziel: ziel, w: w, z: x.z };
+        }
+        throw new Fehler('Anweisung erwartet, gefunden: „' + (x.w || 'Ende') + '“', x.z);
+      }
+      function anweisungenCase() {
+        const l = [];
+        for (;;) {
+          const x = jetzt();
+          if (x.a === 'ende' || (x.a === 'sw' && (x.w === 'END_CASE' || x.w === 'ELSE'))) return l;
+          // nächste Marke: Zahl (oder -Zahl) gefolgt von : oder , oder ..
+          let q = p; if (t[q].a === 'op' && t[q].w === '-') q++;
+          if (t[q].a === 'zahl' && t[q + 1].a === 'op' && (t[q + 1].w === ':' || t[q + 1].w === ',' || t[q + 1].w === '..')) return l;
+          if (nimm('op', ';')) continue;
+          l.push(anweisung());
+        }
+      }
+      function vorzeichenZahl() { const neg = nimm('op', '-'); const z = muss('zahl', undefined, 'Zahl als CASE-Marke'); return neg ? -z.w : z.w; }
+      function operand() {
+        const x = jetzt();
+        if (nimm('adr')) return { a: 'adr', w: x.w, z: x.z };
+        const n = muss('name', undefined, 'Name');
+        if (nimm('op', '.')) { const m = muss('name', undefined, 'Ausgang des Bausteins'); return { a: 'feld', name: n.w, feld: m.w.toUpperCase(), z: n.z }; }
+        return { a: 'name', w: n.w, z: n.z };
+      }
+      function ausdruck() { return binaer(0); }
+      function binaer(stufe) {
+        const STUFEN = [['OR'], ['XOR'], ['AND', '&'], ['=', '<>'], ['<', '>', '<=', '>='], ['+', '-'], ['*', '/', 'MOD']];
+        if (stufe >= STUFEN.length) return unaer();
+        let l = binaer(stufe + 1);
+        for (;;) {
+          const x = jetzt();
+          if ((x.a === 'sw' || x.a === 'op') && STUFEN[stufe].indexOf(x.w) >= 0) { p++; l = { a: 'bin', op: x.w === '&' ? 'AND' : x.w, l: l, r: binaer(stufe + 1), z: x.z }; }
+          else return l;
+        }
+      }
+      function unaer() {
+        const x = jetzt();
+        if (nimm('sw', 'NOT')) return { a: 'not', w: unaer(), z: x.z };
+        if (nimm('op', '-')) return { a: 'neg', w: unaer(), z: x.z };
+        if (nimm('op', '+')) return unaer();
+        return primaer();
+      }
+      function primaer() {
+        const x = jetzt();
+        if (nimm('zahl')) return { a: 'lit', w: x.w, typ: x.typ, z: x.z };
+        if (nimm('sw', 'TRUE')) return { a: 'lit', w: true, typ: 'b', z: x.z };
+        if (nimm('sw', 'FALSE')) return { a: 'lit', w: false, typ: 'b', z: x.z };
+        if (nimm('op', '(')) { const e = ausdruck(); muss('op', ')'); return e; }
+        if (x.a === 'name' && t[p + 1].a === 'op' && t[p + 1].w === '(') {
+          p += 2; const args = [];
+          if (!nimm('op', ')')) { do { args.push(ausdruck()); } while (nimm('op', ',')); muss('op', ')'); }
+          return { a: 'fn', name: x.w.toUpperCase(), args: args, z: x.z };
+        }
+        if (x.a === 'name' || x.a === 'adr') return operand();
+        throw new Fehler('Wert erwartet, gefunden: „' + (x.w || 'Ende') + '“', x.z);
+      }
+    }
+
+    // ---------- Programm prüfen und ausführen ----------
+    // Speicher: PAE/PAA/Merker als Objekte, Variablen in VARS
+    const ADR_IN = [], ADR_OUT = [];
+    for (let b = 0; b < 8; b++) { ADR_IN.push('%IX0.' + b); ADR_OUT.push('%QX0.' + b); }
+    let PAE = {}, PAA = {}, MERKER = {}, PHYS_E = {}, PHYS_A = {}, VARS = {}, PROG = null, ZEIT = 0, NAMEN = {};
+    function ioLeeren() {
+      PAE = {}; PAA = {}; MERKER = {}; PHYS_E = {}; PHYS_A = {};
+      ADR_IN.forEach(function (a) { PAE[a] = false; PHYS_E[a] = false; });
+      ADR_OUT.forEach(function (a) { PAA[a] = false; PHYS_A[a] = false; });
+      PAE['%IW0'] = 0; PHYS_E['%IW0'] = 0; PAA['%QW0'] = 0; PHYS_A['%QW0'] = 0;
+    }
+    const adrGueltig = function (a) {
+      if (/^%IX0\.[0-7]$/.test(a) || /^%QX0\.[0-7]$/.test(a) || a === '%IW0' || a === '%QW0') return true;
+      return /^%MX([0-9]|1[0-5])\.[0-7]$/.test(a) || /^%MW([0-9]|[1-5][0-9]|6[0-3])$/.test(a);
+    };
+    const adrLesen = function (a) { const c = a[1]; if (c === 'I') return PAE[a]; if (c === 'Q') return PAA[a]; return MERKER[a] !== undefined ? MERKER[a] : a[2] === 'X' ? false : 0; };
+    function uebersetzen(code) {
+      const ast = parsen(code);
+      const vars = {}, namen = {};
+      Object.keys(SYMBOLE).forEach(function (a) { const n = SYMBOLE[a].name; if (n) namen[n.toLowerCase()] = a; });
+      ast.dekl.forEach(function (d) {
+        const k = d.name.toLowerCase();
+        if (vars[k]) throw new Fehler('„' + d.name + '“ ist doppelt deklariert', d.z);
+        if (namen[k]) throw new Fehler('„' + d.name + '“ ist schon ein Symbol (' + namen[k] + ')', d.z);
+        if (FB[d.typ] === undefined && TYPEN[d.typ] === undefined) throw new Fehler('Unbekannter Typ', d.z);
+        vars[k] = { name: d.name, typ: d.typ, init: d.init, z: d.z };
+      });
+      if (Object.keys(vars).length > 200) throw new Fehler('Höchstens 200 Variablen', 1);
+      const pruefOperand = function (o, schreiben) {
+        if (o.a === 'adr') {
+          if (!adrGueltig(o.w)) throw new Fehler('Adresse ' + o.w + ' gibt es hier nicht (Eingänge %IX0.0–%IX0.7, %IW0; Ausgänge %QX0.0–%QX0.7, %QW0; Merker %MX0.0–%MX15.7, %MW0–%MW63)', o.z);
+          if (schreiben && o.w[1] === 'I') throw new Fehler('Eingang ' + o.w + ' kann nicht beschrieben werden', o.z);
+          return;
+        }
+        const k = (o.a === 'feld' ? o.name : o.w).toLowerCase();
+        if (o.a === 'feld') {
+          const v = vars[k]; if (!v || !FB[v.typ]) throw new Fehler('„' + o.name + '“ ist kein Baustein', o.z);
+          if (FB[v.typ].aus.indexOf(o.feld) < 0 && FB[v.typ].ein.indexOf(o.feld) < 0) throw new Fehler(v.typ + ' hat kein „' + o.feld + '“ (Ausgänge: ' + FB[v.typ].aus.join(', ') + ')', o.z);
+          if (schreiben) throw new Fehler('Bausteinwerte nur über den Aufruf ändern, z. B. ' + o.name + '(IN := …);', o.z);
+          return;
+        }
+        if (vars[k]) { if (FB[vars[k].typ]) throw new Fehler('„' + o.w + '“ ist ein Baustein – meinst du ' + o.w + '.Q?', o.z); return; }
+        if (namen[k]) { if (schreiben && namen[k][1] === 'I') throw new Fehler('„' + o.w + '“ ist ein Eingang (' + namen[k] + ') und kann nicht beschrieben werden', o.z); return; }
+        throw new Fehler('„' + o.w + '“ ist unbekannt – im VAR-Teil deklarieren oder in der Symboltabelle benennen', o.z);
+      };
+      const ausdr = function (e) {
+        if (!e) return;
+        if (e.a === 'bin') { ausdr(e.l); ausdr(e.r); }
+        else if (e.a === 'not' || e.a === 'neg') ausdr(e.w);
+        else if (e.a === 'fn') { const f = FUNKTIONEN[e.name]; if (!f) throw new Fehler('Funktion „' + e.name + '“ gibt es im Simulator nicht', e.z); if (e.args.length !== f[0]) throw new Fehler(e.name + ' braucht ' + f[0] + ' Werte', e.z); e.args.forEach(ausdr); }
+        else if (e.a !== 'lit') pruefOperand(e, false);
+      };
+      const anw = function (l) {
+        l.forEach(function (s) {
+          if (s.a === 'zuw') { pruefOperand(s.ziel, true); ausdr(s.w); }
+          else if (s.a === 'if') { s.zweige.forEach(function (z) { ausdr(z[0]); anw(z[1]); }); if (s.sonst) anw(s.sonst); }
+          else if (s.a === 'case') { ausdr(s.w); s.faelle.forEach(function (f) { anw(f[1]); }); if (s.sonst) anw(s.sonst); }
+          else if (s.a === 'for') { const v = vars[s.v.toLowerCase()]; if (!v || TYPEN[v.typ] !== 'i') throw new Fehler('Zählvariable „' + s.v + '“ muss als INT deklariert sein', s.z); ausdr(s.von); ausdr(s.bis); ausdr(s.schritt); anw(s.k); }
+          else if (s.a === 'aufruf') {
+            const v = vars[s.name.toLowerCase()];
+            if (!v || !FB[v.typ]) throw new Fehler('„' + s.name + '“ ist kein deklarierter Baustein (z. B. ' + s.name + ' : TON; im VAR-Teil)', s.z);
+            s.par.forEach(function (pa) { if (FB[v.typ].ein.indexOf(pa[0]) < 0) throw new Fehler(v.typ + ' hat keinen Eingang „' + pa[0] + '“ (Eingänge: ' + FB[v.typ].ein.join(', ') + ')', pa[2]); ausdr(pa[1]); });
+          }
+        });
+      };
+      ast.dekl.forEach(function (d) { if (d.init) ausdr(d.init); });
+      anw(ast.anw);
+      return { ast: ast, vars: vars, namen: namen };
+    }
+    function startwert(v) {
+      if (FB[v.typ]) { const o = { typ: v.typ }; FB[v.typ].ein.concat(FB[v.typ].aus).forEach(function (k) { o[k] = k === 'PT' || k === 'PV' || k === 'ET' || k === 'CV' ? 0 : false; }); o._v = false; o._v2 = false; o._lauf = false; o._start = 0; return o; }
+      const t = TYPEN[v.typ];
+      let w = v.init ? wert(v.init) : t === 'b' ? false : 0;
+      return zuweisbar(v.typ, w);
+    }
+    function zuweisbar(typ, w) {
+      const t = TYPEN[typ];
+      if (t === 'b') return !!w;
+      if (typeof w === 'boolean') w = w ? 1 : 0;
+      if (!isFinite(w)) throw new Laufzeitfehler('Ungültige Zahl (Division durch 0?)');
+      if (t === 'i') { w = Math.trunc(w); if (typ === 'INT' && (w > 32767 || w < -32768)) throw new Laufzeitfehler('Überlauf: ' + w + ' passt nicht in INT (−32 768 … 32 767)'); return w; }
+      return w;
+    }
+    let schritte = 0;
+    function wert(e) {
+      switch (e.a) {
+        case 'lit': return e.w;
+        case 'adr': return adrLesen(e.w);
+        case 'name': { const k = e.w.toLowerCase(), v = VARS[k]; if (v !== undefined) return v; return adrLesen(NAMEN[k]); }
+        case 'feld': return VARS[e.name.toLowerCase()][e.feld];
+        case 'not': { const w = wert(e.w); return typeof w === 'boolean' ? !w : ~w; }
+        case 'neg': return -wert(e.w);
+        case 'fn': return FUNKTIONEN[e.name][1](e.args.map(wert));
+        case 'bin': {
+          const l = wert(e.l), r = wert(e.r);
+          switch (e.op) {
+            case 'AND': return typeof l === 'boolean' ? l && !!r : l & r;
+            case 'OR': return typeof l === 'boolean' ? l || !!r : l | r;
+            case 'XOR': return typeof l === 'boolean' ? l !== !!r : l ^ r;
+            case '=': return l === r || (+l === +r);
+            case '<>': return !(l === r || (+l === +r));
+            case '<': return l < r; case '>': return l > r; case '<=': return l <= r; case '>=': return l >= r;
+            case '+': return l + r; case '-': return l - r; case '*': return l * r;
+            case '/': if (r === 0) throw new Laufzeitfehler('Division durch 0 in Zeile ' + e.z); return (Number.isInteger(l) && Number.isInteger(r) && !istReal(e)) ? Math.trunc(l / r) : l / r;
+            case 'MOD': if (r === 0) throw new Laufzeitfehler('MOD 0 in Zeile ' + e.z); return l % r;
+          }
+        }
+      }
+      throw new Laufzeitfehler('Unbekannter Ausdruck');
+    }
+    function istReal(e) {   // grob: enthält der Ausdruck eine REAL-Größe oder Kommazahl?
+      if (!e) return false;
+      if (e.a === 'lit') return e.typ === 'r';
+      if (e.a === 'name') { const v = PROG && PROG.vars[e.w.toLowerCase()]; return !!v && TYPEN[v.typ] === 'r'; }
+      if (e.a === 'fn') return e.name === 'INT_TO_REAL' || e.name === 'SQRT';
+      return istReal(e.l) || istReal(e.r) || istReal(e.w);
+    }
+    function schreiben(o, w) {
+      if (o.a === 'adr') { if (o.w[1] === 'Q') PAA[o.w] = o.w[2] === 'X' ? !!w : Math.max(0, Math.min(10000, Math.round(+w))); else MERKER[o.w] = o.w[2] === 'X' ? !!w : Math.trunc(+w); return; }
+      const k = o.w.toLowerCase(), v = PROG.vars[k];
+      if (v) { VARS[k] = zuweisbar(v.typ, w); return; }
+      schreiben({ a: 'adr', w: NAMEN[k] }, w);
+    }
+    function ausfuehren(l) {
+      for (let i = 0; i < l.length; i++) {
+        const s = l[i];
+        if (++schritte > 200000) throw new Laufzeitfehler('Zykluszeit überschritten (Watchdog) – Endlosschleife?');
+        if (s.a === 'zuw') schreiben(s.ziel, wert(s.w));
+        else if (s.a === 'if') { let erledigt = false; for (let j = 0; j < s.zweige.length; j++) if (wert(s.zweige[j][0])) { ausfuehren(s.zweige[j][1]); erledigt = true; break; } if (!erledigt && s.sonst) ausfuehren(s.sonst); }
+        else if (s.a === 'case') {
+          const w = wert(s.w); let f = null;
+          for (let j = 0; j < s.faelle.length && !f; j++) if (s.faelle[j][0].some(function (m) { return w >= m[0] && w <= m[1]; })) f = s.faelle[j][1];
+          if (f) ausfuehren(f); else if (s.sonst) ausfuehren(s.sonst);
+        }
+        else if (s.a === 'for') {
+          const k = s.v.toLowerCase(), bis = wert(s.bis), schritt = s.schritt ? wert(s.schritt) : 1;
+          if (schritt === 0) throw new Laufzeitfehler('FOR mit Schrittweite 0 in Zeile ' + s.z);
+          VARS[k] = zuweisbar(PROG.vars[k].typ, wert(s.von)); let n = 0;
+          while (schritt > 0 ? VARS[k] <= bis : VARS[k] >= bis) { if (++n > 10000) throw new Laufzeitfehler('FOR-Schleife zu lang (Zeile ' + s.z + ')'); ausfuehren(s.k); VARS[k] = zuweisbar(PROG.vars[k].typ, VARS[k] + schritt); }
+        }
+        else if (s.a === 'aufruf') {
+          const b = VARS[s.name.toLowerCase()];
+          s.par.forEach(function (pa) { const w = wert(pa[1]); b[pa[0]] = pa[0] === 'PT' || pa[0] === 'PV' ? Math.max(0, +w) : !!w; });
+          baustein(b);
+        }
+      }
+    }
+    function baustein(b) {
+      const t = ZEIT;
+      switch (b.typ) {
+        case 'TON': if (b.IN) { if (!b._lauf) { b._lauf = true; b._start = t; } b.ET = Math.min(t - b._start, b.PT); b.Q = b.ET >= b.PT; } else { b._lauf = false; b.ET = 0; b.Q = false; } break;
+        case 'TOF':
+          if (b.IN) { b.Q = true; b.ET = 0; b._lauf = false; }
+          else { if (b._v) { b._lauf = true; b._start = t; } if (b._lauf) { b.ET = Math.min(t - b._start, b.PT); if (b.ET >= b.PT) { b.Q = false; b._lauf = false; } } }
+          b._v = b.IN; break;
+        case 'TP':
+          if (b.IN && !b._v && !b._lauf && !b.Q) { b._lauf = true; b._start = t; }
+          if (b._lauf) { b.ET = Math.min(t - b._start, b.PT); b.Q = b.ET < b.PT; if (!b.Q) b._lauf = false; } else if (!b.IN) b.ET = 0;
+          b._v = b.IN; break;
+        case 'CTU': if (b.R) b.CV = 0; else if (b.CU && !b._v && b.CV < 32767) b.CV++; b._v = b.CU; b.Q = b.CV >= b.PV; break;
+        case 'CTD': if (b.LD) b.CV = b.PV; else if (b.CD && !b._v && b.CV > -32768) b.CV--; b._v = b.CD; b.Q = b.CV <= 0; break;
+        case 'CTUD':
+          if (b.R) b.CV = 0; else if (b.LD) b.CV = b.PV;
+          else { if (b.CU && !b._v && b.CV < 32767) b.CV++; if (b.CD && !b._v2 && b.CV > -32768) b.CV--; }
+          b._v = b.CU; b._v2 = b.CD; b.QU = b.CV >= b.PV; b.QD = b.CV <= 0; break;
+        case 'R_TRIG': b.Q = b.CLK && !b._v; b._v = b.CLK; break;
+        case 'F_TRIG': b.Q = !b.CLK && b._v; b._v = b.CLK; break;
+        case 'SR': b.Q1 = b.S1 || (!b.R && b.Q1); break;
+        case 'RS': b.Q1 = !b.R1 && (b.S || b.Q1); break;
+      }
+    }
+    function laden(code) {
+      const p = uebersetzen(code);
+      PROG = p; NAMEN = p.namen; VARS = {};
+      Object.keys(p.vars).forEach(function (k) { VARS[k] = startwert(p.vars[k]); });
+      return p;
+    }
+
+    // =====================================================================
+    // Anlagenmodelle und Beispiele
+    // =====================================================================
+    // Eingänge: [Adresse, Name, Art (taster|schalter|modell|analog), Kontakt (S|O)]
+    const MODELLE = {
+      feld: { name: 'Bedienfeld (Taster, Schalter, Lampen)', ein: [['%IX0.0', 'E0', 'taster', 'S'], ['%IX0.1', 'E1', 'taster', 'S'], ['%IX0.2', 'E2', 'schalter', 'S'], ['%IX0.3', 'E3', 'schalter', 'S'], ['%IX0.4', 'E4', 'schalter', 'S'], ['%IX0.5', 'E5', 'schalter', 'S'], ['%IX0.6', 'E6', 'schalter', 'S'], ['%IX0.7', 'E7', 'schalter', 'S'], ['%IW0', 'Analog', 'analog', 'S']], aus: ['A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7'], aw: 'AnalogAus' },
+      motor: { name: 'Motor mit Wendeschützen', ein: [['%IX0.0', 'S_Rechts', 'taster', 'S'], ['%IX0.1', 'S_Links', 'taster', 'S'], ['%IX0.2', 'Stopp', 'taster', 'O'], ['%IX0.3', 'Motorschutz', 'modell', 'O']], aus: ['Rechts', 'Links', 'Stoerung'] },
+      ampel: { name: 'Fußgängerampel', ein: [['%IX0.0', 'Anforderung', 'taster', 'S']], aus: ['Rot', 'Gelb', 'Gruen', 'F_Rot', 'F_Gruen'] },
+      tank: { name: 'Tank mit Pumpe', ein: [['%IX0.0', 'MAX', 'modell', 'S'], ['%IX0.1', 'MIN', 'modell', 'S'], ['%IX0.2', 'Verbrauch', 'schalter', 'S'], ['%IW0', 'Fuellstand', 'modell', 'S']], aus: ['Pumpe', 'Alarm'] },
+      tor: { name: 'Rolltor mit Endschaltern', ein: [['%IX0.0', 'Taster_Auf', 'taster', 'S'], ['%IX0.1', 'Taster_Zu', 'taster', 'S'], ['%IX0.2', 'Stopp', 'taster', 'O'], ['%IX0.3', 'End_Oben', 'modell', 'O'], ['%IX0.4', 'End_Unten', 'modell', 'O'], ['%IX0.5', 'Lichtschranke', 'modell', 'O']], aus: ['Motor_Auf', 'Motor_Zu', 'Warnleuchte'] },
+      band: { name: 'Förderband mit Teilezähler', ein: [['%IX0.0', 'Start', 'taster', 'S'], ['%IX0.1', 'Stopp', 'taster', 'O'], ['%IX0.2', 'Sensor', 'modell', 'S'], ['%IX0.3', 'Quittieren', 'taster', 'S']], aus: ['Band', 'Voll', 'Betrieb'] }
+    };
+    const BEISPIELE = [
+      ['selbst', 'Selbsthaltung (Start/Stopp)', 'feld', { '%IX0.0': ['Start', 'taster', 'S'], '%IX0.1': ['Stopp', 'taster', 'O'], '%QX0.0': 'Motor' },
+        'Start ist ein Schließer, Stopp ein Öffner (drahtbruchsicher). Der Ausgang hält sich über sich selbst.',
+        '(* Selbsthaltung mit Vorrang Stopp *)\n(* Start: Schließer, Stopp: Öffner (Ruhe = 1) *)\nMotor := (Start OR Motor) AND Stopp;\n'],
+      ['logik', 'Grundverknüpfungen', 'feld', { '%IX0.2': ['A', 'schalter', 'S'], '%IX0.3': ['B', 'schalter', 'S'], '%QX0.0': 'UND_', '%QX0.1': 'ODER_', '%QX0.2': 'XODER', '%QX0.3': 'NICHT_A', '%QX0.4': 'NAND', '%QX0.5': 'NOR' },
+        'Zwei Schalter, sechs Verknüpfungen – schalte A und B durch und vergleiche mit der Wahrheitstabelle.',
+        '(* Grundverknüpfungen *)\nUND_    := A AND B;\nODER_   := A OR B;\nXODER   := A XOR B;\nNICHT_A := NOT A;\nNAND    := NOT (A AND B);\nNOR     := NOT (A OR B);\n'],
+      ['treppe', 'Treppenlicht und Stromstoßschalter', 'feld', { '%IX0.0': ['Taster', 'taster', 'S'], '%IX0.1': ['Taster2', 'taster', 'S'], '%QX0.0': 'Licht', '%QX0.1': 'Licht2' },
+        'Taster: Licht 10 s Nachlauf mit Ausschaltverzögerung. Taster2: jeder Druck schaltet um (Flanke).',
+        'VAR\n  Nachlauf : TOF;\n  Flanke   : R_TRIG;\nEND_VAR\n\n(* Treppenlicht: an solange gedrückt, dann 10 s Nachlauf *)\nNachlauf(IN := Taster, PT := T#10s);\nLicht := Nachlauf.Q;\n\n(* Stromstoßschalter: jede steigende Flanke schaltet um *)\nFlanke(CLK := Taster2);\nIF Flanke.Q THEN\n  Licht2 := NOT Licht2;\nEND_IF;\n'],
+      ['blink', 'Blinker (Taktgeber)', 'feld', { '%IX0.2': ['Ein', 'schalter', 'S'], '%QX0.0': 'Lampe', '%QX0.1': 'Lampe2' },
+        'Zwei Einschaltverzögerungen setzen sich gegenseitig zurück: 0,5 s an, 0,5 s aus.',
+        'VAR\n  T_Ein, T_Aus : TON;\nEND_VAR\n\nT_Ein(IN := Ein AND NOT T_Aus.Q, PT := T#500ms);\nT_Aus(IN := T_Ein.Q, PT := T#500ms);\nLampe  := Ein AND NOT T_Ein.Q;\nLampe2 := T_Ein.Q;   (* Wechselblinker *)\n'],
+      ['wende', 'Wendeschützschaltung', 'motor', {},
+        'Rechts- und Linkslauf sind gegenseitig verriegelt. Ohne Verriegelung gäbe es einen Kurzschluss – probier es aus, indem du „AND NOT Links“ löschst.',
+        '(* Wendeschützschaltung mit Schütz- und Tasterverriegelung *)\nRechts := (S_Rechts OR Rechts) AND Stopp AND Motorschutz\n          AND NOT Links AND NOT S_Links;\nLinks  := (S_Links OR Links) AND Stopp AND Motorschutz\n          AND NOT Rechts AND NOT S_Rechts;\nStoerung := NOT Motorschutz;\n'],
+      ['ampel', 'Ampel als Schrittkette', 'ampel', {},
+        'Eine Schrittkette mit CASE: Nach der Anforderung schaltet die Ampel über Gelb und Rot auf Grün für die Fußgänger.',
+        'VAR\n  Schritt : INT := 0;\n  T       : TON;\n  Anf     : R_TRIG;\n  Wunsch  : BOOL;\nEND_VAR\n\nAnf(CLK := Anforderung);\nIF Anf.Q THEN Wunsch := TRUE; END_IF;\n\nCASE Schritt OF\n  0: (* Autos grün, auf Anforderung warten *)\n     T(IN := Wunsch, PT := T#3s);\n     IF T.Q THEN Schritt := 1; T(IN := FALSE); END_IF;\n  1: (* Gelb *)\n     T(IN := TRUE, PT := T#2s);\n     IF T.Q THEN Schritt := 2; T(IN := FALSE); END_IF;\n  2: (* Rot, Sicherheitszeit *)\n     T(IN := TRUE, PT := T#1s);\n     IF T.Q THEN Schritt := 3; T(IN := FALSE); END_IF;\n  3: (* Fußgänger grün *)\n     T(IN := TRUE, PT := T#6s);\n     IF T.Q THEN Schritt := 4; T(IN := FALSE); END_IF;\n  4: (* Räumzeit *)\n     T(IN := TRUE, PT := T#2s);\n     IF T.Q THEN Schritt := 5; T(IN := FALSE); END_IF;\n  5: (* Rot-Gelb *)\n     T(IN := TRUE, PT := T#1s);\n     IF T.Q THEN Schritt := 0; Wunsch := FALSE; T(IN := FALSE); END_IF;\nEND_CASE;\n\nRot     := Schritt >= 2;\nGelb    := Schritt = 1 OR Schritt = 5;\nGruen   := Schritt = 0;\nF_Gruen := Schritt = 3;\nF_Rot   := NOT F_Gruen;\n'],
+      ['tank', 'Füllstand mit Hysterese', 'tank', {},
+        'Zweipunktregelung: Pumpe ein unter 30 %, aus über 80 % oder am MAX-Schwimmer. Analogwert 0 … 10 000 wird in Prozent umgerechnet.',
+        'VAR\n  Prozent : REAL;\nEND_VAR\n\n(* Rohwert 0 … 10 000 → 0 … 100 % *)\nProzent := INT_TO_REAL(Fuellstand) / 100.0;\n\n(* Zweipunktregler mit Hysterese *)\nIF Prozent < 30.0 THEN\n  Pumpe := TRUE;\nELSIF Prozent > 80.0 OR MAX THEN\n  Pumpe := FALSE;\nEND_IF;\n\nAlarm := MAX OR NOT MIN;\n'],
+      ['tor', 'Rolltor mit Lichtschranke', 'tor', {},
+        'Endschalter und Lichtschranke sind Öffner. Unterbricht etwas die Lichtschranke beim Schließen, fährt das Tor wieder auf.',
+        'VAR\n  Auf, Zu : BOOL;\nEND_VAR\n\nIF Taster_Auf AND NOT Zu THEN Auf := TRUE; END_IF;\nIF Taster_Zu AND NOT Auf AND Lichtschranke THEN Zu := TRUE; END_IF;\n\n(* Endschalter (Öffner): 0 = erreicht *)\nIF NOT End_Oben OR NOT Stopp THEN Auf := FALSE; END_IF;\nIF NOT End_Unten OR NOT Stopp THEN Zu := FALSE; END_IF;\n\n(* Hindernis beim Schließen: wieder öffnen *)\nIF Zu AND NOT Lichtschranke THEN\n  Zu := FALSE;\n  Auf := TRUE;\nEND_IF;\n\nMotor_Auf := Auf AND NOT Zu;\nMotor_Zu := Zu AND NOT Auf;\nWarnleuchte := Motor_Auf OR Motor_Zu;\n'],
+      ['band', 'Förderband mit Zähler', 'band', {},
+        'Der Zähler zählt die Teile an der Lichtschranke. Nach 5 Teilen ist die Kiste voll: Band stoppt, Quittieren setzt zurück.',
+        'VAR\n  Zaehler : CTU;\n  Laeuft  : BOOL;\nEND_VAR\n\nIF Start THEN Laeuft := TRUE; END_IF;\nIF NOT Stopp OR Zaehler.Q THEN Laeuft := FALSE; END_IF;\n\nZaehler(CU := Sensor, R := Quittieren, PV := 5);\n\nBand    := Laeuft;\nVoll    := Zaehler.Q;\nBetrieb := Laeuft;\n'],
+      ['leer', 'Leeres Programm (Bedienfeld)', 'feld', {}, 'Alle 8 Eingänge, 8 Ausgänge und je ein Analogwert. Namen in der Symboltabelle ändern.', '(* Dein Programm *)\nA0 := E0;\n']
+    ];
+    const BSP = {}; BEISPIELE.forEach(function (b) { BSP[b[0]] = b; });
+    let SYMBOLE = {};
+    function symboleAus(bsp, eigene) {
+      const m = MODELLE[bsp[2]], s = {};
+      m.ein.forEach(function (e) { s[e[0]] = { name: e[1], art: e[2], kontakt: e[3], fest: e[2] === 'modell' }; });
+      m.aus.forEach(function (n, i) { s['%QX0.' + i] = { name: n, art: 'aus' }; });
+      if (m.aw) s['%QW0'] = { name: m.aw, art: 'aus' };
+      Object.keys(bsp[3]).forEach(function (a) { const v = bsp[3][a]; if (!s[a]) return; if (typeof v === 'string') s[a].name = v; else { s[a].name = v[0]; s[a].art = v[1]; s[a].kontakt = v[2]; } });
+      if (eigene) Object.keys(eigene).forEach(function (a) {
+        const e = eigene[a]; if (!s[a] || !e) return;
+        if (typeof e.name === 'string' && /^[A-Za-z_][A-Za-z0-9_]{0,23}$/.test(e.name) && SCHLUESSEL.indexOf(e.name.toUpperCase()) < 0 && !TYPEN[e.name.toUpperCase()] && !FB[e.name.toUpperCase()]) s[a].name = e.name;
+        if (!s[a].fest && (s[a].art === 'taster' || s[a].art === 'schalter') && (e.art === 'taster' || e.art === 'schalter')) s[a].art = e.art;
+        if (!s[a].fest && s[a].art !== 'aus' && s[a].art !== 'analog' && (e.kontakt === 'S' || e.kontakt === 'O')) s[a].kontakt = e.kontakt;
+      });
+      // doppelte Namen vermeiden
+      const gesehen = {};
+      Object.keys(s).forEach(function (a) { const k = s[a].name.toLowerCase(); if (gesehen[k]) s[a].name = a.replace(/[%.]/g, '_'); gesehen[s[a].name.toLowerCase()] = 1; });
+      return s;
+    }
+
+    // ---------- Anlagenzustand ----------
+    let M = {};
+    function modellNeu(art) {
+      M = { art: art, betaetigt: {}, analog: 0, motor: 0, winkel: 0, schutz: true, kurz: false, pegel: 45, tor: 0, hindernis: false, crash: '', teile: [], kiste: 0, naechstes: 1.5, verloren: 0, x: 0 };
+    }
+    // physische Eingangssignale aus Bedienung und Modell
+    function eingaengeBilden() {
+      Object.keys(SYMBOLE).forEach(function (a) {
+        const s = SYMBOLE[a]; if (a[1] !== 'I') return;
+        if (a === '%IW0') { PHYS_E[a] = s.art === 'modell' ? Math.round(M.pegel * 100) : Math.round(M.analog); return; }
+        let betaetigt = !!M.betaetigt[a];
+        if (s.art === 'modell') betaetigt = modellSensor(s.name, a);
+        PHYS_E[a] = s.kontakt === 'O' ? !betaetigt : betaetigt;
+      });
+    }
+    function modellSensor(name, a) {
+      const art = M.art;
+      if (art === 'motor') return !M.schutz;             // Motorschutz ausgelöst = betätigt (Öffner öffnet)
+      if (art === 'tank') return a === '%IX0.0' ? M.pegel >= 90 : M.pegel >= 10;
+      if (art === 'tor') return a === '%IX0.3' ? M.tor >= 100 : a === '%IX0.4' ? M.tor <= 0 : M.hindernis;
+      if (art === 'band') return M.teile.some(function (t) { return t > 0.62 && t < 0.68; });
+      return false;
+    }
+    function modellSchritt(dt) {
+      const A = PHYS_A, art = M.art;
+      if (art === 'motor') {
+        const r = A['%QX0.0'], l = A['%QX0.1'];
+        if (r && l) { M.kurz = true; M.schutz = false; }
+        const ziel = M.schutz ? (r && !l ? 1 : l && !r ? -1 : 0) : 0;
+        M.motor += (ziel - M.motor) * Math.min(1, dt * 2.5); M.winkel += M.motor * dt * 8;
+      } else if (art === 'tank') {
+        M.pegel += ((A['%QX0.0'] ? 6 : 0) - (M.betaetigt['%IX0.2'] ? 4 : 0) - 0.4) * dt;
+        M.pegel = Math.max(0, Math.min(105, M.pegel));
+      } else if (art === 'tor') {
+        const auf = A['%QX0.0'], zu = A['%QX0.1'];
+        M.crash = '';
+        if (auf && zu) M.crash = 'Beide Richtungen gleichzeitig – Kurzschluss!';
+        else if (auf) { M.tor += 14 * dt; if (M.tor > 100) { M.tor = 100; M.crash = 'Motor drückt gegen den oberen Anschlag!'; } }
+        else if (zu) { if (M.hindernis && M.tor < 25) M.crash = 'Tor fährt auf das Hindernis!'; else { M.tor -= 14 * dt; if (M.tor < 0) { M.tor = 0; M.crash = 'Motor drückt gegen den Boden!'; } } }
+      } else if (art === 'band') {
+        if (A['%QX0.0']) {
+          M.naechstes -= dt;
+          if (M.naechstes <= 0) { M.teile.push(0); M.naechstes = 1.6; }
+          M.teile = M.teile.map(function (t) { return t + dt * 0.18; });
+          const fertig = M.teile.filter(function (t) { return t >= 1; }).length;
+          if (fertig) { M.kiste += fertig; if (M.kiste > 5) M.verloren += fertig; }
+          M.teile = M.teile.filter(function (t) { return t < 1; });
+        }
+        if (M.betaetigt['%IX0.3']) { M.kiste = 0; M.verloren = 0; }
+      }
+    }
+
+    // =====================================================================
+    // Anzeige
+    // =====================================================================
+    const cv = $('anlage'), cx = cv.getContext('2d');
+    let BB = 400, HH = 300, ZIELE = [];
+    const F = function (n) { return Thema.farbe(n); };
+    function groesse() { const d = Math.min(2, window.devicePixelRatio || 1); BB = cv.clientWidth || 400; HH = Math.round(Math.max(240, Math.min(320, BB * 0.62))); cv.style.height = HH + 'px'; cv.width = Math.round(BB * d); cv.height = Math.round(HH * d); cx.setTransform(d, 0, 0, d, 0, 0); }
+    function TX(t, x, y, a, g, fett, farbe) { cx.font = (fett ? '700 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif'); cx.textAlign = a || 'left'; cx.textBaseline = 'middle'; cx.fillStyle = farbe || F('--text'); cx.fillText(t, x, y); }
+    function lampe(x, y, r, an, farbe, text) {
+      if (an) { const g = cx.createRadialGradient(x, y, 1, x, y, r * 2.4); g.addColorStop(0, farbe); g.addColorStop(1, 'rgba(0,0,0,0)'); cx.globalAlpha = 0.45; cx.fillStyle = g; cx.beginPath(); cx.arc(x, y, r * 2.4, 0, 2 * Math.PI); cx.fill(); cx.globalAlpha = 1; }
+      cx.fillStyle = an ? farbe : '#3A3F45'; cx.beginPath(); cx.arc(x, y, r, 0, 2 * Math.PI); cx.fill(); cx.strokeStyle = '#222'; cx.lineWidth = 1.5; cx.stroke();
+      if (text) TX(text, x, y + r + 11, 'center', 10, false, F('--leise'));
+    }
+    const sym = function (adr) { return SYMBOLE[adr] ? SYMBOLE[adr].name : adr; };
+    function zeichnen(ms) {
+      const s = ms / 1000, B = BB, H = HH, A = PHYS_A;
+      cx.clearRect(0, 0, B, H); ZIELE = [];
+      const art = M.art;
+      if (art === 'feld') {
+        const n = 8, w = Math.min(60, (B - 20) / n);
+        TX('Ausgänge', 10, 18, 'left', 12, true);
+        for (let i = 0; i < n; i++) lampe(10 + w * (i + 0.5), 52, Math.min(14, w * 0.3), A['%QX0.' + i], GELB, sym('%QX0.' + i).slice(0, 8));
+        TX('Analogausgang %QW0: ' + zahl(A['%QW0'] / 1000, 2) + ' V', 10, 104, 'left', 12, true);
+        cx.fillStyle = F('--linie'); cx.fillRect(10, 116, B - 20, 12); cx.fillStyle = TUERKIS; cx.fillRect(10, 116, (B - 20) * A['%QW0'] / 10000, 12);
+        TX('Eingänge', 10, 150, 'left', 12, true);
+        for (let i = 0; i < n; i++) lampe(10 + w * (i + 0.5), 182, Math.min(10, w * 0.22), PHYS_E['%IX0.' + i], GRUEN, sym('%IX0.' + i).slice(0, 8));
+        TX('Analogeingang %IW0: ' + zahl(PHYS_E['%IW0'] / 1000, 2) + ' V', 10, 226, 'left', 12, true);
+      } else if (art === 'motor') {
+        const mx = B * 0.35, my = H * 0.48, r = Math.min(70, H * 0.28);
+        cx.fillStyle = '#5C6670'; cx.beginPath(); cx.arc(mx, my, r, 0, 2 * Math.PI); cx.fill();
+        cx.strokeStyle = '#DDE3E8'; cx.lineWidth = 6; cx.lineCap = 'round';
+        for (let i = 0; i < 3; i++) { const a = M.winkel + i * 2.094; cx.beginPath(); cx.moveTo(mx, my); cx.lineTo(mx + Math.cos(a) * r * 0.8, my + Math.sin(a) * r * 0.8); cx.stroke(); }
+        cx.lineCap = 'butt'; cx.fillStyle = '#DDE3E8'; cx.beginPath(); cx.arc(mx, my, 8, 0, 2 * Math.PI); cx.fill();
+        TX('M 3~', mx, my + r + 16, 'center', 12, true);
+        TX(M.motor > 0.05 ? 'Rechtslauf ↻' : M.motor < -0.05 ? 'Linkslauf ↺' : 'Stillstand', mx, 18, 'center', 13, true, Math.abs(M.motor) > 0.05 ? GRUEN : F('--leise'));
+        const kx = B * 0.72;
+        lampe(kx, 50, 12, A['%QX0.0'], GRUEN, 'K1 Rechts'); lampe(kx + 60, 50, 12, A['%QX0.1'], GRUEN, 'K2 Links'); lampe(kx + 30, 110, 12, A['%QX0.2'], ROT, 'Störung');
+        if (M.kurz) { TX('⚡ Kurzschluss! K1 und K2 gleichzeitig', B / 2, H - 46, 'center', 13, true, ROT); }
+        if (!M.schutz) {
+          cx.fillStyle = ROT; cx.fillRect(kx - 20, 150, 120, 30); TX('Motorschutz', kx + 40, 159, 'center', 11, true, '#fff'); TX('zurücksetzen', kx + 40, 172, 'center', 11, true, '#fff');
+          ZIELE.push([kx - 20, 150, 120, 30, function () { M.schutz = true; M.kurz = false; }]);
+        } else TX('Motorschutz ok', kx + 40, 165, 'center', 11, false, GRUEN);
+      } else if (art === 'ampel') {
+        const ax = B * 0.28, ay = 20;
+        cx.fillStyle = '#2B2F33'; cx.fillRect(ax - 26, ay, 52, 150);
+        lampe(ax, ay + 25, 17, A['%QX0.0'], ROT); lampe(ax, ay + 75, 17, A['%QX0.1'], GELB); lampe(ax, ay + 125, 17, A['%QX0.2'], GRUEN);
+        TX('Fahrbahn', ax, ay + 168, 'center', 11, false, F('--leise'));
+        const fx = B * 0.68;
+        cx.fillStyle = '#2B2F33'; cx.fillRect(fx - 24, ay, 48, 100);
+        lampe(fx, ay + 25, 16, A['%QX0.3'], ROT); lampe(fx, ay + 75, 16, A['%QX0.4'], GRUEN);
+        TX('Fußgänger', fx, ay + 118, 'center', 11, false, F('--leise'));
+        cx.fillStyle = '#F4F6F8'; cx.fillRect(fx - 22, ay + 135, 44, 40); cx.strokeStyle = '#333'; cx.strokeRect(fx - 22, ay + 135, 44, 40);
+        TX('Bitte', fx, ay + 147, 'center', 9, true, '#333'); TX('drücken', fx, ay + 159, 'center', 9, true, '#333');
+        lampe(fx, ay + 169, 4, M.betaetigt['%IX0.0'], GELB);
+        ZIELE.push([fx - 22, ay + 135, 44, 40, null, '%IX0.0']);
+        for (let i = 0; i < 6; i++) { cx.fillStyle = F('--linie'); cx.fillRect(B * 0.42 + i * 10, H - 40, 6, 30); }
+      } else if (art === 'tank') {
+        const tx = B * 0.3, ty = 26, tb = Math.min(160, B * 0.32), th = H - 70;
+        cx.fillStyle = 'rgba(77,171,247,.55)'; const h = th * Math.min(1, M.pegel / 100); cx.fillRect(tx, ty + th - h, tb, h);
+        cx.strokeStyle = F('--text'); cx.lineWidth = 3; cx.strokeRect(tx, ty, tb, th);
+        [[90, 'MAX', '%IX0.0'], [10, 'MIN', '%IX0.1']].forEach(function (x) { const y = ty + th * (1 - x[0] / 100); cx.strokeStyle = GRAU; cx.lineWidth = 1; cx.setLineDash([4, 3]); cx.beginPath(); cx.moveTo(tx, y); cx.lineTo(tx + tb, y); cx.stroke(); cx.setLineDash([]); lampe(tx + tb + 14, y, 6, PHYS_E[x[2]], GRUEN); TX(x[1], tx + tb + 24, y, 'left', 11, true); });
+        [[30, '30 %'], [80, '80 %']].forEach(function (x) { const y = ty + th * (1 - x[0] / 100); TX(x[1], tx - 6, y, 'right', 10, false, F('--leise')); });
+        TX(zahl(M.pegel, 0) + ' %', tx + tb / 2, ty + th / 2, 'center', 18, true);
+        if (M.pegel > 100) TX('Tank läuft über!', tx + tb / 2, ty + 14, 'center', 12, true, ROT);
+        // Pumpe
+        const px = tx - 50, py = ty + th - 20;
+        cx.fillStyle = A['%QX0.0'] ? GRUEN : '#5C6670'; cx.beginPath(); cx.arc(px, py, 16, 0, 2 * Math.PI); cx.fill();
+        cx.strokeStyle = '#fff'; cx.lineWidth = 2; const a = A['%QX0.0'] ? ZEIT / 100 : 0; cx.beginPath(); cx.moveTo(px, py); cx.lineTo(px + Math.cos(a) * 12, py + Math.sin(a) * 12); cx.stroke();
+        TX('Pumpe', px, py + 26, 'center', 10, false, F('--leise'));
+        cx.strokeStyle = '#4DABF7'; cx.lineWidth = 4; cx.beginPath(); cx.moveTo(px, py - 16); cx.lineTo(px, ty - 8); cx.lineTo(tx + 20, ty - 8); cx.lineTo(tx + 20, ty + 6); cx.stroke();
+        cx.beginPath(); cx.moveTo(tx + tb, ty + th - 10); cx.lineTo(tx + tb + 60, ty + th - 10); cx.stroke();
+        TX(M.betaetigt['%IX0.2'] ? 'Verbrauch läuft' : 'Verbrauch zu', tx + tb + 64, ty + th - 10, 'left', 10, false, F('--leise'));
+        lampe(B - 30, 30, 10, A['%QX0.1'] && Math.floor(ms / 400) % 2 === 0, ROT, 'Alarm');
+      } else if (art === 'tor') {
+        const ox = B * 0.18, oy = 20, ob = Math.min(220, B * 0.5), oh = H - 70;
+        cx.fillStyle = F('--flaeche'); cx.fillRect(ox, oy, ob, oh); cx.strokeStyle = F('--text'); cx.lineWidth = 3; cx.strokeRect(ox, oy, ob, oh);
+        const offen = oh * M.tor / 100;
+        cx.fillStyle = '#8C939B'; cx.fillRect(ox + 3, oy + 3 + 0, ob - 6, oh - 6 - offen);
+        cx.strokeStyle = '#6B7280'; cx.lineWidth = 1; for (let y = oy + 10; y < oy + oh - offen; y += 9) { cx.beginPath(); cx.moveTo(ox + 3, y); cx.lineTo(ox + ob - 3, y); cx.stroke(); }
+        TX('Tor ' + zahl(M.tor, 0) + ' % offen', ox + ob / 2, oy + oh + 14, 'center', 12, true);
+        lampe(ox + ob + 16, oy + 6, 6, !PHYS_E['%IX0.3'], ORANGE, ''); TX('oben', ox + ob + 26, oy + 6, 'left', 10);
+        lampe(ox + ob + 16, oy + oh - 6, 6, !PHYS_E['%IX0.4'], ORANGE, ''); TX('unten', ox + ob + 26, oy + oh - 6, 'left', 10);
+        // Lichtschranke
+        const ly = oy + oh - 24;
+        cx.strokeStyle = M.hindernis ? ROT : 'rgba(224,49,49,.5)'; cx.setLineDash([5, 4]); cx.lineWidth = 2; cx.beginPath(); cx.moveTo(ox - 10, ly); cx.lineTo(ox + ob + 10, ly); cx.stroke(); cx.setLineDash([]);
+        if (M.hindernis) { cx.fillStyle = '#C08A3E'; cx.fillRect(ox + ob / 2 - 18, ly - 22, 36, 36); TX('Hindernis', ox + ob / 2, ly - 30, 'center', 10, true, ROT); }
+        ZIELE.push([ox, ly - 30, ob, 50, function () { M.hindernis = !M.hindernis; }]);
+        TX(M.hindernis ? 'Hindernis antippen = entfernen' : 'Antippen: Hindernis in die Lichtschranke', ox, H - 10, 'left', 10, false, F('--leise'));
+        lampe(B - 30, 30, 10, A['%QX0.2'] && Math.floor(ms / 300) % 2 === 0, ORANGE, 'Warnung');
+        TX(A['%QX0.0'] ? '▲ fährt auf' : A['%QX0.1'] ? '▼ fährt zu' : '', B - 30, 70, 'right', 12, true, GRUEN);
+        if (M.crash) TX(M.crash, B / 2, H - 28, 'center', 12, true, ROT);
+      } else if (art === 'band') {
+        const bx = 20, by = H * 0.45, bl = B - 110;
+        cx.fillStyle = '#4A5056'; cx.fillRect(bx, by, bl, 14);
+        cx.strokeStyle = '#8C939B'; cx.lineWidth = 2; const off = A['%QX0.0'] ? (ZEIT / 40) % 20 : 0;
+        for (let x = bx + off; x < bx + bl; x += 20) { cx.beginPath(); cx.moveTo(x, by + 2); cx.lineTo(x, by + 12); cx.stroke(); }
+        [bx + 7, bx + bl - 7].forEach(function (x) { cx.fillStyle = '#2B2F33'; cx.beginPath(); cx.arc(x, by + 7, 9, 0, 2 * Math.PI); cx.fill(); });
+        M.teile.forEach(function (t) { cx.fillStyle = '#E07A1F'; cx.fillRect(bx + t * bl - 10, by - 18, 20, 18); });
+        const lx = bx + 0.65 * bl;
+        cx.strokeStyle = PHYS_E['%IX0.2'] ? ROT : 'rgba(224,49,49,.45)'; cx.setLineDash([4, 3]); cx.beginPath(); cx.moveTo(lx, by - 40); cx.lineTo(lx, by - 2); cx.stroke(); cx.setLineDash([]);
+        lampe(lx, by - 46, 6, PHYS_E['%IX0.2'], ROT, ''); TX('Sensor', lx, by - 60, 'center', 10);
+        const kx = bx + bl + 10, ky = by + 10;
+        cx.strokeStyle = F('--text'); cx.lineWidth = 3; cx.beginPath(); cx.moveTo(kx, ky); cx.lineTo(kx + 4, ky + 60); cx.lineTo(kx + 66, ky + 60); cx.lineTo(kx + 70, ky); cx.stroke();
+        for (let i = 0; i < Math.min(M.kiste, 8); i++) { cx.fillStyle = '#E07A1F'; cx.fillRect(kx + 8 + (i % 3) * 18, ky + 42 - Math.floor(i / 3) * 18, 16, 16); }
+        TX('Kiste: ' + M.kiste + ' Teile', kx + 35, ky + 76, 'center', 11, true, M.kiste > 5 ? ROT : F('--text'));
+        if (M.kiste > 5) TX('Zu viele Teile in der Kiste!', B / 2, H - 14, 'center', 12, true, ROT);
+        lampe(40, 30, 10, A['%QX0.2'], GRUEN, 'Betrieb'); lampe(100, 30, 10, A['%QX0.1'] && Math.floor(ms / 400) % 2 === 0, GELB, 'Voll');
+        TX('Zählerstand im Programm: ' + (VARS.zaehler ? VARS.zaehler.CV : '–'), B - 10, 24, 'right', 11, false, F('--leise'));
+      }
+    }
+    cv.addEventListener('pointerdown', function (e) {
+      const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      ZIELE.forEach(function (z) {
+        if (x < z[0] || x > z[0] + z[2] || y < z[1] || y > z[1] + z[3]) return;
+        if (z[4]) z[4](); else if (z[5]) { M.betaetigt[z[5]] = true; const los = function () { M.betaetigt[z[5]] = false; ioZeigen(); window.removeEventListener('pointerup', los); }; window.addEventListener('pointerup', los); }
+        ioZeigen();
+      });
+    });
+
+    // ---------- Ein- und Ausgänge ----------
+    function ioAufbauen() {
+      const ze = $('eingaenge'), za = $('ausgaenge'); ze.innerHTML = ''; za.innerHTML = '';
+      Object.keys(SYMBOLE).filter(function (a) { return a[1] === 'I'; }).forEach(function (a) {
+        const s = SYMBOLE[a], f = kn('div', 'io-feld'); f.id = 'io-' + a.replace(/[%.]/g, '_');
+        f.append(kn('b', '', a + (s.kontakt === 'O' && a !== '%IW0' ? ' · Öffner' : a !== '%IW0' ? ' · Schließer' : '')), kn('div', 'name', s.name));
+        const sig = kn('div', 'sig'); f.append(sig);
+        if (a === '%IW0' && s.art !== 'modell') {
+          const r = kn('input'); r.type = 'range'; r.min = 0; r.max = 10000; r.step = 100; r.value = M.analog; r.setAttribute('aria-label', s.name + ' 0 bis 10 V'); r.setAttribute('data-nicht-merken', '');
+          r.addEventListener('input', function () { M.analog = +r.value; ioZeigen(); }); f.append(r);
+        } else if (s.art === 'taster' || s.art === 'schalter') {
+          const b = kn('button', '', s.art === 'taster' ? 'drücken' : 'schalten'); b.type = 'button'; b.setAttribute('aria-label', s.name + (s.art === 'taster' ? ' drücken (halten)' : ' umschalten'));
+          if (s.art === 'taster') {
+            const an = function (e) { e.preventDefault(); M.betaetigt[a] = true; ioZeigen(); };
+            const aus = function () { if (M.betaetigt[a]) { M.betaetigt[a] = false; ioZeigen(); } };
+            b.addEventListener('pointerdown', an); b.addEventListener('pointerup', aus); b.addEventListener('pointerleave', aus); b.addEventListener('pointercancel', aus);
+            b.addEventListener('keydown', function (e) { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); M.betaetigt[a] = true; ioZeigen(); } });
+            b.addEventListener('keyup', function (e) { if (e.key === ' ' || e.key === 'Enter') aus(); });
+          } else b.addEventListener('click', function () { M.betaetigt[a] = !M.betaetigt[a]; ioZeigen(); });
+          f.append(b);
+        } else f.append(kn('small', 'hilfe', 'vom Modell'));
+        ze.append(f);
+      });
+      Object.keys(SYMBOLE).filter(function (a) { return a[1] === 'Q'; }).forEach(function (a) {
+        const s = SYMBOLE[a], f = kn('div', 'io-feld'); f.id = 'io-' + a.replace(/[%.]/g, '_');
+        f.append(kn('b', '', a), kn('div', 'name', s.name), kn('div', 'sig')); za.append(f);
+      });
+      ioZeigen();
+    }
+    function ioZeigen() {
+      eingaengeBilden();
+      Object.keys(SYMBOLE).forEach(function (a) {
+        const f = $('io-' + a.replace(/[%.]/g, '_')); if (!f) return;
+        const sig = f.querySelector('.sig'), phys = a[1] === 'I' ? PHYS_E[a] : PHYS_A[a];
+        if (a[2] === 'W') sig.textContent = zahl(phys, 0) + ' (' + zahl(phys / 1000, 2) + ' V)';
+        else { sig.textContent = 'Signal ' + (phys ? 1 : 0) + (a[1] === 'I' && SYMBOLE[a].art !== 'modell' ? (M.betaetigt[a] ? ' · betätigt' : ' · Ruhe') : ''); sig.className = 'sig' + (phys ? ' eins' : ''); }
+        const b = f.querySelector('button'); if (b) b.className = M.betaetigt[a] ? 'gedrueckt' : '';
+      });
+    }
+    function symboleAufbauen() {
+      const tb = $('symbole'); tb.innerHTML = '';
+      Object.keys(SYMBOLE).forEach(function (a) {
+        const s = SYMBOLE[a], tr = kn('tr');
+        tr.append(kn('td', 'adr', a));
+        const td = kn('td'), i = kn('input'); i.value = s.name; i.maxLength = 24; i.setAttribute('aria-label', 'Name für ' + a); i.setAttribute('data-nicht-merken', '');
+        i.addEventListener('change', function () {
+          const v = i.value.trim();
+          const belegt = Object.keys(SYMBOLE).some(function (x) { return x !== a && SYMBOLE[x].name.toLowerCase() === v.toLowerCase(); });
+          if (!/^[A-Za-z_][A-Za-z0-9_]{0,23}$/.test(v) || SCHLUESSEL.indexOf(v.toUpperCase()) >= 0 || TYPEN[v.toUpperCase()] || FB[v.toUpperCase()] || belegt) { i.value = s.name; return meldung('Name ungültig oder doppelt: Buchstaben, Ziffern, _ (nicht am Anfang eine Ziffer), kein Schlüsselwort.', true); }
+          s.name = v; speichern(); ioAufbauen(); meldung('Symbol geändert – „Übersetzen und laden“, damit das Programm den neuen Namen kennt.');
+        });
+        td.append(i); tr.append(td);
+        const tb2 = kn('td');
+        if (s.art === 'taster' || s.art === 'schalter') {
+          const sel = kn('select'); sel.setAttribute('aria-label', 'Bedienung ' + a); sel.setAttribute('data-nicht-merken', '');
+          [['taster|S', 'Taster, Schließer'], ['taster|O', 'Taster, Öffner'], ['schalter|S', 'Schalter, Schließer'], ['schalter|O', 'Schalter, Öffner']].forEach(function (o) { const op = kn('option', '', o[1]); op.value = o[0]; sel.append(op); });
+          sel.value = s.art + '|' + s.kontakt;
+          sel.addEventListener('change', function () { const t = sel.value.split('|'); s.art = t[0]; s.kontakt = t[1]; M.betaetigt[a] = false; speichern(); ioAufbauen(); });
+          tb2.append(sel);
+        } else tb2.textContent = s.art === 'aus' ? 'Ausgang' : s.art === 'analog' ? 'Schieberegler 0 … 10 V' : 'Modell' + (s.kontakt === 'O' ? ', Öffner' : '');
+        tr.append(tb2); tb.append(tr);
+      });
+    }
+    function beobachten() {
+      const tb = $('beob'); tb.innerHTML = '';
+      const zeile = function (n, t, w) { const tr = kn('tr'); tr.append(kn('td', '', n), kn('td', '', t)); const d = kn('td', w === true ? 'w1' : '', w === true ? 'TRUE' : w === false ? 'FALSE' : String(w)); tr.append(d); tb.append(tr); };
+      if (PROG) Object.keys(PROG.vars).forEach(function (k) {
+        const v = PROG.vars[k], w = VARS[k];
+        if (FB[v.typ]) {
+          const teile = FB[v.typ].aus.map(function (f) { return f + '=' + (typeof w[f] === 'boolean' ? (w[f] ? 1 : 0) : f === 'ET' ? zahl(w[f] / 1000, 2) + ' s' : w[f]); });
+          if (w.PT !== undefined && FB[v.typ].ein.indexOf('PT') >= 0) teile.push('PT=' + zahl(w.PT / 1000, 2) + ' s');
+          if (w.PV !== undefined && FB[v.typ].ein.indexOf('PV') >= 0) teile.push('PV=' + w.PV);
+          zeile(v.name, v.typ, teile.join('  '));
+        } else zeile(v.name, v.typ, typeof w === 'number' ? (v.typ === 'TIME' ? zahl(w / 1000, 3) + ' s' : zahl(w, 3)) : w);
+      });
+      Object.keys(SYMBOLE).forEach(function (a) { const s = SYMBOLE[a], w = a[1] === 'I' ? PAE[a] : PAA[a]; zeile(s.name + ' (' + a + ')', a[2] === 'W' ? 'INT' : 'BOOL', w); });
+    }
+
+    // =====================================================================
+    // Ablauf: Zyklus, RUN/STOP, Speichern, Teilen
+    // =====================================================================
+    const SPEICHER = 'sps-1';
+    let P = null, RUN = false, FEHLER = false, zyklusStart = 0, geschrieben = true, letzteZyklusDauer = 0, zyklen = 0;
+    function pruefen(p) {
+      if (!p || typeof p !== 'object' || p.v !== 1 || !BSP[p.bsp] || typeof p.code !== 'string' || p.code.length > 20000) return null;
+      return { v: 1, bsp: p.bsp, code: p.code.replace(/\r/g, ''), sym: p.sym && typeof p.sym === 'object' ? p.sym : {} };
+    }
+    function symFuerSpeicher() { const o = {}; Object.keys(SYMBOLE).forEach(function (a) { const s = SYMBOLE[a]; o[a] = { name: s.name, art: s.art, kontakt: s.kontakt }; }); return o; }
+    let uhr = 0;
+    function speichernJetzt() { if (!P) return; P.code = $('code').value.slice(0, 20000); P.sym = symFuerSpeicher(); try { localStorage.setItem(SPEICHER, JSON.stringify(P)); } catch (e) { /* ohne Speicher */ } }
+    function speichern() { clearTimeout(uhr); uhr = setTimeout(speichernJetzt, 400); }
+    window.addEventListener('pagehide', function () { clearTimeout(uhr); speichernJetzt(); });
+
+    function meldung(t, schlecht) { $('meldung').textContent = t; $('meldung').className = 'meldung-sps ' + (schlecht ? 'schlecht' : 'gut'); }
+    function leds() {
+      $('ledRun').className = 'led' + (RUN ? ' gruen' : ''); $('ledStop').className = 'led' + (RUN ? '' : ' gelb'); $('ledSf').className = 'led' + (FEHLER ? ' rot' : '');
+      $('runStop').textContent = RUN ? '■ STOP' : '▶ RUN'; $('runStop').setAttribute('aria-pressed', RUN ? 'true' : 'false');
+      $('einzel').disabled = RUN;
+    }
+    function stoppen(grund) {
+      RUN = false; FEHLER = !!grund;
+      ADR_OUT.forEach(function (a) { PAA[a] = false; PHYS_A[a] = false; }); PAA['%QW0'] = 0; PHYS_A['%QW0'] = 0;   // STOP: Ausgänge aus
+      leds(); ioZeigen();
+      if (grund) meldung('CPU im STOP: ' + grund, true);
+    }
+    function uebersetzenKnopf(still) {
+      try {
+        const p = laden($('code').value);
+        FEHLER = false;
+        if (!still) meldung('Übersetzt: ' + Object.keys(p.vars).length + ' Variablen, ' + p.ast.anw.length + ' Anweisungen. ' + (RUN ? 'Läuft.' : 'Mit „RUN“ starten.'));
+        leds(); beobachten(); return true;
+      } catch (e) {
+        if (e instanceof Fehler) { meldung('Zeile ' + e.zeile + ': ' + e.text, true); markiereZeile(e.zeile); }
+        else if (e instanceof Laufzeitfehler) meldung(e.text, true);
+        else { meldung('Interner Fehler beim Übersetzen.', true); }
+        PROG = null; stoppen(); FEHLER = true; leds(); return false;
+      }
+    }
+    function markiereZeile(z) {
+      const ta = $('code'), zeilen = ta.value.split('\n'); let pos = 0;
+      for (let i = 0; i < z - 1 && i < zeilen.length; i++) pos += zeilen[i].length + 1;
+      try { ta.setSelectionRange(pos, pos + (zeilen[z - 1] || '').length); } catch (e) { /* egal */ }
+    }
+    function zyklus() {
+      // 1 PAE lesen
+      eingaengeBilden();
+      Object.keys(PHYS_E).forEach(function (a) { PAE[a] = PHYS_E[a]; });
+      // 2 Programm
+      schritte = 0; ZEIT = zeitSim;
+      const t0 = performance.now();
+      try { ausfuehren(PROG.ast.anw); }
+      catch (e) { stoppen(e instanceof Laufzeitfehler ? e.text : 'Fehler im Programm'); return false; }
+      letzteZyklusDauer = performance.now() - t0; zyklen++;
+      return true;
+    }
+    function ausgaengeSchreiben() { Object.keys(PAA).forEach(function (a) { PHYS_A[a] = PAA[a]; }); geschrieben = true; }
+    $('runStop').addEventListener('click', function () {
+      if (RUN) { stoppen(); meldung('CPU im STOP – alle Ausgänge aus.'); return; }
+      if (!uebersetzenKnopf(true)) return;
+      RUN = true; FEHLER = false; zyklusStart = zeitSim - 1e6; leds(); meldung('RUN – das Programm läuft zyklisch.');
+    });
+    $('einzel').addEventListener('click', function () {
+      if (RUN) return;
+      if (!PROG && !uebersetzenKnopf(true)) return;
+      phase = 0; phasenZeigen(0.1);
+      if (zyklus()) { phasenZeigen(0.5); ausgaengeSchreiben(); setTimeout(function () { phasenZeigen(0.9); }, 120); setTimeout(function () { phasenZeigen(-1); }, 400); ioZeigen(); beobachten(); meldung('Ein Zyklus abgearbeitet (Zyklus ' + zyklen + '). Die Ausgänge bleiben so, bis du weiterschaltest – im STOP sonst aus.'); }
+    });
+    $('uebersetzen').addEventListener('click', function () { if (uebersetzenKnopf()) speichern(); });
+    $('code').addEventListener('input', function () { zeilenNummern(); speichern(); });
+    $('code').addEventListener('scroll', function () { $('zeilen').scrollTop = $('code').scrollTop; });
+    $('code').addEventListener('keydown', function (e) {
+      if (e.key === 'Tab' && !e.shiftKey) { e.preventDefault(); const ta = $('code'), a = ta.selectionStart; ta.value = ta.value.slice(0, a) + '  ' + ta.value.slice(ta.selectionEnd); ta.selectionStart = ta.selectionEnd = a + 2; zeilenNummern(); speichern(); }
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') { e.preventDefault(); if (uebersetzenKnopf()) speichern(); }
+    });
+    function zeilenNummern() { const n = $('code').value.split('\n').length; let s = ''; for (let i = 1; i <= n; i++) s += i + '\n'; $('zeilen').textContent = s; $('zeilen').scrollTop = $('code').scrollTop; }
+    let phase = -1;
+    function phasenZeigen(f) { ['ph1', 'ph2', 'ph3'].forEach(function (id, i) { $(id).className = f >= 0 && ((i === 0 && f < 0.25) || (i === 1 && f >= 0.25 && f < 0.75) || (i === 2 && f >= 0.75)) ? 'an' : ''; }); }
+
+    function beispielLaden(key, eigene, code) {
+      const b = BSP[key]; if (!b) return;
+      stoppen(); FEHLER = false;
+      SYMBOLE = symboleAus(b, eigene);
+      modellNeu(MODELLE[b[2]] ? b[2] : 'feld'); ioLeeren();
+      P = { v: 1, bsp: key, code: code !== undefined ? code : b[5], sym: {} };
+      $('beispiel').value = key; $('code').value = P.code; zeilenNummern();
+      $('beispielText').textContent = 'Anlage: ' + MODELLE[b[2]].name + '. ' + b[4];
+      ioAufbauen(); symboleAufbauen(); groesse();
+      uebersetzenKnopf(true); beobachten(); leds();
+    }
+    BEISPIELE.forEach(function (b) { const o = kn('option', '', b[1]); o.value = b[0]; $('beispiel').append(o); });
+    $('laden').addEventListener('click', function () {
+      const k = $('beispiel').value;
+      if (P && P.code !== BSP[P.bsp][5] && $('code').value !== BSP[P.bsp][5] && !window.confirm('Beispiel laden? Dein geändertes Programm wird ersetzt (vorher „Link kopieren“ zum Sichern).')) return;
+      beispielLaden(k); speichernJetzt(); meldung('Beispiel geladen und übersetzt – mit „RUN“ starten.');
+    });
+
+    // ---------- Schleife ----------
+    let zeitSim = 0, letzt = performance.now(), beobUhr = 0;
+    function schleife(t) {
+      const dt = Math.min(0.1, (t - letzt) / 1000); letzt = t; zeitSim += dt * 1000;
+      const tz = +$('zyklusZeit').value;
+      if (RUN && PROG) {
+        const f = (zeitSim - zyklusStart) / tz;
+        if (f >= 0.75 && !geschrieben) ausgaengeSchreiben();
+        if (f >= 1) { if (!geschrieben) ausgaengeSchreiben(); zyklusStart = f > 3 ? zeitSim : zyklusStart + tz; geschrieben = false; if (!zyklus()) { phasenZeigen(-1); } }
+        if (RUN) phasenZeigen(tz >= 500 ? Math.max(0, (zeitSim - zyklusStart) / tz) : (zeitSim / 120) % 1);
+        $('zyklusInfo').textContent = 'Zyklus ' + zyklen + ' · Programm ' + zahl(letzteZyklusDauer, 2) + ' ms';
+      } else if (phase < 0 && !RUN) { /* nichts */ }
+      modellSchritt(dt);
+      eingaengeBilden();
+      if (t - beobUhr > 200) { beobUhr = t; ioZeigen(); beobachten(); }
+      zeichnen(t);
+      requestAnimationFrame(schleife);
+    }
+    let breite = 0;
+    window.addEventListener('resize', function () { if (cv.clientWidth !== breite) { breite = cv.clientWidth; groesse(); } });
+
+    // ---------- Teilen ----------
+    $('teilen').addEventListener('click', function () { speichernJetzt(); Teilen.url('plan', P).then(function (url) { Teilen.kopieren(url, function (t) { $('teilenMeldung').textContent = t; setTimeout(function () { $('teilenMeldung').textContent = ''; }, 5000); }); }); });
+    const vorherKnopf = Teilen.knopf($('teilen').parentNode, SPEICHER, function (roh) {
+      let p = null; try { p = pruefen(JSON.parse(roh)); } catch (e) { p = null; }
+      if (!p) return meldung('Kein gültiges vorheriges Programm gefunden.', true);
+      beispielLaden(p.bsp, p.sym, p.code); speichernJetzt(); meldung('Vorheriges Programm wiederhergestellt.');
+    }, 'Programmversion');
+
+    // ---------- Start ----------
+    let gespeichert = null;
+    try { gespeichert = pruefen(JSON.parse(localStorage.getItem(SPEICHER) || 'null')); } catch (e) { gespeichert = null; }
+    if (gespeichert) beispielLaden(gespeichert.bsp, gespeichert.sym, gespeichert.code); else beispielLaden('selbst');
+    Array.prototype.forEach.call(document.querySelectorAll('#sps-wissen [data-tex]'), function (el) { Formel.setze(el, el.getAttribute('data-tex'), true); });
+    requestAnimationFrame(schleife);
+    Teilen.lesen('plan').then(function (roh) {
+      if (!roh) return;
+      const p = pruefen(roh); if (!p) throw new Error('ungültig');
+      const t = JSON.stringify(p), gesichert = Teilen.sichern(SPEICHER, t);
+      beispielLaden(p.bsp, p.sym, p.code); clearTimeout(uhr); speichernJetzt(); vorherKnopf.zeigen();
+      meldung('Programm aus dem Link geladen.' + (gesichert ? ' Dein vorheriges ist gesichert.' : '') + ' Prüfe es und starte mit „RUN“.');
+    }).catch(function () { meldung('Der Link ist unvollständig oder beschädigt – es gilt das gespeicherte Programm.', true); });
+  })();
+  </script>
+</body>
+</html>
