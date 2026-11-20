@@ -56,6 +56,8 @@
     .strecken input, .strecken select { width: 100%; padding: 5px 6px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font-size: .92rem; }
     .strecken input.zahl { text-align: right; font-family: var(--technik); font-size: 1rem; }
     .strecken input.falsch { border-color: var(--fehler); background: var(--fehler-flaeche); }
+    .strecken select { min-width: 6.5em; }
+    .strecken input:not([type=checkbox]) { min-width: 4.5em; }
     .strecken td.nr { font-family: var(--technik); font-weight: 600; white-space: nowrap; }
     .strecken tr.gewaehlt td { background: var(--ergebnis-flaeche); }
     .weg-knopf { border: none; background: none; color: var(--leise); cursor: pointer; width: 28px; height: 28px; border-radius: 50%; }

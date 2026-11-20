@@ -29,6 +29,7 @@
 .listen-zeile .entfernen { width: 26px; height: 26px; border: 1px solid var(--linie); border-radius: 50%; background: var(--flaeche); cursor: pointer; color: var(--leise); line-height: 1; }
 .listen-zeile .entfernen:hover:not(:disabled) { background: var(--fehler-flaeche); color: var(--fehler); border-color: var(--fehler); }
 .listen-zeile .entfernen:disabled { opacity: .35; cursor: default; }
+@media (pointer: coarse) { .listen-zeile .entfernen { width: 34px; height: 34px; font-size: 1.05rem; } }
 .listen-feld { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .listen-feld.breit { grid-column: span 2; }
 .listen-feld input.text { text-align: left; font-family: var(--schrift); font-size: .95rem; }
