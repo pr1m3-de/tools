@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = '48926e9ccb';
+const STAND = 'e5584aa370';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -67,6 +67,9 @@ const DATEIEN = [
   "elektro/beleuchtung.html",
   "elektro/blitzschutz.html",
   "elektro/drehstrom.html",
+  "gebaeudeautomation/knx-planung.html",
+  "gebaeudeautomation/knx-simulator.html",
+  "gebaeudeautomation/smart-home.html",
   "elektro/einbruchmeldeanlage.html",
   "elektro/erdung.html",
   "elektro/kondensator.html",
@@ -173,6 +176,10 @@ const DATEIEN = [
   "aufgabenblaetter/elektro/transformator/01-einphasentransformator.md",
   "aufgabenblaetter/elektro/transformator/02-drehstromtransformator.md",
   "aufgabenblaetter/elektro/wechselstrom/01-wechselstrom-und-rlc.md",
+  "aufgabenblaetter/gebaeudeautomation/knx-planung/01-knx-grundlagen.md",
+  "aufgabenblaetter/gebaeudeautomation/knx-planung/02-topologie-und-adressen.md",
+  "aufgabenblaetter/gebaeudeautomation/knx-simulator/01-programmierung-und-fehlersuche.md",
+  "aufgabenblaetter/gebaeudeautomation/smart-home/01-systeme-und-automationen.md",
   "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
   "aufgabenblaetter/liste.json"
 ];

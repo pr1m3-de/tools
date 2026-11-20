@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KNX: Topologie, Adressen und Planung – Formeln &amp; Rechner</title>
+  <meta name="description" content="KNX verstehen und planen: Kommunikationsarten TP, TP-64, TP-256, PL, RF, IP und IoT, Systemkomponenten, Sensoren und Aktoren, Busankoppler und Anwendungsmodul, Topologie mit Linien und Bereichen, physikalische Adressen, zwei- und dreistufige Gruppenadressen, Spannungsversorgung, Leitungslängen und Programmierung.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="KNX: Topologie, Adressen und Planung">
+  <meta property="og:description" content="KNX verstehen und planen: Kommunikationsarten TP, TP-64, TP-256, PL, RF, IP und IoT, Systemkomponenten, Sensoren und Aktoren, Busankoppler und Anwendungsmodul, Topologie mit Linien und Bereichen, physikalische Adressen, zwei- und dreistufige Gruppenadressen, Spannungsversorgung, Leitungslängen und Programmierung.">
+  <meta property="og:url" content="https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="KNX: Topologie, Adressen und Planung">
+  <meta name="twitter:description" content="KNX verstehen und planen: Kommunikationsarten TP, TP-64, TP-256, PL, RF, IP und IoT, Systemkomponenten, Sensoren und Aktoren, Busankoppler und Anwendungsmodul, Topologie mit Linien und Bereichen, physikalische Adressen, zwei- und dreistufige Gruppenadressen, Spannungsversorgung, Leitungslängen und Programmierung.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#seite","name":"KNX: Topologie, Adressen und Planung","url":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html","inLanguage":"de","description":"KNX verstehen und planen: Kommunikationsarten TP, TP-64, TP-256, PL, RF, IP und IoT, Systemkomponenten, Sensoren und Aktoren, Busankoppler und Anwendungsmodul, Topologie mit Linien und Bereichen, physikalische Adressen, zwei- und dreistufige Gruppenadressen, Spannungsversorgung, Leitungslängen und Programmierung.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"KNX: Topologie, Adressen und Planung","item":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#fragen","mainEntity":[{"@type":"Question","name":"Was ist der Unterschied zwischen physikalischer Adresse und Gruppenadresse?","acceptedAnswer":{"@type":"Answer","text":"Die physikalische Adresse (z. B. 1.1.12) ist die Hausnummer eines Geräts und dient nur zum Programmieren und Finden. Die Gruppenadresse (z. B. 1/0/1) ist die Funktion „Licht Küche“: Der Taster sendet an sie, alle Aktoren, die sie kennen, reagieren."}},{"@type":"Question","name":"Wie viele Geräte passen auf eine KNX-Linie?","acceptedAnswer":{"@type":"Answer","text":"Bei TP-64 höchstens 64 je Segment; mit bis zu drei Linienverstärkern 4 Segmente, also maximal 255 Teilnehmer je Linie. Mit TP-256-Geräten passen bis 256 in ein Segment ohne Verstärker. Planen sollte man mit rund 20 % Reserve."}},{"@type":"Question","name":"Welche Leitungslängen gelten bei KNX TP?","acceptedAnswer":{"@type":"Answer","text":"Je Liniensegment höchstens 1 000 m Leitung insgesamt, zwischen Spannungsversorgung und Busgerät höchstens 350 m, zwischen zwei Busgeräten höchstens 700 m. Zwei Spannungsversorgungen in einem Segment brauchen mindestens 200 m Leitung Abstand."}},{"@type":"Question","name":"Zweistufige oder dreistufige Gruppenadressen?","acceptedAnswer":{"@type":"Answer","text":"Beides geht, die dreistufige Form ist üblich, weil sie sich gut nach Gewerk/Geschoss/Funktion oder Geschoss/Raum/Funktion gliedern lässt. Wichtig ist, sich für ein Schema zu entscheiden und es in der ganzen Anlage durchzuhalten."}},{"@type":"Question","name":"Darf man KNX und 230 V in eine Dose legen?","acceptedAnswer":{"@type":"Answer","text":"Die Busleitung ist SELV. Sie darf zusammen mit Starkstromleitungen verlegt werden, wenn ihre Isolierung dafür ausgelegt ist (z. B. J-Y(St)Y mit Prüfspannung 2,5 kV bzw. 4 kV) und in Dosen und Verteilern die Mindestabstände bzw. Trennstege eingehalten werden. Freie Adern der Busleitung müssen abisoliert bleiben oder isoliert werden."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3, .wissen-karte h4 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .wissen-karte ul { margin: 4px 0; padding-left: 18px; }
+    .bild-svg { width: 100%; height: auto; max-width: 720px; display: block; margin: 8px auto; }
+    .bild-svg text { font-family: var(--technik); fill: var(--text); }
+    .schritte { counter-reset: s; list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 8px; }
+    .schritte li { counter-increment: s; position: relative; padding: 8px 10px 8px 44px; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); font-size: .93rem; line-height: 1.45; }
+    .schritte li::before { content: counter(s); position: absolute; left: 10px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #9333EA; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand" id="knx-wissen" aria-labelledby="h-knx-wissen">
+      <h2 id="h-knx-wissen">KNX verstehen</h2>
+      <p>KNX ist ein offener, weltweit genormter Standard (EN 50090, ISO/IEC 14543-3) für die Haus- und Gebäudesystemtechnik. Geräte vieler Hersteller arbeiten zusammen, weil sie dieselbe Sprache sprechen. Es gibt keine Zentrale: Jedes Gerät hat seinen eigenen Prozessor, Sensoren schicken Telegramme an Gruppenadressen, Aktoren hören auf diese Adressen und schalten. Fällt ein Gerät aus, arbeitet der Rest weiter. Ausprobieren: <a href="knx-simulator.html">KNX-Simulator</a>.</p>
+
+      <h3 class="zwischen" id="kommunikation">Kommunikationsarten (Medien)</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Medium</th><th>Übertragung</th><th>Geschwindigkeit</th><th>Typischer Einsatz</th></tr></thead>
+        <tbody>
+          <tr><td><b>KNX TP</b> (Twisted Pair)</td><td>eigene Busleitung, z. B. J-Y(St)Y 2 × 2 × 0,8, Energie und Daten auf einem Aderpaar (SELV, rund 30 V DC)</td><td>9 600 bit/s</td><td>Neubau, Sanierung mit neuer Leitung – der Normalfall</td></tr>
+          <tr><td><b>TP-64</b></td><td>klassische TP-Geräte: höchstens 64 Busgeräte je Liniensegment; mit Linienverstärkern bis zu 4 Segmente je Linie</td><td>9 600 bit/s</td><td>bestehende Anlagen, ältere Geräte</td></tr>
+          <tr><td><b>TP-256</b></td><td>neuere TP-Geräte mit geringerer Last: bis 256 Busgeräte in einem Segment, ganz ohne Linienverstärker – nur wenn alle Geräte der Linie TP-256 können</td><td>9 600 bit/s</td><td>große Linien, weniger Koppler</td></tr>
+          <tr><td><b>KNX PL</b> (Powerline PL110)</td><td>über das vorhandene 230-V-Netz, Signal um 110 kHz; Bandsperre am Hausanschluss</td><td>1 200 bit/s</td><td>Nachrüstung ohne neue Leitung</td></tr>
+          <tr><td><b>KNX RF</b> (Funk)</td><td>868,3 MHz, Geräte oft batteriebetrieben; in Gebäuden etwa 30 m Reichweite</td><td>16 384 bit/s</td><td>Nachrüstung, Fensterkontakte, bewegliche Taster</td></tr>
+          <tr><td><b>KNX IP</b> (KNXnet/IP)</td><td>Ethernet und WLAN: <i>Routing</i> per Multicast 224.0.23.12, Port 3671 (Linien- und Bereichskoppler über IP), <i>Tunneling</i> als Zugang für Inbetriebnahme und Visualisierung; KNX IP Secure verschlüsselt</td><td>10/100/1 000 Mbit/s</td><td>schnelle Hauptlinie (Backbone), Fernzugriff, große Gebäude</td></tr>
+          <tr><td><b>KNX IoT</b></td><td>KNX-Datenpunkte über IPv6-Netze (z. B. Thread oder Ethernet) und eine offene Schnittstelle für Fremdsysteme und Cloud-Dienste</td><td>je nach Netz</td><td>Anbindung an Smart-Home-Zentralen, Apps, Energiemanagement</td></tr>
+        </tbody>
+      </table></div>
+      <p class="hilfe">Alle Medien verwenden dieselben Telegramme, Gruppenadressen und Datenpunkttypen. Koppler und Router verbinden sie zu einer Anlage, programmiert wird alles mit derselben Inbetriebnahme-Software (ETS der KNX-Vereinigung).</p>
+
+      <h3 class="zwischen" id="geraete">Gerätearten</h3>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#6B7785">
+          <h4>Systemkomponenten</h4>
+          <ul>
+            <li><b>Spannungsversorgung</b> mit Drossel (160, 320, 640 oder 1 280 mA) – speist die Linie, ohne sie läuft nichts</li>
+            <li><b>Linienkoppler</b> (x.y.0) und <b>Bereichskoppler</b> (x.0.0) – verbinden Linien und filtern Telegramme</li>
+            <li><b>Linienverstärker</b> (Repeater) – weiteres Segment bei TP-64</li>
+            <li><b>IP-Router</b> – Koppler zwischen TP und IP</li>
+            <li><b>Schnittstellen</b> (USB, IP) – Zugang für die Inbetriebnahme</li>
+          </ul>
+        </article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9">
+          <h4>Sensoren und Erkennung</h4>
+          <ul>
+            <li>Taster und Tastsensoren, Bedien- und Anzeigegeräte</li>
+            <li>Präsenz- und Bewegungsmelder</li>
+            <li>Raumtemperaturregler, CO₂- und Feuchtesensoren</li>
+            <li>Wetterstation (Wind, Regen, Helligkeit, Dämmerung)</li>
+            <li>Binäreingänge für Fensterkontakte, potentialfreie Kontakte</li>
+          </ul>
+          <p>Sensoren erfassen etwas und <b>senden</b> Telegramme.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#E07A1F">
+          <h4>Aktoren</h4>
+          <ul>
+            <li>Schaltaktor (Licht, Steckdosen), Dimmaktor</li>
+            <li>Jalousie- bzw. Rollladenaktor</li>
+            <li>Heizungsaktor, Stellantriebe, Fan-Coil-Aktor</li>
+            <li>DALI-Gateway für Leuchten</li>
+          </ul>
+          <p>Aktoren <b>empfangen</b> Telegramme und schalten Lasten; Rückmeldungen senden sie selbst.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#9333EA">
+          <h4>Logik und Visualisierung</h4>
+          <ul>
+            <li>Logikmodule, Zeitschaltuhren, Szenencontroller</li>
+            <li>Visualisierung, Server, Gateways zu anderen Systemen</li>
+          </ul>
+          <p>Bauformen: Reiheneinbaugerät (Verteiler), Unterputz, Aufputz, Einbau in Leuchten und Geräte.</p>
+        </article>
+      </div>
+
+      <h3 class="zwischen" id="aufbau">Aufbau eines Busgeräts</h3>
+      <svg class="bild-svg" viewBox="0 0 720 210" role="img" aria-label="Busgerät aus Busankoppler, Anwendungsschnittstelle und Anwendungsmodul">
+        <rect x="20" y="40" width="250" height="130" rx="12" fill="none" stroke="#2B7BB9" stroke-width="2.5"/>
+        <text x="145" y="30" text-anchor="middle" font-weight="700">Busankoppler (BA, BCU)</text>
+        <rect x="40" y="62" width="95" height="40" rx="6" fill="#2B7BB9" fill-opacity=".15" stroke="#2B7BB9"/><text x="87" y="87" text-anchor="middle" font-size="13">Übertrager</text>
+        <rect x="155" y="62" width="95" height="40" rx="6" fill="#2B7BB9" fill-opacity=".15" stroke="#2B7BB9"/><text x="202" y="80" text-anchor="middle" font-size="13">Mikro-</text><text x="202" y="95" text-anchor="middle" font-size="13">controller</text>
+        <rect x="40" y="114" width="210" height="40" rx="6" fill="#2B7BB9" fill-opacity=".15" stroke="#2B7BB9"/><text x="145" y="139" text-anchor="middle" font-size="13">Speicher: Adressen, Programm, Parameter</text>
+        <rect x="300" y="72" width="110" height="66" rx="8" fill="#9333EA" fill-opacity=".14" stroke="#9333EA" stroke-width="2"/>
+        <text x="355" y="98" text-anchor="middle" font-size="13" font-weight="700">Anwendungs-</text><text x="355" y="114" text-anchor="middle" font-size="13" font-weight="700">schnittstelle</text><text x="355" y="130" text-anchor="middle" font-size="12">(PEI)</text>
+        <rect x="440" y="40" width="250" height="130" rx="12" fill="none" stroke="#E07A1F" stroke-width="2.5"/>
+        <text x="565" y="30" text-anchor="middle" font-weight="700">Anwendungsmodul (AM)</text>
+        <text x="565" y="90" text-anchor="middle" font-size="13">z. B. Tasterwippe, Display,</text><text x="565" y="108" text-anchor="middle" font-size="13">Relais, Sensor, Dimmer</text>
+        <line x1="270" y1="105" x2="300" y2="105" stroke="currentColor" stroke-width="2"/><line x1="410" y1="105" x2="440" y2="105" stroke="currentColor" stroke-width="2"/>
+        <line x1="20" y1="190" x2="270" y2="190" stroke="#C0392B" stroke-width="3"/><line x1="20" y1="198" x2="270" y2="198" stroke="#13233A" stroke-width="3"/>
+        <text x="280" y="198" font-size="12">Busleitung + (rot) / − (schwarz)</text>
+      </svg>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h4>Busankoppler</h4><p>Holt Energie und Daten aus der Busleitung, sendet und empfängt Telegramme und speichert physikalische Adresse, Applikationsprogramm, Parameter und Gruppenadressen. Er hat die <b>Programmiertaste</b> mit LED.</p></article>
+        <article class="wissen-karte" style="--farbe:#9333EA"><h4>Anwendungsschnittstelle</h4><p>Genormte Steckverbindung (PEI, Physical External Interface) zwischen Busankoppler und Anwendungsmodul. Unterputz-Busankoppler und Aufsätze verschiedener Programme passen so zusammen.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h4>Anwendungsmodul</h4><p>Der Teil, den man sieht oder der schaltet: Wippe, Display, Relais, Dimmer oder Sensor. Bei Reiheneinbaugeräten sind alle drei Teile in einem Gehäuse.</p></article>
+      </div>
+
+      <h3 class="zwischen" id="topologie">Topologie</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Ebene</th><th>Adresse</th><th>Höchstzahl</th><th>verbunden über</th></tr></thead>
+        <tbody>
+          <tr><td>Liniensegment (TP-64)</td><td>–</td><td>64 Busgeräte</td><td>Linienverstärker: bis 4 Segmente je Linie</td></tr>
+          <tr><td>Linie</td><td>x.y.1 … x.y.255</td><td>bis 255 Busgeräte (mit 3 Verstärkern bzw. TP-256)</td><td>Linienkoppler x.y.0 zur Hauptlinie</td></tr>
+          <tr><td>Bereich</td><td>x.1 … x.15</td><td>15 Linien an einer Hauptlinie x.0</td><td>Bereichskoppler x.0.0 zur Bereichslinie</td></tr>
+          <tr><td>Anlage</td><td>1 … 15</td><td>15 Bereiche an der Bereichslinie (Backbone) 0.0</td><td>bei KNX IP: IP-Router als Koppler</td></tr>
+        </tbody>
+      </table></div>
+      <p>Damit lassen sich über 57 000 Busgeräte (15 Bereiche × 15 Linien × 255 Geräte) in einer Anlage betreiben. Koppler leiten nur Telegramme weiter, deren Gruppenadresse in ihrer <b>Filtertabelle</b> steht – der Verkehr einer Linie bleibt in der Linie.</p>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h4>Topologie (physikalisch)</h4><p>Wie die Geräte über Linien, Bereiche und Koppler verbunden sind. Busleitung als Linie, Stern oder Baum – <b>kein Ring</b>, keine Abschlusswiderstände.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h4>Gebäudestruktur (räumlich)</h4><p>Gebäude → Geschoss → Raum → Verteiler. Hilft beim Finden der Geräte. Gruppenadressen nach Räumen: Hauptgruppe = Geschoss, Mittelgruppe = Raum.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h4>Gewerkestruktur (funktional)</h4><p>Nach Gewerk geordnet: Licht, Jalousie, Heizung, Lüftung, Sicherheit. Gruppenadressen nach Funktion: Hauptgruppe = Gewerk, Mittelgruppe = Funktion oder Geschoss.</p></article>
+      </div>
+
+      <h3 class="zwischen" id="adressen">Adressen</h3>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9">
+          <h4>Physikalische Adresse (Einzeladresse)</h4>
+          <p><b>Bereich.Linie.Teilnehmer</b>, z. B. 1.1.12 – 4 + 4 + 8 Bit = 16 Bit. Jede Adresse gibt es in der Anlage nur einmal. Sie wird nur für Programmierung und Diagnose gebraucht. Neue Geräte haben 15.15.255.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#9333EA">
+          <h4>Gruppenadresse</h4>
+          <p>Logische Verbindung zwischen Sensor und Aktor, z. B. „Licht Küche ein/aus“. Ein Sensor sendet an <b>eine</b> Gruppenadresse; ein Aktor-Objekt kann auf <b>mehrere</b> Gruppenadressen hören (zentral aus). Ebenfalls 16 Bit.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#E07A1F">
+          <h4>Dreistufig: Haupt-/Mittel-/Untergruppe</h4>
+          <p>5 + 3 + 8 Bit: 0 … 31 / 0 … 7 / 0 … 255, z. B. 1/2/3 = Licht / Erdgeschoss / Küche ein-aus. Am häufigsten.</p>
+        </article>
+        <article class="wissen-karte" style="--farbe:#2E8B57">
+          <h4>Zweistufig: Haupt-/Untergruppe</h4>
+          <p>5 + 11 Bit: 0 … 31 / 0 … 2 047, z. B. 1/515. Daneben gibt es die freie Struktur (eine Zahl 1 … 65 535). 0/0/0 ist für Rundrufe reserviert.</p>
+        </article>
+      </div>
+
+      <h3 class="zwischen" id="programmierung">Programmierung (Inbetriebnahme)</h3>
+      <ol class="schritte">
+        <li><b>Projekt anlegen</b> und Gebäudestruktur (Geschosse, Räume, Verteiler) sowie Topologie (Bereiche, Linien) aufbauen.</li>
+        <li><b>Geräte</b> aus den Produktdaten der Hersteller einfügen und ihren Platz in Gebäude und Linie festlegen. Die physikalische Adresse ergibt sich aus der Linie.</li>
+        <li><b>Parameter</b> einstellen: z. B. Taster „Umschalten“ oder „Ein/Aus“, Treppenhauslicht 3 min, Laufzeit der Jalousie 60 s.</li>
+        <li><b>Gruppenadressen</b> anlegen (dreistufig nach Gewerk oder Raum) und die <b>Kommunikationsobjekte</b> verknüpfen. Datenpunkttypen müssen passen: 1 Bit zu 1 Bit, 1 Byte zu 1 Byte.</li>
+        <li><b>Physikalische Adresse programmieren:</b> Programmiertaste am Gerät drücken (rote LED), Adresse übertragen – LED geht aus.</li>
+        <li><b>Applikation laden:</b> Applikationsprogramm, Parameter und Gruppenadressen ins Gerät schreiben. Danach Koppler programmieren, damit die Filtertabellen stimmen.</li>
+        <li><b>Prüfen</b> mit Busmonitor und Gruppenmonitor: Wer sendet was an wen? Ein Protokoll und das Projekt gehören zur Übergabe an den Kunden.</li>
+      </ol>
+      <div class="rahmen"><table class="tabelle">
+        <caption>Flags der Kommunikationsobjekte</caption>
+        <thead><tr><th>Flag</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td>K – Kommunikation</td><td>Objekt ist mit dem Bus verbunden (sonst passiert gar nichts)</td></tr>
+          <tr><td>L – Lesen</td><td>der Wert darf über den Bus gelesen werden (Antwort auf Leseanfrage)</td></tr>
+          <tr><td>S – Schreiben</td><td>empfangene Telegramme ändern den Wert</td></tr>
+          <tr><td>Ü – Übertragen</td><td>Wertänderungen werden gesendet</td></tr>
+          <tr><td>A – Aktualisieren</td><td>Antworten auf Leseanfragen werden als neuer Wert übernommen</td></tr>
+          <tr><td>I – Initialisieren</td><td>nach dem Start wird der Wert vom Bus gelesen</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Was ist der Unterschied zwischen physikalischer Adresse und Gruppenadresse?</summary><p>Die physikalische Adresse (z. B. 1.1.12) ist die Hausnummer eines Geräts und dient nur zum Programmieren und Finden. Die Gruppenadresse (z. B. 1/0/1) ist die Funktion „Licht Küche“: Der Taster sendet an sie, alle Aktoren, die sie kennen, reagieren.</p></details>
+        <details><summary>Wie viele Geräte passen auf eine KNX-Linie?</summary><p>Bei TP-64 höchstens 64 je Segment; mit bis zu drei Linienverstärkern 4 Segmente, also maximal 255 Teilnehmer je Linie. Mit TP-256-Geräten passen bis 256 in ein Segment ohne Verstärker. Planen sollte man mit rund 20 % Reserve.</p></details>
+        <details><summary>Welche Leitungslängen gelten bei KNX TP?</summary><p>Je Liniensegment höchstens 1 000 m Leitung insgesamt, zwischen Spannungsversorgung und Busgerät höchstens 350 m, zwischen zwei Busgeräten höchstens 700 m. Zwei Spannungsversorgungen in einem Segment brauchen mindestens 200 m Leitung Abstand.</p></details>
+        <details><summary>Zweistufige oder dreistufige Gruppenadressen?</summary><p>Beides geht, die dreistufige Form ist üblich, weil sie sich gut nach Gewerk/Geschoss/Funktion oder Geschoss/Raum/Funktion gliedern lässt. Wichtig ist, sich für ein Schema zu entscheiden und es in der ganzen Anlage durchzuhalten.</p></details>
+        <details><summary>Darf man KNX und 230 V in eine Dose legen?</summary><p>Die Busleitung ist SELV. Sie darf zusammen mit Starkstromleitungen verlegt werden, wenn ihre Isolierung dafür ausgelegt ist (z. B. J-Y(St)Y mit Prüfspannung 2,5 kV bzw. 4 kV) und in Dosen und Verteilern die Mindestabstände bzw. Trennstege eingehalten werden. Freie Adern der Busleitung müssen abisoliert bleiben oder isoliert werden.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const T = function (cx, s, x, y, a, g, f, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!f, c); };
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785';
+    const NETZTEILE = [160, 320, 640, 1280];
+    const zs = function (v, n) { if (!isFinite(v)) return '–'; let t = z(v, n === undefined ? 1 : n); if (t.indexOf(',') >= 0) t = t.replace(/0+$/, '').replace(/,$/, ''); return t; };
+    const tp256 = function (e) { return e.medium === 'tp256'; };
+
+    function rechne(e) {
+      const r = { e: e };
+      r.segMax = tp256(e) ? 256 : 64;
+      r.segmente = tp256(e) ? 1 : Math.round(e.seg);
+      r.linieMax = Math.min(255, r.segMax * r.segmente);
+      r.linieGeplant = Math.max(1, Math.floor(r.linieMax * (1 - e.reserve / 100)));
+      r.linien = Math.max(1, Math.ceil(e.n / r.linieGeplant));
+      r.jeLinie = Math.ceil(e.n / r.linien);
+      r.bereiche = Math.ceil(r.linien / 15);
+      r.zuViel = r.bereiche > 15;
+      r.lk = r.linien > 1 ? r.linien : 0;
+      r.bk = r.bereiche > 1 ? r.bereiche : 0;
+      r.verstaerker = tp256(e) ? 0 : r.linien * Math.max(0, Math.ceil(r.jeLinie / 64) - 1);
+      r.jeSegment = Math.min(r.jeLinie, r.segMax);
+      r.strom = r.jeSegment * e.ig;
+      r.stromReserve = r.strom * (1 + e.reserve / 100);
+      r.netzteil = NETZTEILE.filter(function (x) { return x >= r.stromReserve - 1e-9; })[0] || NaN;
+      r.segGesamt = tp256(e) ? r.linien : r.linien * Math.ceil(r.jeLinie / 64);
+      r.ok = { l: e.l <= 1000, nt: e.lnt <= 350, gg: e.lgg <= 700 && e.lgg <= e.l };
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'KNX: Topologie, Adressen und Planung',
+      einleitung: 'Wie viele Linien, Bereiche, Koppler und welche Spannungsversorgungen braucht eine KNX-TP-Anlage? Der Rechner plant mit Reserve und prüft die Leitungslängen. Unten in jede Richtung: drei- und zweistufige Gruppenadressen und physikalische Adressen in Bits umrechnen, Spannungsversorgung bemessen, Telegrammdauer.',
+      hilfe: 'Alle Angaben je Liniensegment: Ein TP-Segment hat höchstens 1 000 m Leitung. Planungsreserve üblich 20 %.',
+      gruppen: [
+        { titel: 'Anlage', farbe: LILA, felder: [
+          { k: 'medium', name: 'Kommunikationsart', wahl: [['tp64', 'KNX TP-64 (64 Geräte je Segment)'], ['tp256', 'KNX TP-256 (256 Geräte je Segment)']] },
+          { k: 'n', tex: 'n', name: 'Busgeräte gesamt', e: '', min: 1, max: 57000 },
+          { k: 'seg', tex: 's', name: 'Segmente je Linie (mit Linienverstärkern)', e: '', min: 1, max: 4, wenn: function (e) { return !tp256(e); }, hilfe: '1 = ohne Linienverstärker. Bis zu drei Verstärker ergeben 4 Segmente.' },
+          { k: 'reserve', tex: 'r', name: 'Planungsreserve', e: '%', min: 0, max: 60 },
+          { k: 'ig', tex: 'I_\\text{G}', name: 'Stromaufnahme je Busgerät (Mittel)', e: 'mA', min: 1, max: 50, hilfe: 'Laut Datenblatt meist 5 bis 12 mA. Im Zweifel 10 mA.' }
+        ] },
+        { titel: 'Busleitung je Segment', farbe: ROT, felder: [
+          { k: 'l', tex: 'l', name: 'Leitungslänge insgesamt', e: 'm', min: 1, max: 5000 },
+          { k: 'lnt', tex: 'l_\\text{NT}', name: 'größter Abstand Spannungsversorgung – Busgerät', e: 'm', min: 0, max: 5000 },
+          { k: 'lgg', tex: 'l_\\text{GG}', name: 'größter Abstand zwischen zwei Busgeräten', e: 'm', min: 0, max: 5000 }
+        ] }
+      ],
+      beispiel: { medium: 'tp64', n: 180, seg: 1, reserve: 20, ig: 10, l: 450, lnt: 180, lgg: 320 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.zuViel) H.meldung('Mehr als 15 Bereiche: So viele Geräte passen nicht in eine KNX-Anlage. Reserve verkleinern oder Anlage teilen.', true);
+        if (!r.ok.l) H.meldung('Leitungslänge über 1 000 m je Segment: Segment teilen (Linienverstärker oder weitere Linie).', true);
+        if (!r.ok.nt) H.meldung('Abstand zur Spannungsversorgung über 350 m: Spannungsversorgung näher setzen oder zweite (mindestens 200 m Leitung entfernt) vorsehen.', true);
+        if (!r.ok.gg) H.meldung('Abstand zwischen zwei Busgeräten über 700 m bzw. größer als die Leitung: Laufzeit zu groß, Telegramme können kollidieren.', true);
+        if (!isFinite(r.netzteil)) H.meldung('Strom je Segment über 1 280 mA: Segment teilen.', true);
+        if (r.linien === 1) H.meldung('Eine Linie reicht: Adressen 1.1.1 bis 1.1.' + r.jeLinie + ', kein Koppler nötig.');
+        else if (r.bereiche === 1) H.meldung('Ein Bereich mit Hauptlinie 1.0 und ' + r.linien + ' Linien (1.1 bis 1.' + r.linien + '), je ein Linienkoppler 1.y.0.');
+        else H.meldung(r.bereiche + ' Bereiche an der Bereichslinie (Backbone), je ein Bereichskoppler x.0.0; bei großen Anlagen meist als IP-Router über KNX IP.');
+        const gut = !r.zuViel && r.ok.l && r.ok.nt && r.ok.gg && isFinite(r.netzteil);
+        H.urteil(gut, gut ? 'planbar' : 'Grenze überschritten');
+        H.kacheln([
+          [String(r.linien), 'Linien', LILA],
+          [String(r.bereiche), r.bereiche === 1 ? 'Bereich' : 'Bereiche', LILA],
+          [zs(r.jeLinie, 0), 'Busgeräte je Linie (höchstens ' + r.linieMax + ', geplant ' + r.linieGeplant + ')', BLAU],
+          [String(r.lk), 'Linienkoppler', GRAU],
+          [String(r.bk), 'Bereichskoppler / IP-Router', GRAU],
+          [String(r.verstaerker), 'Linienverstärker', GRAU],
+          [zs(r.strom, 0) + ' mA', 'Strom je Segment (' + zs(r.jeSegment, 0) + ' Geräte)', ORANGE],
+          [isFinite(r.netzteil) ? r.netzteil + ' mA' : '–', 'Spannungsversorgung je Segment (mit Reserve)', ORANGE],
+          [String(r.segGesamt), 'Spannungsversorgungen gesamt', ORANGE]
+        ]);
+        const zeilen = [];
+        for (let i = 0; i < Math.min(r.linien, 8); i++) {
+          const b = Math.floor(i / 15) + 1, l = i % 15 + 1, n = Math.min(r.jeLinie, e.n - i * r.jeLinie);
+          zeilen.push(['Linie ' + b + '.' + l, r.linien > 1 ? b + '.' + l + '.0' : '–', b + '.' + l + '.1 … ' + b + '.' + l + '.' + Math.max(1, n), String(Math.max(0, n))]);
+        }
+        if (r.linien > 8) zeilen.push(['…', '', '', '']);
+        H.tabelle('Adressplan', ['Linie', 'Linienkoppler', 'Teilnehmer', 'Geräte'], zeilen, { zahl: [3] });
+        H.nachweise([
+          [r.ok.l, 'Leitungslänge je Segment ' + zs(e.l, 0) + ' m ≤ 1 000 m'],
+          [r.ok.nt, 'Spannungsversorgung – Busgerät ' + zs(e.lnt, 0) + ' m ≤ 350 m'],
+          [r.ok.gg, 'Busgerät – Busgerät ' + zs(e.lgg, 0) + ' m ≤ 700 m'],
+          [isFinite(r.netzteil), 'Strom je Segment mit Reserve ' + zs(r.stromReserve, 0) + ' mA ≤ ' + (isFinite(r.netzteil) ? r.netzteil : 1280) + ' mA']
+        ]);
+      },
+      weg: function (r, e) {
+        return [
+          ['Geräte je Linie', tp256(e) ? 'n_\\text{Linie,max} = ' + E('255') + '\\;(\\text{TP-256: ein Segment})' : 'n_\\text{Linie,max} = 64 \\cdot s = 64 \\cdot ' + r.segmente + ' = ' + E(String(r.linieMax))],
+          ['Mit Reserve', 'n_\\text{geplant} = \\lfloor n_\\text{Linie,max} \\cdot (1 - r) \\rfloor = \\lfloor ' + r.linieMax + ' \\cdot ' + tz(1 - e.reserve / 100, 2) + ' \\rfloor = ' + E(String(r.linieGeplant))],
+          ['Linien', 'L = \\left\\lceil \\frac{n}{n_\\text{geplant}} \\right\\rceil = \\left\\lceil \\frac{' + e.n + '}{' + r.linieGeplant + '} \\right\\rceil = ' + E(String(r.linien))],
+          ['Bereiche', 'B = \\left\\lceil \\frac{L}{15} \\right\\rceil = ' + E(String(r.bereiche))],
+          ['Strom je Segment', 'I = n_\\text{Segment} \\cdot I_\\text{G} = ' + r.jeSegment + ' \\cdot ' + tz(e.ig, 1) + '\\,\\text{mA} = ' + E(tz(r.strom, 0) + '\\,\\text{mA}') + ', \\quad I \\cdot (1 + r) = ' + tz(r.stromReserve, 0) + '\\,\\text{mA} \\Rightarrow ' + E((isFinite(r.netzteil) ? r.netzteil : '–') + '\\,\\text{mA}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Dreistufige Gruppenadresse – in jede Richtung', hilfe: 'Hauptgruppe/Mittelgruppe/Untergruppe mit 5 + 3 + 8 Bit. Beispiel: Welche 16-Bit-Zahl steht im Telegramm für 3/1/20?',
+          felder: [
+            { k: 'H', tex: 'H', name: 'Hauptgruppe (0 … 31)', e: '', min: 0, max: 31, n: 0 }, { k: 'M', tex: 'M', name: 'Mittelgruppe (0 … 7)', e: '', min: 0, max: 7, n: 0 },
+            { k: 'U', tex: 'U', name: 'Untergruppe (0 … 255)', e: '', min: 0, max: 255, n: 0 }, { k: 'G', tex: 'G', name: 'Gruppenadresse als Zahl', e: '', min: 0, max: 65535, n: 0 }
+          ],
+          beispiel: { H: 3, M: 1, U: 20 },
+          gleichungen: [
+            { name: 'dreistufig', v: ['G', 'H', 'M', 'U'], f: function (q) { return [q.G, 2048 * q.H + 256 * q.M + q.U]; },
+              loese: { G: function (q) { return 2048 * q.H + 256 * q.M + q.U; }, U: function (q) { const u = q.G - 2048 * q.H - 256 * q.M; return u >= 0 && u <= 255 ? u : NaN; },
+                M: function (q) { const m = (q.G - 2048 * q.H - q.U) / 256; return m >= 0 && m <= 7 && Math.abs(m - Math.round(m)) < 1e-9 ? m : NaN; },
+                H: function (q) { const h = (q.G - 256 * q.M - q.U) / 2048; return h >= 0 && h <= 31 && Math.abs(h - Math.round(h)) < 1e-9 ? h : NaN; } },
+              weg: function (k, q) { return k === 'G' ? 'G = 2048 \\cdot H + 256 \\cdot M + U = 2048 \\cdot ' + q.H + ' + 256 \\cdot ' + q.M + ' + ' + q.U + ' = ' + E(String(q.G)) + '\\;(\\text{hex } ' + ('000' + q.G.toString(16).toUpperCase()).slice(-4) + ')' : k === 'U' ? 'U = G - 2048 \\cdot H - 256 \\cdot M = ' + E(String(q.U)) : k === 'M' ? 'M = \\frac{G - 2048 \\cdot H - U}{256} = ' + E(String(q.M)) : 'H = \\frac{G - 256 \\cdot M - U}{2048} = ' + E(String(q.H)); } }
+          ] },
+        { titel: 'Zweistufige Gruppenadresse – in jede Richtung', hilfe: 'Hauptgruppe/Untergruppe mit 5 + 11 Bit. Beispiel: 3/1/20 dreistufig ist zweistufig 3/276.',
+          felder: [
+            { k: 'H', tex: 'H', name: 'Hauptgruppe (0 … 31)', e: '', min: 0, max: 31, n: 0 }, { k: 'U2', tex: 'U_2', name: 'Untergruppe (0 … 2047)', e: '', min: 0, max: 2047, n: 0 },
+            { k: 'G', tex: 'G', name: 'Gruppenadresse als Zahl', e: '', min: 0, max: 65535, n: 0 }
+          ],
+          beispiel: { H: 3, U2: 276 },
+          gleichungen: [
+            { name: 'zweistufig', v: ['G', 'H', 'U2'], f: function (q) { return [q.G, 2048 * q.H + q.U2]; },
+              loese: { G: function (q) { return 2048 * q.H + q.U2; }, U2: function (q) { const u = q.G - 2048 * q.H; return u >= 0 && u <= 2047 ? u : NaN; },
+                H: function (q) { const h = (q.G - q.U2) / 2048; return h >= 0 && h <= 31 && Math.abs(h - Math.round(h)) < 1e-9 ? h : NaN; } },
+              weg: function (k, q) { return k === 'G' ? 'G = 2048 \\cdot H + U_2 = 2048 \\cdot ' + q.H + ' + ' + q.U2 + ' = ' + E(String(q.G)) : k === 'U2' ? 'U_2 = G - 2048 \\cdot H = ' + E(String(q.U2)) : 'H = \\frac{G - U_2}{2048} = ' + E(String(q.H)); } }
+          ] },
+        { titel: 'Physikalische Adresse – in jede Richtung', hilfe: 'Bereich.Linie.Teilnehmer mit 4 + 4 + 8 Bit. Beispiel: 1.1.12 als Zahl im Telegramm.',
+          felder: [
+            { k: 'B', tex: 'B', name: 'Bereich (0 … 15)', e: '', min: 0, max: 15, n: 0 }, { k: 'L', tex: 'L', name: 'Linie (0 … 15)', e: '', min: 0, max: 15, n: 0 },
+            { k: 'Tn', tex: 'T', name: 'Teilnehmer (0 … 255)', e: '', min: 0, max: 255, n: 0 }, { k: 'P', tex: 'P', name: 'Adresse als Zahl', e: '', min: 0, max: 65535, n: 0 }
+          ],
+          beispiel: { B: 1, L: 1, Tn: 12 },
+          gleichungen: [
+            { name: 'physikalisch', v: ['P', 'B', 'L', 'Tn'], f: function (q) { return [q.P, 4096 * q.B + 256 * q.L + q.Tn]; },
+              loese: { P: function (q) { return 4096 * q.B + 256 * q.L + q.Tn; }, Tn: function (q) { const t = q.P - 4096 * q.B - 256 * q.L; return t >= 0 && t <= 255 ? t : NaN; },
+                L: function (q) { const l = (q.P - 4096 * q.B - q.Tn) / 256; return l >= 0 && l <= 15 && Math.abs(l - Math.round(l)) < 1e-9 ? l : NaN; },
+                B: function (q) { const b = (q.P - 256 * q.L - q.Tn) / 4096; return b >= 0 && b <= 15 && Math.abs(b - Math.round(b)) < 1e-9 ? b : NaN; } },
+              weg: function (k, q) { return k === 'P' ? 'P = 4096 \\cdot B + 256 \\cdot L + T = 4096 \\cdot ' + q.B + ' + 256 \\cdot ' + q.L + ' + ' + q.Tn + ' = ' + E(String(q.P)) + '\\;(\\text{hex } ' + ('000' + q.P.toString(16).toUpperCase()).slice(-4) + ')' : k === 'Tn' ? 'T = P - 4096 \\cdot B - 256 \\cdot L = ' + E(String(q.Tn)) : k === 'L' ? 'L = \\frac{P - 4096 \\cdot B - T}{256} = ' + E(String(q.L)) : 'B = \\frac{P - 256 \\cdot L - T}{4096} = ' + E(String(q.B)); } }
+          ] },
+        { titel: 'Spannungsversorgung – in jede Richtung', hilfe: 'Strom der Busgeräte eines Segments plus Reserve. Beispiel: 52 Geräte mit je 10 mA und 20 % Reserve.',
+          felder: [
+            { k: 'n', tex: 'n', name: 'Busgeräte im Segment', e: '', min: 1, max: 256, n: 0 }, { k: 'Ig', tex: 'I_\\text{G}', name: 'Strom je Gerät', e: 'mA', min: 0.1, max: 100 },
+            { k: 'I', tex: 'I', name: 'Strom aller Geräte', e: 'mA', min: 0.1, max: 20000 }, { k: 'r', tex: 'r', name: 'Reserve', e: '%', min: 0, max: 100 },
+            { k: 'Ir', tex: 'I_\\text{min}', name: 'nötiger Strom der Spannungsversorgung', e: 'mA', min: 0.1, max: 40000 }
+          ],
+          beispiel: { n: 52, Ig: 10, r: 20 },
+          gleichungen: [
+            { name: 'Summe', v: ['I', 'n', 'Ig'], f: function (q) { return [q.I, q.n * q.Ig]; }, loese: { I: function (q) { return q.n * q.Ig; }, n: function (q) { return q.I / q.Ig; }, Ig: function (q) { return q.I / q.n; } },
+              weg: function (k, q) { return k === 'I' ? 'I = n \\cdot I_\\text{G} = ' + tz(q.n, 0) + ' \\cdot ' + tz(q.Ig, 2) + '\\,\\text{mA} = ' + E(tz(q.I, 1) + '\\,\\text{mA}') : k === 'n' ? 'n = \\frac{I}{I_\\text{G}} = ' + E(tz(q.n, 1)) : 'I_\\text{G} = \\frac{I}{n} = ' + E(tz(q.Ig, 2) + '\\,\\text{mA}'); } },
+            { name: 'Reserve', v: ['Ir', 'I', 'r'], f: function (q) { return [q.Ir, q.I * (1 + q.r / 100)]; }, loese: { Ir: function (q) { return q.I * (1 + q.r / 100); }, I: function (q) { return q.Ir / (1 + q.r / 100); }, r: function (q) { return 100 * (q.Ir / q.I - 1); } },
+              weg: function (k, q) { return k === 'Ir' ? 'I_\\text{min} = I \\cdot (1 + r) = ' + tz(q.I, 1) + '\\,\\text{mA} \\cdot ' + tz(1 + q.r / 100, 2) + ' = ' + E(tz(q.Ir, 1) + '\\,\\text{mA}') + '\\;\\Rightarrow\\; \\text{nächste Größe: } ' + (NETZTEILE.filter(function (x) { return x >= q.Ir - 1e-9; })[0] || '–') + '\\,\\text{mA}' : k === 'I' ? 'I = \\frac{I_\\text{min}}{1 + r} = ' + E(tz(q.I, 1) + '\\,\\text{mA}') : 'r = \\frac{I_\\text{min}}{I} - 1 = ' + E(tz(q.r, 1) + '\\,\\%'); } }
+          ] },
+        { titel: 'Telegrammdauer auf KNX TP – in jede Richtung', hilfe: 'Jedes Byte wird als Zeichen aus 13 Bitzeiten übertragen (Start, 8 Daten, Parität, Stopp, 2 Pause). Beispiel: Schalttelegramm mit 9 Byte.',
+          felder: [
+            { k: 'v', tex: 'v', name: 'Übertragungsrate', e: 'bit/s', min: 100, max: 1e9 }, { k: 'tb', tex: 't_\\text{Bit}', name: 'Bitzeit', e: 'µs', min: 1e-6, max: 1e5 },
+            { k: 'nb', tex: 'n_\\text{Byte}', name: 'Bytes im Telegramm', e: '', min: 1, max: 300, n: 0 }, { k: 't', tex: 't_\\text{T}', name: 'Dauer des Telegramms', e: 'ms', min: 1e-6, max: 1e5 }
+          ],
+          beispiel: { v: 9600, nb: 9 },
+          gleichungen: [
+            { name: 'Bitzeit', v: ['tb', 'v'], f: function (q) { return [q.tb * q.v, 1e6]; }, loese: { tb: function (q) { return 1e6 / q.v; }, v: function (q) { return 1e6 / q.tb; } },
+              weg: function (k, q) { return k === 'tb' ? 't_\\text{Bit} = \\frac{1}{v} = \\frac{1}{' + tz(q.v, 0) + '\\,\\text{bit/s}} = ' + E(tz(q.tb, 2) + '\\,\\mu\\text{s}') : 'v = \\frac{1}{t_\\text{Bit}} = ' + E(tz(q.v, 0) + '\\,\\text{bit/s}'); } },
+            { name: 'Telegramm', v: ['t', 'nb', 'tb'], f: function (q) { return [q.t * 1000, q.nb * 13 * q.tb]; }, loese: { t: function (q) { return q.nb * 13 * q.tb / 1000; }, nb: function (q) { return q.t * 1000 / (13 * q.tb); }, tb: function (q) { return q.t * 1000 / (13 * q.nb); } },
+              weg: function (k, q) { return k === 't' ? 't_\\text{T} = n_\\text{Byte} \\cdot 13 \\cdot t_\\text{Bit} = ' + tz(q.nb, 0) + ' \\cdot 13 \\cdot ' + tz(q.tb, 2) + '\\,\\mu\\text{s} = ' + E(tz(q.t, 2) + '\\,\\text{ms}') + '\\;\\text{(plus Pause und Quittung, gesamt rund 20 ms)}' : k === 'nb' ? 'n_\\text{Byte} = \\frac{t_\\text{T}}{13 \\cdot t_\\text{Bit}} = ' + E(tz(q.nb, 1)) : 't_\\text{Bit} = \\frac{t_\\text{T}}{13 \\cdot n_\\text{Byte}} = ' + E(tz(q.tb, 2) + '\\,\\mu\\text{s}'); } }
+          ] }
+      ],
+      sammlung: [
+        ['Dreistufige Gruppenadresse', 'G = 2048 \\cdot H + 256 \\cdot M + U', 'H 0 … 31 (5 Bit), M 0 … 7 (3 Bit), U 0 … 255 (8 Bit)'],
+        ['Zweistufige Gruppenadresse', 'G = 2048 \\cdot H + U_2', 'U₂ 0 … 2 047 (11 Bit)'],
+        ['Physikalische Adresse', 'P = 4096 \\cdot B + 256 \\cdot L + T', 'Bereich 4 Bit, Linie 4 Bit, Teilnehmer 8 Bit'],
+        ['Geräte je Linie TP-64', 'n_\\text{Linie} \\le 64 \\cdot s \\le 255', 's Segmente, bis 3 Linienverstärker'],
+        ['Linien und Bereiche', 'L = \\left\\lceil \\frac{n}{n_\\text{geplant}} \\right\\rceil \\qquad B = \\left\\lceil \\frac{L}{15} \\right\\rceil', 'höchstens 15 Linien je Bereich, 15 Bereiche'],
+        ['Spannungsversorgung', 'I_\\text{min} = n \\cdot I_\\text{G} \\cdot (1 + r)', 'Größen 160, 320, 640, 1 280 mA'],
+        ['Bitzeit', 't_\\text{Bit} = \\frac{1}{v} = \\frac{1}{9600\\,\\text{bit/s}} = 104\\,\\mu\\text{s}', 'KNX TP'],
+        ['Telegrammdauer', 't_\\text{T} = n_\\text{Byte} \\cdot 13 \\cdot t_\\text{Bit}', '13 Bit je Zeichen (11 Bit + 2 Bit Pause)'],
+        ['Leitungslängen TP', 'l \\le 1000\\,\\text{m} \\quad l_\\text{NT} \\le 350\\,\\text{m} \\quad l_\\text{GG} \\le 700\\,\\text{m}', 'je Liniensegment']
+      ],
+      quellen: 'KNX ist eine eingetragene Marke der KNX Association; diese Seite ist unabhängig und weder von ihr geprüft noch zertifiziert. Inhalte in eigenen Worten nach EN 50090 und Lehrbüchern zur Gebäudesystemtechnik. Stromaufnahmen der Geräte stehen in den Datenblättern; die Planung rechnet mit einem Mittelwert. Die Anzahl der Linienverstärker setzt voraus, dass die Geräte gleichmäßig auf die Segmente verteilt werden.',
+      bild: { titel: 'Simulation: Topologie und Koppler', label: 'Linien und Bereiche der geplanten Anlage; ein Telegramm läuft über die Koppler, die es anhand ihrer Filtertabelle weiterleiten', animiert: !bewegungAus,
+        hoehe: function (B) { return B < 560 ? 380 : 330; },
+        hinweis: function (r) { return r.linien > 1 ? 'Ein Taster in Linie 1.1 schaltet einen Aktor in Linie 1.2: Das Telegramm läuft über den Linienkoppler 1.1.0 auf die Hauptlinie und über 1.2.0 in die Ziellinie. Die anderen Linien bleiben ruhig – ihre Koppler filtern.' : 'Eine Linie: Alle Geräte hören jedes Telegramm, nur die Geräte mit passender Gruppenadresse reagieren.'; },
+        zeichne: zeichne }
+    });
+
+    function zeichne(cx, B, H, t, r, e) {
+      const klein = B < 560;
+      const nB = Math.min(r.bereiche, 3), nL = Math.min(r.linien, klein ? 3 : 4);
+      const x0 = 20, x1 = B - 20, yBack = 34, yHaupt = 104, yLinie = 180;
+      cx.lineCap = 'round';
+      // Bereichslinie
+      if (r.bereiche > 1) {
+        cx.strokeStyle = LILA; cx.lineWidth = 4; cx.beginPath(); cx.moveTo(x0, yBack); cx.lineTo(x1, yBack); cx.stroke();
+        T(cx, 'Bereichslinie 0.0 (Backbone, oft KNX IP)', x0, yBack - 12, 'left', 11, true, LILA);
+      }
+      const bb = (x1 - x0) / Math.max(1, nB);
+      const welle = (t / 1000) % 4;
+      for (let b = 0; b < Math.max(1, nB); b++) {
+        const bx0 = x0 + b * bb + 8, bx1 = x0 + (b + 1) * bb - 8;
+        if (r.linien > 1) {
+          cx.strokeStyle = BLAU; cx.lineWidth = 3.4; cx.beginPath(); cx.moveTo(bx0, yHaupt); cx.lineTo(bx1, yHaupt); cx.stroke();
+          T(cx, 'Hauptlinie ' + (b + 1) + '.0', bx0, yHaupt - 12, 'left', 11, true, BLAU);
+          if (r.bereiche > 1) {
+            const kx = (bx0 + bx1) / 2;
+            cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.beginPath(); cx.moveTo(kx, yBack); cx.lineTo(kx, yHaupt); cx.stroke();
+            koppler(cx, kx, (yBack + yHaupt) / 2, (b + 1) + '.0.0', LILA);
+          }
+        }
+        const lAnz = r.bereiche > 1 ? Math.min(klein ? 2 : 3, Math.min(15, r.linien - b * 15)) : nL;
+        const lb = (bx1 - bx0) / Math.max(1, lAnz);
+        for (let l = 0; l < lAnz; l++) {
+          const lx = bx0 + lb * (l + 0.5);
+          if (r.linien > 1) {
+            cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.beginPath(); cx.moveTo(lx, yHaupt); cx.lineTo(lx, yLinie); cx.stroke();
+            koppler(cx, lx, (yHaupt + yLinie) / 2, (b + 1) + '.' + (l + 1) + '.0', BLAU);
+          }
+          // Linie mit Geräten
+          const lx0 = lx - lb / 2 + 8, lx1 = lx + lb / 2 - 8;
+          cx.strokeStyle = GRUEN; cx.lineWidth = 3; cx.beginPath(); cx.moveTo(lx0, yLinie); cx.lineTo(lx1, yLinie); cx.stroke();
+          T(cx, 'Linie ' + (b + 1) + '.' + (l + 1), lx0, yLinie - 10, 'left', 11, true, GRUEN);
+          const ng = Math.min(8, Math.max(2, Math.round(r.jeLinie / 12)));
+          for (let g = 0; g < ng; g++) {
+            const gx = lx0 + (g + 0.5) * (lx1 - lx0) / ng;
+            cx.strokeStyle = F('--leise'); cx.lineWidth = 1.2; cx.beginPath(); cx.moveTo(gx, yLinie); cx.lineTo(gx, yLinie + 30); cx.stroke();
+            cx.fillStyle = g === 0 && b === 0 && l === 0 ? BLAU : g === ng - 1 && b === 0 && l === Math.min(1, lAnz - 1) ? ORANGE : F('--flaeche2');
+            cx.strokeStyle = F('--text'); cx.lineWidth = 1.2;
+            cx.fillRect(gx - 6, yLinie + 30, 12, 12); cx.strokeRect(gx - 6, yLinie + 30, 12, 12);
+          }
+          T(cx, '≈ ' + Math.min(r.jeLinie, 255) + ' Geräte', lx0, yLinie + 58, 'left', 10, false, F('--leise'));
+          // Netzteil
+          cx.fillStyle = ORANGE; cx.fillRect(lx1 - 18, yLinie - 22, 18, 14); T(cx, 'NT', lx1 - 9, yLinie - 15, 'center', 9, true, '#fff');
+        }
+      }
+      // Telegramm: Taster (blau) in 1.1 → Aktor (orange) in 1.2 bzw. derselben Linie
+      const lAnz0 = r.bereiche > 1 ? Math.min(klein ? 2 : 3, Math.min(15, r.linien)) : nL;
+      const lb0 = ((x1 - x0) / Math.max(1, nB) - 16) / Math.max(1, lAnz0);
+      const lxA = x0 + 8 + lb0 * 0.5, lxB = x0 + 8 + lb0 * (Math.min(1, lAnz0 - 1) + 0.5);
+      const ng = Math.min(8, Math.max(2, Math.round(r.jeLinie / 12)));
+      const gA = lxA - lb0 / 2 + 8 + 0.5 * (lb0 - 16) / ng, gB = lxB - lb0 / 2 + 8 + (ng - 0.5) * (lb0 - 16) / ng;
+      const weg = r.linien > 1 ? [[gA, yLinie + 30], [gA, yLinie], [lxA, yLinie], [lxA, yHaupt], [lxB, yHaupt], [lxB, yLinie], [gB, yLinie], [gB, yLinie + 30]] : [[gA, yLinie + 30], [gA, yLinie], [gB, yLinie], [gB, yLinie + 30]];
+      if (welle < 3) {
+        const p = punktAuf(weg, welle / 3);
+        cx.fillStyle = LILA; cx.beginPath(); cx.arc(p[0], p[1], 6, 0, 2 * Math.PI); cx.fill();
+        T(cx, '1/0/1 EIN', p[0] + 9, p[1] - 9, 'left', 11, true, LILA);
+      }
+      T(cx, 'Taster', gA - 8, yLinie + 72, 'left', 10, true, BLAU);
+      T(cx, 'Aktor', gB + 8, yLinie + 72, 'right', 10, true, ORANGE);
+      if (r.linien > nL && r.bereiche === 1) T(cx, '… insgesamt ' + r.linien + ' Linien', x1, H - 10, 'right', 11, false, F('--leise'));
+      if (r.bereiche > nB) T(cx, '… insgesamt ' + r.bereiche + ' Bereiche', x1, H - 10, 'right', 11, false, F('--leise'));
+    }
+    function koppler(cx, x, y, name, farbe) {
+      cx.fillStyle = F('--flaeche2'); cx.strokeStyle = farbe; cx.lineWidth = 2;
+      cx.fillRect(x - 15, y - 10, 30, 20); cx.strokeRect(x - 15, y - 10, 30, 20);
+      T(cx, 'K', x, y, 'center', 11, true, farbe);
+      T(cx, name, x + 19, y, 'left', 10, true, farbe);
+    }
+    function punktAuf(weg, f) {
+      let L = 0; const s = [];
+      for (let i = 1; i < weg.length; i++) { const d = Math.hypot(weg[i][0] - weg[i - 1][0], weg[i][1] - weg[i - 1][1]); s.push(d); L += d; }
+      let d = f * L, i = 0;
+      while (i < s.length - 1 && d > s[i]) { d -= s[i]; i++; }
+      const q = s[i] ? d / s[i] : 0;
+      return [weg[i][0] + (weg[i + 1][0] - weg[i][0]) * q, weg[i][1] + (weg[i + 1][1] - weg[i][1]) * q];
+    }
+
+    (function () {
+      const w = document.getElementById('knx-wissen'), faq = document.querySelector('main .seo-info');
+      if (w && faq) faq.parentNode.insertBefore(w, faq);
+    })();
+    void seite;
+  })();
+  </script>
+</body>
+</html>
