@@ -127,6 +127,42 @@
    "beschreibung": "Sinusgrößen, Blindwiderstände, RL-Reihenschaltung an einer Leuchtstofflampe, RLC in Reihe, RC parallel, Saugkreis mit Güte und Spannungsüberhöhung, Tiefpass und Hochpass."
   },
   {
+   "datei": "aufgabenblaetter/gebaeudeautomation/knx-planung/01-knx-grundlagen.md",
+   "thema": "gebaeudeautomation/knx-planung.html",
+   "titel": "KNX-Grundlagen – Medien, Geräte und Busgerät",
+   "stufe": "leicht",
+   "aufgaben": 5,
+   "loesungen": 5,
+   "beschreibung": "Kommunikationsarten TP, PL, RF, IP und IoT, Gerätearten von der Systemkomponente bis zum Aktor, Aufbau eines Busgeräts aus Busankoppler, Anwendungsschnittstelle und Anwendungsmodul, dezentrale Arbeitsweise."
+  },
+  {
+   "datei": "aufgabenblaetter/gebaeudeautomation/knx-planung/02-topologie-und-adressen.md",
+   "thema": "gebaeudeautomation/knx-planung.html",
+   "titel": "KNX-Topologie und Adressen berechnen",
+   "stufe": "mittel",
+   "aufgaben": 6,
+   "loesungen": 6,
+   "beschreibung": "Linien, Bereiche und Segmente planen, Spannungsversorgung auslegen, Leitungslängen prüfen, physikalische Adressen und zwei- und dreistufige Gruppenadressen umrechnen, Telegrammdauer."
+  },
+  {
+   "datei": "aufgabenblaetter/gebaeudeautomation/knx-simulator/01-programmierung-und-fehlersuche.md",
+   "thema": "gebaeudeautomation/knx-simulator.html",
+   "titel": "KNX programmieren und Fehler suchen",
+   "stufe": "mittel",
+   "aufgaben": 5,
+   "loesungen": 5,
+   "beschreibung": "Inbetriebnahme Schritt für Schritt, Kommunikationsobjekte und Flags, Telegramme im Busmonitor lesen, Statusrückmeldung, und sechs typische Fehler mit dem KNX-Simulator finden und beheben."
+  },
+  {
+   "datei": "aufgabenblaetter/gebaeudeautomation/smart-home/01-systeme-und-automationen.md",
+   "thema": "gebaeudeautomation/smart-home.html",
+   "titel": "Gebäudeautomation und Smart Home – Systeme und Automationen",
+   "stufe": "mittel",
+   "aufgaben": 6,
+   "loesungen": 6,
+   "beschreibung": "Automationspyramide, zentral und dezentral, Systeme von KNX über BACnet, DALI und Zigbee bis Matter und MQTT, Wenn-Und-Dann-Regeln planen und testen, BACnet-Prioritäten und DALI-Dimmkurve."
+  },
+  {
    "datei": "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
    "thema": "geld/mehrwertsteuer-skonto.html",
    "titel": "Brutto, Netto, Rabatt und Skonto",

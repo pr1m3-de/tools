@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gebäudeautomation und Smart Home: Systeme, Ebenen, Automationen – Formeln &amp; Rechner</title>
+  <meta name="description" content="Gebäudeautomation und Smart Home verstehen und ausprobieren: Automationspyramide, zentrale und dezentrale Systeme, KNX, LON, BACnet, Modbus, DALI, EnOcean, Zigbee, Z-Wave, Thread und Matter, MQTT und Open-Source-Zentralen – mit Automations-Simulator (Wenn-Und-Dann-Regeln mit Uhr, Sonne und Ereignisprotokoll) und BACnet-Prioritäten zum Durchklicken.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/gebaeudeautomation/smart-home.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Gebäudeautomation und Smart Home: Systeme, Ebenen, Automationen">
+  <meta property="og:description" content="Gebäudeautomation und Smart Home verstehen und ausprobieren: Automationspyramide, zentrale und dezentrale Systeme, KNX, LON, BACnet, Modbus, DALI, EnOcean, Zigbee, Z-Wave, Thread und Matter, MQTT und Open-Source-Zentralen – mit Automations-Simulator (Wenn-Und-Dann-Regeln mit Uhr, Sonne und Ereignisprotokoll) und BACnet-Prioritäten zum Durchklicken.">
+  <meta property="og:url" content="https://tools.pr1m3.de/gebaeudeautomation/smart-home.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Gebäudeautomation und Smart Home: Systeme, Ebenen, Automationen">
+  <meta name="twitter:description" content="Gebäudeautomation und Smart Home verstehen und ausprobieren: Automationspyramide, zentrale und dezentrale Systeme, KNX, LON, BACnet, Modbus, DALI, EnOcean, Zigbee, Z-Wave, Thread und Matter, MQTT und Open-Source-Zentralen – mit Automations-Simulator (Wenn-Und-Dann-Regeln mit Uhr, Sonne und Ereignisprotokoll) und BACnet-Prioritäten zum Durchklicken.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/smart-home.html#seite","name":"Gebäudeautomation und Smart Home: Systeme, Ebenen, Automationen","url":"https://tools.pr1m3.de/gebaeudeautomation/smart-home.html","inLanguage":"de","description":"Gebäudeautomation und Smart Home verstehen und ausprobieren: Automationspyramide, zentrale und dezentrale Systeme, KNX, LON, BACnet, Modbus, DALI, EnOcean, Zigbee, Z-Wave, Thread und Matter, MQTT und Open-Source-Zentralen – mit Automations-Simulator (Wenn-Und-Dann-Regeln mit Uhr, Sonne und Ereignisprotokoll) und BACnet-Prioritäten zum Durchklicken.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/smart-home.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/gebaeudeautomation/smart-home.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Gebäudeautomation und Smart Home: Systeme, Ebenen, Automationen","item":"https://tools.pr1m3.de/gebaeudeautomation/smart-home.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/smart-home.html#fragen","mainEntity":[{"@type":"Question","name":"KNX oder Funk-Smart-Home?","acceptedAnswer":{"@type":"Answer","text":"Im Neubau und bei der Sanierung mit neuen Leitungen ist ein Bussystem wie KNX die zuverlässigste und langlebigste Lösung. Für Nachrüstung, Mietwohnungen und kleine Budgets sind Funksysteme (Zigbee, Thread/Matter, EnOcean) einfacher. Eine Smart-Home-Zentrale kann beides verbinden."}},{"@type":"Question","name":"Was ist Home Assistant OS?","acceptedAnswer":{"@type":"Answer","text":"Ein freies Betriebssystem mit der Smart-Home-Zentrale Home Assistant, meist auf einem kleinen Rechner im Haus. Es bindet viele Systeme über „Integrationen“ an (KNX, Zigbee, Matter, MQTT, Modbus …) und automatisiert mit Wenn-Und-Dann-Regeln – so wie der Simulator oben. Ähnlich arbeiten openHAB und ioBroker."}},{"@type":"Question","name":"Wozu braucht man MQTT?","acceptedAnswer":{"@type":"Answer","text":"MQTT ist ein schlankes Protokoll, bei dem Geräte Nachrichten zu einem Thema (z. B. haus/flur/licht) an einen Broker schicken und andere dieses Thema abonnieren. Viele WLAN-Geräte, Wechselrichter-Anbindungen und Zentralen sprechen MQTT; es verbindet Systeme ohne gemeinsamen Standard."}},{"@type":"Question","name":"Was bedeuten die BACnet-Prioritäten in der Praxis?","acceptedAnswer":{"@type":"Answer","text":"Der Zeitplan schaltet die Lüftung auf Priorität 16. Schaltet ein Bediener sie von Hand aus (Priorität 8), gewinnt er – bis er freigibt. Meldet die Brandmeldeanlage Feuer, schreibt sie auf Priorität 1 und überstimmt alle. Wer vergisst freizugeben, wundert sich, warum der Zeitplan „nicht mehr geht“."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/smart-home.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3, .wissen-karte h4 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .wissen-karte ul { margin: 4px 0; padding-left: 18px; }
+    .bild-svg { width: 100%; height: auto; max-width: 760px; display: block; margin: 8px auto; }
+    .bild-svg text { font-family: var(--technik); fill: var(--text); }
+    .sim-raster { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 18px; margin-top: 18px; align-items: start; }
+    @media (max-width: 1000px) { .sim-raster { grid-template-columns: 1fr; } }
+    .sim-raster > .tafel.abstand { margin-top: 0; }
+    .uhr { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .uhr .zeit { font-family: var(--technik); font-size: 2rem; font-weight: 700; min-width: 4.2em; }
+    .uhr .knopf { padding: 5px 10px; }
+    .uhr select, .uhr input { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; }
+    .ents { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(136px, 100%), 1fr)); gap: 8px; margin-top: 12px; }
+    .ent { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 7px 9px; background: var(--flaeche2); min-width: 0; }
+    .ent b { display: block; font-size: .92rem; overflow-wrap: anywhere; hyphens: auto; }
+    .ent .wert { font-family: var(--technik); font-size: 1.15rem; font-weight: 700; }
+    .ent .wert.an { color: #E07A1F; }
+    .ent small { display: block; color: var(--leise); font-family: var(--technik); font-size: .72rem; word-break: break-all; }
+    .ent .bed { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; align-items: center; }
+    .ent .bed .knopf { padding: 6px 8px; font-size: .82rem; min-height: 32px; }
+    .ent input[type=range] { width: 100%; }
+    .regel { border: 1px solid var(--linie); border-radius: var(--rund); padding: 8px 10px; margin-bottom: 8px; background: var(--flaeche2); }
+    .regel.aus { opacity: .55; }
+    .regel-kopf { display: flex; gap: 8px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .regel-kopf input[type=text] { flex: 1 1 12em; min-width: 0; padding: 5px 7px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; font-weight: 700; }
+    .zeile { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: 6px; font-size: .9rem; }
+    .zeile > b { min-width: 3.6em; font-family: var(--technik); }
+    .zeile select, .zeile input { padding: 4px 6px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; font-size: .88rem; max-width: 100%; }
+    .zeile input { width: 5.5em; }
+    .entf { border: 0; background: none; color: var(--leise); cursor: pointer; font-size: 1.1rem; padding: 2px 6px; min-width: 32px; min-height: 32px; }
+    .entf:hover { color: #C0392B; }
+    .protokoll-rahmen { max-height: 300px; overflow: auto; border: 1px solid var(--linie); border-radius: var(--rund); }
+    .protokoll { width: 100%; border-collapse: collapse; font-family: var(--technik); font-size: .82rem; }
+    .protokoll th { position: sticky; top: 0; background: var(--flaeche); text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--linie); }
+    .protokoll td { padding: 3px 6px; border-bottom: 1px solid var(--linie); }
+    .protokoll tr.regel-zeile td { color: #9333EA; }
+    .prio { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(150px, 100%), 1fr)); gap: 6px; margin: 10px 0; }
+    .prio-feld { border: 1px solid var(--linie); border-radius: 8px; padding: 5px 7px; font-size: .82rem; background: var(--flaeche2); }
+    .prio-feld.aktiv { border-color: #9333EA; box-shadow: 0 0 0 2px color-mix(in srgb, #9333EA 30%, transparent); }
+    .prio-feld b { font-family: var(--technik); }
+    .prio-feld .w { font-family: var(--technik); font-weight: 700; }
+    .pv { font-family: var(--technik); font-size: 1.4rem; font-weight: 700; }
+    .meldung-sim { min-height: 1.4em; font-weight: 600; margin: 6px 0 0; }
+    .meldung-sim.schlecht { color: #C0392B; }
+    .meldung-sim.gut { color: #2F9E44; }
+    @media print { .uhr .knopf, .ent .bed, .regel-werkzeug { display: none !important; } .protokoll-rahmen { max-height: none; } }
+    .regel-kopf input[type=checkbox] { width: 18px; height: 18px; vertical-align: middle; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite">
+    <section class="tafel">
+      <h1><span class="unterstrichen">Gebäudeautomation und Smart Home</span></h1>
+      <p>Was KNX, BACnet, Zigbee oder eine Smart-Home-Zentrale jeweils tun, wie sie zusammenspielen und wie Automationen funktionieren. Unten ein Simulator für Wenn-Und-Dann-Regeln mit Uhr, Sonne und Ereignisprotokoll und die BACnet-Prioritäten zum Durchklicken. Vertiefung: <a href="knx-simulator.html">KNX-Simulator</a> und <a href="knx-planung.html">KNX-Planung</a>.</p>
+    </section>
+
+    <div class="sim-raster">
+      <section class="tafel abstand" aria-labelledby="h-haus">
+        <h2 id="h-haus">Haus</h2>
+        <div class="uhr">
+          <span class="zeit" id="zeit" aria-live="off">06:00</span>
+          <button type="button" class="knopf" id="lauf" aria-pressed="true">❚❚ Pause</button>
+          <label>Tempo <select id="tempo" data-nicht-merken><option value="1">1 min/s</option><option value="5" selected>5 min/s</option><option value="20">20 min/s</option></select></label>
+          <label>Springe zu <input id="springe" type="time" value="06:00" data-nicht-merken></label>
+        </div>
+        <p class="hilfe" id="sonneText"></p>
+        <div class="ents" id="ents"></div>
+      </section>
+
+      <section class="tafel abstand" aria-labelledby="h-regeln">
+        <h2 id="h-regeln">Automationen</h2>
+        <p class="hilfe">Jede Regel: <b>WENN</b> ein Auslöser eintritt, <b>UND</b> alle Bedingungen stimmen, <b>DANN</b> passieren die Aktionen. So arbeiten Smart-Home-Zentralen, Logikmodule und Gebäudeleittechnik.</p>
+        <div id="regeln"></div>
+        <div class="zeile regel-werkzeug">
+          <button type="button" class="knopf" id="regelNeu">+ Regel</button>
+          <button type="button" class="knopf" id="beispiel">Beispielregeln laden</button>
+          <button type="button" class="knopf" id="teilen">Link mit diesen Regeln kopieren</button>
+          <span id="teilenMeldung" class="hilfe" role="status"></span>
+        </div>
+        <p class="meldung-sim" id="status" role="status"></p>
+      </section>
+    </div>
+
+    <section class="tafel abstand" aria-labelledby="h-prot">
+      <h2 id="h-prot">Ereignisprotokoll</h2>
+      <p class="hilfe">Wie in einer Smart-Home-Zentrale oder bei MQTT: Jede Zustandsänderung hat ein Thema (Topic) und einen Wert. Lila: von einer Regel ausgelöst.</p>
+      <div class="protokoll-rahmen"><table class="protokoll" id="protokoll"><thead><tr><th>Uhrzeit</th><th>Quelle</th><th>Topic</th><th>Wert</th></tr></thead><tbody></tbody></table></div>
+      <div class="zeile"><button type="button" class="knopf-leise" id="protLeeren">Protokoll leeren</button></div>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-bacnet">
+      <h2 id="h-bacnet">BACnet: Prioritäten ausprobieren</h2>
+      <p>In der Gebäudeleittechnik können viele Stellen dasselbe Objekt schreiben: Zeitplan, Bediener, Brandschutz. BACnet ordnet das über ein <b>Prioritäten-Feld mit 16 Stufen</b>: Der gültige Wert (Present Value) ist der Eintrag mit der kleinsten Nummer, der nicht leer ist. Ist alles leer, gilt der Rückfallwert (Relinquish Default). Objekt hier: Binärausgang „Lüftung Halle“.</p>
+      <div class="zeile">
+        <label>Priorität <select id="bPrio" data-nicht-merken></select></label>
+        <button type="button" class="knopf" id="bEin">EIN schreiben</button>
+        <button type="button" class="knopf" id="bAus">AUS schreiben</button>
+        <button type="button" class="knopf" id="bFrei">freigeben (leer)</button>
+      </div>
+      <div class="prio" id="bFeld"></div>
+      <p>Gültiger Wert: <span class="pv" id="bPv">AUS</span> <span class="hilfe" id="bGrund"></span></p>
+    </section>
+
+    <section class="tafel abstand formelsammlung" id="ga-wissen" aria-labelledby="h-ga-wissen">
+      <h2 id="h-ga-wissen">Grundlagen</h2>
+      <h3 class="zwischen">Automationspyramide</h3>
+      <svg class="bild-svg" viewBox="0 0 760 260" role="img" aria-label="Automationspyramide mit Managementebene, Automationsebene und Feldebene">
+        <polygon points="380,14 470,84 290,84" fill="#9333EA" fill-opacity=".2" stroke="#9333EA" stroke-width="2"/>
+        <polygon points="290,90 470,90 560,160 200,160" fill="#2B7BB9" fill-opacity=".18" stroke="#2B7BB9" stroke-width="2"/>
+        <polygon points="200,166 560,166 650,240 110,240" fill="#E07A1F" fill-opacity=".18" stroke="#E07A1F" stroke-width="2"/>
+        <text x="380" y="62" text-anchor="middle" font-weight="700" font-size="14">Management</text>
+        <text x="380" y="130" text-anchor="middle" font-weight="700" font-size="14">Automation</text>
+        <text x="380" y="208" text-anchor="middle" font-weight="700" font-size="14">Feld</text>
+        <text x="490" y="50" font-size="12">Gebäudeleittechnik, Visualisierung, Energiemonitoring</text><text x="490" y="66" font-size="12">BACnet/IP, Server, Cloud</text>
+        <text x="580" y="120" font-size="12">Regler, Controller, Logik</text><text x="580" y="136" font-size="12">BACnet, LON, Modbus, KNX IP</text>
+        <text x="660" y="198" font-size="12">Sensoren, Aktoren</text><text x="660" y="214" font-size="12">KNX TP, DALI, EnOcean,</text><text x="660" y="230" font-size="12">Zigbee, M-Bus</text>
+      </svg>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h4>Dezentral</h4><p>Jedes Gerät hat eigene Intelligenz und spricht direkt mit anderen (KNX, LON). Kein einzelner Ausfallpunkt, gut erweiterbar; Logik ist auf viele Geräte verteilt.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h4>Zentral</h4><p>Eine Steuerung (Miniserver, Smart-Home-Zentrale, SPS) liest alle Eingänge und schaltet alle Ausgänge. Logik an einer Stelle, einfache Programmierung; fällt die Zentrale aus, steht vieles still.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h4>Offen oder proprietär</h4><p>Offene Standards (KNX, BACnet, LON, Matter, Zigbee) lassen Geräte vieler Hersteller zusammenarbeiten. Proprietäre Systeme kommen aus einer Hand, binden aber an einen Hersteller.</p></article>
+        <article class="wissen-karte" style="--farbe:#9333EA"><h4>Draht oder Funk</h4><p>Draht ist zuverlässig und braucht keine Batterien, muss aber verlegt werden – ideal im Neubau. Funk ist schnell nachgerüstet; Reichweite, Batterien und Störungen sind zu planen.</p></article>
+      </div>
+
+      <h3 class="zwischen">Systeme im Überblick</h3>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>System</th><th>Ebene</th><th>Übertragung</th><th>Kennzeichen</th></tr></thead>
+        <tbody>
+          <tr><td><b>KNX</b></td><td>Feld, Automation</td><td>TP, PL, RF, IP, IoT</td><td>offen, dezentral, Wohn- und Zweckbau; Gruppenadressen, Inbetriebnahme mit ETS</td></tr>
+          <tr><td><b>LON</b> (LonWorks)</td><td>Feld, Automation</td><td>Zweidraht (FTT-10, 78 kbit/s, freie Topologie), IP</td><td>dezentral, Neuron-Chip, Netzwerkvariablen (SNVT) werden per „Binding“ verbunden; heute vor allem in Bestandsanlagen</td></tr>
+          <tr><td><b>BACnet</b></td><td>Automation, Management</td><td>BACnet/IP, MS/TP (RS-485)</td><td>Norm für Gebäudeleittechnik (ISO 16484-5): Objekte (Analogeingang, Binärausgang, Zeitplan …) mit Eigenschaften, Dienste lesen/schreiben/melden, 16 Prioritäten</td></tr>
+          <tr><td><b>Modbus</b></td><td>Feld, Automation</td><td>RTU (RS-485), TCP</td><td>einfaches Master-Slave-Protokoll mit Registern; Zähler, Wechselrichter, Wärmepumpen</td></tr>
+          <tr><td><b>DALI</b> (DALI-2)</td><td>Feld (Licht)</td><td>Zweidraht, 1 200 bit/s, verpolungssicher</td><td>bis 64 Betriebsgeräte, 16 Gruppen, 16 Szenen je Linie; logarithmische Dimmkurve</td></tr>
+          <tr><td><b>M-Bus</b></td><td>Feld (Zähler)</td><td>Zweidraht, Funk (wM-Bus)</td><td>Verbrauchszähler für Wärme, Wasser, Strom auslesen</td></tr>
+          <tr><td><b>EnOcean</b></td><td>Feld</td><td>Funk 868 MHz</td><td>batterielos: Energie aus Tastendruck, Licht oder Temperaturunterschied</td></tr>
+          <tr><td><b>Zigbee</b></td><td>Feld</td><td>Funk 2,4 GHz, vermaschtes Netz</td><td>Leuchten, Sensoren, Steckdosen; Koordinator in der Zentrale</td></tr>
+          <tr><td><b>Z-Wave</b></td><td>Feld</td><td>Funk 868 MHz, vermascht</td><td>Smart-Home-Nachrüstung, zertifizierte Geräte</td></tr>
+          <tr><td><b>Thread / Matter</b></td><td>Feld, Anwendung</td><td>Thread: Funk 2,4 GHz mit IPv6; Matter auch über WLAN und Ethernet</td><td>herstellerübergreifender Standard; Thread-Netze brauchen einen Border Router</td></tr>
+          <tr><td><b>MQTT</b></td><td>Anwendung</td><td>über IP (WLAN, Ethernet)</td><td>Nachrichten mit Thema (Topic) über einen Broker – Bindeglied vieler Geräte und Zentralen</td></tr>
+          <tr><td><b>Smart-Home-Zentrale</b></td><td>Automation, Management</td><td>IP; Funk und Bus über Sticks und Schnittstellen</td><td>verbindet alle Systeme, Regeln und Visualisierung an einer Stelle: zentrale Miniserver-Systeme einzelner Hersteller oder Open-Source-Zentralen wie Home Assistant (HAOS), openHAB, ioBroker</td></tr>
+        </tbody>
+      </table></div>
+
+      <h3 class="zwischen">Eine Smart-Home-Zentrale verbindet alles</h3>
+      <svg class="bild-svg" viewBox="0 0 760 250" role="img" aria-label="Smart-Home-Zentrale in der Mitte, verbunden mit KNX über IP-Schnittstelle, Zigbee über Funkstick, Thread über Border Router, WLAN-Geräten über MQTT-Broker, Modbus-Wechselrichter und Cloud-Diensten">
+        <rect x="290" y="95" width="180" height="60" rx="12" fill="#9333EA" fill-opacity=".16" stroke="#9333EA" stroke-width="2.5"/>
+        <text x="380" y="120" text-anchor="middle" font-weight="700" font-size="14">Zentrale</text><text x="380" y="138" text-anchor="middle" font-size="12">Regeln, Visualisierung</text>
+        <g font-size="12">
+          <rect x="20" y="20" width="200" height="42" rx="8" fill="none" stroke="#2B7BB9" stroke-width="2"/><text x="120" y="38" text-anchor="middle" font-weight="700">KNX-Anlage</text><text x="120" y="54" text-anchor="middle">über IP-Schnittstelle (Tunneling)</text>
+          <rect x="20" y="104" width="200" height="42" rx="8" fill="none" stroke="#2E8B57" stroke-width="2"/><text x="120" y="122" text-anchor="middle" font-weight="700">Zigbee-Geräte</text><text x="120" y="138" text-anchor="middle">über Funkstick (Koordinator)</text>
+          <rect x="20" y="188" width="200" height="42" rx="8" fill="none" stroke="#0E8A88" stroke-width="2"/><text x="120" y="206" text-anchor="middle" font-weight="700">Thread / Matter</text><text x="120" y="222" text-anchor="middle">über Border Router</text>
+          <rect x="540" y="20" width="200" height="42" rx="8" fill="none" stroke="#E07A1F" stroke-width="2"/><text x="640" y="38" text-anchor="middle" font-weight="700">WLAN-Geräte</text><text x="640" y="54" text-anchor="middle">über MQTT-Broker</text>
+          <rect x="540" y="104" width="200" height="42" rx="8" fill="none" stroke="#C0392B" stroke-width="2"/><text x="640" y="122" text-anchor="middle" font-weight="700">Wechselrichter, Wallbox</text><text x="640" y="138" text-anchor="middle">über Modbus TCP</text>
+          <rect x="540" y="188" width="200" height="42" rx="8" fill="none" stroke="#6B7785" stroke-width="2"/><text x="640" y="206" text-anchor="middle" font-weight="700">Cloud-Dienste</text><text x="640" y="222" text-anchor="middle">Wetter, Strompreis, App</text>
+        </g>
+        <g stroke="currentColor" stroke-width="1.6" fill="none">
+          <path d="M220 41 L290 110"/><path d="M220 125 L290 125"/><path d="M220 209 L290 140"/>
+          <path d="M540 41 L470 110"/><path d="M540 125 L470 125"/><path d="M540 209 L470 140"/>
+        </g>
+      </svg>
+      <div class="wissen-raster">
+        <section class="wissen-karte" style="--farbe:#E07A1F">
+          <h4>DALI-Dimmkurve</h4>
+          <div class="formel-block" data-tex="X(n) = 10^{\frac{n - 1}{253/3} - 1}\,\%"></div>
+          <p>Der Helligkeitswert n = 1 … 254 wird logarithmisch in Lichtstrom X umgesetzt (0,1 % bis 100 %). Das Auge empfindet so jeden Schritt gleich groß; n = 0 heißt aus.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#9333EA">
+          <h4>BACnet: gültiger Wert</h4>
+          <div class="formel-block" data-tex="PV = \text{Wert der kleinsten Priorität } p \in \{1 \dots 16\} \text{ mit Eintrag}"></div>
+          <p>Priorität 1 und 2 sind für Lebensschutz (Brandfall), 8 für manuelle Bedienung, 16 meist für Zeitpläne. Ist kein Eintrag gesetzt, gilt der Rückfallwert.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#2B7BB9">
+          <h4>Übertragungsdauer</h4>
+          <div class="formel-block" data-tex="t = \frac{n_\text{Bit}}{v}"></div>
+          <p>DALI mit 1 200 bit/s braucht für einen Befehl aus 16 Bit gut 13 ms, KNX TP mit 9 600 bit/s für ein Telegramm rund 20 ms, Ethernet nur Mikrosekunden.</p>
+        </section>
+      </div>
+      <p class="hilfe">KNX ist eine eingetragene Marke der KNX Association, BACnet eine Marke der ASHRAE, Zigbee, Z-Wave, Thread, Matter, EnOcean und DALI sind Marken ihrer Organisationen. Die Nennung dient nur der Beschreibung; diese Seite ist unabhängig.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>KNX oder Funk-Smart-Home?</summary><p>Im Neubau und bei der Sanierung mit neuen Leitungen ist ein Bussystem wie KNX die zuverlässigste und langlebigste Lösung. Für Nachrüstung, Mietwohnungen und kleine Budgets sind Funksysteme (Zigbee, Thread/Matter, EnOcean) einfacher. Eine Smart-Home-Zentrale kann beides verbinden.</p></details>
+        <details><summary>Was ist Home Assistant OS?</summary><p>Ein freies Betriebssystem mit der Smart-Home-Zentrale Home Assistant, meist auf einem kleinen Rechner im Haus. Es bindet viele Systeme über „Integrationen“ an (KNX, Zigbee, Matter, MQTT, Modbus …) und automatisiert mit Wenn-Und-Dann-Regeln – so wie der Simulator oben. Ähnlich arbeiten openHAB und ioBroker.</p></details>
+        <details><summary>Wozu braucht man MQTT?</summary><p>MQTT ist ein schlankes Protokoll, bei dem Geräte Nachrichten zu einem Thema (z. B. haus/flur/licht) an einen Broker schicken und andere dieses Thema abonnieren. Viele WLAN-Geräte, Wechselrichter-Anbindungen und Zentralen sprechen MQTT; es verbindet Systeme ohne gemeinsamen Standard.</p></details>
+        <details><summary>Was bedeuten die BACnet-Prioritäten in der Praxis?</summary><p>Der Zeitplan schaltet die Lüftung auf Priorität 16. Schaltet ein Bediener sie von Hand aus (Priorität 8), gewinnt er – bis er freigibt. Meldet die Brandmeldeanlage Feuer, schreibt sie auf Priorität 1 und überstimmt alle. Wer vergisst freizugeben, wundert sich, warum der Zeitplan „nicht mehr geht“.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const $ = function (id) { return document.getElementById(id); };
+    const SPEICHER = 'automation-regeln-1';
+    const knoten = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
+    const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 1 : n }); };
+    const BLAU = '#2B7BB9', ORANGE = '#E07A1F', GRUEN = '#2E8B57', ROT = '#C0392B', GRAU = '#6B7785';
+
+    // ---------- Geräte (Entitäten) ----------
+    // [id, Name, Art (bin|zahl|dimm|pos|soll|melden), Rolle (sensor|aktor), Topic, Einheit, min, max]
+    const ENT = [
+      ['bewegung', 'Bewegung Flur', 'bin', 'sensor', 'haus/flur/bewegung', '', 0, 1],
+      ['tuer', 'Haustür offen', 'bin', 'sensor', 'haus/flur/tuer', '', 0, 1],
+      ['fenster', 'Fenster Wohnen offen', 'bin', 'sensor', 'haus/wohnen/fenster', '', 0, 1],
+      ['zuhause', 'Jemand zu Hause', 'bin', 'sensor', 'haus/anwesenheit', '', 0, 1],
+      ['rauch', 'Rauchmelder Flur', 'bin', 'sensor', 'haus/flur/rauch', '', 0, 1],
+      ['hell', 'Helligkeit außen', 'zahl', 'sensor', 'haus/aussen/helligkeit', 'lx', 0, 60000],
+      ['temp', 'Temperatur Wohnen', 'zahl', 'sensor', 'haus/wohnen/temperatur', '°C', 5, 35],
+      ['pv', 'PV-Leistung', 'zahl', 'sensor', 'haus/pv/leistung', 'W', 0, 8000],
+      ['licht_flur', 'Licht Flur', 'bin', 'aktor', 'haus/flur/licht', '', 0, 1],
+      ['licht_wz', 'Licht Wohnen', 'dimm', 'aktor', 'haus/wohnen/licht', '%', 0, 100],
+      ['rollladen', 'Rollladen Wohnen', 'pos', 'aktor', 'haus/wohnen/rollladen', '% zu', 0, 100],
+      ['heizung', 'Heizung Wohnen Soll', 'soll', 'aktor', 'haus/wohnen/heizung/soll', '°C', 5, 28],
+      ['waschm', 'Steckdose Waschmaschine', 'bin', 'aktor', 'haus/keller/waschmaschine', '', 0, 1],
+      ['sirene', 'Sirene', 'bin', 'aktor', 'haus/sirene', '', 0, 1],
+      ['handy', 'Nachricht aufs Handy', 'melden', 'aktor', 'haus/benachrichtigung', '', 0, 0]
+    ];
+    const E = {}; ENT.forEach(function (e) { E[e[0]] = e; });
+    const istZahl = function (id) { return E[id] && E[id][2] !== 'bin' && E[id][2] !== 'melden'; };
+    const SA = 7 * 60 + 30, SU = 16 * 60 + 45;   // Sonnenaufgang und -untergang (November)
+    const OPS = [['==', '='], ['!=', '≠'], ['>', '>'], ['<', '<']];
+
+    // ---------- Regeln ----------
+    function beispielRegeln() {
+      return [
+        { id: 'r1', name: 'Flurlicht bei Bewegung, nur wenn dunkel', an: true, wenn: { art: 'zustand', ent: 'bewegung', op: '==', wert: 1, fuer: 0 }, und: [{ ent: 'hell', op: '<', wert: 300 }], dann: [{ ent: 'licht_flur', wert: 1 }] },
+        { id: 'r2', name: 'Flurlicht aus, 2 min ohne Bewegung', an: true, wenn: { art: 'zustand', ent: 'bewegung', op: '==', wert: 0, fuer: 2 }, und: [], dann: [{ ent: 'licht_flur', wert: 0 }] },
+        { id: 'r3', name: 'Rollladen bei Sonnenuntergang zu', an: true, wenn: { art: 'sonne', sonne: 'unter', versatz: 0 }, und: [], dann: [{ ent: 'rollladen', wert: 100 }, { ent: 'licht_wz', wert: 60 }] },
+        { id: 'r4', name: 'Rollladen morgens auf', an: true, wenn: { art: 'zeit', zeit: '07:00' }, und: [{ ent: 'zuhause', op: '==', wert: 1 }], dann: [{ ent: 'rollladen', wert: 0 }] },
+        { id: 'r5', name: 'Heizung aus bei offenem Fenster', an: true, wenn: { art: 'zustand', ent: 'fenster', op: '==', wert: 1, fuer: 1 }, und: [], dann: [{ ent: 'heizung', wert: 7 }] },
+        { id: 'r6', name: 'Heizung wieder an, Fenster zu', an: true, wenn: { art: 'zustand', ent: 'fenster', op: '==', wert: 0, fuer: 0 }, und: [], dann: [{ ent: 'heizung', wert: 21 }] },
+        { id: 'r7', name: 'Waschmaschine mit Sonnenstrom', an: true, wenn: { art: 'zustand', ent: 'pv', op: '>', wert: 2500, fuer: 10 }, und: [], dann: [{ ent: 'waschm', wert: 1 }, { ent: 'handy', wert: 'Waschmaschine läuft mit PV-Strom' }] },
+        { id: 'r8', name: 'Alle weg: alles aus', an: true, wenn: { art: 'zustand', ent: 'zuhause', op: '==', wert: 0, fuer: 5 }, und: [], dann: [{ ent: 'licht_flur', wert: 0 }, { ent: 'licht_wz', wert: 0 }, { ent: 'heizung', wert: 17 }] },
+        { id: 'r9', name: 'Rauchalarm', an: true, wenn: { art: 'zustand', ent: 'rauch', op: '==', wert: 1, fuer: 0 }, und: [], dann: [{ ent: 'licht_flur', wert: 1 }, { ent: 'licht_wz', wert: 100 }, { ent: 'rollladen', wert: 0 }, { ent: 'sirene', wert: 1 }, { ent: 'handy', wert: 'Rauchalarm im Flur!' }] },
+        { id: 'r10', name: 'Einbruch? Tür offen, niemand da', an: true, wenn: { art: 'zustand', ent: 'tuer', op: '==', wert: 1, fuer: 0 }, und: [{ ent: 'zuhause', op: '==', wert: 0 }], dann: [{ ent: 'handy', wert: 'Haustür geöffnet, obwohl niemand zu Hause ist' }] }
+      ];
+    }
+    let R = null;
+    try { R = JSON.parse(localStorage.getItem(SPEICHER) || 'null'); } catch (e) { R = null; }
+    if (!R || !pruefen(R)) R = { v: 1, regeln: beispielRegeln() };
+
+    function pruefen(p) {
+      if (!p || typeof p !== 'object' || !Array.isArray(p.regeln) || p.regeln.length > 40) return false;
+      const ids = {};
+      p.regeln = p.regeln.filter(function (r) { return r && typeof r === 'object'; }).map(function (r, i) {
+        const w = r.wenn || {}, id = typeof r.id === 'string' && /^r\d{1,4}$/.test(r.id) && !ids[r.id] ? r.id : 'r' + (900 + i);
+        ids[id] = 1;
+        const art = ['zustand', 'zeit', 'sonne'].indexOf(w.art) >= 0 ? w.art : 'zustand';
+        const bed = function (b) { return { ent: E[b.ent] && E[b.ent][3] !== undefined && E[b.ent][2] !== 'melden' ? b.ent : 'bewegung', op: OPS.some(function (o) { return o[0] === b.op; }) ? b.op : '==', wert: isFinite(+b.wert) ? Math.max(-1e6, Math.min(1e6, +b.wert)) : 0 }; };
+        const o = { id: id, name: String(r.name || 'Regel').slice(0, 60), an: r.an !== false, wenn: { art: art }, und: (Array.isArray(r.und) ? r.und : []).slice(0, 4).map(bed), dann: [] };
+        if (art === 'zustand') { const b = bed(w); o.wenn.ent = b.ent; o.wenn.op = b.op; o.wenn.wert = b.wert; o.wenn.fuer = isFinite(+w.fuer) ? Math.max(0, Math.min(600, Math.round(+w.fuer))) : 0; }
+        if (art === 'zeit') o.wenn.zeit = /^\d\d:\d\d$/.test(w.zeit) && +w.zeit.slice(0, 2) < 24 && +w.zeit.slice(3) < 60 ? w.zeit : '07:00';
+        if (art === 'sonne') { o.wenn.sonne = w.sonne === 'auf' ? 'auf' : 'unter'; o.wenn.versatz = isFinite(+w.versatz) ? Math.max(-180, Math.min(180, Math.round(+w.versatz))) : 0; }
+        o.dann = (Array.isArray(r.dann) ? r.dann : []).slice(0, 6).filter(function (a) { return a && E[a.ent] && E[a.ent][3] === 'aktor'; }).map(function (a) {
+          return { ent: a.ent, wert: E[a.ent][2] === 'melden' ? String(a.wert == null ? '' : a.wert).slice(0, 80) : (isFinite(+a.wert) ? Math.max(E[a.ent][6], Math.min(E[a.ent][7], +a.wert)) : 0) };
+        });
+        return o;
+      });
+      return true;
+    }
+    let uhr = 0;
+    function speichernJetzt() { try { localStorage.setItem(SPEICHER, JSON.stringify(R)); } catch (e) { /* ohne Speicher */ } }
+    function speichern() { clearTimeout(uhr); uhr = setTimeout(speichernJetzt, 300); }
+    window.addEventListener('pagehide', function () { clearTimeout(uhr); speichernJetzt(); });
+
+    // ---------- Zustand ----------
+    let Z = {}, minute = 6 * 60, laeuft = true, seit = {}, letzteRegel = {};
+    function zustandNeu() {
+      Z = { bewegung: 0, tuer: 0, fenster: 0, zuhause: 1, rauch: 0, hell: 0, temp: 20.5, pv: 0, licht_flur: 0, licht_wz: 0, rollladen: 100, heizung: 21, waschm: 0, sirene: 0, handy: '' };
+      seit = {}; ENT.forEach(function (e) { seit[e[0]] = minute; });
+    }
+    const hhmm = function (m) { m = ((Math.floor(m) % 1440) + 1440) % 1440; return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); };
+    const wertText = function (id, v) {
+      const e = E[id]; if (!e) return String(v);
+      if (e[2] === 'bin') return v ? (id === 'tuer' || id === 'fenster' ? 'offen' : id === 'bewegung' || id === 'rauch' ? 'erkannt' : id === 'zuhause' ? 'ja' : 'ein') : (id === 'tuer' || id === 'fenster' ? 'zu' : id === 'zuhause' ? 'nein' : id === 'bewegung' || id === 'rauch' ? 'nichts' : 'aus');
+      if (e[2] === 'melden') return String(v);
+      return zahl(v, e[2] === 'zahl' && id === 'temp' ? 1 : 0) + (e[5] ? ' ' + e[5] : '');
+    };
+    function setzen(id, v, quelle) {
+      if (Z[id] === v && E[id][2] !== 'melden') return false;
+      Z[id] = v; seit[id] = minute;
+      protokoll(quelle, E[id][4], wertText(id, v), quelle !== 'Gerät' && quelle !== 'Simulation');
+      return true;
+    }
+
+    // ---------- Regeln auswerten ----------
+    function vergleich(v, op, w) { return op === '==' ? v == w : op === '!=' ? v != w : op === '>' ? v > w : v < w; }   // eslint-disable-line eqeqeq
+    const wahrSeit = {}, gefeuert = {};
+    function regelnPruefen(alteMinute) {
+      R.regeln.forEach(function (r) {
+        if (!r.an) return;
+        let aus = false;
+        const w = r.wenn;
+        if (w.art === 'zustand') {
+          // Auslöser: Bedingung wird wahr (und bleibt es „seit“ Minuten); erst wieder, nachdem sie falsch war
+          const jetzt = vergleich(Z[w.ent], w.op, w.wert);
+          if (!jetzt) { wahrSeit[r.id] = null; gefeuert[r.id] = false; }
+          else {
+            if (wahrSeit[r.id] == null) wahrSeit[r.id] = minute;
+            if (!gefeuert[r.id] && minute - wahrSeit[r.id] >= w.fuer) { gefeuert[r.id] = true; aus = true; }
+          }
+        } else {
+          const ziel = w.art === 'zeit' ? (+w.zeit.slice(0, 2)) * 60 + (+w.zeit.slice(3)) : (w.sonne === 'auf' ? SA : SU) + w.versatz;
+          for (let m = Math.floor(alteMinute) + 1; m <= Math.floor(minute); m++) if (((m % 1440) + 1440) % 1440 === ziel) aus = true;
+        }
+        if (!aus) return;
+        const bed = r.und.every(function (b) { return vergleich(Z[b.ent], b.op, b.wert); });
+        if (!bed) { protokoll('Regel', r.name, 'Auslöser ja, Bedingung nein – nichts getan', true); return; }
+        letzteRegel[r.id] = minute;
+        r.dann.forEach(function (a) { setzen(a.ent, E[a.ent][2] === 'melden' ? a.wert : a.wert, 'Regel: ' + r.name); });
+      });
+    }
+
+    // ---------- Simulation: Sonne, Temperatur, PV ----------
+    function physik(dm) {
+      const t = ((minute % 1440) + 1440) % 1440;
+      const tag = t > SA && t < SU ? Math.sin(Math.PI * (t - SA) / (SU - SA)) : 0;
+      const hell = Math.round(tag * 25000 + (tag > 0 ? 200 : 2));
+      if (Math.abs(hell - Z.hell) > Math.max(30, Z.hell * 0.1)) setzen('hell', hell, 'Simulation');
+      const pv = Math.round(tag * 6200 / 50) * 50;
+      if (Math.abs(pv - Z.pv) >= 200 || (pv === 0 && Z.pv !== 0)) setzen('pv', pv, 'Simulation');
+      const aussen = 4, heizen = Z.heizung > Z.temp ? Math.min(1, (Z.heizung - Z.temp) / 1.5) : 0;
+      const temp = Z.temp + (heizen * 0.06 - (Z.temp - aussen) * (Z.fenster ? 0.006 : 0.0012)) * dm;
+      if (Math.abs(temp - Z.temp) > 1e-6) { const alt = Math.round(Z.temp * 10); Z.temp = temp; if (Math.round(temp * 10) !== alt && Math.round(temp * 10) % 5 === 0) protokoll('Simulation', E.temp[4], wertText('temp', Math.round(temp * 10) / 10), false); }
+    }
+
+    // ---------- Anzeige: Geräte ----------
+    function entsAufbauen() {
+      const z = $('ents'); z.innerHTML = '';
+      ENT.forEach(function (e) {
+        const k = knoten('div', 'ent'); k.style.setProperty('--farbe', e[3] === 'sensor' ? BLAU : ORANGE); k.id = 'ent-' + e[0];
+        k.append(knoten('b', '', e[1]), knoten('div', 'wert', ''), knoten('small', '', e[4]));
+        const bed = knoten('div', 'bed');
+        if (e[3] === 'sensor' && e[2] === 'bin') {
+          const b = knoten('button', 'knopf', 'umschalten'); b.type = 'button'; b.setAttribute('aria-label', e[1] + ' umschalten');
+          b.addEventListener('click', function () { setzen(e[0], Z[e[0]] ? 0 : 1, 'Gerät'); jetztPruefen(); });
+          bed.append(b);
+          if (e[0] === 'bewegung') { const p = knoten('button', 'knopf', 'vorbeigehen'); p.type = 'button'; p.addEventListener('click', function () { setzen('bewegung', 1, 'Gerät'); jetztPruefen(); kurzAus = minute + 1; }); bed.append(p); }
+        }
+        if (e[3] === 'aktor' && e[2] !== 'melden') {
+          const b = knoten('button', 'knopf', 'von Hand'); b.type = 'button'; b.setAttribute('aria-label', e[1] + ' von Hand bedienen');
+          b.addEventListener('click', function () {
+            const v = e[2] === 'bin' ? (Z[e[0]] ? 0 : 1) : e[2] === 'soll' ? (Z[e[0]] >= 21 ? 17 : 21) : (Z[e[0]] > 0 ? 0 : (e[2] === 'pos' ? 100 : 80));
+            setzen(e[0], v, 'Gerät'); jetztPruefen();
+          });
+          bed.append(b);
+        }
+        if (e[0] === 'temp') { const b = knoten('button', 'knopf', '+1 °C'); b.type = 'button'; b.addEventListener('click', function () { Z.temp += 1; protokoll('Gerät', e[4], wertText('temp', Math.round(Z.temp * 10) / 10)); werteZeigen(); }); bed.append(b); }
+        if (bed.childNodes.length) k.append(bed);
+        z.append(k);
+      });
+      werteZeigen();
+    }
+    let kurzAus = -1;
+    function werteZeigen() {
+      ENT.forEach(function (e) {
+        const k = $('ent-' + e[0]); if (!k) return;
+        const w = k.querySelector('.wert'), v = Z[e[0]];
+        w.textContent = e[2] === 'melden' ? (v ? '„' + v + '“' : '–') : wertText(e[0], e[0] === 'temp' ? Math.round(v * 10) / 10 : v);
+        w.className = 'wert' + ((e[3] === 'aktor' && v && e[2] !== 'soll' && e[2] !== 'melden') || (e[3] === 'sensor' && e[2] === 'bin' && v) ? ' an' : '');
+      });
+      $('zeit').textContent = hhmm(minute);
+      const t = ((minute % 1440) + 1440) % 1440;
+      $('sonneText').textContent = 'Sonnenaufgang ' + hhmm(SA) + ', Sonnenuntergang ' + hhmm(SU) + ' · ' + (t > SA && t < SU ? 'Tag' : 'Nacht');
+    }
+
+    // ---------- Anzeige: Regeln ----------
+    function sel(werte, aktuell, lab, fn) {
+      const s = knoten('select'); s.setAttribute('aria-label', lab); s.setAttribute('data-nicht-merken', '');
+      werte.forEach(function (w) { const o = knoten('option', '', w[1]); o.value = w[0]; s.append(o); });
+      s.value = String(aktuell); s.addEventListener('change', function () { fn(s.value); }); return s;
+    }
+    function eing(wert, lab, fn, art) {
+      const i = knoten('input'); i.setAttribute('aria-label', lab); i.setAttribute('data-nicht-merken', '');
+      if (art) i.type = art; else { i.inputMode = 'decimal'; }
+      i.value = art === 'time' ? wert : String(wert).replace('.', ',');
+      i.addEventListener('change', function () { fn(art === 'time' ? i.value : i.value.replace(',', '.')); }); return i;
+    }
+    const ENT_SENS = ENT.filter(function (e) { return e[2] !== 'melden'; }).map(function (e) { return [e[0], e[1]]; });
+    const ENT_AKT = ENT.filter(function (e) { return e[3] === 'aktor'; }).map(function (e) { return [e[0], e[1]]; });
+    function wertFeld(id, wert, lab, fn) {
+      const e = E[id];
+      if (e[2] === 'bin') return sel([['1', id === 'tuer' || id === 'fenster' ? 'offen' : id === 'zuhause' ? 'ja' : id === 'bewegung' || id === 'rauch' ? 'erkannt' : 'ein'], ['0', id === 'tuer' || id === 'fenster' ? 'zu' : id === 'zuhause' ? 'nein' : id === 'bewegung' || id === 'rauch' ? 'nichts' : 'aus']], wert ? '1' : '0', lab, function (v) { fn(+v); });
+      if (e[2] === 'melden') { const i = knoten('input'); i.setAttribute('aria-label', lab); i.value = wert; i.maxLength = 80; i.style.width = '14em'; i.setAttribute('data-nicht-merken', ''); i.addEventListener('change', function () { fn(i.value.slice(0, 80)); }); return i; }
+      return eing(wert, lab, function (v) { const n = parseFloat(v); fn(isFinite(n) ? Math.max(e[6], Math.min(e[7], n)) : e[6]); });
+    }
+    function regelnAufbauen() {
+      const z = $('regeln'); z.innerHTML = '';
+      if (!R.regeln.length) z.append(knoten('p', 'hilfe', 'Keine Regeln. „+ Regel“ oder „Beispielregeln laden“.'));
+      R.regeln.forEach(function (r, ri) {
+        const k = knoten('div', 'regel' + (r.an ? '' : ' aus'));
+        const kopf = knoten('div', 'regel-kopf');
+        const n = knoten('input'); n.type = 'text'; n.value = r.name; n.maxLength = 60; n.setAttribute('aria-label', 'Name der Regel'); n.setAttribute('data-nicht-merken', '');
+        n.addEventListener('change', function () { r.name = n.value.slice(0, 60) || 'Regel'; aenderung(); });
+        const an = knoten('label'), c = knoten('input'); c.type = 'checkbox'; c.checked = r.an; c.setAttribute('data-nicht-merken', '');
+        c.addEventListener('change', function () { r.an = c.checked; aenderung(); }); an.append(c, document.createTextNode(' aktiv'));
+        const x = knoten('button', 'entf', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Regel löschen'); x.addEventListener('click', function () { R.regeln.splice(ri, 1); aenderung(); });
+        kopf.append(n, an, x); k.append(kopf);
+        // WENN
+        const w = r.wenn, zw = knoten('div', 'zeile'); zw.append(knoten('b', '', 'WENN'));
+        zw.append(sel([['zustand', 'Zustand'], ['zeit', 'Uhrzeit'], ['sonne', 'Sonne']], w.art, 'Art des Auslösers', function (v) { r.wenn = v === 'zustand' ? { art: v, ent: 'bewegung', op: '==', wert: 1, fuer: 0 } : v === 'zeit' ? { art: v, zeit: '07:00' } : { art: v, sonne: 'unter', versatz: 0 }; aenderung(); }));
+        if (w.art === 'zustand') {
+          zw.append(sel(ENT_SENS, w.ent, 'Gerät', function (v) { w.ent = v; w.wert = istZahl(v) ? Z[v] : 1; aenderung(); }));
+          zw.append(sel(OPS, w.op, 'Vergleich', function (v) { w.op = v; aenderung(); }));
+          zw.append(wertFeld(w.ent, w.wert, 'Wert', function (v) { w.wert = v; aenderung(); }));
+          zw.append(document.createTextNode('seit'), eing(w.fuer, 'Minuten', function (v) { w.fuer = Math.max(0, Math.min(600, Math.round(+v) || 0)); aenderung(); }), document.createTextNode('min'));
+        } else if (w.art === 'zeit') zw.append(document.createTextNode('es ist'), eing(w.zeit, 'Uhrzeit', function (v) { if (/^\d\d:\d\d$/.test(v)) { w.zeit = v; aenderung(); } }, 'time'));
+        else {
+          zw.append(sel([['auf', 'aufgeht'], ['unter', 'untergeht']], w.sonne, 'Sonne', function (v) { w.sonne = v; aenderung(); }));
+          zw.append(document.createTextNode('Versatz'), eing(w.versatz, 'Versatz in Minuten', function (v) { w.versatz = Math.max(-180, Math.min(180, Math.round(+v) || 0)); aenderung(); }), document.createTextNode('min'));
+        }
+        k.append(zw);
+        // UND
+        r.und.forEach(function (b, bi) {
+          const zu = knoten('div', 'zeile'); zu.append(knoten('b', '', 'UND'));
+          zu.append(sel(ENT_SENS, b.ent, 'Gerät der Bedingung', function (v) { b.ent = v; b.wert = istZahl(v) ? Z[v] : 1; aenderung(); }), sel(OPS, b.op, 'Vergleich', function (v) { b.op = v; aenderung(); }), wertFeld(b.ent, b.wert, 'Wert der Bedingung', function (v) { b.wert = v; aenderung(); }));
+          const xx = knoten('button', 'entf', '×'); xx.type = 'button'; xx.setAttribute('aria-label', 'Bedingung löschen'); xx.addEventListener('click', function () { r.und.splice(bi, 1); aenderung(); });
+          zu.append(xx); k.append(zu);
+        });
+        // DANN
+        r.dann.forEach(function (a, ai) {
+          const zd = knoten('div', 'zeile'); zd.append(knoten('b', '', ai ? '' : 'DANN'));
+          zd.append(sel(ENT_AKT, a.ent, 'Gerät der Aktion', function (v) { a.ent = v; a.wert = E[v][2] === 'melden' ? 'Hinweis' : E[v][2] === 'bin' ? 1 : E[v][7]; aenderung(); }), document.createTextNode('→'), wertFeld(a.ent, a.wert, 'Wert der Aktion', function (v) { a.wert = v; aenderung(); }));
+          const xx = knoten('button', 'entf', '×'); xx.type = 'button'; xx.setAttribute('aria-label', 'Aktion löschen'); xx.addEventListener('click', function () { r.dann.splice(ai, 1); aenderung(); });
+          zd.append(xx); k.append(zd);
+        });
+        const wz = knoten('div', 'zeile regel-werkzeug');
+        const pu = knoten('button', 'knopf-leise', '+ Bedingung'); pu.type = 'button'; pu.addEventListener('click', function () { if (r.und.length < 4) { r.und.push({ ent: 'zuhause', op: '==', wert: 1 }); aenderung(); } });
+        const pd = knoten('button', 'knopf-leise', '+ Aktion'); pd.type = 'button'; pd.addEventListener('click', function () { if (r.dann.length < 6) { r.dann.push({ ent: 'licht_flur', wert: 1 }); aenderung(); } });
+        const lz = letzteRegel[r.id] !== undefined ? knoten('small', 'hilfe', 'zuletzt ausgeführt ' + hhmm(letzteRegel[r.id])) : null;
+        wz.append(pu, pd); if (lz) wz.append(lz);
+        k.append(wz);
+        z.append(k);
+      });
+    }
+    function aenderung() { speichern(); regelnAufbauen(); }
+
+    // ---------- Protokoll ----------
+    const PROT = [];
+    function protokoll(quelle, topic, wert, regel) {
+      PROT.push([hhmm(minute), quelle, topic, wert, !!regel]);
+      if (PROT.length > 400) PROT.shift();
+      protNeu = true;
+    }
+    let protNeu = false;
+    function protZeigen() {
+      const tb = $('protokoll').querySelector('tbody'), box = tb.parentNode.parentNode;
+      const unten = box.scrollTop + box.clientHeight >= box.scrollHeight - 30;
+      tb.innerHTML = '';
+      PROT.forEach(function (p) { const tr = knoten('tr', p[4] ? 'regel-zeile' : ''); p.slice(0, 4).forEach(function (x) { tr.append(knoten('td', '', x)); }); tb.append(tr); });
+      if (unten) box.scrollTop = box.scrollHeight;
+    }
+
+    // ---------- Zeit ----------
+    function jetztPruefen() { regelnPruefen(minute); werteZeigen(); }
+    let letzt = performance.now(), rest = 0;
+    function schleife(t) {
+      const dt = Math.min(0.25, (t - letzt) / 1000); letzt = t;
+      if (laeuft) {
+        rest += dt * (+$('tempo').value);
+        if (rest >= 1) {
+          const n = Math.floor(rest); rest -= n;
+          for (let i = 0; i < n; i++) {
+            const alt = minute; minute += 1;
+            if (kurzAus >= 0 && minute >= kurzAus) { kurzAus = -1; setzen('bewegung', 0, 'Gerät'); }
+            physik(1); regelnPruefen(alt);
+          }
+          werteZeigen();
+          if (n && Math.floor(minute) % 5 === 0) regelnZeitAnzeigen();
+        }
+      }
+      if (protNeu) { protNeu = false; protZeigen(); werteZeigen(); }
+      requestAnimationFrame(schleife);
+    }
+    function regelnZeitAnzeigen() { if (!document.activeElement || !document.activeElement.closest || !document.activeElement.closest('#regeln')) regelnAufbauen(); }
+    $('lauf').addEventListener('click', function () { laeuft = !laeuft; $('lauf').textContent = laeuft ? '❚❚ Pause' : '▶ Weiter'; $('lauf').setAttribute('aria-pressed', laeuft ? 'true' : 'false'); });
+    $('springe').addEventListener('change', function () {
+      const v = $('springe').value; if (!/^\d\d:\d\d$/.test(v)) return;
+      const ziel = (+v.slice(0, 2)) * 60 + (+v.slice(3)), tagStart = Math.floor(minute / 1440) * 1440;
+      let neu = tagStart + ziel; if (neu <= minute) neu += 1440;
+      while (minute < neu) { const alt = minute; minute += 1; physik(1); regelnPruefen(alt); }
+      werteZeigen(); regelnAufbauen(); status('Zeit vorgespult auf ' + v + ' – alle Regeln dazwischen sind gelaufen.');
+    });
+    $('regelNeu').addEventListener('click', function () {
+      if (R.regeln.length >= 40) return status('Höchstens 40 Regeln.', true);
+      let n = 1; while (R.regeln.some(function (r) { return r.id === 'r' + n; })) n++;
+      R.regeln.push({ id: 'r' + n, name: 'Neue Regel', an: true, wenn: { art: 'zustand', ent: 'bewegung', op: '==', wert: 1, fuer: 0 }, und: [], dann: [{ ent: 'licht_flur', wert: 1 }] });
+      aenderung();
+    });
+    $('beispiel').addEventListener('click', function () { R = { v: 1, regeln: beispielRegeln() }; aenderung(); status('Beispielregeln geladen.'); });
+    $('protLeeren').addEventListener('click', function () { PROT.length = 0; protNeu = true; });
+    function status(t, schlecht) { $('status').textContent = t; $('status').className = 'meldung-sim ' + (schlecht ? 'schlecht' : 'gut'); }
+
+    // ---------- BACnet-Prioritäten ----------
+    const PRIO_NAME = { 1: 'Lebensschutz manuell', 2: 'Lebensschutz automatisch', 5: 'kritische Anlagen', 6: 'Mindestlaufzeit', 8: 'Bediener manuell', 16: 'Zeitplan (meist)' };
+    const PF = []; for (let i = 0; i < 16; i++) PF.push(null);
+    PF[15] = 1;
+    (function () {
+      for (let i = 1; i <= 16; i++) { const o = knoten('option', '', i + (PRIO_NAME[i] ? ' – ' + PRIO_NAME[i] : '')); o.value = i; $('bPrio').append(o); }
+      $('bPrio').value = '8';
+      const schreibe = function (v) { PF[+$('bPrio').value - 1] = v; prioZeigen(); };
+      $('bEin').addEventListener('click', function () { schreibe(1); });
+      $('bAus').addEventListener('click', function () { schreibe(0); });
+      $('bFrei').addEventListener('click', function () { schreibe(null); });
+    })();
+    function prioZeigen() {
+      const z = $('bFeld'); z.innerHTML = '';
+      let gilt = -1; for (let i = 0; i < 16; i++) if (PF[i] !== null) { gilt = i; break; }
+      PF.forEach(function (v, i) {
+        const f = knoten('div', 'prio-feld' + (i === gilt ? ' aktiv' : ''));
+        f.append(knoten('b', '', String(i + 1)), document.createTextNode(' ' + (PRIO_NAME[i + 1] || '')), knoten('div', 'w', v === null ? 'leer' : v ? 'EIN' : 'AUS'));
+        z.append(f);
+      });
+      $('bPv').textContent = gilt < 0 ? 'AUS' : PF[gilt] ? 'EIN' : 'AUS';
+      $('bGrund').textContent = gilt < 0 ? '(alle leer: Rückfallwert AUS)' : '(aus Priorität ' + (gilt + 1) + ')';
+    }
+
+    // ---------- Teilen ----------
+    $('teilen').addEventListener('click', function () { Teilen.url('plan', R).then(function (url) { Teilen.kopieren(url, function (t) { $('teilenMeldung').textContent = t; setTimeout(function () { $('teilenMeldung').textContent = ''; }, 5000); }); }); });
+    const vorherKnopf = Teilen.knopf($('teilen').parentNode, SPEICHER, function (roh) {
+      let p = null; try { p = JSON.parse(roh); } catch (e) { p = null; }
+      if (!p || !pruefen(p)) { status('Keine gültigen vorherigen Regeln gefunden.', true); return; }
+      R = p; aenderung(); status('Vorherige Regeln wiederhergestellt.');
+    }, 'Regeln');
+
+    zustandNeu(); entsAufbauen(); regelnAufbauen(); prioZeigen(); physik(0);
+    Array.prototype.forEach.call(document.querySelectorAll('#ga-wissen [data-tex]'), function (el) { Formel.setze(el, el.getAttribute('data-tex'), true); });
+    requestAnimationFrame(schleife);
+    Teilen.lesen('plan').then(function (p) {
+      if (!p) return;
+      if (!pruefen(p)) throw new Error('ungültig');
+      const text = JSON.stringify(p), gesichert = Teilen.sichern(SPEICHER, text);
+      R = p; clearTimeout(uhr); try { localStorage.setItem(SPEICHER, text); } catch (e) { /* ohne Speicher */ }
+      aenderung(); vorherKnopf.zeigen();
+      status('Regeln aus dem Link geladen und gespeichert.' + (gesichert ? ' Deine vorherigen Regeln sind gesichert.' : ''));
+    }).catch(function () { status('Der Link ist unvollständig oder beschädigt – es gelten die gespeicherten Regeln.', true); });
+    void GRUEN; void ROT; void GRAU;
+  })();
+  </script>
+</body>
+</html>

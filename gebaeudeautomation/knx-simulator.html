@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KNX-Simulator: programmieren, bedienen, Telegramme lesen – Formeln &amp; Rechner</title>
+  <meta name="description" content="KNX im Browser ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, physikalische Adresse mit der Programmiertaste vergeben, Applikation laden, Taster, Präsenzmelder, Wetterstation und Raumtemperaturregler bedienen und jedes Telegramm im Busmonitor Byte für Byte lesen – mit Fehlersuche-Aufgaben.">
+  <!-- seo -->
+  <link rel="canonical" href="https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="KNX-Simulator: programmieren, bedienen, Telegramme lesen">
+  <meta property="og:description" content="KNX im Browser ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, physikalische Adresse mit der Programmiertaste vergeben, Applikation laden, Taster, Präsenzmelder, Wetterstation und Raumtemperaturregler bedienen und jedes Telegramm im Busmonitor Byte für Byte lesen – mit Fehlersuche-Aufgaben.">
+  <meta property="og:url" content="https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="KNX-Simulator: programmieren, bedienen, Telegramme lesen">
+  <meta name="twitter:description" content="KNX im Browser ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, physikalische Adresse mit der Programmiertaste vergeben, Applikation laden, Taster, Präsenzmelder, Wetterstation und Raumtemperaturregler bedienen und jedes Telegramm im Busmonitor Byte für Byte lesen – mit Fehlersuche-Aufgaben.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#seite","name":"KNX-Simulator: programmieren, bedienen, Telegramme lesen","url":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html","inLanguage":"de","description":"KNX im Browser ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, physikalische Adresse mit der Programmiertaste vergeben, Applikation laden, Taster, Präsenzmelder, Wetterstation und Raumtemperaturregler bedienen und jedes Telegramm im Busmonitor Byte für Byte lesen – mit Fehlersuche-Aufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"KNX-Simulator: programmieren, bedienen, Telegramme lesen","item":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#fragen","mainEntity":[{"@type":"Question","name":"Warum reagiert ein Aktor nicht, obwohl der Taster sendet?","acceptedAnswer":{"@type":"Answer","text":"Die häufigsten Ursachen: Sendet der Taster auf eine andere Gruppenadresse, als der Aktor kennt? Hat der Aktor seine Applikation bekommen – und nach der letzten Änderung erneut? Ist am Objekt das Flag K (und für empfangene Werte S) gesetzt? Hat der Aktor Busspannung? Im Busmonitor sieht man, ob und wohin das Telegramm wirklich geht."}},{"@type":"Question","name":"Warum muss der Taster die Rückmeldung des Aktors kennen?","acceptedAnswer":{"@type":"Answer","text":"Beim „Umschalten“ sendet der Taster das Gegenteil seines eigenen Objektwerts. Schaltet jemand das Licht über den Präsenzmelder ein, weiß der Taster davon nichts – er sendet dann noch einmal EIN und man muss zweimal drücken. Hört das Tasterobjekt auch auf die Status-Gruppenadresse des Aktors, bleibt es aktuell."}},{"@type":"Question","name":"Was ist die sendende Gruppenadresse?","acceptedAnswer":{"@type":"Answer","text":"Ein Objekt kann mit mehreren Gruppenadressen verknüpft sein. Gesendet wird immer nur an die erste (im Simulator fett), empfangen auf allen. So kann der Dimmaktor auf den Taster (1/0/1) und den Präsenzmelder (1/0/3) hören."}},{"@type":"Question","name":"Warum gibt es die Programmiertaste?","acceptedAnswer":{"@type":"Answer","text":"Neue Geräte haben alle die Adresse 15.15.255. Damit die Inbetriebnahme-Software weiß, welches Gerät eine Adresse bekommen soll, drückt man an genau diesem Gerät die Programmiertaste – die rote LED leuchtet, nur dieses Gerät nimmt die Adresse an."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .sim-leiste { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+    .sim-leiste label { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-weight: 600; max-width: 100%; }
+    .sim-leiste select { max-width: 100%; min-width: 0; padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; }
+    .aufgabe { margin-top: 12px; padding: 10px 14px; border-left: 4px solid #9333EA; background: var(--flaeche2); border-radius: var(--rund); }
+    .aufgabe h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .aufgabe ul.pruefung { list-style: none; padding: 0; margin: 6px 0 0; }
+    .aufgabe ul.pruefung li::before { content: "○ "; color: var(--leise); }
+    .aufgabe ul.pruefung li.ok::before { content: "✓ "; color: #2F9E44; font-weight: 700; }
+    .aufgabe ul.pruefung li.nein::before { content: "✗ "; color: #C0392B; font-weight: 700; }
+    .sim-raster { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 18px; margin-top: 18px; align-items: start; }
+    @media (max-width: 1000px) { .sim-raster { grid-template-columns: 1fr; } }
+    .sim-raster > .tafel.abstand { margin-top: 0; }
+    #raum { width: 100%; height: 300px; display: block; border-radius: var(--rund); }
+    .geraete { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); gap: 10px; margin-top: 12px; }
+    .geraet { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 8px 10px; background: var(--flaeche2); min-width: 0; }
+    .geraet.aus { opacity: .6; }
+    .geraet-kopf { display: flex; gap: 8px; align-items: flex-start; justify-content: space-between; }
+    .geraet-kopf b { display: block; font-family: var(--technik); }
+    .geraet-kopf small { color: var(--leise); font-family: var(--technik); }
+    .prog { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--linie); background: var(--flaeche); color: var(--text); border-radius: 999px; padding: 4px 10px 4px 6px; font: inherit; font-size: .8rem; cursor: pointer; white-space: nowrap; }
+    .prog .led { width: 12px; height: 12px; border-radius: 50%; background: #5b1c1c; box-shadow: inset 0 0 0 1px rgba(0,0,0,.3); }
+    .prog.an .led { background: #ff3b30; box-shadow: 0 0 8px #ff3b30; }
+    .zustand-chip { display: inline-block; font-size: .75rem; padding: 1px 8px; border-radius: 99px; margin-top: 4px; border: 1px solid var(--linie); }
+    .zustand-chip.gut { color: #2F9E44; border-color: #2F9E44; }
+    .zustand-chip.warn { color: #C2410C; border-color: #C2410C; }
+    .zustand-chip.schlecht { color: #C0392B; border-color: #C0392B; }
+    .bedienung { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; align-items: center; }
+    .bedienung .knopf { padding: 5px 10px; font-size: .88rem; }
+    .bedienung input[type=range] { flex: 1 1 120px; }
+    .wert-zeile { font-size: .85rem; color: var(--leise); margin-top: 4px; font-family: var(--technik); }
+    .reiter-sim { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--linie); margin-bottom: 10px; }
+    .reiter-sim button { border: 0; background: none; padding: 8px 12px; font: inherit; font-weight: 600; color: var(--leise); cursor: pointer; border-bottom: 3px solid transparent; }
+    .reiter-sim button[aria-selected="true"] { color: var(--text); border-bottom-color: #9333EA; }
+    .ga-baum { list-style: none; padding: 0; margin: 0; font-size: .92rem; }
+    .ga-baum li { padding: 3px 0; }
+    .ga-baum .h { font-weight: 700; margin-top: 6px; }
+    .ga-baum .m { padding-left: 14px; font-weight: 600; color: var(--leise); }
+    .ga-baum .u { padding-left: 28px; display: flex; gap: 8px; align-items: center; }
+    .ga-baum code, .chips code { font-family: var(--technik); background: var(--flaeche); border: 1px solid var(--linie); border-radius: 6px; padding: 0 5px; }
+    .ga-neu { display: grid; grid-template-columns: repeat(3, 4.2em) 1fr auto; gap: 6px; margin-top: 10px; align-items: center; }
+    @media (max-width: 520px) { .ga-neu { grid-template-columns: repeat(3, minmax(0, 1fr)); } .ga-neu #gaName { grid-column: 1 / -1; } .ga-neu > :last-child { grid-column: 1 / -1; } }
+    .ga-neu input { width: 100%; padding: 6px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; min-width: 0; }
+    .entf { border: 0; background: none; color: var(--leise); cursor: pointer; font-size: 1rem; padding: 2px 6px; min-width: 32px; min-height: 32px; }
+    .entf:hover { color: #C0392B; }
+    .obj-tabelle td, .obj-tabelle th { vertical-align: top; }
+    .obj-tabelle select { max-width: 11em; padding: 4px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; font-size: .85rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+    .chips code { display: inline-flex; gap: 2px; align-items: center; }
+    .chips code.senden { border-color: #9333EA; font-weight: 700; }
+    .flags label { font-family: var(--technik); font-size: .8rem; margin-right: 3px; white-space: nowrap; }
+    .geraet-wahl { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+    .geraet-wahl .knopf { padding: 5px 10px; font-size: .86rem; }
+    .geraet-wahl .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .param { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 10px; align-items: center; margin: 8px 0; font-size: .9rem; }
+    .param input, .param select { width: 9em; padding: 5px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; }
+    .prog-liste { width: 100%; }
+    .prog-liste td { vertical-align: middle; }
+    .monitor-rahmen { max-height: 360px; overflow: auto; border: 1px solid var(--linie); border-radius: var(--rund); }
+    .monitor { width: 100%; border-collapse: collapse; font-family: var(--technik); font-size: .82rem; }
+    .monitor th { position: sticky; top: 0; background: var(--flaeche); text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--linie); }
+    .monitor td { padding: 3px 6px; border-bottom: 1px solid var(--linie); white-space: nowrap; }
+    .monitor tr { cursor: pointer; }
+    .monitor tr.gewaehlt td { background: color-mix(in srgb, #9333EA 16%, transparent); }
+    .monitor tr.system td { color: var(--leise); }
+    .bytes { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+    .byte { border: 1px solid var(--linie); border-radius: 8px; padding: 4px 6px; text-align: center; min-width: 52px; background: var(--flaeche2); }
+    .byte b { display: block; font-family: var(--technik); font-size: 1.05rem; }
+    .byte small { display: block; font-size: .7rem; color: var(--leise); }
+    .gruppenmonitor { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; }
+    .gruppenmonitor select, .gruppenmonitor input { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; }
+    .gruppenmonitor input { width: 6em; }
+    .meldung-sim { min-height: 1.4em; font-weight: 600; margin: 6px 0 0; }
+    .meldung-sim.schlecht { color: #C0392B; }
+    .meldung-sim.gut { color: #2F9E44; }
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    @media print { .bedienung, .prog, .sim-leiste, .gruppenmonitor, .ga-neu { display: none !important; } .monitor-rahmen { max-height: none; } }
+    main input[type=checkbox] { width: 18px; height: 18px; }
+    input[type=range] { min-height: 28px; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite">
+    <section class="tafel">
+      <h1><span class="unterstrichen">KNX-Simulator</span></h1>
+      <p>Eine KNX-Linie mit Taster, Präsenzmelder, Raumtemperaturregler, Fensterkontakt, Wetterstation und vier Aktoren – zum Bedienen, Programmieren und Fehlersuchen. Wie in echt: Ein Gerät reagiert erst, wenn es eine physikalische Adresse und seine Applikation hat, und nur auf Gruppenadressen, die mit seinen Kommunikationsobjekten verknüpft sind. Jedes Telegramm erscheint im Busmonitor. Grundlagen und Planung: <a href="knx-planung.html">KNX: Topologie, Adressen und Planung</a>.</p>
+      <div class="sim-leiste">
+        <label>Ausgangslage
+          <select id="szenario" data-nicht-merken></select>
+        </label>
+        <button type="button" class="knopf" id="laden">Laden</button>
+        <button type="button" class="knopf" id="busspannung" aria-pressed="true">Spannungsversorgung: an</button>
+        <button type="button" class="knopf" id="teilen">Link mit dieser Anlage kopieren</button>
+        <span id="teilenMeldung" class="hilfe" role="status"></span>
+      </div>
+      <div class="aufgabe" id="aufgabe" aria-live="polite"></div>
+    </section>
+
+    <div class="sim-raster">
+      <section class="tafel abstand" aria-labelledby="h-raum">
+        <h2 id="h-raum">Raum und Geräte</h2>
+        <canvas id="raum" role="img" aria-label="Wohnraum mit Leuchte, Steckdose, Jalousie, Heizkörper, Fenster und Thermometer; zeigt den Zustand der Aktoren"></canvas>
+        <p class="meldung-sim" id="status" role="status"></p>
+        <div class="geraete" id="geraete"></div>
+      </section>
+
+      <section class="tafel abstand" aria-labelledby="h-ib">
+        <h2 id="h-ib">Inbetriebnahme</h2>
+        <div class="reiter-sim" role="tablist" aria-label="Inbetriebnahme">
+          <button type="button" role="tab" id="t-ga" aria-selected="true" aria-controls="p-ga">1 Gruppenadressen</button>
+          <button type="button" role="tab" id="t-obj" aria-selected="false" aria-controls="p-obj">2 Geräte und Objekte</button>
+          <button type="button" role="tab" id="t-prog" aria-selected="false" aria-controls="p-prog">3 Programmieren</button>
+        </div>
+        <div id="p-ga" role="tabpanel" aria-labelledby="t-ga">
+          <p class="hilfe">Dreistufig Hauptgruppe/Mittelgruppe/Untergruppe (0–31/0–7/0–255). In Klammern die zweistufige Schreibweise.</p>
+          <ul class="ga-baum" id="gaBaum"></ul>
+          <div class="ga-neu">
+            <input id="gaH" inputmode="numeric" aria-label="Hauptgruppe" placeholder="H" data-nicht-merken>
+            <input id="gaM" inputmode="numeric" aria-label="Mittelgruppe" placeholder="M" data-nicht-merken>
+            <input id="gaU" inputmode="numeric" aria-label="Untergruppe" placeholder="U" data-nicht-merken>
+            <input id="gaName" aria-label="Name der Gruppenadresse" placeholder="Name, z. B. Licht Küche" maxlength="40" data-nicht-merken>
+            <button type="button" class="knopf" id="gaAdd">Anlegen</button>
+          </div>
+          <p class="meldung-sim" id="gaMeldung" role="status"></p>
+        </div>
+        <div id="p-obj" role="tabpanel" aria-labelledby="t-obj" hidden>
+          <div class="geraet-wahl" id="geraetWahl" role="group" aria-label="Gerät wählen"></div>
+          <div id="geraetDetail"></div>
+        </div>
+        <div id="p-prog" role="tabpanel" aria-labelledby="t-prog" hidden>
+          <p class="hilfe">Erst die <b>physikalische Adresse</b> programmieren (Programmiertaste am Gerät drücken), dann die <b>Applikation</b> laden. Nach jeder Änderung an Parametern, Objekten oder Gruppenadressen muss die Applikation neu geladen werden – sonst arbeitet das Gerät mit dem alten Stand.</p>
+          <div class="rahmen"><table class="tabelle prog-liste" id="progListe"></table></div>
+          <div class="bedienung">
+            <button type="button" class="knopf" id="paProg">Physikalische Adresse programmieren</button>
+            <button type="button" class="knopf" id="alleLaden">Alle geänderten Applikationen laden</button>
+          </div>
+          <p class="meldung-sim" id="progMeldung" role="status"></p>
+        </div>
+      </section>
+    </div>
+
+    <section class="tafel abstand" aria-labelledby="h-monitor">
+      <h2 id="h-monitor">Busmonitor</h2>
+      <p class="hilfe">Alle Telegramme auf der Linie. Eine Zeile antippen zeigt das Telegramm Byte für Byte.</p>
+      <div class="monitor-rahmen"><table class="monitor" id="monitor"><thead><tr><th>#</th><th>Zeit</th><th>Quelle</th><th>Ziel</th><th>Dienst</th><th>DPT</th><th>Wert</th><th>Telegramm</th></tr></thead><tbody></tbody></table></div>
+      <div id="detail"></div>
+      <h3 class="zwischen">Gruppenmonitor</h3>
+      <p class="hilfe">Über die Schnittstelle 1.1.250 selbst einen Wert an eine Gruppenadresse schreiben oder lesen – so testet man Aktoren ohne Taster.</p>
+      <div class="gruppenmonitor">
+        <select id="gmGa" aria-label="Gruppenadresse" data-nicht-merken></select>
+        <input id="gmWert" aria-label="Wert" value="1" data-nicht-merken>
+        <button type="button" class="knopf" id="gmSchreiben">Schreiben</button>
+        <button type="button" class="knopf" id="gmLesen">Lesen</button>
+        <button type="button" class="knopf-leise" id="gmLeeren">Busmonitor leeren</button>
+      </div>
+    </section>
+
+    <section class="tafel abstand formelsammlung" id="sim-wissen" aria-labelledby="h-sim-wissen">
+      <h2 id="h-sim-wissen">Was im Simulator passiert</h2>
+      <div class="wissen-raster">
+        <section class="wissen-karte" style="--farbe:#9333EA">
+          <h3>Gruppenadresse im Telegramm</h3>
+          <div class="formel-block" data-tex="G = 2048 \cdot H + 256 \cdot M + U"></div>
+          <p>Die dreistufige Adresse 1/0/1 steht als 16-Bit-Zahl 2049 = 0801<sub>hex</sub> im Telegramm. Das Bit „Adresstyp“ in Byte 6 sagt, dass es eine Gruppenadresse ist.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#2B7BB9">
+          <h3>Prozentwert (DPT 5.001)</h3>
+          <div class="formel-block" data-tex="x = \mathrm{round}\left(\frac{p}{100\,\%} \cdot 255\right)"></div>
+          <p>Ein Byte 0 … 255 für 0 … 100 %: 50 % werden als 128 = 80<sub>hex</sub> gesendet. So kommen Dimmwert, Jalousieposition und Ventilstellung auf den Bus.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#E07A1F">
+          <h3>Gleitkommawert (DPT 9)</h3>
+          <div class="formel-block" data-tex="W = 0{,}01 \cdot M \cdot 2^{E}"></div>
+          <p>Zwei Byte für Temperatur, Helligkeit oder Wind: Vorzeichen, 4 Bit Exponent E und 11 Bit Mantisse M. 21,5 °C → M = 1 075, E = 1 → 0C33<sub>hex</sub>.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#2E8B57">
+          <h3>Prüfbyte</h3>
+          <div class="formel-block" data-tex="P = \overline{B_1 \oplus B_2 \oplus \dots \oplus B_n}"></div>
+          <p>Das letzte Byte ist die invertierte Exklusiv-Oder-Verknüpfung aller Bytes davor. Stimmt sie beim Empfänger nicht, fordert er das Telegramm neu an (keine Quittung).</p>
+        </section>
+      </div>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Was der Simulator vereinfacht</h3><p>Nur eine Linie (1.1), keine Kollisionen und keine Wiederholungen, Telegrammzeiten gerafft, Raumtemperatur im Zeitraffer. Applikationen und Parameter sind beispielhaft und gehören zu keinem Hersteller. Der Simulator ersetzt keine Inbetriebnahme-Software und spricht nicht mit echten Geräten.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Marke</h3><p>KNX ist eine eingetragene Marke der KNX Association. Diese Seite ist unabhängig und weder von ihr geprüft noch zertifiziert. Die Bedienung ist eine eigene, vereinfachte Lernoberfläche.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum reagiert ein Aktor nicht, obwohl der Taster sendet?</summary><p>Die häufigsten Ursachen: Sendet der Taster auf eine andere Gruppenadresse, als der Aktor kennt? Hat der Aktor seine Applikation bekommen – und nach der letzten Änderung erneut? Ist am Objekt das Flag K (und für empfangene Werte S) gesetzt? Hat der Aktor Busspannung? Im Busmonitor sieht man, ob und wohin das Telegramm wirklich geht.</p></details>
+        <details><summary>Warum muss der Taster die Rückmeldung des Aktors kennen?</summary><p>Beim „Umschalten“ sendet der Taster das Gegenteil seines eigenen Objektwerts. Schaltet jemand das Licht über den Präsenzmelder ein, weiß der Taster davon nichts – er sendet dann noch einmal EIN und man muss zweimal drücken. Hört das Tasterobjekt auch auf die Status-Gruppenadresse des Aktors, bleibt es aktuell.</p></details>
+        <details><summary>Was ist die sendende Gruppenadresse?</summary><p>Ein Objekt kann mit mehreren Gruppenadressen verknüpft sein. Gesendet wird immer nur an die erste (im Simulator fett), empfangen auf allen. So kann der Dimmaktor auf den Taster (1/0/1) und den Präsenzmelder (1/0/3) hören.</p></details>
+        <details><summary>Warum gibt es die Programmiertaste?</summary><p>Neue Geräte haben alle die Adresse 15.15.255. Damit die Inbetriebnahme-Software weiß, welches Gerät eine Adresse bekommen soll, drückt man an genau diesem Gerät die Programmiertaste – die rote LED leuchtet, nur dieses Gerät nimmt die Adresse an.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const bewegungAus = false;
+    const $ = function (id) { return document.getElementById(id); };
+    const SPEICHER = 'knx-simulator-1';
+    const LILA = '#9333EA', BLAU = '#2B7BB9', ORANGE = '#E07A1F', GRUEN = '#2E8B57', ROT = '#C0392B', GRAU = '#6B7785';
+    const SCHNITTSTELLE = '1.1.250';
+    const knoten = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
+    const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 1 : n }); };
+
+    // ---------- Datenpunkttypen ----------
+    const DPT = {
+      '1.001': { name: 'Schalten', bit: 1, text: function (v) { return v ? 'Ein' : 'Aus'; } },
+      '1.005': { name: 'Alarm', bit: 1, text: function (v) { return v ? 'Alarm' : 'kein Alarm'; } },
+      '1.007': { name: 'Schritt', bit: 1, text: function (v) { return v ? 'Schritt (Stopp/Lamelle)' : 'Schritt (Stopp/Lamelle)'; } },
+      '1.008': { name: 'Auf/Ab', bit: 1, text: function (v) { return v ? 'Ab' : 'Auf'; } },
+      '1.019': { name: 'Fenster/Tür', bit: 1, text: function (v) { return v ? 'offen' : 'geschlossen'; } },
+      '5.001': { name: 'Prozent', bit: 8, text: function (v) { return zahl(v, 0) + ' %'; } },
+      '9.001': { name: 'Temperatur', bit: 16, text: function (v) { return zahl(v, 2) + ' °C'; } },
+      '9.004': { name: 'Helligkeit', bit: 16, text: function (v) { return zahl(v, 0) + ' lx'; } },
+      '9.005': { name: 'Geschwindigkeit', bit: 16, text: function (v) { return zahl(v, 1) + ' m/s'; } }
+    };
+    const groesse = function (d) { return DPT[d] ? DPT[d].bit : 0; };
+
+    // ---------- Gerätetypen: Kommunikationsobjekte [Schlüssel, Name, DPT, Standard-Flags], Parameter ----------
+    const TYPEN = {
+      taster: { name: 'Tastsensor 3-fach', art: 'Sensor', farbe: BLAU, obj: [['a', 'Wippe A: Schalten', '1.001', 'KSÜ'], ['b_aufab', 'Wippe B: Auf/Ab (lang)', '1.008', 'KÜ'], ['b_stopp', 'Wippe B: Stopp/Lamelle (kurz)', '1.007', 'KÜ'], ['c', 'Wippe C: Schalten', '1.001', 'KSÜ']],
+        param: [['funkA', 'Wippe A Funktion', 'wahl', [['um', 'Umschalten'], ['ein', 'nur Ein'], ['aus', 'nur Aus']], 'um'], ['funkC', 'Wippe C Funktion', 'wahl', [['um', 'Umschalten'], ['ein', 'nur Ein'], ['aus', 'nur Aus']], 'um']] },
+      praesenz: { name: 'Präsenzmelder', art: 'Sensor', farbe: BLAU, obj: [['praesenz', 'Präsenz', '1.001', 'KLÜ'], ['hell', 'Helligkeit', '9.004', 'KLÜ']],
+        param: [['nachlauf', 'Nachlaufzeit in s', 'zahl', [5, 600], 20]] },
+      rtr: { name: 'Raumtemperaturregler', art: 'Sensor', farbe: BLAU, obj: [['ist', 'Ist-Temperatur', '9.001', 'KLÜ'], ['soll', 'Sollwert', '9.001', 'KLSÜ'], ['stell', 'Stellgröße Heizen', '5.001', 'KLÜ']],
+        param: [['soll', 'Sollwert in °C', 'zahl', [5, 30], 21], ['p', 'Proportionalbereich in K', 'zahl', [0.5, 10], 2]] },
+      binaer: { name: 'Binäreingang', art: 'Sensor', farbe: BLAU, obj: [['fenster', 'Eingang 1: Fensterkontakt', '1.019', 'KLÜ']], param: [] },
+      wetter: { name: 'Wetterstation', art: 'Sensor', farbe: BLAU, obj: [['wind', 'Windgeschwindigkeit', '9.005', 'KLÜ'], ['windalarm', 'Windalarm', '1.005', 'KLÜ'], ['lux', 'Helligkeit außen', '9.004', 'KLÜ']],
+        param: [['grenze', 'Windalarm ab m/s', 'zahl', [3, 30], 10]] },
+      dimm: { name: 'Dimmaktor', art: 'Aktor', farbe: ORANGE, obj: [['schalten', 'Schalten', '1.001', 'KS'], ['wert', 'Helligkeitswert', '5.001', 'KS'], ['status', 'Status Ein/Aus', '1.001', 'KLÜ'], ['statuswert', 'Status Helligkeit', '5.001', 'KLÜ']],
+        param: [['ein', 'Einschalthelligkeit in %', 'zahl', [1, 100], 80]] },
+      schalt: { name: 'Schaltaktor', art: 'Aktor', farbe: ORANGE, obj: [['a', 'Kanal A: Schalten', '1.001', 'KS'], ['astatus', 'Kanal A: Status', '1.001', 'KLÜ']],
+        param: [['treppe', 'Treppenlicht in s (0 = aus)', 'zahl', [0, 600], 0]] },
+      jal: { name: 'Jalousieaktor', art: 'Aktor', farbe: ORANGE, obj: [['aufab', 'Auf/Ab', '1.008', 'KS'], ['stopp', 'Stopp/Lamelle', '1.007', 'KS'], ['pos', 'Position anfahren', '5.001', 'KS'], ['statuspos', 'Status Position', '5.001', 'KLÜ'], ['wind', 'Windalarm', '1.005', 'KS']],
+        param: [['fahrzeit', 'Fahrzeit in s', 'zahl', [5, 120], 15]] },
+      heiz: { name: 'Heizungsaktor', art: 'Aktor', farbe: ORANGE, obj: [['stell', 'Stellgröße', '5.001', 'KS'], ['fenster', 'Fensterkontakt', '1.019', 'KS'], ['status', 'Status Ventil', '5.001', 'KLÜ']],
+        param: [['frost', 'Ventil bei offenem Fenster in %', 'zahl', [0, 30], 0]] }
+    };
+    const FLAGS = ['K', 'L', 'S', 'Ü'];
+
+    // ---------- Projekt ----------
+    function ga(h, m, u, name, dpt) { return { id: 'g' + h + '_' + m + '_' + u, h: h, m: m, u: u, name: name, dpt: dpt }; }
+    const PLAN_GA = [
+      ga(1, 0, 1, 'Licht Wohnen Schalten', '1.001'), ga(1, 0, 2, 'Licht Wohnen Status', '1.001'), ga(1, 0, 3, 'Präsenz Wohnen', '1.001'),
+      ga(1, 0, 4, 'Licht Wohnen Helligkeit', '5.001'), ga(1, 0, 5, 'Licht Wohnen Status Helligkeit', '5.001'),
+      ga(1, 1, 1, 'Steckdose Wohnen Schalten', '1.001'), ga(1, 1, 2, 'Steckdose Wohnen Status', '1.001'),
+      ga(2, 0, 1, 'Jalousie Wohnen Auf/Ab', '1.008'), ga(2, 0, 2, 'Jalousie Wohnen Stopp/Lamelle', '1.007'), ga(2, 0, 3, 'Jalousie Wohnen Position', '5.001'),
+      ga(2, 0, 4, 'Jalousie Wohnen Status Position', '5.001'), ga(2, 0, 5, 'Windalarm', '1.005'),
+      ga(3, 0, 1, 'Temperatur Wohnen Ist', '9.001'), ga(3, 0, 2, 'Heizung Wohnen Stellgröße', '5.001'), ga(3, 0, 3, 'Fenster Wohnen', '1.019'), ga(3, 0, 4, 'Temperatur Wohnen Soll', '9.001'),
+      ga(4, 0, 1, 'Wind', '9.005'), ga(4, 0, 2, 'Helligkeit außen', '9.004')
+    ];
+    const HAUPT = { 1: 'Licht und Steckdosen', 2: 'Jalousie', 3: 'Heizung', 4: 'Wetter' };
+    const PLAN_GER = [
+      ['t1', 'taster', 'Taster Wohnen', '1.1.1', { a: ['g1_0_1', 'g1_0_2'], b_aufab: ['g2_0_1'], b_stopp: ['g2_0_2'], c: ['g1_1_1', 'g1_1_2'] }],
+      ['p1', 'praesenz', 'Präsenzmelder Wohnen', '1.1.2', { praesenz: ['g1_0_3'], hell: [] }],
+      ['r1', 'rtr', 'Raumtemperaturregler', '1.1.3', { ist: ['g3_0_1'], soll: ['g3_0_4'], stell: ['g3_0_2'] }],
+      ['b1', 'binaer', 'Binäreingang Fenster', '1.1.4', { fenster: ['g3_0_3'] }],
+      ['w1', 'wetter', 'Wetterstation', '1.1.5', { wind: ['g4_0_1'], windalarm: ['g2_0_5'], lux: ['g4_0_2'] }],
+      ['d1', 'dimm', 'Dimmaktor Leuchte', '1.1.6', { schalten: ['g1_0_1', 'g1_0_3'], wert: ['g1_0_4'], status: ['g1_0_2'], statuswert: ['g1_0_5'] }],
+      ['s1', 'schalt', 'Schaltaktor Steckdose', '1.1.7', { a: ['g1_1_1'], astatus: ['g1_1_2'] }],
+      ['j1', 'jal', 'Jalousieaktor', '1.1.8', { aufab: ['g2_0_1'], stopp: ['g2_0_2'], pos: ['g2_0_3'], statuspos: ['g2_0_4'], wind: ['g2_0_5'] }],
+      ['h1', 'heiz', 'Heizungsaktor', '1.1.9', { stell: ['g3_0_2'], fenster: ['g3_0_3'] }]
+    ];
+    function geraetNeu(z, mitVerknuepfung) {
+      const t = TYPEN[z[1]], g = { id: z[0], typ: z[1], name: z[2], paSoll: z[3], pa: null, param: {}, obj: {}, flags: {}, geladen: null };
+      t.param.forEach(function (p) { g.param[p[0]] = p[4]; });
+      t.obj.forEach(function (o) { g.obj[o[0]] = mitVerknuepfung ? (z[4][o[0]] || []).slice() : []; g.flags[o[0]] = o[3]; });
+      return g;
+    }
+    const cfg = function (g) { return JSON.stringify({ p: g.param, o: g.obj, f: g.flags }); };
+    function programmiert(g) { g.pa = g.paSoll; g.geladen = cfg(g); return g; }
+    const SZENARIEN = [
+      ['fertig', 'Fertige Anlage (alles programmiert)'],
+      ['neu', 'Montiert, aber nicht programmiert'],
+      ['leer', 'Neues Projekt: Gruppenadressen und Verknüpfungen selbst anlegen'],
+      ['f1', 'Fehlersuche 1: Licht geht nicht'],
+      ['f2', 'Fehlersuche 2: Präsenzmelder schaltet nicht'],
+      ['f3', 'Fehlersuche 3: Jalousie bleibt bei Sturm unten'],
+      ['f4', 'Fehlersuche 4: Nach Umbau reagiert die Steckdose nicht'],
+      ['f5', 'Fehlersuche 5: Zweimal drücken nötig'],
+      ['f6', 'Fehlersuche 6: Heizung läuft bei offenem Fenster']
+    ];
+    function projekt(art) {
+      const p = { v: 1, szenario: art, ga: PLAN_GA.map(function (g) { return Object.assign({}, g); }), geraete: [] };
+      PLAN_GER.forEach(function (z) { p.geraete.push(programmiert(geraetNeu(z, true))); });
+      const G = function (id) { return p.geraete.filter(function (g) { return g.id === id; })[0]; };
+      if (art === 'neu') p.geraete.forEach(function (g) { g.pa = null; g.geladen = null; });
+      if (art === 'leer') { p.ga = []; p.geraete = PLAN_GER.map(function (z) { return geraetNeu(z, false); }); }
+      if (art === 'f1') { G('t1').obj.a = ['g1_1_1', 'g1_0_2']; programmiert(G('t1')); }
+      if (art === 'f2') { G('p1').flags.praesenz = 'KL'; programmiert(G('p1')); }
+      if (art === 'f3') { G('j1').obj.wind = []; programmiert(G('j1')); }
+      if (art === 'f4') { G('s1').obj.a = ['g1_1_1']; G('s1').param.treppe = 0; programmiert(G('s1')); G('s1').obj.a = ['g1_1_1']; G('t1').obj.c = ['g1_1_3', 'g1_1_2']; p.ga.push(ga(1, 1, 3, 'Steckdose Wohnen Schalten (neu)', '1.001')); G('s1').obj.a = ['g1_1_3']; G('t1').geladen = cfg(G('t1')); }
+      if (art === 'f5') { G('t1').obj.a = ['g1_0_1']; programmiert(G('t1')); }
+      if (art === 'f6') { G('h1').obj.fenster = []; programmiert(G('h1')); }
+      return p;
+    }
+    const AUFGABEN = {
+      fertig: ['Erkunden', 'Bediene Taster, Präsenzmelder, Fenster und Wetterstation. Beobachte im Busmonitor, wer an welche Gruppenadresse sendet und welche Aktoren mit einer Statusmeldung antworten. Tippe ein Telegramm an und lies die Bytes.', []],
+      neu: ['Inbetriebnahme', 'Alle Geräte sind montiert und im Projekt fertig verknüpft, haben aber noch die Werksadresse 15.15.255. Vergib jedem Gerät seine physikalische Adresse (Programmiertaste!) und lade die Applikationen. Danach muss alles funktionieren.', ['alleProgrammiert']],
+      leer: ['Projekt anlegen', 'Lege die Gruppenadressen an und verknüpfe die Objekte so, dass Wippe A das Licht (Dimmaktor) schaltet und der Präsenzmelder es ebenfalls einschaltet, Wippe B die Jalousie fährt und das Fenster die Heizung sperrt. Dann programmieren und testen. Tipp: 1/0/1 Licht schalten, 1/0/3 Präsenz, 2/0/1 Jalousie Auf/Ab, 2/0/2 Stopp, 3/0/3 Fenster.', ['lichtTaster', 'lichtPraesenz', 'jalousie', 'fenster', 'alleProgrammiert']],
+      f1: ['Fehlersuche: Licht geht nicht', 'Der Kunde drückt Wippe A, aber die Leuchte bleibt aus – dafür passiert woanders etwas. Finde mit dem Busmonitor heraus, wohin der Taster sendet, behebe den Fehler und lade die geänderte Applikation.', ['lichtTaster', 'alleProgrammiert']],
+      f2: ['Fehlersuche: Präsenzmelder', 'Der Präsenzmelder erkennt die Person (LED am Gerät), aber das Licht schaltet nicht ein – und im Busmonitor taucht nichts auf. Was fehlt am Objekt?', ['lichtPraesenz', 'alleProgrammiert']],
+      f3: ['Fehlersuche: Windalarm', 'Bei Sturm meldet die Wetterstation Windalarm, die Jalousie fährt aber nicht hoch. Setze den Wind auf über 10 m/s und prüfe, wer die Gruppenadresse 2/0/5 kennt.', ['windalarm', 'alleProgrammiert']],
+      f4: ['Fehlersuche: nach Umbau', 'Ein Kollege hat für die Steckdose eine neue Gruppenadresse 1/1/3 angelegt und verknüpft. Trotzdem reagiert die Steckdose nicht auf Wippe C. Im Projekt stimmt alles – was hat er vergessen?', ['steckdose', 'alleProgrammiert']],
+      f5: ['Fehlersuche: zweimal drücken', 'Wenn der Präsenzmelder das Licht eingeschaltet hat, muss man Wippe A zweimal drücken, um es auszuschalten. Warum? Sorge dafür, dass ein Druck genügt.', ['tasterStatus', 'alleProgrammiert']],
+      f6: ['Fehlersuche: Fenster offen', 'Bei offenem Fenster heizt der Heizkörper weiter. Der Fensterkontakt sendet richtig. Finde den Fehler.', ['fenster', 'alleProgrammiert']]
+    };
+
+    let P = null;
+    try { P = JSON.parse(localStorage.getItem(SPEICHER) || 'null'); } catch (e) { P = null; }
+    if (!P || !pruefen(P)) P = projekt('fertig');
+
+    // strenge Prüfung (Link, Speicher)
+    function pruefen(p) {
+      if (!p || typeof p !== 'object' || !Array.isArray(p.ga) || !Array.isArray(p.geraete) || p.ga.length > 300 || p.geraete.length > 40) return false;
+      const ids = {};
+      const okGa = p.ga.every(function (g) {
+        if (!g || typeof g.id !== 'string' || !/^g\d{1,2}_\d_\d{1,3}$/.test(g.id) || ids[g.id]) return false;
+        ids[g.id] = 1;
+        g.h = Math.round(+g.h); g.m = Math.round(+g.m); g.u = Math.round(+g.u);
+        if (!(g.h >= 0 && g.h <= 31 && g.m >= 0 && g.m <= 7 && g.u >= 0 && g.u <= 255)) return false;
+        g.name = String(g.name || '').slice(0, 40); g.dpt = DPT[g.dpt] ? g.dpt : '';
+        return true;
+      });
+      if (!okGa) return false;
+      const gids = {};
+      return p.geraete.every(function (g) {
+        if (!g || !TYPEN[g.typ] || typeof g.id !== 'string' || !/^[a-z]\d{1,2}$/.test(g.id) || gids[g.id]) return false;
+        gids[g.id] = 1;
+        const t = TYPEN[g.typ];
+        g.name = String(g.name || t.name).slice(0, 40);
+        g.paSoll = paOk(g.paSoll) ? g.paSoll : '1.1.1';
+        g.pa = paOk(g.pa) ? g.pa : null;
+        const param = {}; t.param.forEach(function (q) {
+          const v = g.param ? g.param[q[0]] : undefined;
+          param[q[0]] = q[2] === 'wahl' ? (q[3].some(function (w) { return w[0] === v; }) ? v : q[4]) : (isFinite(+v) ? Math.min(q[3][1], Math.max(q[3][0], +v)) : q[4]);
+        });
+        g.param = param;
+        const obj = {}, flags = {};
+        t.obj.forEach(function (o) {
+          const l = g.obj && Array.isArray(g.obj[o[0]]) ? g.obj[o[0]] : [];
+          obj[o[0]] = l.filter(function (x, i) { return ids[x] && l.indexOf(x) === i; }).slice(0, 10);
+          const f = g.flags && typeof g.flags[o[0]] === 'string' ? g.flags[o[0]] : o[3];
+          flags[o[0]] = FLAGS.filter(function (x) { return f.indexOf(x) >= 0; }).join('');
+        });
+        g.obj = obj; g.flags = flags;
+        g.geladen = typeof g.geladen === 'string' && g.geladen.length < 4000 ? g.geladen : null;
+        p.szenario = AUFGABEN[p.szenario] ? p.szenario : 'fertig';
+        return true;
+      });
+    }
+    function paOk(a) { if (typeof a !== 'string') return false; const m = /^(\d{1,2})\.(\d{1,2})\.(\d{1,3})$/.exec(a); return !!m && +m[1] <= 15 && +m[2] <= 15 && +m[3] <= 255; }
+
+    let uhr = 0;
+    function speichernJetzt() { try { localStorage.setItem(SPEICHER, JSON.stringify(P)); } catch (e) { /* ohne Speicher */ } }
+    function speichern() { clearTimeout(uhr); uhr = setTimeout(speichernJetzt, 300); }
+    window.addEventListener('pagehide', function () { clearTimeout(uhr); speichernJetzt(); });
+
+    // ---------- Laufzeit: Werte in den Geräten, Raum, Bus ----------
+    let S = null;
+    function laufzeitNeu() {
+      S = { bus: true, prog: {}, wert: {}, raum: { temp: 19.5, aussen: 6, fenster: false, person: false, wind: 3, sonne: 12000 },
+        licht: 0, steckdose: false, jalPos: 0, jalZiel: 0, jalSperre: false, ventil: 0, monitor: [], nr: 0, start: performance.now(), letzteStell: -1, letzteIst: -99, praesenzBis: 0, treppeBis: 0, gewaehlt: -1 };
+      P.geraete.forEach(function (g) { TYPEN[g.typ].obj.forEach(function (o) { S.wert[g.id + '.' + o[0]] = 0; }); });
+      S.wert['r1.soll'] = 21; S.wert['w1.wind'] = S.raum.wind; S.wert['w1.lux'] = S.raum.sonne; S.wert['r1.ist'] = S.raum.temp;
+    }
+    const geladenCfg = function (g) { try { return g.geladen ? JSON.parse(g.geladen) : null; } catch (e) { return null; } };
+    // Gerät arbeitet, wenn Busspannung, Adresse und Applikation da sind – mit dem GELADENEN Stand
+    function aktiv(g) { return S.bus && g.pa && g.geladen; }
+    const G = function (id) { return P.geraete.filter(function (g) { return g.id === id; })[0]; };
+    const gaVon = function (id) { return P.ga.filter(function (x) { return x.id === id; })[0]; };
+    const gaText = function (g) { return g ? g.h + '/' + g.m + '/' + g.u : '?'; };
+    const gaZahl = function (g) { return g.h * 2048 + g.m * 256 + g.u; };
+    const paZahl = function (a) { const t = a.split('.').map(Number); return t[0] * 4096 + t[1] * 256 + t[2]; };
+
+    // ---------- Telegramme ----------
+    function hex(b) { return ('0' + (b & 255).toString(16).toUpperCase()).slice(-2); }
+    function dpt9(v) {
+      let m = Math.round(v * 100), e = 0;
+      while ((m < -2048 || m > 2047) && e < 15) { m = Math.round(v * 100 / Math.pow(2, ++e)); }
+      const s = m < 0 ? 1 : 0, mm = m < 0 ? m + 2048 : m;
+      return [(s << 7) | (e << 3) | ((mm >> 8) & 7), mm & 255];
+    }
+    function nutzdaten(dpt, v, dienst) {
+      const apci = dienst === 'Lesen' ? 0x00 : dienst === 'Antwort' ? 0x40 : 0x80;
+      if (dienst === 'Lesen') return [0x00, apci];
+      const b = groesse(dpt);
+      if (b <= 6) return [0x00, apci | ((v ? 1 : 0) & 0x3F)];
+      if (b === 8) return [0x00, apci, Math.round(Math.max(0, Math.min(100, v)) * 255 / 100)];
+      return [0x00, apci].concat(dpt9(v));
+    }
+    function telegramm(quelle, zielGa, dienst, dpt, wert, system) {
+      let bytes;
+      if (system) bytes = system;
+      else {
+        const nd = nutzdaten(dpt, wert, dienst), q = paZahl(quelle), z = gaZahl(zielGa);
+        bytes = [0xBC, q >> 8, q & 255, z >> 8, z & 255, 0x80 | 0x60 | (nd.length - 1)].concat(nd);
+      }
+      let x = 0; bytes.forEach(function (b) { x ^= b; });
+      bytes = bytes.concat([(~x) & 255]);
+      return bytes;
+    }
+    let warteschlange = [];
+    // sendet ein Objekt eines Geräts an seine erste (sendende) Gruppenadresse
+    function senden(g, obj, wert) {
+      if (!aktiv(g)) return false;
+      const c = geladenCfg(g); if (!c) return false;
+      const fl = c.f[obj] || '', l = c.o[obj] || [];
+      S.wert[g.id + '.' + obj] = wert;
+      if (fl.indexOf('K') < 0 || fl.indexOf('Ü') < 0 || !l.length) return false;
+      const zg = gaVon(l[0]); if (!zg) return false;
+      const dpt = TYPEN[g.typ].obj.filter(function (o) { return o[0] === obj; })[0][2];
+      warteschlange.push({ quelle: g.pa, ga: zg, dienst: 'Schreiben', dpt: dpt, wert: wert });
+      return true;
+    }
+    function busSenden(t) {
+      if (!S.bus) { status('Keine Busspannung – es kann nichts gesendet werden.', true); return; }
+      const bytes = telegramm(t.quelle, t.ga, t.dienst, t.dpt, t.wert, t.system);
+      const z = (performance.now() - S.start) / 1000;
+      S.monitor.push({ nr: ++S.nr, zeit: z, quelle: t.quelle, ziel: t.system ? t.zielText : gaText(t.ga) + (t.ga && t.ga.name ? ' ' + t.ga.name : ''), dienst: t.dienst, dpt: t.dpt || '', wert: t.system ? (t.wertText || '') : (DPT[t.dpt] ? DPT[t.dpt].text(t.wert) : String(t.wert)), bytes: bytes, system: !!t.system });
+      if (S.monitor.length > 300) S.monitor.shift();
+      monitorNeu = true;
+      if (!t.system) empfangen(t);
+    }
+    // alle aktiven Geräte, deren Objekt (mit Flag K) die Gruppenadresse kennt
+    function empfangen(t) {
+      P.geraete.forEach(function (g) {
+        if (!aktiv(g) || g.pa === t.quelle) return;
+        const c = geladenCfg(g); if (!c) return;
+        TYPEN[g.typ].obj.forEach(function (o) {
+          const l = c.o[o[0]] || [], fl = c.f[o[0]] || '';
+          if (l.indexOf(t.ga.id) < 0 || fl.indexOf('K') < 0) return;
+          if (t.dienst === 'Lesen') {
+            if (fl.indexOf('L') >= 0) warteschlange.push({ quelle: g.pa, ga: t.ga, dienst: 'Antwort', dpt: o[2], wert: S.wert[g.id + '.' + o[0]] });
+            return;
+          }
+          if (t.dienst === 'Antwort' && fl.indexOf('A') < 0 && fl.indexOf('S') < 0) return;
+          if (t.dienst === 'Schreiben' && fl.indexOf('S') < 0) return;
+          let wert = t.wert;
+          // andere Datenpunktgröße: der Empfänger liest die Bits auf seine Weise
+          if (groesse(o[2]) !== groesse(t.dpt)) wert = groesse(o[2]) === 1 ? (t.wert ? 1 : 0) : groesse(o[2]) === 8 ? (t.wert ? 100 : 0) : t.wert;
+          S.wert[g.id + '.' + o[0]] = wert;
+          wirkung(g, o[0], wert, c);
+        });
+      });
+    }
+    // was ein Aktor mit einem empfangenen Wert macht
+    function wirkung(g, obj, v, c) {
+      const p = c.p;
+      if (g.typ === 'dimm') {
+        if (obj === 'schalten') { S.licht = v ? (S.licht || p.ein) : 0; dimmStatus(g); }
+        if (obj === 'wert') { S.licht = Math.max(0, Math.min(100, v)); dimmStatus(g); }
+      }
+      if (g.typ === 'schalt' && obj === 'a') {
+        S.steckdose = !!v; S.treppeBis = v && p.treppe > 0 ? performance.now() + p.treppe * 1000 : 0;
+        senden(g, 'astatus', v ? 1 : 0);
+      }
+      if (g.typ === 'jal') {
+        if (S.jalSperre && obj !== 'wind') return;
+        if (obj === 'aufab') S.jalZiel = v ? 100 : 0;
+        if (obj === 'stopp') S.jalZiel = S.jalPos;
+        if (obj === 'pos') S.jalZiel = Math.max(0, Math.min(100, v));
+        if (obj === 'wind') { S.jalSperre = !!v; if (v) S.jalZiel = 0; }
+      }
+      if (g.typ === 'heiz') heizStellen(g, c);
+      if (g.typ === 'taster' && (obj === 'a' || obj === 'c')) { /* Status nachgeführt */ }
+    }
+    function dimmStatus(g) { S.wert[g.id + '.wert'] = Math.round(S.licht); senden(g, 'status', S.licht > 0 ? 1 : 0); senden(g, 'statuswert', Math.round(S.licht)); }
+    function heizStellen(g, c) {
+      const fenster = S.wert[g.id + '.fenster'];
+      S.ventil = fenster ? c.p.frost : S.wert[g.id + '.stell'];
+      senden(g, 'status', Math.round(S.ventil));
+    }
+
+    // ---------- Bedienung der Sensoren ----------
+    function tasterA(wippe) {
+      const g = G('t1'); if (!g) return;
+      if (!aktiv(g)) { status(g.name + ': ' + grund(g), true); return; }
+      const c = geladenCfg(g), funk = c.p[wippe === 'a' ? 'funkA' : 'funkC'];
+      const alt = S.wert[g.id + '.' + wippe];
+      const neu = funk === 'ein' ? 1 : funk === 'aus' ? 0 : (alt ? 0 : 1);
+      if (!senden(g, wippe, neu)) status('Wippe ' + wippe.toUpperCase() + ': Objekt nicht verknüpft oder ohne Flag K/Ü – es geht kein Telegramm raus.', true);
+    }
+    function tasterB(art) {
+      const g = G('t1'); if (!g) return;
+      if (!aktiv(g)) { status(g.name + ': ' + grund(g), true); return; }
+      const ok = art === 'stopp' ? senden(g, 'b_stopp', 1) : senden(g, 'b_aufab', art === 'ab' ? 1 : 0);
+      if (!ok) status('Wippe B: Objekt nicht verknüpft – kein Telegramm.', true);
+    }
+    function grund(g) {
+      if (!S.bus) return 'keine Busspannung.';
+      if (!g.pa) return 'noch keine physikalische Adresse (15.15.255).';
+      if (!g.geladen) return 'Applikation nicht geladen – das Gerät tut nichts.';
+      return '';
+    }
+
+    // ---------- Simulation in der Zeit ----------
+    let letzte = performance.now(), monitorNeu = false, takt = 0, letzterTakt = 0;
+    function schritt(jetzt) {
+      const dt = Math.min(0.2, (jetzt - letzte) / 1000); letzte = jetzt;
+      // Bus: höchstens ein Telegramm je 25 ms
+      if (warteschlange.length && jetzt - letzterTakt > 25) { busSenden(warteschlange.shift()); letzterTakt = jetzt; }
+      const j = G('j1');
+      if (j) {
+        const c = geladenCfg(j), fz = c ? c.p.fahrzeit : 15;
+        if (aktiv(j) && Math.abs(S.jalZiel - S.jalPos) > 0.01) {
+          const d = 100 / fz * dt;
+          S.jalPos += Math.max(-d, Math.min(d, S.jalZiel - S.jalPos));
+          if (Math.abs(S.jalZiel - S.jalPos) <= 0.01) { S.jalPos = S.jalZiel; senden(j, 'statuspos', Math.round(S.jalPos)); }
+        }
+      }
+      // Raumtemperatur im Zeitraffer (1 s = 1 min)
+      const r = S.raum, k = r.fenster ? 0.06 : 0.008;
+      r.temp += (S.ventil / 100 * 0.12 - (r.temp - r.aussen) * k) * dt;
+      // Treppenlicht
+      if (S.treppeBis && jetzt > S.treppeBis) { S.treppeBis = 0; S.steckdose = false; const s = G('s1'); if (s) senden(s, 'astatus', 0); }
+      // Präsenzmelder: Nachlauf
+      const pm = G('p1');
+      if (pm && S.praesenzBis && jetzt > S.praesenzBis && !r.person) { S.praesenzBis = 0; senden(pm, 'praesenz', 0); }
+      takt += dt;
+      if (takt > 1) { takt = 0; zyklisch(); }
+    }
+    function zyklisch() {
+      const r1 = G('r1');
+      if (r1 && aktiv(r1)) {
+        const c = geladenCfg(r1), soll = S.wert['r1.soll'] || c.p.soll;
+        if (Math.abs(S.raum.temp - S.letzteIst) >= 0.2) { S.letzteIst = Math.round(S.raum.temp * 10) / 10; senden(r1, 'ist', S.letzteIst); }
+        const stell = Math.round(Math.max(0, Math.min(100, (soll - S.raum.temp) / c.p.p * 100)));
+        if (Math.abs(stell - S.letzteStell) >= 5 || (stell === 0 && S.letzteStell > 0) || (stell === 100 && S.letzteStell < 100)) { S.letzteStell = stell; senden(r1, 'stell', stell); }
+      }
+      const w = G('w1');
+      if (w && aktiv(w)) {
+        const c = geladenCfg(w), alarm = S.raum.wind >= c.p.grenze ? 1 : 0;
+        if (alarm !== S.wert['w1.windalarm']) senden(w, 'windalarm', alarm);
+      }
+    }
+
+    // ---------- Darstellung: Raum ----------
+    const cv = $('raum'), cx = cv.getContext('2d');
+    let B = 600, H = 300;
+    function F(n) { return Thema.farbe(n); }
+    function groesseSetzen() { const d = window.devicePixelRatio || 1; B = cv.clientWidth || 600; H = B < 520 ? 260 : 300; cv.style.height = H + 'px'; cv.width = B * d; cv.height = H * d; cx.setTransform(d, 0, 0, d, 0, 0); }
+    function T(t, x, y, a, g, f, c) { cx.font = (f ? '700 ' : '') + (g || 12) + 'px ' + (F('--technik') || 'sans-serif'); cx.textAlign = a || 'left'; cx.textBaseline = 'middle'; cx.fillStyle = c || F('--text'); cx.fillText(t, x, y); }
+    function zeichnen(t) {
+      cx.clearRect(0, 0, B, H);
+      const boden = H - 30, decke = 42, wandL = 14, wandR = B - 14;
+      // Raum
+      const hell = Math.min(1, S.licht / 100 * 0.8 + (1 - S.jalPos / 100) * S.raum.sonne / 40000);
+      cx.fillStyle = 'rgba(255, 214, 120,' + (0.04 + hell * 0.25) + ')'; cx.fillRect(wandL, decke, wandR - wandL, boden - decke);
+      cx.strokeStyle = F('--text'); cx.lineWidth = 3; cx.strokeRect(wandL, decke, wandR - wandL, boden - decke);
+      // Fenster mit Jalousie
+      const fx = wandL + 24, fy = decke + 30, fb = Math.min(170, B * 0.28), fh = boden - decke - 90;
+      cx.fillStyle = '#9fd3f0'; cx.globalAlpha = 0.55; cx.fillRect(fx, fy, fb, fh); cx.globalAlpha = 1;
+      if (S.raum.sonne > 2000) { cx.fillStyle = '#F2A541'; cx.beginPath(); cx.arc(fx + fb - 26, fy + 24, 12, 0, 6.3); cx.fill(); }
+      cx.strokeStyle = F('--text'); cx.lineWidth = 2;
+      if (S.raum.fenster) { cx.beginPath(); cx.moveTo(fx + fb, fy); cx.lineTo(fx + fb + 30, fy + 18); cx.lineTo(fx + fb + 30, fy + fh + 6); cx.lineTo(fx + fb, fy + fh); cx.stroke(); T('offen', fx + fb + 4, fy + fh + 16, 'left', 11, true, ROT); }
+      cx.strokeRect(fx, fy, fb, fh);
+      // Wind
+      if (S.raum.wind > 0.5) { cx.strokeStyle = GRAU; cx.lineWidth = 1.5; for (let i = 0; i < 3; i++) { const o = ((t / 1000 * S.raum.wind * 6 + i * 40) % (fb + 40)) - 20; cx.beginPath(); cx.moveTo(fx + o, fy + 50 + i * 16); cx.lineTo(fx + o + 18, fy + 50 + i * 16); cx.stroke(); } }
+      const lam = fh * S.jalPos / 100;
+      cx.fillStyle = '#8C96A0'; cx.fillRect(fx, fy, fb, lam);
+      cx.strokeStyle = '#5F6A75'; cx.lineWidth = 1; for (let y = fy + 6; y < fy + lam; y += 7) { cx.beginPath(); cx.moveTo(fx, y); cx.lineTo(fx + fb, y); cx.stroke(); }
+      cx.fillStyle = '#5F6A75'; cx.fillRect(fx - 4, fy - 8, fb + 8, 8);
+      T('Jalousie ' + zahl(S.jalPos, 0) + ' %' + (S.jalSperre ? ' · Windalarm' : ''), fx, fy - 18, 'left', 11, true, S.jalSperre ? ROT : F('--text'));
+      // Heizkörper
+      const hx = fx + 10, hy = boden - 46;
+      cx.fillStyle = S.ventil > 0 ? 'rgba(192, 57, 43,' + (0.25 + S.ventil / 160) + ')' : F('--flaeche2'); cx.fillRect(hx, hy, fb - 20, 32);
+      cx.strokeStyle = F('--text'); cx.strokeRect(hx, hy, fb - 20, 32);
+      for (let x = hx + 8; x < hx + fb - 24; x += 10) { cx.beginPath(); cx.moveTo(x, hy + 3); cx.lineTo(x, hy + 29); cx.stroke(); }
+      T('Ventil ' + zahl(S.ventil, 0) + ' %', hx + fb - 20, hy - 9, 'right', 11, true, S.ventil > 0 ? ROT : F('--leise'));
+      // Leuchte
+      const lx = (wandL + wandR) / 2 + 40, ly = decke;
+      cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.beginPath(); cx.moveTo(lx, ly); cx.lineTo(lx, ly + 34); cx.stroke();
+      if (S.licht > 0) { const gr = cx.createRadialGradient(lx, ly + 44, 4, lx, ly + 44, 40 + S.licht * 0.9); gr.addColorStop(0, 'rgba(255, 210, 90,' + (0.35 + S.licht / 200) + ')'); gr.addColorStop(1, 'rgba(255, 210, 90, 0)'); cx.fillStyle = gr; cx.beginPath(); cx.arc(lx, ly + 44, 40 + S.licht * 0.9, 0, 6.3); cx.fill(); }
+      cx.fillStyle = S.licht > 0 ? '#FFD45A' : F('--flaeche2'); cx.beginPath(); cx.moveTo(lx - 24, ly + 46); cx.lineTo(lx + 24, ly + 46); cx.lineTo(lx + 12, ly + 32); cx.lineTo(lx - 12, ly + 32); cx.closePath(); cx.fill(); cx.stroke();
+      T('Licht ' + zahl(S.licht, 0) + ' %', lx + 30, ly + 40, 'left', 11, true);
+      // Person
+      if (S.raum.person) { const px = lx - 10, py = boden; cx.fillStyle = BLAU; cx.beginPath(); cx.arc(px, py - 74, 9, 0, 6.3); cx.fill(); cx.fillRect(px - 8, py - 63, 16, 34); cx.fillRect(px - 8, py - 30, 6, 30); cx.fillRect(px + 2, py - 30, 6, 30); }
+      // Steckdose mit Stehleuchte
+      const sx = wandR - 50, sy = boden - 30;
+      cx.fillStyle = F('--flaeche2'); cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.beginPath(); cx.arc(sx, sy, 10, 0, 6.3); cx.fill(); cx.stroke();
+      cx.fillStyle = F('--text'); cx.beginPath(); cx.arc(sx - 3.5, sy, 1.6, 0, 6.3); cx.arc(sx + 3.5, sy, 1.6, 0, 6.3); cx.fill();
+      cx.strokeStyle = F('--text'); cx.beginPath(); cx.moveTo(sx - 20, boden); cx.lineTo(sx - 20, boden - 110); cx.stroke();
+      cx.fillStyle = S.steckdose ? '#FFD45A' : F('--flaeche2'); cx.beginPath(); cx.moveTo(sx - 36, boden - 110); cx.lineTo(sx - 4, boden - 110); cx.lineTo(sx - 12, boden - 132); cx.lineTo(sx - 28, boden - 132); cx.closePath(); cx.fill(); cx.stroke();
+      T('Steckdose ' + (S.steckdose ? 'ein' : 'aus'), sx + 12, sy - 22, 'right', 11, true, S.steckdose ? ORANGE : F('--leise'));
+      // Thermometer und Werte
+      T(zahl(S.raum.temp, 1) + ' °C (Soll ' + zahl(S.wert['r1.soll'] || 21, 1) + ')', wandR, 11, 'right', 13, true, S.raum.temp < (S.wert['r1.soll'] || 21) - 0.5 ? BLAU : GRUEN);
+      T('außen ' + zahl(S.raum.aussen, 0) + ' °C · Wind ' + zahl(S.raum.wind, 1) + ' m/s', wandR, 27, 'right', 11, false, F('--leise'));
+      // Busleitung
+      cx.strokeStyle = S.bus ? '#2E8B57' : '#8C96A0'; cx.lineWidth = 3; cx.setLineDash(S.bus ? [] : [6, 5]);
+      cx.beginPath(); cx.moveTo(wandL, H - 12); cx.lineTo(wandR, H - 12); cx.stroke(); cx.setLineDash([]);
+      T(S.bus ? 'Busleitung KNX TP · Linie 1.1 · 29 V' : 'Busleitung ohne Spannung', wandL + 4, H - 22, 'left', 10, true, S.bus ? GRUEN : GRAU);
+      // laufendes Telegramm
+      const neu = S.monitor[S.monitor.length - 1];
+      if (neu && (performance.now() - S.start) / 1000 - neu.zeit < 0.6) {
+        const f = ((performance.now() - S.start) / 1000 - neu.zeit) / 0.6;
+        cx.fillStyle = LILA; cx.beginPath(); cx.arc(wandL + (wandR - wandL) * f, H - 12, 6, 0, 6.3); cx.fill();
+      }
+    }
+
+    // ---------- Darstellung: Gerätekarten ----------
+    let gewaehltesGeraet = 'd1', ansicht = 'ga';
+    function geraeteAufbauen() {
+      const z = $('geraete'); z.innerHTML = '';
+      const nt = knoten('div', 'geraet'); nt.style.setProperty('--farbe', GRAU);
+      const k = knoten('div', 'geraet-kopf'), tt = knoten('div');
+      tt.append(knoten('b', '', 'Spannungsversorgung 640 mA'), knoten('small', '', 'Systemkomponente · ohne Adresse'));
+      k.append(tt); nt.append(k);
+      nt.append(knoten('span', 'zustand-chip ' + (S.bus ? 'gut' : 'schlecht'), S.bus ? '29 V auf der Linie' : 'ausgeschaltet'));
+      z.append(nt);
+      const ip = knoten('div', 'geraet'); ip.style.setProperty('--farbe', GRAU);
+      const k2 = knoten('div', 'geraet-kopf'), t2 = knoten('div');
+      t2.append(knoten('b', '', 'IP-Schnittstelle'), knoten('small', '', 'Systemkomponente · ' + SCHNITTSTELLE));
+      k2.append(t2); ip.append(k2, knoten('span', 'zustand-chip gut', 'Zugang für die Inbetriebnahme'));
+      z.append(ip);
+      P.geraete.forEach(function (g) {
+        const t = TYPEN[g.typ], karte = knoten('div', 'geraet' + (aktiv(g) ? '' : ' aus')); karte.style.setProperty('--farbe', t.farbe);
+        karte.id = 'karte-' + g.id;
+        const kopf = knoten('div', 'geraet-kopf'), titel = knoten('div');
+        titel.append(knoten('b', '', g.name), knoten('small', '', t.art + ' · ' + (g.pa || '15.15.255')));
+        const prog = knoten('button', 'prog' + (S.prog[g.id] ? ' an' : '')); prog.type = 'button';
+        prog.append(knoten('span', 'led'), document.createTextNode('Prog.'));
+        prog.setAttribute('aria-pressed', S.prog[g.id] ? 'true' : 'false');
+        prog.title = 'Programmiertaste';
+        prog.addEventListener('click', function () { if (!S.bus) { status('Ohne Busspannung leuchtet keine LED.', true); return; } S.prog[g.id] = !S.prog[g.id]; geraeteAufbauen(); progListe(); });
+        kopf.append(titel, prog); karte.append(kopf);
+        const z1 = zustandVon(g); karte.append(knoten('span', 'zustand-chip ' + z1[1], z1[0]));
+        const bed = knoten('div', 'bedienung'), knopf = function (txt, fn, lab) { const b = knoten('button', 'knopf', txt); b.type = 'button'; if (lab) b.setAttribute('aria-label', lab); b.addEventListener('click', fn); bed.append(b); return b; };
+        if (g.typ === 'taster') {
+          knopf('A', function () { tasterA('a'); }, 'Wippe A drücken');
+          knopf('B ▲', function () { tasterB('auf'); }, 'Wippe B oben lang: Auf');
+          knopf('B ▼', function () { tasterB('ab'); }, 'Wippe B unten lang: Ab');
+          knopf('B ■', function () { tasterB('stopp'); }, 'Wippe B kurz: Stopp');
+          knopf('C', function () { tasterA('c'); }, 'Wippe C drücken');
+        }
+        if (g.typ === 'praesenz') {
+          const b = knopf(S.raum.person ? 'Person geht' : 'Person kommt', function () {
+            S.raum.person = !S.raum.person;
+            const c = geladenCfg(g);
+            if (S.raum.person) { S.praesenzBis = 0; if (aktiv(g) && !S.wert['p1.praesenz']) { if (!senden(g, 'praesenz', 1)) status('Präsenzmelder erkennt die Person, sendet aber nichts (Objekt nicht verknüpft oder Flag fehlt).', true); } }
+            else if (aktiv(g)) S.praesenzBis = performance.now() + (c ? c.p.nachlauf : 20) * 1000 / 4;
+            geraeteAufbauen();
+          });
+          void b;
+        }
+        if (g.typ === 'rtr') {
+          knopf('Soll −', function () { soll(-0.5); }, 'Sollwert senken');
+          knopf('Soll +', function () { soll(0.5); }, 'Sollwert erhöhen');
+        }
+        if (g.typ === 'binaer') knopf(S.raum.fenster ? 'Fenster schließen' : 'Fenster öffnen', function () { S.raum.fenster = !S.raum.fenster; senden(g, 'fenster', S.raum.fenster ? 1 : 0); geraeteAufbauen(); });
+        if (g.typ === 'wetter') {
+          const l = knoten('label', '', 'Wind'), r = knoten('input'); r.type = 'range'; r.min = 0; r.max = 25; r.step = 0.5; r.value = S.raum.wind; r.setAttribute('data-nicht-merken', ''); r.setAttribute('aria-label', 'Windgeschwindigkeit');
+          r.addEventListener('input', function () { S.raum.wind = +r.value; wz.textContent = zahl(S.raum.wind, 1) + ' m/s'; });
+          r.addEventListener('change', function () { senden(g, 'wind', S.raum.wind); zyklisch(); });
+          const wz = knoten('span', 'wert-zeile', zahl(S.raum.wind, 1) + ' m/s');
+          bed.append(l, r, wz);
+          knopf(S.raum.sonne > 2000 ? 'Sonne weg' : 'Sonne', function () { S.raum.sonne = S.raum.sonne > 2000 ? 300 : 30000; senden(g, 'lux', S.raum.sonne); geraeteAufbauen(); });
+        }
+        if (bed.childNodes.length) karte.append(bed);
+        const werte = TYPEN[g.typ].obj.map(function (o) { const v = S.wert[g.id + '.' + o[0]]; return o[1].replace(/^Wippe |^Kanal /, '') + ': ' + DPT[o[2]].text(v || 0); });
+        karte.append(knoten('div', 'wert-zeile', werte.slice(0, 3).join(' · ')));
+        z.append(karte);
+      });
+    }
+    function soll(d) {
+      const g = G('r1'); if (!g) return;
+      if (!aktiv(g)) { status(g.name + ': ' + grund(g), true); return; }
+      const v = Math.max(5, Math.min(30, (S.wert['r1.soll'] || 21) + d));
+      senden(g, 'soll', v); S.letzteStell = -1; zyklisch();
+    }
+    function zustandVon(g) {
+      if (!S.bus) return ['ohne Busspannung', 'schlecht'];
+      if (!g.pa) return ['nicht adressiert (15.15.255)', 'schlecht'];
+      if (!g.geladen) return ['Applikation fehlt', 'schlecht'];
+      if (g.geladen !== cfg(g)) return ['geändert, nicht geladen', 'warn'];
+      if (g.pa !== g.paSoll) return ['Adresse weicht vom Projekt ab', 'warn'];
+      return ['betriebsbereit', 'gut'];
+    }
+
+    // ---------- Inbetriebnahme: Gruppenadressen ----------
+    function gaBaum() {
+      const u = $('gaBaum'); u.innerHTML = '';
+      const liste = P.ga.slice().sort(function (a, b) { return gaZahl(a) - gaZahl(b); });
+      if (!liste.length) u.append(knoten('li', 'hilfe', 'Noch keine Gruppenadressen. Unten anlegen.'));
+      let h = -1, m = -1;
+      liste.forEach(function (g) {
+        if (g.h !== h) { h = g.h; m = -1; u.append(knoten('li', 'h', g.h + ' ' + (HAUPT[g.h] || 'Hauptgruppe ' + g.h))); }
+        if (g.m !== m) { m = g.m; u.append(knoten('li', 'm', g.h + '/' + g.m)); }
+        const li = knoten('li', 'u'), c = knoten('code', '', gaText(g));
+        li.append(c, document.createTextNode(g.name + ' (' + g.h + '/' + (g.m * 256 + g.u) + ')'));
+        const nutzer = P.geraete.filter(function (x) { return Object.keys(x.obj).some(function (k) { return x.obj[k].indexOf(g.id) >= 0; }); }).length;
+        li.append(knoten('small', 'hilfe', nutzer ? nutzer + ' Gerät' + (nutzer > 1 ? 'e' : '') : 'unbenutzt'));
+        const x = knoten('button', 'entf', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Gruppenadresse ' + gaText(g) + ' löschen');
+        x.addEventListener('click', function () {
+          P.ga = P.ga.filter(function (y) { return y !== g; });
+          P.geraete.forEach(function (d) { Object.keys(d.obj).forEach(function (k) { d.obj[k] = d.obj[k].filter(function (id) { return id !== g.id; }); }); });
+          aenderung();
+        });
+        li.append(x); u.append(li);
+      });
+      const gm = $('gmGa'); gm.innerHTML = '';
+      liste.forEach(function (g) { const o = knoten('option', '', gaText(g) + ' ' + g.name); o.value = g.id; gm.append(o); });
+    }
+    $('gaAdd').addEventListener('click', function () {
+      const h = +$('gaH').value, m = +$('gaM').value, u = +$('gaU').value, name = $('gaName').value.trim().slice(0, 40);
+      const meld = function (t, s) { $('gaMeldung').textContent = t; $('gaMeldung').className = 'meldung-sim ' + (s ? 'schlecht' : 'gut'); };
+      if (!($('gaH').value !== '' && Number.isInteger(h) && h >= 0 && h <= 31)) return meld('Hauptgruppe 0 bis 31.', true);
+      if (!($('gaM').value !== '' && Number.isInteger(m) && m >= 0 && m <= 7)) return meld('Mittelgruppe 0 bis 7.', true);
+      if (!($('gaU').value !== '' && Number.isInteger(u) && u >= 0 && u <= 255)) return meld('Untergruppe 0 bis 255.', true);
+      if (h === 0 && m === 0 && u === 0) return meld('0/0/0 ist für Rundrufe reserviert.', true);
+      const id = 'g' + h + '_' + m + '_' + u;
+      if (gaVon(id)) return meld(h + '/' + m + '/' + u + ' gibt es schon.', true);
+      if (P.ga.length >= 300) return meld('Höchstens 300 Gruppenadressen im Simulator.', true);
+      P.ga.push({ id: id, h: h, m: m, u: u, name: name || 'Gruppenadresse ' + h + '/' + m + '/' + u, dpt: '' });
+      $('gaU').value = u < 255 ? u + 1 : ''; $('gaName').value = '';
+      meld(h + '/' + m + '/' + u + ' angelegt. Jetzt unter „2 Geräte und Objekte“ verknüpfen.');
+      aenderung();
+    });
+
+    // ---------- Inbetriebnahme: Geräte und Objekte ----------
+    function geraetWahl() {
+      const z = $('geraetWahl'); z.innerHTML = '';
+      P.geraete.forEach(function (g) {
+        const b = knoten('button', 'knopf', g.name); b.type = 'button'; b.setAttribute('aria-pressed', g.id === gewaehltesGeraet ? 'true' : 'false');
+        b.addEventListener('click', function () { gewaehltesGeraet = g.id; geraetWahl(); geraetDetail(); });
+        z.append(b);
+      });
+    }
+    function geraetDetail() {
+      const z = $('geraetDetail'); z.innerHTML = '';
+      const g = G(gewaehltesGeraet) || P.geraete[0]; if (!g) return;
+      const t = TYPEN[g.typ];
+      z.append(knoten('p', 'hilfe', t.name + ' · ' + t.art + ' · physikalische Adresse im Projekt: ' + g.paSoll + (g.geladen && g.geladen !== cfg(g) ? ' · Änderungen noch nicht geladen' : '')));
+      if (t.param.length) {
+        const pz = knoten('div', 'param');
+        t.param.forEach(function (q) {
+          const l = knoten('label', '', q[1]); l.htmlFor = 'par-' + q[0];
+          let e;
+          if (q[2] === 'wahl') { e = knoten('select'); q[3].forEach(function (w) { const o = knoten('option', '', w[1]); o.value = w[0]; e.append(o); }); e.value = g.param[q[0]]; }
+          else { e = knoten('input'); e.inputMode = 'decimal'; e.value = String(g.param[q[0]]).replace('.', ','); }
+          e.id = 'par-' + q[0]; e.setAttribute('data-nicht-merken', '');
+          e.addEventListener('change', function () {
+            if (q[2] === 'wahl') g.param[q[0]] = e.value;
+            else { const v = parseFloat(e.value.replace(',', '.')); if (isFinite(v)) g.param[q[0]] = Math.min(q[3][1], Math.max(q[3][0], v)); e.value = String(g.param[q[0]]).replace('.', ','); }
+            aenderung(true);
+          });
+          pz.append(l, e);
+        });
+        z.append(pz);
+      }
+      const rahmen = knoten('div', 'rahmen'), tab = knoten('table', 'tabelle obj-tabelle');
+      tab.innerHTML = '<thead><tr><th>Nr.</th><th>Objekt</th><th>DPT</th><th>Flags</th><th>Gruppenadressen</th></tr></thead>';
+      const tb = knoten('tbody');
+      t.obj.forEach(function (o, i) {
+        const tr = knoten('tr');
+        tr.append(knoten('td', '', String(i)), knoten('td', '', o[1]), knoten('td', '', o[2] + ' ' + DPT[o[2]].name + ' (' + (DPT[o[2]].bit === 1 ? '1 Bit' : DPT[o[2]].bit / 8 + ' Byte') + ')'));
+        const tf = knoten('td', 'flags');
+        FLAGS.forEach(function (f) {
+          const l = knoten('label'), c = knoten('input'); c.type = 'checkbox'; c.checked = g.flags[o[0]].indexOf(f) >= 0; c.setAttribute('data-nicht-merken', '');
+          c.setAttribute('aria-label', 'Flag ' + f + ' für ' + o[1]);
+          c.addEventListener('change', function () { g.flags[o[0]] = FLAGS.filter(function (x) { return x === f ? c.checked : g.flags[o[0]].indexOf(x) >= 0; }).join(''); aenderung(true); });
+          l.append(c, document.createTextNode(f)); tf.append(l);
+        });
+        tr.append(tf);
+        const tg = knoten('td'), chips = knoten('div', 'chips');
+        g.obj[o[0]].forEach(function (id, j) {
+          const ga2 = gaVon(id); if (!ga2) return;
+          const c = knoten('code', j === 0 ? 'senden' : '', gaText(ga2)); c.title = ga2.name + (j === 0 ? ' (sendende Gruppenadresse)' : '');
+          if (ga2.dpt && groesse(ga2.dpt) !== groesse(o[2])) { c.style.borderColor = ROT; c.title += ' – Datenpunkttyp passt nicht'; }
+          const x = knoten('button', 'entf', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Verknüpfung ' + gaText(ga2) + ' lösen');
+          x.addEventListener('click', function () { g.obj[o[0]].splice(j, 1); aenderung(true); });
+          c.append(x); chips.append(c);
+        });
+        const sel = knoten('select'); sel.setAttribute('aria-label', 'Gruppenadresse für ' + o[1] + ' verknüpfen'); sel.setAttribute('data-nicht-merken', '');
+        sel.append(knoten('option', '', '+ verknüpfen'));
+        P.ga.slice().sort(function (a, b) { return gaZahl(a) - gaZahl(b); }).forEach(function (x) {
+          if (g.obj[o[0]].indexOf(x.id) >= 0) return;
+          const op = knoten('option', '', gaText(x) + ' ' + x.name + (x.dpt && groesse(x.dpt) !== groesse(o[2]) ? ' (anderer DPT!)' : '')); op.value = x.id; sel.append(op);
+        });
+        sel.addEventListener('change', function () {
+          const x = gaVon(sel.value); if (!x) return;
+          if (!x.dpt) x.dpt = o[2];
+          if (groesse(x.dpt) !== groesse(o[2])) status('Achtung: ' + gaText(x) + ' hat ' + x.dpt + ', das Objekt ' + o[2] + '. Unterschiedliche Größen führen zu falschen Werten.', true);
+          g.obj[o[0]].push(x.id); aenderung(true);
+        });
+        chips.append(sel); tg.append(chips); tr.append(tg); tb.append(tr);
+      });
+      tab.append(tb); rahmen.append(tab); z.append(rahmen);
+      z.append(knoten('p', 'hilfe', 'Fett = sendende Gruppenadresse (die erste). Flags: K Kommunikation, L Lesen, S Schreiben, Ü Übertragen.'));
+    }
+
+    // ---------- Inbetriebnahme: Programmieren ----------
+    function progListe() {
+      const t = $('progListe'); t.innerHTML = '<thead><tr><th>Gerät</th><th>Projekt</th><th>im Gerät</th><th>Zustand</th><th></th></tr></thead>';
+      const tb = knoten('tbody');
+      P.geraete.forEach(function (g) {
+        const tr = knoten('tr'), z1 = zustandVon(g);
+        const ad = knoten('input'); ad.value = g.paSoll; ad.setAttribute('aria-label', 'Physikalische Adresse im Projekt für ' + g.name); ad.size = 7; ad.setAttribute('data-nicht-merken', '');
+        ad.addEventListener('change', function () { const v = ad.value.trim(); if (paOk(v) && !/\.0$/.test(v)) { g.paSoll = v; aenderung(); } else { ad.value = g.paSoll; progMeldung('Adresse als Bereich.Linie.Teilnehmer, Teilnehmer 1 bis 255 (x.y.0 ist für Koppler).', true); } });
+        const tdA = knoten('td'); tdA.append(ad);
+        tr.append(knoten('td', '', g.name + (S.prog[g.id] ? ' ●' : '')), tdA, knoten('td', '', g.pa || '15.15.255'));
+        tr.append(knoten('td', z1[1] === 'gut' ? '' : '', z1[0]));
+        const td = knoten('td'), b = knoten('button', 'knopf', 'Applikation laden'); b.type = 'button';
+        b.addEventListener('click', function () { appLaden(g); });
+        td.append(b); tr.append(td); tb.append(tr);
+      });
+      t.append(tb);
+    }
+    function progMeldung(t, schlecht) { $('progMeldung').textContent = t; $('progMeldung').className = 'meldung-sim ' + (schlecht ? 'schlecht' : 'gut'); }
+    function systemTelegramm(ziel, text, bytes) {
+      const z = paZahl(ziel), q = paZahl(SCHNITTSTELLE);
+      warteschlange.push({ system: [0xB0, q >> 8, q & 255, z >> 8, z & 255, 0x60 | (bytes.length - 1)].concat(bytes), quelle: SCHNITTSTELLE, zielText: ziel, dienst: text, wertText: '' });
+    }
+    $('paProg').addEventListener('click', function () {
+      if (!S.bus) return progMeldung('Keine Busspannung – Spannungsversorgung einschalten.', true);
+      const im = P.geraete.filter(function (g) { return S.prog[g.id]; });
+      if (!im.length) return progMeldung('Kein Gerät im Programmiermodus. Erst am Gerät die Programmiertaste drücken (rote LED).', true);
+      if (im.length > 1) return progMeldung('Mehrere Geräte im Programmiermodus (' + im.map(function (g) { return g.name; }).join(', ') + '). Es darf nur eines sein.', true);
+      const g = im[0], belegt = P.geraete.filter(function (x) { return x !== g && x.pa === g.paSoll; })[0];
+      if (belegt) return progMeldung('Die Adresse ' + g.paSoll + ' ist schon an „' + belegt.name + '“ vergeben. Jede physikalische Adresse darf nur einmal vorkommen.', true);
+      const z = paZahl(g.paSoll);
+      warteschlange.push({ system: [0xB0, paZahl(SCHNITTSTELLE) >> 8, paZahl(SCHNITTSTELLE) & 255, 0, 0, 0xE3, 0x00, 0xC0, z >> 8, z & 255], quelle: SCHNITTSTELLE, zielText: 'Rundruf', dienst: 'Adresse schreiben', wertText: g.paSoll });
+      g.pa = g.paSoll; S.prog[g.id] = false;
+      progMeldung(g.name + ' hat jetzt die Adresse ' + g.pa + '. Die LED ist aus. Als Nächstes die Applikation laden.');
+      aenderung();
+    });
+    function appLaden(g, still) {
+      if (!S.bus) { progMeldung('Keine Busspannung.', true); return false; }
+      if (!g.pa || g.pa !== g.paSoll) { progMeldung(g.name + ': Unter ' + g.paSoll + ' antwortet kein Gerät. Erst die physikalische Adresse programmieren.', true); return false; }
+      systemTelegramm(g.pa, 'Verbindung aufbauen', [0x80]);
+      systemTelegramm(g.pa, 'Speicher schreiben', [0x42, 0x80, 0x10, 0x00, 0x05]);
+      systemTelegramm(g.pa, 'Speicher schreiben', [0x42, 0x80, 0x10, 0x10, 0x07]);
+      systemTelegramm(g.pa, 'Neustart', [0x43, 0x80]);
+      g.geladen = cfg(g);
+      if (!still) progMeldung('Applikation in ' + g.name + ' (' + g.pa + ') geladen: Parameter, Objekte und Gruppenadressen.');
+      aenderung();
+      return true;
+    }
+    $('alleLaden').addEventListener('click', function () {
+      const offen = P.geraete.filter(function (g) { return g.geladen !== cfg(g); });
+      if (!offen.length) return progMeldung('Alle Geräte sind aktuell.');
+      let ok = 0; offen.forEach(function (g) { if (appLaden(g, true)) ok++; });
+      if (ok < offen.length) progMeldung(ok + ' von ' + offen.length + ' geladen. Geräte ohne passende physikalische Adresse fehlen noch.', true);
+      else progMeldung(ok + ' Applikation' + (ok > 1 ? 'en' : '') + ' geladen.');
+    });
+
+    // ---------- Busmonitor ----------
+    function monitorZeigen() {
+      const tb = $('monitor').querySelector('tbody'), unten = tb.parentNode.parentNode;
+      const amEnde = unten.scrollTop + unten.clientHeight >= unten.scrollHeight - 30;
+      tb.innerHTML = '';
+      S.monitor.forEach(function (m, i) {
+        const tr = knoten('tr', (m.system ? 'system' : '') + (i === S.gewaehlt ? ' gewaehlt' : ''));
+        [String(m.nr), zahl(m.zeit, 2) + ' s', m.quelle, m.ziel, m.dienst, m.dpt, m.wert, m.bytes.map(hex).join(' ')].forEach(function (x) { tr.append(knoten('td', '', x)); });
+        tr.tabIndex = 0;
+        const w = function () { S.gewaehlt = i; detail(m); monitorNeu = true; };
+        tr.addEventListener('click', w); tr.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); w(); } });
+        tb.append(tr);
+      });
+      if (amEnde) unten.scrollTop = unten.scrollHeight;
+    }
+    function detail(m) {
+      const z = $('detail'); z.innerHTML = '';
+      z.append(knoten('h3', 'zwischen', 'Telegramm Nr. ' + m.nr + ': ' + m.dienst + (m.system ? '' : ' an ' + m.ziel)));
+      const b = m.bytes, f = knoten('div', 'bytes');
+      const prio = { 0: 'System', 2: 'Alarm', 1: 'hoch', 3: 'niedrig' }[(b[0] >> 2) & 3];
+      const deut = [['Steuerfeld', 'Standardrahmen, Priorität ' + prio], ['Quelle', 'Adresse ' + m.quelle], ['Quelle', ''], ['Ziel', m.system ? m.ziel : 'Gruppe ' + m.ziel.split(' ')[0]], ['Ziel', ''],
+        ['Adresstyp, Routing, Länge', ((b[5] & 0x80) ? 'Gruppe' : 'Einzel') + ', Zähler ' + ((b[5] >> 4) & 7) + ', ' + (b[5] & 15) + ' + 1 Byte']];
+      b.forEach(function (x, i) {
+        let n, d;
+        if (i < 6) { n = deut[i][0]; d = deut[i][1]; }
+        else if (i === b.length - 1) { n = 'Prüfbyte'; d = 'invertiertes XOR'; }
+        else if (i === 6) { n = 'Transport'; d = 'TPCI'; }
+        else if (i === 7) { n = 'Dienst'; d = m.system ? m.dienst : m.dienst + (groesse(m.dpt) <= 6 && m.dienst !== 'Lesen' ? ', Wert ' + (x & 63) : ''); }
+        else { n = 'Daten'; d = m.dpt || ''; }
+        const e = knoten('div', 'byte'); e.append(knoten('small', '', n), knoten('b', '', hex(x)), knoten('small', '', ('0000000' + x.toString(2)).slice(-8)));
+        if (d) e.title = d;
+        f.append(e);
+      });
+      z.append(f);
+      const erkl = knoten('ul');
+      [['Steuerfeld ' + hex(b[0]), 'Standardrahmen, Priorität ' + prio + (b[0] & 0x20 ? '' : ', Wiederholung')],
+        ['Quelle ' + hex(b[1]) + ' ' + hex(b[2]), m.quelle + ' = ' + paZahl(m.quelle)],
+        ['Ziel ' + hex(b[3]) + ' ' + hex(b[4]), m.system ? m.ziel : m.ziel.split(' ')[0] + ' = ' + ((b[3] << 8) | b[4]) + ' (2048 · H + 256 · M + U)'],
+        ['Byte 6 ' + hex(b[5]), ((b[5] & 0x80) ? 'Gruppenadresse' : 'Einzeladresse') + ', Routingzähler ' + ((b[5] >> 4) & 7) + ', Länge ' + (b[5] & 15)],
+        ['Nutzdaten', b.slice(6, -1).map(hex).join(' ') + (m.system ? '' : ' → ' + m.dienst + (m.dienst !== 'Lesen' ? ': ' + m.wert : ''))],
+        ['Prüfbyte ' + hex(b[b.length - 1]), 'alle Bytes XOR, dann invertiert']].forEach(function (x) { const li = knoten('li'); li.append(knoten('b', '', x[0] + ': '), document.createTextNode(x[1])); erkl.append(li); });
+      z.append(erkl);
+    }
+    $('gmSchreiben').addEventListener('click', function () {
+      const g = gaVon($('gmGa').value); if (!g) return status('Erst eine Gruppenadresse anlegen.', true);
+      const roh = $('gmWert').value.trim().replace(',', '.').toLowerCase();
+      let v = roh === 'ein' || roh === 'an' || roh === 'true' ? 1 : roh === 'aus' || roh === 'false' ? 0 : parseFloat(roh);
+      if (!isFinite(v)) return status('Wert als Zahl eingeben (1/0, Prozent oder Messwert).', true);
+      const d = g.dpt || (Math.abs(v) <= 1 && v === Math.round(v) ? '1.001' : '5.001');
+      if (groesse(d) === 8) v = Math.max(0, Math.min(100, v));
+      if (groesse(d) === 1) v = v ? 1 : 0;
+      warteschlange.push({ quelle: SCHNITTSTELLE, ga: g, dienst: 'Schreiben', dpt: d, wert: v });
+    });
+    $('gmLesen').addEventListener('click', function () {
+      const g = gaVon($('gmGa').value); if (!g) return status('Erst eine Gruppenadresse anlegen.', true);
+      warteschlange.push({ quelle: SCHNITTSTELLE, ga: g, dienst: 'Lesen', dpt: g.dpt || '1.001', wert: 0 });
+    });
+    $('gmLeeren').addEventListener('click', function () { S.monitor = []; S.gewaehlt = -1; $('detail').innerHTML = ''; monitorNeu = true; });
+
+    // ---------- Aufgaben und Prüfung ----------
+    function verbunden(sender, sObj, empf, eObj) {
+      const a = G(sender), b = G(empf); if (!a || !b) return false;
+      const ga1 = a.obj[sObj][0];
+      return !!ga1 && b.obj[eObj].indexOf(ga1) >= 0 && a.flags[sObj].indexOf('K') >= 0 && a.flags[sObj].indexOf('Ü') >= 0 && b.flags[eObj].indexOf('K') >= 0 && b.flags[eObj].indexOf('S') >= 0;
+    }
+    const PRUEF = {
+      alleProgrammiert: ['Alle Geräte haben ihre Adresse und die aktuelle Applikation', function () { return P.geraete.every(function (g) { return g.pa === g.paSoll && g.geladen === cfg(g); }); }],
+      lichtTaster: ['Wippe A schaltet den Dimmaktor', function () { return verbunden('t1', 'a', 'd1', 'schalten'); }],
+      lichtPraesenz: ['Der Präsenzmelder schaltet den Dimmaktor', function () { return verbunden('p1', 'praesenz', 'd1', 'schalten'); }],
+      jalousie: ['Wippe B fährt die Jalousie (Auf/Ab und Stopp)', function () { return verbunden('t1', 'b_aufab', 'j1', 'aufab') && verbunden('t1', 'b_stopp', 'j1', 'stopp'); }],
+      fenster: ['Der Fensterkontakt sperrt die Heizung', function () { return verbunden('b1', 'fenster', 'h1', 'fenster'); }],
+      windalarm: ['Der Windalarm erreicht den Jalousieaktor', function () { return verbunden('w1', 'windalarm', 'j1', 'wind'); }],
+      steckdose: ['Wippe C schaltet die Steckdose', function () { return verbunden('t1', 'c', 's1', 'a'); }],
+      tasterStatus: ['Das Objekt Wippe A hört auch auf die Statusmeldung des Dimmaktors', function () { const t = G('t1'), d = G('d1'); return !!t && !!d && d.obj.status[0] && t.obj.a.indexOf(d.obj.status[0]) >= 0 && t.flags.a.indexOf('S') >= 0; }]
+    };
+    function aufgabeZeigen(geprueft) {
+      const a = AUFGABEN[P.szenario] || AUFGABEN.fertig, z = $('aufgabe'); z.innerHTML = '';
+      z.append(knoten('h3', '', a[0]), knoten('p', '', a[1]));
+      if (a[2].length) {
+        const ul = knoten('ul', 'pruefung');
+        a[2].forEach(function (k) { const ok = PRUEF[k][1](); ul.append(knoten('li', geprueft ? (ok ? 'ok' : 'nein') : '', PRUEF[k][0])); });
+        z.append(ul);
+        const b = knoten('button', 'knopf', 'Lösung prüfen'); b.type = 'button'; b.style.marginTop = '8px';
+        b.addEventListener('click', function () {
+          aufgabeZeigen(true);
+          const alle = a[2].every(function (k) { return PRUEF[k][1](); });
+          status(alle ? 'Geschafft – alles stimmt. Jetzt im Raum ausprobieren.' : 'Noch nicht alles erfüllt (✗).', !alle);
+        });
+        z.append(b);
+      }
+    }
+
+    // ---------- Ablauf ----------
+    function status(t, schlecht) { const s = $('status'); s.textContent = t; s.className = 'meldung-sim ' + (schlecht ? 'schlecht' : 'gut'); }
+    function aenderung(nurProjekt) {
+      speichern(); gaBaum(); progListe(); geraeteAufbauen();
+      if (ansicht === 'obj') { geraetWahl(); geraetDetail(); }
+      aufgabeZeigen(false);
+      void nurProjekt;
+    }
+    function reiter(name) {
+      ansicht = name;
+      [['ga', 't-ga', 'p-ga'], ['obj', 't-obj', 'p-obj'], ['prog', 't-prog', 'p-prog']].forEach(function (r) { $(r[1]).setAttribute('aria-selected', r[0] === name ? 'true' : 'false'); $(r[2]).hidden = r[0] !== name; });
+      if (name === 'obj') { geraetWahl(); geraetDetail(); }
+      if (name === 'prog') progListe();
+    }
+    $('t-ga').addEventListener('click', function () { reiter('ga'); });
+    $('t-obj').addEventListener('click', function () { reiter('obj'); });
+    $('t-prog').addEventListener('click', function () { reiter('prog'); });
+    SZENARIEN.forEach(function (s) { const o = knoten('option', '', s[1]); o.value = s[0]; $('szenario').append(o); });
+    $('szenario').value = P.szenario;
+    $('laden').addEventListener('click', function () {
+      P = projekt($('szenario').value); laufzeitNeu(); S.bus = true; busKnopf(); aenderung(); status('Ausgangslage geladen: ' + $('szenario').selectedOptions[0].textContent + '.');
+      $('detail').innerHTML = ''; monitorNeu = true;
+    });
+    function busKnopf() { $('busspannung').textContent = 'Spannungsversorgung: ' + (S.bus ? 'an' : 'aus'); $('busspannung').setAttribute('aria-pressed', S.bus ? 'true' : 'false'); }
+    $('busspannung').addEventListener('click', function () {
+      S.bus = !S.bus; if (!S.bus) { S.prog = {}; warteschlange = []; }
+      busKnopf(); geraeteAufbauen(); progListe();
+      status(S.bus ? 'Busspannung wieder da. Die Geräte starten neu.' : 'Spannungsversorgung aus: Kein Gerät kann senden, Aktoren behalten ihren Zustand.', !S.bus);
+    });
+
+    // Teilen (gemeinsames Muster aus basis.js)
+    $('teilen').addEventListener('click', function () { Teilen.url('anlage', P).then(function (url) { Teilen.kopieren(url, function (t) { $('teilenMeldung').textContent = t; setTimeout(function () { $('teilenMeldung').textContent = ''; }, 5000); }); }); });
+    const vorherKnopf = Teilen.knopf($('teilen').parentNode, SPEICHER, function (roh) {
+      let p = null; try { p = JSON.parse(roh); } catch (e) { p = null; }
+      if (!p || !pruefen(p)) { status('Kein gültiger vorheriger Stand gefunden.', true); return; }
+      P = p; laufzeitNeu(); $('szenario').value = P.szenario; aenderung(); status('Vorherige Anlage wiederhergestellt.');
+    }, 'Anlage');
+
+    function schleife(t) {
+      schritt(t); zeichnen(t);
+      if (monitorNeu) { monitorNeu = false; monitorZeigen(); geraeteWerte(); }
+      requestAnimationFrame(schleife);
+    }
+    // Werte in den Karten aktualisieren, ohne die Karten neu zu bauen
+    function geraeteWerte() {
+      P.geraete.forEach(function (g) {
+        const k = $('karte-' + g.id); if (!k) return;
+        const w = k.querySelector('.wert-zeile:last-child'); if (!w) return;
+        w.textContent = TYPEN[g.typ].obj.map(function (o) { return o[1].replace(/^Wippe |^Kanal /, '') + ': ' + DPT[o[2]].text(S.wert[g.id + '.' + o[0]] || 0); }).slice(0, 3).join(' · ');
+      });
+    }
+
+    laufzeitNeu(); groesseSetzen(); busKnopf();
+    Array.prototype.forEach.call(document.querySelectorAll('#sim-wissen [data-tex]'), function (el) { Formel.setze(el, el.getAttribute('data-tex'), true); });
+    aenderung(); reiter('ga');
+    window.addEventListener('resize', groesseSetzen);
+    requestAnimationFrame(schleife);
+    Teilen.lesen('anlage').then(function (p) {
+      if (!p) return;
+      if (!pruefen(p)) throw new Error('ungültig');
+      const text = JSON.stringify(p), gesichert = Teilen.sichern(SPEICHER, text);
+      P = p; clearTimeout(uhr); try { localStorage.setItem(SPEICHER, text); } catch (e) { /* ohne Speicher */ }
+      laufzeitNeu(); $('szenario').value = P.szenario; aenderung(); vorherKnopf.zeigen();
+      status('Anlage aus dem Link geladen und gespeichert.' + (gesichert ? ' Dein vorheriger Stand ist gesichert.' : ''));
+    }).catch(function () { status('Der Link ist unvollständig oder beschädigt – es gilt die gespeicherte Anlage.', true); });
+    void bewegungAus;
+  })();
+  </script>
+</body>
+</html>
