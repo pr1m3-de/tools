@@ -13,6 +13,9 @@
 'use strict';
 const fs = require('fs');
 const path = require('path');
+// Sicherheitsrichtlinie für jede Seite: nur Dateien der eigenen Adresse, keine fremden Skripte, Bilder,
+// Schriften oder Verbindungen (Inline-Skripte der Seiten sind erlaubt, Ausführen von Text als Code nicht)
+const CSP = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'";
 const { execSync } = require('child_process');
 
 const WURZEL = path.join(__dirname, '..');
@@ -101,6 +104,7 @@ alle.forEach(function (rel) {
   const bildText = eigenesBild ? kurz + ' – Vorschau' : MARKE;
   const block = [
     '  <!-- seo -->',
+    '  <meta http-equiv="Content-Security-Policy" content="' + CSP + '">',
     '  <link rel="canonical" href="' + attr(url) + '">',
     indexieren ? '  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">' : '  <meta name="robots" content="noindex, follow">',
     '  <meta property="og:type" content="website">',

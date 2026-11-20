@@ -6,6 +6,7 @@
   <title>Lernen – Formeln &amp; Rechner</title>
   <meta name="description" content="Formeln lernen und üben: Aufgaben mit zufälligen Werten aus allen Rechnern, Formelkarten zum Abfragen und die gesamte Formelsammlung – nach Bereichen und Themen auswählbar, mit Lösungsweg, Punktestand und offline nutzbar.">
   <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
   <link rel="canonical" href="https://tools.pr1m3.de/lernen.html">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta property="og:type" content="website">
@@ -20,7 +21,7 @@
   <meta name="twitter:title" content="Lernen">
   <meta name="twitter:description" content="Formeln lernen und üben: Aufgaben mit zufälligen Werten aus allen Rechnern, Formelkarten zum Abfragen und die gesamte Formelsammlung – nach Bereichen und Themen auswählbar, mit Lösungsweg, Punktestand und offline nutzbar.">
   <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/lernen.html#seite","name":"Lernen","url":"https://tools.pr1m3.de/lernen.html","inLanguage":"de","description":"Formeln lernen und üben: Aufgaben mit zufälligen Werten aus allen Rechnern, Formelkarten zum Abfragen und die gesamte Formelsammlung – nach Bereichen und Themen auswählbar, mit Lösungsweg, Punktestand und offline nutzbar.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/lernen.html#pfad"},"dateModified":"2026-11-17"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/lernen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Lernen","item":"https://tools.pr1m3.de/lernen.html"}]}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/lernen.html#seite","name":"Lernen","url":"https://tools.pr1m3.de/lernen.html","inLanguage":"de","description":"Formeln lernen und üben: Aufgaben mit zufälligen Werten aus allen Rechnern, Formelkarten zum Abfragen und die gesamte Formelsammlung – nach Bereichen und Themen auswählbar, mit Lösungsweg, Punktestand und offline nutzbar.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/lernen.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/lernen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Lernen","item":"https://tools.pr1m3.de/lernen.html"}]}]}</script>
   <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
@@ -485,14 +486,49 @@
     const zufall = function (liste) { return liste[Math.floor(Math.random() * liste.length)]; };
     const formel = function (ziel, tex, block, text) { if (text) { ziel.textContent = tex; ziel.classList.add('formel-text'); return; } try { Formel.setze(ziel, tex, block); } catch (x) { ziel.textContent = tex; } };
 
+    // Liest ein JavaScript-Literal (Arrays, Objekte, Texte in '…', Zahlen, true/false/null) ohne es auszuführen
+    function literal(t) {
+      let i = 0;
+      const fehler = function () { throw new Error('Liste nicht lesbar bei ' + i); };
+      const leer = function () { for (;;) { while (i < t.length && /\s/.test(t[i])) i++; if (t[i] === '/' && t[i + 1] === '/') { while (i < t.length && t[i] !== '\n') i++; } else if (t[i] === '/' && t[i + 1] === '*') { i = t.indexOf('*/', i + 2); if (i < 0) fehler(); i += 2; } else return; } };
+      const text = function () {
+        const q = t[i++]; let o = '';
+        while (i < t.length && t[i] !== q) {
+          if (t[i] === '\\') { const z = t[i + 1]; i += 2; if (z === 'n') o += '\n'; else if (z === 't') o += '\t'; else if (z === 'u') { o += String.fromCharCode(parseInt(t.slice(i, i + 4), 16)); i += 4; } else o += z; }
+          else o += t[i++];
+        }
+        if (t[i] !== q) fehler(); i++; return o;
+      };
+      const wert = function (tiefe) {
+        if (tiefe > 20) fehler();
+        leer(); const z = t[i];
+        if (z === '[') { i++; const a = []; leer(); while (t[i] !== ']') { a.push(wert(tiefe + 1)); leer(); if (t[i] === ',') { i++; leer(); } else if (t[i] !== ']') fehler(); } i++; return a; }
+        if (z === '{') {
+          i++; const o = {}; leer();
+          while (t[i] !== '}') {
+            let k; if (t[i] === "'" || t[i] === '"') k = text(); else { const m = /^[A-Za-z_$ÄÖÜäöüß][\wÄÖÜäöüß$]*/.exec(t.slice(i, i + 60)); if (!m) fehler(); k = m[0]; i += k.length; }
+            leer(); if (t[i] !== ':') fehler(); i++;
+            const v = wert(tiefe + 1);
+            if (k !== '__proto__' && k !== 'constructor' && k !== 'prototype') o[k] = v;
+            leer(); if (t[i] === ',') { i++; leer(); } else if (t[i] !== '}') fehler();
+          }
+          i++; return o;
+        }
+        if (z === "'" || z === '"') return text();
+        const m = /^(-?\d+(\.\d+)?(e[-+]?\d+)?|true|false|null)/.exec(t.slice(i, i + 30)); if (!m) fehler();
+        i += m[0].length; return m[0] === 'true' ? true : m[0] === 'false' ? false : m[0] === 'null' ? null : +m[0];
+      };
+      const v = wert(0); leer(); if (i < t.length && t[i] !== ';') fehler(); return v;
+    }
+
     // ---------- Themenliste aus der Startseite ----------
     let themen = [], bereichFarbe = {}, gewaehlt = lies(S_WAHL, null);
     function themenLaden() {
       return fetch('index.html').then(function (a) { return a.text(); }).then(function (html) {
         const i = html.indexOf('const eintraege = ['), j = html.indexOf('\n    ];', i), b = html.indexOf('const BEREICHE = {'), c = html.indexOf('};', b);
         if (i < 0 || j < 0) throw new Error('Liste nicht gefunden');
-        const liste = new Function('return ' + html.slice(i + 'const eintraege = '.length, j + 6))();
-        bereichFarbe = b >= 0 ? new Function('return ' + html.slice(b + 'const BEREICHE = '.length, c + 1))() : {};
+        const liste = literal(html.slice(i + 'const eintraege = '.length, j + 6));
+        bereichFarbe = b >= 0 ? literal(html.slice(b + 'const BEREICHE = '.length, c + 1)) : {};
         themen = liste.filter(function (x) { return x && typeof x.pfad === 'string' && /^[a-z0-9-]+\/[a-z0-9-]+\.html$/.test(x.pfad); })
           .map(function (x) { return { pfad: x.pfad, titel: String(x.titel || x.pfad), bereich: String(x.bereich || ''), gruppe: String(x.gruppe || '') }; });
       });
