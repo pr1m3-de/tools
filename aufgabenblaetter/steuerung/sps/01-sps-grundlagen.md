@@ -63,7 +63,7 @@ Benötigte Formeln: $y = \frac{x - x_\text{min}}{x_\text{max} - x_\text{min}} \c
 :::lösung
 1. %IX1.5: Eingang Byte 1, Bit 5. %QX0.2: Ausgang Byte 0, Bit 2. %IW64: Eingangswort ab Byte 64 (16 Bit, z. B. Analogwert).
 2. BOOL, INT, REAL, TIME (z. B. T#5s).
-3. INT reicht nur bis 32 767 – Überlauf. Im Simulator geht die CPU in STOP; in echten Steuerungen springt der Wert je nach Gerät ins Negative. DINT verwenden.
+3. INT reicht nur bis 32 767 – der Wert läuft über und springt ohne Fehlermeldung auf −32 768 (probier es im Simulator aus und beobachte die Variable). Der Übersetzer warnt, wenn er das erkennen kann. DINT verwenden.
 :::
 
 ## Aufgabe 5 – Analogwerte
