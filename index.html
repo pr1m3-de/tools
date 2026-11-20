@@ -252,6 +252,8 @@
         <li><a href="gebaeudeautomation/knx-planung.html">KNX-Planung: Topologie, Adressen und Simulator</a> – KNX planen, simulieren und verstehen: Planungsrechner für Linien, Bereiche, Koppler und Spannungsversorgung, Topologie-Simulator mit Filtertabellen, Telegrammweg und Buslast, Gruppenadress-Planer mit CSV-Export, Adress-Werkstatt mit allen 16 Bit, Kommunikationsarten TP, PL, RF, IP und IoT, Gerätearten und Programmierung.</li>
         <li><a href="gebaeudeautomation/knx-simulator.html">KNX-Simulator: Programmieren und Fehlersuche</a> – KNX zum Ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, Flags setzen, physikalische Adressen und Applikationen programmieren und Telegramme im Busmonitor Byte für Byte lesen – mit Fehlersuch-Aufgaben.</li>
         <li><a href="gebaeudeautomation/smart-home.html">Gebäudeautomation und Smart Home</a> – Gebäudeautomation und Smart Home verstehen und selbst bauen: Automationspyramide, zentrale und dezentrale Systeme, KNX, LON, BACnet, Modbus, DALI, EnOcean, Zigbee, Z-Wave, Thread und Matter, MQTT und Open-Source-Zentralen – mit Smart-Home-Simulator: eigene Räume, Geschosse und 18 Gerätearten, Wenn-Und-Dann-Regeln mit Verzögerung, Zeitraum, Sonne und Ereignisprotokoll, sowie BACnet-Prioritäten.</li>
+        <li><a href="steuerung/sps.html">SPS-Simulator: Strukturierter Text und Zyklus</a> – SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, digitale und analoge Signale, Öffner und Schließer, Adressierung, Datentypen und die Sprachen nach IEC 61131-3 – mit SPS-Simulator in Strukturiertem Text, Timern, Zählern, Flanken, Schrittketten und Anlagenmodellen (Motor, Ampel, Tank, Tor, Förderband).</li>
+        <li><a href="steuerung/kleinsteuerung.html">Kleinsteuerung (Logikmodul): Funktionsplan</a> – Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.</li>
       </ul>
     </section>
   </noscript>
@@ -1239,11 +1241,27 @@
         themen: ['Smart Home', 'Gebäudeautomation', 'Automationspyramide', 'zentral', 'dezentral', 'LON', 'BACnet', 'Modbus', 'DALI', 'M-Bus', 'EnOcean', 'Zigbee', 'Z-Wave', 'Thread', 'Matter', 'MQTT', 'Home Assistant', 'openHAB', 'ioBroker', 'Automation', 'Wenn-Dann-Regel', 'BACnet-Priorität', 'Szene', 'Taster', 'Helfer', 'CO2', 'Wassermelder', 'Verzögerung', 'Simulator'],
         text: 'Gebäudeautomation und Smart Home verstehen und selbst bauen: Automationspyramide, zentrale und dezentrale Systeme, KNX, LON, BACnet, Modbus, DALI, EnOcean, Zigbee, Z-Wave, Thread und Matter, MQTT und Open-Source-Zentralen – mit Smart-Home-Simulator: eigene Räume, Geschosse und 18 Gerätearten, Wenn-Und-Dann-Regeln mit Verzögerung, Zeitraum, Sonne und Ereignisprotokoll, sowie BACnet-Prioritäten.',
         tex: 'X(n) = 10^{\\frac{n - 1}{253/3} - 1}\\,\\%'
+      },
+      {
+        titel: 'SPS-Simulator: Strukturierter Text und Zyklus',
+        pfad: 'steuerung/sps.html',
+        bereich: 'Steuerungstechnik',
+        themen: ['SPS', 'speicherprogrammierbare Steuerung', 'IEC 61131-3', 'Strukturierter Text', 'ST', 'KOP', 'FUP', 'AWL', 'Ablaufsprache', 'Zyklus', 'Prozessabbild', 'PAE', 'PAA', 'Öffner', 'Schließer', 'Drahtbruchsicherheit', 'Selbsthaltung', 'Wendeschützschaltung', 'TON', 'TOF', 'TP', 'CTU', 'Zähler', 'Flanke', 'Schrittkette', 'Analogwert', '4-20 mA', 'Skalierung', 'Merker', 'Datentyp'],
+        text: 'SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, digitale und analoge Signale, Öffner und Schließer, Adressierung, Datentypen und die Sprachen nach IEC 61131-3 – mit SPS-Simulator in Strukturiertem Text, Timern, Zählern, Flanken, Schrittketten und Anlagenmodellen (Motor, Ampel, Tank, Tor, Förderband).',
+        tex: 'y = \\frac{x - x_\\text{min}}{x_\\text{max} - x_\\text{min}} \\cdot (y_\\text{max} - y_\\text{min}) + y_\\text{min}'
+      },
+      {
+        titel: 'Kleinsteuerung (Logikmodul): Funktionsplan',
+        pfad: 'steuerung/kleinsteuerung.html',
+        bereich: 'Steuerungstechnik',
+        themen: ['Kleinsteuerung', 'Logikmodul', 'Steuerrelais', 'Funktionsplan', 'FUP', 'UND', 'ODER', 'NICHT', 'XOR', 'Einschaltverzögerung', 'Ausschaltverzögerung', 'Wischrelais', 'Treppenlichtschalter', 'Stromstoßrelais', 'Selbsthaltung', 'Taktgeber', 'Zähler', 'Schaltuhr', 'Analogschwellwert', 'Hysterese', 'Rolltor'],
+        text: 'Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.',
+        tex: 'f = \\frac{1}{T_\\text{ein} + T_\\text{aus}}'
       }
     ];
 
     // Reihenfolge und Farben der Bereiche; Untergruppen in dieser Reihenfolge
-    const BEREICHE = { 'Elektrotechnik': '#2B7BB9', 'Mechanik': '#6E6FA6', 'Sanitärtechnik': '#0E6B6A', 'Heizungstechnik': '#C2410C', 'Brandschutz': '#E4572E', 'Arbeitsschutz': '#2F9E44', 'Dach und Klempnerei': '#A0785A', 'IT und Netzwerk': '#3B5BDB', 'Geld und Kalkulation': '#A16207', 'Gebäudeautomation': '#9333EA', 'Werkzeuge': '#6B7785' };
+    const BEREICHE = { 'Elektrotechnik': '#2B7BB9', 'Mechanik': '#6E6FA6', 'Sanitärtechnik': '#0E6B6A', 'Heizungstechnik': '#C2410C', 'Brandschutz': '#E4572E', 'Arbeitsschutz': '#2F9E44', 'Dach und Klempnerei': '#A0785A', 'IT und Netzwerk': '#3B5BDB', 'Geld und Kalkulation': '#A16207', 'Gebäudeautomation': '#9333EA', 'Steuerungstechnik': '#0E7C86', 'Werkzeuge': '#6B7785' };
     const GRUPPEN = ['Grundlagen', 'Installation und Schutz', 'Energie und Photovoltaik'];
     const farbe = function (b) { return BEREICHE[b] || 'var(--leise)'; };
 

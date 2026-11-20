@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kleinsteuerung (Logikmodul): Funktionsplan-Simulator – Formeln &amp; Rechner</title>
+  <meta name="description" content="Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/steuerung/kleinsteuerung.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Kleinsteuerung (Logikmodul): Funktionsplan-Simulator">
+  <meta property="og:description" content="Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.">
+  <meta property="og:url" content="https://tools.pr1m3.de/steuerung/kleinsteuerung.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Kleinsteuerung (Logikmodul): Funktionsplan-Simulator">
+  <meta name="twitter:description" content="Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#seite","name":"Kleinsteuerung (Logikmodul): Funktionsplan-Simulator","url":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html","inLanguage":"de","description":"Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Kleinsteuerung (Logikmodul): Funktionsplan-Simulator","item":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#fragen","mainEntity":[{"@type":"Question","name":"Kleinsteuerung oder Zeitrelais?","acceptedAnswer":{"@type":"Answer","text":"Für eine einzige Funktion reicht ein Zeitrelais oder Stromstoßschalter. Sobald mehrere Funktionen verknüpft werden (Treppenlicht plus Zentral-Aus plus Schaltuhr), ist eine Kleinsteuerung günstiger, braucht weniger Platz und lässt sich ändern, ohne neu zu verdrahten."}},{"@type":"Question","name":"Warum zählen offene UND-Eingänge als 1?","acceptedAnswer":{"@type":"Answer","text":"Damit ein UND-Block mit nur zwei belegten Eingängen funktioniert. Beim ODER zählen offene Eingänge als 0. So stört ein unbelegter Eingang die Verknüpfung nicht."}},{"@type":"Question","name":"Was bedeutet der Kreis am Eingang?","acceptedAnswer":{"@type":"Answer","text":"Negation: Das Signal wird vor dem Block umgekehrt. So braucht man für einen Öffner-Endschalter oder „nicht gleichzeitig“ keinen eigenen NICHT-Block."}},{"@type":"Question","name":"Kann ich Blöcke rückkoppeln?","acceptedAnswer":{"@type":"Answer","text":"Ja. Ein Block darf den Ausgang eines späteren Blocks oder eines Ausgangs Q lesen; er bekommt dann den Wert aus dem vorigen Zyklus – genau wie in einer echten Steuerung."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h4 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ks-leiste { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 8px 0; }
+    .ks-leiste label { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .ks-leiste select, .bl-zeile select, .bl-zeile input { padding: 5px 7px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; font-size: .9rem; max-width: 100%; min-width: 0; }
+    .uhrzeit { font-family: var(--technik); font-size: 1.4rem; font-weight: 700; }
+    .fup-rahmen { overflow-x: auto; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); }
+    #fup { display: block; touch-action: manipulation; }
+    .io { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(140px, 100%), 1fr)); gap: 6px; margin: 6px 0; }
+    .io-feld { border: 1px solid var(--linie); border-radius: 8px; padding: 6px 8px; background: var(--flaeche2); font-size: .85rem; min-width: 0; }
+    .io-feld b { display: block; font-family: var(--technik); }
+    .io-feld input[type=text] { width: 100%; padding: 5px; min-height: 32px; border: 1px solid var(--linie); border-radius: 6px; background: var(--flaeche); color: var(--text); font: inherit; font-size: .85rem; }
+    .io-feld select { width: 100%; margin-top: 3px; padding: 5px; min-height: 32px; border: 1px solid var(--linie); border-radius: 6px; background: var(--flaeche); color: var(--text); font: inherit; font-size: .8rem; }
+    .io-feld button { margin-top: 4px; min-height: 34px; width: 100%; border: 1.5px solid var(--linie); border-radius: 8px; background: var(--flaeche); color: var(--text); font: inherit; font-weight: 700; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
+    .io-feld button.an { background: #2F9E44; color: #fff; border-color: #2F9E44; }
+    .io-feld .sig { font-family: var(--technik); font-weight: 700; }
+    .io-feld .sig.eins { color: #2F9E44; }
+    .io-feld input[type=range] { width: 100%; min-height: 30px; }
+    .bl-zeile { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--linie); font-size: .9rem; }
+    .io-feld .neg { width: auto; min-width: 34px; margin-top: 0; flex: none; }
+    .io-feld .neg.an { background: #C0392B; color: #fff; border-color: #C0392B; }
+    .io-feld div > select { flex: 1; margin-top: 0; }
+    .bl-zeile > b { font-family: var(--technik); min-width: 2.6em; }
+    .bl-zeile .ein { display: inline-flex; gap: 3px; align-items: center; border: 1px dashed var(--linie); border-radius: 8px; padding: 2px 4px; }
+    .bl-zeile .ein small { font-family: var(--technik); color: var(--leise); }
+    .bl-zeile .neg { font-family: var(--technik); min-width: 30px; min-height: 30px; border: 1px solid var(--linie); border-radius: 6px; background: var(--flaeche); color: var(--text); cursor: pointer; }
+    .bl-zeile .neg.an { background: #C0392B; color: #fff; border-color: #C0392B; }
+    .bl-zeile input.par { width: 5em; }
+    .entf { border: 0; background: none; color: var(--leise); cursor: pointer; font-size: 1.1rem; min-width: 32px; min-height: 32px; }
+    .meldung-ks { min-height: 1.3em; font-weight: 600; margin: 6px 0; }
+    .meldung-ks.schlecht { color: #C0392B; }
+    .meldung-ks.gut { color: #2F9E44; }
+    @media print { .ks-leiste, .io-feld button, .neg, .entf { display: none !important; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite">
+    <section class="tafel">
+      <h1><span class="unterstrichen">Kleinsteuerung (Logikmodul)</span></h1>
+      <p>Kleinsteuerungen ersetzen Zeitrelais, Stromstoßschalter und Hilfsschütze durch ein kleines Gerät mit festen Ein- und Ausgängen. Programmiert wird meist im Funktionsplan: Bausteine verbinden, Zeiten einstellen, fertig. Hier baust du das Programm aus Funktionsblöcken und testest es sofort. Für größere Aufgaben: <a href="sps.html">SPS-Simulator</a>.</p>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-ks">
+      <h2 id="h-ks">Simulator</h2>
+      <div class="ks-leiste">
+        <label>Beispiel <select id="beispiel" data-nicht-merken></select></label>
+        <button type="button" class="knopf" id="laden">Laden</button>
+        <span class="uhrzeit" id="uhr">06:25</span>
+        <label>Uhr <select id="tempo" data-nicht-merken><option value="1">Echtzeit</option><option value="60" selected>1 min/s</option><option value="600">10 min/s</option></select></label>
+      </div>
+      <p class="hilfe" id="beispielText"></p>
+      <div class="fup-rahmen"><canvas id="fup" role="img" aria-label="Funktionsplan: Eingänge links, Funktionsblöcke in der Mitte, Ausgänge rechts; grüne Linien führen Signal 1"></canvas></div>
+      <p class="hilfe">Grün = Signal 1. Kreis am Eingang = negiert. Eingänge links antippen schaltet sie (Taster: halten).</p>
+      <h3 class="zwischen">Eingänge</h3>
+      <div class="io" id="eingaenge"></div>
+      <h3 class="zwischen">Ausgänge</h3>
+      <div class="io" id="ausgaenge"></div>
+      <h3 class="zwischen">Programm: Blöcke</h3>
+      <div id="bloecke"></div>
+      <div class="ks-leiste">
+        <select id="neuTyp" aria-label="Art des neuen Blocks" data-nicht-merken></select>
+        <button type="button" class="knopf" id="neu">+ Block</button>
+        <button type="button" class="knopf-leise" id="teilen">Link kopieren</button>
+        <span id="teilenMeldung" class="hilfe" role="status"></span>
+      </div>
+      <p class="meldung-ks" id="meldung" role="status"></p>
+    </section>
+
+    <section class="tafel abstand formelsammlung" id="ks-wissen" aria-labelledby="h-ks-wissen">
+      <h2 id="h-ks-wissen">Funktionen einer Kleinsteuerung</h2>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Funktion</th><th>Zeichen</th><th>Verhalten</th><th>ersetzt</th></tr></thead>
+        <tbody>
+          <tr><td>UND</td><td>&amp;</td><td>1, wenn alle Eingänge 1 sind (offene Eingänge zählen als 1)</td><td>Reihenschaltung von Schließern</td></tr>
+          <tr><td>ODER</td><td>≥1</td><td>1, wenn mindestens ein Eingang 1 ist (offene zählen als 0)</td><td>Parallelschaltung</td></tr>
+          <tr><td>NICHT</td><td>1 mit Kreis</td><td>kehrt um</td><td>Öffner</td></tr>
+          <tr><td>NAND, NOR</td><td>&amp; / ≥1 mit Kreis</td><td>UND bzw. ODER, dann umgekehrt</td><td></td></tr>
+          <tr><td>XOR</td><td>=1</td><td>1, wenn die beiden Eingänge verschieden sind</td><td>Wechselschaltung</td></tr>
+          <tr><td>Flanke</td><td>↑</td><td>genau einen Zyklus lang 1, wenn der Eingang von 0 auf 1 geht</td><td></td></tr>
+          <tr><td>Einschaltverzögerung</td><td>⊓→</td><td>Ausgang wird T nach dem Einschalten 1</td><td>anzugsverzögertes Zeitrelais</td></tr>
+          <tr><td>Ausschaltverzögerung</td><td>→⊓</td><td>Ausgang folgt sofort, fällt erst T nach dem Ausschalten ab</td><td>abfallverzögertes Zeitrelais</td></tr>
+          <tr><td>Wischrelais</td><td>⊓</td><td>steigende Flanke gibt einen Impuls der Länge T</td><td>Wischrelais</td></tr>
+          <tr><td>Treppenlichtschalter</td><td>⊓⊓</td><td>jede Flanke startet T neu, kurz vor Ablauf Vorwarnung (kurzes Aus)</td><td>Treppenlichtzeitschalter</td></tr>
+          <tr><td>Stromstoßrelais</td><td>RS ↑</td><td>jede Flanke an Trg schaltet um; S setzt, R löscht</td><td>Stromstoßschalter</td></tr>
+          <tr><td>Selbsthaltung</td><td>RS</td><td>S setzt, R löscht – R hat Vorrang</td><td>Schütz mit Selbsthaltekontakt</td></tr>
+          <tr><td>Taktgeber</td><td>⊓⊔</td><td>blinkt mit T<sub>ein</sub> und T<sub>aus</sub>, solange En = 1</td><td>Blinkrelais</td></tr>
+          <tr><td>Zähler</td><td>+/−</td><td>zählt Flanken an Cnt (Dir = 1: rückwärts), Ausgang 1 ab dem Schwellwert</td><td>Impulszähler</td></tr>
+          <tr><td>Schaltuhr</td><td>⏲</td><td>1 zwischen Ein- und Ausschaltzeit (täglich)</td><td>Zeitschaltuhr</td></tr>
+          <tr><td>Analogschwellwert</td><td>A&gt;</td><td>1 ab der Einschaltschwelle, 0 erst unter der Ausschaltschwelle (Hysterese)</td><td>Grenzwertschalter</td></tr>
+        </tbody>
+      </table></div>
+      <div class="wissen-raster">
+        <section class="wissen-karte" style="--farbe:#0E7C86">
+          <h4>Taktgeber: Frequenz</h4>
+          <div class="formel-block" data-tex="f = \frac{1}{T_\text{ein} + T_\text{aus}}"></div>
+          <p>0,5 s ein und 0,5 s aus ergeben 1 Hz.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#9333EA">
+          <h4>Hysterese</h4>
+          <div class="formel-block" data-tex="\Delta U = U_\text{ein} - U_\text{aus}"></div>
+          <p>Der Abstand zwischen Ein- und Ausschaltschwelle verhindert ständiges Ein- und Ausschalten (Flattern) bei schwankendem Messwert.</p>
+        </section>
+        <section class="wissen-karte" style="--farbe:#E07A1F">
+          <h4>Analogwert</h4>
+          <div class="formel-block" data-tex="x = \frac{U}{10\,\text{V}} \cdot (x_\text{max} - x_\text{min}) + x_\text{min}"></div>
+          <p>Analogeingänge messen meist 0 … 10 V. Ein Füllstandssensor mit 0 … 2 m liefert bei 4 V also 0,8 m.</p>
+        </section>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h4>Sicherheit</h4><p>Kleinsteuerungen sind keine Sicherheitssteuerungen. Not-Halt, Schutztüren und Personenschutz an Toren werden mit eigenen Sicherheitsbauteilen ausgeführt (z. B. Schließkantensicherung, EN 12453 für Tore).</p></article>
+      </div>
+      <p class="hilfe">Kleinsteuerungen gibt es von vielen Herstellern unter eigenen Produktnamen und mit eigener Software. Die Funktionen und Bezeichnungen hier sind allgemein gehalten und angelehnt an DIN EN 61131-3 und übliche Fachbegriffe; die Seite ist von keinem Hersteller und bildet keine Herstellersoftware nach.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Kleinsteuerung oder Zeitrelais?</summary><p>Für eine einzige Funktion reicht ein Zeitrelais oder Stromstoßschalter. Sobald mehrere Funktionen verknüpft werden (Treppenlicht plus Zentral-Aus plus Schaltuhr), ist eine Kleinsteuerung günstiger, braucht weniger Platz und lässt sich ändern, ohne neu zu verdrahten.</p></details>
+        <details><summary>Warum zählen offene UND-Eingänge als 1?</summary><p>Damit ein UND-Block mit nur zwei belegten Eingängen funktioniert. Beim ODER zählen offene Eingänge als 0. So stört ein unbelegter Eingang die Verknüpfung nicht.</p></details>
+        <details><summary>Was bedeutet der Kreis am Eingang?</summary><p>Negation: Das Signal wird vor dem Block umgekehrt. So braucht man für einen Öffner-Endschalter oder „nicht gleichzeitig“ keinen eigenen NICHT-Block.</p></details>
+        <details><summary>Kann ich Blöcke rückkoppeln?</summary><p>Ja. Ein Block darf den Ausgang eines späteren Blocks oder eines Ausgangs Q lesen; er bekommt dann den Wert aus dem vorigen Zyklus – genau wie in einer echten Steuerung.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const $ = function (id) { return document.getElementById(id); };
+    const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
+    const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 2 : n }); };
+    const GRUEN = '#2F9E44', TUERKIS = '#0E7C86', ROT = '#C0392B';
+    const SPEICHER = 'kleinsteuerung-1', MAX_BL = 40;
+
+    // ---------- Bausteine ----------
+    // ein: Eingangsnamen; frei: Wert offener Eingänge; par: [Schlüssel, Name, Einheit, min, max, Start]
+    const TYP = {
+      UND: { name: 'UND', sym: '&', ein: ['1', '2', '3', '4'], frei: 1 },
+      ODER: { name: 'ODER', sym: '≥1', ein: ['1', '2', '3', '4'], frei: 0 },
+      NICHT: { name: 'NICHT', sym: '1', ein: ['1'], frei: 0, negAus: true },
+      NAND: { name: 'NAND', sym: '&', ein: ['1', '2', '3', '4'], frei: 1, negAus: true },
+      NOR: { name: 'NOR', sym: '≥1', ein: ['1', '2', '3', '4'], frei: 0, negAus: true },
+      XOR: { name: 'XOR', sym: '=1', ein: ['1', '2'], frei: 0 },
+      FLANKE: { name: 'Flanke', sym: '↑', ein: ['Trg'], frei: 0 },
+      EV: { name: 'Einschaltverzögerung', sym: '⊓→', ein: ['Trg'], frei: 0, par: [['T', 'T', 's', 0.1, 3600, 3]] },
+      AV: { name: 'Ausschaltverzögerung', sym: '→⊓', ein: ['Trg', 'R'], frei: 0, par: [['T', 'T', 's', 0.1, 3600, 10]] },
+      WISCH: { name: 'Wischrelais', sym: '⊓', ein: ['Trg'], frei: 0, par: [['T', 'T', 's', 0.1, 3600, 2]] },
+      TREPPE: { name: 'Treppenlicht', sym: '⊓⊓', ein: ['Trg'], frei: 0, par: [['T', 'T', 's', 1, 3600, 30], ['W', 'Vorwarnung vor Ende', 's', 0, 600, 5]] },
+      STROM: { name: 'Stromstoßrelais', sym: 'RS↑', ein: ['Trg', 'S', 'R'], frei: 0 },
+      SR: { name: 'Selbsthaltung', sym: 'RS', ein: ['S', 'R'], frei: 0 },
+      TAKT: { name: 'Taktgeber', sym: '⊓⊔', ein: ['En'], frei: 1, par: [['TH', 'T ein', 's', 0.1, 3600, 0.5], ['TL', 'T aus', 's', 0.1, 3600, 0.5]] },
+      ZAEHL: { name: 'Zähler', sym: '+/−', ein: ['R', 'Cnt', 'Dir'], frei: 0, par: [['EIN', 'Schwelle', '', 0, 9999, 5]] },
+      UHR: { name: 'Schaltuhr', sym: '⏲', ein: [], frei: 0, par: [['EIN', 'ein um', 'Uhr', 0, 1439, 390], ['AUS', 'aus um', 'Uhr', 0, 1439, 405]] },
+      SCHW: { name: 'Analogschwellwert', sym: 'A>', ein: ['Ax'], frei: 0, analog: true, par: [['EIN', 'ein ab', 'V', 0, 10, 7], ['AUS', 'aus unter', 'V', 0, 10, 3]] }
+    };
+    const TYPEN = Object.keys(TYP);
+    const N_IN = 8, N_Q = 4;
+
+    // ---------- Beispiele ----------
+    // Verbindung: [Quelle, negiert]; Quellen: I1…I8, AI1, Q1…Q4, B<n>, hi, lo, '' (offen)
+    const b = function (typ, ein, par) { return { typ: typ, ein: ein.map(function (x) { return typeof x === 'string' ? [x.replace('!', ''), x[0] === '!'] : x; }), par: par || {} }; };
+    const BEISPIELE = [
+      ['treppe', 'Treppenlicht mit Vorwarnung', 'Jeder Tastendruck startet 30 s neu; 5 s vor Ablauf blinkt das Licht kurz.',
+        { I: { 1: ['Taster', 'taster'] }, Q: { 1: 'Licht' } }, [b('TREPPE', ['I1'], { T: 30, W: 5 })], [['B1', false]]],
+      ['strom', 'Flurlicht mit zwei Tastern', 'Zwei Taster an einem Stromstoßrelais, dazu ein Zentral-Aus-Taster an R.',
+        { I: { 1: ['Taster_1', 'taster'], 2: ['Taster_2', 'taster'], 3: ['Zentral_Aus', 'taster'] }, Q: { 1: 'Flurlicht' } }, [b('ODER', ['I1', 'I2']), b('STROM', ['B1', '', 'I3'])], [['B2', false]]],
+      ['lueft', 'Badlüfter mit Nachlauf', 'Lüfter läuft erst, wenn das Licht 10 s an ist (kurz Hände waschen startet ihn nicht), und läuft 30 s nach.',
+        { I: { 1: ['Lichtschalter', 'schalter'] }, Q: { 1: 'Licht', 2: 'Luefter' } }, [b('EV', ['I1'], { T: 10 }), b('AV', ['B1'], { T: 30 })], [['I1', false], ['B2', false]]],
+      ['tor', 'Rolltor mit Endschaltern', 'Endschalter und Stopp sind Öffner (negiert eingelesen). Selbsthaltung je Richtung, gegenseitig verriegelt, Warnleuchte blinkt während der Fahrt.',
+        { I: { 1: ['Taster_Auf', 'taster'], 2: ['Taster_Zu', 'taster'], 3: ['End_Oben', 'schalter', 'O'], 4: ['End_Unten', 'schalter', 'O'], 5: ['Stopp', 'taster', 'O'] }, Q: { 1: 'Motor_Auf', 2: 'Motor_Zu', 3: 'Warnleuchte' } },
+        [b('ODER', ['!I3', '!I5']), b('ODER', ['!I4', '!I5']), b('SR', ['I1', 'B1']), b('SR', ['I2', 'B2']), b('UND', ['B3', '!B4']), b('UND', ['B4', '!B3']), b('ODER', ['B5', 'B6']), b('TAKT', ['B7'], { TH: 0.5, TL: 0.5 })],
+        [['B5', false], ['B6', false], ['B8', false]]],
+      ['wasser', 'Gartenbewässerung mit Regensensor', 'Schaltuhr morgens 6:30–6:45 und abends 19:00–19:10, gesperrt bei Regen. Uhr schneller stellen zum Testen.',
+        { I: { 1: ['Regen', 'schalter'] }, Q: { 1: 'Ventil' } }, [b('UHR', [], { EIN: 390, AUS: 405 }), b('UHR', [], { EIN: 1140, AUS: 1150 }), b('ODER', ['B1', 'B2']), b('UND', ['B3', '!I1'])], [['B4', false]]],
+      ['pumpe', 'Pumpe mit Füllstand (Analog)', 'Der Füllstandssensor liefert 0 … 10 V. Pumpe ein unter 3 V, aus über 8 V – dazwischen bleibt sie, wie sie ist.',
+        { I: {}, Q: { 1: 'Pumpe', 2: 'Voll' } }, [b('SCHW', ['AI1'], { EIN: 8, AUS: 3 })], [['B1', true], ['B1', false]]],
+      ['park', 'Parkplatz-Zähler', 'Einfahrt zählt hoch, Ausfahrt zählt runter (Dir). Ab 5 Autos: „Besetzt“.',
+        { I: { 1: ['Einfahrt', 'taster'], 2: ['Ausfahrt', 'taster'], 3: ['Reset', 'taster'] }, Q: { 1: 'Besetzt', 2: 'Frei' } }, [b('ODER', ['I1', 'I2']), b('ZAEHL', ['I3', 'B1', 'I2'], { EIN: 5 })], [['B2', false], ['B2', true]]],
+      ['alarm', 'Störmeldung mit Quittierung', 'Eine neue Störung (Flanke) wird gespeichert: Leuchte blinkt und Hupe tönt bis zur Quittierung; danach leuchtet die Leuchte ruhig, solange die Störung noch ansteht.',
+        { I: { 1: ['Stoerung', 'schalter'], 2: ['Quittieren', 'taster'] }, Q: { 1: 'Leuchte', 2: 'Hupe' } },
+        [b('FLANKE', ['I1']), b('SR', ['B1', 'I2']), b('TAKT', ['B2'], { TH: 0.4, TL: 0.4 }), b('UND', ['B2', 'B3']), b('UND', ['I1', '!B2']), b('ODER', ['B4', 'B5'])], [['B6', false], ['B2', false]]],
+      ['leer', 'Leer – selbst bauen', 'Blöcke unten hinzufügen und Eingänge auswählen.', { I: {}, Q: {} }, [], []]
+    ];
+    const BSP = {}; BEISPIELE.forEach(function (x) { BSP[x[0]] = x; });
+
+    // ---------- Projekt ----------
+    function projektAus(x) {
+      const p = { v: 1, bsp: x[0], ein: [], aus: [], bl: [], q: [] };
+      for (let i = 1; i <= N_IN; i++) { const d = x[3].I[i]; p.ein.push({ name: d ? d[0] : 'I' + i, art: d ? d[1] : 'schalter', kontakt: d && d[2] ? d[2] : 'S' }); }
+      for (let i = 1; i <= N_Q; i++) p.aus.push({ name: x[3].Q[i] || 'Q' + i });
+      p.bl = JSON.parse(JSON.stringify(x[4]));
+      p.bl.forEach(function (bl) { const t = TYP[bl.typ]; (t.par || []).forEach(function (pa) { if (bl.par[pa[0]] === undefined) bl.par[pa[0]] = pa[5]; }); while (bl.ein.length < t.ein.length) bl.ein.push(['', false]); });
+      for (let i = 0; i < N_Q; i++) p.q.push(x[5][i] ? [x[5][i][0], x[5][i][1]] : ['', false]);
+      return p;
+    }
+    const quelleGueltig = function (q, nBl) { if (q === '' || q === 'hi' || q === 'lo' || q === 'AI1') return true; let m = /^I([1-8])$/.exec(q); if (m) return true; m = /^Q([1-4])$/.exec(q); if (m) return true; m = /^B(\d{1,2})$/.exec(q); return !!m && +m[1] >= 1 && +m[1] <= nBl; };
+    const name = function (v, d) { return typeof v === 'string' && /^[A-Za-z0-9_äöüÄÖÜß]{1,16}$/.test(v) ? v : d; };
+    function pruefen(p) {
+      if (!p || typeof p !== 'object' || p.v !== 1 || !Array.isArray(p.ein) || !Array.isArray(p.aus) || !Array.isArray(p.bl) || !Array.isArray(p.q) || p.bl.length > MAX_BL) return null;
+      const o = { v: 1, bsp: BSP[p.bsp] ? p.bsp : 'leer', ein: [], aus: [], bl: [], q: [] };
+      for (let i = 0; i < N_IN; i++) { const e = p.ein[i] || {}; o.ein.push({ name: name(e.name, 'I' + (i + 1)), art: e.art === 'taster' ? 'taster' : 'schalter', kontakt: e.kontakt === 'O' ? 'O' : 'S' }); }
+      for (let i = 0; i < N_Q; i++) { const a = p.aus[i] || {}; o.aus.push({ name: name(a.name, 'Q' + (i + 1)) }); }
+      const n = p.bl.length;
+      const verb = function (v) { return Array.isArray(v) && typeof v[0] === 'string' && quelleGueltig(v[0], n) ? [v[0], v[1] === true] : ['', false]; };
+      p.bl.forEach(function (bl) {
+        if (!bl || !TYP[bl.typ]) return o.bl.push({ typ: 'UND', ein: [['', false], ['', false], ['', false], ['', false]], par: {} });
+        const t = TYP[bl.typ], x = { typ: bl.typ, ein: [], par: {} };
+        for (let i = 0; i < t.ein.length; i++) x.ein.push(verb((bl.ein || [])[i]));
+        (t.par || []).forEach(function (pa) { const w = Number((bl.par || {})[pa[0]]); x.par[pa[0]] = isFinite(w) ? Math.max(pa[3], Math.min(pa[4], w)) : pa[5]; });
+        o.bl.push(x);
+      });
+      for (let i = 0; i < N_Q; i++) o.q.push(verb(p.q[i]));
+      return o;
+    }
+    let P = null;
+    try { P = pruefen(JSON.parse(localStorage.getItem(SPEICHER) || 'null')); } catch (e) { P = null; }
+    if (!P) P = projektAus(BSP.treppe);
+    let uhr = 0;
+    function speichernJetzt() { try { localStorage.setItem(SPEICHER, JSON.stringify(P)); } catch (e) { /* ohne Speicher */ } }
+    function speichern() { clearTimeout(uhr); uhr = setTimeout(speichernJetzt, 300); }
+    window.addEventListener('pagehide', function () { clearTimeout(uhr); speichernJetzt(); });
+
+    // ---------- Simulation ----------
+    let betaetigt = [], AI = 5, AUS = [], ZU = [], Q = [], zeit = 0, minute = 6 * 60 + 25;
+    function zustandNeu() {
+      betaetigt = []; for (let i = 0; i < N_IN; i++) betaetigt.push(false);
+      AUS = P.bl.map(function () { return false; }); ZU = P.bl.map(function () { return { v: false, t0: 0, n: 0, lauf: false, q: false }; }); Q = [false, false, false, false];
+    }
+    const eingang = function (i) { const e = P.ein[i]; return e.kontakt === 'O' ? !betaetigt[i] : betaetigt[i]; };
+    function quelle(q) {
+      if (q === '' ) return null;
+      if (q === 'hi') return true; if (q === 'lo') return false;
+      if (q === 'AI1') return AI;
+      if (q[0] === 'I') return eingang(+q.slice(1) - 1);
+      if (q[0] === 'Q') return Q[+q.slice(1) - 1];
+      return AUS[+q.slice(1) - 1];
+    }
+    function signal(v, frei) { if (!v || v[0] === '') return frei; let w = quelle(v[0]); if (typeof w === 'number') w = w > 0; return v[1] ? !w : !!w; }
+    function zyklus() {
+      const t = zeit;
+      P.bl.forEach(function (bl, i) {
+        const ty = TYP[bl.typ], z = ZU[i], e = bl.ein.map(function (v) { return signal(v, ty.frei); }), offen = bl.ein.map(function (v) { return !v || v[0] === ''; });
+        let q = false;
+        switch (bl.typ) {
+          case 'UND': case 'NAND': q = e.every(function (x) { return x; }); if (offen.every(function (x) { return x; })) q = false; break;
+          case 'ODER': case 'NOR': q = e.some(function (x) { return x; }); break;
+          case 'NICHT': q = e[0]; break;
+          case 'XOR': q = e[0] !== e[1]; break;
+          case 'FLANKE': q = e[0] && !z.v; z.v = e[0]; break;
+          case 'EV': if (e[0]) { if (!z.lauf) { z.lauf = true; z.t0 = t; } q = t - z.t0 >= bl.par.T * 1000; } else { z.lauf = false; q = false; } break;
+          case 'AV':
+            if (e[1]) { z.q = false; z.lauf = false; }
+            else if (e[0]) { z.q = true; z.lauf = false; }
+            else if (z.v && z.q) { z.lauf = true; z.t0 = t; }
+            if (z.lauf && !e[0] && t - z.t0 >= bl.par.T * 1000) { z.q = false; z.lauf = false; }
+            z.v = e[0]; q = z.q; break;
+          case 'WISCH': if (e[0] && !z.v && !z.lauf) { z.lauf = true; z.t0 = t; } if (z.lauf && t - z.t0 >= bl.par.T * 1000) z.lauf = false; z.v = e[0]; q = z.lauf; break;
+          case 'TREPPE': {
+            if (e[0] && !z.v) { z.lauf = true; z.t0 = t; }
+            z.v = e[0];
+            const rest = bl.par.T * 1000 - (t - z.t0);
+            if (z.lauf && rest <= 0) z.lauf = false;
+            q = z.lauf && !(bl.par.W > 0 && rest <= bl.par.W * 1000 && rest > bl.par.W * 1000 - 500);
+            break;
+          }
+          case 'STROM': if (e[0] && !z.v) z.q = !z.q; z.v = e[0]; if (e[1]) z.q = true; if (e[2]) z.q = false; q = z.q; break;
+          case 'SR': if (e[0]) z.q = true; if (e[1]) z.q = false; q = z.q; break;
+          case 'TAKT': if (!e[0]) { z.lauf = false; q = false; } else { if (!z.lauf) { z.lauf = true; z.t0 = t; } const per = (bl.par.TH + bl.par.TL) * 1000; q = ((t - z.t0) % per) < bl.par.TH * 1000; } break;
+          case 'ZAEHL': if (e[0]) z.n = 0; else if (e[1] && !z.v) z.n = Math.max(0, Math.min(9999, z.n + (e[2] ? -1 : 1))); z.v = e[1]; q = z.n >= bl.par.EIN; break;
+          case 'UHR': { const m = ((Math.floor(minute) % 1440) + 1440) % 1440, a = bl.par.EIN, b2 = bl.par.AUS; q = a <= b2 ? m >= a && m < b2 : m >= a || m < b2; break; }
+          case 'SCHW': { const v = bl.ein[0] && bl.ein[0][0] === 'AI1' ? AI : 0; if (v >= bl.par.EIN) z.q = true; else if (v <= bl.par.AUS) z.q = false; q = z.q; break; }
+        }
+        AUS[i] = ty.negAus ? !q : q;
+      });
+      for (let i = 0; i < N_Q; i++) Q[i] = P.q[i] && P.q[i][0] !== '' ? signal(P.q[i], false) : false;
+    }
+
+    // ---------- Funktionsplan zeichnen ----------
+    const cv = $('fup'), cx = cv.getContext('2d');
+    let L = null, W = 600, H = 400, ZIELE = [];
+    const F = function (n) { return Thema.farbe(n); };
+    function TX(t, x, y, a, g, fett, farbe) { cx.font = (fett ? '700 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif'); cx.textAlign = a || 'left'; cx.textBaseline = 'middle'; cx.fillStyle = farbe || F('--text'); cx.fillText(t, x, y); }
+    const BW = 100, COL = 150, IX = 8, IW = 104, ZE = 30;
+    function hoehe(bl) { return 30 + 18 * Math.max(1, TYP[bl.typ].ein.length) + ((TYP[bl.typ].par || []).length ? 14 : 0); }
+    function layout() {
+      const tiefe = [];
+      P.bl.forEach(function (bl, i) {
+        let d = 1;
+        bl.ein.forEach(function (v) { const m = /^B(\d+)$/.exec(v[0]); if (m && +m[1] - 1 < i) d = Math.max(d, tiefe[+m[1] - 1] + 1); });
+        tiefe.push(d);
+      });
+      const maxD = tiefe.length ? Math.max.apply(null, tiefe) : 0;
+      const spY = {}, pos = [];
+      P.bl.forEach(function (bl, i) { const d = tiefe[i], y = spY[d] || 26; pos.push({ x: IX + IW + 36 + (d - 1) * COL, y: y, h: hoehe(bl) }); spY[d] = y + hoehe(bl) + 22; });
+      const qx = IX + IW + 36 + maxD * COL + 20;
+      const ein = []; for (let i = 0; i < N_IN; i++) ein.push({ x: IX, y: 26 + i * ZE }); ein.push({ x: IX, y: 26 + N_IN * ZE + 10 });
+      const qs = []; for (let i = 0; i < N_Q; i++) qs.push({ x: qx, y: 40 + i * 50 });
+      const breit = qx + 120;
+      const unten = Math.max(ein[N_IN].y + 40, qs[N_Q - 1].y + 40, Math.max.apply(null, [0].concat(Object.keys(spY).map(function (k) { return spY[k]; }))) + 10);
+      W = Math.max(breit, cv.parentNode.clientWidth - 2); H = unten + 30;
+      const d = Math.min(2, window.devicePixelRatio || 1);
+      cv.style.width = W + 'px'; cv.style.height = H + 'px'; cv.width = Math.round(W * d); cv.height = Math.round(H * d); cx.setTransform(d, 0, 0, d, 0, 0);
+      L = { pos: pos, ein: ein, qs: qs, unten: unten };
+    }
+    function quellPunkt(q) {
+      if (q[0] === 'I') { const e = L.ein[+q.slice(1) - 1]; return [e.x + IW, e.y]; }
+      if (q === 'AI1') { const e = L.ein[N_IN]; return [e.x + IW, e.y]; }
+      if (q[0] === 'Q') { const e = L.qs[+q.slice(1) - 1]; return [e.x + 100, e.y]; }
+      if (q[0] === 'B') { const p = L.pos[+q.slice(1) - 1]; return p ? [p.x + BW + (TYP[P.bl[+q.slice(1) - 1].typ].negAus ? 8 : 0), p.y + 24] : null; }
+      return null;
+    }
+    function zeichnen() {
+      if (!L) layout();
+      cx.clearRect(0, 0, W, H); ZIELE = [];
+      const grau = F('--leise'), text = F('--text');
+      // Leitungen
+      let rueck = 0;
+      const leitung = function (q, ziel, k) {
+        if (!q || q[0] === '' || q[0] === 'hi' || q[0] === 'lo') return;
+        const a = quellPunkt(q[0]); if (!a) return;
+        let w = quelle(q[0]); if (typeof w === 'number') w = w > 0;
+        cx.strokeStyle = w ? GRUEN : grau; cx.lineWidth = w ? 2.4 : 1.4; cx.beginPath(); cx.moveTo(a[0], a[1]);
+        if (ziel[0] > a[0] + 10) { const mx = ziel[0] - 14 - (k % 4) * 4; cx.lineTo(mx, a[1]); cx.lineTo(mx, ziel[1]); }
+        else { const y = L.unten + 6 + (rueck++ % 5) * 4; cx.lineTo(a[0] + 10, a[1]); cx.lineTo(a[0] + 10, y); cx.lineTo(ziel[0] - 16, y); cx.lineTo(ziel[0] - 16, ziel[1]); }
+        cx.lineTo(ziel[0], ziel[1]); cx.stroke();
+      };
+      P.bl.forEach(function (bl, i) { const p = L.pos[i]; bl.ein.forEach(function (v, k) { leitung(v, [p.x - (v[1] ? 8 : 0), p.y + 24 + k * 18], k + i); }); });
+      P.q.forEach(function (v, i) { const q = L.qs[i]; leitung(v, [q.x - (v[1] ? 8 : 0), q.y], i); });
+      // Eingänge
+      P.ein.forEach(function (e, i) {
+        const p = L.ein[i], s = eingang(i);
+        cx.fillStyle = s ? 'rgba(47,158,68,.18)' : F('--flaeche'); cx.strokeStyle = s ? GRUEN : grau; cx.lineWidth = 1.5;
+        cx.fillRect(p.x, p.y - 11, IW, 22); cx.strokeRect(p.x, p.y - 11, IW, 22);
+        TX('I' + (i + 1), p.x + 4, p.y, 'left', 10, true, s ? GRUEN : grau);
+        TX(e.name.slice(0, 11) + (e.kontakt === 'O' ? ' ⊘' : ''), p.x + 22, p.y, 'left', 10, false, text);
+        ZIELE.push([p.x, p.y - 11, IW, 22, i]);
+      });
+      const pa = L.ein[N_IN];
+      cx.fillStyle = F('--flaeche'); cx.strokeStyle = TUERKIS; cx.fillRect(pa.x, pa.y - 11, IW, 22); cx.strokeRect(pa.x, pa.y - 11, IW, 22);
+      TX('AI1 ' + zahl(AI, 1) + ' V', pa.x + 4, pa.y, 'left', 10, true, TUERKIS);
+      // Blöcke
+      P.bl.forEach(function (bl, i) {
+        const p = L.pos[i], ty = TYP[bl.typ], an = AUS[i];
+        cx.fillStyle = F('--flaeche'); cx.strokeStyle = an ? GRUEN : text; cx.lineWidth = an ? 2.4 : 1.6;
+        cx.fillRect(p.x, p.y, BW, p.h); cx.strokeRect(p.x, p.y, BW, p.h);
+        TX('B' + (i + 1), p.x + 3, p.y - 7, 'left', 10, true, grau);
+        TX(ty.sym, p.x + BW / 2 + 8, p.y + 14, 'center', 13, true, an ? GRUEN : text);
+        ty.ein.forEach(function (n, k) {
+          const y = p.y + 24 + k * 18; TX(n, p.x + 4, y, 'left', 9, false, grau);
+          if (bl.ein[k] && bl.ein[k][1]) { cx.strokeStyle = text; cx.lineWidth = 1.4; cx.beginPath(); cx.arc(p.x - 4, y, 4, 0, 2 * Math.PI); cx.fillStyle = F('--flaeche'); cx.fill(); cx.stroke(); }
+        });
+        if (ty.negAus) { cx.strokeStyle = text; cx.lineWidth = 1.4; cx.beginPath(); cx.arc(p.x + BW + 4, p.y + 24, 4, 0, 2 * Math.PI); cx.fillStyle = F('--flaeche'); cx.fill(); cx.stroke(); }
+        cx.strokeStyle = an ? GRUEN : grau; cx.lineWidth = 1.6; cx.beginPath(); cx.moveTo(p.x + BW + (ty.negAus ? 8 : 0), p.y + 24); cx.lineTo(p.x + BW + 14, p.y + 24); cx.stroke();
+        const zu = ZU[i];
+        let info = '';
+        if (bl.typ === 'EV' || bl.typ === 'AV' || bl.typ === 'WISCH' || bl.typ === 'TREPPE') { info = 'T=' + zahl(bl.par.T, 1) + ' s'; if (zu && zu.lauf) info += ' · ' + zahl(Math.max(0, (bl.typ === 'EV' ? (zeit - zu.t0) : bl.par.T * 1000 - (zeit - zu.t0))) / 1000, 1); }
+        else if (bl.typ === 'TAKT') info = zahl(bl.par.TH, 1) + '/' + zahl(bl.par.TL, 1) + ' s';
+        else if (bl.typ === 'ZAEHL') info = 'n=' + (zu ? zu.n : 0) + ' ≥' + bl.par.EIN;
+        else if (bl.typ === 'UHR') info = hhmm(bl.par.EIN) + '–' + hhmm(bl.par.AUS);
+        else if (bl.typ === 'SCHW') info = '>' + zahl(bl.par.EIN, 1) + ' <' + zahl(bl.par.AUS, 1) + ' V';
+        if (info) TX(info, p.x + BW / 2, p.y + p.h - 8, 'center', 9.5, false, TUERKIS);
+        ZIELE.push([p.x, p.y, BW, p.h, 'B' + i]);
+      });
+      // Ausgänge
+      P.aus.forEach(function (a, i) {
+        const q = L.qs[i], s = Q[i];
+        if (P.q[i] && P.q[i][1]) { cx.strokeStyle = text; cx.lineWidth = 1.4; cx.beginPath(); cx.arc(q.x - 4, q.y, 4, 0, 2 * Math.PI); cx.fillStyle = F('--flaeche'); cx.fill(); cx.stroke(); }
+        cx.fillStyle = s ? 'rgba(245,159,0,.25)' : F('--flaeche'); cx.strokeStyle = s ? '#F59F00' : grau; cx.lineWidth = s ? 2.4 : 1.5;
+        cx.fillRect(q.x, q.y - 13, 100, 26); cx.strokeRect(q.x, q.y - 13, 100, 26);
+        TX('Q' + (i + 1), q.x + 4, q.y, 'left', 10, true, s ? '#E67700' : grau); TX(a.name.slice(0, 10), q.x + 24, q.y, 'left', 10, false, text);
+      });
+    }
+    const hhmm = function (m) { m = ((Math.floor(m) % 1440) + 1440) % 1440; return ('0' + Math.floor(m / 60)).slice(-2) + ':' + ('0' + (m % 60)).slice(-2); };
+    cv.addEventListener('pointerdown', function (e) {
+      const r = cv.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      ZIELE.forEach(function (z) {
+        if (x < z[0] || x > z[0] + z[2] || y < z[1] || y > z[1] + z[3]) return;
+        if (typeof z[4] === 'number') { druck(z[4], true); if (P.ein[z[4]].art === 'taster') { const los = function () { druck(z[4], false); window.removeEventListener('pointerup', los); }; window.addEventListener('pointerup', los); } }
+        else { const zeile = $('bl-' + z[4].slice(1)); if (zeile) { zeile.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); zeile.style.outline = '2px solid ' + TUERKIS; setTimeout(function () { zeile.style.outline = ''; }, 1200); } }
+      });
+    });
+    function druck(i, an) { if (P.ein[i].art === 'taster') betaetigt[i] = an; else if (an) betaetigt[i] = !betaetigt[i]; ioZeigen(); }
+
+    // ---------- Bedienung: Ein- und Ausgänge ----------
+    function quellOptionen() {
+      const o = [['', '– offen –']];
+      P.ein.forEach(function (e, i) { o.push(['I' + (i + 1), 'I' + (i + 1) + ' ' + e.name]); });
+      o.push(['AI1', 'AI1 Analog']);
+      P.bl.forEach(function (bl, i) { o.push(['B' + (i + 1), 'B' + (i + 1) + ' ' + TYP[bl.typ].name]); });
+      P.aus.forEach(function (a, i) { o.push(['Q' + (i + 1), 'Q' + (i + 1) + ' ' + a.name]); });
+      o.push(['hi', '1 (hi)'], ['lo', '0 (lo)']);
+      return o;
+    }
+    function auswahl(opt, wert, lab, fn) { const s = kn('select'); s.setAttribute('aria-label', lab); s.setAttribute('data-nicht-merken', ''); opt.forEach(function (x) { const o = kn('option', '', x[1]); o.value = x[0]; s.append(o); }); s.value = wert; s.addEventListener('change', function () { fn(s.value); }); return s; }
+    function negKnopf(v, lab, fn) { const b2 = kn('button', 'neg' + (v[1] ? ' an' : ''), '¬'); b2.type = 'button'; b2.title = 'Eingang negieren'; b2.setAttribute('aria-label', lab + ' negieren'); b2.setAttribute('aria-pressed', v[1] ? 'true' : 'false'); b2.addEventListener('click', function () { v[1] = !v[1]; fn(); }); return b2; }
+    const NAME_RE = /^[A-Za-z0-9_äöüÄÖÜß]{1,16}$/;
+    function ioAufbauen() {
+      const ze = $('eingaenge'); ze.innerHTML = '';
+      P.ein.forEach(function (e, i) {
+        const f = kn('div', 'io-feld'); f.id = 'ein-' + i;
+        f.append(kn('b', '', 'I' + (i + 1)));
+        const n = kn('input'); n.type = 'text'; n.value = e.name; n.maxLength = 16; n.setAttribute('aria-label', 'Name von I' + (i + 1)); n.setAttribute('data-nicht-merken', '');
+        n.addEventListener('change', function () { if (NAME_RE.test(n.value)) { e.name = n.value; aenderung(); } else { n.value = e.name; meldung('Namen: 1–16 Buchstaben, Ziffern oder _.', true); } });
+        f.append(n, auswahl([['taster|S', 'Taster, Schließer'], ['taster|O', 'Taster, Öffner'], ['schalter|S', 'Schalter, Schließer'], ['schalter|O', 'Schalter, Öffner']], e.art + '|' + e.kontakt, 'Bedienung I' + (i + 1), function (v) { const t = v.split('|'); e.art = t[0]; e.kontakt = t[1]; betaetigt[i] = false; aenderung(); }));
+        const bt = kn('button', '', e.art === 'taster' ? 'drücken' : 'schalten'); bt.type = 'button'; bt.setAttribute('aria-label', e.name + (e.art === 'taster' ? ' drücken (halten)' : ' umschalten'));
+        if (e.art === 'taster') {
+          bt.addEventListener('pointerdown', function (ev) { ev.preventDefault(); druck(i, true); });
+          ['pointerup', 'pointerleave', 'pointercancel'].forEach(function (x) { bt.addEventListener(x, function () { if (betaetigt[i]) druck(i, false); }); });
+          bt.addEventListener('keydown', function (ev) { if ((ev.key === ' ' || ev.key === 'Enter') && !ev.repeat) { ev.preventDefault(); druck(i, true); } });
+          bt.addEventListener('keyup', function (ev) { if (ev.key === ' ' || ev.key === 'Enter') druck(i, false); });
+        } else bt.addEventListener('click', function () { druck(i, true); });
+        f.append(kn('div', 'sig'), bt); ze.append(f);
+      });
+      const fa = kn('div', 'io-feld'); fa.append(kn('b', '', 'AI1 (0 … 10 V)'));
+      const r = kn('input'); r.type = 'range'; r.min = 0; r.max = 10; r.step = 0.1; r.value = AI; r.setAttribute('aria-label', 'Analogeingang AI1 in Volt'); r.setAttribute('data-nicht-merken', '');
+      const rs = kn('div', 'sig', zahl(AI, 1) + ' V'); r.addEventListener('input', function () { AI = +r.value; rs.textContent = zahl(AI, 1) + ' V'; });
+      fa.append(r, rs); ze.append(fa);
+      const za = $('ausgaenge'); za.innerHTML = '';
+      P.aus.forEach(function (a, i) {
+        const f = kn('div', 'io-feld'); f.id = 'aus-' + i;
+        f.append(kn('b', '', 'Q' + (i + 1)));
+        const n = kn('input'); n.type = 'text'; n.value = a.name; n.maxLength = 16; n.setAttribute('aria-label', 'Name von Q' + (i + 1)); n.setAttribute('data-nicht-merken', '');
+        n.addEventListener('change', function () { if (NAME_RE.test(n.value)) { a.name = n.value; aenderung(); } else { n.value = a.name; meldung('Namen: 1–16 Buchstaben, Ziffern oder _.', true); } });
+        const v = P.q[i], zl = kn('div'); zl.style.display = 'flex'; zl.style.gap = '4px'; zl.style.alignItems = 'center';
+        zl.append(negKnopf(v, 'Q' + (i + 1), aenderung), auswahl(quellOptionen(), v[0], 'Quelle für Q' + (i + 1), function (x) { v[0] = x; aenderung(); }));
+        zl.querySelector('select').style.marginTop = '0';
+        f.append(n, zl, kn('div', 'sig')); za.append(f);
+      });
+      ioZeigen();
+    }
+    function ioZeigen() {
+      P.ein.forEach(function (e, i) { const f = $('ein-' + i); if (!f) return; const s = eingang(i); f.querySelector('.sig').textContent = 'Signal ' + (s ? 1 : 0) + (betaetigt[i] ? ' · betätigt' : ''); f.querySelector('.sig').className = 'sig' + (s ? ' eins' : ''); f.querySelector('button').className = betaetigt[i] ? 'an' : ''; });
+      P.aus.forEach(function (a, i) { const f = $('aus-' + i); if (!f) return; const s = f.querySelector('.sig'); s.textContent = Q[i] ? 'EIN' : 'aus'; s.className = 'sig' + (Q[i] ? ' eins' : ''); });
+    }
+
+    // ---------- Blöcke bearbeiten ----------
+    function bloeckeAufbauen() {
+      const z = $('bloecke'); z.innerHTML = '';
+      if (!P.bl.length) z.append(kn('p', 'hilfe', 'Noch keine Blöcke. Unten Art wählen und „+ Block“.'));
+      const opt = quellOptionen();
+      P.bl.forEach(function (bl, i) {
+        const ty = TYP[bl.typ], r = kn('div', 'bl-zeile'); r.id = 'bl-' + i;
+        r.append(kn('b', '', 'B' + (i + 1)), auswahl(TYPEN.map(function (t) { return [t, TYP[t].name]; }), bl.typ, 'Art von B' + (i + 1), function (t) { P.bl[i] = neuerBlock(t, bl.ein); aenderung(true); }));
+        ty.ein.forEach(function (n, k) {
+          const v = bl.ein[k], e = kn('span', 'ein'); e.append(kn('small', '', n));
+          e.append(negKnopf(v, 'B' + (i + 1) + ' Eingang ' + n, aenderung), auswahl(ty.analog ? [['', '– offen –'], ['AI1', 'AI1 Analog']] : opt, v[0], 'B' + (i + 1) + ' Eingang ' + n, function (x) { v[0] = x; aenderung(true); }));
+          r.append(e);
+        });
+        (ty.par || []).forEach(function (pa) {
+          const l = kn('label'); l.style.display = 'inline-flex'; l.style.gap = '4px'; l.style.alignItems = 'center';
+          const inp = kn('input', 'par'); inp.setAttribute('data-nicht-merken', ''); inp.setAttribute('aria-label', 'B' + (i + 1) + ' ' + pa[1]);
+          if (pa[2] === 'Uhr') { inp.type = 'time'; inp.value = hhmm(bl.par[pa[0]]); inp.addEventListener('change', function () { if (/^\d\d:\d\d$/.test(inp.value)) { bl.par[pa[0]] = (+inp.value.slice(0, 2)) * 60 + (+inp.value.slice(3)); aenderung(); } }); }
+          else { inp.inputMode = 'decimal'; inp.value = String(bl.par[pa[0]]).replace('.', ','); inp.addEventListener('change', function () { const w = parseFloat(inp.value.replace(',', '.')); bl.par[pa[0]] = isFinite(w) ? Math.max(pa[3], Math.min(pa[4], w)) : pa[5]; inp.value = String(bl.par[pa[0]]).replace('.', ','); aenderung(); }); }
+          l.append(document.createTextNode(pa[1]), inp, document.createTextNode(pa[2] === 'Uhr' ? '' : pa[2])); r.append(l);
+        });
+        const x = kn('button', 'entf', '×'); x.type = 'button'; x.setAttribute('aria-label', 'B' + (i + 1) + ' löschen'); x.addEventListener('click', function () { loeschen(i); });
+        r.append(x); z.append(r);
+      });
+    }
+    function neuerBlock(typ, alt) {
+      const t = TYP[typ], bl = { typ: typ, ein: [], par: {} };
+      for (let k = 0; k < t.ein.length; k++) bl.ein.push(alt && alt[k] && !t.analog ? [alt[k][0], alt[k][1]] : ['', false]);
+      (t.par || []).forEach(function (pa) { bl.par[pa[0]] = pa[5]; });
+      return bl;
+    }
+    function loeschen(i) {
+      const n = i + 1, um = function (v) { const m = /^B(\d+)$/.exec(v[0]); if (!m) return; if (+m[1] === n) { v[0] = ''; v[1] = false; } else if (+m[1] > n) v[0] = 'B' + (+m[1] - 1); };
+      P.bl.splice(i, 1);
+      P.bl.forEach(function (bl) { bl.ein.forEach(um); }); P.q.forEach(um);
+      aenderung(true);
+    }
+    TYPEN.forEach(function (t) { const o = kn('option', '', TYP[t].name); o.value = t; $('neuTyp').append(o); });
+    $('neu').addEventListener('click', function () { if (P.bl.length >= MAX_BL) return meldung('Höchstens ' + MAX_BL + ' Blöcke.', true); P.bl.push(neuerBlock($('neuTyp').value)); aenderung(true); const z = $('bl-' + (P.bl.length - 1)); if (z) z.scrollIntoView({ block: 'nearest' }); });
+    function meldung(t, schlecht) { $('meldung').textContent = t; $('meldung').className = 'meldung-ks ' + (schlecht ? 'schlecht' : 'gut'); }
+    function aenderung(struktur) {
+      if (struktur) { while (ZU.length < P.bl.length) { ZU.push({ v: false, t0: 0, n: 0, lauf: false, q: false }); AUS.push(false); } ZU.length = P.bl.length; AUS.length = P.bl.length; }
+      speichern(); layout(); bloeckeAufbauen(); ioAufbauen();
+    }
+
+    // ---------- Beispiele ----------
+    BEISPIELE.forEach(function (x) { const o = kn('option', '', x[1]); o.value = x[0]; $('beispiel').append(o); });
+    function laden(p) { P = p; zustandNeu(); $('beispiel').value = P.bsp; const x = BSP[P.bsp]; $('beispielText').textContent = x ? x[2] : ''; layout(); bloeckeAufbauen(); ioAufbauen(); }
+    $('laden').addEventListener('click', function () { if (!window.confirm('Beispiel laden? Dein Programm wird ersetzt (vorher „Link kopieren“ zum Sichern).')) return; laden(projektAus(BSP[$('beispiel').value])); if ($('beispiel').value === 'wasser') minute = 6 * 60 + 25; speichernJetzt(); meldung('Beispiel geladen.'); });
+
+    // ---------- Schleife ----------
+    let letzt = performance.now(), rest = 0, breite = 0, anzeige = 0;
+    function schleife(t) {
+      const dt = Math.min(0.2, (t - letzt) / 1000); letzt = t; rest += dt * 1000;
+      while (rest >= 10) { rest -= 10; zeit += 10; minute += 10 / 60000 * (+$('tempo').value); zyklus(); }
+      if (cv.parentNode.clientWidth !== breite) { breite = cv.parentNode.clientWidth; layout(); }
+      zeichnen();
+      if (t - anzeige > 150) { anzeige = t; ioZeigen(); $('uhr').textContent = hhmm(minute); }
+      requestAnimationFrame(schleife);
+    }
+
+    // ---------- Teilen ----------
+    $('teilen').addEventListener('click', function () { speichernJetzt(); Teilen.url('plan', P).then(function (url) { Teilen.kopieren(url, function (t) { $('teilenMeldung').textContent = t; setTimeout(function () { $('teilenMeldung').textContent = ''; }, 5000); }); }); });
+    const vorherKnopf = Teilen.knopf($('teilen').parentNode, SPEICHER, function (roh) {
+      let p = null; try { p = pruefen(JSON.parse(roh)); } catch (e) { p = null; }
+      if (!p) return meldung('Kein gültiges vorheriges Programm gefunden.', true);
+      laden(p); speichernJetzt(); meldung('Vorheriges Programm wiederhergestellt.');
+    }, 'Programmversion');
+
+    laden(P);
+    Array.prototype.forEach.call(document.querySelectorAll('#ks-wissen [data-tex]'), function (el) { Formel.setze(el, el.getAttribute('data-tex'), true); });
+    requestAnimationFrame(schleife);
+    Teilen.lesen('plan').then(function (roh) {
+      if (!roh) return;
+      const p = pruefen(roh); if (!p) throw new Error('ungültig');
+      const t = JSON.stringify(p), gesichert = Teilen.sichern(SPEICHER, t);
+      laden(p); clearTimeout(uhr); speichernJetzt(); vorherKnopf.zeigen();
+      meldung('Programm aus dem Link geladen.' + (gesichert ? ' Dein vorheriges ist gesichert.' : ''));
+    }).catch(function () { meldung('Der Link ist unvollständig oder beschädigt – es gilt das gespeicherte Programm.', true); });
+    void ROT;
+  })();
+  </script>
+</body>
+</html>

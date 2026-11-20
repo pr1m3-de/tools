@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = 'd4f009ba37';
+const STAND = '1d42e0ab5b';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -68,6 +68,8 @@ const DATEIEN = [
   "elektro/blitzschutz.html",
   "elektro/drehstrom.html",
   "gebaeudeautomation/knx-planung.html",
+  "steuerung/sps.html",
+  "steuerung/kleinsteuerung.html",
   "gebaeudeautomation/knx-simulator.html",
   "gebaeudeautomation/smart-home.html",
   "elektro/einbruchmeldeanlage.html",
@@ -181,7 +183,10 @@ const DATEIEN = [
   "aufgabenblaetter/gebaeudeautomation/knx-simulator/01-programmierung-und-fehlersuche.md",
   "aufgabenblaetter/gebaeudeautomation/smart-home/01-systeme-und-automationen.md",
   "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
-  "aufgabenblaetter/liste.json"
+  "aufgabenblaetter/liste.json",
+  "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",
+  "aufgabenblaetter/steuerung/sps/01-sps-grundlagen.md",
+  "aufgabenblaetter/steuerung/sps/02-st-programmieren.md"
 ];
 
 // Beim Installieren am Browser-Speicher vorbei laden: sonst landen bis zu 10 min alte Dateien (oder ein altes 404) im App-Speicher
