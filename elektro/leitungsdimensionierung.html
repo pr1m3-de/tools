@@ -332,8 +332,10 @@
       B1: { titel: 'B1 · Aderleitungen im Rohr auf oder in der Wand', leitung: 'H07V-U' },
       B2: { titel: 'B2 · Mantelleitung im Rohr auf oder in der Wand', leitung: 'NYM-J' },
       C:  { titel: 'C · Mantelleitung direkt auf oder in der Wand', leitung: 'NYM-J' },
+      D:  { titel: 'D · Kabel in Erde (direkt oder im Rohr)', leitung: 'NYY-J', erde: true },
       E:  { titel: 'E · Leitung frei in Luft (Kabelwanne)', leitung: 'NYM-J' }
     };
+    const erde = function () { return !!(VERLEGEARTEN[einst.verlegung] || {}).erde; };
 
     // je Verlegeart: [2 belastete Adern, 3 belastete Adern] für die Querschnitte oben
     const BELASTBARKEIT = {
@@ -343,6 +345,8 @@
         B1: [[17.5, 15.5], [24, 21], [32, 28], [41, 36], [57, 50], [76, 68], [101, 89], [125, 110], [151, 134], [192, 171], [232, 207], [269, 239]],
         B2: [[16.5, 15], [23, 20], [30, 27], [38, 34], [52, 46], [69, 62], [90, 80], [111, 99], [133, 118], [168, 149], [201, 179], [232, 206]],
         C:  [[19.5, 17.5], [27, 24], [36, 32], [46, 41], [63, 57], [85, 76], [112, 96], [138, 119], [168, 144], [213, 184], [258, 223], [299, 259]],
+        // D: Erdreich 20 °C, spezifischer Erdbodenwärmewiderstand 2,5 K·m/W, Dauerlast (IEC 60364-5-52 / DIN VDE 0298-4)
+        D:  [[22, 18], [29, 24], [38, 31], [47, 39], [63, 52], [81, 67], [104, 86], [125, 103], [148, 122], [183, 151], [216, 179], [246, 203]],
         E:  [[22, 18.5], [30, 25], [40, 34], [51, 43], [70, 60], [94, 80], [119, 101], [148, 126], [180, 153], [232, 196], [282, 238], [328, 276]]
       },
       // Aluminium erst ab 16 mm²
@@ -352,12 +356,18 @@
         B1: [null, null, null, null, null, [60, 53], [80, 70], [99, 86], [119, 104], [151, 133], [182, 161], [210, 186]],
         B2: [null, null, null, null, null, [54, 48], [71, 62], [86, 77], [104, 92], [131, 116], [157, 139], [181, 160]],
         C:  [null, null, null, null, null, [66, 59], [83, 73], [103, 90], [125, 110], [160, 140], [195, 170], [226, 197]],
+        D:  [null, null, null, null, null, [62, 52], [80, 66], [96, 80], [113, 94], [140, 117], [166, 138], [189, 157]],
         E:  [null, null, null, null, null, [73, 61], [89, 78], [111, 96], [135, 117], [173, 150], [210, 183], [244, 212]]
       }
     };
 
     const TEMPERATURFAKTOR = [[10, 1.22], [15, 1.17], [20, 1.12], [25, 1.06], [30, 1], [35, 0.94], [40, 0.87], [45, 0.79], [50, 0.71], [55, 0.61], [60, 0.5]];
     const HAEUFUNGSFAKTOR = [[1, 1], [2, 0.8], [3, 0.7], [4, 0.65], [5, 0.6], [6, 0.57], [7, 0.54], [8, 0.52], [9, 0.5], [12, 0.45], [16, 0.41], [20, 0.38]];
+    // Verlegung in Erde: Erdreichtemperatur bezogen auf 20 °C (PVC); mehrere Kabel nebeneinander in Erde, sich berührend
+    const TEMPERATURFAKTOR_ERDE = [[10, 1.1], [15, 1.05], [20, 1], [25, 0.95], [30, 0.89], [35, 0.84], [40, 0.77], [45, 0.71], [50, 0.63], [55, 0.55], [60, 0.45]];
+    const HAEUFUNGSFAKTOR_ERDE = [[1, 1], [2, 0.75], [3, 0.65], [4, 0.6], [5, 0.55], [6, 0.5]];
+    const tempTabelle = function () { return erde() ? TEMPERATURFAKTOR_ERDE : TEMPERATURFAKTOR; };
+    const haeufTabelle = function () { return erde() ? HAEUFUNGSFAKTOR_ERDE : HAEUFUNGSFAKTOR; };
 
     const NORMSTROEME_LS = [2, 4, 6, 10, 13, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125];
     const NORMSTROEME_GG = [2, 4, 6, 10, 16, 20, 25, 32, 35, 40, 50, 63, 80, 100, 125, 160, 200, 250];
@@ -669,24 +679,24 @@
       },
       function temperatur(w) {
         if (hat(w, 'fT') || !hat(w, 'thU')) return null;
-        const f = stufe(TEMPERATURFAKTOR, w.thU);
+        const tab = tempTabelle(), f = stufe(tab, w.thU);
         if (!isFinite(f)) return null;
-        const zeile = TEMPERATURFAKTOR.filter(function (z) { return w.thU <= z[0] + 1e-9; })[0];
-        return { ziel: 'fT', wert: f, titel: 'Umrechnungsfaktor für die Umgebungstemperatur (Tabelle)',
+        const zeile = tab.filter(function (z) { return w.thU <= z[0] + 1e-9; })[0];
+        return { ziel: 'fT', wert: f, titel: erde() ? 'Umrechnungsfaktor für die Erdreichtemperatur (Tabelle, bezogen auf 20 °C)' : 'Umrechnungsfaktor für die Umgebungstemperatur (Tabelle)',
                  zeilen: ['\\vartheta_\\text{U} = ' + texZahl(w.thU) + '\\,{}^\\circ\\text{C} \\;\\le\\; ' + zeile[0] + '\\,{}^\\circ\\text{C} \\text{ (Tabellenzeile)}'] };
       },
       function haeufung(w) {
         if (hat(w, 'fH') || !hat(w, 'nH')) return null;
-        const f = stufe(HAEUFUNGSFAKTOR, Math.max(1, Math.round(w.nH)));
+        const f = stufe(haeufTabelle(), Math.max(1, Math.round(w.nH)));
         if (!isFinite(f)) return null;
-        return { ziel: 'fH', wert: f, titel: 'Umrechnungsfaktor für Häufung (gebündelt, Tabelle)',
+        return { ziel: 'fH', wert: f, titel: erde() ? 'Umrechnungsfaktor für Häufung (Kabel nebeneinander in Erde, sich berührend)' : 'Umrechnungsfaktor für Häufung (gebündelt, Tabelle)',
                  zeilen: ['n_\\text{H} = ' + texZahl(Math.round(w.nH)) + ' \\text{ Stromkreis' + (Math.round(w.nH) === 1 ? '' : 'e') + '}'] };
       },
       function wanne(w) {
         if (hat(w, 'fW') || (hat(w, 'Iz') && hat(w, 'Ir') && hat(w, 'fT') && hat(w, 'fH'))) return null;
         const e = einst.verlegung === 'E';
-        return { ziel: 'fW', wert: 1, titel: e ? 'Umrechnungsfaktor für Kabelwannen und -pritschen' : 'Kein Umrechnungsfaktor für Kabelwannen und -pritschen',
-                 zeilen: [e ? '\\text{eine Lage, Leitungen mit Abstand: } f_3 = 1 \\text{ (sonst Wert aus der Tabelle eintragen)}' : '\\text{Verlegeart ' + einst.verlegung + ' ohne Wanne oder Pritsche: } f_3 = 1'] };
+        return { ziel: 'fW', wert: 1, titel: e ? 'Umrechnungsfaktor für Kabelwannen und -pritschen' : erde() ? 'Umrechnungsfaktor für den Erdboden' : 'Kein Umrechnungsfaktor für Kabelwannen und -pritschen',
+                 zeilen: [e ? '\\text{eine Lage, Leitungen mit Abstand: } f_3 = 1 \\text{ (sonst Wert aus der Tabelle eintragen)}' : erde() ? '\\text{spezifischer Erdbodenwärmewiderstand } 2{,}5\\,\\tfrac{\\text{K}\\cdot\\text{m}}{\\text{W}}\\text{: } f_3 = 1 \\text{ (feuchter Boden: Faktor eintragen)}' : '\\text{Verlegeart ' + einst.verlegung + ' ohne Wanne oder Pritsche: } f_3 = 1'] };
       },
       function schutzorgan(w) {
         if (hat(w, 'In') || !hat(w, 'Ib')) return null;
@@ -793,6 +803,8 @@
         const tab = irTabelle(werte.A);
         if (isFinite(tab) && Math.abs(tab - gegeben.Ir) > 0.01) warnungen.push('Laut Tabelle (Verlegeart ' + einst.verlegung + ') wäre I<sub>r</sub> = ' + zahl(tab, 3) + ' A.');
       }
+      if (erde()) warnungen.push('Verlegeart D: Als Temperatur gilt die Erdreichtemperatur (Bezug 20 °C, meist 15 bis 20 °C). Die Werte gelten für Dauerlast und trockenen Boden mit 2,5 K·m/W; Kabel in Erde z. B. NYY-J, mindestens 0,6 m tief, mit Warnband.');
+      if (erde() && hat(werte, 'nH') && Math.round(werte.nH) > 6 && !hat(werte, 'fH')) warnungen.push('Für mehr als 6 Kabel nebeneinander in Erde den Häufungsfaktor aus der Norm eintragen (Abstand der Kabel beachten).');
       if (hat(werte, 'thU') && !hat(werte, 'fT') && werte.thU > 60) warnungen.push('Über 60 °C Umgebung darf eine PVC-Leitung nicht betrieben werden.');
       if (einst.schutz === 'gG' && !hat(werte, 'Ia')) warnungen.push('Bei Schmelzsicherungen den Abschaltstrom I<sub>a</sub> für 0,4 s (Endstromkreis) bzw. 5 s (Verteilerstromkreis) aus der Kennlinie ablesen und eintragen.');
       if (keinQuerschnitt) warnungen.push('Kein Normquerschnitt bis 120 mm² erfüllt alle Bedingungen. Leitung kürzer planen, Spannungsfall-Grenze prüfen oder Schutzorgan ändern.');
@@ -1215,19 +1227,20 @@
       });
       html += '</tbody></table></div>';
 
-      const fT = hat(w, 'thU') ? TEMPERATURFAKTOR.filter(function (z) { return w.thU <= z[0] + 1e-9; })[0] : null;
-      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Umrechnungsfaktor f<sub>1</sub> für die Umgebungstemperatur (PVC, bezogen auf 30 °C)</caption><tbody><tr><th>ϑ<sub>U</sub> in °C</th>';
-      TEMPERATURFAKTOR.forEach(function (z) { html += '<td class="' + (fT === z ? 'treffer' : '') + '">' + z[0] + '</td>'; });
+      const TT = tempTabelle(), HT = haeufTabelle();
+      const fT = hat(w, 'thU') ? TT.filter(function (z) { return w.thU <= z[0] + 1e-9; })[0] : null;
+      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Umrechnungsfaktor f<sub>1</sub> für die ' + (erde() ? 'Erdreichtemperatur (PVC, bezogen auf 20 °C)' : 'Umgebungstemperatur (PVC, bezogen auf 30 °C)') + '</caption><tbody><tr><th>ϑ<sub>U</sub> in °C</th>';
+      TT.forEach(function (z) { html += '<td class="' + (fT === z ? 'treffer' : '') + '">' + z[0] + '</td>'; });
       html += '</tr><tr><th>f<sub>1</sub></th>';
-      TEMPERATURFAKTOR.forEach(function (z) { html += '<td class="' + (fT === z ? 'treffer' : '') + '">' + zahl(z[1], 3) + '</td>'; });
+      TT.forEach(function (z) { html += '<td class="' + (fT === z ? 'treffer' : '') + '">' + zahl(z[1], 3) + '</td>'; });
       html += '</tr></tbody></table></div>';
 
       const nH = hat(w, 'nH') ? Math.max(1, Math.round(w.nH)) : NaN;
-      const fH = isFinite(nH) ? HAEUFUNGSFAKTOR.filter(function (z) { return nH <= z[0]; })[0] : null;
-      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Umrechnungsfaktor f<sub>2</sub> für Häufung (gebündelt auf oder in der Wand, auch mehrere Stromkreise in einem Rohr)</caption><tbody><tr><th>Stromkreise</th>';
-      HAEUFUNGSFAKTOR.forEach(function (z) { html += '<td class="' + (fH === z ? 'treffer' : '') + '">' + z[0] + '</td>'; });
+      const fH = isFinite(nH) ? HT.filter(function (z) { return nH <= z[0]; })[0] : null;
+      html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Umrechnungsfaktor f<sub>2</sub> für Häufung (' + (erde() ? 'mehrere Kabel nebeneinander in Erde, sich berührend' : 'gebündelt auf oder in der Wand, auch mehrere Stromkreise in einem Rohr') + ')</caption><tbody><tr><th>Stromkreise</th>';
+      HT.forEach(function (z) { html += '<td class="' + (fH === z ? 'treffer' : '') + '">' + z[0] + '</td>'; });
       html += '</tr><tr><th>f<sub>2</sub></th>';
-      HAEUFUNGSFAKTOR.forEach(function (z) { html += '<td class="' + (fH === z ? 'treffer' : '') + '">' + zahl(z[1], 3) + '</td>'; });
+      HT.forEach(function (z) { html += '<td class="' + (fH === z ? 'treffer' : '') + '">' + zahl(z[1], 3) + '</td>'; });
       html += '</tr></tbody></table></div>';
 
       html += '<div class="tabelle-rahmen"><table class="tabelle"><caption>Schutzorgane</caption><thead><tr><th>Art</th><th>Abschaltstrom I<sub>a</sub></th><th>I<sub>2</sub></th><th style="text-align:left">Einsatz</th></tr></thead><tbody>';
