@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KNX: Topologie, Adressen und Planung – Formeln &amp; Rechner</title>
-  <meta name="description" content="KNX verstehen und planen: Kommunikationsarten TP, TP-64, TP-256, PL, RF, IP und IoT, Systemkomponenten, Sensoren und Aktoren, Busankoppler und Anwendungsmodul, Topologie mit Linien und Bereichen, physikalische Adressen, zwei- und dreistufige Gruppenadressen, Spannungsversorgung, Leitungslängen und Programmierung.">
+  <meta name="description" content="KNX planen, simulieren und verstehen: Planungsrechner für Linien, Bereiche, Koppler und Spannungsversorgung, Topologie-Simulator mit Filtertabellen, Telegrammweg und Buslast, Gruppenadress-Planer mit CSV-Export, Adress-Werkstatt mit allen 16 Bit, Kommunikationsarten TP, PL, RF, IP und IoT, Gerätearten und Programmierung.">
   <!-- seo -->
   <link rel="canonical" href="https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -12,15 +12,15 @@
   <meta property="og:site_name" content="Formeln &amp; Rechner">
   <meta property="og:locale" content="de_DE">
   <meta property="og:title" content="KNX: Topologie, Adressen und Planung">
-  <meta property="og:description" content="KNX verstehen und planen: Kommunikationsarten TP, TP-64, TP-256, PL, RF, IP und IoT, Systemkomponenten, Sensoren und Aktoren, Busankoppler und Anwendungsmodul, Topologie mit Linien und Bereichen, physikalische Adressen, zwei- und dreistufige Gruppenadressen, Spannungsversorgung, Leitungslängen und Programmierung.">
+  <meta property="og:description" content="KNX planen, simulieren und verstehen: Planungsrechner für Linien, Bereiche, Koppler und Spannungsversorgung, Topologie-Simulator mit Filtertabellen, Telegrammweg und Buslast, Gruppenadress-Planer mit CSV-Export, Adress-Werkstatt mit allen 16 Bit, Kommunikationsarten TP, PL, RF, IP und IoT, Gerätearten und Programmierung.">
   <meta property="og:url" content="https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html">
   <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
   <meta property="og:image:alt" content="Formeln &amp; Rechner">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="KNX: Topologie, Adressen und Planung">
-  <meta name="twitter:description" content="KNX verstehen und planen: Kommunikationsarten TP, TP-64, TP-256, PL, RF, IP und IoT, Systemkomponenten, Sensoren und Aktoren, Busankoppler und Anwendungsmodul, Topologie mit Linien und Bereichen, physikalische Adressen, zwei- und dreistufige Gruppenadressen, Spannungsversorgung, Leitungslängen und Programmierung.">
+  <meta name="twitter:description" content="KNX planen, simulieren und verstehen: Planungsrechner für Linien, Bereiche, Koppler und Spannungsversorgung, Topologie-Simulator mit Filtertabellen, Telegrammweg und Buslast, Gruppenadress-Planer mit CSV-Export, Adress-Werkstatt mit allen 16 Bit, Kommunikationsarten TP, PL, RF, IP und IoT, Gerätearten und Programmierung.">
   <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#seite","name":"KNX: Topologie, Adressen und Planung","url":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html","inLanguage":"de","description":"KNX verstehen und planen: Kommunikationsarten TP, TP-64, TP-256, PL, RF, IP und IoT, Systemkomponenten, Sensoren und Aktoren, Busankoppler und Anwendungsmodul, Topologie mit Linien und Bereichen, physikalische Adressen, zwei- und dreistufige Gruppenadressen, Spannungsversorgung, Leitungslängen und Programmierung.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"KNX: Topologie, Adressen und Planung","item":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#fragen","mainEntity":[{"@type":"Question","name":"Was ist der Unterschied zwischen physikalischer Adresse und Gruppenadresse?","acceptedAnswer":{"@type":"Answer","text":"Die physikalische Adresse (z. B. 1.1.12) ist die Hausnummer eines Geräts und dient nur zum Programmieren und Finden. Die Gruppenadresse (z. B. 1/0/1) ist die Funktion „Licht Küche“: Der Taster sendet an sie, alle Aktoren, die sie kennen, reagieren."}},{"@type":"Question","name":"Wie viele Geräte passen auf eine KNX-Linie?","acceptedAnswer":{"@type":"Answer","text":"Bei TP-64 höchstens 64 je Segment; mit bis zu drei Linienverstärkern 4 Segmente, also maximal 255 Teilnehmer je Linie. Mit TP-256-Geräten passen bis 256 in ein Segment ohne Verstärker. Planen sollte man mit rund 20 % Reserve."}},{"@type":"Question","name":"Welche Leitungslängen gelten bei KNX TP?","acceptedAnswer":{"@type":"Answer","text":"Je Liniensegment höchstens 1 000 m Leitung insgesamt, zwischen Spannungsversorgung und Busgerät höchstens 350 m, zwischen zwei Busgeräten höchstens 700 m. Zwei Spannungsversorgungen in einem Segment brauchen mindestens 200 m Leitung Abstand."}},{"@type":"Question","name":"Zweistufige oder dreistufige Gruppenadressen?","acceptedAnswer":{"@type":"Answer","text":"Beides geht, die dreistufige Form ist üblich, weil sie sich gut nach Gewerk/Geschoss/Funktion oder Geschoss/Raum/Funktion gliedern lässt. Wichtig ist, sich für ein Schema zu entscheiden und es in der ganzen Anlage durchzuhalten."}},{"@type":"Question","name":"Darf man KNX und 230 V in eine Dose legen?","acceptedAnswer":{"@type":"Answer","text":"Die Busleitung ist SELV. Sie darf zusammen mit Starkstromleitungen verlegt werden, wenn ihre Isolierung dafür ausgelegt ist (z. B. J-Y(St)Y mit Prüfspannung 2,5 kV bzw. 4 kV) und in Dosen und Verteilern die Mindestabstände bzw. Trennstege eingehalten werden. Freie Adern der Busleitung müssen abisoliert bleiben oder isoliert werden."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#seite"}}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#seite","name":"KNX: Topologie, Adressen und Planung","url":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html","inLanguage":"de","description":"KNX planen, simulieren und verstehen: Planungsrechner für Linien, Bereiche, Koppler und Spannungsversorgung, Topologie-Simulator mit Filtertabellen, Telegrammweg und Buslast, Gruppenadress-Planer mit CSV-Export, Adress-Werkstatt mit allen 16 Bit, Kommunikationsarten TP, PL, RF, IP und IoT, Gerätearten und Programmierung.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"KNX: Topologie, Adressen und Planung","item":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#fragen","mainEntity":[{"@type":"Question","name":"Was ist der Unterschied zwischen physikalischer Adresse und Gruppenadresse?","acceptedAnswer":{"@type":"Answer","text":"Die physikalische Adresse (z. B. 1.1.12) ist die Hausnummer eines Geräts und dient nur zum Programmieren und Finden. Die Gruppenadresse (z. B. 1/0/1) ist die Funktion „Licht Küche“: Der Taster sendet an sie, alle Aktoren, die sie kennen, reagieren."}},{"@type":"Question","name":"Wie viele Geräte passen auf eine KNX-Linie?","acceptedAnswer":{"@type":"Answer","text":"Bei TP-64 höchstens 64 je Segment; mit bis zu drei Linienverstärkern 4 Segmente, also maximal 255 Teilnehmer je Linie. Mit TP-256-Geräten passen bis 256 in ein Segment ohne Verstärker. Planen sollte man mit rund 20 % Reserve."}},{"@type":"Question","name":"Welche Leitungslängen gelten bei KNX TP?","acceptedAnswer":{"@type":"Answer","text":"Je Liniensegment höchstens 1 000 m Leitung insgesamt, zwischen Spannungsversorgung und Busgerät höchstens 350 m, zwischen zwei Busgeräten höchstens 700 m. Zwei Spannungsversorgungen in einem Segment brauchen mindestens 200 m Leitung Abstand."}},{"@type":"Question","name":"Zweistufige oder dreistufige Gruppenadressen?","acceptedAnswer":{"@type":"Answer","text":"Beides geht, die dreistufige Form ist üblich, weil sie sich gut nach Gewerk/Geschoss/Funktion oder Geschoss/Raum/Funktion gliedern lässt. Wichtig ist, sich für ein Schema zu entscheiden und es in der ganzen Anlage durchzuhalten."}},{"@type":"Question","name":"Darf man KNX und 230 V in eine Dose legen?","acceptedAnswer":{"@type":"Answer","text":"Die Busleitung ist SELV. Sie darf zusammen mit Starkstromleitungen verlegt werden, wenn ihre Isolierung dafür ausgelegt ist (z. B. J-Y(St)Y mit Prüfspannung 2,5 kV bzw. 4 kV) und in Dosen und Verteilern die Mindestabstände bzw. Trennstege eingehalten werden. Freie Adern der Busleitung müssen abisoliert bleiben oder isoliert werden."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-planung.html#seite"}}]}</script>
   <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
@@ -42,6 +42,65 @@
     .schritte { counter-reset: s; list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 8px; }
     .schritte li { counter-increment: s; position: relative; padding: 8px 10px 8px 44px; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); font-size: .93rem; line-height: 1.45; }
     .schritte li::before { content: counter(s); position: absolute; left: 10px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #9333EA; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
+    .sprung { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; padding: 10px 14px; }
+    .sprung a { padding: 4px 10px; border: 1px solid var(--linie); border-radius: 999px; text-decoration: none; font-size: .9rem; background: var(--flaeche2); min-height: 30px; display: inline-flex; align-items: center; }
+    .sprung a:hover { border-color: #9333EA; }
+    @media (max-width: 700px) { .sprung b { width: 100%; } }
+    .topo-leiste, .topo-zeile { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 8px 0; }
+    .topo-leiste label, .topo-form label, .planer-raster label, .werkstatt-feld { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .topo-leiste select, .topo-leiste input, .topo-form input, .topo-form select, .planer-raster input, .planer-raster select, .werkstatt-feld input, .topo-kasten input, .topo-kasten select {
+      padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; min-width: 0; }
+    .topo-raster { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+    .topo-bild-rahmen { min-width: 0; border: 1px solid var(--linie); border-radius: var(--rund); overflow: hidden; background: var(--flaeche2); }
+    #topoBild { width: 100%; display: block; height: 400px; touch-action: manipulation; }
+    .topo-seite { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 12px; min-width: 0; align-items: start; }
+    .topo-kasten { border: 1px solid var(--linie); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .topo-h { margin: 0 0 6px; font-size: 1.02rem; }
+    .topo-kasten .feldzeile { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 9em); gap: 6px; align-items: center; margin: 5px 0; font-size: .92rem; }
+    .topo-kasten .feldzeile input, .topo-kasten .feldzeile select { width: 100%; }
+    .topo-werte { font-family: var(--technik); font-size: .86rem; line-height: 1.5; margin: 6px 0; }
+    .topo-werte b { font-family: inherit; }
+    .ga-zeile { display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; gap: 6px; align-items: center; padding: 5px 0; border-bottom: 1px solid var(--linie); font-size: .88rem; }
+    .ga-zeile:last-child { border-bottom: 0; }
+    .ga-zeile .ga { font-family: var(--technik); font-weight: 700; color: #9333EA; }
+    .ga-zeile small { display: block; color: var(--leise); font-family: var(--technik); font-size: .76rem; }
+    .ga-zeile.aktiv { background: color-mix(in srgb, #9333EA 10%, transparent); }
+    .mini { min-width: 34px; min-height: 34px; border: 1px solid var(--linie); border-radius: 8px; background: var(--flaeche); color: var(--text); cursor: pointer; font: inherit; }
+    .mini.senden { background: #9333EA; color: #fff; border-color: #9333EA; }
+    .mini:hover { border-color: #9333EA; }
+    .topo-neu summary { cursor: pointer; font-weight: 600; margin-top: 8px; min-height: 30px; }
+    .topo-form { display: grid; gap: 8px; margin-top: 8px; }
+    .ga-eingabe { display: inline-flex; gap: 2px; align-items: center; }
+    .ga-eingabe input { width: 3.4em; }
+    .topo-form fieldset { border: 1px solid var(--linie); border-radius: var(--rund-klein); padding: 6px 8px; margin: 0; min-width: 0; }
+    .empf-liste { display: flex; flex-wrap: wrap; gap: 4px 10px; max-height: 150px; overflow: auto; font-family: var(--technik); font-size: .84rem; }
+    .empf-liste label { display: inline-flex; gap: 4px; align-items: center; min-height: 28px; }
+    .empf-liste input, .planer-gewerke input, .planer-raster input[type=checkbox], .topo-kasten input[type=checkbox] { width: 18px; height: 18px; }
+    .topo-prot { margin: 0; padding-left: 20px; font-size: .86rem; line-height: 1.45; max-height: 280px; overflow: auto; }
+    .topo-prot li { margin: 2px 0; }
+    .topo-prot li.ok { color: #2F9E44; }
+    .topo-prot li.nein { color: #C0392B; }
+    .topo-prot li.leise { color: var(--leise); }
+    .topo-meldung { min-height: 1.3em; font-weight: 600; margin: 4px 0; }
+    .topo-meldung.schlecht { color: #C0392B; }
+    .topo-meldung.gut { color: #2F9E44; }
+    .lastbalken { display: inline-block; width: 80px; height: 9px; border-radius: 5px; background: var(--linie); vertical-align: middle; overflow: hidden; margin-right: 6px; }
+    .lastbalken i { display: block; height: 100%; }
+    .planer-raster { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin: 8px 0; }
+    .planer-gewerke { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 10px; margin: 8px 0; }
+    .planer-gewerke fieldset { border: 1px solid var(--linie); border-left: 4px solid var(--farbe); border-radius: var(--rund); padding: 6px 10px; margin: 0; background: var(--flaeche2); }
+    .planer-gewerke legend { font-weight: 700; padding: 0 4px; }
+    .planer-gewerke label { display: flex; gap: 6px; align-items: center; min-height: 28px; font-size: .92rem; }
+    .planer-tabelle { max-height: 420px; overflow: auto; }
+    .werkstatt-feld input { font-family: var(--technik); font-size: 1.15rem; width: 12em; }
+    .bits { display: grid; grid-template-columns: repeat(16, minmax(0, 1fr)); gap: 2px; margin: 4px 0 2px; max-width: 640px; }
+    .bits span { text-align: center; font-family: var(--technik); font-weight: 700; padding: 5px 0; border-radius: 4px; color: #fff; font-size: .9rem; }
+    .bits-teile { display: grid; gap: 2px; max-width: 640px; font-family: var(--technik); font-size: .8rem; margin-bottom: 4px; }
+    .bits-teile span { text-align: center; border-top: 2px solid; padding-top: 2px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+    .lesart { border: 1px solid var(--linie); border-radius: var(--rund); padding: 8px 12px; margin: 10px 0; background: var(--flaeche2); }
+    .lesart h3 { margin: 0 0 4px; font-size: 1rem; }
+    .lesart .gross { font-family: var(--technik); font-size: 1.4rem; font-weight: 700; }
+    @media print { .sprung, .topo-leiste, .topo-neu, .mini, #tTeilen, #pCsv { display: none !important; } .planer-tabelle { max-height: none; } .topo-raster { grid-template-columns: 1fr; } }
   </style>
 </head>
 
@@ -192,6 +251,90 @@
           <tr><td>I – Initialisieren</td><td>nach dem Start wird der Wert vom Bus gelesen</td></tr>
         </tbody>
       </table></div>
+    </section>
+
+    <nav class="tafel abstand sprung" id="knx-sprung" aria-label="Inhalt dieser Seite">
+      <b>Auf dieser Seite:</b>
+      <a href="#rechner-oben">Planungsrechner</a>
+      <a href="#topo">Topologie-Simulator</a>
+      <a href="#ga-planer">Gruppenadressen planen</a>
+      <a href="#werkstatt">Adress-Werkstatt</a>
+      <a href="#umrechnen">Umrechnen</a>
+      <a href="#knx-wissen">Wissen</a>
+      <a href="#h-faq">Fragen</a>
+      <a href="knx-simulator.html">KNX-Simulator →</a>
+    </nav>
+
+    <section class="tafel abstand" id="topo" aria-labelledby="h-topo">
+      <h2 id="h-topo">Topologie-Simulator</h2>
+      <p>Baue die Anlage aus Bereichen und Linien auf, sende Gruppentelegramme und verfolge, welcher Koppler sie weiterleitet oder sperrt. Jede Linie zeigt Geräte, Spannungsversorgung und Buslast. Tippe eine Linie an, um sie zu bearbeiten.</p>
+      <div class="topo-leiste">
+        <label>Vorlage <select id="tVorlage" data-nicht-merken>
+          <option value="efh">Einfamilienhaus (1 Linie)</option>
+          <option value="mfh">Mehrfamilienhaus (4 Linien)</option>
+          <option value="buero" selected>Bürogebäude (3 Bereiche)</option>
+          <option value="gross">Großes Objekt (6 Bereiche)</option>
+          <option value="rechner">aus dem Planungsrechner oben</option>
+        </select></label>
+        <button type="button" class="knopf" id="tLaden">Laden</button>
+        <label>Bereichslinie <select id="tBackbone" data-nicht-merken><option value="ip">KNX IP mit IP-Routern</option><option value="tp">KNX TP mit Bereichskopplern</option></select></label>
+        <label>Koppler <select id="tModus" data-nicht-merken><option value="filter">filtern (Filtertabelle)</option><option value="alle">alles weiterleiten</option><option value="sperren">alles sperren</option></select></label>
+        <label>linienübergreifend <input id="tQ" inputmode="decimal" size="3" data-nicht-merken> %</label>
+      </div>
+      <div class="topo-raster">
+        <div class="topo-bild-rahmen"><canvas id="topoBild" role="img" aria-label="Topologie der Anlage mit Bereichslinie, Bereichskopplern, Hauptlinien, Linienkopplern und Linien; zeigt Geräte, Spannungsversorgung, Buslast und laufende Telegramme"></canvas></div>
+        <div class="topo-seite">
+          <div class="topo-kasten" id="tLinie"></div>
+          <div class="topo-kasten">
+            <h3 class="topo-h">Gruppentelegramm senden</h3>
+            <div id="tGaListe"></div>
+            <details class="topo-neu" id="tGaForm">
+              <summary>Gruppenadresse anlegen oder ändern</summary>
+              <div class="topo-form">
+                <label>Adresse <span class="ga-eingabe"><input id="fH" inputmode="numeric" aria-label="Hauptgruppe" data-nicht-merken>/<input id="fM" inputmode="numeric" aria-label="Mittelgruppe" data-nicht-merken>/<input id="fU" inputmode="numeric" aria-label="Untergruppe" data-nicht-merken></span></label>
+                <label>Name <input id="fName" maxlength="40" data-nicht-merken></label>
+                <label>Sender in Linie <select id="fSender" data-nicht-merken></select></label>
+                <fieldset><legend>Empfänger in Linien</legend><div id="fEmpf" class="empf-liste"></div></fieldset>
+                <div class="topo-zeile"><button type="button" class="knopf" id="fSpeichern">Speichern</button><button type="button" class="knopf-leise" id="fLeeren">Leeren</button></div>
+                <p class="topo-meldung" id="fMeldung" role="status"></p>
+              </div>
+            </details>
+          </div>
+          <div class="topo-kasten">
+            <h3 class="topo-h">Was ist passiert?</h3>
+            <ol class="topo-prot" id="tProt"><li class="leise">Noch kein Telegramm gesendet. Drücke ▶ bei einer Gruppenadresse.</li></ol>
+          </div>
+        </div>
+      </div>
+      <h3 class="zwischen">Buslast und Material</h3>
+      <div id="tLast"></div>
+      <div class="topo-zeile">
+        <button type="button" class="knopf" id="tTeilen">Link mit dieser Anlage kopieren</button>
+        <span id="tTeilenMeldung" class="hilfe" role="status"></span>
+      </div>
+      <p class="topo-meldung" id="tStatus" role="status"></p>
+    </section>
+
+    <section class="tafel abstand" id="ga-planer" aria-labelledby="h-ga-planer">
+      <h2 id="h-ga-planer">Gruppenadressen planen</h2>
+      <p>Erzeugt eine vollständige, einheitliche Gruppenadressliste – funktional nach Gewerk oder räumlich nach Geschoss. Als CSV laden und in die Inbetriebnahme-Software übernehmen oder ausdrucken.</p>
+      <div class="planer-raster">
+        <label>Struktur <select id="pStruktur" data-nicht-merken><option value="gewerk">funktional: Hauptgruppe = Gewerk, Mittelgruppe = Geschoss</option><option value="geschoss">räumlich: Hauptgruppe = Geschoss, Mittelgruppe = Gewerk</option></select></label>
+        <label>Geschosse (mit Komma) <input id="pGeschosse" maxlength="120" data-nicht-merken></label>
+        <label>Räume je Geschoss <input id="pRaeume" inputmode="numeric" size="3" data-nicht-merken></label>
+        <label><input type="checkbox" id="pZentral" data-nicht-merken> Zentralfunktionen (Hauptgruppe 0)</label>
+      </div>
+      <div class="planer-gewerke" id="pFunktionen"></div>
+      <div class="topo-zeile"><button type="button" class="knopf" id="pCsv">Als CSV herunterladen</button><span class="hilfe" id="pAnzahl"></span></div>
+      <div id="pMeldung"></div>
+      <div class="rahmen planer-tabelle"><table class="tabelle"><thead><tr><th>Gruppenadresse</th><th>zweistufig</th><th>Name</th><th>DPT</th></tr></thead><tbody id="pListe"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand" id="werkstatt" aria-labelledby="h-werkstatt">
+      <h2 id="h-werkstatt">Adress-Werkstatt</h2>
+      <p>Gib eine Adresse in beliebiger Form ein: dreistufig <code>3/1/20</code>, zweistufig <code>3/276</code>, physikalisch <code>1.1.12</code>, Zahl <code>6420</code>, hexadezimal <code>0x1914</code> oder zwei Bytes aus dem Busmonitor <code>19 14</code>. Die Werkstatt zeigt alle 16 Bit und jede Lesart.</p>
+      <label class="werkstatt-feld">Adresse <input id="wEingabe" maxlength="20" data-nicht-merken></label>
+      <div id="wAusgabe"></div>
     </section>
 
     <section class="tafel abstand seo-info" aria-labelledby="h-faq">
@@ -475,7 +618,602 @@
       const w = document.getElementById('knx-wissen'), faq = document.querySelector('main .seo-info');
       if (w && faq) faq.parentNode.insertBefore(w, faq);
     })();
-    void seite;
+    window.KNXPlanung = { werte: seite.werte, rechne: rechne };
+  })();
+  </script>
+  <script>
+  (function () {
+    'use strict';
+    const $ = function (id) { return document.getElementById(id); };
+    const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
+    const zs = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 1 : n }); };
+    const LILA = '#9333EA', BLAU = '#2B7BB9', GRUEN = '#2E8B57', ORANGE = '#E07A1F', ROT = '#C0392B', GRAU = '#6B7785';
+    const NT = [160, 320, 640, 1280];
+    const SPEICHER = 'knx-topologie-1';
+    const main = document.querySelector('main');
+
+    // ---------- Seite gliedern ----------
+    (function () {
+      const held = main.querySelector('.held'), rechnen = main.querySelector('.rechnen'), loeser = main.querySelector('.loeser'), faq = main.querySelector('.seo-info');
+      if (rechnen) rechnen.id = 'rechner-oben';
+      if (loeser) loeser.id = 'umrechnen';
+      if (held) held.parentNode.insertBefore($('knx-sprung'), held.nextSibling);
+      const vor = loeser || $('knx-wissen') || faq;
+      ['topo', 'ga-planer', 'werkstatt'].forEach(function (id) { if (vor) vor.parentNode.insertBefore($(id), vor); });
+    })();
+
+    // ---------- Datenmodell ----------
+    const linie = function (name, n, tps, med, vs) { return { name: name, n: n, med: med || 'tp64', vs: vs || 0, ma: 10, tps: tps === undefined ? 4 : tps, ftAlt: false }; };
+    const ga = function (h, m, u, name, s, e) { return { h: h, m: m, u: u, name: name, s: s, e: e }; };
+    function vorlage(art) {
+      if (art === 'efh') return { v: 1, bb: 'ip', modus: 'filter', q: 20, bereiche: [{ name: 'Haus', linien: [linie('ganzes Haus', 52, 3)] }],
+        ga: [ga(1, 0, 1, 'Licht Wohnen schalten', '0.0', ['0.0']), ga(2, 0, 1, 'Jalousie Wohnen Auf/Ab', '0.0', ['0.0']), ga(0, 0, 1, 'Zentral aus', '0.0', ['0.0'])] };
+      if (art === 'mfh') return { v: 1, bb: 'ip', modus: 'filter', q: 20, bereiche: [{ name: 'Mehrfamilienhaus', linien: [linie('Allgemein, Keller', 34, 3), linie('Wohnung 1', 58, 4), linie('Wohnung 2', 56, 4), linie('Wohnung 3', 51, 4)] }],
+        ga: [ga(0, 0, 2, 'Windalarm', '0.0', ['0.1', '0.2', '0.3']), ga(0, 0, 3, 'Außentemperatur', '0.0', ['0.1', '0.2', '0.3']), ga(1, 1, 1, 'Wohnung 1 Licht Küche', '0.1', ['0.1']), ga(1, 0, 1, 'Treppenhauslicht', '0.0', ['0.0']), ga(1, 2, 9, 'Wohnung 2 Klingel an Treppenhauslicht', '0.2', ['0.0'])] };
+      if (art === 'gross') {
+        const b = [];
+        for (let i = 0; i < 6; i++) { const l = []; for (let j = 0; j < (i === 5 ? 3 : 6); j++) l.push(linie((i === 5 ? ['Heizung', 'Lüftung', 'Wetter'][j] : (j === 0 ? 'EG' : j + '. OG')) , 40 + ((i * 7 + j * 13) % 22), 3 + ((i + j) % 4))); b.push({ name: i === 5 ? 'Technik' : 'Haus ' + 'ABCDE'[i], linien: l }); }
+        const alle = []; for (let i = 0; i < 5; i++) for (let j = 0; j < 6; j++) alle.push(i + '.' + j);
+        return { v: 1, bb: 'ip', modus: 'filter', q: 15, bereiche: b, ga: [ga(0, 0, 2, 'Windalarm', '5.2', alle), ga(0, 0, 1, 'Zentral aus', '0.0', alle), ga(3, 0, 1, 'Außentemperatur', '5.2', ['5.0', '5.1']), ga(1, 3, 4, 'Haus D 3. OG Licht', '3.3', ['3.3'])] };
+      }
+      if (art === 'rechner' && window.KNXPlanung) {
+        const e = KNXPlanung.werte(), r = KNXPlanung.rechne(e);
+        if (!r.zuViel) {
+          const b = []; let rest = e.n, nr = 0;
+          for (let a = 0; a < r.bereiche; a++) {
+            const l = [];
+            for (let j = 0; j < 15 && nr < r.linien; j++, nr++) { const n = Math.min(r.jeLinie, rest); rest -= n; const li = linie('Linie ' + (a + 1) + '.' + (j + 1), n, 4, e.medium, e.medium === 'tp256' ? 0 : Math.max(0, Math.ceil(n / 64) - 1)); li.ma = Math.max(1, Math.min(50, e.ig)); l.push(li); }
+            b.push({ name: 'Bereich ' + (a + 1), linien: l });
+          }
+          const alle = []; b.forEach(function (x, i) { x.linien.forEach(function (y, j) { alle.push(i + '.' + j); }); });
+          return { v: 1, bb: 'ip', modus: 'filter', q: 20, bereiche: b, ga: [ga(0, 0, 1, 'Zentral aus', '0.0', alle), ga(1, 0, 1, 'Licht in Linie 1.1', '0.0', ['0.0'])] };
+        }
+      }
+      return { v: 1, bb: 'ip', modus: 'filter', q: 20,
+        bereiche: [
+          { name: 'Haus A', linien: [linie('EG', 48, 5), linie('1. OG', 55, 4), linie('2. OG', 52, 4)] },
+          { name: 'Haus B', linien: [linie('EG', 44, 4), linie('1. OG', 61, 6)] },
+          { name: 'Technik', linien: [linie('Heizung, Lüftung', 26, 8), linie('Wetter, Zentral', 9, 2)] }
+        ],
+        ga: [
+          ga(1, 1, 1, 'Licht Haus A 1. OG Büro 1', '0.1', ['0.1']),
+          ga(0, 0, 1, 'Zentral aus', '2.1', ['0.0', '0.1', '0.2', '1.0', '1.1']),
+          ga(0, 0, 2, 'Windalarm', '2.1', ['0.0', '0.1', '0.2', '1.0', '1.1']),
+          ga(3, 0, 1, 'Außentemperatur', '2.1', ['2.0']),
+          ga(1, 2, 7, 'Licht Haus B EG Flur (Taster in Haus A)', '0.0', ['1.0'])
+        ] };
+    }
+    const LMAX = 15;
+    const istText = function (v, n) { return typeof v === 'string' ? v.replace(/[\u0000-\u001f]/g, '').slice(0, n) : ''; };
+    const zahlIn = function (v, a, b, def) { v = Number(v); return isFinite(v) ? Math.max(a, Math.min(b, Math.round(v * 10) / 10)) : def; };
+    function pruefen(p) {
+      if (!p || typeof p !== 'object' || !Array.isArray(p.bereiche) || !p.bereiche.length || p.bereiche.length > LMAX) return null;
+      const o = { v: 1, bb: p.bb === 'tp' ? 'tp' : 'ip', modus: ['filter', 'alle', 'sperren'].indexOf(p.modus) >= 0 ? p.modus : 'filter', q: zahlIn(p.q, 0, 100, 20), bereiche: [], ga: [] };
+      for (let a = 0; a < p.bereiche.length; a++) {
+        const b = p.bereiche[a]; if (!b || !Array.isArray(b.linien) || !b.linien.length || b.linien.length > LMAX) return null;
+        o.bereiche.push({ name: istText(b.name, 24) || 'Bereich ' + (a + 1), linien: b.linien.map(function (l, j) {
+          l = l || {};
+          return { name: istText(l.name, 24) || 'Linie ' + (j + 1), n: Math.round(zahlIn(l.n, 0, 300, 0)), med: l.med === 'tp256' ? 'tp256' : 'tp64', vs: Math.round(zahlIn(l.vs, 0, 3, 0)), ma: zahlIn(l.ma, 1, 50, 10), tps: zahlIn(l.tps, 0, 50, 0), ftAlt: l.ftAlt === true };
+        }) });
+      }
+      const gibt = function (k) { if (typeof k !== 'string' || !/^\d{1,2}\.\d{1,2}$/.test(k)) return false; const t = k.split('.'); return !!(o.bereiche[+t[0]] && o.bereiche[+t[0]].linien[+t[1]]); };
+      (Array.isArray(p.ga) ? p.ga : []).slice(0, 60).forEach(function (g) {
+        if (!g || !gibt(g.s)) return;
+        const h = Math.round(zahlIn(g.h, 0, 31, 0)), m = Math.round(zahlIn(g.m, 0, 7, 0)), u = Math.round(zahlIn(g.u, 0, 255, 1));
+        if (o.ga.some(function (x) { return x.h === h && x.m === m && x.u === u; })) return;
+        const e = []; (Array.isArray(g.e) ? g.e : []).forEach(function (k) { if (gibt(k) && e.indexOf(k) < 0) e.push(k); });
+        o.ga.push({ h: h, m: m, u: u, name: istText(g.name, 40) || 'Gruppe', s: g.s, e: e });
+      });
+      return o;
+    }
+    let P = null;
+    try { P = pruefen(JSON.parse(localStorage.getItem(SPEICHER) || 'null')); } catch (x) { P = null; }
+    if (!P) P = vorlage('buero');
+    let uhr = 0;
+    function speichernJetzt() { try { localStorage.setItem(SPEICHER, JSON.stringify(P)); } catch (x) { /* ohne Speicher */ } }
+    function speichern() { clearTimeout(uhr); uhr = setTimeout(speichernJetzt, 300); }
+    window.addEventListener('pagehide', function () { clearTimeout(uhr); speichernJetzt(); });
+
+    // ---------- Berechnung je Linie und Buslast ----------
+    const anzLinien = function () { return P.bereiche.reduce(function (s, b) { return s + b.linien.length; }, 0); };
+    function linieRechnen(l) {
+      const seg = l.med === 'tp256' ? 1 : l.vs + 1, max = l.med === 'tp256' ? 255 : Math.min(255, 64 * seg);
+      const jeSeg = Math.ceil(l.n / seg), strom = jeSeg * l.ma, ntBedarf = strom * 1.2, nt = NT.filter(function (x) { return x >= ntBedarf - 1e-9; })[0] || NaN;
+      const segZuViel = l.med === 'tp256' ? l.n > 256 : jeSeg > 64;
+      return { seg: seg, max: max, jeSeg: jeSeg, strom: strom, nt: nt, zuViel: l.n > max || segZuViel };
+    }
+    function last() {
+      const viele = anzLinien() > 1, mehrB = P.bereiche.length > 1, q = P.q / 100;
+      const f = P.modus === 'alle' ? 1 : P.modus === 'sperren' ? 0 : q;
+      const L = P.bereiche.map(function (b) { return b.linien.map(function (l) { return { eigen: l.tps, hoch: viele ? l.tps * f : 0 }; }); });
+      const auf = L.map(function (b) { return mehrB ? b.reduce(function (s, x) { return s + x.hoch; }, 0) * f : 0; });
+      const bb = auf.reduce(function (s, x) { return s + x; }, 0);
+      const haupt = L.map(function (b, a) { return b.reduce(function (s, x) { return s + x.hoch; }, 0) + (mehrB ? (bb - auf[a]) * (P.modus === 'alle' ? 1 : P.modus === 'sperren' ? 0 : q) : 0); });
+      L.forEach(function (b, a) { b.forEach(function (x) { x.rate = x.eigen + (viele ? (haupt[a] - x.hoch) * f : 0); x.pz = x.rate * 2; }); });
+      return { L: L, haupt: haupt, hauptPz: haupt.map(function (x) { return x * 2; }), bb: bb, bbPz: P.bb === 'tp' ? bb * 2 : NaN };
+    }
+    const lastFarbe = function (pz) { return pz > 50 ? ROT : pz > 25 ? ORANGE : GRUEN; };
+
+    // ---------- Zeichnen ----------
+    const cv = $('topoBild'), cx = cv.getContext('2d');
+    let BB = 600, HH = 400, POS = null, gewaehlt = '0.0';
+    const F = function (n) { return Thema.farbe(n); };
+    function TX(t, x, y, a, g, fett, farbe) { cx.font = (fett ? '700 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif'); cx.textAlign = a || 'left'; cx.textBaseline = 'middle'; cx.fillStyle = farbe || F('--text'); cx.fillText(t, x, y); }
+    function kurz(t, w, g, fett) { cx.font = (fett ? '700 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif'); if (cx.measureText(t).width <= w) return t; while (t.length > 1 && cx.measureText(t + '…').width > w) t = t.slice(0, -1); return t + '…'; }
+    function aufbau() {
+      BB = cv.clientWidth || 600;
+      const bbX = 14, akX = 36, spX = 64, gap = 12, minW = 168;
+      const proZeile = Math.max(1, Math.floor((BB - spX - 10 + gap) / (minW + gap)));
+      const bw = Math.min(240, Math.floor((BB - spX - 10 - (proZeile - 1) * gap) / proZeile)), bh = 104;
+      let y = 40;
+      const pos = { bbX: bbX, akX: akX, spX: spX, bw: bw, bh: bh, b: [] };
+      P.bereiche.forEach(function (b) {
+        const ab = { ay: y, linien: [], zeilen: [] };
+        y += BB < 560 ? 40 : 24;
+        for (let j = 0; j < b.linien.length; j++) {
+          const sp = j % proZeile;
+          if (sp === 0) { ab.zeilen.push(y); }
+          const zy = ab.zeilen[ab.zeilen.length - 1], x = spX + 10 + sp * (bw + gap);
+          ab.linien.push({ x: x, y: zy + 26, cx: x + bw / 2, zy: zy, lky: zy + 13 });
+          if (sp === proZeile - 1 || j === b.linien.length - 1) y = zy + 26 + bh + 12;
+        }
+        y += 8;
+        pos.b.push(ab);
+      });
+      HH = Math.max(220, y + 4);
+      const d = Math.min(2, window.devicePixelRatio || 1);
+      cv.style.height = HH + 'px'; cv.width = Math.round(BB * d); cv.height = Math.round(HH * d); cx.setTransform(d, 0, 0, d, 0, 0);
+      POS = pos;
+    }
+    function kasten(x, y, w, h, rand, text, farbe) {
+      cx.fillStyle = F('--flaeche'); cx.strokeStyle = rand; cx.lineWidth = 2; cx.fillRect(x - w / 2, y - h / 2, w, h); cx.strokeRect(x - w / 2, y - h / 2, w, h);
+      TX(text, x, y, 'center', 10, true, farbe || rand);
+    }
+    function balken(x, y, w, anteil, farbe) { cx.fillStyle = F('--linie'); cx.fillRect(x, y, w, 5); cx.fillStyle = farbe; cx.fillRect(x, y, w * Math.max(0, Math.min(1, anteil)), 5); }
+    let ANIM = null;
+    function zeichnen(ms) {
+      if (!POS) return;
+      const s = ms / 1000, viele = anzLinien() > 1, mehrB = P.bereiche.length > 1, LA = last();
+      cx.clearRect(0, 0, BB, HH);
+      const at = ANIM ? s - ANIM.start : 99;
+      // Bereichslinie
+      const letzteAy = POS.b[POS.b.length - 1].ay;
+      cx.globalAlpha = mehrB ? 1 : 0.3;
+      cx.strokeStyle = LILA; cx.lineWidth = P.bb === 'ip' ? 5 : 4; if (P.bb === 'ip') cx.setLineDash([10, 4]);
+      cx.beginPath(); cx.moveTo(POS.bbX, 24); cx.lineTo(POS.bbX, letzteAy); cx.stroke(); cx.setLineDash([]);
+      TX('Bereichslinie 0.0 · ' + (P.bb === 'ip' ? 'KNX IP' : 'KNX TP') + (mehrB ? (P.bb === 'tp' ? ' · Last ' + zs(LA.bbPz, 0) + ' %' : ' · ' + zs(LA.bb, 1) + ' Tel./s') : ' · bei einem Bereich nicht nötig'), POS.bbX - 4, 12, 'left', 11, true, LILA);
+      cx.globalAlpha = 1;
+      P.bereiche.forEach(function (b, a) {
+        const ab = POS.b[a];
+        // Hauptlinie (Rückgrat des Bereichs)
+        const zl = ab.zeilen[ab.zeilen.length - 1];
+        cx.strokeStyle = BLAU; cx.lineWidth = 3.5; cx.globalAlpha = viele ? 1 : 0.3;
+        cx.beginPath(); cx.moveTo(POS.spX, ab.ay); cx.lineTo(POS.spX, zl); cx.stroke();
+        ab.zeilen.forEach(function (zy, zi) {
+          const imZ = ab.linien.filter(function (p) { return p.zy === zy; }), xe = imZ[imZ.length - 1].cx;
+          cx.beginPath(); cx.moveTo(POS.spX, zy); cx.lineTo(xe, zy); cx.stroke(); void zi;
+        });
+        cx.globalAlpha = 1;
+        // Bereichskoppler
+        cx.globalAlpha = mehrB ? 1 : 0.3;
+        cx.strokeStyle = LILA; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(POS.bbX, ab.ay); cx.lineTo(POS.spX, ab.ay); cx.stroke();
+        kasten(POS.akX, ab.ay, 34, 18, LILA, P.bb === 'ip' ? 'IPR' : 'BK');
+        cx.globalAlpha = 1;
+        const hp = LA.hauptPz[a];
+        const schmal = BB < 560;
+        TX(kurz('Bereich ' + (a + 1) + ' · ' + b.name, BB - POS.spX - (schmal ? 16 : 230), 13, true), POS.spX + 8, ab.ay - 2, 'left', 13, true, F('--text'));
+        if (viele) TX('Hauptlinie ' + (a + 1) + '.0 · Last ' + zs(hp, 0) + ' %' + (mehrB ? ' · Koppler ' + (a + 1) + '.0.0' : ''), schmal ? POS.spX + 8 : BB - 8, schmal ? ab.ay + 14 : ab.ay - 2, schmal ? 'left' : 'right', 11, false, lastFarbe(hp));
+        // Linien
+        b.linien.forEach(function (l, j) {
+          const p = ab.linien[j], k = a + '.' + j, r = linieRechnen(l), lz = LA.L[a][j];
+          if (viele) {
+            cx.strokeStyle = BLAU; cx.lineWidth = 2; cx.beginPath(); cx.moveTo(p.cx, p.zy); cx.lineTo(p.cx, p.y); cx.stroke();
+            kasten(p.cx, p.lky, 28, 15, l.ftAlt ? ROT : BLAU, 'LK');
+            if (l.ftAlt) TX('FT alt', p.cx + 17, p.lky, 'left', 9, true, ROT);
+          }
+          const status = r.zuViel || !isFinite(r.nt) || lz.pz > 50 ? ROT : lz.pz > 25 ? ORANGE : GRUEN;
+          cx.fillStyle = F('--flaeche'); cx.fillRect(p.x, p.y, POS.bw, POS.bh);
+          // Empfang hervorheben
+          if (ANIM && ANIM.flash[k] !== undefined && at >= ANIM.flash[k] && at < ANIM.flash[k] + 2.5) { cx.fillStyle = ANIM.flashOk[k] ? 'rgba(47,158,68,.22)' : 'rgba(147,51,234,.16)'; cx.fillRect(p.x, p.y, POS.bw, POS.bh); }
+          cx.strokeStyle = k === gewaehlt ? LILA : status; cx.lineWidth = k === gewaehlt ? 3.5 : 2; cx.strokeRect(p.x, p.y, POS.bw, POS.bh);
+          const px = p.x + 7, w = POS.bw - 14;
+          TX(kurz((a + 1) + '.' + (j + 1) + '  ' + l.name, w - 70, 13, true), px, p.y + 13, 'left', 13, true);
+          TX(kurz(l.n + ' / ' + r.max + ' Geräte' + (l.med === 'tp256' ? ' (TP-256)' : r.seg > 1 ? ' (' + r.seg + ' Seg.)' : ''), w, 12), px, p.y + 32, 'left', 12, false, r.zuViel ? ROT : F('--text'));
+          balken(px, p.y + 41, w, l.n / r.max, r.zuViel ? ROT : GRUEN);
+          TX(kurz('NT ' + (isFinite(r.nt) ? r.nt + ' mA' : '> 1280 mA!') + (r.seg > 1 ? ' × ' + r.seg : '') + ' · ' + zs(r.strom, 0) + ' mA', w, 11.5), px, p.y + 60, 'left', 11.5, false, isFinite(r.nt) ? F('--leise') : ROT);
+          TX(kurz('Last ' + zs(lz.pz, 0) + ' % (' + zs(lz.rate, 1) + ' Tel./s)', w, 11.5), px, p.y + 78, 'left', 11.5, false, lastFarbe(lz.pz));
+          balken(px, p.y + 87, w, lz.pz / 100, lastFarbe(lz.pz));
+          if (ANIM && ANIM.flash[k] !== undefined && at >= ANIM.flash[k] && at < ANIM.flash[k] + 4) TX(ANIM.flashText[k], p.x + POS.bw - 6, p.y + 13, 'right', 11, true, ANIM.flashOk[k] ? GRUEN : ANIM.flashText[k] === 'Sender' ? LILA : ROT);
+        });
+      });
+      // Telegramm
+      if (ANIM) {
+        ANIM.wege.forEach(function (w) {
+          if (at < w.t0) return;
+          const f = Math.min(1, (at - w.t0) / w.d);
+          cx.strokeStyle = 'rgba(147,51,234,.45)'; cx.lineWidth = 4; cx.beginPath();
+          const pkt = punkte(w.p, f); pkt.forEach(function (q, i) { if (i) cx.lineTo(q[0], q[1]); else cx.moveTo(q[0], q[1]); }); cx.stroke();
+          if (f < 1) { const e = pkt[pkt.length - 1]; cx.fillStyle = LILA; cx.beginPath(); cx.arc(e[0], e[1], 6, 0, 2 * Math.PI); cx.fill(); }
+        });
+        ANIM.marken.forEach(function (m) {
+          if (at < m.t) return;
+          cx.fillStyle = m.ok ? GRUEN : ROT; cx.beginPath(); cx.arc(m.x + 16, m.y - 9, 8, 0, 2 * Math.PI); cx.fill();
+          TX(m.ok ? '✓' : '✗', m.x + 16, m.y - 9, 'center', 11, true, '#fff');
+        });
+        if (at > ANIM.ende + 6) ANIM = null;
+      }
+    }
+    function punkte(p, f) {
+      let L = 0; const s = [];
+      for (let i = 1; i < p.length; i++) { const d = Math.hypot(p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1]); s.push(d); L += d; }
+      let rest = f * L; const aus = [p[0]];
+      for (let i = 0; i < s.length; i++) {
+        if (rest >= s[i]) { aus.push(p[i + 1]); rest -= s[i]; continue; }
+        const q = s[i] ? rest / s[i] : 0; aus.push([p[i][0] + (p[i + 1][0] - p[i][0]) * q, p[i][1] + (p[i + 1][1] - p[i][1]) * q]); break;
+      }
+      return aus;
+    }
+
+    // ---------- Telegramm routen ----------
+    const gaText = function (g) { return g.h + '/' + g.m + '/' + g.u; };
+    const lName = function (k) { const t = k.split('.'); return (+t[0] + 1) + '.' + (+t[1] + 1); };
+    function senden(gi) {
+      const g = P.ga[gi]; if (!g) return;
+      const teil = [g.s].concat(g.e), drin = function (k) { return teil.indexOf(k) >= 0; };
+      const aussen = function (k) { return teil.some(function (x) { return x !== k; }); };
+      const bereichAussen = function (a) { return teil.some(function (x) { return +x.split('.')[0] !== a; }); };
+      const bereichDrin = function (a) { return teil.some(function (x) { return +x.split('.')[0] === a; }); };
+      const pass = function (ja) { return P.modus === 'alle' ? true : P.modus === 'sperren' ? false : ja; };
+      const viele = anzLinien() > 1, mehrB = P.bereiche.length > 1;
+      const sa = +g.s.split('.')[0], sl = +g.s.split('.')[1], prot = [], wege = [], marken = [], flash = {}, flashOk = {}, flashText = {};
+      const A = { wege: wege, marken: marken, flash: flash, flashOk: flashOk, flashText: flashText, start: performance.now() / 1000, ende: 0 };
+      const quelle = sa + 1 + '.' + (sl + 1) + '.1';
+      prot.push(['', 'Sender ' + quelle + ' (Linie ' + lName(g.s) + ') schickt ' + gaText(g) + ' „' + g.name + '“, Routingzähler 6.']);
+      flash[g.s] = 0; flashOk[g.s] = false; flashText[g.s] = 'Sender';
+      const erreicht = {}; erreicht[g.s] = 0.2;
+      const p0 = POS.b[sa].linien[sl];
+      let t = 0.3, rz = 6;
+      if (viele) {
+        const ja = pass(aussen(g.s) && !P.bereiche[sa].linien[sl].ftAlt);
+        wege.push({ p: [[p0.cx, p0.y], [p0.cx, p0.lky]], t0: t, d: 0.3 }); marken.push({ x: p0.cx, y: p0.lky, ok: ja, t: t + 0.3 });
+        prot.push([ja ? 'ok' : 'nein', 'Linienkoppler ' + (sa + 1) + '.' + (sl + 1) + '.0 (nach oben): ' + grund(ja, P.bereiche[sa].linien[sl].ftAlt, aussen(g.s), 'außerhalb der Linie gebraucht') + (ja ? ' Routingzähler ' + rz + ' → ' + (rz - 1) + '.' : '')]);
+        if (ja) {
+          rz--;
+          const ab = POS.b[sa];
+          wege.push({ p: [[p0.cx, p0.lky], [p0.cx, p0.zy], [POS.spX, p0.zy], [POS.spX, ab.ay]], t0: t + 0.3, d: 0.5 });
+          const tH = t + 0.8;
+          runter(sa, sl, tH, [POS.spX, ab.ay], rz, 'Hauptlinie ' + (sa + 1) + '.0');
+          if (mehrB) {
+            const jaB = pass(bereichAussen(sa));
+            wege.push({ p: [[POS.spX, ab.ay], [POS.akX, ab.ay]], t0: tH, d: 0.25 }); marken.push({ x: POS.akX, y: ab.ay, ok: jaB, t: tH + 0.25 });
+            prot.push([jaB ? 'ok' : 'nein', (P.bb === 'ip' ? 'IP-Router ' : 'Bereichskoppler ') + (sa + 1) + '.0.0 (nach oben): ' + grund(jaB, false, bereichAussen(sa), 'in anderen Bereichen gebraucht') + (jaB ? ' Routingzähler ' + rz + ' → ' + (rz - 1) + '.' : '')]);
+            if (jaB) {
+              const rzB = rz - 1;
+              P.bereiche.forEach(function (b, a) {
+                if (a === sa) return;
+                const ziel = POS.b[a], jaD = pass(bereichDrin(a)), t2 = tH + 0.25 + 0.5;
+                wege.push({ p: [[POS.akX, ab.ay], [POS.bbX, ab.ay], [POS.bbX, ziel.ay], [POS.akX, ziel.ay]], t0: tH + 0.25, d: 0.5 }); marken.push({ x: POS.akX, y: ziel.ay, ok: jaD, t: t2 });
+                prot.push([jaD ? 'ok' : 'nein', (P.bb === 'ip' ? 'IP-Router ' : 'Bereichskoppler ') + (a + 1) + '.0.0 (nach unten): ' + grund(jaD, false, bereichDrin(a), 'im Bereich gebraucht')]);
+                if (jaD) { wege.push({ p: [[POS.akX, ziel.ay], [POS.spX, ziel.ay]], t0: t2, d: 0.2 }); runter(a, -1, t2 + 0.2, [POS.spX, ziel.ay], rzB - 1, 'Hauptlinie ' + (a + 1) + '.0'); }
+              });
+            }
+          }
+        }
+      }
+      function runter(a, ausser, t0, start, rzH, wo) {
+        P.bereiche[a].linien.forEach(function (l, j) {
+          if (j === ausser) return;
+          const p = POS.b[a].linien[j], k = a + '.' + j, ja = pass(drin(k) && !l.ftAlt);
+          wege.push({ p: [start, [POS.spX, p.zy], [p.cx, p.zy], [p.cx, p.lky]], t0: t0, d: 0.45 }); marken.push({ x: p.cx, y: p.lky, ok: ja, t: t0 + 0.45 });
+          if (drin(k) || !ja || P.modus === 'alle') prot.push([ja ? 'ok' : drin(k) ? 'nein' : '', 'Linienkoppler ' + (a + 1) + '.' + (j + 1) + '.0 (nach unten, von ' + wo + '): ' + grund(ja, l.ftAlt, drin(k), 'in der Linie gebraucht')]);
+          if (ja) { wege.push({ p: [[p.cx, p.lky], [p.cx, p.y]], t0: t0 + 0.45, d: 0.2 }); erreicht[k] = t0 + 0.65; A.ende = Math.max(A.ende, t0 + 0.65); void rzH; }
+        });
+      }
+      A.ende = Math.max(A.ende, 1);
+      // Ergebnis je Linie
+      Object.keys(erreicht).forEach(function (k) { if (k === g.s) return; flash[k] = erreicht[k]; flashOk[k] = g.e.indexOf(k) >= 0; flashText[k] = flashOk[k] ? 'empfängt' : 'hört mit'; });
+      if (g.e.indexOf(g.s) >= 0) { flashOk[g.s] = true; flashText[g.s] = 'Sender + Empfänger'; }
+      const fehlt = g.e.filter(function (k) { return erreicht[k] === undefined; });
+      fehlt.forEach(function (k) { flash[k] = A.ende; flashOk[k] = false; flashText[k] = 'nicht erreicht!'; });
+      const unnoetig = Object.keys(erreicht).filter(function (k) { return k !== g.s && g.e.indexOf(k) < 0; });
+      if (fehlt.length) prot.push(['nein', 'Nicht erreicht: Linie ' + fehlt.map(lName).join(', ') + '. ' + (P.modus === 'sperren' ? 'Die Koppler sperren alles.' : 'Filtertabelle prüfen bzw. neu laden.')]);
+      else prot.push(['ok', g.e.length ? 'Alle Empfänger erreicht (' + g.e.map(lName).join(', ') + ').' : 'Keine Empfänger eingetragen.']);
+      if (unnoetig.length) prot.push(['', 'Unnötig belastet: Linie ' + unnoetig.map(lName).join(', ') + ' – dort hört niemand auf ' + gaText(g) + '.']);
+      else if (viele) prot.push(['', 'Alle anderen Linien bleiben ruhig – das spart Buslast.']);
+      ANIM = A;
+      const ol = $('tProt'); ol.innerHTML = '';
+      prot.forEach(function (z) { ol.append(kn('li', z[0], z[1])); });
+      gaListe(gi);
+    }
+    function grund(ja, alt, gebraucht, wozu) {
+      if (P.modus === 'alle') return 'leitet alles weiter.';
+      if (P.modus === 'sperren') return 'sperrt alles.';
+      if (alt) return 'Filtertabelle nicht geladen – gesperrt.';
+      return ja ? 'Gruppenadresse steht in der Filtertabelle (' + wozu + ') – weitergeleitet.' : gebraucht ? 'gesperrt.' : 'nicht in der Filtertabelle (nicht ' + wozu + ') – gesperrt.';
+    }
+
+    // ---------- Seitenleiste: Linie bearbeiten ----------
+    function feld(z, text, el) { const r = kn('label', 'feldzeile'); r.append(kn('span', '', text), el); z.append(r); return el; }
+    function eingabe(wert, fn, art) {
+      const i = kn('input'); i.setAttribute('data-nicht-merken', '');
+      if (art === 'text') { i.maxLength = 24; i.value = wert; } else { i.inputMode = 'decimal'; i.value = String(wert).replace('.', ','); }
+      i.addEventListener('change', function () { fn(art === 'text' ? i.value : i.value.replace(',', '.')); });
+      return i;
+    }
+    function auswahl(werte, aktuell, fn) { const s = kn('select'); s.setAttribute('data-nicht-merken', ''); werte.forEach(function (w) { const o = kn('option', '', w[1]); o.value = w[0]; s.append(o); }); s.value = String(aktuell); s.addEventListener('change', function () { fn(s.value); }); return s; }
+    function linieZeigen() {
+      const z = $('tLinie'); z.innerHTML = '';
+      const t = gewaehlt.split('.'), a = +t[0], j = +t[1], b = P.bereiche[a], l = b && b.linien[j];
+      if (!l) { gewaehlt = '0.0'; return linieZeigen(); }
+      const r = linieRechnen(l), lz = last().L[a][j];
+      z.append(kn('h3', 'topo-h', 'Linie ' + (a + 1) + '.' + (j + 1) + ' bearbeiten'));
+      feld(z, 'Name', eingabe(l.name, function (v) { l.name = istText(v, 24) || l.name; neu(); }, 'text'));
+      feld(z, 'Busgeräte', eingabe(l.n, function (v) { l.n = Math.round(zahlIn(v, 0, 300, l.n)); neu(); }));
+      feld(z, 'Medium', auswahl([['tp64', 'TP-64'], ['tp256', 'TP-256']], l.med, function (v) { l.med = v === 'tp256' ? 'tp256' : 'tp64'; neu(); }));
+      if (l.med === 'tp64') feld(z, 'Linienverstärker', auswahl([['0', '0 (1 Segment)'], ['1', '1 (2 Segmente)'], ['2', '2 (3 Segmente)'], ['3', '3 (4 Segmente)']], l.vs, function (v) { l.vs = +v; neu(); }));
+      feld(z, 'Strom je Gerät in mA', eingabe(l.ma, function (v) { l.ma = zahlIn(v, 1, 50, l.ma); neu(); }));
+      feld(z, 'eigene Telegramme je s', eingabe(l.tps, function (v) { l.tps = zahlIn(v, 0, 50, l.tps); neu(); }));
+      const c = kn('input'); c.type = 'checkbox'; c.checked = l.ftAlt; c.setAttribute('data-nicht-merken', ''); c.addEventListener('change', function () { l.ftAlt = c.checked; neu(); });
+      const cl = kn('label', 'feldzeile'); cl.style.gridTemplateColumns = 'auto 1fr'; cl.append(c, kn('span', '', 'Fehler einbauen: Filtertabelle des Linienkopplers nicht geladen')); z.append(cl);
+      const w = kn('div', 'topo-werte');
+      const zeile = function (k, v, rot) { const d = kn('div'); const bb = kn('b', '', k + ': '); d.append(bb, document.createTextNode(v)); if (rot) d.style.color = ROT; w.append(d); };
+      zeile('Adressen', (a + 1) + '.' + (j + 1) + '.1 … ' + (a + 1) + '.' + (j + 1) + '.' + Math.max(1, Math.min(255, l.n)) + (anzLinien() > 1 ? ', Linienkoppler ' + (a + 1) + '.' + (j + 1) + '.0' : ''));
+      zeile('Segmente', r.seg + ' mit je bis zu ' + (l.med === 'tp256' ? 256 : 64) + ' Geräten, hier ' + r.jeSeg + ' je Segment', r.zuViel);
+      zeile('Höchstens', r.max + ' Geräte in dieser Linie', r.zuViel);
+      zeile('Strom je Segment', zs(r.strom, 0) + ' mA, mit 20 % Reserve ' + zs(r.strom * 1.2, 0) + ' mA → ' + (isFinite(r.nt) ? r.nt + ' mA' : 'zu groß, Segment teilen'), !isFinite(r.nt));
+      zeile('Buslast', zs(lz.rate, 1) + ' Telegramme/s · ' + zs(lz.pz, 0) + ' %', lz.pz > 50);
+      z.append(w);
+      const k = kn('div', 'topo-zeile');
+      const knopf = function (t, fn, leise) { const x = kn('button', leise ? 'knopf-leise' : 'knopf', t); x.type = 'button'; x.addEventListener('click', fn); k.append(x); };
+      knopf('+ Linie', function () { if (b.linien.length >= LMAX) return status('Höchstens 15 Linien je Bereich.', true); b.linien.push(linie('Linie ' + (b.linien.length + 1), 30, 3)); gewaehlt = a + '.' + (b.linien.length - 1); neu(true); });
+      knopf('+ Bereich', function () { if (P.bereiche.length >= LMAX) return status('Höchstens 15 Bereiche.', true); P.bereiche.push({ name: 'Bereich ' + (P.bereiche.length + 1), linien: [linie('Linie 1', 30, 3)] }); gewaehlt = (P.bereiche.length - 1) + '.0'; neu(true); });
+      knopf('Linie löschen', function () { if (anzLinien() <= 1) return status('Die letzte Linie bleibt.', true); entfernen(a, j); }, true);
+      z.append(k);
+      const bn = kn('div', 'topo-zeile');
+      const bi = eingabe(b.name, function (v) { b.name = istText(v, 24) || b.name; neu(); }, 'text'); bi.setAttribute('aria-label', 'Name des Bereichs');
+      bn.append(kn('span', '', 'Bereich ' + (a + 1) + ':'), bi);
+      z.append(bn);
+    }
+    function entfernen(a, j) {
+      const umbenennen = function (k) { const t = k.split('.'), x = +t[0], y = +t[1]; if (x === a && y === j) return null; if (x === a && y > j) return x + '.' + (y - 1); return k; };
+      P.bereiche[a].linien.splice(j, 1);
+      let weg = null;
+      if (!P.bereiche[a].linien.length) { P.bereiche.splice(a, 1); weg = a; }
+      P.ga = P.ga.map(function (g) {
+        let s = umbenennen(g.s); const e = g.e.map(umbenennen).filter(function (x) { return x; });
+        const verschiebe = function (k) { if (weg === null || !k) return k; const t = k.split('.'); return +t[0] > weg ? (+t[0] - 1) + '.' + t[1] : k; };
+        s = verschiebe(s); return s ? { h: g.h, m: g.m, u: g.u, name: g.name, s: s, e: e.map(verschiebe) } : null;
+      }).filter(function (g) { return g; });
+      gewaehlt = '0.0'; ANIM = null; neu(true);
+    }
+
+    // ---------- Gruppenadressen ----------
+    let bearbeite = -1;
+    function linienListe() { const l = []; P.bereiche.forEach(function (b, a) { b.linien.forEach(function (x, j) { l.push([a + '.' + j, (a + 1) + '.' + (j + 1) + ' ' + x.name]); }); }); return l; }
+    function gaListe(aktiv) {
+      const z = $('tGaListe'); z.innerHTML = '';
+      if (!P.ga.length) z.append(kn('p', 'hilfe', 'Noch keine Gruppenadressen. Unten anlegen.'));
+      P.ga.forEach(function (g, i) {
+        const r = kn('div', 'ga-zeile' + (i === aktiv ? ' aktiv' : ''));
+        const sb = kn('button', 'mini senden', '▶'); sb.type = 'button'; sb.setAttribute('aria-label', gaText(g) + ' senden'); sb.addEventListener('click', function () { senden(i); });
+        const mitte = kn('div'); mitte.append(kn('span', 'ga', gaText(g) + ' '), document.createTextNode(g.name), kn('small', '', 'von ' + lName(g.s) + ' an ' + (g.e.length ? g.e.map(lName).join(', ') : '–')));
+        const eb = kn('button', 'mini', '✎'); eb.type = 'button'; eb.setAttribute('aria-label', gaText(g) + ' bearbeiten'); eb.addEventListener('click', function () { formFuellen(i); });
+        const xb = kn('button', 'mini', '×'); xb.type = 'button'; xb.setAttribute('aria-label', gaText(g) + ' löschen'); xb.addEventListener('click', function () { P.ga.splice(i, 1); if (bearbeite === i) bearbeite = -1; neu(); });
+        r.append(sb, mitte, eb, xb); z.append(r);
+      });
+    }
+    function formAufbauen(sender, empf) {
+      const s = $('fSender'), alt = sender || s.value; s.innerHTML = '';
+      linienListe().forEach(function (w) { const o = kn('option', '', w[1]); o.value = w[0]; s.append(o); });
+      if (alt && linienListe().some(function (w) { return w[0] === alt; })) s.value = alt;
+      const e = $('fEmpf'), an = empf || Array.prototype.map.call(e.querySelectorAll('input:checked'), function (x) { return x.value; }); e.innerHTML = '';
+      linienListe().forEach(function (w) { const l = kn('label'), c = kn('input'); c.type = 'checkbox'; c.value = w[0]; c.checked = an.indexOf(w[0]) >= 0; c.setAttribute('data-nicht-merken', ''); l.append(c, document.createTextNode(lName(w[0]))); l.title = w[1]; e.append(l); });
+    }
+    function formFuellen(i) {
+      const g = P.ga[i]; bearbeite = i;
+      $('fH').value = g.h; $('fM').value = g.m; $('fU').value = g.u; $('fName').value = g.name;
+      formAufbauen(g.s, g.e); $('tGaForm').open = true; meldF('Bearbeite ' + gaText(g) + '.', false);
+      $('fH').focus();
+    }
+    function meldF(t, schlecht) { $('fMeldung').textContent = t; $('fMeldung').className = 'topo-meldung ' + (schlecht ? 'schlecht' : 'gut'); }
+    $('fLeeren').addEventListener('click', function () { bearbeite = -1; ['fH', 'fM', 'fU', 'fName'].forEach(function (id) { $(id).value = ''; }); formAufbauen(null, []); meldF('', false); });
+    $('fSpeichern').addEventListener('click', function () {
+      const h = +$('fH').value, m = +$('fM').value, u = +$('fU').value;
+      if (!/^\d+$/.test($('fH').value) || !/^\d+$/.test($('fM').value) || !/^\d+$/.test($('fU').value) || h > 31 || m > 7 || u > 255) return meldF('Hauptgruppe 0–31, Mittelgruppe 0–7, Untergruppe 0–255.', true);
+      if (h === 0 && m === 0 && u === 0) return meldF('0/0/0 ist für Rundsendungen reserviert.', true);
+      if (P.ga.some(function (g, i) { return i !== bearbeite && g.h === h && g.m === m && g.u === u; })) return meldF(h + '/' + m + '/' + u + ' gibt es schon.', true);
+      if (bearbeite < 0 && P.ga.length >= 60) return meldF('Höchstens 60 Gruppenadressen.', true);
+      const e = Array.prototype.map.call($('fEmpf').querySelectorAll('input:checked'), function (x) { return x.value; });
+      const g = { h: h, m: m, u: u, name: istText($('fName').value, 40) || 'Gruppe ' + h + '/' + m + '/' + u, s: $('fSender').value, e: e };
+      if (bearbeite >= 0) P.ga[bearbeite] = g; else P.ga.push(g);
+      meldF((bearbeite >= 0 ? 'Geändert: ' : 'Angelegt: ') + gaText(g) + '. Mit ▶ senden.', false); bearbeite = -1; neu();
+    });
+
+    // ---------- Buslast-Tabelle ----------
+    function lastZeigen() {
+      const z = $('tLast'); z.innerHTML = '';
+      const LA = last(), rahmen = kn('div', 'rahmen'), t = kn('table', 'tabelle'), kopf = kn('tr');
+      ['Strecke', 'Telegramme/s', 'Buslast', 'Material'].forEach(function (h) { kopf.append(kn('th', '', h)); });
+      const th = kn('thead'); th.append(kopf); t.append(th);
+      const tb = kn('tbody');
+      const zeile = function (name, rate, pz, mat, fett) {
+        const tr = kn('tr'), n = kn('td'); if (fett) n.append(kn('b', '', name)); else n.textContent = name;
+        const l = kn('td');
+        if (isFinite(pz)) { const bal = kn('span', 'lastbalken'), i = kn('i'); i.style.width = Math.min(100, pz) + '%'; i.style.background = lastFarbe(pz); bal.append(i); l.append(bal, document.createTextNode(zs(pz, 0) + ' %' + (pz > 50 ? ' – zu hoch' : pz > 25 ? ' – hoch' : ''))); } else l.textContent = 'unkritisch (IP)';
+        const r = kn('td', 'zahl', zs(rate, 1));
+        tr.append(n, r, l, kn('td', '', mat)); tb.append(tr);
+      };
+      const viele = anzLinien() > 1, mehrB = P.bereiche.length > 1;
+      let summe = { geraete: 0, nt: {}, lk: 0, lv: 0 };
+      if (mehrB) zeile('Bereichslinie 0.0 (' + (P.bb === 'ip' ? 'KNX IP' : 'KNX TP') + ')', LA.bb, LA.bbPz, P.bereiche.length + (P.bb === 'ip' ? ' IP-Router' : ' Bereichskoppler'), true);
+      P.bereiche.forEach(function (b, a) {
+        if (viele) zeile('Hauptlinie ' + (a + 1) + '.0 – ' + b.name, LA.haupt[a], LA.hauptPz[a], b.linien.length + ' Linienkoppler', true);
+        b.linien.forEach(function (l, j) {
+          const r = linieRechnen(l), lz = LA.L[a][j];
+          summe.geraete += l.n; if (viele) summe.lk++; summe.lv += l.med === 'tp256' ? 0 : l.vs;
+          if (isFinite(r.nt)) summe.nt[r.nt] = (summe.nt[r.nt] || 0) + r.seg;
+          zeile('  Linie ' + (a + 1) + '.' + (j + 1) + ' – ' + l.name, lz.rate, lz.pz, l.n + ' Geräte, ' + r.seg + ' × NT ' + (isFinite(r.nt) ? r.nt + ' mA' : '?') + (r.seg > 1 ? ', ' + (r.seg - 1) + ' LV' : ''));
+        });
+      });
+      t.append(tb); rahmen.append(t); z.append(rahmen);
+      const nt = Object.keys(summe.nt).sort(function (x, y) { return x - y; }).map(function (k) { return summe.nt[k] + ' × ' + k + ' mA'; }).join(', ');
+      z.append(kn('p', 'hilfe', 'Summe: ' + summe.geraete + ' Busgeräte in ' + anzLinien() + ' Linien und ' + P.bereiche.length + ' Bereich' + (P.bereiche.length > 1 ? 'en' : '') + ' · Spannungsversorgungen ' + (nt || '–') + ' · ' + summe.lk + ' Linienkoppler · ' + summe.lv + ' Linienverstärker' + (mehrB ? ' · ' + P.bereiche.length + (P.bb === 'ip' ? ' IP-Router' : ' Bereichskoppler') : '') + '. Buslast geschätzt mit rund 20 ms je Telegramm samt Quittung; über 25 % wird es eng, über 50 % gehen Telegramme verloren.'));
+    }
+
+    // ---------- Ablauf ----------
+    function status(t, schlecht) { $('tStatus').textContent = t; $('tStatus').className = 'topo-meldung ' + (schlecht ? 'schlecht' : 'gut'); }
+    function neu(layout) {
+      speichern(); if (layout) aufbau();
+      $('tBackbone').value = P.bb; $('tModus').value = P.modus; $('tQ').value = String(P.q).replace('.', ',');
+      linieZeigen(); gaListe(-1); formAufbauen(); lastZeigen();
+    }
+    $('tLaden').addEventListener('click', function () {
+      const art = $('tVorlage').value;
+      if (art === 'rechner' && window.KNXPlanung && KNXPlanung.rechne(KNXPlanung.werte()).zuViel) return status('Der Planungsrechner ergibt mehr als 15 Bereiche – so geht es nicht.', true);
+      P = pruefen(vorlage(art)); gewaehlt = '0.0'; ANIM = null; bearbeite = -1;
+      $('tProt').innerHTML = ''; $('tProt').append(kn('li', 'leise', 'Noch kein Telegramm gesendet. Drücke ▶ bei einer Gruppenadresse.'));
+      neu(true); status('Vorlage geladen: ' + $('tVorlage').selectedOptions[0].textContent + '.');
+    });
+    $('tBackbone').addEventListener('change', function () { P.bb = $('tBackbone').value === 'tp' ? 'tp' : 'ip'; neu(); });
+    $('tModus').addEventListener('change', function () { const v = $('tModus').value; P.modus = ['filter', 'alle', 'sperren'].indexOf(v) >= 0 ? v : 'filter'; neu(); });
+    $('tQ').addEventListener('change', function () { P.q = zahlIn($('tQ').value.replace(',', '.'), 0, 100, P.q); neu(); });
+    cv.addEventListener('click', function (ev) {
+      if (!POS) return;
+      const r = cv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+      POS.b.forEach(function (ab, a) { ab.linien.forEach(function (p, j) { if (x >= p.x && x <= p.x + POS.bw && y >= p.y && y <= p.y + POS.bh) { gewaehlt = a + '.' + j; linieZeigen(); } }); });
+    });
+    cv.addEventListener('mousemove', function (ev) {
+      if (!POS) return;
+      const r = cv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+      cv.style.cursor = POS.b.some(function (ab) { return ab.linien.some(function (p) { return x >= p.x && x <= p.x + POS.bw && y >= p.y && y <= p.y + POS.bh; }); }) ? 'pointer' : 'default';
+    });
+    let breite = 0;
+    window.addEventListener('resize', function () { if (cv.clientWidth !== breite) { breite = cv.clientWidth; aufbau(); } });
+    function schleife(t) { if (cv.clientWidth && cv.clientWidth !== breite) { breite = cv.clientWidth; aufbau(); } zeichnen(t); requestAnimationFrame(schleife); }
+    // Teilen
+    $('tTeilen').addEventListener('click', function () { Teilen.url('anlage', P).then(function (url) { Teilen.kopieren(url, function (t) { $('tTeilenMeldung').textContent = t; setTimeout(function () { $('tTeilenMeldung').textContent = ''; }, 5000); }); }); });
+    const vorherKnopf = Teilen.knopf($('tTeilen').parentNode, SPEICHER, function (roh) {
+      let p = null; try { p = pruefen(JSON.parse(roh)); } catch (x) { p = null; }
+      if (!p) return status('Keine gültige vorherige Anlage gefunden.', true);
+      P = p; gewaehlt = '0.0'; ANIM = null; neu(true); status('Vorherige Anlage wiederhergestellt.');
+    }, 'Anlage');
+
+    aufbau(); neu();
+    requestAnimationFrame(schleife);
+    Teilen.lesen('anlage').then(function (roh) {
+      if (!roh) return;
+      const p = pruefen(roh); if (!p) throw new Error('ungültig');
+      const text = JSON.stringify(p), gesichert = Teilen.sichern(SPEICHER, text);
+      P = p; clearTimeout(uhr); try { localStorage.setItem(SPEICHER, text); } catch (x) { /* ohne Speicher */ }
+      gewaehlt = '0.0'; neu(true); vorherKnopf.zeigen();
+      status('Anlage aus dem Link geladen und gespeichert.' + (gesichert ? ' Deine vorherige Anlage ist gesichert.' : ''));
+      $('topo').scrollIntoView();
+    }).catch(function () { status('Der Link ist unvollständig oder beschädigt – es gilt die gespeicherte Anlage.', true); });
+
+    // ---------- Gruppenadress-Planer ----------
+    const GEWERKE = [
+      ['licht', 'Licht', '#E0A800', [['Schalten', '1.001', 1], ['Status', '1.001', 1], ['Dimmen relativ', '3.007', 1], ['Helligkeitswert', '5.001', 1], ['Status Helligkeit', '5.001', 1]]],
+      ['jal', 'Jalousie / Rollladen', BLAU, [['Auf/Ab', '1.008', 1], ['Stopp/Lamelle', '1.007', 1], ['Position', '5.001', 1], ['Status Position', '5.001', 1], ['Position Lamelle', '5.001', 0]]],
+      ['hzg', 'Heizung', ROT, [['Isttemperatur', '9.001', 1], ['Sollwert', '9.001', 1], ['Stellgröße', '5.001', 1], ['Betriebsart', '20.102', 0], ['Fensterkontakt', '1.019', 1]]],
+      ['sd', 'Steckdosen', GRUEN, [['Schalten', '1.001', 1], ['Status', '1.001', 0]]],
+      ['sens', 'Sensoren', GRAU, [['Präsenz', '1.001', 0], ['Helligkeit', '9.004', 0], ['Luftqualität CO₂', '9.008', 0]]]
+    ];
+    const ZENTRAL = [['Alles aus', '1.001'], ['Windalarm', '1.005'], ['Außentemperatur', '9.001'], ['Tag/Nacht', '1.024'], ['Anwesend/Abwesend', '1.018']];
+    const PL_SPEICHER = 'knx-ga-planer-1';
+    let PL = null;
+    try { PL = JSON.parse(localStorage.getItem(PL_SPEICHER) || 'null'); } catch (x) { PL = null; }
+    if (!PL || typeof PL !== 'object') PL = {};
+    PL = { s: PL.s === 'geschoss' ? 'geschoss' : 'gewerk', g: istText(PL.g, 120) || 'KG, EG, OG, DG', r: Math.round(zahlIn(PL.r, 1, 60, 6)), z: PL.z !== false, f: PL.f && typeof PL.f === 'object' ? PL.f : {} };
+    GEWERKE.forEach(function (gw) { gw[3].forEach(function (fk, i) { const k = gw[0] + i; if (typeof PL.f[k] !== 'boolean') PL.f[k] = !!fk[2]; }); });
+    Object.keys(PL.f).forEach(function (k) { if (!/^[a-z]{2,5}\d$/.test(k) || typeof PL.f[k] !== 'boolean') delete PL.f[k]; });
+    $('pStruktur').value = PL.s; $('pGeschosse').value = PL.g; $('pRaeume').value = PL.r; $('pZentral').checked = PL.z;
+    GEWERKE.forEach(function (gw) {
+      const fs = kn('fieldset'); fs.style.setProperty('--farbe', gw[2]); fs.append(kn('legend', '', gw[1]));
+      gw[3].forEach(function (fk, i) { const l = kn('label'), c = kn('input'); c.type = 'checkbox'; c.checked = PL.f[gw[0] + i]; c.setAttribute('data-nicht-merken', ''); c.addEventListener('change', function () { PL.f[gw[0] + i] = c.checked; planen(); }); l.append(c, document.createTextNode(fk[0] + ' (' + fk[1] + ')')); fs.append(l); });
+      $('pFunktionen').append(fs);
+    });
+    ['pStruktur', 'pGeschosse', 'pRaeume', 'pZentral'].forEach(function (id) { $(id).addEventListener('change', function () {
+      PL.s = $('pStruktur').value === 'geschoss' ? 'geschoss' : 'gewerk'; PL.g = istText($('pGeschosse').value, 120); PL.r = Math.round(zahlIn($('pRaeume').value.replace(',', '.'), 1, 60, PL.r)); $('pRaeume').value = PL.r; PL.z = $('pZentral').checked; planen();
+    }); });
+    let LISTE = [];
+    function planen() {
+      try { localStorage.setItem(PL_SPEICHER, JSON.stringify(PL)); } catch (x) { /* ohne Speicher */ }
+      const gs = PL.g.split(',').map(function (x) { return x.trim().slice(0, 12); }).filter(function (x) { return x; }).slice(0, 31);
+      const fehler = [], liste = [];
+      if (!gs.length) fehler.push('Mindestens ein Geschoss eintragen.');
+      if (PL.z) ZENTRAL.forEach(function (z, i) { liste.push([0, 0, i + 1, 'Zentral ' + z[0], z[1]]); });
+      const aktiv = GEWERKE.map(function (gw) { return [gw, gw[3].filter(function (fk, i) { return PL.f[gw[0] + i]; })]; }).filter(function (x) { return x[1].length; });
+      if (PL.s === 'gewerk' && gs.length > 8) fehler.push('Funktional nach Gewerk: höchstens 8 Geschosse (Mittelgruppe 0 … 7). Weitere Geschosse in eine eigene Hauptgruppe oder räumlich gliedern.');
+      if (PL.s === 'geschoss' && aktiv.length > 7) fehler.push('Räumlich: höchstens 7 Gewerke (Mittelgruppe 1 … 7).');
+      aktiv.forEach(function (x, gi) {
+        const gw = x[0], fk = x[1], n = PL.r * fk.length;
+        if (n > 255) fehler.push(gw[1] + ': ' + PL.r + ' Räume × ' + fk.length + ' Funktionen = ' + n + ' Untergruppen, höchstens 255 möglich. Weniger Räume je Geschoss oder Funktionen.');
+        gs.forEach(function (g, mi) {
+          if (PL.s === 'gewerk' && mi > 7) return;
+          for (let r = 0; r < PL.r; r++) fk.forEach(function (f, fi) {
+            const u = r * fk.length + fi + 1; if (u > 255) return;
+            const h = PL.s === 'gewerk' ? gi + 1 : mi + 1, m = PL.s === 'gewerk' ? mi : gi + 1;
+            if (h > 31) return;
+            liste.push([h, m, u, gw[1].split(' ')[0] + ' ' + g + ' Raum ' + (r + 1) + ' ' + f[0], f[1]]);
+          });
+        });
+      });
+      LISTE = liste;
+      const mz = $('pMeldung'); mz.innerHTML = ''; fehler.forEach(function (f) { mz.append(kn('p', 'topo-meldung schlecht', f)); });
+      $('pAnzahl').textContent = liste.length + ' Gruppenadressen' + (liste.length > 400 ? ' (Tabelle zeigt die ersten 400, CSV enthält alle)' : '');
+      const tb = $('pListe'); tb.innerHTML = '';
+      const frag = document.createDocumentFragment();
+      liste.slice(0, 400).forEach(function (z) { const tr = kn('tr'); tr.append(kn('td', '', z[0] + '/' + z[1] + '/' + z[2]), kn('td', '', z[0] + '/' + (z[1] * 256 + z[2])), kn('td', '', z[3]), kn('td', '', z[4])); frag.append(tr); });
+      tb.append(frag);
+    }
+    $('pCsv').addEventListener('click', function () {
+      const esc = function (t) { t = String(t); if (/^[=+\-@]/.test(t)) t = "'" + t; return '"' + t.replace(/"/g, '""') + '"'; };
+      const text = '﻿' + [['Gruppenadresse', 'Name', 'DPT']].concat(LISTE.map(function (z) { return [z[0] + '/' + z[1] + '/' + z[2], z[3], 'DPST-' + z[4].replace('.', '-').replace(/-0*/, '-')]; })).map(function (z) { return z.map(esc).join(';'); }).join('\r\n');
+      const a = kn('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'text/csv;charset=utf-8' })); a.download = 'gruppenadressen.csv';
+      document.body.append(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1000);
+    });
+    planen();
+
+    // ---------- Adress-Werkstatt ----------
+    const hex4 = function (n) { return ('000' + n.toString(16).toUpperCase()).slice(-4); };
+    function lesen(t) {
+      t = String(t).trim(); let m;
+      if ((m = /^(\d{1,2})\/(\d)\/(\d{1,3})$/.exec(t))) { const h = +m[1], mm = +m[2], u = +m[3]; if (h > 31 || mm > 7 || u > 255) return [NaN, 'dreistufig: H 0–31, M 0–7, U 0–255']; return [h * 2048 + mm * 256 + u, 'Gruppenadresse dreistufig']; }
+      if ((m = /^(\d{1,2})\/(\d{1,4})$/.exec(t))) { const h = +m[1], u = +m[2]; if (h > 31 || u > 2047) return [NaN, 'zweistufig: H 0–31, U 0–2047']; return [h * 2048 + u, 'Gruppenadresse zweistufig']; }
+      if ((m = /^(\d{1,2})\.(\d{1,2})\.(\d{1,3})$/.exec(t))) { const b = +m[1], l = +m[2], tn = +m[3]; if (b > 15 || l > 15 || tn > 255) return [NaN, 'physikalisch: Bereich 0–15, Linie 0–15, Teilnehmer 0–255']; return [b * 4096 + l * 256 + tn, 'physikalische Adresse']; }
+      if ((m = /^0x([0-9a-f]{1,4})$/i.exec(t))) return [parseInt(m[1], 16), 'Hexadezimalzahl'];
+      if ((m = /^([0-9a-f]{2})\s+([0-9a-f]{2})$/i.exec(t))) return [parseInt(m[1] + m[2], 16), 'zwei Bytes (High, Low)'];
+      if ((m = /^\d{1,5}$/.exec(t))) { const n = +t; return n <= 65535 ? [n, 'Dezimalzahl'] : [NaN, 'höchstens 65 535']; }
+      return [NaN, 'Format nicht erkannt'];
+    }
+    function bitsZeigen(z, n, teile) {
+      const bits = kn('div', 'bits'); let i = 0;
+      teile.forEach(function (tl) { for (let k = 0; k < tl[0]; k++, i++) { const s = kn('span', '', String((n >> (15 - i)) & 1)); s.style.background = tl[2]; bits.append(s); } });
+      const tt = kn('div', 'bits-teile'); tt.style.gridTemplateColumns = teile.map(function (tl) { return tl[0] + 'fr'; }).join(' ');
+      teile.forEach(function (tl) { const s = kn('span', '', tl[1]); s.style.borderColor = tl[2]; s.style.color = tl[2]; tt.append(s); });
+      z.append(bits, tt);
+    }
+    function werkstatt() {
+      const z = $('wAusgabe'); z.innerHTML = '';
+      const r = lesen($('wEingabe').value), n = r[0];
+      if (!isFinite(n)) { z.append(kn('p', 'topo-meldung schlecht', r[1] + '.')); return; }
+      z.append(kn('p', 'hilfe', 'Erkannt: ' + r[1] + ' · Zahl ' + n + ' · hexadezimal 0x' + hex4(n) + ' · Bytes ' + hex4(n).slice(0, 2) + ' ' + hex4(n).slice(2) + ' · binär ' + ('0000000000000000' + n.toString(2)).slice(-16).replace(/(\d{4})(?=\d)/g, '$1 ')));
+      const H = n >> 11, M = (n >> 8) & 7, U = n & 255, U2 = n & 2047, B = n >> 12, L = (n >> 8) & 15;
+      const k1 = kn('div', 'lesart'); k1.append(kn('h3', '', 'als dreistufige Gruppenadresse'), kn('div', 'gross', H + '/' + M + '/' + U));
+      bitsZeigen(k1, n, [[5, 'Haupt ' + H, LILA], [3, 'Mittel ' + M, BLAU], [8, 'Unter ' + U, GRUEN]]);
+      k1.append(kn('p', 'hilfe', '2048 · ' + H + ' + 256 · ' + M + ' + ' + U + ' = ' + n)); z.append(k1);
+      const k2 = kn('div', 'lesart'); k2.append(kn('h3', '', 'als zweistufige Gruppenadresse'), kn('div', 'gross', H + '/' + U2));
+      bitsZeigen(k2, n, [[5, 'Haupt ' + H, LILA], [11, 'Unter ' + U2, GRUEN]]);
+      k2.append(kn('p', 'hilfe', '2048 · ' + H + ' + ' + U2 + ' = ' + n)); z.append(k2);
+      const k3 = kn('div', 'lesart'); k3.append(kn('h3', '', 'als physikalische Adresse'), kn('div', 'gross', B + '.' + L + '.' + U));
+      bitsZeigen(k3, n, [[4, 'Bereich ' + B, ORANGE], [4, 'Linie ' + L, BLAU], [8, 'Teiln. ' + U, GRUEN]]);
+      k3.append(kn('p', 'hilfe', '4096 · ' + B + ' + 256 · ' + L + ' + ' + U + ' = ' + n + (U === 0 ? ' · Teilnehmer 0 = Koppler' + (L === 0 ? ' (Bereichskoppler)' : ' (Linienkoppler)') : '') + (n === 0xFFFF ? ' · 15.15.255 = Werksadresse neuer Geräte' : '')));
+      z.append(k3);
+      z.append(kn('p', 'hilfe', 'Woher weiß ein Busgerät, welche Lesart gilt? Im Telegramm sagt Bit 7 des sechsten Bytes, ob die Zieladresse eine Gruppenadresse (1) oder eine physikalische Adresse (0) ist. Die Quelladresse ist immer physikalisch. Ob zwei- oder dreistufig, ist nur Darstellung – im Telegramm steht dieselbe Zahl.'));
+    }
+    $('wEingabe').value = '1/0/1';
+    $('wEingabe').addEventListener('input', werkstatt);
+    werkstatt();
   })();
   </script>
 </body>
