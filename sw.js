@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = 'd6302dbe23';
+const STAND = 'd21a6b4498';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -67,6 +67,9 @@ const DATEIEN = [
   "elektro/beleuchtung.html",
   "elektro/blitzschutz.html",
   "elektro/drehstrom.html",
+  "elektro/drehfeldmaschinen.html",
+  "elektro/motorpruefstand.html",
+  "elektro/elektromagnetismus.html",
   "gebaeudeautomation/knx-planung.html",
   "steuerung/sps.html",
   "steuerung/kleinsteuerung.html",
@@ -168,12 +171,17 @@ const DATEIEN = [
   "aufgabenblaetter/brandschutz/brandmeldeanlage/02-bma-aufbau-und-planung.md",
   "aufgabenblaetter/brandschutz/brandsimulation/01-rauchwarnmelder.md",
   "aufgabenblaetter/brandschutz/elektrischer-brandschutz/01-brandschutz-grundlagen.md",
+  "aufgabenblaetter/elektro/drehfeldmaschinen/01-drehfeld-polpaare-klemmbrett.md",
+  "aufgabenblaetter/elektro/drehfeldmaschinen/02-asynchronmaschine-kennlinie.md",
   "aufgabenblaetter/elektro/drehstrom/01-stern-dreieck-unsymmetrie.md",
   "aufgabenblaetter/elektro/einbruchmeldeanlage/01-ema-grundlagen.md",
   "aufgabenblaetter/elektro/einbruchmeldeanlage/02-gma-pruefungsaufgaben.md",
+  "aufgabenblaetter/elektro/elektromagnetismus/01-feld-kraft-induktion.md",
   "aufgabenblaetter/elektro/grundgroessen/01-grundgroessen-und-leiterwiderstand.md",
   "aufgabenblaetter/elektro/kleintransformatoren/01-kleintrafos-und-messwandler.md",
   "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
+  "aufgabenblaetter/elektro/motorpruefstand/01-typenschild-nennpunkt.md",
+  "aufgabenblaetter/elektro/motorpruefstand/02-kennlinien-stern-dreieck.md",
   "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",
   "aufgabenblaetter/elektro/transformator/01-einphasentransformator.md",
   "aufgabenblaetter/elektro/transformator/02-drehstromtransformator.md",

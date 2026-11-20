@@ -37,6 +37,24 @@
    "beschreibung": "Brandentstehung, Brandursachen, Rauch aus PVC, die drei Schutzziele, die vier Säulen des Brandschutzes, Feuerwiderstandsklassen, Abschottungen und Funktionserhalt."
   },
   {
+   "datei": "aufgabenblaetter/elektro/drehfeldmaschinen/01-drehfeld-polpaare-klemmbrett.md",
+   "thema": "elektro/drehfeldmaschinen.html",
+   "titel": "Drehfeldmaschinen – Drehfeld, Polpaare und Klemmbrett",
+   "stufe": "leicht",
+   "aufgaben": 5,
+   "loesungen": 5,
+   "beschreibung": "Drehstrom als Grundlage, wie aus drei Wicklungen ein Drehfeld wird, Polpaarzahl und synchrone Drehzahl, Stern und Dreieck am Klemmbrett, Drehrichtung und Synchronmaschine."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/drehfeldmaschinen/02-asynchronmaschine-kennlinie.md",
+   "thema": "elektro/drehfeldmaschinen.html",
+   "titel": "Asynchronmaschine – Typenschild und Kennlinie",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Schlupf, Läuferfrequenz, Drehmoment, aufgenommene Leistung und Wirkungsgrad vom Typenschild; Anzugs-, Kipp- und Nennmoment, Arbeitspunkt, Einfluss von Spannung und Läuferwiderstand, Generatorbetrieb."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/drehstrom/01-stern-dreieck-unsymmetrie.md",
    "thema": "elektro/drehstrom.html",
    "titel": "Drehstrom – Stern, Dreieck und Unsymmetrie",
@@ -64,6 +82,15 @@
    "beschreibung": "Rechnen an der Meldelinie (Spannungsteiler, zwei Brückenschaltungen), Neutralleiterunterbrechung, Melderanzahl, Melderwahl, Glasbruchmelder-Schaltungen und Alarmierung – im Stil der Abschlussprüfungen."
   },
   {
+   "datei": "aufgabenblaetter/elektro/elektromagnetismus/01-feld-kraft-induktion.md",
+   "thema": "elektro/elektromagnetismus.html",
+   "titel": "Elektromagnetismus – Feld, Kraft und Induktion",
+   "stufe": "leicht",
+   "aufgaben": 5,
+   "loesungen": 5,
+   "beschreibung": "Mit den Animationen: Magnetfeld um einen Leiter, Kraft auf einen Leiter im Magnetfeld, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator, Klingel als Selbstunterbrecher."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/grundgroessen/01-grundgroessen-und-leiterwiderstand.md",
    "thema": "elektro/grundgroessen.html",
    "titel": "Elektrische Grundgrößen und Leiterwiderstand",
@@ -89,6 +116,24 @@
    "aufgaben": 6,
    "loesungen": 6,
    "beschreibung": "Ein Beispiel von vorn bis hinten: Betriebsstrom, Umrechnungsfaktoren, Querschnitt, LS-Schalter und Spannungsfall für einen Motor, dazu eine Beleuchtungsanlage zum Selbstrechnen."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/motorpruefstand/01-typenschild-nennpunkt.md",
+   "thema": "elektro/motorpruefstand.html",
+   "titel": "Motorprüfstand – Typenschild und Nennpunkt",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Versuch am virtuellen Prüfstand: Typenschild auswerten, Nenndrehmoment und aufgenommene Leistung berechnen, sicher anschließen, Nennpunkt messen und mit dem Typenschild vergleichen, Generatorbetrieb über der synchronen Drehzahl."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/motorpruefstand/02-kennlinien-stern-dreieck.md",
+   "thema": "elektro/motorpruefstand.html",
+   "titel": "Motorprüfstand – Kennlinien in Dreieck und Stern",
+   "stufe": "schwer",
+   "aufgaben": 3,
+   "loesungen": 3,
+   "beschreibung": "Hochlauf am virtuellen Prüfstand: Kennlinien von Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad aufnehmen, Strombegrenzung verstehen, Dreieck und Stern vergleichen, günstigen Arbeitsbereich und Motorschutz begründen."
   },
   {
    "datei": "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",

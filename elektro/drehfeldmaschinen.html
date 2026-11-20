@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine – Formeln &amp; Rechner</title>
+  <meta name="description" content="Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment und Wirkungsgrad vom Typenschild, Stern und Dreieck am Klemmbrett, Drehrichtung, Kennlinie der Asynchronmaschine mit Motor-, Generator- und Bremsbetrieb und die Synchronmaschine mit Lastwinkel – mit Animationen zum Ausprobieren.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/drehfeldmaschinen.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine">
+  <meta property="og:description" content="Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment und Wirkungsgrad vom Typenschild, Stern und Dreieck am Klemmbrett, Drehrichtung, Kennlinie der Asynchronmaschine mit Motor-, Generator- und Bremsbetrieb und die Synchronmaschine mit Lastwinkel – mit Animationen zum Ausprobieren.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/drehfeldmaschinen.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine">
+  <meta name="twitter:description" content="Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment und Wirkungsgrad vom Typenschild, Stern und Dreieck am Klemmbrett, Drehrichtung, Kennlinie der Asynchronmaschine mit Motor-, Generator- und Bremsbetrieb und die Synchronmaschine mit Lastwinkel – mit Animationen zum Ausprobieren.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/drehfeldmaschinen.html#seite","name":"Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine","url":"https://tools.pr1m3.de/elektro/drehfeldmaschinen.html","inLanguage":"de","description":"Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment und Wirkungsgrad vom Typenschild, Stern und Dreieck am Klemmbrett, Drehrichtung, Kennlinie der Asynchronmaschine mit Motor-, Generator- und Bremsbetrieb und die Synchronmaschine mit Lastwinkel – mit Animationen zum Ausprobieren.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/drehfeldmaschinen.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/drehfeldmaschinen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine","item":"https://tools.pr1m3.de/elektro/drehfeldmaschinen.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/drehfeldmaschinen.html#fragen","mainEntity":[{"@type":"Question","name":"Warum dreht eine Asynchronmaschine nie ganz synchron?","acceptedAnswer":{"@type":"Answer","text":"Ein Moment entsteht nur, wenn im Läufer Strom fließt, und Strom wird nur induziert, wenn sich das Feld relativ zum Läufer bewegt. Bei synchroner Drehzahl wäre die Relativbewegung null, also auch Strom und Moment. Im Leerlauf reicht ein sehr kleiner Schlupf, um die Reibung zu überwinden."}},{"@type":"Question","name":"Stern oder Dreieck – woran erkenne ich, was richtig ist?","acceptedAnswer":{"@type":"Answer","text":"Am Typenschild: „Δ 230 V / Y 400 V“ heißt, jede Wicklung verträgt 230 V. Am 400-V-Netz also Stern (400 V / √3 = 230 V je Wicklung). Ein Motor „Δ 400 V / Y 690 V“ läuft am 400-V-Netz im Dreieck – und kann deshalb auch im Stern-Dreieck-Anlauf betrieben werden."}},{"@type":"Question","name":"Was passiert, wenn ich einen Motor im falschen Schaltbild anschließe?","acceptedAnswer":{"@type":"Answer","text":"Dreieck an einem Netz, für das Stern richtig wäre: Jede Wicklung bekommt das √3-fache der Spannung, der Strom steigt stark, der Motor wird in kurzer Zeit zerstört, wenn kein Schutz auslöst. Stern statt Dreieck: Er läuft mit einem Drittel des Moments und bleibt unter Last hängen."}},{"@type":"Question","name":"Warum kann ein Asynchronmotor als Generator arbeiten?","acceptedAnswer":{"@type":"Answer","text":"Treibt man ihn über die synchrone Drehzahl an, wird der Schlupf negativ, die induzierten Läuferströme kehren sich um, und die Maschine gibt Wirkleistung ins Netz ab. Den Blindstrom für ihr Magnetfeld bezieht sie weiter aus dem Netz – im Inselbetrieb braucht sie dafür Kondensatoren."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/drehfeldmaschinen.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3, .wissen-karte h4 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p, .wissen-karte li { font-size: .93rem; line-height: 1.45; }
+    .wissen-karte ul { margin: 4px 0; padding-left: 18px; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .sim-leiste { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 8px 0; }
+    .sim-leiste label { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .sim-leiste select { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; min-width: 0; }
+    .sim-leiste input[type=range] { width: 150px; min-height: 30px; }
+    .sim-leiste output { font-family: var(--technik); font-weight: 700; min-width: 4.5em; }
+    .sim-bild { width: 100%; display: block; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); touch-action: manipulation; }
+    .meldung-sim { min-height: 1.4em; font-weight: 600; margin: 6px 0; }
+    .meldung-sim.schlecht { color: #C0392B; }
+    .meldung-sim.gut { color: #2F9E44; }
+    .meldung-sim.warn { color: #B35C00; }
+    .bild-svg { width: 100%; height: auto; max-width: 760px; display: block; margin: 8px auto; }
+    .bild-svg text { font-family: var(--technik); fill: var(--text); }
+    @media print { .sim-leiste { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand" id="kb-teil" aria-labelledby="h-kb">
+      <h2 id="h-kb">Klemmbrett: Stern, Dreieck und Drehrichtung</h2>
+      <p>Setze die Brücken selbst: Tippe auf die gestrichelten Plätze zwischen den Klemmen. Unten waagerecht ergibt Stern, drei senkrechte Brücken ergeben Dreieck. Die Anzeige rechnet mit, welche Spannung an jeder Wicklung liegt.</p>
+      <div class="sim-leiste">
+        <label>Netz <select id="kbNetz" data-nicht-merken><option value="400">3 × 400 V</option><option value="230">3 × 230 V</option></select></label>
+        <label>Motor <select id="kbMotor" data-nicht-merken><option value="230">Δ 230 V / Y 400 V</option><option value="400">Δ 400 V / Y 690 V</option></select></label>
+        <button type="button" class="knopf-leise" id="kbStern">Stern setzen</button>
+        <button type="button" class="knopf-leise" id="kbDreieck">Dreieck setzen</button>
+        <button type="button" class="knopf-leise" id="kbLeer">Brücken weg</button>
+        <button type="button" class="knopf" id="kbTausch" aria-pressed="false">L1 und L3 tauschen</button>
+      </div>
+      <canvas id="kbBild" class="sim-bild" role="img" aria-label="Klemmbrett mit den Klemmen U1, V1, W1 oben und W2, U2, V2 unten, den drei Wicklungen, den Brücken und den Zuleitungen L1, L2, L3; daneben der Motor mit Drehrichtung"></canvas>
+      <p class="meldung-sim" id="kbMeldung" role="status"></p>
+    </section>
+
+    <section class="tafel abstand" id="asm-teil" aria-labelledby="h-asm">
+      <h2 id="h-asm">Asynchronmaschine: Drehmoment über der Drehzahl</h2>
+      <p>Die Kennlinie einer typischen Käfigläufermaschine (0,25 kW, 4-polig, 50 Hz). Stelle ein Lastmoment ein: Der Arbeitspunkt liegt dort, wo sich Motor- und Lastkennlinie schneiden. Mit größerem Läuferwiderstand – beim Schleifringläufer über Anlasswiderstände – wandert das Kippmoment zu kleineren Drehzahlen.</p>
+      <div class="sim-leiste">
+        <label>Spannung <input type="range" id="asmU" min="50" max="110" step="5" value="100" data-nicht-merken><output id="asmUa">100 %</output></label>
+        <label>Läuferwiderstand <input type="range" id="asmR" min="1" max="6" step="0.25" value="1" data-nicht-merken><output id="asmRa">1 ×</output></label>
+        <label>Last <select id="asmArt" data-nicht-merken><option value="konst">konstantes Moment (Förderband)</option><option value="quad">quadratisch (Lüfter, Pumpe)</option><option value="gen">antreibend (Generatorbetrieb)</option></select></label>
+        <label>Lastmoment <input type="range" id="asmM" min="0" max="4" step="0.05" value="1.73" data-nicht-merken><output id="asmMa">1,73 N·m</output></label>
+      </div>
+      <canvas id="asmBild" class="sim-bild" role="img" aria-label="Drehmoment-Drehzahl-Kennlinie mit Brems-, Motor- und Generatorbereich, Lastkennlinie, Arbeitspunkt, Anzugs- und Kippmoment"></canvas>
+      <p class="meldung-sim" id="asmMeldung" role="status"></p>
+    </section>
+
+    <section class="tafel abstand" id="sm-teil" aria-labelledby="h-sm">
+      <h2 id="h-sm">Synchronmaschine: Polrad und Lastwinkel</h2>
+      <p>Das Polrad (Dauermagnet oder Gleichstrom-Erregerwicklung) läuft genau mit dem Drehfeld. Mit Last bleibt es um den Lastwinkel ϑ zurück (Motor) oder eilt vor (Generator). Wird das Moment größer als das Kippmoment, fällt die Maschine außer Tritt.</p>
+      <div class="sim-leiste">
+        <label>Moment <input type="range" id="smM" min="-130" max="130" step="5" value="50" data-nicht-merken><output id="smMa">50 %</output></label>
+        <label>Erregung <input type="range" id="smE" min="40" max="140" step="10" value="100" data-nicht-merken><output id="smEa">100 %</output></label>
+        <button type="button" class="knopf-leise" id="smNeu">wieder synchronisieren</button>
+      </div>
+      <canvas id="smBild" class="sim-bild" role="img" aria-label="Ständer mit umlaufendem Drehfeld und Polrad, das mit dem Lastwinkel dem Feld folgt; daneben die Kennlinie Moment über Lastwinkel"></canvas>
+      <p class="meldung-sim" id="smMeldung" role="status"></p>
+    </section>
+
+    <section class="tafel abstand" id="dfm-wissen" aria-labelledby="h-dfm-wissen">
+      <h2 id="h-dfm-wissen">Drehfeldmaschinen verstehen</h2>
+      <svg class="bild-svg" viewBox="0 0 760 250" role="img" aria-label="Aufbau: Ständer mit Blechpaket und drei Wicklungssträngen, daneben Käfigläufer, Schleifringläufer und Polrad">
+        <g font-size="12">
+          <circle cx="110" cy="120" r="88" fill="#6B7785" fill-opacity=".15" stroke="#6B7785" stroke-width="3"/><circle cx="110" cy="120" r="54" fill="var(--flaeche, #fff)" stroke="#6B7785" stroke-width="2"/>
+          <g stroke-width="10" fill="none" stroke-linecap="round">
+            <path d="M110 40 v14" stroke="#E0A800"/><path d="M110 186 v14" stroke="#E0A800"/>
+            <path d="M41 80 l12 7" stroke="#2E8B57"/><path d="M167 153 l12 7" stroke="#2E8B57"/>
+            <path d="M41 160 l12 -7" stroke="#9333EA"/><path d="M167 87 l12 -7" stroke="#9333EA"/>
+          </g>
+          <text x="110" y="225" text-anchor="middle" font-weight="700">Ständer (Stator)</text>
+          <text x="110" y="241" text-anchor="middle">Strang U gelb, V grün, W violett</text>
+          <g transform="translate(290,120)">
+            <rect x="-55" y="-50" width="110" height="100" rx="6" fill="#B87333" fill-opacity=".18" stroke="#B87333" stroke-width="2"/>
+            <rect x="-62" y="-50" width="10" height="100" fill="#B87333"/><rect x="52" y="-50" width="10" height="100" fill="#B87333"/>
+            <g stroke="#B87333" stroke-width="5"><path d="M-45 -50 v100"/><path d="M-22 -50 v100"/><path d="M0 -50 v100"/><path d="M22 -50 v100"/><path d="M45 -50 v100"/></g>
+            <text y="105" text-anchor="middle" font-weight="700">Käfigläufer</text><text y="121" text-anchor="middle">Stäbe, kurzgeschlossen</text>
+          </g>
+          <g transform="translate(460,120)">
+            <rect x="-50" y="-45" width="80" height="90" rx="6" fill="#2B7BB9" fill-opacity=".15" stroke="#2B7BB9" stroke-width="2"/>
+            <g fill="#B87333"><rect x="40" y="-30" width="8" height="60"/><rect x="54" y="-30" width="8" height="60"/><rect x="68" y="-30" width="8" height="60"/></g>
+            <path d="M30 0 H80" stroke="currentColor" stroke-width="3"/>
+            <text x="10" y="105" text-anchor="middle" font-weight="700">Schleifringläufer</text><text x="10" y="121" text-anchor="middle">Wicklung über Schleifringe</text>
+          </g>
+          <g transform="translate(650,120)">
+            <rect x="-60" y="-22" width="60" height="44" fill="#C0392B"/><rect x="0" y="-22" width="60" height="44" fill="#2B7BB9"/>
+            <text x="-30" y="5" text-anchor="middle" font-weight="700" style="fill:#fff">N</text><text x="30" y="5" text-anchor="middle" font-weight="700" style="fill:#fff">S</text>
+            <text y="105" text-anchor="middle" font-weight="700">Polrad</text><text y="121" text-anchor="middle">Magnet oder Erregerwicklung</text>
+          </g>
+        </g>
+      </svg>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#E0A800"><h3>Drehfeld</h3><p>Drei Wicklungsstränge, am Umfang um 120° versetzt, werden von drei um 120° phasenverschobenen Strömen durchflossen. Jeder Strang erzeugt eine pulsierende Durchflutung in seiner Richtung; zusammen ergibt sich eine Durchflutung gleicher Größe, die gleichmäßig umläuft – das Drehfeld. Es ist 1,5-mal so groß wie der Höchstwert eines Strangs.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Polpaarzahl</h3><p>Liegt die Folge U, V, W zweimal am Umfang, entstehen vier Pole (p = 2). Das Feld braucht dann zwei Perioden für einen Umlauf und dreht halb so schnell: n<sub>0</sub> = 60 · f / p. Bei 50 Hz: 3 000, 1 500, 1 000, 750 1/min.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Asynchronmaschine</h3><p>Das Drehfeld schneidet die Läuferstäbe und induziert dort Ströme; die Kraft auf diese Ströme zieht den Läufer mit. Er muss langsamer sein als das Feld, sonst wird nichts induziert – der Unterschied heißt Schlupf s. Robust, wartungsarm, der häufigste Motor überhaupt.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Synchronmaschine</h3><p>Der Läufer ist selbst ein Magnet (Dauermagnet oder Gleichstrom über Schleifringe) und läuft genau mit dem Drehfeld. Eine Schleifringläufer-Asynchronmaschine, in deren Läufer man Gleichstrom einspeist, arbeitet wie eine Synchronmaschine. Kraftwerksgeneratoren sind Synchronmaschinen.</p></article>
+        <article class="wissen-karte" style="--farbe:#9333EA"><h3>Motor, Generator, Bremse</h3><p>Zwischen Stillstand und synchroner Drehzahl arbeitet die Asynchronmaschine als Motor. Wird sie über die synchrone Drehzahl angetrieben, wird der Schlupf negativ, Moment und Leistung kehren sich um: Sie speist als Generator ins Netz. Dreht der Läufer gegen das Feld, bremst sie (Gegenstrombremsung).</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Drehrichtung</h3><p>Rechtslauf heißt: Mit Blick auf das Wellenende dreht die Welle im Uhrzeigersinn (DIN EN 60034-8), bei L1→U1, L2→V1, L3→W1. Zum Umkehren zwei Außenleiter tauschen, meist L1 und L3 – das Drehfeld läuft dann andersherum.</p></article>
+        <article class="wissen-karte" style="--farbe:#B87333"><h3>Typenschild und Toleranzen</h3><p>Das Typenschild nennt den Bemessungsbetrieb: abgegebene mechanische Leistung an der Welle, Spannung und Strom für Stern und Dreieck, cos φ, Drehzahl. Gemessene Werte dürfen nach DIN EN 60034-1 für einzelne Größen um bis zu etwa 10 % abweichen. Die aufgenommene elektrische Leistung ist um die Verluste größer.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Erwärmung und Schutz</h3><p>Warme Wicklungen haben mehr Widerstand (Kupfer rund 0,4 % je Kelvin). Mehr Ständerwiderstand wirkt wie weniger Spannung, mehr Läuferwiderstand macht die Kennlinie flacher – die Drehzahl unter Last sinkt. Gegen Überlast schützt der Motorschutzschalter, gegen dauernde Übertemperatur ein Fühler in der Wicklung (Thermokontakt, PTC).</p></article>
+      </div>
+      <p class="hilfe">Weiter: <a href="motorpruefstand.html">Motorprüfstand</a> zum Messen von Kennlinien, <a href="motor.html">Drehstrommotor und Anlauf</a>, <a href="drehstrom.html">Drehstrom</a>, <a href="elektromagnetismus.html">Animationen zum Elektromagnetismus</a>.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum dreht eine Asynchronmaschine nie ganz synchron?</summary><p>Ein Moment entsteht nur, wenn im Läufer Strom fließt, und Strom wird nur induziert, wenn sich das Feld relativ zum Läufer bewegt. Bei synchroner Drehzahl wäre die Relativbewegung null, also auch Strom und Moment. Im Leerlauf reicht ein sehr kleiner Schlupf, um die Reibung zu überwinden.</p></details>
+        <details><summary>Stern oder Dreieck – woran erkenne ich, was richtig ist?</summary><p>Am Typenschild: „Δ 230 V / Y 400 V“ heißt, jede Wicklung verträgt 230 V. Am 400-V-Netz also Stern (400 V / √3 = 230 V je Wicklung). Ein Motor „Δ 400 V / Y 690 V“ läuft am 400-V-Netz im Dreieck – und kann deshalb auch im Stern-Dreieck-Anlauf betrieben werden.</p></details>
+        <details><summary>Was passiert, wenn ich einen Motor im falschen Schaltbild anschließe?</summary><p>Dreieck an einem Netz, für das Stern richtig wäre: Jede Wicklung bekommt das √3-fache der Spannung, der Strom steigt stark, der Motor wird in kurzer Zeit zerstört, wenn kein Schutz auslöst. Stern statt Dreieck: Er läuft mit einem Drittel des Moments und bleibt unter Last hängen.</p></details>
+        <details><summary>Warum kann ein Asynchronmotor als Generator arbeiten?</summary><p>Treibt man ihn über die synchrone Drehzahl an, wird der Schlupf negativ, die induzierten Läuferströme kehren sich um, und die Maschine gibt Wirkleistung ins Netz ab. Den Blindstrom für ihr Magnetfeld bezieht sie weiter aus dem Netz – im Inselbetrieb braucht sie dafür Kondensatoren.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe;
+    const W2 = Math.SQRT2, W3 = Math.sqrt(3), PI2 = 2 * Math.PI;
+    const GELB = '#E0A800', GRUEN = '#2E8B57', LILA = '#9333EA', BLAU = '#2B7BB9', ROT = '#C0392B', ORANGE = '#E07A1F', GRAU = '#6B7785';
+    const STR = [['U', GELB], ['V', GRUEN], ['W', LILA]];
+    const T = function (cx, s, x, y, a, g, f, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!f, c); };
+    const zz = function (v, n) { return R.zahl(v, n); };
+    const pf = function (cx, x1, y1, x2, y2, farbe, breite) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = breite || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (breite || 2) * 1.5); };
+    let ansicht = 'feld';
+    const PERIODE = 4000;
+    let rotorWinkel = 0, letztT = 0;
+    const ANSICHTEN = [['feld', 'Drehfeld im Ständer'], ['zeiger', 'Zeiger addieren']];
+
+    function rechne(e) {
+      const r = {};
+      r.n0 = 60 * e.f / e.p;
+      r.s = (r.n0 - e.n) / r.n0;
+      r.f2 = r.s * e.f;
+      r.M = e.n > 0 ? e.pn * 1000 / (PI2 * e.n / 60) : NaN;
+      r.Pel = W3 * e.u * e.i * e.cos;
+      r.S = W3 * e.u * e.i;
+      r.Q = Math.sqrt(Math.max(0, r.S * r.S - r.Pel * r.Pel));
+      r.eta = r.Pel > 0 ? e.pn * 1000 / r.Pel : NaN;
+      r.Pv = r.Pel - e.pn * 1000;
+      r.uStr = e.schaltung === 'stern' ? e.u / W3 : e.u;
+      r.iStr = e.schaltung === 'stern' ? e.i : e.i / W3;
+      r.uDach = W2 * r.uStr;
+      r.betrieb = r.s > 0.0005 ? 'Motor' : r.s < -0.0005 ? 'Generator' : 'synchron';
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'Drehfeldmaschinen',
+      einleitung: 'Wie drei Wicklungen ein umlaufendes Magnetfeld erzeugen, warum sich der Läufer dreht und was das Typenschild verrät: Drehzahl aus Frequenz und Polpaarzahl, Schlupf, Drehmoment, aufgenommene Leistung und Wirkungsgrad. Darunter das Klemmbrett zum Ausprobieren, die Kennlinie der Asynchronmaschine und die Synchronmaschine.',
+      hilfe: 'Beispiel: Käfigläufermotor 0,25 kW, Δ 230 V, 1,3 A, cos φ 0,74, 1 380 1/min am 50-Hz-Netz.',
+      gruppen: [
+        { titel: 'Netz und Wicklung', farbe: BLAU, felder: [
+          { k: 'f', tex: 'f', name: 'Netzfrequenz', e: 'Hz', min: 1, max: 1000 },
+          { k: 'p', tex: 'p', name: 'Polpaarzahl', wahl: [['1', '1 (2-polig)'], ['2', '2 (4-polig)'], ['3', '3 (6-polig)'], ['4', '4 (8-polig)'], ['5', '5 (10-polig)'], ['6', '6 (12-polig)']] },
+          { k: 'schaltung', name: 'Schaltung der Wicklung', wahl: [['dreieck', 'Dreieck (Δ)'], ['stern', 'Stern (Y)']] },
+          { k: 'u', tex: 'U', name: 'Leiterspannung (Außenleiter)', e: 'V', min: 1, max: 30000 }
+        ] },
+        { titel: 'Typenschild und Betrieb', farbe: GRUEN, felder: [
+          { k: 'pn', tex: 'P_2', name: 'Leistung an der Welle', e: 'kW', min: 0.001, max: 100000 },
+          { k: 'n', tex: 'n', name: 'Drehzahl', e: '1/min', min: 1, max: 100000 },
+          { k: 'i', tex: 'I', name: 'Leiterstrom', e: 'A', min: 0.001, max: 100000 },
+          { k: 'cos', tex: '\\cos\\varphi', name: 'Leistungsfaktor', e: '', min: 0.05, max: 1 }
+        ] }
+      ],
+      beispiel: { f: 50, p: '2', schaltung: 'dreieck', u: 230, pn: 0.25, n: 1380, i: 1.3, cos: 0.74 },
+      rechne: function (e) { const q = Object.assign({}, e); q.p = +e.p; return rechne(q); },
+      ergebnis: function (r, e, H) {
+        if (r.s < -0.3 || r.s > 0.3) H.meldung('Ein Schlupf von ' + zz(r.s * 100, 1) + ' % ist für einen Motor im Dauerbetrieb ungewöhnlich – passt die Polpaarzahl zur Drehzahl?', true);
+        if (r.eta > 1) H.meldung('Mehr Leistung an der Welle als aufgenommen geht nicht – bitte Strom, Spannung oder cos φ prüfen.', true);
+        if (r.betrieb === 'Generator') H.meldung('Die Drehzahl liegt über der synchronen: Die Maschine arbeitet als Generator.');
+        H.urteil(r.eta <= 1 && r.s > -0.3 && r.s < 0.3 ? true : false, r.betrieb === 'Motor' ? 'Motorbetrieb' : r.betrieb === 'Generator' ? 'Generatorbetrieb' : 'synchron');
+        H.kacheln([
+          [zz(r.n0, 0) + ' 1/min', 'synchrone Drehzahl n₀', BLAU],
+          [zz(r.s * 100, 2) + ' %', 'Schlupf s', ORANGE],
+          [zz(r.M, 3) + ' N·m', 'Drehmoment an der Welle', ROT],
+          [zz(r.Pel, 0) + ' W', 'aufgenommene Wirkleistung', GRUEN],
+          [zz(r.eta * 100, 1) + ' %', 'Wirkungsgrad, Verluste ' + zz(r.Pv, 0) + ' W', GRAU],
+          [zz(r.uStr, 1) + ' V', 'Spannung je Wicklung (' + (e.schaltung === 'stern' ? 'Stern' : 'Dreieck') + '), Scheitel ' + zz(r.uDach, 0) + ' V', LILA]
+        ]);
+        H.tabelle('Weitere Werte', ['Größe', 'Wert'], [
+          ['Strom je Wicklung', zz(r.iStr, 3) + ' A'], ['Scheinleistung', zz(r.S, 0) + ' VA'], ['Blindleistung', zz(r.Q, 0) + ' var'],
+          ['Läuferfrequenz f₂ = s · f', zz(r.f2, 2) + ' Hz'], ['Drehzahl des Felds gegenüber dem Läufer', zz(r.n0 - e.n, 0) + ' 1/min']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        const w = [];
+        w.push(['Synchrone Drehzahl', 'n_0 = \\frac{60 \\cdot f}{p} = \\frac{60 \\cdot ' + tz(e.f, 2) + '\\,\\text{Hz}}{' + e.p + '} = ' + E(tz(r.n0, 0) + '\\,\\tfrac{1}{\\text{min}}')]);
+        w.push(['Schlupf', 's = \\frac{n_0 - n}{n_0} = \\frac{' + tz(r.n0, 0) + ' - ' + tz(e.n, 0) + '}{' + tz(r.n0, 0) + '} = ' + E(tz(r.s * 100, 2) + '\\,\\%')]);
+        w.push(['Drehmoment', 'M = \\frac{P_2}{2 \\pi \\cdot n} = \\frac{' + tz(e.pn * 1000, 1) + '\\,\\text{W}}{2 \\pi \\cdot \\frac{' + tz(e.n, 0) + '}{60}\\,\\tfrac{1}{\\text{s}}} = ' + E(tz(r.M, 3) + '\\,\\text{N·m}')]);
+        w.push(['Aufgenommene Leistung', 'P_1 = \\sqrt{3} \\cdot U \\cdot I \\cdot \\cos\\varphi = \\sqrt{3} \\cdot ' + tz(e.u, 0) + '\\,\\text{V} \\cdot ' + tz(e.i, 3) + '\\,\\text{A} \\cdot ' + tz(e.cos, 3) + ' = ' + E(tz(r.Pel, 1) + '\\,\\text{W}')]);
+        w.push(['Wirkungsgrad', '\\eta = \\frac{P_2}{P_1} = \\frac{' + tz(e.pn * 1000, 1) + '\\,\\text{W}}{' + tz(r.Pel, 1) + '\\,\\text{W}} = ' + E(tz(r.eta * 100, 1) + '\\,\\%')]);
+        w.push(['Spannung je Wicklung', e.schaltung === 'stern' ? 'U_\\text{Str} = \\frac{U}{\\sqrt{3}} = \\frac{' + tz(e.u, 0) + '\\,\\text{V}}{\\sqrt{3}} = ' + E(tz(r.uStr, 1) + '\\,\\text{V}') : 'U_\\text{Str} = U = ' + E(tz(r.uStr, 1) + '\\,\\text{V}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Synchrone Drehzahl', hilfe: 'Beispiel: 50 Hz, 2 Polpaare.',
+          felder: [{ k: 'n0', tex: 'n_0', name: 'synchrone Drehzahl', e: '1/min', min: 1, max: 1e6 }, { k: 'f', tex: 'f', name: 'Frequenz', e: 'Hz', min: 0.1, max: 1e4 }, { k: 'p', tex: 'p', name: 'Polpaarzahl', e: '', min: 1, max: 100, n: 0 }],
+          beispiel: { f: 50, p: 2 },
+          gleichungen: [{ name: 'Drehzahl', v: ['n0', 'f', 'p'], f: function (q) { return [q.n0 * q.p, 60 * q.f]; },
+            loese: { n0: function (q) { return 60 * q.f / q.p; }, f: function (q) { return q.n0 * q.p / 60; }, p: function (q) { return 60 * q.f / q.n0; } },
+            weg: function (k, q) { return k === 'n0' ? 'n_0 = \\frac{60 \\cdot f}{p} = \\frac{60 \\cdot ' + tz(q.f, 2) + '}{' + tz(q.p, 0) + '} = ' + E(tz(q.n0, 0) + '\\,\\tfrac{1}{\\text{min}}') : k === 'p' ? 'p = \\frac{60 \\cdot f}{n_0} = \\frac{60 \\cdot ' + tz(q.f, 2) + '}{' + tz(q.n0, 0) + '} = ' + E(tz(q.p, 2)) : 'f = \\frac{n_0 \\cdot p}{60} = ' + E(tz(q.f, 2) + '\\,\\text{Hz}'); } }] },
+        { titel: 'Schlupf', hilfe: 'Beispiel: n₀ = 1 500 1/min, n = 1 380 1/min.',
+          felder: [{ k: 's', tex: 's', name: 'Schlupf', e: '%', min: -100, max: 100 }, { k: 'n0', tex: 'n_0', name: 'synchrone Drehzahl', e: '1/min', min: 1, max: 1e6 }, { k: 'n', tex: 'n', name: 'Läuferdrehzahl', e: '1/min', min: 0, max: 1e6 }],
+          beispiel: { n0: 1500, n: 1380 },
+          gleichungen: [{ name: 'Schlupf', v: ['s', 'n0', 'n'], f: function (q) { return [q.s / 100 * q.n0, q.n0 - q.n]; },
+            loese: { s: function (q) { return (q.n0 - q.n) / q.n0 * 100; }, n: function (q) { return q.n0 * (1 - q.s / 100); }, n0: function (q) { return q.n / (1 - q.s / 100); } },
+            weg: function (k, q) { return k === 's' ? 's = \\frac{n_0 - n}{n_0} = \\frac{' + tz(q.n0, 0) + ' - ' + tz(q.n, 0) + '}{' + tz(q.n0, 0) + '} = ' + E(tz(q.s, 2) + '\\,\\%') : k === 'n' ? 'n = n_0 \\cdot (1 - s) = ' + tz(q.n0, 0) + ' \\cdot (1 - ' + tz(q.s / 100, 4) + ') = ' + E(tz(q.n, 0) + '\\,\\tfrac{1}{\\text{min}}') : 'n_0 = \\frac{n}{1 - s} = ' + E(tz(q.n0, 0) + '\\,\\tfrac{1}{\\text{min}}'); } }] },
+        { titel: 'Drehmoment aus Leistung und Drehzahl', hilfe: 'Zahlenwertgleichung: M in N·m = 9 549 · P in kW / n in 1/min.',
+          felder: [{ k: 'M', tex: 'M', name: 'Drehmoment', e: 'N·m', min: 1e-4, max: 1e8 }, { k: 'P', tex: 'P', name: 'Leistung', e: 'kW', min: 1e-5, max: 1e6 }, { k: 'n', tex: 'n', name: 'Drehzahl', e: '1/min', min: 1, max: 1e6 }],
+          beispiel: { P: 0.25, n: 1380 },
+          gleichungen: [{ name: 'Moment', v: ['M', 'P', 'n'], f: function (q) { return [q.M * q.n, 9549.3 * q.P]; },
+            loese: { M: function (q) { return 9549.3 * q.P / q.n; }, P: function (q) { return q.M * q.n / 9549.3; }, n: function (q) { return 9549.3 * q.P / q.M; } },
+            weg: function (k, q) { return k === 'M' ? 'M = \\frac{9\\,549 \\cdot P}{n} = \\frac{9\\,549 \\cdot ' + tz(q.P, 4) + '}{' + tz(q.n, 0) + '} = ' + E(tz(q.M, 3) + '\\,\\text{N·m}') : k === 'P' ? 'P = \\frac{M \\cdot n}{9\\,549} = ' + E(tz(q.P, 4) + '\\,\\text{kW}') : 'n = \\frac{9\\,549 \\cdot P}{M} = ' + E(tz(q.n, 0) + '\\,\\tfrac{1}{\\text{min}}'); } }] },
+        { titel: 'Aufgenommene Drehstromleistung', hilfe: 'Beispiel: Δ 230 V, 1,3 A, cos φ 0,74.',
+          felder: [{ k: 'P', tex: 'P_1', name: 'Wirkleistung', e: 'W', min: 1e-3, max: 1e9 }, { k: 'U', tex: 'U', name: 'Leiterspannung', e: 'V', min: 1, max: 1e6 }, { k: 'I', tex: 'I', name: 'Leiterstrom', e: 'A', min: 1e-4, max: 1e6 }, { k: 'cos', tex: '\\cos\\varphi', name: 'Leistungsfaktor', e: '', min: 0.05, max: 1 }],
+          beispiel: { U: 230, I: 1.3, cos: 0.74 },
+          gleichungen: [{ name: 'Leistung', v: ['P', 'U', 'I', 'cos'], f: function (q) { return [q.P, W3 * q.U * q.I * q.cos]; },
+            loese: { P: function (q) { return W3 * q.U * q.I * q.cos; }, U: function (q) { return q.P / (W3 * q.I * q.cos); }, I: function (q) { return q.P / (W3 * q.U * q.cos); }, cos: function (q) { return q.P / (W3 * q.U * q.I); } },
+            weg: function (k, q) { return k === 'P' ? 'P_1 = \\sqrt{3} \\cdot U \\cdot I \\cdot \\cos\\varphi = \\sqrt{3} \\cdot ' + tz(q.U, 0) + ' \\cdot ' + tz(q.I, 3) + ' \\cdot ' + tz(q.cos, 3) + ' = ' + E(tz(q.P, 1) + '\\,\\text{W}') : k === 'I' ? 'I = \\frac{P_1}{\\sqrt{3} \\cdot U \\cdot \\cos\\varphi} = ' + E(tz(q.I, 3) + '\\,\\text{A}') : k === 'U' ? 'U = \\frac{P_1}{\\sqrt{3} \\cdot I \\cdot \\cos\\varphi} = ' + E(tz(q.U, 1) + '\\,\\text{V}') : '\\cos\\varphi = \\frac{P_1}{\\sqrt{3} \\cdot U \\cdot I} = ' + E(tz(q.cos, 3)); } }] },
+        { titel: 'Wirkungsgrad', hilfe: 'P₂ abgegeben an der Welle, P₁ aufgenommen.',
+          felder: [{ k: 'eta', tex: '\\eta', name: 'Wirkungsgrad', e: '%', min: 0.1, max: 100 }, { k: 'P2', tex: 'P_2', name: 'abgegebene Leistung', e: 'W', min: 1e-3, max: 1e9 }, { k: 'P1', tex: 'P_1', name: 'aufgenommene Leistung', e: 'W', min: 1e-3, max: 1e9 }],
+          beispiel: { P2: 250, P1: 383 },
+          gleichungen: [{ name: 'Wirkungsgrad', v: ['eta', 'P2', 'P1'], f: function (q) { return [q.eta / 100 * q.P1, q.P2]; },
+            loese: { eta: function (q) { return q.P2 / q.P1 * 100; }, P2: function (q) { return q.eta / 100 * q.P1; }, P1: function (q) { return q.P2 / (q.eta / 100); } },
+            weg: function (k, q) { return k === 'eta' ? '\\eta = \\frac{P_2}{P_1} = \\frac{' + tz(q.P2, 1) + '\\,\\text{W}}{' + tz(q.P1, 1) + '\\,\\text{W}} = ' + E(tz(q.eta, 1) + '\\,\\%') : k === 'P2' ? 'P_2 = \\eta \\cdot P_1 = ' + E(tz(q.P2, 1) + '\\,\\text{W}') : 'P_1 = \\frac{P_2}{\\eta} = ' + E(tz(q.P1, 1) + '\\,\\text{W}'); } }] },
+        { titel: 'Scheitelwert und Strangspannung', hilfe: 'Effektivwert 230 V; Leiterspannung 400 V im Stern.',
+          felder: [{ k: 'Ud', tex: '\\hat{U}', name: 'Scheitelwert', e: 'V', min: 0.01, max: 1e7 }, { k: 'U', tex: 'U', name: 'Effektivwert', e: 'V', min: 0.01, max: 1e7 }, { k: 'UL', tex: 'U_{12}', name: 'Leiterspannung', e: 'V', min: 0.01, max: 1e7 }],
+          beispiel: { UL: 400 },
+          gleichungen: [
+            { name: 'Scheitelwert', v: ['Ud', 'U'], f: function (q) { return [q.Ud, W2 * q.U]; }, loese: { Ud: function (q) { return W2 * q.U; }, U: function (q) { return q.Ud / W2; } },
+              weg: function (k, q) { return k === 'Ud' ? '\\hat{U} = \\sqrt{2} \\cdot U = \\sqrt{2} \\cdot ' + tz(q.U, 1) + '\\,\\text{V} = ' + E(tz(q.Ud, 1) + '\\,\\text{V}') : 'U = \\frac{\\hat{U}}{\\sqrt{2}} = ' + E(tz(q.U, 1) + '\\,\\text{V}'); } },
+            { name: 'Strangspannung', v: ['UL', 'U'], f: function (q) { return [q.UL, W3 * q.U]; }, loese: { UL: function (q) { return W3 * q.U; }, U: function (q) { return q.UL / W3; } },
+              weg: function (k, q) { return k === 'U' ? 'U = \\frac{U_{12}}{\\sqrt{3}} = \\frac{' + tz(q.UL, 1) + '\\,\\text{V}}{\\sqrt{3}} = ' + E(tz(q.U, 1) + '\\,\\text{V}') : 'U_{12} = \\sqrt{3} \\cdot U = ' + E(tz(q.UL, 1) + '\\,\\text{V}'); } }
+          ] }
+      ],
+      sammlung: [
+        ['Synchrone Drehzahl', 'n_0 = \\frac{60 \\cdot f}{p}', 'f in Hz, n₀ in 1/min, p Polpaarzahl'],
+        ['Frequenz der Durchflutungswelle', 'f_\\text{el} = p \\cdot f_\\Theta', 'die Welle läuft p-mal langsamer als die Netzfrequenz'],
+        ['Schlupf', 's = \\frac{n_0 - n}{n_0}', 'positiv: Motor, negativ: Generator, s > 1: Bremse'],
+        ['Läuferfrequenz', 'f_2 = s \\cdot f', ''],
+        ['Drehmoment', 'M = \\frac{P}{\\omega} = \\frac{P}{2 \\pi \\cdot n}', 'n in 1/s'],
+        ['Zahlenwertgleichung Drehmoment', 'M = \\frac{9\\,549 \\cdot P}{n}', 'M in N·m, P in kW, n in 1/min'],
+        ['Aufgenommene Leistung', 'P_1 = \\sqrt{3} \\cdot U \\cdot I \\cdot \\cos\\varphi', 'U, I Leitergrößen'],
+        ['Wirkungsgrad', '\\eta = \\frac{P_2}{P_1}', 'P₂ mechanisch an der Welle (Typenschild)'],
+        ['Scheitelwert', '\\hat{U} = \\sqrt{2} \\cdot U', ''],
+        ['Strangspannung im Stern', 'U_\\text{Str} = \\frac{U_{12}}{\\sqrt{3}}', '400 V → 230 V'],
+        ['Strangstrom im Dreieck', 'I_\\text{Str} = \\frac{I}{\\sqrt{3}}', ''],
+        ['Drehfeld aus drei Strängen', '\\Theta_\\text{res} = \\tfrac{3}{2} \\cdot \\hat{\\Theta}_\\text{Strang}', 'konstanter Betrag, umlaufend'],
+        ['Synchronmaschine', 'M = M_\\text{k} \\cdot \\sin\\vartheta', 'ϑ Lastwinkel, außer Tritt ab ϑ > 90°']
+      ],
+      quellen: 'Formeln nach Tabellenbuch Elektrotechnik (Elektrische Maschinen), Drehrichtung nach DIN EN 60034-8, Toleranzen nach DIN EN 60034-1. Kennlinien und Werte des Beispielmotors aus einem einfachen Ersatzschaltbild, angepasst an typische Messwerte eines 0,25-kW-Käfigläufers.',
+      bild: { titel: 'Animation: Drehfeld', label: 'Ständer mit drei Wicklungssträngen U, V, W, deren Ströme ein umlaufendes Magnetfeld erzeugen; der Läufer folgt mit Schlupf', animiert: true,
+        hoehe: function (B) { if (B >= 600) return 380; return ansicht === 'zeiger' ? Math.round(34 + 170 + 60 + Math.min(B * 0.22, 120) * 3.6 + 50) : Math.round(Math.min(640, B * 0.8 + 300)); },
+        hinweis: function (r, e) { return ansicht === 'feld' ? 'Gelb U, grün V, violett W. Kreuz = Strom fließt in die Bildebene, Punkt = heraus. Der blaue Pfeil ist das Feld; der graue Läufer folgt ' + (r.betrieb === 'Generator' ? 'schneller (Generator)' : 'etwas langsamer – der Schlupf ist zum Sehen übertrieben') + '. Zeitlupe: eine Periode dauert 4 s.' : 'Die Durchflutungen der drei Stränge werden aneinandergehängt (U, dann V, dann W). Die Spitze des letzten Zeigers läuft auf einem Kreis: Der Betrag bleibt gleich, nur die Richtung dreht sich.'; },
+        zeichne: function (cx, B, H, t, r, e) { if (ansicht === 'feld') feld(cx, B, H, t, r, e); else zeiger(cx, B, H, t, r, e); } }
+    });
+
+    // ---------- Drehfeld zeichnen ----------
+    function stroeme(t) { const w = PI2 * t / PERIODE; return [Math.cos(w), Math.cos(w - PI2 / 3), Math.cos(w - 2 * PI2 / 3)]; }
+    function linien(cx, x0, y0, b, h, t) {
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.beginPath(); cx.moveTo(x0, y0 + h / 2); cx.lineTo(x0 + b, y0 + h / 2); cx.moveTo(x0, y0); cx.lineTo(x0, y0 + h); cx.stroke();
+      STR.forEach(function (s, k) {
+        cx.strokeStyle = s[1]; cx.lineWidth = 2.2; cx.beginPath();
+        for (let i = 0; i <= 120; i++) { const x = x0 + b * i / 120, w = PI2 * i / 120; const y = y0 + h / 2 - Math.cos(w - k * PI2 / 3) * h * 0.42; if (i) cx.lineTo(x, y); else cx.moveTo(x, y); }
+        cx.stroke();
+        T(cx, 'i' + s[0], x0 + b + 4, y0 + h / 2 - Math.cos(-k * PI2 / 3) * h * 0.42, 'left', 10, true, s[1]);
+      });
+      const f = (t % PERIODE) / PERIODE, xc = x0 + b * f;
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.setLineDash([4, 3]); cx.beginPath(); cx.moveTo(xc, y0); cx.lineTo(xc, y0 + h); cx.stroke(); cx.setLineDash([]);
+      T(cx, 't = ' + zz(f, 2) + ' · T', xc, y0 - 6, f > 0.8 ? 'right' : 'left', 10, true);
+      T(cx, 'T', x0 + b, y0 + h / 2 + 12, 'right', 10, false, GRAU);
+    }
+    function feld(cx, B, H, t, r, e) {
+      const klein = B < 600, p = +e.p;
+      const rs = klein ? Math.min(B * 0.4, 150) : Math.min(H * 0.42, 150), mx = klein ? B / 2 : rs + 30, my = klein ? rs + 26 : H / 2;
+      const i = stroeme(t), w = PI2 * t / PERIODE;
+      // Ständer
+      cx.fillStyle = 'rgba(107,119,133,.16)'; cx.beginPath(); cx.arc(mx, my, rs, 0, PI2); cx.arc(mx, my, rs * 0.72, 0, PI2, true); cx.fill();
+      cx.strokeStyle = GRAU; cx.lineWidth = 2; cx.beginPath(); cx.arc(mx, my, rs, 0, PI2); cx.stroke(); cx.beginPath(); cx.arc(mx, my, rs * 0.72, 0, PI2); cx.stroke();
+      // Spulenseiten: Strang k, Polpaar j: Hinleiter bei Winkel a, Rückleiter bei a + 180°/p
+      for (let j = 0; j < p; j++) for (let k = 0; k < 3; k++) {
+        const a = -Math.PI / 2 + (j * PI2 + k * PI2 / 3) / p;
+        [0, 1].forEach(function (seite) {
+          const b = a + seite * Math.PI / p, x = mx + Math.cos(b) * rs * 0.82, y = my + Math.sin(b) * rs * 0.82, ii = (seite ? -1 : 1) * i[k];
+          const g = Math.max(0.15, Math.abs(ii));
+          cx.globalAlpha = 0.25 + 0.75 * g; cx.fillStyle = STR[k][1]; cx.beginPath(); cx.arc(x, y, rs * 0.085, 0, PI2); cx.fill(); cx.globalAlpha = 1;
+          cx.strokeStyle = '#fff'; cx.fillStyle = '#fff'; cx.lineWidth = 1.6; const d = rs * 0.04;
+          if (Math.abs(ii) > 0.08) { if (ii > 0) { cx.beginPath(); cx.moveTo(x - d, y - d); cx.lineTo(x + d, y + d); cx.moveTo(x + d, y - d); cx.lineTo(x - d, y + d); cx.stroke(); } else { cx.beginPath(); cx.arc(x, y, d * 0.6, 0, PI2); cx.fill(); } }
+          if (!seite && (klein ? rs > 90 : true)) T(cx, STR[k][0] + (p > 1 ? (j + 1) : ''), mx + Math.cos(a) * rs * 1.1, my + Math.sin(a) * rs * 1.1, 'center', 10, true, STR[k][1]);
+        });
+      }
+      // Läufer
+      const dt = Math.min(100, Math.max(0, t - letztT)); letztT = t;
+      const sAnz = r.s > 0 ? Math.max(0.15, Math.min(0.5, r.s * 3)) : r.s < 0 ? Math.min(-0.15, Math.max(-0.5, r.s * 3)) : 0;
+      rotorWinkel += PI2 * dt / PERIODE / p * (1 - sAnz);
+      const rr = rs * 0.6;
+      cx.fillStyle = 'rgba(184,115,51,.22)'; cx.beginPath(); cx.arc(mx, my, rr, 0, PI2); cx.fill();
+      cx.strokeStyle = '#B87333'; cx.lineWidth = 2; cx.stroke();
+      for (let k = 0; k < 12; k++) { const b = rotorWinkel + k * PI2 / 12; cx.fillStyle = '#B87333'; cx.beginPath(); cx.arc(mx + Math.cos(b) * rr * 0.85, my + Math.sin(b) * rr * 0.85, rr * 0.06, 0, PI2); cx.fill(); }
+      cx.strokeStyle = F('--text'); cx.lineWidth = 3; cx.beginPath(); cx.moveTo(mx, my); cx.lineTo(mx + Math.cos(rotorWinkel - Math.PI / 2) * rr * 0.7, my + Math.sin(rotorWinkel - Math.PI / 2) * rr * 0.7); cx.stroke();
+      // Feld: Richtung der Durchflutung (für p = 1 als Pfeil, sonst als Pole)
+      const fw = -Math.PI / 2 + w / p;
+      if (p === 1) pf(cx, mx - Math.cos(fw) * rr * 0.9, my - Math.sin(fw) * rr * 0.9, mx + Math.cos(fw) * rr * 0.95, my + Math.sin(fw) * rr * 0.95, BLAU, 4);
+      for (let j = 0; j < 2 * p; j++) {
+        const b = fw + j * Math.PI / p, x = mx + Math.cos(b) * rs * 0.66, y = my + Math.sin(b) * rs * 0.66;
+        cx.fillStyle = j % 2 ? BLAU : ROT; cx.beginPath(); cx.arc(x, y, 9, 0, PI2); cx.fill(); T(cx, j % 2 ? 'S' : 'N', x, y, 'center', 10, true, '#fff');
+      }
+      T(cx, 'Feld ' + zz(r.n0, 0) + ' 1/min · Läufer ' + zz(e.n, 0) + ' 1/min', mx, my + rs + 30, 'center', 11, true);
+      // Liniendiagramm
+      const lx = klein ? 30 : mx + rs + 50, ly = klein ? my + rs + 70 : 40, lb = klein ? B - 60 : B - lx - 30, lh = klein ? 150 : H - 90;
+      linien(cx, lx, ly, lb, lh, t);
+      T(cx, 'Strangströme über eine Periode', lx, ly + lh + 18, 'left', 11, true);
+    }
+    function zeiger(cx, B, H, t, r, e) {
+      const klein = B < 600, i = stroeme(t);
+      const lx = 30, ly = 34, lb = klein ? B - 60 : B * 0.45, lh = klein ? 170 : H - 80;
+      linien(cx, lx, ly, lb, lh, t);
+      const g = klein ? Math.min(B * 0.22, 120) : Math.min(H * 0.28, 120), mx = klein ? B / 2 : B * 0.75, my = klein ? ly + lh + 60 + g * 1.6 : H / 2 + 10;
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.beginPath(); cx.moveTo(mx - g * 1.8, my); cx.lineTo(mx + g * 1.8, my); cx.moveTo(mx, my - g * 1.8); cx.lineTo(mx, my + g * 1.8); cx.stroke();
+      cx.setLineDash([4, 4]); cx.strokeStyle = BLAU; cx.beginPath(); cx.arc(mx, my, g * 1.5, 0, PI2); cx.stroke(); cx.setLineDash([]);
+      // Richtungen der Strangachsen: U nach oben, V um 120°, W um 240° im Uhrzeigersinn
+      let x = mx, y = my;
+      STR.forEach(function (s, k) {
+        const a = -Math.PI / 2 + k * PI2 / 3, l = g * i[k], nx = x + Math.cos(a) * l, ny = y + Math.sin(a) * l;
+        if (Math.abs(l) > 2) pf(cx, x, y, nx, ny, s[1], 3.2);
+        cx.strokeStyle = s[1]; cx.globalAlpha = 0.25; cx.setLineDash([2, 4]); cx.beginPath(); cx.moveTo(mx - Math.cos(a) * g * 1.7, my - Math.sin(a) * g * 1.7); cx.lineTo(mx + Math.cos(a) * g * 1.7, my + Math.sin(a) * g * 1.7); cx.stroke(); cx.setLineDash([]); cx.globalAlpha = 1;
+        T(cx, s[0], mx + Math.cos(a) * g * 1.78, my + Math.sin(a) * g * 1.78, 'center', 11, true, s[1]);
+        x = nx; y = ny;
+      });
+      pf(cx, mx, my, x, y, BLAU, 2);
+      const winkel = ((Math.atan2(x - mx, -(y - my)) * 180 / Math.PI) + 360) % 360;
+      T(cx, 'Θ_res: ' + zz(winkel, 0) + '° zur senkrechten Achse, Betrag 1,5', mx, my + g * 1.8 + 18, 'center', 11, true, BLAU);
+      void r; void e;
+    }
+    (function () {
+      const ziel = seite && seite.bildZusatz; if (!ziel) return;
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = ANSICHTEN.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === ansicht ? 'true' : 'false');
+        k.addEventListener('click', function () { ansicht = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', ANSICHTEN[i][0] === ansicht ? 'true' : 'false'); }); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas');
+      ziel.parentNode.insertBefore(leiste, cv || ziel);
+    })();
+
+    // ---------- Ersatzschaltbild des Beispielmotors (je Strang im Dreieck, 230 V, 50 Hz, p = 2) ----------
+    const ESB = { R1: 45.5, X1: 5.0, Xh: 448.5, R2: 33.3, X2: 88.2, Rfe: 6529, Pr: 8 };
+    function asm(n, uf, r2f) {
+      const ns = 1500, U = 230 * uf; let s = (ns - n) / ns; if (Math.abs(s) < 1e-6) s = 1e-6;
+      const c = function (a, b) { return [a, b]; }, add = function (a, b) { return [a[0] + b[0], a[1] + b[1]]; }, mul = function (a, b) { return [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]]; }, div = function (a, b) { const d = b[0] * b[0] + b[1] * b[1]; return [(a[0] * b[0] + a[1] * b[1]) / d, (a[1] * b[0] - a[0] * b[1]) / d]; }, abs = function (a) { return Math.hypot(a[0], a[1]); };
+      const R2 = ESB.R2 * r2f, Z2 = c(R2 / s, ESB.X2), Ym = add(div(c(1, 0), c(0, ESB.Xh)), c(1 / ESB.Rfe, 0)), Zm = div(c(1, 0), Ym);
+      const Zp = div(mul(Zm, Z2), add(Zm, Z2)), Z = add(c(ESB.R1, ESB.X1), Zp), I1 = div(c(U, 0), Z), Em = mul(I1, Zp), I2 = div(Em, Z2);
+      const Pag = 3 * abs(I2) * abs(I2) * R2 / s, Pmi = Pag * (1 - s), om = PI2 * n / 60;
+      const M = Math.abs(n) > 1 ? (Pmi - ESB.Pr * n / 1500) / om : Pag / (PI2 * ns / 60);
+      return { M: M, I: abs(I1) * W3, s: s };
+    }
+
+    // ---------- Klemmbrett ----------
+    const kbCv = document.getElementById('kbBild'), kbCx = kbCv.getContext('2d');
+    const KLEMMEN = { U1: [0, 0], V1: [1, 0], W1: [2, 0], W2: [0, 1], U2: [1, 1], V2: [2, 1] };
+    const WICKL = [['U1', 'U2', 0], ['V1', 'V2', 1], ['W1', 'W2', 2]];
+    const PLAETZE = [['W2', 'U2'], ['U2', 'V2'], ['U1', 'W2'], ['V1', 'U2'], ['W1', 'V2']];
+    const KB = { bruecken: { 'W2-U2': true, 'U2-V2': true }, tausch: false };
+    let kbB = 600, kbH = 300, kbZiele = [], kbWinkel = 0, kbLetzt = 0;
+    const schl = function (a, b) { return a + '-' + b; };
+    function kbRechnen() {
+      // Knoten zusammenfassen, Potentiale der Zuleitungen setzen, freie Knoten über Knotenregel lösen
+      const eltern = {}; Object.keys(KLEMMEN).forEach(function (k) { eltern[k] = k; });
+      const wurzel = function (k) { while (eltern[k] !== k) k = eltern[k]; return k; };
+      PLAETZE.forEach(function (pl) { if (KB.bruecken[schl(pl[0], pl[1])]) eltern[wurzel(pl[0])] = wurzel(pl[1]); });
+      const netz = +document.getElementById('kbNetz').value, uS = netz / W3;
+      const phase = KB.tausch ? [2, 1, 0] : [0, 1, 2];
+      const L = [0, 1, 2].map(function (k) { const a = -k * PI2 / 3; return [uS * Math.cos(a), uS * Math.sin(a)]; });
+      const fest = {};
+      let kurz = false;
+      ['U1', 'V1', 'W1'].forEach(function (k, i) { const g = wurzel(k); const v = L[phase[i]]; if (fest[g] && (Math.abs(fest[g][0] - v[0]) > 1e-6 || Math.abs(fest[g][1] - v[1]) > 1e-6)) kurz = true; fest[g] = v; });
+      const pot = {}; Object.keys(KLEMMEN).forEach(function (k) { const g = wurzel(k); pot[g] = fest[g] || [0, 0]; });
+      const angeschlossen = {}; Object.keys(fest).forEach(function (g) { angeschlossen[g] = true; });
+      // verbunden über Wicklungen mit einem festen Knoten?
+      let geaendert = true; while (geaendert) { geaendert = false; WICKL.forEach(function (w) { const a = wurzel(w[0]), b = wurzel(w[1]); if (angeschlossen[a] !== angeschlossen[b]) { angeschlossen[a] = angeschlossen[b] = true; geaendert = true; } }); }
+      for (let it = 0; it < 300; it++) {
+        Object.keys(pot).forEach(function (g) {
+          if (fest[g] || !angeschlossen[g]) return;
+          let s = [0, 0], n = 0;
+          WICKL.forEach(function (w) { const a = wurzel(w[0]), b = wurzel(w[1]); if (a === b) return; if (a === g) { s[0] += pot[b][0]; s[1] += pot[b][1]; n++; } else if (b === g) { s[0] += pot[a][0]; s[1] += pot[a][1]; n++; } });
+          if (n) pot[g] = [s[0] / n, s[1] / n];
+        });
+      }
+      const u = WICKL.map(function (w) { const a = wurzel(w[0]), b = wurzel(w[1]); if (a === b) return { kurz: true, u: 0 }; if (!angeschlossen[a] || !angeschlossen[b] || (!fest[a] && !fest[b] && !Object.keys(fest).length)) return { u: 0 }; return { u: Math.hypot(pot[a][0] - pot[b][0], pot[a][1] - pot[b][1]) }; });
+      return { kurz: kurz, u: u, netz: netz, wurzel: wurzel };
+    }
+    function kbBewerten(k) {
+      const nenn = +document.getElementById('kbMotor').value, us = k.u.map(function (x) { return x.u; });
+      if (k.kurz) return ['schlecht', 'Kurzschluss! Eine Brücke verbindet zwei Außenleiter – die Sicherung löst aus.', 0];
+      if (k.u.some(function (x) { return x.kurz; })) return ['schlecht', 'Eine Wicklung ist durch eine Brücke kurzgeschlossen (Anfang und Ende verbunden). So nicht einschalten!', 0];
+      const gleich = Math.max.apply(null, us) - Math.min.apply(null, us) < 1;
+      if (Math.max.apply(null, us) < 1) return ['warn', 'Keine Wicklung bekommt Spannung: Ohne Brücken ist der Stromkreis nicht geschlossen.', 0];
+      if (!gleich) return ['schlecht', 'Die Wicklungen bekommen ungleiche Spannungen (' + us.map(function (x) { return zz(x, 0) + ' V'; }).join(', ') + '): Der Motor brummt, läuft schlecht oder gar nicht an und überhitzt.', 0];
+      const v = us[0] / nenn;
+      const art = Math.abs(us[0] - k.netz) < 1 ? 'Dreieck' : 'Stern';
+      if (v > 1.1) return ['schlecht', art + ': Jede Wicklung bekommt ' + zz(us[0], 0) + ' V, sie ist aber für ' + nenn + ' V gebaut. Der Strom wäre viel zu hoch – die Wicklung verbrennt. Richtig wäre ' + (art === 'Dreieck' ? 'Stern' : 'ein Motor für höhere Spannung') + '.', 0];
+      if (v < 0.9) return ['warn', art + ': Jede Wicklung bekommt nur ' + zz(us[0], 0) + ' V statt ' + nenn + ' V. Der Motor läuft mit etwa ' + zz(v * v * 100, 0) + ' % des Moments und bleibt unter Last hängen. Richtig wäre Dreieck.', 1 - 0.5 * (1 - v)];
+      return ['gut', art + ' – richtig: Jede Wicklung bekommt ' + zz(us[0], 0) + ' V. Drehrichtung: ' + (KB.tausch ? 'Linkslauf (L1 und L3 getauscht).' : 'Rechtslauf, im Uhrzeigersinn mit Blick auf die Welle.'), 1];
+    }
+    function kbZeichnen(t) {
+      const cx = kbCx, B = kbB, H = kbH, klein = B < 560; kbZiele = [];
+      cx.clearRect(0, 0, B, H);
+      const k = kbRechnen(), urt = kbBewerten(k);
+      const bx = klein ? 30 : 60, by = 70, dx = klein ? (B - 60) / 3 : 130, dy = 120;
+      const pos = function (n) { const p = KLEMMEN[n]; return [bx + dx * (p[0] + 0.5), by + dy * p[1]]; };
+      // Zuleitungen
+      const LF = ['#8B5A2B', '#222', '#888'];
+      ['U1', 'V1', 'W1'].forEach(function (n, i) {
+        const p = pos(n), l = KB.tausch ? [2, 1, 0][i] : i;
+        cx.strokeStyle = LF[l]; cx.lineWidth = 3; cx.beginPath(); cx.moveTo(p[0], 10); cx.lineTo(p[0], p[1] - 12); cx.stroke();
+        T(cx, 'L' + (l + 1), p[0] + 6, 18, 'left', 12, true, LF[l] === '#222' ? F('--text') : LF[l]);
+      });
+      // Klemmbrettplatte
+      cx.fillStyle = 'rgba(107,119,133,.14)'; cx.fillRect(bx, by - 30, dx * 3, dy + 60); cx.strokeStyle = GRAU; cx.lineWidth = 1.5; cx.strokeRect(bx, by - 30, dx * 3, dy + 60);
+      // Wicklungen (hinter dem Brett, gestrichelt)
+      WICKL.forEach(function (w, i) {
+        const a = pos(w[0]), b = pos(w[1]), farbe = STR[w[2]][1], uu = k.u[i].u;
+        cx.strokeStyle = farbe; cx.lineWidth = 2; cx.setLineDash([5, 4]); cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.setLineDash([]);
+        const m = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+        cx.fillStyle = farbe; cx.save(); cx.translate(m[0], m[1]); cx.rotate(Math.atan2(b[1] - a[1], b[0] - a[0])); cx.fillRect(-16, -6, 32, 12); cx.restore();
+        T(cx, zz(uu, 0) + ' V', m[0] + 10, m[1] - 10, 'left', 10, true, farbe);
+      });
+      // Brückenplätze
+      PLAETZE.forEach(function (pl) {
+        const a = pos(pl[0]), b = pos(pl[1]), an = KB.bruecken[schl(pl[0], pl[1])];
+        if (an) { cx.strokeStyle = '#B87333'; cx.lineWidth = 9; cx.lineCap = 'round'; cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.lineCap = 'butt'; }
+        else { cx.strokeStyle = F('--leise'); cx.lineWidth = 2; cx.setLineDash([3, 4]); cx.beginPath(); cx.moveTo(a[0], a[1]); cx.lineTo(b[0], b[1]); cx.stroke(); cx.setLineDash([]); }
+        kbZiele.push([(a[0] + b[0]) / 2, (a[1] + b[1]) / 2, schl(pl[0], pl[1])]);
+      });
+      Object.keys(KLEMMEN).forEach(function (n) {
+        const p = pos(n);
+        cx.fillStyle = '#C9CDD2'; cx.beginPath(); cx.arc(p[0], p[1], 12, 0, PI2); cx.fill(); cx.strokeStyle = '#555'; cx.lineWidth = 1.5; cx.stroke();
+        if (KLEMMEN[n][1]) T(cx, n, p[0], p[1] + 26, 'center', 12, true); else T(cx, n, p[0] + 16, p[1] - 16, 'left', 12, true);
+      });
+      // Motor mit Drehrichtung
+      const mx = klein ? B / 2 : bx + dx * 3 + (B - bx - dx * 3) / 2, my = klein ? by + dy + 110 : by + dy / 2, mr = klein ? 46 : 56;
+      const dt = Math.min(100, Math.max(0, t - kbLetzt)); kbLetzt = t;
+      const lauf = urt[2], richtung = KB.tausch ? -1 : 1;
+      kbWinkel += richtung * lauf * dt / 1000 * 2.5;
+      cx.fillStyle = 'rgba(107,119,133,.25)'; cx.beginPath(); cx.arc(mx, my, mr, 0, PI2); cx.fill(); cx.strokeStyle = GRAU; cx.lineWidth = 2; cx.stroke();
+      for (let j = 0; j < 4; j++) { const a = kbWinkel + j * Math.PI / 2; cx.strokeStyle = F('--text'); cx.lineWidth = 4; cx.beginPath(); cx.moveTo(mx, my); cx.lineTo(mx + Math.cos(a) * mr * 0.7, my + Math.sin(a) * mr * 0.7); cx.stroke(); }
+      cx.fillStyle = F('--text'); cx.beginPath(); cx.arc(mx, my, 6, 0, PI2); cx.fill();
+      if (lauf > 0) { cx.strokeStyle = GRUEN; cx.lineWidth = 3; cx.beginPath(); cx.arc(mx, my, mr + 10, richtung > 0 ? -2.4 : -0.7, richtung > 0 ? -0.7 : -2.4, richtung < 0); cx.stroke(); const ea = -0.7 * (richtung > 0 ? 1 : 0) + (richtung > 0 ? 0 : -2.4); const ex = mx + Math.cos(ea) * (mr + 10), ey = my + Math.sin(ea) * (mr + 10); cx.fillStyle = GRUEN; cx.beginPath(); cx.arc(ex, ey, 5, 0, PI2); cx.fill(); }
+      T(cx, lauf > 0 ? (richtung > 0 ? 'Rechtslauf ↻' : 'Linkslauf ↺') : urt[0] === 'schlecht' ? 'nicht einschalten' : 'steht', mx, my + mr + 22, 'center', 12, true, lauf > 0 ? GRUEN : ROT);
+      T(cx, 'Blick auf das Wellenende', mx, my + mr + 38, 'center', 10, false, GRAU);
+      const m = document.getElementById('kbMeldung'); m.textContent = urt[1]; m.className = 'meldung-sim ' + urt[0];
+    }
+    function kbGroesse() { const d = Math.min(2, window.devicePixelRatio || 1); kbB = kbCv.clientWidth || 600; kbH = kbB < 560 ? 440 : 300; kbCv.style.height = kbH + 'px'; kbCv.width = Math.round(kbB * d); kbCv.height = Math.round(kbH * d); kbCx.setTransform(d, 0, 0, d, 0, 0); }
+    kbCv.addEventListener('click', function (ev) {
+      const r = kbCv.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
+      let best = null, d = 30;
+      kbZiele.forEach(function (z) { const dd = Math.hypot(z[0] - x, z[1] - y); if (dd < d) { d = dd; best = z[2]; } });
+      if (best) { KB.bruecken[best] = !KB.bruecken[best]; }
+    });
+    document.getElementById('kbStern').addEventListener('click', function () { KB.bruecken = { 'W2-U2': true, 'U2-V2': true }; });
+    document.getElementById('kbDreieck').addEventListener('click', function () { KB.bruecken = { 'U1-W2': true, 'V1-U2': true, 'W1-V2': true }; });
+    document.getElementById('kbLeer').addEventListener('click', function () { KB.bruecken = {}; });
+    document.getElementById('kbTausch').addEventListener('click', function () { KB.tausch = !KB.tausch; this.setAttribute('aria-pressed', KB.tausch ? 'true' : 'false'); });
+
+    // ---------- Kennlinie Asynchronmaschine ----------
+    const asCv = document.getElementById('asmBild'), asCx = asCv.getContext('2d');
+    let asB = 600, asH = 360, asWinkelF = 0, asWinkelL = 0, asLetzt = 0, asDreh = 1380;
+    const wert = function (id) { return +document.getElementById(id).value; };
+    function lastM(n, art, ml) { if (art === 'konst') return n >= 0 ? ml : -ml; if (art === 'quad') return ml * (n / 1380) * Math.abs(n / 1380); return -ml; }
+    function asZeichnen(t) {
+      const cx = asCx, B = asB, H = asH, uf = wert('asmU') / 100, r2 = wert('asmR'), art = document.getElementById('asmArt').value, ml = wert('asmM');
+      cx.clearRect(0, 0, B, H);
+      const x0 = 52, x1 = B - 20, y0 = 26, y1 = H - 46, nMin = -500, nMax = 2000, mMax = 5, mMin = -5;
+      const X = function (n) { return x0 + (n - nMin) / (nMax - nMin) * (x1 - x0); }, Y = function (m) { return y0 + (mMax - m) / (mMax - mMin) * (y1 - y0); };
+      // Bereiche
+      cx.fillStyle = 'rgba(192,57,43,.07)'; cx.fillRect(x0, y0, X(0) - x0, y1 - y0); cx.fillStyle = 'rgba(46,139,87,.07)'; cx.fillRect(X(0), y0, X(1500) - X(0), y1 - y0); cx.fillStyle = 'rgba(43,123,185,.08)'; cx.fillRect(X(1500), y0, x1 - X(1500), y1 - y0);
+      const kl = B < 520 ? 9 : 11;
+      T(cx, 'Bremse', (x0 + X(0)) / 2, y0 + 12, 'center', kl, true, ROT); T(cx, 'Motor', (X(0) + X(1500)) / 2, y0 + 12, 'center', kl, true, GRUEN); T(cx, 'Generator', (X(1500) + x1) / 2, y0 + 12, 'center', kl, true, BLAU);
+      // Achsen
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.2; cx.beginPath(); cx.moveTo(x0, Y(0)); cx.lineTo(x1, Y(0)); cx.moveTo(X(0), y0); cx.lineTo(X(0), y1); cx.stroke();
+      for (let n = -500; n <= 2000; n += 500) { cx.strokeStyle = F('--linie'); cx.beginPath(); cx.moveTo(X(n), y0); cx.lineTo(X(n), y1); cx.stroke(); T(cx, zz(n, 0), X(n), y1 + 12, 'center', 10, false, GRAU); }
+      for (let m = -4; m <= 4; m += 2) { T(cx, zz(m, 0), x0 - 6, Y(m), 'right', 10, false, GRAU); }
+      T(cx, 'n in 1/min', x1, y1 + 28, 'right', 11, true); T(cx, 'M in N·m', x0 - 44, y0 - 10, 'left', 11, true);
+      cx.setLineDash([4, 3]); cx.strokeStyle = BLAU; cx.beginPath(); cx.moveTo(X(1500), y0); cx.lineTo(X(1500), y1); cx.stroke(); cx.setLineDash([]); T(cx, 'n₀', X(1500) + 4, y1 - 8, 'left', 11, true, BLAU);
+      // Motorkennlinie
+      const pts = []; let mk = -1e9, nk = 0;
+      for (let n = nMin; n <= nMax; n += 10) { const a = asm(n, uf, r2); pts.push([n, a.M]); if (n >= 0 && n < 1500 && a.M > mk) { mk = a.M; nk = n; } }
+      cx.strokeStyle = ROT; cx.lineWidth = 2.6; cx.beginPath(); pts.forEach(function (p, i) { const y = Y(Math.max(mMin, Math.min(mMax, p[1]))); if (i) cx.lineTo(X(p[0]), y); else cx.moveTo(X(p[0]), y); }); cx.stroke();
+      const ma = asm(0.5, uf, r2).M;
+      cx.fillStyle = ROT; [[0, ma, 'M_A'], [nk, mk, 'M_K']].forEach(function (q) { cx.beginPath(); cx.arc(X(q[0]), Y(q[1]), 4, 0, PI2); cx.fill(); T(cx, q[2] + ' ' + zz(q[1], 2), X(q[0]) + 6, Y(q[1]) - 9, 'left', 10, true, ROT); });
+      // Last
+      cx.strokeStyle = ORANGE; cx.lineWidth = 2; cx.setLineDash([6, 4]); cx.beginPath();
+      for (let n = 0; n <= nMax; n += 20) { const y = Y(Math.max(mMin, Math.min(mMax, lastM(n, art, ml)))); if (n) cx.lineTo(X(n), y); else cx.moveTo(X(n), y); }
+      cx.stroke(); cx.setLineDash([]);
+      // Arbeitspunkt: Schnitt von Motor- und Lastkennlinie mit stabiler Steigung, ab Hochlauf aus dem Stillstand
+      let ap = null;
+      if (art === 'gen') { for (let n = 1500; n < nMax; n += 2) { if (asm(n, uf, r2).M <= -ml) { ap = n; break; } } }
+      else {
+        let n = 0; const mStart = asm(1, uf, r2).M;
+        if (mStart > lastM(1, art, ml)) { for (n = 1; n < 1500; n += 2) { if (asm(n, uf, r2).M <= lastM(n, art, ml)) { ap = n; break; } } }
+      }
+      const msg = document.getElementById('asmMeldung');
+      if (ap !== null) {
+        const a = asm(ap, uf, r2), mm = a.M;
+        cx.fillStyle = F('--text'); cx.beginPath(); cx.arc(X(ap), Y(mm), 6, 0, PI2); cx.fill();
+        const s = (1500 - ap) / 1500, pm = mm * PI2 * ap / 60;
+        T(cx, 'Arbeitspunkt', X(ap) + 8, Y(mm) + 14, 'left', 11, true);
+        msg.textContent = (art === 'gen' ? 'Generatorbetrieb: ' : 'Arbeitspunkt: ') + 'n = ' + zz(ap, 0) + ' 1/min, Schlupf ' + zz(s * 100, 1) + ' %, M = ' + zz(mm, 2) + ' N·m, ' + (pm >= 0 ? 'abgegeben ' : 'aufgenommen ') + zz(Math.abs(pm), 0) + ' W mechanisch, Leiterstrom bei Δ 230 V ' + zz(a.I, 2) + ' A' + (a.I > 2.6 ? ' – über 2 × Nennstrom, der Motorschutz löst aus!' : a.I > 1.43 ? ' – über Nennstrom (1,3 A), auf Dauer zu warm.' : '.');
+        msg.className = 'meldung-sim ' + (a.I > 2.6 ? 'schlecht' : a.I > 1.43 ? 'warn' : 'gut');
+        asDreh = ap;
+      } else {
+        msg.textContent = 'Das Lastmoment ist größer als das Anzugsmoment oder Kippmoment: Der Motor läuft nicht hoch oder bleibt stehen (Kippen). Strom ' + zz(asm(1, uf, r2).I, 2) + ' A – der Motorschutz muss abschalten.';
+        msg.className = 'meldung-sim schlecht'; asDreh = 0;
+      }
+      // Mini-Animation: Feld und Läufer
+      const dt = Math.min(100, Math.max(0, t - asLetzt)); asLetzt = t;
+      asWinkelF += PI2 * dt / 2000; asWinkelL += PI2 * dt / 2000 * asDreh / 1500;
+      const rx = x0 + 44, ry = y1 - 46, rr = 26;
+      cx.fillStyle = F('--flaeche'); cx.beginPath(); cx.arc(rx, ry, rr + 8, 0, PI2); cx.fill(); cx.strokeStyle = F('--linie'); cx.stroke();
+      pf(cx, rx, ry, rx + Math.cos(asWinkelF) * rr, ry + Math.sin(asWinkelF) * rr, BLAU, 2.5);
+      cx.strokeStyle = '#B87333'; cx.lineWidth = 4; cx.beginPath(); cx.moveTo(rx, ry); cx.lineTo(rx + Math.cos(asWinkelL) * rr * 0.8, ry + Math.sin(asWinkelL) * rr * 0.8); cx.stroke();
+      T(cx, 'Feld / Läufer', rx, ry + rr + 18, 'center', 9, false, GRAU);
+    }
+    function asGroesse() { const d = Math.min(2, window.devicePixelRatio || 1); asB = asCv.clientWidth || 600; asH = asB < 520 ? 340 : 380; asCv.style.height = asH + 'px'; asCv.width = Math.round(asB * d); asCv.height = Math.round(asH * d); asCx.setTransform(d, 0, 0, d, 0, 0); }
+    [['asmU', 'asmUa', function (v) { return v + ' %'; }], ['asmR', 'asmRa', function (v) { return zz(+v, 2) + ' ×'; }], ['asmM', 'asmMa', function (v) { return zz(+v, 2) + ' N·m'; }]].forEach(function (x) {
+      const el = document.getElementById(x[0]); el.addEventListener('input', function () { document.getElementById(x[1]).textContent = x[2](el.value); });
+    });
+
+    // ---------- Synchronmaschine ----------
+    const smCv = document.getElementById('smBild'), smCx = smCv.getContext('2d');
+    let smB = 600, smH = 320, smFeld = 0, smTheta = 0, smOmega = 0, smTritt = true, smLetzt = 0;
+    function smZeichnen(t) {
+      const cx = smCx, B = smB, H = smH, klein = B < 560;
+      const mRel = wert('smM') / 100, err = wert('smE') / 100, mk = err;   // Kippmoment wächst mit der Erregung
+      const dt = Math.min(0.1, Math.max(0, (t - smLetzt) / 1000)); smLetzt = t;
+      const omF = PI2 * 0.25;
+      smFeld += omF * dt;
+      if (smTritt) {
+        const ziel = Math.abs(mRel) <= mk ? Math.asin(mRel / mk) : null;
+        if (ziel === null) smTritt = false; else smTheta += (ziel - smTheta) * Math.min(1, dt * 3);
+        smOmega = omF;
+      } else { smOmega += (-(mRel > 0 ? 1 : -1) * 0.6) * dt; smTheta += (omF - smOmega) * dt; }
+      const rot = smFeld - smTheta;
+      cx.clearRect(0, 0, B, H);
+      const rs = klein ? Math.min(B * 0.32, 110) : Math.min(H * 0.4, 120), mx = klein ? B / 2 : rs + 40, my = klein ? rs + 24 : H / 2;
+      cx.fillStyle = 'rgba(107,119,133,.16)'; cx.beginPath(); cx.arc(mx, my, rs, 0, PI2); cx.arc(mx, my, rs * 0.75, 0, PI2, true); cx.fill();
+      cx.strokeStyle = GRAU; cx.lineWidth = 2; cx.beginPath(); cx.arc(mx, my, rs, 0, PI2); cx.stroke();
+      pf(cx, mx, my, mx + Math.cos(smFeld - Math.PI / 2) * rs * 0.95, my + Math.sin(smFeld - Math.PI / 2) * rs * 0.95, BLAU, 3);
+      cx.save(); cx.translate(mx, my); cx.rotate(rot);
+      const pl = rs * 0.62, pb = rs * 0.32;
+      cx.fillStyle = ROT; cx.fillRect(-pb / 2, -pl, pb, pl); cx.fillStyle = BLAU; cx.fillRect(-pb / 2, 0, pb, pl);
+      cx.restore();
+      T(cx, 'N', mx + Math.cos(rot - Math.PI / 2) * pl * 0.6, my + Math.sin(rot - Math.PI / 2) * pl * 0.6, 'center', 12, true, '#fff');
+      T(cx, 'blau: Drehfeld · rot/blau: Polrad', mx, my + rs + 18, 'center', 10, false, GRAU);
+      // Kennlinie M(ϑ)
+      const kx0 = klein ? 40 : mx + rs + 60, kx1 = B - 20, ky0 = klein ? my + rs + 50 : 30, ky1 = H - 36, kmx = (kx0 + kx1) / 2, kmy = (ky0 + ky1) / 2;
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.2; cx.beginPath(); cx.moveTo(kx0, kmy); cx.lineTo(kx1, kmy); cx.moveTo(kmx, ky0); cx.lineTo(kmx, ky1); cx.stroke();
+      const KX = function (th) { return kmx + th / Math.PI * (kx1 - kx0) / 2; }, KY = function (m) { return kmy - m / 1.5 * (ky1 - ky0) / 2; };
+      cx.strokeStyle = ROT; cx.lineWidth = 2.4; cx.beginPath(); for (let i = 0; i <= 100; i++) { const th = -Math.PI + PI2 * i / 100; if (i) cx.lineTo(KX(th), KY(mk * Math.sin(th))); else cx.moveTo(KX(th), KY(mk * Math.sin(th))); } cx.stroke();
+      cx.setLineDash([4, 3]); cx.strokeStyle = ORANGE; cx.beginPath(); cx.moveTo(kx0, KY(mRel)); cx.lineTo(kx1, KY(mRel)); cx.stroke(); cx.setLineDash([]);
+      T(cx, 'ϑ', kx1, kmy + 14, 'right', 11, true); T(cx, 'M', kmx + 6, ky0 + 6, 'left', 11, true); T(cx, '+90°', KX(Math.PI / 2), kmy + 14, 'center', 10, false, GRAU); T(cx, '−90°', KX(-Math.PI / 2), kmy + 14, 'center', 10, false, GRAU);
+      T(cx, 'Motor', KX(Math.PI / 2), KY(mk) - 10, 'center', 10, true, GRUEN); T(cx, 'Generator', KX(-Math.PI / 2), KY(-mk) + 14, 'center', 10, true, BLAU);
+      const msg = document.getElementById('smMeldung');
+      if (smTritt) {
+        const th = ((smTheta + Math.PI) % PI2 + PI2) % PI2 - Math.PI;
+        cx.fillStyle = F('--text'); cx.beginPath(); cx.arc(KX(th), KY(mk * Math.sin(th)), 6, 0, PI2); cx.fill();
+        msg.textContent = 'Synchron: Lastwinkel ϑ = ' + zz(th * 180 / Math.PI, 0) + '° ' + (mRel > 0 ? '(Polrad läuft nach – Motor)' : mRel < 0 ? '(Polrad eilt vor – Generator)' : '(Leerlauf)') + ', Kippmoment ' + zz(mk * 100, 0) + ' % bei 90°.';
+        msg.className = 'meldung-sim gut';
+      } else { msg.textContent = 'Außer Tritt! Das Moment ist größer als das Kippmoment (' + zz(mk * 100, 0) + ' %): Das Polrad rutscht durch, Moment und Strom pendeln stark. In der Praxis schaltet der Schutz ab. Moment senken oder Erregung erhöhen und neu synchronisieren.'; msg.className = 'meldung-sim schlecht'; }
+    }
+    function smGroesse() { const d = Math.min(2, window.devicePixelRatio || 1); smB = smCv.clientWidth || 600; smH = smB < 560 ? 520 : 300; smCv.style.height = smH + 'px'; smCv.width = Math.round(smB * d); smCv.height = Math.round(smH * d); smCx.setTransform(d, 0, 0, d, 0, 0); }
+    [['smM', 'smMa', function (v) { return v + ' %'; }], ['smE', 'smEa', function (v) { return v + ' %'; }]].forEach(function (x) { const el = document.getElementById(x[0]); el.addEventListener('input', function () { document.getElementById(x[1]).textContent = x[2](el.value); }); });
+    document.getElementById('smNeu').addEventListener('click', function () { smTritt = true; smTheta = 0; });
+
+    // ---------- Seite ordnen, Schleife ----------
+    (function () {
+      const main = document.querySelector('main'), loeser = main.querySelector('.loeser'), faq = main.querySelector('.seo-info');
+      ['kb-teil', 'asm-teil', 'sm-teil'].forEach(function (id) { const el = document.getElementById(id); if (loeser) loeser.parentNode.insertBefore(el, loeser); });
+      const w = document.getElementById('dfm-wissen'); if (w && faq) faq.parentNode.insertBefore(w, faq);
+    })();
+    let bK = 0, bA = 0, bS = 0;
+    function schleife(t) {
+      if (kbCv.clientWidth !== bK) { bK = kbCv.clientWidth; kbGroesse(); }
+      if (asCv.clientWidth !== bA) { bA = asCv.clientWidth; asGroesse(); }
+      if (smCv.clientWidth !== bS) { bS = smCv.clientWidth; smGroesse(); }
+      kbZeichnen(t); asZeichnen(t); smZeichnen(t);
+      requestAnimationFrame(schleife);
+    }
+    requestAnimationFrame(schleife);
+  })();
+  </script>
+</body>
+</html>
