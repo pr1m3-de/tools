@@ -170,6 +170,128 @@
     try { localStorage.setItem(ZULETZT_SPEICHER, JSON.stringify(a)); } catch (e) { /* privates Fenster */ }
   });
 
+  // ---------- Bedienung: Fokus in Fenstern halten, Enter springt im Rechner zum nächsten Feld ----------
+  const FOKUSSIERBAR = 'a[href], button:not([disabled]), input:not([disabled]):not([type=hidden]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex]:not([tabindex="-1"])';
+  function sichtbar(e) { const b = e.getBoundingClientRect(); return b.width > 0 && b.height > 0 && getComputedStyle(e).visibility !== 'hidden'; }
+  // Tab bleibt im offenen Fenster (Suche, Daten sichern)
+  function fokusFalle(dlg) {
+    dlg.addEventListener('keydown', function (ev) {
+      if (ev.key !== 'Tab') return;
+      const f = Array.prototype.filter.call(dlg.querySelectorAll(FOKUSSIERBAR), sichtbar);
+      if (!f.length) return;
+      const erstes = f[0], letztes = f[f.length - 1];
+      if (ev.shiftKey && document.activeElement === erstes) { ev.preventDefault(); letztes.focus(); }
+      else if (!ev.shiftKey && document.activeElement === letztes) { ev.preventDefault(); erstes.focus(); }
+    });
+  }
+  // Zahlenfelder der Rechner: Enter (Handy: „Weiter“) springt ins nächste Feld, im letzten schließt es die Tastatur
+  function zahlenfelder(bei) {
+    const bereich = (bei && (bei.closest('.tafel') || bei.closest('section'))) || document.querySelector('main') || document;
+    return Array.prototype.filter.call(bereich.querySelectorAll('input[inputmode="decimal"]'), function (e) { return !e.disabled && !e.readOnly && !e.closest('form') && sichtbar(e); });
+  }
+  document.addEventListener('focusin', function (ev) {
+    const e = ev.target;
+    if (!e || e.tagName !== 'INPUT' || e.getAttribute('inputmode') !== 'decimal' || e.closest('form')) return;
+    const f = zahlenfelder(e), i = f.indexOf(e);
+    if (i >= 0) e.enterKeyHint = i < f.length - 1 ? 'next' : 'done';
+  });
+  document.addEventListener('keydown', function (ev) {
+    const e = ev.target;
+    if (ev.key !== 'Enter' || ev.defaultPrevented || ev.shiftKey || ev.ctrlKey || ev.metaKey || ev.altKey || ev.isComposing) return;
+    if (!e || e.tagName !== 'INPUT' || e.getAttribute('inputmode') !== 'decimal' || e.closest('form')) return;
+    const f = zahlenfelder(e), i = f.indexOf(e);
+    if (i < 0) return;
+    ev.preventDefault();
+    if (i < f.length - 1) { f[i + 1].focus(); try { f[i + 1].select(); } catch (x) { /* egal */ } }
+    else e.blur();
+  });
+
+  // freier Platz unten: feste Leisten der Seite (z. B. Reiterleiste im Lernbereich auf dem Handy) nicht verdecken
+  function untenBelegt() {
+    let e = document.elementFromPoint(window.innerWidth / 2, window.innerHeight - 3), h = 0;
+    while (e && e !== document.body && e !== document.documentElement) {
+      const st = getComputedStyle(e);
+      if (st.position === 'fixed' && !e.classList.contains('daten-hinweis') && !e.classList.contains('nach-oben')) { h = Math.max(0, window.innerHeight - e.getBoundingClientRect().top); break; }
+      e = e.parentElement;
+    }
+    return Math.min(h, 160);
+  }
+  function untenSetzen() { document.documentElement.style.setProperty('--unten-frei', untenBelegt() + 'px'); }
+  // Knopf „nach oben“ auf langen Seiten
+  function nachObenEinrichten() {
+    const k = document.createElement('button');
+    k.type = 'button'; k.className = 'nach-oben'; k.hidden = true; k.setAttribute('aria-label', 'Nach oben'); k.title = 'Nach oben';
+    k.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 14l6-6 6 6"/></svg>';
+    k.addEventListener('click', function () {
+      const ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.scrollTo({ top: 0, behavior: ruhig ? 'auto' : 'smooth' });
+      const ziel = document.querySelector('main h1') || document.querySelector('main');
+      if (ziel) { if (!ziel.hasAttribute('tabindex')) ziel.setAttribute('tabindex', '-1'); setTimeout(function () { ziel.focus({ preventScroll: true }); }, 300); }
+    });
+    document.body.append(k);
+    // erscheint nur beim Hochscrollen (wer nach oben will, scrollt meist schon hoch) und verschwindet nach kurzer Ruhe,
+    // damit er keine Knöpfe am rechten Rand verdeckt
+    let laeuft = false, letzteY = window.scrollY, ruhe = 0;
+    const pruefen = function () {
+      laeuft = false;
+      const y = window.scrollY, hoch = y < letzteY - 4, runter = y > letzteY + 4;
+      if (hoch || runter) letzteY = y;
+      const lang = document.documentElement.scrollHeight > window.innerHeight * 3;
+      if (hoch && lang && y > window.innerHeight * 1.5) {
+        if (k.hidden) untenSetzen();
+        k.hidden = false;
+        clearTimeout(ruhe); ruhe = setTimeout(function () { if (document.activeElement !== k && !k.matches(':hover')) k.hidden = true; }, 2600);
+      } else if (runter || y < window.innerHeight) k.hidden = true;
+    };
+    window.addEventListener('scroll', function () { if (!laeuft) { laeuft = true; requestAnimationFrame(pruefen); } }, { passive: true });
+    window.addEventListener('resize', untenSetzen);
+  }
+
+  // ---------- Breite Inhalte (Rechenweg, Tabellen): Verlauf am Rand zeigt, dass man seitlich wischen kann ----------
+  function ueberlaufMarkieren() {
+    document.querySelectorAll('.weg .rechnung, .rahmen').forEach(function (e) {
+      const mehr = e.scrollWidth > e.clientWidth + 2;
+      e.classList.toggle('mehr-rechts', mehr && e.scrollLeft + e.clientWidth < e.scrollWidth - 2);
+      e.classList.toggle('mehr-links', mehr && e.scrollLeft > 2);
+    });
+  }
+  // Felder in Tabellen ohne Beschriftung (z. B. Protokolle): Spaltenkopf und Zeilenanfang als Namen für Vorleseprogramme
+  function tabellenFelderBeschriften() {
+    const kurz = function (z) { if (!z) return ''; const t = (z.querySelector('b, strong, label, span') || z).textContent; return t.split('ⓘ')[0].replace(/\s+/g, ' ').trim().replace(/:$/, '').slice(0, 70); };
+    document.querySelectorAll('input:not([type=hidden]):not([aria-label]):not([aria-labelledby]), select:not([aria-label]):not([aria-labelledby]), textarea:not([aria-label])').forEach(function (e) {
+      if ((e.id && document.querySelector('label[for="' + (window.CSS && CSS.escape ? CSS.escape(e.id) : e.id) + '"]')) || e.closest('label') || e.title) return;
+      const paar = e.closest('.paar'), pn = paar && paar.querySelector('.paar-name');
+      if (pn) { const n = kurz(pn); if (n) e.setAttribute('aria-label', n); return; }
+      const td = e.closest('td'), tr = td && td.parentElement, tab = tr && tr.closest('table');
+      if (!tab) { if (e.placeholder) e.setAttribute('aria-label', e.placeholder.slice(0, 80)); return; }
+      const vor = td.previousElementSibling;
+      if (vor && (vor.tagName === 'TH' || vor.classList.contains('label'))) { const n = kurz(vor); if (n) { e.setAttribute('aria-label', n); return; } }
+      const i = Array.prototype.indexOf.call(tr.children, td);
+      const kopfZeile = tab.tHead && tab.tHead.rows[tab.tHead.rows.length - 1];
+      const kopf = kopfZeile && kopfZeile.cells[i] ? kurz(kopfZeile.cells[i]) : '';
+      const zeile = tr.cells[0] && tr.cells[0] !== td ? kurz(tr.cells[0]) : '';
+      const name = [kopf, zeile].filter(Boolean).join(', ').replace(/\s+/g, ' ').slice(0, 120);
+      if (name) e.setAttribute('aria-label', name);
+    });
+  }
+  let ueberlaufPlan = 0;
+  // gedrosselt statt entprellt: Animationen ändern laufend Text, sonst käme die Prüfung nie dran
+  function ueberlaufSpaeter() { if (!ueberlaufPlan) ueberlaufPlan = setTimeout(function () { ueberlaufPlan = 0; ueberlaufMarkieren(); tabellenFelderBeschriften(); }, 150); }
+  document.addEventListener('scroll', function (ev) {
+    const e = ev.target;
+    if (e && e.classList && (e.classList.contains('rechnung') || e.classList.contains('rahmen'))) {
+      const mehr = e.scrollWidth > e.clientWidth + 2;
+      e.classList.toggle('mehr-rechts', mehr && e.scrollLeft + e.clientWidth < e.scrollWidth - 2);
+      e.classList.toggle('mehr-links', mehr && e.scrollLeft > 2);
+    }
+  }, true);
+  function ueberlaufEinrichten() {
+    ueberlaufSpaeter();
+    window.addEventListener('resize', ueberlaufSpaeter);
+    const m = document.querySelector('main') || document.body;
+    if (m && window.MutationObserver) new MutationObserver(ueberlaufSpaeter).observe(m, { childList: true, subtree: true });
+  }
+
   // ---------- Stichwortsuche über alle Seiten und Aufgabenblätter ----------
   // Der Index (suchindex.json) entsteht mit node werkzeuge/suche-bauen.js und wird erst beim ersten Öffnen geladen.
   const LUPE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>';
@@ -319,6 +441,7 @@
       liste = knoten('ul', 'suche-liste');
       box.append(kopf, info, liste); dlg.append(box);
       document.body.append(dlg);
+      fokusFalle(dlg);
       feld.addEventListener('input', zeigen);
       zu.addEventListener('click', schliessen);
       dlg.addEventListener('click', function (ev) { if (ev.target === dlg) schliessen(); });
@@ -373,7 +496,7 @@
       VOR_IMPORT = 'sicherung-vor-import', ERSTE_DATEN = 'sicherung-erste-daten', TAGE = 30, TAG = 864e5;
     // zählen nicht als eigene Daten
     const NEBENSACHE = function (k) { return k === 'sammlung-thema' || k === 'zuletzt-1' || k.indexOf('sicherung-') === 0 || /:vorher$/.test(k); };
-    let dlg = null;
+    let dlg = null, vorherFokus = null;
     function schluessel() { const a = []; try { for (let i = 0; i < localStorage.length; i++) a.push(localStorage.key(i)); } catch (e) { /* ohne Speicher */ } return a.filter(function (k) { return typeof k === 'string'; }); }
     function eigene() { return schluessel().filter(function (k) { return !NEBENSACHE(k); }); }
     const iOS = function () { return /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); };
@@ -465,6 +588,7 @@
       kopf.append(h, zu);
       const inhalt = knoten('div', 'daten-inhalt');
       box.append(kopf, inhalt); dlg.append(box); document.body.append(dlg);
+      fokusFalle(dlg);
       zu.addEventListener('click', schliessen);
       dlg.addEventListener('click', function (ev) { if (ev.target === dlg) schliessen(); });
       dlg.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') { ev.preventDefault(); schliessen(); } });
@@ -519,11 +643,16 @@
     }
     function oeffnen() {
       if (!dlg) bauen();
+      vorherFokus = document.activeElement;
       fuellen();
       dlg.hidden = false; document.documentElement.classList.add('suche-offen');
       const k = dlg.querySelector('.daten-knoepfe .knopf'); if (k) k.focus();
     }
-    function schliessen() { if (!dlg || dlg.hidden) return; dlg.hidden = true; document.documentElement.classList.remove('suche-offen'); }
+    function schliessen() {
+      if (!dlg || dlg.hidden) return;
+      dlg.hidden = true; document.documentElement.classList.remove('suche-offen');
+      if (vorherFokus && vorherFokus.focus && document.contains(vorherFokus)) vorherFokus.focus();
+    }
     // 4. Erinnerung: eigene Daten da, keine Sicherung seit 30 Tagen (oder noch nie, Daten älter als 7 Tage), höchstens alle 14 Tage
     let hinweis = null;
     function hinweisWeg() { if (hinweis) { hinweis.remove(); hinweis = null; } }
@@ -540,6 +669,7 @@
       const b = knoten('button', 'knopf-leise', 'Später'); b.type = 'button';
       b.addEventListener('click', function () { lsSchreiben(ERINNERT, String(Date.now())); hinweisWeg(); });
       hinweis.append(a, b);
+      untenSetzen();
       document.body.append(hinweis);
     }
     function start() {
@@ -1210,5 +1340,7 @@
     window.addEventListener('beforeprint', druckErsatzBauen);
     window.addEventListener('afterprint', druckErsatzWeg);
     Daten.start();
+    nachObenEinrichten();
+    ueberlaufEinrichten();
   });
 })();
