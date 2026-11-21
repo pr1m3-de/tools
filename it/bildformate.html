@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bildformate im Vergleich: JPEG, PNG, WebP, AVIF, GIF, SVG – Formeln &amp; Rechner</title>
+  <meta name="description" content="JPEG, PNG, WebP, AVIF, GIF und SVG im Vergleich: Dateigröße, Farbtiefe, Druckgröße und welches Format zu welchem Motiv passt. Bildlabor mit echter Codierung im Browser, Lupe, Fehlerbild und PSNR, dazu JPEG-Block, Farbtiefe und Raster gegen Vektor.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/it/bildformate.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Bildformate im Vergleich: JPEG, PNG, WebP, AVIF, GIF, SVG">
+  <meta property="og:description" content="JPEG, PNG, WebP, AVIF, GIF und SVG im Vergleich: Dateigröße, Farbtiefe, Druckgröße und welches Format zu welchem Motiv passt. Bildlabor mit echter Codierung im Browser, Lupe, Fehlerbild und PSNR, dazu JPEG-Block, Farbtiefe und Raster gegen Vektor.">
+  <meta property="og:url" content="https://tools.pr1m3.de/it/bildformate.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Bildformate im Vergleich: JPEG, PNG, WebP, AVIF, GIF, SVG">
+  <meta name="twitter:description" content="JPEG, PNG, WebP, AVIF, GIF und SVG im Vergleich: Dateigröße, Farbtiefe, Druckgröße und welches Format zu welchem Motiv passt. Bildlabor mit echter Codierung im Browser, Lupe, Fehlerbild und PSNR, dazu JPEG-Block, Farbtiefe und Raster gegen Vektor.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/bildformate.html#seite","name":"Bildformate im Vergleich: JPEG, PNG, WebP, AVIF, GIF, SVG","url":"https://tools.pr1m3.de/it/bildformate.html","inLanguage":"de","description":"JPEG, PNG, WebP, AVIF, GIF und SVG im Vergleich: Dateigröße, Farbtiefe, Druckgröße und welches Format zu welchem Motiv passt. Bildlabor mit echter Codierung im Browser, Lupe, Fehlerbild und PSNR, dazu JPEG-Block, Farbtiefe und Raster gegen Vektor.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/bildformate.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/bildformate.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Bildformate im Vergleich: JPEG, PNG, WebP, AVIF, GIF, SVG","item":"https://tools.pr1m3.de/it/bildformate.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/bildformate.html#fragen","mainEntity":[{"@type":"Question","name":"JPEG oder PNG für ein Bildschirmfoto?","acceptedAnswer":{"@type":"Answer","text":"PNG. Text und harte Kanten erzeugen bei JPEG sichtbare Ringe, und PNG ist bei großen einfarbigen Flächen oft sogar kleiner. Für Fotos dagegen JPEG, WebP oder AVIF – ein Foto als PNG ist 5- bis 10-mal so groß."}},{"@type":"Question","name":"Welche JPEG-Qualität ist sinnvoll?","acceptedAnswer":{"@type":"Answer","text":"75 bis 85 ist für Webseiten und Weitergabe meist ideal. Über 90 wächst die Datei stark, ohne dass man mehr sieht. Unter 50 werden Blöcke und Ringe deutlich."}},{"@type":"Question","name":"Wie groß darf ein Bild für den Druck sein?","acceptedAnswer":{"@type":"Answer","text":"Für den Fotodruck rechnet man mit 300 Pixeln je Zoll (dpi). Ein 12-Megapixel-Bild mit 4 000 × 3 000 Pixeln ergibt so 33,9 × 25,4 cm. Für Plakate, die aus Abstand betrachtet werden, genügen 100 bis 150 dpi."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/bildformate.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+    .labor-leiste { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 8px 0; }
+    .labor-leiste label { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .labor-leiste select, .labor-leiste input[type=file] { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; min-width: 0; }
+    .labor-leiste input[type=range] { width: 160px; min-height: 30px; }
+    .labor-leiste output { font-family: var(--technik); font-weight: 700; min-width: 2.5em; }
+    .labor-bild { width: 100%; display: block; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); cursor: crosshair; touch-action: none; }
+    .labor-info { font-family: var(--technik); font-weight: 600; margin: 6px 0; min-height: 1.4em; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="labor" aria-labelledby="h-labor">
+      <h2 id="h-labor">Bildlabor: echte Codierung im Browser</h2>
+      <p>JPEG, PNG und – je nach Browser – WebP werden hier mit den eingebauten Encodern des Browsers wirklich erzeugt; Größe, Rauschabstand und Fehlerbild sind echte Messwerte. GIF wird nachgebildet (Farbpalette mit 256 Farben und LZW-Kompression). Tippe in das Bild, um die Lupe zu verschieben. Eigene Bilder bleiben auf deinem Gerät.</p>
+      <div class="labor-leiste">
+        <label>Bild <select id="bQuelle" data-nicht-merken><option value="test">Testbild</option><option value="datei">eigenes Bild …</option></select></label>
+        <input type="file" id="bDatei" accept="image/*" data-nicht-merken hidden>
+        <label>Format <select id="bFormat" data-nicht-merken></select></label>
+        <label>Qualität <input type="range" id="bQ" min="1" max="100" value="75" data-nicht-merken><output id="bQa">75</output></label>
+        <label>Anzeige <select id="bAnz" data-nicht-merken><option value="bild">codiertes Bild</option><option value="diff">Fehler × 8</option></select></label>
+        <label id="bDitherL"><input type="checkbox" id="bDither" checked data-nicht-merken> Dithering (GIF)</label>
+        <button type="button" class="knopf-leise" id="bGen">10-mal neu speichern</button>
+      </div>
+      <canvas id="bBild" class="labor-bild" role="img" aria-label="Links das Original, rechts die codierte Fassung, darunter beide in der Lupe vergrößert"></canvas>
+      <p class="labor-info" id="bInfo" role="status"></p>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Format und Einstellung</th><th>Größe</th><th>Bit je Pixel</th><th>Kompression</th><th>Rauschabstand (PSNR)</th></tr></thead><tbody id="bTab"></tbody></table></div>
+      <p class="hilfe">PSNR über 40 dB: kaum ein Unterschied sichtbar, 30 bis 40 dB: Artefakte in der Lupe erkennbar, unter 30 dB: deutlich sichtbar. Verlustfreie Formate haben unendlichen Rauschabstand.</p>
+    </section>
+
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Die Formate</h2>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Format</th><th>Kompression</th><th>Farben</th><th>Transparenz</th><th>Animation</th><th>gut für</th></tr></thead><tbody>
+        <tr><td>BMP / TIFF (unkomprimiert)</td><td>keine (TIFF auch verlustfrei)</td><td>bis 48 bit</td><td>teilweise</td><td>nein</td><td>Scanner, Druckvorstufe, Archiv</td></tr>
+        <tr><td>PNG</td><td>verlustfrei (Filter + Deflate)</td><td>bis 48 bit, auch Palette</td><td>ja, stufenlos</td><td>APNG</td><td>Grafiken, Logos, Bildschirmfotos, Text</td></tr>
+        <tr><td>JPEG</td><td>verlustbehaftet (DCT 8 × 8)</td><td>24 bit</td><td>nein</td><td>nein</td><td>Fotos, überall lesbar</td></tr>
+        <tr><td>GIF</td><td>verlustfrei (LZW), aber nur 256 Farben</td><td>Palette 8 bit</td><td>ein Farbwert</td><td>ja</td><td>kleine Animationen, einfache Grafiken</td></tr>
+        <tr><td>WebP</td><td>verlustbehaftet oder verlustfrei</td><td>24 bit</td><td>ja</td><td>ja</td><td>Webseiten, rund 25–35 % kleiner als JPEG</td></tr>
+        <tr><td>AVIF</td><td>verlustbehaftet oder verlustfrei (aus dem Videocodec AV1)</td><td>bis 36 bit, HDR</td><td>ja</td><td>ja</td><td>Webseiten, oft halb so groß wie JPEG</td></tr>
+        <tr><td>HEIF / HEIC</td><td>verlustbehaftet (aus dem Videocodec H.265)</td><td>bis 30 bit, HDR</td><td>ja</td><td>Bildfolgen</td><td>Handyfotos; nicht überall lesbar</td></tr>
+        <tr><td>SVG</td><td>Vektorgrafik (Text, Formen), optional gzip</td><td>beliebig</td><td>ja</td><td>ja</td><td>Logos, Symbole, Diagramme – verlustfrei skalierbar</td></tr>
+      </tbody></table></div>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Rastergrafik und Vektorgrafik</h3><p>Rastergrafiken speichern ein Gitter aus Pixeln, jedes mit einer Farbe. Beim Vergrößern werden die Pixel sichtbar. Vektorgrafiken speichern Formen als Anweisungen (Linie von hier nach dort, Kreis mit Radius r) und bleiben in jeder Größe scharf – für Fotos sind sie ungeeignet.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>So arbeitet JPEG</h3><p>Umwandlung in Helligkeit und Farbe (YCbCr), Farbe mit halber Auflösung (4:2:0), Zerlegen in 8 × 8 Blöcke, Diskrete Kosinustransformation, Teilen durch eine Quantisierungstabelle – hier entsteht der Verlust, feine Muster werden zu null –, Zickzack-Abtastung und Huffman-Codierung. Typische Fehler: Blockkanten, Ringe an harten Kanten, verwaschene Farbkanten.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>So arbeitet PNG</h3><p>Jede Zeile wird zuerst gefiltert: Statt des Farbwerts wird z. B. die Differenz zum linken oder oberen Nachbarn gespeichert. Bei gleichmäßigen Flächen entstehen viele Nullen, die der Deflate-Algorithmus (LZ77 + Huffman, wie ZIP) gut zusammenfasst. Bei Fotos mit Rauschen hilft das wenig.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Generationsverlust</h3><p>Wird ein JPEG geöffnet und wieder als JPEG gespeichert, wird erneut quantisiert. Bei gleicher Qualität ändert sich nach ein paar Durchgängen kaum noch etwas, bei wechselnder Qualität, Zuschnitt oder Bearbeitung summieren sich die Fehler. Deshalb: Original verlustfrei aufbewahren, nur das Endergebnis als JPEG speichern.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>JPEG oder PNG für ein Bildschirmfoto?</summary><p>PNG. Text und harte Kanten erzeugen bei JPEG sichtbare Ringe, und PNG ist bei großen einfarbigen Flächen oft sogar kleiner. Für Fotos dagegen JPEG, WebP oder AVIF – ein Foto als PNG ist 5- bis 10-mal so groß.</p></details>
+        <details><summary>Welche JPEG-Qualität ist sinnvoll?</summary><p>75 bis 85 ist für Webseiten und Weitergabe meist ideal. Über 90 wächst die Datei stark, ohne dass man mehr sieht. Unter 50 werden Blöcke und Ringe deutlich.</p></details>
+        <details><summary>Wie groß darf ein Bild für den Druck sein?</summary><p>Für den Fotodruck rechnet man mit 300 Pixeln je Zoll (dpi). Ein 12-Megapixel-Bild mit 4 000 × 3 000 Pixeln ergibt so 33,9 × 25,4 cm. Für Plakate, die aus Abstand betrachtet werden, genügen 100 bis 150 dpi.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    // Richtwerte in Bit je Pixel bei Qualität 85 (verlustbehaftet) bzw. verlustfrei
+    const FMT = {
+      bmp: { name: 'BMP (unkomprimiert)', verlust: false, bpp: { foto: 24, grafik: 24, text: 24 } },
+      png: { name: 'PNG', verlust: false, bpp: { foto: 13, grafik: 1.2, text: 0.9 } },
+      gif: { name: 'GIF (256 Farben)', verlust: false, bpp: { foto: 7, grafik: 1.4, text: 1.0 } },
+      jpeg: { name: 'JPEG', verlust: true, bpp: { foto: 2.0, grafik: 1.6, text: 2.4 } },
+      webp: { name: 'WebP', verlust: true, bpp: { foto: 1.4, grafik: 0.8, text: 1.4 } },
+      avif: { name: 'AVIF', verlust: true, bpp: { foto: 1.0, grafik: 0.6, text: 1.1 } }
+    };
+    const MOTIV = { foto: 'Foto', grafik: 'Grafik, Logo, Diagramm', text: 'Bildschirmfoto mit Text' };
+    function qFaktor(q) { return q >= 85 ? Math.exp(0.058 * (q - 85)) : Math.exp(0.022 * (q - 85)); }
+    function bppVon(fk, e) { const f = FMT[fk]; let b = f.bpp[e.motiv] || f.bpp.foto; if (fk === 'bmp') b = +e.tiefe; else if (fk === 'png') b *= +e.tiefe / 24; if (f.verlust) b *= qFaktor(e.q); return b; }
+    let ansicht = 'dct', takt = uhr(), zeit = 0;
+    function rechne(e) {
+      const r = {}, f = FMT[e.fmt] || FMT.jpeg;
+      r.f = f; r.px = e.b * e.h; r.mp = r.px / 1e6;
+      r.roh = r.px * (+e.tiefe) / 8 / 1e6;
+      r.bpp = bppVon(e.fmt, e); r.mb = r.px * r.bpp / 8 / 1e6;
+      r.k = r.roh / r.mb; r.anzahl = e.speicher * 1000 / r.mb;
+      r.druckB = e.b / e.dpi * 2.54; r.druckH = e.h / e.dpi * 2.54;
+      return r;
+    }
+
+    // ---------- 8×8-DCT ----------
+    const QT = [16, 11, 10, 16, 24, 40, 51, 61, 12, 12, 14, 19, 26, 58, 60, 55, 14, 13, 16, 24, 40, 57, 69, 56, 14, 17, 22, 29, 51, 87, 80, 62, 18, 22, 37, 56, 68, 109, 103, 77, 24, 35, 55, 64, 81, 104, 113, 92, 49, 64, 78, 87, 103, 121, 120, 101, 72, 92, 95, 98, 112, 100, 103, 99];
+    const ZZ = [0, 1, 8, 16, 9, 2, 3, 10, 17, 24, 32, 25, 18, 11, 4, 5, 12, 19, 26, 33, 40, 48, 41, 34, 27, 20, 13, 6, 7, 14, 21, 28, 35, 42, 49, 56, 57, 50, 43, 36, 29, 22, 15, 23, 30, 37, 44, 51, 58, 59, 52, 45, 38, 31, 39, 46, 53, 60, 61, 54, 47, 55, 62, 63];
+    const BLOCK = (function () { const b = []; for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) { let v = 60 + x * 10 + y * 4; if (x + y * 0.6 > 6) v = 210; if ((x === 2 || x === 3) && y < 5) v = 30; b.push(v); } return b; })();
+    function dct(b) { const c = []; for (let v = 0; v < 8; v++) for (let u = 0; u < 8; u++) { let s = 0; for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) s += (b[y * 8 + x] - 128) * Math.cos((2 * x + 1) * u * Math.PI / 16) * Math.cos((2 * y + 1) * v * Math.PI / 16); c.push(s * (u ? 1 : Math.SQRT1_2) * (v ? 1 : Math.SQRT1_2) / 4); } return c; }
+    function idct(c) { const b = []; for (let y = 0; y < 8; y++) for (let x = 0; x < 8; x++) { let s = 0; for (let v = 0; v < 8; v++) for (let u = 0; u < 8; u++) s += (u ? 1 : Math.SQRT1_2) * (v ? 1 : Math.SQRT1_2) * c[v * 8 + u] * Math.cos((2 * x + 1) * u * Math.PI / 16) * Math.cos((2 * y + 1) * v * Math.PI / 16); b.push(Math.max(0, Math.min(255, s / 4 + 128))); } return b; }
+    function qTab(q) { const s = q < 50 ? 5000 / q : 200 - 2 * q; return QT.map(function (v) { return Math.max(1, Math.floor((v * s + 50) / 100)); }); }
+    function gitter(cx, x, y, g, werte, farbe, text) { const z = g / 8; werte.forEach(function (v, i) { const c = farbe(v, i); cx.fillStyle = c; cx.fillRect(x + (i % 8) * z, y + Math.floor(i / 8) * z, z - 1, z - 1); if (text && z > 22) T(cx, text(v, i), x + (i % 8) * z + z / 2, y + Math.floor(i / 8) * z + z / 2, 'center', Math.min(10, z * 0.35), false, Math.abs(v) > 0 || text(v, i) !== '0' ? '#fff' : GRAU); }); }
+    function dctBild(cx, B, H, r, e) {
+      const q = e.fmt === 'jpeg' || e.fmt === 'webp' || e.fmt === 'avif' ? e.q : 85, Q = qTab(q), C = dct(BLOCK), Cq = C.map(function (c, i) { return Math.round(c / Q[i]); }), R2 = idct(Cq.map(function (c, i) { return c * Q[i]; }));
+      const klein = B < 600, g = klein ? Math.min((B - 40) / 2, (H - 90) / 2) : Math.min((B - 80) / 3, H - 90), nz = Cq.filter(function (c) { return c !== 0; }).length;
+      const pos = klein ? [[10, 30], [g + 30, 30], [10, g + 70]] : [[10, 40], [g + 40, 40], [2 * g + 70, 40]];
+      const grau = function (v) { const k = Math.round(v); return 'rgb(' + k + ',' + k + ',' + k + ')'; };
+      gitter(cx, pos[0][0], pos[0][1], g, BLOCK, grau);
+      gitter(cx, pos[1][0], pos[1][1], g, Cq, function (v) { if (v === 0) return 'rgba(107,119,133,.25)'; const a = Math.min(1, 0.35 + Math.log2(1 + Math.abs(v)) / 6); return v > 0 ? 'rgba(192,57,43,' + a + ')' : 'rgba(43,123,185,' + a + ')'; }, function (v) { return String(v); });
+      gitter(cx, pos[2][0], pos[2][1], g, R2, grau);
+      // Zickzack-Lauf
+      const k = Math.floor(zeit * 6) % 64, idx = ZZ[k], z = g / 8; cx.strokeStyle = ORANGE; cx.lineWidth = 2.5; cx.strokeRect(pos[1][0] + (idx % 8) * z, pos[1][1] + Math.floor(idx / 8) * z, z - 1, z - 1);
+      T(cx, 'Pixel (8 × 8)', pos[0][0], pos[0][1] - 10, 'left', 11, true); T(cx, 'quantisierte DCT (' + nz + ' von 64 ≠ 0)', pos[1][0], pos[1][1] - 10, 'left', 11, true); T(cx, 'nach dem Decodieren', pos[2][0], pos[2][1] - 10, 'left', 11, true);
+      let mse = 0; R2.forEach(function (v, i) { mse += Math.pow(v - BLOCK[i], 2); }); mse /= 64;
+      T(cx, 'Qualität ' + zz(q, 0) + ' · Rauschabstand ' + (mse > 0 ? zz(10 * Math.log10(255 * 255 / mse), 1) + ' dB' : '∞'), 10, H - 14, 'left', 11, true, ORANGE);
+    }
+    function tiefeBild(cx, B, H, r, e) {
+      const st = Math.pow(2, e.kb) - 1, x0 = 10, w = B - 20, hh = (H - 70) / 3;
+      const q = function (v) { return Math.round(Math.round(v / 255 * st) / st * 255); };
+      [[0, 'Grau'], [1, 'Himmel'], [2, 'Regenbogen']].forEach(function (z, j) {
+        const y = 30 + j * (hh + 14);
+        for (let x = 0; x < w; x++) {
+          const t = x / w; let c;
+          if (j === 0) c = [t * 255, t * 255, t * 255]; else if (j === 1) c = [40 + t * 140, 90 + t * 120, 180 + t * 75];
+          else { const hh2 = t * 6, k = Math.floor(hh2) % 6, f = hh2 - Math.floor(hh2); c = [[1, f, 0], [1 - f, 1, 0], [0, 1, f], [0, 1 - f, 1], [f, 0, 1], [1, 0, 1 - f]][k].map(function (v) { return v * 255; }); }
+          cx.fillStyle = 'rgb(' + q(c[0]) + ',' + q(c[1]) + ',' + q(c[2]) + ')'; cx.fillRect(x0 + x, y, 1.5, hh);
+        }
+      });
+      T(cx, e.kb + ' bit je Farbkanal → ' + zz(Math.pow(2, e.kb), 0) + ' Stufen je Farbe, ' + zz(Math.pow(2, 3 * e.kb), 0) + ' Farben', 10, 14, 'left', 11, true);
+      T(cx, '8 bit (24-bit-Farbe) zeigt keine sichtbaren Stufen mehr', 10, H - 12, 'left', 10, false, GRAU);
+    }
+    function rasterBild(cx, B, H) {
+      const z = 1 + 15 * (0.5 - 0.5 * Math.cos(zeit * 0.6)), halb = B / 2, rr = 7, n = 16;
+      // Raster: Kreis in 16 × 16 Pixeln, vergrößert
+      const g = Math.min(halb - 30, H - 70) / n * Math.min(1, z / 6 + 0.35), ox = halb / 2 - n * g / 2, oy = 40 + (H - 70 - n * g) / 2;
+      for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) { let a = 0; for (let sy = 0; sy < 4; sy++) for (let sx = 0; sx < 4; sx++) { const dx = x + (sx + 0.5) / 4 - 8, dy = y + (sy + 0.5) / 4 - 8; if (dx * dx + dy * dy < rr * rr) a++; } cx.fillStyle = 'rgba(192,57,43,' + (a / 16).toFixed(2) + ')'; cx.fillRect(ox + x * g, oy + y * g, g, g); }
+      if (g > 8) { cx.strokeStyle = F('--linie'); cx.lineWidth = 0.5; for (let i = 0; i <= n; i++) { strecke(cx, ox + i * g, oy, ox + i * g, oy + n * g, F('--linie'), 0.5); strecke(cx, ox, oy + i * g, ox + n * g, oy + i * g, F('--linie'), 0.5); } }
+      kreis(cx, halb + halb / 2, oy + n * g / 2, rr * g, 'rgba(192,57,43,1)');
+      strecke(cx, halb, 20, halb, H - 10, F('--linie'), 1);
+      T(cx, 'Rastergrafik: 16 × 16 Pixel', halb / 2, 18, 'center', 11, true); T(cx, 'Vektorgrafik: Kreis mit Radius r', halb * 1.5, 18, 'center', 11, true);
+      T(cx, 'Vergrößerung ' + zz(z, 1) + '×', 10, H - 12, 'left', 10, false, GRAU);
+    }
+    const SUB = (function () { const w = 48, h = 24, p = []; for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { let c = [245, 245, 245]; if (x > 4 && x < 20 && y > 4 && y < 19) c = [220, 30, 40]; if (x >= 20 && x < 36 && y > 4 && y < 19) c = [30, 80, 220]; if ((x === 10 || x === 11 || x === 28) && y > 6 && y < 17) c = [20, 20, 20]; if (x > 38 && x < 44 && y > 2 && y < 21 && (x + y) % 3 === 0) c = [20, 170, 60]; p.push(c); } return { w: w, h: h, p: p }; })();
+    function subsample(S) {
+      const ycc = S.p.map(function (c) { return [0.299 * c[0] + 0.587 * c[1] + 0.114 * c[2], -0.1687 * c[0] - 0.3313 * c[1] + 0.5 * c[2] + 128, 0.5 * c[0] - 0.4187 * c[1] - 0.0813 * c[2] + 128]; });
+      const out = [];
+      for (let y = 0; y < S.h; y++) for (let x = 0; x < S.w; x++) {
+        const bx = x & ~1, by = y & ~1; let cb = 0, cr = 0; for (let j = 0; j < 2; j++) for (let i = 0; i < 2; i++) { const q = ycc[(by + j) * S.w + bx + i]; cb += q[1]; cr += q[2]; }
+        cb /= 4; cr /= 4; const Y = ycc[y * S.w + x][0];
+        out.push([Y + 1.402 * (cr - 128), Y - 0.34414 * (cb - 128) - 0.71414 * (cr - 128), Y + 1.772 * (cb - 128)].map(function (v) { return Math.max(0, Math.min(255, Math.round(v))); }));
+      }
+      return out;
+    }
+    const SUBERG = subsample(SUB);
+    function subBild(cx, B, H) {
+      const klein = B < 600, g = klein ? Math.min((B - 20) / SUB.w, (H - 80) / 2 / SUB.h) : Math.min((B - 40) / 2 / SUB.w, (H - 60) / SUB.h);
+      const pos = klein ? [[10, 30], [10, 50 + SUB.h * g]] : [[10, 30], [30 + SUB.w * g, 30]];
+      [SUB.p, SUBERG].forEach(function (bild, k) {
+        bild.forEach(function (c, i) { cx.fillStyle = 'rgb(' + c[0] + ',' + c[1] + ',' + c[2] + ')'; cx.fillRect(pos[k][0] + (i % SUB.w) * g, pos[k][1] + Math.floor(i / SUB.w) * g, g + 0.5, g + 0.5); });
+        T(cx, k ? '4:2:0 (Farbe halbe Auflösung)' : '4:4:4 (volle Farbauflösung)', pos[k][0], pos[k][1] - 10, 'left', 11, true);
+      });
+    }
+    const seite = R.seite({
+      titel: 'Bildformate im Vergleich',
+      einleitung: 'JPEG, PNG, WebP, AVIF, GIF und SVG: Wie groß wird ein Bild, welches Format passt zu welchem Motiv und woher kommen die typischen Fehler? Der Rechner schätzt Dateigrößen, das Bildlabor codiert wirklich – mit Lupe, Fehlerbild und Messwerten.',
+      hilfe: 'Beispiel: Foto mit 12 Megapixeln (4 000 × 3 000), JPEG Qualität 85, 64 GB Speicherkarte, Druck mit 300 dpi.',
+      gruppen: [
+        { titel: 'Bild', farbe: BLAU, felder: [
+          { k: 'b', tex: 'B', name: 'Breite', e: 'px', min: 1, max: 100000, ganz: true },
+          { k: 'h', tex: 'H', name: 'Höhe', e: 'px', min: 1, max: 100000, ganz: true },
+          { k: 'motiv', name: 'Motiv', wahl: Object.keys(MOTIV).map(function (k) { return [k, MOTIV[k]]; }) },
+          { k: 'tiefe', name: 'Farbtiefe', wahl: [['24', '24 bit (8 bit je Farbe)'], ['32', '32 bit (mit Transparenz)'], ['48', '48 bit (16 bit je Farbe)']] }
+        ] },
+        { titel: 'Format', farbe: ROT, felder: [
+          { k: 'fmt', name: 'Format', wahl: Object.keys(FMT).map(function (k) { return [k, FMT[k].name]; }) },
+          { k: 'q', tex: 'Q', name: 'Qualität', e: '', min: 1, max: 100, wenn: function (e) { return (FMT[e.fmt] || {}).verlust; } }
+        ] },
+        { titel: 'Speicher und Druck', farbe: GRAU, felder: [
+          { k: 'speicher', tex: 'S', name: 'Speicherplatz', e: 'GB', min: 0.001, max: 1e6 },
+          { k: 'dpi', tex: 'r', name: 'Druckauflösung', e: 'dpi', min: 10, max: 2400 }
+        ] },
+        { titel: 'Animationen', farbe: LILA, felder: [
+          { k: 'kb', tex: 'n', name: 'Bit je Farbkanal (Farbtiefe)', e: 'bit', min: 1, max: 8, ganz: true }
+        ] }
+      ],
+      beispiel: { b: 4000, h: 3000, motiv: 'foto', tiefe: '24', fmt: 'jpeg', q: 85, speicher: 64, dpi: 300, kb: 4 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (e.motiv !== 'foto' && e.fmt === 'jpeg') H.meldung('Für Grafiken und Text ist JPEG ungünstig: Ringe an Kanten und oft größer als PNG.', true);
+        if (e.motiv === 'foto' && (e.fmt === 'png' || e.fmt === 'bmp')) H.meldung('Ein Foto verlustfrei zu speichern kostet viel Platz – sinnvoll nur als Archiv oder zur Bearbeitung.');
+        if (e.fmt === 'gif' && e.motiv === 'foto') H.meldung('GIF kann nur 256 Farben: Fotos bekommen Farbstufen oder Raster.', true);
+        H.kacheln([
+          [zz(r.mb, r.mb < 1 ? 3 : 2) + ' MB', 'geschätzte Dateigröße ' + r.f.name, BLAU],
+          [zz(r.roh, 2) + ' MB', 'unkomprimiert (' + e.tiefe + ' bit)', GRAU],
+          [zz(r.k, 1) + ' : 1', 'Kompressionsfaktor', ORANGE],
+          [zz(r.bpp, 2) + ' bit', 'je Pixel (statt ' + e.tiefe + ')', GRUEN],
+          [zz(Math.floor(r.anzahl), 0), 'Bilder auf ' + zz(e.speicher, 0) + ' GB', LILA],
+          [zz(r.druckB, 1) + ' × ' + zz(r.druckH, 1) + ' cm', 'Druckgröße bei ' + zz(e.dpi, 0) + ' dpi (' + zz(r.mp, 1) + ' MP)', ROT]
+        ]);
+        H.tabelle('Alle Formate für dieses Motiv', ['Format', 'Bit je Pixel', 'Größe'], Object.keys(FMT).map(function (k) { const b = bppVon(k, e); return [FMT[k].name + (FMT[k].verlust ? ' (Q ' + zz(e.q, 0) + ')' : ''), zz(b, 2), zz(r.px * b / 8 / 1e6, 2) + ' MB']; }), { zahl: [1, 2] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Pixelzahl', 'N = B \\cdot H = ' + tz(e.b, 0) + ' \\cdot ' + tz(e.h, 0) + ' = ' + E(tz(r.px, 0)) + ' = ' + tz(r.mp, 2) + '\\,\\text{MP}'],
+          ['Unkomprimiert', 'S_0 = \\frac{N \\cdot b}{8} = \\frac{' + tz(r.px, 0) + ' \\cdot ' + e.tiefe + '\\,\\text{bit}}{8\\,\\text{bit/Byte}} = ' + E(tz(r.roh, 2) + '\\,\\text{MB}')],
+          ['Komprimiert (Richtwert)', 'S = \\frac{N \\cdot b_\\text{eff}}{8} = \\frac{' + tz(r.px, 0) + ' \\cdot ' + tz(r.bpp, 2) + '\\,\\text{bit}}{8} = ' + E(tz(r.mb, 2) + '\\,\\text{MB}')],
+          ['Kompressionsfaktor', 'k = \\frac{S_0}{S} = ' + E(tz(r.k, 1))],
+          ['Druckgröße', 'l = \\frac{\\text{Pixel}}{\\text{dpi}} \\cdot 2{,}54\\,\\text{cm} = \\frac{' + tz(e.b, 0) + '}{' + tz(e.dpi, 0) + '} \\cdot 2{,}54\\,\\text{cm} = ' + E(tz(r.druckB, 1) + '\\,\\text{cm}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Unkomprimierte Bildgröße', hilfe: 'S in MB (10⁶ Byte), b Bit je Pixel.',
+          felder: [{ k: 'S', tex: 'S', name: 'Dateigröße', e: 'MB', min: 0.001, max: 1e5 }, { k: 'B', tex: 'B', name: 'Breite', e: 'px', min: 1, max: 1e5, n: 0 }, { k: 'H', tex: 'H', name: 'Höhe', e: 'px', min: 1, max: 1e5, n: 0 }, { k: 'b', tex: 'b', name: 'Farbtiefe', e: 'bit', min: 1, max: 64, n: 0 }],
+          beispiel: { B: 1920, H: 1080, b: 24 },
+          gleichungen: [{ name: 'Größe', v: ['S', 'B', 'H', 'b'], f: function (q) { return [q.S * 8e6, q.B * q.H * q.b]; },
+            loese: { S: function (q) { return q.B * q.H * q.b / 8e6; }, B: function (q) { return q.S * 8e6 / (q.H * q.b); }, H: function (q) { return q.S * 8e6 / (q.B * q.b); }, b: function (q) { return q.S * 8e6 / (q.B * q.H); } },
+            weg: function (k, q) { return k === 'S' ? 'S = \\frac{B \\cdot H \\cdot b}{8} = \\frac{' + tz(q.B, 0) + ' \\cdot ' + tz(q.H, 0) + ' \\cdot ' + tz(q.b, 0) + '}{8}\\,\\text{Byte} = ' + E(tz(q.S, 3) + '\\,\\text{MB}') : k === 'b' ? 'b = \\frac{8 \\cdot S}{B \\cdot H} = ' + E(tz(q.b, 2) + '\\,\\text{bit}') : k === 'B' ? 'B = \\frac{8 \\cdot S}{H \\cdot b} = ' + E(tz(q.B, 0) + '\\,\\text{px}') : 'H = \\frac{8 \\cdot S}{B \\cdot b} = ' + E(tz(q.H, 0) + '\\,\\text{px}'); } }] },
+        { titel: 'Druckgröße und Auflösung', hilfe: '1 Zoll = 2,54 cm.',
+          felder: [{ k: 'l', tex: 'l', name: 'Druckbreite', e: 'cm', min: 0.1, max: 1000 }, { k: 'p', tex: 'p', name: 'Pixel', e: 'px', min: 1, max: 1e5 }, { k: 'r', tex: 'r', name: 'Auflösung', e: 'dpi', min: 10, max: 2400 }],
+          beispiel: { p: 4000, r: 300 },
+          gleichungen: [{ name: 'Druck', v: ['l', 'p', 'r'], f: function (q) { return [q.l * q.r, q.p * 2.54]; },
+            loese: { l: function (q) { return q.p / q.r * 2.54; }, p: function (q) { return q.l * q.r / 2.54; }, r: function (q) { return q.p * 2.54 / q.l; } },
+            weg: function (k, q) { return k === 'l' ? 'l = \\frac{p}{r} \\cdot 2{,}54\\,\\text{cm} = \\frac{' + tz(q.p, 0) + '}{' + tz(q.r, 0) + '} \\cdot 2{,}54\\,\\text{cm} = ' + E(tz(q.l, 2) + '\\,\\text{cm}') : k === 'p' ? 'p = \\frac{l \\cdot r}{2{,}54\\,\\text{cm}} = ' + E(tz(q.p, 0) + '\\,\\text{px}') : 'r = \\frac{p \\cdot 2{,}54\\,\\text{cm}}{l} = ' + E(tz(q.r, 0) + '\\,\\text{dpi}'); } }] },
+        { titel: 'Anzahl der Farben', hilfe: 'n Bit je Pixel ergeben 2ⁿ Farben.',
+          felder: [{ k: 'N', tex: 'N', name: 'Anzahl der Farben', e: '', min: 2, max: 1e15, n: 0 }, { k: 'n', tex: 'n', name: 'Bit je Pixel', e: 'bit', min: 1, max: 48, n: 0 }],
+          beispiel: { n: 8 },
+          gleichungen: [{ name: 'Farben', v: ['N', 'n'], f: function (q) { return [Math.log2(q.N), q.n]; },
+            loese: { N: function (q) { return Math.pow(2, q.n); }, n: function (q) { return Math.log2(q.N); } },
+            weg: function (k, q) { return k === 'N' ? 'N = 2^n = 2^{' + tz(q.n, 0) + '} = ' + E(tz(q.N, 0)) : 'n = \\log_2 N = \\log_2 ' + tz(q.N, 0) + ' = ' + E(tz(q.n, 2) + '\\,\\text{bit}'); } }] }
+      ],
+      sammlung: [
+        ['Pixelzahl', 'N = B \\cdot H', '1 Megapixel = 10⁶ Pixel'],
+        ['Unkomprimierte Größe', 'S = \\frac{B \\cdot H \\cdot b}{8}', 'b Bit je Pixel, S in Byte'],
+        ['Anzahl der Farben', 'N_\\text{F} = 2^b', '24 bit: 16,7 Mio. Farben'],
+        ['Druckgröße', 'l = \\frac{p}{r} \\cdot 2{,}54\\,\\text{cm}', 'r in dpi'],
+        ['Kompressionsfaktor', 'k = \\frac{S_0}{S}', ''],
+        ['Rauschabstand (PSNR)', '\\text{PSNR} = 10 \\cdot \\lg\\frac{255^2}{\\text{MSE}}\\,\\text{dB}', 'MSE mittlere quadratische Abweichung'],
+        ['Helligkeit (Luma)', 'Y = 0{,}299\\,R + 0{,}587\\,G + 0{,}114\\,B', 'grün trägt am meisten zur Helligkeit bei'],
+        ['DCT-Quantisierung', 'C_q = \\operatorname{round}\\left(\\frac{C}{Q}\\right)', 'Q aus der Quantisierungstabelle']
+      ],
+      quellen: 'Bit je Pixel als Richtwerte für typische Motive; echte Größen hängen stark vom Bildinhalt ab – das Bildlabor misst sie. JPEG-Quantisierungstabelle nach dem JPEG-Standard (ITU-T T.81, Anhang K).',
+      bild: { titel: 'Animation', label: 'JPEG-Block, Farbtiefe, Raster und Vektor, Farbunterabtastung', animiert: true,
+        hoehe: function (B) { return B < 600 ? 470 : 360; },
+        hinweis: function (r, e) { return ({ dct: 'Ein 8 × 8-Block: Pixel, DCT-Koeffizienten nach der Quantisierung (grau = null) und das Ergebnis. Qualität im Feld „Qualität“ (Format JPEG).', tiefe: 'Ein Verlauf mit ' + e.kb + ' bit je Farbe = ' + zz(Math.pow(2, 3 * e.kb), 0) + ' Farben. Wenig Bits erzeugen sichtbare Stufen (Banding).', raster: 'Links Rastergrafik, rechts Vektorgrafik beim Vergrößern.', sub: 'Farbunterabtastung: Die Farbinformation wird in 2 × 2 Pixeln zusammengefasst (4:2:0). Helligkeitskanten bleiben scharf, Farbkanten verschwimmen.' })[ansicht]; },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); zeit += dt; ({ dct: dctBild, tiefe: tiefeBild, raster: rasterBild, sub: subBild })[ansicht](cx, B, H, r, e); } }
+    });
+    ansicht = (ansichten(seite, [['dct', 'JPEG-Block (DCT)'], ['tiefe', 'Farbtiefe'], ['raster', 'Raster und Vektor'], ['sub', 'Farbunterabtastung']], 'dct', function (a) { ansicht = a; }))();
+
+    // =====================================================================
+    // Bildlabor
+    // =====================================================================
+    const $ = function (id) { return document.getElementById(id); };
+    const LB = { w: 0, h: 0, orig: null, cod: null, lupe: [0.76, 0.8], art: 0, info: [], webp: false, avif: false, tab: {} };
+    function testbild() {
+      const w = 480, h = 320, c = document.createElement('canvas'); c.width = w; c.height = h; const g = c.getContext('2d', { willReadFrequently: true }), z = zufall(9);
+      const himmel = g.createLinearGradient(0, 0, 0, h * 0.6); himmel.addColorStop(0, '#2C6FBB'); himmel.addColorStop(1, '#BFDDF3'); g.fillStyle = himmel; g.fillRect(0, 0, w, h);
+      const so = g.createRadialGradient(400, 60, 5, 400, 60, 70); so.addColorStop(0, 'rgba(255,240,180,1)'); so.addColorStop(1, 'rgba(255,240,180,0)'); g.fillStyle = so; g.fillRect(320, 0, 160, 140);
+      g.fillStyle = '#5B6E7F'; g.beginPath(); g.moveTo(0, 200); for (let x = 0; x <= w; x += 8) g.lineTo(x, 150 + Math.sin(x / 37) * 25 + Math.sin(x / 13) * 6 + z() * 5); g.lineTo(w, h); g.lineTo(0, h); g.fill();
+      const wiese = g.createLinearGradient(0, 210, 0, h); wiese.addColorStop(0, '#5E9C3A'); wiese.addColorStop(1, '#2F5E1E'); g.fillStyle = wiese; g.fillRect(0, 215, w, h - 215);
+      const d = g.getImageData(0, 0, w, h); for (let i = 0; i < d.data.length; i += 4) { const y = (i / 4) / w; if (y > 140) { const n = (z() - 0.5) * (y > 215 ? 50 : 18); d.data[i] += n; d.data[i + 1] += n; d.data[i + 2] += n; } } g.putImageData(d, 0, 0);
+      // Haus mit harten Kanten
+      g.fillStyle = '#F2EDE4'; g.fillRect(60, 190, 120, 80); g.fillStyle = '#B23A2E'; g.beginPath(); g.moveTo(50, 192); g.lineTo(120, 140); g.lineTo(190, 192); g.fill();
+      g.fillStyle = '#2B4C7E'; g.fillRect(80, 210, 26, 24); g.fillRect(134, 210, 26, 24); g.fillStyle = '#6B4226'; g.fillRect(108, 236, 24, 34);
+      // Feine Linien und Text
+      g.strokeStyle = '#111'; g.lineWidth = 1; for (let i = 0; i < 12; i++) { g.beginPath(); g.moveTo(250 + i * 4, 230); g.lineTo(250 + i * 4, 300); g.stroke(); }
+      g.fillStyle = '#FFFFFF'; g.fillRect(320, 230, 140, 70); g.fillStyle = '#C0392B'; g.font = '700 22px sans-serif'; g.fillText('Abc 123', 330, 258); g.fillStyle = '#111'; g.font = '12px sans-serif'; g.fillText('Kleine Schrift, 12 px', 330, 285);
+      // Farbtafel
+      ['#E53935', '#FDD835', '#43A047', '#1E88E5', '#8E24AA', '#FB8C00'].forEach(function (f, i) { g.fillStyle = f; g.fillRect(250 + i * 22, 180, 22, 22); });
+      // Hautton-Verlauf
+      const hv = g.createRadialGradient(205, 95, 5, 205, 95, 40); hv.addColorStop(0, '#F5D0B5'); hv.addColorStop(1, '#C48A6A'); g.fillStyle = hv; g.beginPath(); g.arc(205, 95, 38, 0, PI2); g.fill();
+      return c;
+    }
+    function ladeCanvas(c) { LB.w = c.width; LB.h = c.height; LB.orig = c.getContext('2d', { willReadFrequently: true }).getImageData(0, 0, c.width, c.height); LB.quelle = c; LB.tab = {}; codiere(); }
+    function blobVon(c, typ, q) { return new Promise(function (ok) { if (c.toBlob) c.toBlob(function (b) { ok(b); }, typ, q); else ok(null); }); }
+    function bildAusBlob(b) {
+      if (window.createImageBitmap) return createImageBitmap(b);
+      return new Promise(function (ok, nein) { const u = URL.createObjectURL(b), i = new Image(); i.onload = function () { URL.revokeObjectURL(u); ok(i); }; i.onerror = function () { URL.revokeObjectURL(u); nein(new Error('Bild')); }; i.src = u; });
+    }
+    function pixel(bild) { const c = document.createElement('canvas'); c.width = LB.w; c.height = LB.h; const g = c.getContext('2d', { willReadFrequently: true }); g.drawImage(bild, 0, 0); return g.getImageData(0, 0, LB.w, LB.h); }
+    function psnr(a, b) { let s = 0, n = 0; for (let i = 0; i < a.data.length; i += 4) for (let k = 0; k < 3; k++) { const d = a.data[i + k] - b.data[i + k]; s += d * d; n++; } return s === 0 ? Infinity : 10 * Math.log10(255 * 255 / (s / n)); }
+    // ---- GIF-Nachbildung: Medianschnitt-Palette, optional Floyd-Steinberg, LZW-Größe ----
+    function palette(d, n) {
+      const px = []; for (let i = 0; i < d.length; i += 4 * 3) px.push([d[i], d[i + 1], d[i + 2]]);
+      let boxen = [px];
+      while (boxen.length < n) {
+        let bi = -1, bw = -1, ka = 0;
+        boxen.forEach(function (b, i) { if (b.length < 2) return; for (let k = 0; k < 3; k++) { let lo = 255, hi = 0; b.forEach(function (p) { if (p[k] < lo) lo = p[k]; if (p[k] > hi) hi = p[k]; }); if (hi - lo > bw) { bw = hi - lo; bi = i; ka = k; } } });
+        if (bi < 0 || bw <= 0) break;
+        const b = boxen[bi].sort(function (x, y) { return x[ka] - y[ka]; }), m = b.length >> 1; boxen.splice(bi, 1, b.slice(0, m), b.slice(m));
+      }
+      return boxen.map(function (b) { const s = [0, 0, 0]; b.forEach(function (p) { s[0] += p[0]; s[1] += p[1]; s[2] += p[2]; }); return s.map(function (v) { return Math.round(v / b.length); }); });
+    }
+    function gif(dither) {
+      const d = LB.orig.data, w = LB.w, h = LB.h, pal = palette(d, 256), cache = new Map(), idx = new Uint8Array(w * h), out = new ImageData(w, h), f = new Float32Array(d.length);
+      for (let i = 0; i < d.length; i++) f[i] = d[i];
+      const naechst = function (r, g, b) { const k = ((r >> 3) << 10) | ((g >> 3) << 5) | (b >> 3); let v = cache.get(k); if (v !== undefined) return v; let best = 0, bd = 1e9; for (let i = 0; i < pal.length; i++) { const p = pal[i], dd = (p[0] - r) * (p[0] - r) * 0.3 + (p[1] - g) * (p[1] - g) * 0.59 + (p[2] - b) * (p[2] - b) * 0.11; if (dd < bd) { bd = dd; best = i; } } cache.set(k, best); return best; };
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const i = (y * w + x) * 4, r = Math.max(0, Math.min(255, f[i])), g = Math.max(0, Math.min(255, f[i + 1])), b = Math.max(0, Math.min(255, f[i + 2])), k = naechst(r | 0, g | 0, b | 0), p = pal[k];
+        idx[y * w + x] = k; out.data[i] = p[0]; out.data[i + 1] = p[1]; out.data[i + 2] = p[2]; out.data[i + 3] = 255;
+        if (dither) { const er = [r - p[0], g - p[1], b - p[2]]; [[1, 0, 7], [-1, 1, 3], [0, 1, 5], [1, 1, 1]].forEach(function (q) { const xx = x + q[0], yy = y + q[1]; if (xx < 0 || xx >= w || yy >= h) return; const j = (yy * w + xx) * 4; for (let c = 0; c < 3; c++) f[j + c] += er[c] * q[2] / 16; }); }
+      }
+      // LZW mit Mindestcodelänge 8
+      let dict = new Map(), next = 258, breite = 9, bits = 9, pre = idx[0];
+      for (let i = 1; i < idx.length; i++) {
+        const key = pre * 256 + idx[i];
+        const v = dict.get(key);
+        if (v !== undefined) { pre = v; continue; }
+        bits += breite;
+        if (next < 4096) { dict.set(key, next++); if (next > (1 << breite) && breite < 12) breite++; } else { bits += breite; dict = new Map(); next = 258; breite = 9; }
+        pre = idx[i];
+      }
+      bits += breite * 2;
+      const bytes = Math.ceil(bits / 8), groesse = 13 + 768 + 10 + 1 + bytes + Math.ceil(bytes / 255) + 2;
+      return { bild: out, groesse: groesse };
+    }
+    function zeichne() {
+      const c = $('bBild'), d = Math.min(2, window.devicePixelRatio || 1), B = c.clientWidth || 600, klein = B < 600;
+      if (!LB.orig) return;
+      const sk = klein ? (B - 8) / LB.w : (B - 12) / 2 / LB.w, bh = LB.h * sk, lg = klein ? (B - 12) / 2 : (B - 12) / 2, H = (klein ? 2 * bh + 8 : bh) + lg + 40;
+      if (c.width !== Math.round(B * d) || c.height !== Math.round(H * d)) { c.width = Math.round(B * d); c.height = Math.round(H * d); c.style.height = H + 'px'; }
+      const g = c.getContext('2d'); g.setTransform(d, 0, 0, d, 0, 0); g.clearRect(0, 0, B, H); g.imageSmoothingEnabled = true;
+      const p1 = [4, 0], p2 = klein ? [4, bh + 8] : [8 + LB.w * sk, 0];
+      const tmp = document.createElement('canvas'); tmp.width = LB.w; tmp.height = LB.h; const tg = tmp.getContext('2d');
+      tg.putImageData(LB.orig, 0, 0); g.drawImage(tmp, p1[0], p1[1], LB.w * sk, bh); const oc = document.createElement('canvas'); oc.width = LB.w; oc.height = LB.h; oc.getContext('2d').putImageData(LB.orig, 0, 0);
+      const zeige = LB.cod ? ($('bAnz').value === 'diff' ? diffBild() : LB.cod) : LB.orig; const cc = document.createElement('canvas'); cc.width = LB.w; cc.height = LB.h; cc.getContext('2d').putImageData(zeige, 0, 0);
+      g.drawImage(cc, p2[0], p2[1], LB.w * sk, bh);
+      // Lupe
+      const lw = 40, lx = Math.round(LB.lupe[0] * LB.w - lw / 2), ly = Math.round(LB.lupe[1] * LB.h - lw / 2), y0 = (klein ? 2 * bh + 16 : bh + 8) + 18;
+      [p1, p2].forEach(function (p) { g.strokeStyle = ORANGE; g.lineWidth = 2; g.strokeRect(p[0] + lx * sk, p[1] + ly * sk, lw * sk, lw * sk); });
+      g.imageSmoothingEnabled = false;
+      g.drawImage(oc, lx, ly, lw, lw, 4, y0, lg - 4, lg - 4); g.drawImage(cc, lx, ly, lw, lw, lg + 8, y0, lg - 4, lg - 4);
+      T(g, 'Original (Lupe)', 6, y0 - 9, 'left', 11, true); T(g, ($('bAnz').value === 'diff' ? 'Fehler × 8' : 'codiert') + ' (Lupe)', lg + 10, y0 - 9, 'left', 11, true);
+      LB.geo = { sk: sk, p1: p1, p2: p2, bh: bh };
+    }
+    function diffBild() { const o = LB.orig.data, c = LB.cod.data, d = new ImageData(LB.w, LB.h); for (let i = 0; i < o.length; i += 4) { for (let k = 0; k < 3; k++) d.data[i + k] = Math.max(0, Math.min(255, 128 + (c[i + k] - o[i + k]) * 8)); d.data[i + 3] = 255; } return d; }
+    function codiere() {
+      if (!LB.orig) return;
+      const n = ++LB.art, fk = $('bFormat').value, q = +$('bQ').value / 100, roh = LB.w * LB.h * 3;
+      $('bInfo').textContent = 'Codiere …';
+      const fertig = function (daten, groesse, text) {
+        if (n !== LB.art) return;
+        LB.cod = daten; const ps = psnr(LB.orig, daten), bpp = groesse * 8 / (LB.w * LB.h);
+        $('bInfo').textContent = text + ': ' + zz(groesse / 1000, 1) + ' kB · ' + zz(bpp, 2) + ' bit je Pixel · ' + zz(roh / groesse, 1) + ' : 1 · PSNR ' + (isFinite(ps) ? zz(ps, 1) + ' dB' : '∞ (verlustfrei)');
+        LB.tab[text] = [text, zz(groesse / 1000, 1) + ' kB', zz(bpp, 2), zz(roh / groesse, 1) + ' : 1', isFinite(ps) ? zz(ps, 1) + ' dB' : '∞'];
+        const tb = $('bTab'); tb.textContent = ''; Object.keys(LB.tab).slice(-12).forEach(function (k) { const tr = document.createElement('tr'); LB.tab[k].forEach(function (x, i) { const td = document.createElement('td'); if (i) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr); });
+        zeichne();
+      };
+      if (fk === 'bmp') { fertig(LB.orig, roh + 54, 'BMP 24 bit'); return; }
+      if (fk === 'gif') { setTimeout(function () { const g = gif($('bDither').checked); fertig(g.bild, g.groesse, 'GIF 256 Farben' + ($('bDither').checked ? ' mit Dithering' : '')); }, 20); return; }
+      const typ = { png: 'image/png', jpeg: 'image/jpeg', webp: 'image/webp', avif: 'image/avif' }[fk];
+      // JPEG kennt keine Transparenz: auf Weiß
+      const c = document.createElement('canvas'); c.width = LB.w; c.height = LB.h; c.getContext('2d').putImageData(LB.orig, 0, 0);
+      blobVon(c, typ, q).then(function (b) {
+        if (!b) throw new Error('kein Encoder');
+        return bildAusBlob(b).then(function (bild) { fertig(pixel(bild), b.size, ({ png: 'PNG', jpeg: 'JPEG', webp: 'WebP', avif: 'AVIF' })[fk] + (fk === 'png' ? '' : ' Qualität ' + Math.round(q * 100))); });
+      }).catch(function () { if (n === LB.art) $('bInfo').textContent = 'Dieser Browser kann das Format nicht erzeugen.'; });
+    }
+    function generation() {
+      if (!LB.orig) return;
+      let stand = LB.orig, i = 0; const q0 = +$('bQ').value; $('bInfo').textContent = 'Speichere 10-mal als JPEG mit wechselnder Qualität …';
+      const schritt = function () {
+        const c = document.createElement('canvas'); c.width = LB.w; c.height = LB.h; c.getContext('2d').putImageData(stand, 0, 0);
+        const q = Math.max(5, Math.min(100, q0 + (i % 2 ? -8 : 4))) / 100;
+        blobVon(c, 'image/jpeg', q).then(function (b) { return bildAusBlob(b); }).then(function (bild) {
+          stand = pixel(bild); i++;
+          if (i < 10) { schritt(); return; }
+          LB.cod = stand; const ps = psnr(LB.orig, stand);
+          $('bInfo').textContent = 'Nach 10 Speichervorgängen (Qualität abwechselnd ' + Math.max(5, Math.min(100, q0 + 4)) + ' und ' + Math.max(5, Math.min(100, q0 - 8)) + '): PSNR ' + zz(ps, 1) + ' dB – vergleiche mit einmaligem Speichern.';
+          zeichne();
+        }).catch(function () { $('bInfo').textContent = 'JPEG kann in diesem Browser nicht erzeugt werden.'; });
+      };
+      schritt();
+    }
+    // Formate anbieten, die der Browser erzeugen kann
+    (function () {
+      const t = document.createElement('canvas'); t.width = t.height = 2;
+      const kann = function (typ) { try { return t.toDataURL(typ).indexOf('data:' + typ) === 0; } catch (x) { return false; } };
+      const s = $('bFormat');
+      [['jpeg', 'JPEG'], ['png', 'PNG'], ['webp', 'WebP'], ['avif', 'AVIF'], ['gif', 'GIF (nachgebildet)'], ['bmp', 'BMP (unkomprimiert)']].forEach(function (f) {
+        if ((f[0] === 'webp' || f[0] === 'avif') && !kann('image/' + f[0])) return;
+        const o = document.createElement('option'); o.value = f[0]; o.textContent = f[1]; s.append(o);
+      });
+    })();
+    let zeitTimer = 0;
+    function spaeter() { clearTimeout(zeitTimer); zeitTimer = setTimeout(codiere, 150); }
+    $('bFormat').addEventListener('change', function () { const f = $('bFormat').value; $('bQ').disabled = !(f === 'jpeg' || f === 'webp' || f === 'avif'); $('bDitherL').style.display = f === 'gif' ? '' : 'none'; codiere(); });
+    $('bQ').addEventListener('input', function () { $('bQa').textContent = $('bQ').value; spaeter(); });
+    $('bAnz').addEventListener('change', zeichne); $('bDither').addEventListener('change', codiere); $('bGen').addEventListener('click', generation);
+    $('bBild').addEventListener('pointerdown', function (ev) {
+      if (!LB.geo) return; const p = zeiger($('bBild'), ev), G = LB.geo;
+      [G.p1, G.p2].forEach(function (q) { const x = (p[0] - q[0]) / (LB.w * G.sk), y = (p[1] - q[1]) / G.bh; if (x >= 0 && x <= 1 && y >= 0 && y <= 1) LB.lupe = [Math.max(0.05, Math.min(0.95, x)), Math.max(0.07, Math.min(0.93, y))]; });
+      zeichne();
+    });
+    $('bQuelle').addEventListener('change', function () { if (this.value === 'datei') $('bDatei').click(); else ladeCanvas(testbild()); });
+    $('bDatei').addEventListener('change', function () {
+      const d = this.files && this.files[0]; if (!d) return;
+      if (d.size > 50 * 1024 * 1024) { $('bInfo').textContent = 'Das Bild ist zu groß (höchstens 50 MB).'; return; }
+      bildAusBlob(d).then(function (bild) {
+        const w0 = bild.width, h0 = bild.height, s = Math.min(1, 960 / Math.max(w0, h0)), c = document.createElement('canvas');
+        c.width = Math.max(8, Math.round(w0 * s)); c.height = Math.max(8, Math.round(h0 * s)); c.getContext('2d').drawImage(bild, 0, 0, c.width, c.height);
+        ladeCanvas(c); if (s < 1) $('bInfo').textContent += ' (auf ' + c.width + ' × ' + c.height + ' verkleinert)';
+      }).catch(function () { $('bInfo').textContent = 'Dieses Bild kann der Browser nicht lesen.'; });
+    });
+    window.addEventListener('resize', zeichne);
+    $('bDitherL').style.display = 'none';
+    ladeCanvas(testbild());
+    const main = document.querySelector('main'), loeser = main.querySelector('.loeser'), faq = main.querySelector('.seo-info');
+    if (loeser) loeser.parentNode.insertBefore($('labor'), loeser);
+    main.insertBefore($('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

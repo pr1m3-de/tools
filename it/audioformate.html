@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Audioformate im Vergleich: MP3, AAC, Opus, Vorbis, FLAC, WAV – Formeln &amp; Rechner</title>
+  <meta name="description" content="MP3, AAC, Opus, Vorbis, FLAC und WAV bei verschiedenen Bitraten: Dateigröße, Grenzfrequenz, Klang und Speicherbedarf. Hörlabor mit Spektrogramm, Differenzsignal und ABX-Blindtest, dazu Maskierung, Abtastung und Aliasing als Animation.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/it/audioformate.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Audioformate im Vergleich: MP3, AAC, Opus, Vorbis, FLAC, WAV">
+  <meta property="og:description" content="MP3, AAC, Opus, Vorbis, FLAC und WAV bei verschiedenen Bitraten: Dateigröße, Grenzfrequenz, Klang und Speicherbedarf. Hörlabor mit Spektrogramm, Differenzsignal und ABX-Blindtest, dazu Maskierung, Abtastung und Aliasing als Animation.">
+  <meta property="og:url" content="https://tools.pr1m3.de/it/audioformate.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Audioformate im Vergleich: MP3, AAC, Opus, Vorbis, FLAC, WAV">
+  <meta name="twitter:description" content="MP3, AAC, Opus, Vorbis, FLAC und WAV bei verschiedenen Bitraten: Dateigröße, Grenzfrequenz, Klang und Speicherbedarf. Hörlabor mit Spektrogramm, Differenzsignal und ABX-Blindtest, dazu Maskierung, Abtastung und Aliasing als Animation.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/audioformate.html#seite","name":"Audioformate im Vergleich: MP3, AAC, Opus, Vorbis, FLAC, WAV","url":"https://tools.pr1m3.de/it/audioformate.html","inLanguage":"de","description":"MP3, AAC, Opus, Vorbis, FLAC und WAV bei verschiedenen Bitraten: Dateigröße, Grenzfrequenz, Klang und Speicherbedarf. Hörlabor mit Spektrogramm, Differenzsignal und ABX-Blindtest, dazu Maskierung, Abtastung und Aliasing als Animation.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/audioformate.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/audioformate.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Audioformate im Vergleich: MP3, AAC, Opus, Vorbis, FLAC, WAV","item":"https://tools.pr1m3.de/it/audioformate.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/audioformate.html#fragen","mainEntity":[{"@type":"Question","name":"Welches Format für die eigene Musiksammlung?","acceptedAnswer":{"@type":"Answer","text":"Als Archiv FLAC: verlustfrei und etwa halb so groß wie WAV. Für unterwegs daraus Opus mit 128 kbit/s oder AAC mit 192 kbit/s erzeugen. MP3 mit 256 bis 320 kbit/s, wenn alte Geräte mitspielen müssen."}},{"@type":"Question","name":"Wird ein MP3 mit 128 kbit/s besser, wenn ich es in FLAC umwandle?","acceptedAnswer":{"@type":"Answer","text":"Nein. Die Datei wird nur größer, die Qualität bleibt die des MP3 – die weggelassene Information ist verloren. Am Spektrogramm erkennt man solche „falschen“ verlustfreien Dateien an der Kante bei 16 bis 17 kHz."}},{"@type":"Question","name":"Warum klingen Sprachanrufe mit Opus so gut?","acceptedAnswer":{"@type":"Answer","text":"Opus wechselt je nach Signal zwischen einem Sprachcodierer (lineare Prädiktion) und einem Transformationscodierer für Musik, arbeitet mit kurzen Blöcken (Verzögerung ab etwa 5 ms) und erreicht schon mit 24 kbit/s den vollen Frequenzbereich."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/audioformate.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+    .labor-leiste { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 8px 0; }
+    .labor-leiste label { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .labor-leiste select, .labor-leiste input[type=file] { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; min-width: 0; }
+    .labor-leiste .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .labor-leiste input[type=range] { width: 140px; min-height: 30px; }
+    .labor-bild { width: 100%; display: block; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); }
+    .labor-info { font-family: var(--technik); font-weight: 600; margin: 6px 0; min-height: 1.4em; }
+    .abx-ergebnis { font-family: var(--technik); }
+    .abx-ergebnis.gut { color: #2F9E44; } .abx-ergebnis.schlecht { color: #C0392B; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="labor" aria-labelledby="h-labor">
+      <h2 id="h-labor">Hörlabor: Formate selbst vergleichen</h2>
+      <p>Die Beispielmusik wird hier im Browser erzeugt. Du kannst auch eine eigene Audiodatei öffnen – sie verlässt dein Gerät nicht. Ein vereinfachtes Modell eines Wahrnehmungscodierers bildet die typischen Eigenschaften der Formate nach: obere Grenzfrequenz, Quantisierungsrauschen unter der Mithörschwelle, Löcher im Spektrum, Rauschauffüllung und Bandbreitenerweiterung. Echte Encoder klingen im Detail anders – die Unterschiede zwischen den Formaten und Bitraten werden aber hörbar und sichtbar.</p>
+      <div class="labor-leiste">
+        <label>Quelle <select id="quelle" data-nicht-merken><option value="musik">Beispielmusik (8 s)</option><option value="datei">eigene Datei …</option></select></label>
+        <input type="file" id="datei" accept="audio/*" data-nicht-merken hidden>
+        <label>Format <select id="lFormat" data-nicht-merken></select></label>
+        <label>Bitrate <select id="lRate" data-nicht-merken></select></label>
+        <label>Kanäle <select id="lKanal" data-nicht-merken><option value="2">Stereo</option><option value="1">Mono</option></select></label>
+      </div>
+      <div class="labor-leiste" role="group" aria-label="Wiedergabe">
+        <button type="button" class="knopf" id="spOrig" aria-pressed="false">▶ Original</button>
+        <button type="button" class="knopf" id="spCod" aria-pressed="false">▶ Codiert</button>
+        <button type="button" class="knopf" id="spDiff" aria-pressed="false">▶ Differenz</button>
+        <button type="button" class="knopf-leise" id="spStop">■ Stopp</button>
+        <label>Lautstärke <input type="range" id="lLaut" min="0" max="100" value="60" data-nicht-merken></label>
+      </div>
+      <p class="hilfe">Beim Umschalten läuft die Wiedergabe an derselben Stelle weiter. „Differenz“ ist das, was der Codierer weggelassen oder hinzugefügt hat (4-fach lauter).</p>
+      <canvas id="spektro" class="labor-bild" role="img" aria-label="Spektrogramm: oben das Original, unten die codierte Fassung; waagerecht die Zeit, senkrecht die Frequenz bis 22 kHz"></canvas>
+      <p class="labor-info" id="lInfo" role="status"></p>
+      <h3 class="zwischen">ABX-Blindtest</h3>
+      <p>X ist zufällig A (Original) oder B (codiert). Höre so oft du willst und entscheide. Ab 12 von 16 richtigen Antworten ist ein Zufallstreffer unwahrscheinlich (unter 5 %).</p>
+      <div class="labor-leiste">
+        <button type="button" class="knopf" id="abxA">▶ A</button>
+        <button type="button" class="knopf" id="abxB">▶ B</button>
+        <button type="button" class="knopf" id="abxX">▶ X</button>
+        <button type="button" class="knopf-leise" id="abxIstA">X ist A</button>
+        <button type="button" class="knopf-leise" id="abxIstB">X ist B</button>
+        <button type="button" class="knopf-leise" id="abxNeu">Test zurücksetzen</button>
+      </div>
+      <p class="abx-ergebnis" id="abxErg" role="status">Noch keine Antwort.</p>
+    </section>
+
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Die Formate</h2>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Format</th><th>Art</th><th>übliche Bitraten (Stereo)</th><th>nahezu transparent ab</th><th>Verzögerung</th><th>Stärken</th></tr></thead><tbody>
+        <tr><td>WAV (PCM)</td><td>unkomprimiert</td><td class="zahl">1 411 kbit/s (CD)</td><td>immer</td><td>keine</td><td>Bearbeitung, Archiv, überall abspielbar</td></tr>
+        <tr><td>FLAC</td><td>verlustfrei</td><td class="zahl">≈ 600 – 1 000 kbit/s</td><td>immer (bitgenau)</td><td>gering</td><td>Archiv ohne Qualitätsverlust, offen, Metadaten</td></tr>
+        <tr><td>MP3</td><td>verlustbehaftet</td><td class="zahl">128 – 320 kbit/s</td><td class="zahl">≈ 192 – 256 kbit/s</td><td>≈ 50 – 100 ms</td><td>läuft auf jedem Gerät, seit 2017 patentfrei</td></tr>
+        <tr><td>AAC-LC</td><td>verlustbehaftet</td><td class="zahl">96 – 256 kbit/s</td><td class="zahl">≈ 128 – 192 kbit/s</td><td>≈ 50 – 100 ms</td><td>effizienter als MP3, Standard in Videos und vielen Streamingdiensten</td></tr>
+        <tr><td>HE-AAC</td><td>verlustbehaftet</td><td class="zahl">24 – 80 kbit/s</td><td>–</td><td>≈ 100 – 200 ms</td><td>Bandbreitenerweiterung (SBR) für Webradio und Rundfunk bei kleinen Raten</td></tr>
+        <tr><td>Ogg Vorbis</td><td>verlustbehaftet</td><td class="zahl">96 – 320 kbit/s</td><td class="zahl">≈ 160 kbit/s</td><td>≈ 50 – 100 ms</td><td>offen und lizenzfrei, in Spielen verbreitet</td></tr>
+        <tr><td>Opus</td><td>verlustbehaftet</td><td class="zahl">6 – 510 kbit/s</td><td class="zahl">≈ 96 – 128 kbit/s</td><td>≈ 5 – 60 ms</td><td>beste Qualität bei kleinen Raten, Sprache und Musik, sehr kurze Verzögerung (Telefonie)</td></tr>
+      </tbody></table></div>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Verlustfrei oder verlustbehaftet</h3><p>Verlustfreie Formate (FLAC, WAV) liefern beim Abspielen exakt die Originaldaten. Verlustbehaftete Formate werfen Information weg, die man nach dem psychoakustischen Modell nicht hört. Was einmal weg ist, kommt nicht wieder – deshalb nie ein MP3 in ein anderes verlustbehaftetes Format umwandeln, jede Umwandlung fügt neue Fehler hinzu.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Psychoakustik</h3><p>Ein lauter Ton verdeckt leisere Töne in seiner Frequenznähe (Frequenzmaskierung) und kurz davor und danach (zeitliche Maskierung). Der Codierer teilt das Signal in Frequenzbänder und verteilt die Bits so, dass das Quantisierungsrauschen in jedem Band unter dieser Mithörschwelle bleibt.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Typische Artefakte</h3><p>Dumpfer Klang (obere Grenzfrequenz), „Zwitschern“ und blubbernde Höhen (Spektrallöcher), Vorechos vor Schlägen (Rauschen verteilt sich über den ganzen Block), verwaschene Stereobühne. Bei Opus und HE-AAC eher: etwas rauschige oder metallische Höhen, dafür voller Klang.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Mehr ist nicht immer besser</h3><p>24 bit und 96 kHz sind für Aufnahme und Bearbeitung sinnvoll (Reserve), zum Anhören bringt es gegenüber 16 bit / 44,1 kHz in Blindtests keinen hörbaren Vorteil. Ein gutes Opus mit 128 kbit/s ist für die meisten Menschen nicht vom Original zu unterscheiden – bei einem Viertel der FLAC-Größe.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Welches Format für die eigene Musiksammlung?</summary><p>Als Archiv FLAC: verlustfrei und etwa halb so groß wie WAV. Für unterwegs daraus Opus mit 128 kbit/s oder AAC mit 192 kbit/s erzeugen. MP3 mit 256 bis 320 kbit/s, wenn alte Geräte mitspielen müssen.</p></details>
+        <details><summary>Wird ein MP3 mit 128 kbit/s besser, wenn ich es in FLAC umwandle?</summary><p>Nein. Die Datei wird nur größer, die Qualität bleibt die des MP3 – die weggelassene Information ist verloren. Am Spektrogramm erkennt man solche „falschen“ verlustfreien Dateien an der Kante bei 16 bis 17 kHz.</p></details>
+        <details><summary>Warum klingen Sprachanrufe mit Opus so gut?</summary><p>Opus wechselt je nach Signal zwischen einem Sprachcodierer (lineare Prädiktion) und einem Transformationscodierer für Musik, arbeitet mit kurzen Blöcken (Verzögerung ab etwa 5 ms) und erreicht schon mit 24 kbit/s den vollen Frequenzbereich.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    // ---------- Formatdaten ----------
+    // gf: obere Grenzfrequenz (kHz) über der Bitrate (kbit/s, Stereo) – Richtwerte üblicher Encoder
+    const FMT = {
+      wav: { name: 'WAV (PCM)', verlust: false },
+      flac: { name: 'FLAC', verlust: false },
+      mp3: { name: 'MP3', verlust: true, eff: 1, bt: 210, raten: [32, 64, 96, 128, 160, 192, 256, 320], gf: [[8, 2], [16, 3.7], [32, 5.5], [48, 7.5], [64, 11], [80, 13.5], [96, 15.1], [112, 15.6], [128, 17], [160, 17.5], [192, 18.6], [224, 19.4], [256, 19.7], [320, 20.5]], fuellen: 0 },
+      aac: { name: 'AAC-LC', verlust: true, eff: 1.3, bt: 150, raten: [48, 64, 96, 128, 160, 192, 256, 320], gf: [[32, 8], [48, 11], [64, 13], [96, 15.5], [128, 17], [160, 18], [192, 19], [256, 20], [320, 20]], fuellen: 0.2 },
+      heaac: { name: 'HE-AAC (mit SBR)', verlust: true, eff: 1.6, bt: 105, raten: [24, 32, 48, 64, 80], gf: [[24, 5.5], [32, 6.5], [48, 8], [64, 9], [80, 10]], sbr: 16, fuellen: 0.3 },
+      vorbis: { name: 'Ogg Vorbis', verlust: true, eff: 1.25, bt: 160, raten: [48, 64, 96, 128, 160, 192, 256, 320], gf: [[48, 13], [64, 14.5], [96, 16.5], [128, 18.5], [160, 19.5], [192, 20], [320, 20]], fuellen: 0.6 },
+      opus: { name: 'Opus', verlust: true, eff: 1.6, bt: 120, raten: [6, 12, 16, 24, 32, 48, 64, 96, 128, 160, 192, 256], gf: [[6, 4], [11.9, 4], [12, 8], [15.9, 8], [16, 12], [23.9, 12], [24, 20], [510, 20]], fuellen: 1 }
+    };
+    function grenz(f, kbps, mono) { if (!f.verlust) return Infinity; const b = mono ? kbps * 1.6 : kbps, g = f.gf; if (b <= g[0][0]) return g[0][1]; for (let i = 1; i < g.length; i++) if (b <= g[i][0]) return g[i - 1][1] + (g[i][1] - g[i - 1][1]) * (b - g[i - 1][0]) / (g[i][0] - g[i - 1][0]); return g[g.length - 1][1]; }
+    function qualitaet(f, kbps, mono) { if (!f.verlust) return 100; const b = mono ? kbps * 1.7 : kbps; return 100 * (1 - Math.exp(-2.3 * b / f.bt)); }
+    function urteilText(q) { return q >= 99.5 ? 'identisch mit dem Original' : q >= 90 ? 'für die meisten nicht vom Original zu unterscheiden' : q >= 80 ? 'sehr gut, Unterschiede nur bei kritischem Material' : q >= 65 ? 'gut, Artefakte mit Kopfhörern hörbar' : q >= 45 ? 'mäßig, deutlich hörbare Artefakte' : 'schlecht, nur für Sprache geeignet'; }
+    const FLACANTEIL = 0.58;
+    let ansicht = 'vergleich', takt = uhr(), zeit = 0;
+
+    function groesse(fk, e) {
+      const f = FMT[fk], pcm = e.fs * e.bits * e.kanal;   // kbit/s (fs in kHz)
+      const rate = !f.verlust ? (fk === 'flac' ? pcm * FLACANTEIL : pcm) : e.kbps * (e.kanal === 1 && fk !== 'opus' ? 1 : 1);
+      return { rate: rate, mb: rate * e.dauer * 60 / 8000 + (fk === 'wav' ? 0.000044 : 0) };
+    }
+    function rechne(e0) {
+      const e = Object.assign({}, e0); e.fs = +e.fs; e.bits = +e.bits; e.kanal = +e.kanal;
+      const f = FMT[e.fmt] || FMT.mp3, r = { f: f };
+      if (f.verlust && f.raten) { /* Bitrate frei wählbar */ }
+      r.pcm = e.fs * e.bits * e.kanal;
+      const g = groesse(e.fmt, e); r.rate = g.rate; r.mb = g.mb;
+      r.k = r.pcm / r.rate;
+      r.lieder = e.speicher * 1000 / r.mb;
+      r.stunde = r.rate * 3600 / 8000;
+      r.q = qualitaet(f, e.kbps, e.kanal === 1);
+      r.gf = Math.min(grenz(f, e.kbps, e.kanal === 1), e.fs / 2);
+      r.nyq = e.fs / 2; r.dyn = 6.02 * e.bits + 1.76;
+      r.e = e;
+      return r;
+    }
+    const seite = R.seite({
+      titel: 'Audioformate im Vergleich',
+      einleitung: 'MP3, AAC, Opus, Vorbis, FLAC und WAV: Wie groß werden die Dateien, wie viel wird weggelassen und wie klingt das? Der Rechner vergleicht Datenrate, Dateigröße und Speicherbedarf, das Hörlabor darunter macht die Unterschiede hörbar – mit Blindtest.',
+      hilfe: 'Beispiel: ein Lied von 3,5 min als MP3 mit 128 kbit/s, Quelle CD-Qualität (44,1 kHz, 16 bit, Stereo), 32 GB Speicher.',
+      gruppen: [
+        { titel: 'Format', farbe: BLAU, felder: [
+          { k: 'fmt', name: 'Format', wahl: Object.keys(FMT).map(function (k) { return [k, FMT[k].name]; }) },
+          { k: 'kbps', tex: 'R', name: 'Bitrate', e: 'kbit/s', min: 6, max: 512, wenn: function (e) { return (FMT[e.fmt] || {}).verlust; } }
+        ] },
+        { titel: 'Quelle (PCM)', farbe: GRUEN, felder: [
+          { k: 'fs', name: 'Abtastrate', wahl: [['44.1', '44,1 kHz (CD)'], ['48', '48 kHz (Video)'], ['96', '96 kHz (Studio)'], ['192', '192 kHz']] },
+          { k: 'bits', name: 'Auflösung', wahl: [['16', '16 bit'], ['24', '24 bit']] },
+          { k: 'kanal', name: 'Kanäle', wahl: [['2', 'Stereo'], ['1', 'Mono']] }
+        ] },
+        { titel: 'Länge und Speicher', farbe: GRAU, felder: [
+          { k: 'dauer', tex: 't', name: 'Spieldauer', e: 'min', min: 0.01, max: 100000 },
+          { k: 'speicher', tex: 'S', name: 'Speicherplatz', e: 'GB', min: 0.01, max: 100000 }
+        ] },
+        { titel: 'Animation Abtastung', farbe: LILA, felder: [
+          { k: 'afs', tex: 'f_\\text{A}', name: 'Abtastrate in der Lupe', e: 'kHz', min: 1, max: 96 },
+          { k: 'af', tex: 'f', name: 'Signalfrequenz', e: 'kHz', min: 0.05, max: 50 },
+          { k: 'ab', tex: 'n', name: 'Auflösung in der Lupe', e: 'bit', min: 1, max: 16, ganz: true }
+        ] }
+      ],
+      beispiel: { fmt: 'mp3', kbps: 128, fs: '44.1', bits: '16', kanal: '2', dauer: 3.5, speicher: 32, afs: 8, af: 1, ab: 4 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.f.verlust && e.kbps > 320 && e.fmt === 'mp3') H.meldung('MP3 erlaubt höchstens 320 kbit/s.', true);
+        if (r.f.verlust && r.rate >= r.pcm) H.meldung('Die Bitrate ist größer als die der unkomprimierten Quelle – das ergibt keinen Sinn.', true);
+        if (r.f.verlust) H.meldung('Klang (Schätzung nach öffentlichen Hörtests): ' + urteilText(r.q) + '.');
+        H.kacheln([
+          [zz(r.mb, r.mb < 10 ? 2 : 1) + ' MB', 'Dateigröße für ' + zz(e.dauer, 2) + ' min', BLAU],
+          [zz(r.rate, 0) + ' kbit/s', 'Datenrate ' + r.f.name + (e.fmt === 'flac' ? ' (typisch)' : ''), GRUEN],
+          [zz(r.k, 1) + ' : 1', 'Kompression gegenüber PCM (' + zz(r.pcm, 0) + ' kbit/s)', ORANGE],
+          [zz(Math.floor(r.lieder), 0), 'Stücke dieser Länge auf ' + zz(e.speicher, 0) + ' GB', LILA],
+          [zz(r.stunde, 0) + ' MB', 'Datenvolumen je Stunde Hören', GRAU],
+          [isFinite(r.gf) ? zz(r.gf, 1) + ' kHz' : zz(r.nyq, 2) + ' kHz', isFinite(r.gf) ? 'obere Grenzfrequenz (typisch)' : 'höchste Frequenz (fs/2)', ROT]
+        ]);
+        H.tabelle('Alle Formate mit diesen Einstellungen', ['Format', 'Datenrate', 'Größe', 'Klang (Schätzung)'], Object.keys(FMT).map(function (k) {
+          const f = FMT[k], kb = f.verlust ? Math.min(e.kbps, f.raten[f.raten.length - 1]) : e.kbps, g = groesse(k, Object.assign({}, r.e, { kbps: kb }));
+          return [f.name, zz(g.rate, 0) + ' kbit/s', zz(g.mb, 2) + ' MB', f.verlust ? zz(qualitaet(f, kb, r.e.kanal === 1), 0) + ' / 100' : 'verlustfrei'];
+        }), { zahl: [1, 2, 3] });
+      },
+      weg: function (r, e) {
+        const w = [['PCM-Datenrate', 'R_\\text{PCM} = f_\\text{A} \\cdot n \\cdot k = ' + tz(r.e.fs, 1) + '\\,\\text{kHz} \\cdot ' + r.e.bits + '\\,\\text{bit} \\cdot ' + r.e.kanal + ' = ' + E(tz(r.pcm, 1) + '\\,\\tfrac{\\text{kbit}}{\\text{s}}')]];
+        if (e.fmt === 'flac') w.push(['FLAC (typisch 58 %)', 'R = 0{,}58 \\cdot R_\\text{PCM} = ' + E(tz(r.rate, 0) + '\\,\\tfrac{\\text{kbit}}{\\text{s}}')]);
+        w.push(['Dateigröße', 'S = \\frac{R \\cdot t}{8} = \\frac{' + tz(r.rate, 1) + '\\,\\tfrac{\\text{kbit}}{\\text{s}} \\cdot ' + tz(e.dauer * 60, 0) + '\\,\\text{s}}{8\\,000\\,\\tfrac{\\text{kbit}}{\\text{MB}}} = ' + E(tz(r.mb, 2) + '\\,\\text{MB}')]);
+        w.push(['Kompressionsfaktor', 'k = \\frac{R_\\text{PCM}}{R} = \\frac{' + tz(r.pcm, 1) + '}{' + tz(r.rate, 1) + '} = ' + E(tz(r.k, 2))]);
+        w.push(['Höchste darstellbare Frequenz', 'f_\\text{max} = \\frac{f_\\text{A}}{2} = ' + E(tz(r.nyq, 2) + '\\,\\text{kHz}')]);
+        w.push(['Dynamikumfang', 'D \\approx 6{,}02\\,\\text{dB} \\cdot n + 1{,}76\\,\\text{dB} = ' + E(tz(r.dyn, 1) + '\\,\\text{dB}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'PCM-Datenrate', hilfe: 'fs in kHz, n in bit, k Kanäle; Ergebnis in kbit/s.',
+          felder: [{ k: 'R', tex: 'R', name: 'Datenrate', e: 'kbit/s', min: 8, max: 20000 }, { k: 'fs', tex: 'f_\\text{A}', name: 'Abtastrate', e: 'kHz', min: 8, max: 192 }, { k: 'n', tex: 'n', name: 'Auflösung', e: 'bit', min: 8, max: 32, n: 0 }, { k: 'k', tex: 'k', name: 'Kanäle', e: '', min: 1, max: 8, n: 0 }],
+          beispiel: { fs: 44.1, n: 16, k: 2 },
+          gleichungen: [{ name: 'PCM', v: ['R', 'fs', 'n', 'k'], f: function (q) { return [q.R, q.fs * q.n * q.k]; },
+            loese: { R: function (q) { return q.fs * q.n * q.k; }, fs: function (q) { return q.R / (q.n * q.k); }, n: function (q) { return q.R / (q.fs * q.k); }, k: function (q) { return q.R / (q.fs * q.n); } },
+            weg: function (k, q) { return k === 'R' ? 'R = f_\\text{A} \\cdot n \\cdot k = ' + tz(q.fs, 1) + ' \\cdot ' + tz(q.n, 0) + ' \\cdot ' + tz(q.k, 0) + ' = ' + E(tz(q.R, 1) + '\\,\\tfrac{\\text{kbit}}{\\text{s}}') : k === 'fs' ? 'f_\\text{A} = \\frac{R}{n \\cdot k} = ' + E(tz(q.fs, 2) + '\\,\\text{kHz}') : k === 'n' ? 'n = \\frac{R}{f_\\text{A} \\cdot k} = ' + E(tz(q.n, 1) + '\\,\\text{bit}') : 'k = \\frac{R}{f_\\text{A} \\cdot n} = ' + E(tz(q.k, 1)); } }] },
+        { titel: 'Dateigröße aus Bitrate und Dauer', hilfe: 'R in kbit/s, t in s, S in MB (1 MB = 8 000 kbit).',
+          felder: [{ k: 'S', tex: 'S', name: 'Dateigröße', e: 'MB', min: 0.01, max: 1e5 }, { k: 'R', tex: 'R', name: 'Bitrate', e: 'kbit/s', min: 6, max: 10000 }, { k: 't', tex: 't', name: 'Dauer', e: 's', min: 1, max: 1e6 }],
+          beispiel: { R: 128, t: 210 },
+          gleichungen: [{ name: 'Größe', v: ['S', 'R', 't'], f: function (q) { return [q.S * 8000, q.R * q.t]; },
+            loese: { S: function (q) { return q.R * q.t / 8000; }, R: function (q) { return q.S * 8000 / q.t; }, t: function (q) { return q.S * 8000 / q.R; } },
+            weg: function (k, q) { return k === 'S' ? 'S = \\frac{R \\cdot t}{8\\,000} = \\frac{' + tz(q.R, 0) + ' \\cdot ' + tz(q.t, 0) + '}{8\\,000}\\,\\text{MB} = ' + E(tz(q.S, 2) + '\\,\\text{MB}') : k === 'R' ? 'R = \\frac{8\\,000 \\cdot S}{t} = ' + E(tz(q.R, 0) + '\\,\\tfrac{\\text{kbit}}{\\text{s}}') : 't = \\frac{8\\,000 \\cdot S}{R} = ' + E(tz(q.t, 0) + '\\,\\text{s}'); } }] },
+        { titel: 'Kompressionsfaktor', hilfe: 'Beispiel: CD (1 411 kbit/s) gegen MP3 mit 128 kbit/s.',
+          felder: [{ k: 'k', tex: 'k', name: 'Kompressionsfaktor', e: '', min: 1, max: 300 }, { k: 'R0', tex: 'R_\\text{PCM}', name: 'unkomprimierte Rate', e: 'kbit/s', min: 64, max: 20000 }, { k: 'R', tex: 'R', name: 'komprimierte Rate', e: 'kbit/s', min: 6, max: 5000 }],
+          beispiel: { R0: 1411.2, R: 128 },
+          gleichungen: [{ name: 'Kompression', v: ['k', 'R0', 'R'], f: function (q) { return [q.k * q.R, q.R0]; },
+            loese: { k: function (q) { return q.R0 / q.R; }, R0: function (q) { return q.k * q.R; }, R: function (q) { return q.R0 / q.k; } },
+            weg: function (k, q) { return k === 'k' ? 'k = \\frac{R_\\text{PCM}}{R} = \\frac{' + tz(q.R0, 1) + '}{' + tz(q.R, 1) + '} = ' + E(tz(q.k, 2)) : k === 'R' ? 'R = \\frac{R_\\text{PCM}}{k} = ' + E(tz(q.R, 1) + '\\,\\tfrac{\\text{kbit}}{\\text{s}}') : 'R_\\text{PCM} = k \\cdot R = ' + E(tz(q.R0, 1) + '\\,\\tfrac{\\text{kbit}}{\\text{s}}'); } }] },
+        { titel: 'Dynamikumfang und Auflösung', hilfe: 'Theoretischer Signal-Rausch-Abstand der Quantisierung.',
+          felder: [{ k: 'D', tex: 'D', name: 'Dynamikumfang', e: 'dB', min: 7, max: 200 }, { k: 'n', tex: 'n', name: 'Auflösung', e: 'bit', min: 1, max: 32 }],
+          beispiel: { n: 16 },
+          gleichungen: [{ name: 'Dynamik', v: ['D', 'n'], f: function (q) { return [q.D, 6.02 * q.n + 1.76]; },
+            loese: { D: function (q) { return 6.02 * q.n + 1.76; }, n: function (q) { return (q.D - 1.76) / 6.02; } },
+            weg: function (k, q) { return k === 'D' ? 'D = 6{,}02\\,\\text{dB} \\cdot ' + tz(q.n, 0) + ' + 1{,}76\\,\\text{dB} = ' + E(tz(q.D, 1) + '\\,\\text{dB}') : 'n = \\frac{D - 1{,}76\\,\\text{dB}}{6{,}02\\,\\text{dB}} = ' + E(tz(q.n, 1) + '\\,\\text{bit}'); } }] }
+      ],
+      sammlung: [
+        ['PCM-Datenrate', 'R = f_\\text{A} \\cdot n \\cdot k', 'f_A Abtastrate, n Bit je Abtastwert, k Kanäle'],
+        ['Dateigröße', 'S = \\frac{R \\cdot t}{8}', 'R in bit/s → S in Byte'],
+        ['Kompressionsfaktor', 'k = \\frac{R_\\text{PCM}}{R}', 'CD → MP3 128 kbit/s: 11 : 1'],
+        ['Abtasttheorem (Nyquist)', 'f_\\text{A} > 2 \\cdot f_\\text{max}', 'sonst Aliasing'],
+        ['Spiegelfrequenz (Aliasing)', 'f_\\text{alias} = |f - m \\cdot f_\\text{A}|', 'm nächste ganze Zahl'],
+        ['Dynamikumfang', 'D \\approx 6{,}02\\,\\text{dB} \\cdot n + 1{,}76\\,\\text{dB}', '16 bit: 98 dB'],
+        ['Anzahl der Stufen', 'N = 2^n', '16 bit: 65 536 Stufen'],
+        ['Bits je Abtastwert nach Kompression', 'b = \\frac{R}{f_\\text{A} \\cdot k}', 'MP3 128 kbit/s: 1,45 bit']
+      ],
+      quellen: 'Grenzfrequenzen und Transparenzschwellen als Richtwerte verbreiteter Encoder und öffentlicher Hörtests; die Klangbewertung ist eine Schätzung, kein Messwert. FLAC-Größe typisch für Popmusik (stark vom Material abhängig).',
+      bild: { titel: 'Animation', label: 'Vergleich der Formate, Grenzfrequenzen, Maskierung und Abtastung', animiert: true,
+        hoehe: function (B) { return B < 600 ? 440 : 380; },
+        hinweis: function (r, e) {
+          return ({ vergleich: 'Balken: Dateigröße für ' + zz(e.dauer, 2) + ' min und geschätzter Klang bei der eingestellten Bitrate.',
+            grenze: 'Obere Grenzfrequenz über der Bitrate. Ein gesundes Gehör hört bis 16–20 kHz, im Alter oft nur bis 12–14 kHz.',
+            maske: 'Ein lauter Ton (1 kHz) macht leise Töne in seiner Nähe unhörbar. Der wandernde leise Ton wird nur übertragen, wenn er über der Mithörschwelle liegt.',
+            abtastung: 'Oben: Abtastwerte des Signals, gestufte Rekonstruktion mit ' + e.ab + ' bit. Liegt die Signalfrequenz über der halben Abtastrate, entsteht eine falsche, tiefere Frequenz (Aliasing).' })[ansicht];
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); zeit += dt; ({ vergleich: vergleich, grenze: grenzeBild, maske: maske, abtastung: abtastung })[ansicht](cx, B, H, r, e); } }
+    });
+
+    function vergleich(cx, B, H, r, e) {
+      const ks = Object.keys(FMT), x0 = B < 600 ? 92 : 130, x1 = B - 60, zh = (H - 60) / ks.length;
+      const daten = ks.map(function (k) { const f = FMT[k], kb = f.verlust ? Math.min(e.kbps, f.raten[f.raten.length - 1]) : e.kbps; return [k, groesse(k, Object.assign({}, r.e, { kbps: kb })), f.verlust ? qualitaet(f, kb, r.e.kanal === 1) : 100]; });
+      const mx = Math.max.apply(null, daten.map(function (d) { return d[1].mb; }));
+      T(cx, 'Dateigröße (blau) und Klang (grün, 0–100)', 10, 14, 'left', 11, true);
+      daten.forEach(function (d, i) {
+        const y = 30 + i * zh, akt = d[0] === e.fmt, w = (x1 - x0) * d[1].mb / mx;
+        T(cx, FMT[d[0]].name.replace(' (mit SBR)', ''), x0 - 8, y + zh * 0.3, 'right', B < 600 ? 10 : 11, akt, akt ? BLAU : F('--text'));
+        cx.fillStyle = akt ? BLAU : 'rgba(43,123,185,.45)'; cx.fillRect(x0, y, Math.max(1, w), zh * 0.38);
+        T(cx, zz(d[1].mb, 1) + ' MB', x0 + w + 4, y + zh * 0.19, 'left', 10, true);
+        cx.fillStyle = 'rgba(46,139,87,.6)'; cx.fillRect(x0, y + zh * 0.42, (x1 - x0) * d[2] / 100, zh * 0.3);
+        T(cx, FMT[d[0]].verlust ? zz(d[2], 0) : 'verlustfrei', x0 + (x1 - x0) * d[2] / 100 + 4, y + zh * 0.57, 'left', 9, false, GRUEN);
+      });
+    }
+    function grenzeBild(cx, B, H, r, e) {
+      const reihen = ['mp3', 'aac', 'vorbis', 'opus', 'heaac'].map(function (k, i) {
+        const f = FMT[k], p = []; for (let b = 6; b <= 320; b += 2) { if (k === 'heaac' && b > 80) break; p.push([b, k === 'heaac' ? f.sbr : grenz(f, b, false)]); }
+        return { name: f.name.replace(' (mit SBR)', ' (SBR)'), farbe: [ROT, BLAU, GRUEN, ORANGE, LILA][i], punkte: p, punkt: k === e.fmt ? [e.kbps, r.gf] : null, strich: k === 'heaac' ? [5, 4] : null };
+      });
+      diagramm(cx, 8, 8, B - 16, H - 16, reihen, { titel: 'Obere Grenzfrequenz in kHz', xl: 'Bitrate in kbit/s (Stereo)', xr: [0, 320], yr: [0, 22] });
+    }
+    // Hörschwelle nach Terhardt (dB SPL), f in kHz
+    function ath(f) { return 3.64 * Math.pow(f, -0.8) - 6.5 * Math.exp(-0.6 * Math.pow(f - 3.3, 2)) + 1e-3 * Math.pow(f, 4); }
+    function bark(f) { return 13 * Math.atan(0.76 * f) + 3.5 * Math.atan(Math.pow(f / 7.5, 2)); }
+    function maske(cx, B, H) {
+      const x0 = 50, x1 = B - 12, y0 = 30, y1 = H - 40, lf = [Math.log10(0.02), Math.log10(20)];
+      const X = function (f) { return x0 + (Math.log10(f) - lf[0]) / (lf[1] - lf[0]) * (x1 - x0); }, Y = function (d) { return y1 - (d + 10) / 110 * (y1 - y0); };
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x0, y0, x1 - x0, y1 - y0);
+      [0.05, 0.1, 0.5, 1, 2, 5, 10, 20].forEach(function (f) { strecke(cx, X(f), y0, X(f), y1, F('--linie'), 1); T(cx, f < 1 ? zz(f * 1000, 0) + ' Hz' : zz(f, 0) + ' kHz', X(f), y1 + 12, 'center', 9, false, GRAU); });
+      [0, 20, 40, 60, 80, 100].forEach(function (d) { T(cx, d + ' dB', x0 - 4, Y(d), 'right', 9, false, GRAU); });
+      const pa = []; for (let i = 0; i <= 200; i++) { const f = Math.pow(10, lf[0] + (lf[1] - lf[0]) * i / 200); pa.push([X(f), Y(Math.min(100, ath(f)))]); }
+      zug(cx, pa, GRAU, 2, [5, 4]); T(cx, 'Ruhehörschwelle', X(0.03), Y(Math.min(100, ath(0.03))) + 14, 'left', 10, true, GRAU);
+      // Maskierer 1 kHz, 80 dB: Mithörschwelle mit Bark-Steigungen
+      const L = 80, zb = bark(1), mk = function (f) { const dz = bark(f) - zb; return L - 12 - (dz < 0 ? -27 * dz : (27 - 0.37 * Math.max(0, L - 40)) * dz) * 1; };
+      const pm = []; for (let i = 0; i <= 200; i++) { const f = Math.pow(10, lf[0] + (lf[1] - lf[0]) * i / 200); pm.push([X(f), Y(Math.max(ath(f), mk(f)))]); }
+      cx.fillStyle = 'rgba(192,57,43,.12)'; cx.beginPath(); cx.moveTo(pm[0][0], y1); pm.forEach(function (p) { cx.lineTo(p[0], Math.min(y1, p[1])); }); cx.lineTo(pm[pm.length - 1][0], y1); cx.closePath(); cx.fill();
+      zug(cx, pm.map(function (p) { return [p[0], Math.min(y1, p[1])]; }), ROT, 2);
+      strecke(cx, X(1), y1, X(1), Y(L), ROT, 6); T(cx, 'lauter Ton 1 kHz', X(1) + 6, Y(L) - 8, 'left', 10, true, ROT);
+      const ft = Math.pow(10, Math.log10(0.3) + (Math.log10(6) - Math.log10(0.3)) * (0.5 + 0.5 * Math.sin(zeit * 0.5))), lt = 45, hoer = lt > Math.max(ath(ft), mk(ft));
+      strecke(cx, X(ft), y1, X(ft), Y(lt), hoer ? GRUEN : GRAU, 5);
+      T(cx, (hoer ? 'hörbar – wird codiert' : 'verdeckt – wird weggelassen') + ' (' + (ft < 1 ? zz(ft * 1000, 0) + ' Hz' : zz(ft, 2) + ' kHz') + ', 45 dB)', x0 + 6, y0 - 12, 'left', 11, true, hoer ? GRUEN : GRAU);
+    }
+    function abtastung(cx, B, H, r, e) {
+      const fa = e.afs, f = e.af, dauer = Math.max(4 / f, 12 / fa), x0 = 40, x1 = B - 10, h1 = (H - 60) * 0.62, ym = 20 + h1 / 2, A = h1 * 0.42;
+      const X = function (t) { return x0 + (t / dauer) * (x1 - x0); }, ph = zeit * 0.4;
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x0, 20, x1 - x0, h1); strecke(cx, x0, ym, x1, ym, F('--linie'), 1);
+      // Quantisierungsstufen
+      const stufen = Math.pow(2, e.ab), q = function (v) { return Math.round((v + 1) / 2 * (stufen - 1)) / (stufen - 1) * 2 - 1; };
+      if (stufen <= 64) for (let i = 0; i < stufen; i++) { const v = i / (stufen - 1) * 2 - 1; strecke(cx, x0, ym - v * A, x1, ym - v * A, F('--linie'), 0.5); }
+      const s = function (t) { return Math.sin(PI2 * f * t + ph); }, pts = [];
+      for (let i = 0; i <= 400; i++) { const t = dauer * i / 400; pts.push([X(t), ym - s(t) * A]); }
+      zug(cx, pts, GRAU, 1.5);
+      const n = Math.floor(dauer * fa), stair = [];
+      for (let k = 0; k <= n; k++) { const t = k / fa, v = q(s(t)); stair.push([X(t), ym - v * A]); stair.push([X(Math.min(dauer, (k + 1) / fa)), ym - v * A]); strecke(cx, X(t), ym, X(t), ym - v * A, BLAU, 1); kreis(cx, X(t), ym - v * A, 3, BLAU); }
+      zug(cx, stair, ORANGE, 2);
+      T(cx, 'Signal ' + zz(f, 2) + ' kHz, abgetastet mit ' + zz(fa, 1) + ' kHz, ' + e.ab + ' bit (' + zz(stufen, 0) + ' Stufen)', x0, 12, 'left', 10, true);
+      // Rekonstruktion nach idealem Tiefpass: tatsächlich wiedergegebene Frequenz
+      const m = Math.round(f / fa), fal = Math.abs(f - m * fa), y2 = 20 + h1 + 30, h2 = H - y2 - 10, ym2 = y2 + h2 / 2;
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x0, y2, x1 - x0, h2);
+      const p2 = []; for (let i = 0; i <= 400; i++) { const t = dauer * i / 400; p2.push([X(t), ym2 - Math.sin(PI2 * (f - m * fa) * t + ph) * h2 * 0.4]); }
+      zug(cx, p2, f > fa / 2 ? ROT : GRUEN, 2);
+      T(cx, f > fa / 2 ? 'Aliasing: Wiedergegeben wird ' + zz(fal, 2) + ' kHz statt ' + zz(f, 2) + ' kHz (f > fA/2 = ' + zz(fa / 2, 2) + ' kHz)' : 'Wiedergabe nach Tiefpass: ' + zz(f, 2) + ' kHz – richtig, da f < fA/2', x0, y2 - 10, 'left', 10, true, f > fa / 2 ? ROT : GRUEN);
+    }
+    ansicht = (ansichten(seite, [['vergleich', 'Formate vergleichen'], ['grenze', 'Grenzfrequenz'], ['maske', 'Maskierung'], ['abtastung', 'Abtastung und Aliasing']], 'vergleich', function (a) { ansicht = a; }))();
+
+    // =====================================================================
+    // Hörlabor
+    // =====================================================================
+    const $ = function (id) { return document.getElementById(id); };
+    const LAB = { quelle: null, fs: 44100, cod: null, diff: null, spek: null, ctx: null, knoten: null, start: 0, ab: 0, spielt: null, abx: { x: null, n: 0, r: 0 }, arbeit: 0 };
+    // FFT (Radix 2, in place)
+    const N = 2048, HOP = 1024, WIN = new Float64Array(N), REV = new Uint32Array(N), COS = new Float64Array(N / 2), SIN = new Float64Array(N / 2);
+    (function () { for (let i = 0; i < N; i++) WIN[i] = Math.sin(Math.PI * (i + 0.5) / N); const b = Math.log2(N); for (let i = 0; i < N; i++) { let r = 0; for (let j = 0; j < b; j++) r |= ((i >> j) & 1) << (b - 1 - j); REV[i] = r; } for (let i = 0; i < N / 2; i++) { COS[i] = Math.cos(-PI2 * i / N); SIN[i] = Math.sin(-PI2 * i / N); } })();
+    function fft(re, im, inv) {
+      for (let i = 0; i < N; i++) { const j = REV[i]; if (j > i) { let t = re[i]; re[i] = re[j]; re[j] = t; t = im[i]; im[i] = im[j]; im[j] = t; } }
+      for (let l = 2; l <= N; l <<= 1) { const h = l >> 1, st = N / l; for (let i = 0; i < N; i += l) for (let j = 0; j < h; j++) { const c = COS[j * st], s = inv ? -SIN[j * st] : SIN[j * st], a = i + j, b = a + h, tr = re[b] * c - im[b] * s, ti = re[b] * s + im[b] * c; re[b] = re[a] - tr; im[b] = im[a] - ti; re[a] += tr; im[a] += ti; } }
+    }
+    const KANTEN = [0, 100, 200, 300, 400, 510, 630, 770, 920, 1080, 1270, 1480, 1720, 2000, 2320, 2700, 3150, 3700, 4400, 5300, 6400, 7700, 9500, 12000, 15500, 24000];
+    function codiere(ein, fs, fk, kbps, mono) {
+      const f = FMT[fk], len = ein[0].length, aus = [], spek = { o: [], c: [] };
+      const verlustfrei = !f.verlust;
+      const kan = mono ? [(function () { const m = new Float32Array(len); for (let i = 0; i < len; i++) m[i] = ein.length > 1 ? (ein[0][i] + ein[1][i]) / 2 : ein[0][i]; return m; })()] : ein;
+      const gf = Math.min(grenz(f, kbps, mono), fs / 2000) * 1000, sbrBis = f.sbr && kbps <= 80 ? Math.min(f.sbr * 1000, fs / 2) : 0;
+      const beff = f.verlust ? kbps * f.eff * (mono ? 2 : 1) : 0, snr = 4 + 9 * Math.log2(1 + beff / 32);
+      const bandVon = new Int32Array(N / 2 + 1); for (let k = 0; k <= N / 2; k++) { const hz = k * fs / N; let b = 0; while (b < KANTEN.length - 2 && hz >= KANTEN[b + 1]) b++; bandVon[k] = b; }
+      const NB = KANTEN.length - 1, re = new Float64Array(N), im = new Float64Array(N), ore = new Float64Array(N / 2 + 1), oim = new Float64Array(N / 2 + 1);
+      let null0 = 0, gesamt = 0, zuf = zufall(17);
+      kan.forEach(function (x, ci) {
+        const y = new Float32Array(len);
+        for (let s = -HOP; s < len; s += HOP) {
+          for (let i = 0; i < N; i++) { const j = s + i; re[i] = j >= 0 && j < len ? x[j] * WIN[i] : 0; im[i] = 0; }
+          fft(re, im, false);
+          for (let k = 0; k <= N / 2; k++) { ore[k] = re[k]; oim[k] = im[k]; }
+          if (f.verlust) {
+            const E = new Float64Array(NB), Z = new Float64Array(NB);
+            for (let k = 0; k <= N / 2; k++) { const b = bandVon[k]; E[b] += re[k] * re[k] + im[k] * im[k]; Z[b]++; }
+            for (let b = 0; b < NB; b++) E[b] = Z[b] ? E[b] / Z[b] : 0;
+            const M = new Float64Array(NB);
+            for (let b = 0; b < NB; b++) { let m = E[b] * Math.pow(10, -snr / 10); for (let j = 0; j < NB; j++) if (j !== b) m = Math.max(m, E[j] * Math.pow(10, -(snr + 10 + 7 * Math.abs(b - j)) / 10)); M[b] = m; }
+            const kG = gf * N / fs, kS = sbrBis * N / fs;
+            const EQ = new Float64Array(NB);
+            for (let k = 0; k <= N / 2; k++) {
+              const b = bandVon[k];
+              if (k > kG + 1) { re[k] = 0; im[k] = 0; continue; }
+              const d = Math.sqrt(6 * M[b]) || 1e-12;
+              re[k] = Math.round(re[k] / d) * d; im[k] = Math.round(im[k] / d) * d;
+              if (k > kG - 1) { const w = Math.max(0, kG + 1 - k) / 2; re[k] *= w; im[k] *= w; }
+              gesamt++; if (re[k] === 0 && im[k] === 0) { null0++; if (f.fuellen > 0 && E[b] > 0) { const a = Math.sqrt(E[b] * f.fuellen) * Math.min(1, M[b] / E[b] * 4 + 0.15), w = zuf() * PI2; re[k] = a * Math.cos(w); im[k] = a * Math.sin(w); } }
+              EQ[b] += re[k] * re[k] + im[k] * im[k];
+            }
+            // Bandbreitenerweiterung: obere Bänder aus dem Bereich darunter kopieren, auf die Originalhüllkurve skalieren
+            if (kS > kG) {
+              const k0 = Math.floor(kG), breite = Math.max(8, Math.floor(k0 / 2)), stufen = 6;
+              for (let g = 0; g < stufen; g++) {
+                const a = Math.floor(k0 + (kS - k0) * g / stufen), z = Math.floor(k0 + (kS - k0) * (g + 1) / stufen);
+                let eo = 0, ec = 0;
+                for (let k = a; k < z; k++) { const q = k0 - breite + ((k - k0) % breite); re[k] = re[q]; im[k] = im[q]; eo += ore[k] * ore[k] + oim[k] * oim[k]; ec += re[k] * re[k] + im[k] * im[k]; }
+                const sk = ec > 0 ? Math.sqrt(eo / ec) : 0; for (let k = a; k < z; k++) { re[k] *= sk; im[k] *= sk; }
+              }
+            }
+          }
+          if (ci === 0) {
+            const zo = new Float32Array(256), zc = new Float32Array(256);
+            for (let k = 0; k < N / 2; k++) { const z = k >> 2; zo[z] += ore[k] * ore[k] + oim[k] * oim[k]; zc[z] += re[k] * re[k] + im[k] * im[k]; }
+            for (let z = 0; z < 256; z++) { zo[z] = 10 * Math.log10(zo[z] / 4 + 1e-12); zc[z] = 10 * Math.log10(zc[z] / 4 + 1e-12); }
+            spek.o.push(zo); spek.c.push(zc);
+          }
+          for (let k = 1; k < N / 2; k++) { re[N - k] = re[k]; im[N - k] = -im[k]; }
+          im[0] = 0; im[N / 2] = 0;
+          fft(re, im, true);
+          for (let i = 0; i < N; i++) { const j = s + i; if (j >= 0 && j < len) y[j] += re[i] / N * WIN[i]; }
+        }
+        aus.push(verlustfrei ? x.slice() : y);
+      });
+      if (mono && ein.length > 1) aus.push(aus[0]);
+      return { aus: aus, spek: spek, gf: f.verlust ? gf : fs / 2, null0: gesamt ? null0 / gesamt : 0, snr: snr, sbr: sbrBis > gf };
+    }
+    // Beispielmusik: Akkorde, Bass, Schlagzeug, Becken (alles synthetisch)
+    function musik(fs) {
+      const T8 = 8, len = Math.floor(fs * T8), L = new Float32Array(len), Rk = new Float32Array(len), z = zufall(5);
+      const hz = function (m) { return 440 * Math.pow(2, (m - 69) / 12); };
+      const akk = [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]];
+      for (let a = 0; a < 4; a++) {
+        const t0 = a * 2;
+        akk[a].forEach(function (m, vi) {
+          for (let w = 0; w < 4; w++) {
+            const ts = t0 + w * 0.5, f0 = hz(m + 12), pan = 0.3 + 0.2 * vi;
+            for (let i = Math.floor(ts * fs); i < Math.min(len, Math.floor((ts + 0.5) * fs)); i++) {
+              const t = i / fs - ts, env = Math.exp(-t * 3.2) * Math.min(1, t * 200); let v = 0;
+              for (let h = 1; h <= 14; h++) if (f0 * h < fs / 2) v += Math.sin(PI2 * f0 * h * t + h) / Math.pow(h, 1.2) * Math.exp(-t * h * 0.6);
+              L[i] += v * env * 0.06 * (1 - pan); Rk[i] += v * env * 0.06 * pan;
+            }
+          }
+        });
+        const fb = hz(akk[a][0] - 24);
+        for (let i = Math.floor(t0 * fs); i < Math.floor((t0 + 2) * fs); i++) { const t = i / fs - t0, tb = t % 0.5, v = (Math.sin(PI2 * fb * t) + 0.4 * Math.sin(PI2 * 2 * fb * t) + 0.2 * Math.sin(PI2 * 3 * fb * t)) * Math.exp(-tb * 4) * 0.16; L[i] += v; Rk[i] += v; }
+      }
+      for (let b = 0; b < 16; b++) {
+        const ts = b * 0.5, i0 = Math.floor(ts * fs);
+        if (b % 2 === 0) for (let i = i0; i < Math.min(len, i0 + fs * 0.3); i++) { const t = (i - i0) / fs, ph = PI2 * (50 * t + 90 * (1 - Math.exp(-t * 25)) / 25), k = Math.sin(ph) * Math.exp(-t * 9) * 0.5; L[i] += k; Rk[i] += k; }
+        if (b % 4 === 2) for (let i = i0; i < Math.min(len, i0 + fs * 0.25); i++) { const t = (i - i0) / fs, s = ((z() * 2 - 1) * 0.7 + Math.sin(PI2 * 190 * t) * 0.4) * Math.exp(-t * 16) * 0.4; L[i] += s; Rk[i] += s; }
+        for (let hh = 0; hh < 2; hh++) { const j0 = Math.floor((ts + hh * 0.25) * fs); let alt = 0; for (let i = j0; i < Math.min(len, j0 + fs * 0.06); i++) { const t = (i - j0) / fs, n = z() * 2 - 1, v = (n - alt) * Math.exp(-t * 70) * 0.12; alt = n; Rk[i] += v; L[i] += v * 0.35; } }
+      }
+      let alt = 0; for (let i = 0; i < len; i++) { const n = z() * 2 - 1, v = (n - alt) * 0.012 * (0.5 + 0.5 * Math.sin(PI2 * i / fs * 2)); alt = n; L[i] += v; }
+      let mx = 0; for (let i = 0; i < len; i++) mx = Math.max(mx, Math.abs(L[i]), Math.abs(Rk[i]));
+      for (let i = 0; i < len; i++) { L[i] *= 0.85 / mx; Rk[i] *= 0.85 / mx; }
+      return [L, Rk];
+    }
+    function formatAuswahl() {
+      const s = $('lFormat'); Object.keys(FMT).forEach(function (k) { const o = document.createElement('option'); o.value = k; o.textContent = FMT[k].name; s.append(o); }); s.value = 'mp3';
+    }
+    function ratenAuswahl() {
+      const f = FMT[$('lFormat').value], s = $('lRate'), alt = +s.value || 128; s.textContent = '';
+      if (!f.verlust) { const o = document.createElement('option'); o.value = '0'; o.textContent = 'verlustfrei'; s.append(o); s.disabled = true; return; }
+      s.disabled = false; let best = f.raten[0];
+      f.raten.forEach(function (r) { const o = document.createElement('option'); o.value = r; o.textContent = r + ' kbit/s'; s.append(o); if (Math.abs(r - alt) < Math.abs(best - alt)) best = r; }); s.value = best;
+    }
+    function puffer(kanaele, fs) { const b = LAB.ctx.createBuffer(kanaele.length, kanaele[0].length, fs); kanaele.forEach(function (k, i) { b.copyToChannel ? b.copyToChannel(k, i) : b.getChannelData(i).set(k); }); return b; }
+    function kontext() { if (!LAB.ctx) { const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return null; LAB.ctx = new AC(); LAB.gain = LAB.ctx.createGain(); LAB.gain.connect(LAB.ctx.destination); setzeLaut(); } if (LAB.ctx.state === 'suspended') LAB.ctx.resume(); return LAB.ctx; }
+    function setzeLaut() { if (LAB.gain) LAB.gain.gain.value = Math.pow(+$('lLaut').value / 100, 2); }
+    function position() { if (!LAB.knoten || !LAB.quelle) return LAB.ab; const d = LAB.quelle[0].length / LAB.fs; return (LAB.ab + LAB.ctx.currentTime - LAB.start) % d; }
+    function stopp() { if (LAB.knoten) { try { LAB.knoten.stop(); } catch (x) { /* schon aus */ } LAB.knoten.disconnect(); LAB.knoten = null; } LAB.spielt = null; ['spOrig', 'spCod', 'spDiff'].forEach(function (id) { $(id).setAttribute('aria-pressed', 'false'); }); }
+    function spiele(was, knopf) {
+      if (!LAB.quelle || !LAB.cod) return;
+      if (!kontext()) { $('lInfo').textContent = 'Dieser Browser kann kein Audio wiedergeben.'; return; }
+      const pos = LAB.knoten ? position() : LAB.ab; stopp();
+      const daten = was === 'orig' ? LAB.quelle : was === 'cod' ? LAB.cod.aus : LAB.diff;
+      const q = LAB.ctx.createBufferSource(); q.buffer = puffer(daten, LAB.fs); q.loop = true; q.connect(LAB.gain);
+      q.start(0, pos % q.buffer.duration); LAB.knoten = q; LAB.start = LAB.ctx.currentTime; LAB.ab = pos; LAB.spielt = was;
+      if (knopf) $(knopf).setAttribute('aria-pressed', 'true');
+    }
+    function codierenStarten() {
+      if (!LAB.quelle) return;
+      const n = ++LAB.arbeit; $('lInfo').textContent = 'Codiere …';
+      setTimeout(function () {
+        if (n !== LAB.arbeit) return;
+        const fk = $('lFormat').value, kb = +$('lRate').value, mono = $('lKanal').value === '1', war = LAB.spielt;
+        const c = codiere(LAB.quelle, LAB.fs, fk, kb, mono); LAB.cod = c;
+        LAB.diff = LAB.quelle.map(function (x, i) { const y = c.aus[i], d = new Float32Array(x.length); for (let j = 0; j < x.length; j++) d[j] = Math.max(-1, Math.min(1, (x[j] - y[j]) * 4)); return d; });
+        let s = 0, nn = 0; LAB.quelle.forEach(function (x, i) { const y = c.aus[i]; for (let j = 0; j < x.length; j++) { s += x[j] * x[j]; nn += (x[j] - y[j]) * (x[j] - y[j]); } });
+        const f = FMT[fk], dur = LAB.quelle[0].length / LAB.fs, kbps = f.verlust ? kb : (fk === 'flac' ? 1411.2 * FLACANTEIL : 1411.2) * (mono ? 0.5 : 1);
+        $('lInfo').textContent = f.name + (f.verlust ? ' ' + kb + ' kbit/s' : '') + (mono ? ' mono' : '') + ': Grenzfrequenz ' + zz(c.gf / 1000, 1) + ' kHz' + (c.sbr ? ' + SBR bis ' + zz(f.sbr, 0) + ' kHz' : '') + ', weggelassene Spektralwerte ' + zz(c.null0 * 100, 0) + ' %, Rauschabstand ' + (nn > 0 ? zz(10 * Math.log10(s / nn), 1) + ' dB' : '∞ (bitgenau)') + ', Datei etwa ' + zz(kbps * dur / 8, 0) + ' kB';
+        LAB.spekBild = null;
+        if (war) spiele(war, war === 'orig' ? 'spOrig' : war === 'cod' ? 'spCod' : 'spDiff');
+        abxNeu();
+      }, 30);
+    }
+    // Spektrogramm: oben Original, unten codiert; Spielposition als Linie
+    const sp = $('spektro'), spc = sp.getContext('2d');
+    function farbe(d) { const v = Math.max(0, Math.min(1, (d + 30) / 90)); const r = Math.round(255 * Math.min(1, v * 1.8)), g = Math.round(255 * Math.max(0, Math.min(1, v * 1.6 - 0.4))), b = Math.round(255 * Math.max(0, Math.min(1, 0.5 - v * 0.5 + Math.max(0, v - 0.8) * 3))); return [r, g, b]; }
+    function spektroZeichnen() {
+      const d = Math.min(2, window.devicePixelRatio || 1), B = sp.clientWidth || 600, H = B < 600 ? 300 : 340;
+      if (sp.width !== Math.round(B * d)) { sp.width = Math.round(B * d); sp.height = Math.round(H * d); sp.style.height = H + 'px'; LAB.spekBild = null; }
+      spc.setTransform(d, 0, 0, d, 0, 0); spc.clearRect(0, 0, B, H);
+      const x0 = 44, w = B - x0 - 6, hh = (H - 40) / 2;
+      if (LAB.cod && !LAB.spekBild) {
+        const c = document.createElement('canvas'); c.width = Math.max(1, Math.floor(w)); c.height = Math.floor(hh) * 2 + 10; const cc = c.getContext('2d'), img = cc.createImageData(c.width, c.height), S = LAB.cod.spek, nf = S.o.length;
+        [S.o, S.c].forEach(function (arr, teil) {
+          for (let x = 0; x < c.width; x++) { const fr = arr[Math.min(nf - 1, Math.floor(x / c.width * nf))]; for (let y = 0; y < Math.floor(hh); y++) { const z = Math.floor((1 - y / hh) * 255), col = farbe(fr[z]), p = ((y + teil * (Math.floor(hh) + 10)) * c.width + x) * 4; img.data[p] = col[0]; img.data[p + 1] = col[1]; img.data[p + 2] = col[2]; img.data[p + 3] = 255; } }
+        });
+        cc.putImageData(img, 0, 0); LAB.spekBild = c;
+      }
+      if (LAB.spekBild) spc.drawImage(LAB.spekBild, x0, 18);
+      const ny = LAB.fs / 2000;
+      [0, 1].forEach(function (teil) {
+        const y0 = 18 + teil * (Math.floor(hh) + 10);
+        T(spc, teil ? 'codiert' : 'Original', x0 + 6, y0 + 10, 'left', 11, true, '#fff');
+        [0, 5, 10, 15, 20].forEach(function (k) { if (k <= ny) T(spc, k + ' kHz', x0 - 4, y0 + hh - k / ny * hh, 'right', 9, false, GRAU); });
+        if (teil && LAB.cod && LAB.cod.gf < LAB.fs / 2) { const yg = y0 + hh - LAB.cod.gf / 1000 / ny * hh; strecke(spc, x0, yg, x0 + w, yg, '#fff', 1, [4, 4]); }
+      });
+      if (LAB.knoten && LAB.quelle) { const x = x0 + position() / (LAB.quelle[0].length / LAB.fs) * w; strecke(spc, x, 14, x, H - 18, '#fff', 2); }
+      T(spc, LAB.quelle ? zz(LAB.quelle[0].length / LAB.fs, 1) + ' s' : 'lädt …', B - 8, H - 8, 'right', 10, false, GRAU);
+      requestAnimationFrame(spektroZeichnen);
+    }
+    // ABX
+    function abxNeu() { LAB.abx = { x: Math.random() < 0.5 ? 'A' : 'B', n: 0, r: 0 }; $('abxErg').textContent = 'Neuer Durchgang. X wurde zufällig festgelegt.'; $('abxErg').className = 'abx-ergebnis'; }
+    function binom(n, k) { let s = 0; for (let i = k; i <= n; i++) { let c = 1; for (let j = 0; j < i; j++) c = c * (n - j) / (j + 1); s += c; } return s / Math.pow(2, n); }
+    function abxAntwort(w) {
+      const A = LAB.abx; A.n++; if (w === A.x) A.r++;
+      const p = binom(A.n, A.r);
+      $('abxErg').textContent = (w === A.x ? 'Richtig. ' : 'Falsch. ') + A.r + ' von ' + A.n + ' richtig – Wahrscheinlichkeit, das durch Raten zu schaffen: ' + zz(p * 100, 1) + ' %' + (A.n >= 10 && p < 0.05 ? ' → Du hörst den Unterschied.' : A.n >= 10 ? ' → kein sicherer Unterschied.' : '');
+      $('abxErg').className = 'abx-ergebnis ' + (A.n >= 10 ? (p < 0.05 ? 'gut' : 'schlecht') : '');
+      A.x = Math.random() < 0.5 ? 'A' : 'B'; stopp();
+    }
+    formatAuswahl(); ratenAuswahl();
+    $('lFormat').addEventListener('change', function () { ratenAuswahl(); codierenStarten(); });
+    $('lRate').addEventListener('change', codierenStarten); $('lKanal').addEventListener('change', codierenStarten);
+    $('lLaut').addEventListener('input', setzeLaut);
+    $('spOrig').addEventListener('click', function () { spiele('orig', 'spOrig'); });
+    $('spCod').addEventListener('click', function () { spiele('cod', 'spCod'); });
+    $('spDiff').addEventListener('click', function () { spiele('diff', 'spDiff'); });
+    $('spStop').addEventListener('click', function () { if (LAB.knoten) LAB.ab = position(); stopp(); });
+    $('abxA').addEventListener('click', function () { spiele('orig'); }); $('abxB').addEventListener('click', function () { spiele('cod'); });
+    $('abxX').addEventListener('click', function () { spiele(LAB.abx.x === 'A' ? 'orig' : 'cod'); });
+    $('abxIstA').addEventListener('click', function () { abxAntwort('A'); }); $('abxIstB').addEventListener('click', function () { abxAntwort('B'); });
+    $('abxNeu').addEventListener('click', abxNeu);
+    $('quelle').addEventListener('change', function () { if (this.value === 'datei') $('datei').click(); else { stopp(); LAB.fs = 44100; LAB.quelle = musik(LAB.fs); LAB.ab = 0; codierenStarten(); } });
+    $('datei').addEventListener('change', function () {
+      const d = this.files && this.files[0]; if (!d) return;
+      if (d.size > 200 * 1024 * 1024) { $('lInfo').textContent = 'Die Datei ist zu groß (höchstens 200 MB).'; return; }
+      const ctx = kontext(); if (!ctx) return;
+      $('lInfo').textContent = 'Lese ' + d.name.slice(0, 60) + ' …';
+      const fr = new FileReader();
+      fr.onload = function () {
+        const fertig = function (buf) {
+          stopp(); const n = Math.min(buf.length, Math.floor(buf.sampleRate * 30)), k = [];
+          for (let c = 0; c < Math.min(2, buf.numberOfChannels); c++) k.push(buf.getChannelData(c).slice(0, n));
+          if (k.length === 1) k.push(k[0].slice());
+          LAB.fs = buf.sampleRate; LAB.quelle = k; LAB.ab = 0; codierenStarten();
+        };
+        const fehler = function () { $('lInfo').textContent = 'Diese Datei kann der Browser nicht lesen.'; };
+        try { const p = ctx.decodeAudioData(fr.result, fertig, fehler); if (p && p.catch) p.catch(fehler); } catch (x) { fehler(); }
+      };
+      fr.onerror = function () { $('lInfo').textContent = 'Die Datei konnte nicht gelesen werden.'; };
+      fr.readAsArrayBuffer(d);
+    });
+    LAB.quelle = musik(LAB.fs); codierenStarten(); requestAnimationFrame(spektroZeichnen);
+    window.addEventListener('pagehide', stopp);
+    // Abschnitte ordnen
+    const main = document.querySelector('main'), loeser = main.querySelector('.loeser'), faq = main.querySelector('.seo-info');
+    if (loeser) loeser.parentNode.insertBefore($('labor'), loeser);
+    main.insertBefore($('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>
