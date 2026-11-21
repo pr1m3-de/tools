@@ -131,6 +131,23 @@
     const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
     const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
     function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
     function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
     function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
     function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
@@ -140,7 +157,8 @@
     // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
     function diagramm(cx, x, y, w, h, reihen, o) {
       cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
-      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
       const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
       const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
       cx.strokeStyle = F('--linie'); cx.beginPath();
@@ -152,8 +170,8 @@
       strecke(cx, x0, y0, x0, y1, F('--text'), 1);
       T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
       if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
-      let lx = x + 8;
-      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
       reihen.forEach(function (r) {
         cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
         zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
@@ -348,10 +366,10 @@
     function ath(f) { return 3.64 * Math.pow(f, -0.8) - 6.5 * Math.exp(-0.6 * Math.pow(f - 3.3, 2)) + 1e-3 * Math.pow(f, 4); }
     function bark(f) { return 13 * Math.atan(0.76 * f) + 3.5 * Math.atan(Math.pow(f / 7.5, 2)); }
     function maske(cx, B, H) {
-      const x0 = 50, x1 = B - 12, y0 = 30, y1 = H - 40, lf = [Math.log10(0.02), Math.log10(20)];
+      const x0 = 50, x1 = B - 12, y0 = 34, y1 = H - 40, lf = [Math.log10(0.02), Math.log10(20)];
       const X = function (f) { return x0 + (Math.log10(f) - lf[0]) / (lf[1] - lf[0]) * (x1 - x0); }, Y = function (d) { return y1 - (d + 10) / 110 * (y1 - y0); };
       cx.fillStyle = F('--flaeche'); cx.fillRect(x0, y0, x1 - x0, y1 - y0);
-      [0.05, 0.1, 0.5, 1, 2, 5, 10, 20].forEach(function (f) { strecke(cx, X(f), y0, X(f), y1, F('--linie'), 1); T(cx, f < 1 ? zz(f * 1000, 0) + ' Hz' : zz(f, 0) + ' kHz', X(f), y1 + 12, 'center', 9, false, GRAU); });
+      (B < 600 ? [0.05, 0.2, 1, 5, 20] : [0.05, 0.1, 0.5, 1, 2, 5, 10, 20]).forEach(function (f) { strecke(cx, X(f), y0, X(f), y1, F('--linie'), 1); T(cx, f < 1 ? zz(f * 1000, 0) + ' Hz' : zz(f, 0) + ' kHz', X(f), y1 + 12, 'center', 9, false, GRAU); });
       [0, 20, 40, 60, 80, 100].forEach(function (d) { T(cx, d + ' dB', x0 - 4, Y(d), 'right', 9, false, GRAU); });
       const pa = []; for (let i = 0; i <= 200; i++) { const f = Math.pow(10, lf[0] + (lf[1] - lf[0]) * i / 200); pa.push([X(f), Y(Math.min(100, ath(f)))]); }
       zug(cx, pa, GRAU, 2, [5, 4]); T(cx, 'Ruhehörschwelle', X(0.03), Y(Math.min(100, ath(0.03))) + 14, 'left', 10, true, GRAU);
@@ -360,10 +378,10 @@
       const pm = []; for (let i = 0; i <= 200; i++) { const f = Math.pow(10, lf[0] + (lf[1] - lf[0]) * i / 200); pm.push([X(f), Y(Math.max(ath(f), mk(f)))]); }
       cx.fillStyle = 'rgba(192,57,43,.12)'; cx.beginPath(); cx.moveTo(pm[0][0], y1); pm.forEach(function (p) { cx.lineTo(p[0], Math.min(y1, p[1])); }); cx.lineTo(pm[pm.length - 1][0], y1); cx.closePath(); cx.fill();
       zug(cx, pm.map(function (p) { return [p[0], Math.min(y1, p[1])]; }), ROT, 2);
-      strecke(cx, X(1), y1, X(1), Y(L), ROT, 6); T(cx, 'lauter Ton 1 kHz', X(1) + 6, Y(L) - 8, 'left', 10, true, ROT);
+      strecke(cx, X(1), y1, X(1), Y(L), ROT, 6); T(cx, 'lauter Ton 1 kHz', X(1) + (B < 600 ? -6 : 6), Y(L) - 8, B < 600 ? 'right' : 'left', 10, true, ROT);
       const ft = Math.pow(10, Math.log10(0.3) + (Math.log10(6) - Math.log10(0.3)) * (0.5 + 0.5 * Math.sin(zeit * 0.5))), lt = 45, hoer = lt > Math.max(ath(ft), mk(ft));
       strecke(cx, X(ft), y1, X(ft), Y(lt), hoer ? GRUEN : GRAU, 5);
-      T(cx, (hoer ? 'hörbar – wird codiert' : 'verdeckt – wird weggelassen') + ' (' + (ft < 1 ? zz(ft * 1000, 0) + ' Hz' : zz(ft, 2) + ' kHz') + ', 45 dB)', x0 + 6, y0 - 12, 'left', 11, true, hoer ? GRUEN : GRAU);
+      T(cx, (hoer ? 'hörbar – wird codiert' : 'verdeckt – weggelassen') + ' (' + (ft < 1 ? zz(ft * 1000, 0) + ' Hz' : zz(ft, 2) + ' kHz') + ')', 10, y0 - 14, 'left', B < 600 ? 10 : 11, true, hoer ? GRUEN : GRAU);
     }
     function abtastung(cx, B, H, r, e) {
       const fa = e.afs, f = e.af, dauer = Math.max(4 / f, 12 / fa), x0 = 40, x1 = B - 10, h1 = (H - 60) * 0.62, ym = 20 + h1 / 2, A = h1 * 0.42;
@@ -378,13 +396,13 @@
       const n = Math.floor(dauer * fa), stair = [];
       for (let k = 0; k <= n; k++) { const t = k / fa, v = q(s(t)); stair.push([X(t), ym - v * A]); stair.push([X(Math.min(dauer, (k + 1) / fa)), ym - v * A]); strecke(cx, X(t), ym, X(t), ym - v * A, BLAU, 1); kreis(cx, X(t), ym - v * A, 3, BLAU); }
       zug(cx, stair, ORANGE, 2);
-      T(cx, 'Signal ' + zz(f, 2) + ' kHz, abgetastet mit ' + zz(fa, 1) + ' kHz, ' + e.ab + ' bit (' + zz(stufen, 0) + ' Stufen)', x0, 12, 'left', 10, true);
+      T(cx, (B < 600 ? '' : 'Signal ') + zz(f, 2) + ' kHz, abgetastet mit ' + zz(fa, 1) + ' kHz, ' + e.ab + ' bit', x0, 12, 'left', 10, true);
       // Rekonstruktion nach idealem Tiefpass: tatsächlich wiedergegebene Frequenz
       const m = Math.round(f / fa), fal = Math.abs(f - m * fa), y2 = 20 + h1 + 30, h2 = H - y2 - 10, ym2 = y2 + h2 / 2;
       cx.fillStyle = F('--flaeche'); cx.fillRect(x0, y2, x1 - x0, h2);
       const p2 = []; for (let i = 0; i <= 400; i++) { const t = dauer * i / 400; p2.push([X(t), ym2 - Math.sin(PI2 * (f - m * fa) * t + ph) * h2 * 0.4]); }
       zug(cx, p2, f > fa / 2 ? ROT : GRUEN, 2);
-      T(cx, f > fa / 2 ? 'Aliasing: Wiedergegeben wird ' + zz(fal, 2) + ' kHz statt ' + zz(f, 2) + ' kHz (f > fA/2 = ' + zz(fa / 2, 2) + ' kHz)' : 'Wiedergabe nach Tiefpass: ' + zz(f, 2) + ' kHz – richtig, da f < fA/2', x0, y2 - 10, 'left', 10, true, f > fa / 2 ? ROT : GRUEN);
+      T(cx, f > fa / 2 ? 'Aliasing: ' + zz(fal, 2) + ' kHz statt ' + zz(f, 2) + ' kHz' : 'Wiedergabe: ' + zz(f, 2) + ' kHz – richtig (f < fA/2)', x0, y2 - 10, 'left', 10, true, f > fa / 2 ? ROT : GRUEN);
     }
     ansicht = (ansichten(seite, [['vergleich', 'Formate vergleichen'], ['grenze', 'Grenzfrequenz'], ['maske', 'Maskierung'], ['abtastung', 'Abtastung und Aliasing']], 'vergleich', function (a) { ansicht = a; }))();
 

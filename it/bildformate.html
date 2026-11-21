@@ -115,6 +115,23 @@
     const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
     const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
     function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
     function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
     function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
     function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
@@ -124,7 +141,8 @@
     // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
     function diagramm(cx, x, y, w, h, reihen, o) {
       cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
-      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
       const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
       const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
       cx.strokeStyle = F('--linie'); cx.beginPath();
@@ -136,8 +154,8 @@
       strecke(cx, x0, y0, x0, y1, F('--text'), 1);
       T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
       if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
-      let lx = x + 8;
-      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
       reihen.forEach(function (r) {
         cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
         zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
@@ -211,15 +229,15 @@
       gitter(cx, pos[2][0], pos[2][1], g, R2, grau);
       // Zickzack-Lauf
       const k = Math.floor(zeit * 6) % 64, idx = ZZ[k], z = g / 8; cx.strokeStyle = ORANGE; cx.lineWidth = 2.5; cx.strokeRect(pos[1][0] + (idx % 8) * z, pos[1][1] + Math.floor(idx / 8) * z, z - 1, z - 1);
-      T(cx, 'Pixel (8 × 8)', pos[0][0], pos[0][1] - 10, 'left', 11, true); T(cx, 'quantisierte DCT (' + nz + ' von 64 ≠ 0)', pos[1][0], pos[1][1] - 10, 'left', 11, true); T(cx, 'nach dem Decodieren', pos[2][0], pos[2][1] - 10, 'left', 11, true);
+      T(cx, 'Pixel (8 × 8)', pos[0][0], pos[0][1] - 10, 'left', 11, true); T(cx, (klein ? 'DCT: ' : 'quantisierte DCT (') + nz + ' von 64 ≠ 0' + (klein ? '' : ')'), pos[1][0], pos[1][1] - 10, 'left', 11, true); T(cx, 'nach dem Decodieren', pos[2][0], pos[2][1] - 10, 'left', 11, true);
       let mse = 0; R2.forEach(function (v, i) { mse += Math.pow(v - BLOCK[i], 2); }); mse /= 64;
       T(cx, 'Qualität ' + zz(q, 0) + ' · Rauschabstand ' + (mse > 0 ? zz(10 * Math.log10(255 * 255 / mse), 1) + ' dB' : '∞'), 10, H - 14, 'left', 11, true, ORANGE);
     }
     function tiefeBild(cx, B, H, r, e) {
-      const st = Math.pow(2, e.kb) - 1, x0 = 10, w = B - 20, hh = (H - 70) / 3;
+      const st = Math.pow(2, e.kb) - 1, x0 = 10, w = B - 20, oben = B < 600 ? 46 : 30, hh = (H - oben - (B < 600 ? 76 : 56)) / 3;
       const q = function (v) { return Math.round(Math.round(v / 255 * st) / st * 255); };
       [[0, 'Grau'], [1, 'Himmel'], [2, 'Regenbogen']].forEach(function (z, j) {
-        const y = 30 + j * (hh + 14);
+        const y = oben + j * (hh + 14);
         for (let x = 0; x < w; x++) {
           const t = x / w; let c;
           if (j === 0) c = [t * 255, t * 255, t * 255]; else if (j === 1) c = [40 + t * 140, 90 + t * 120, 180 + t * 75];
@@ -227,8 +245,8 @@
           cx.fillStyle = 'rgb(' + q(c[0]) + ',' + q(c[1]) + ',' + q(c[2]) + ')'; cx.fillRect(x0 + x, y, 1.5, hh);
         }
       });
-      T(cx, e.kb + ' bit je Farbkanal → ' + zz(Math.pow(2, e.kb), 0) + ' Stufen je Farbe, ' + zz(Math.pow(2, 3 * e.kb), 0) + ' Farben', 10, 14, 'left', 11, true);
-      T(cx, '8 bit (24-bit-Farbe) zeigt keine sichtbaren Stufen mehr', 10, H - 12, 'left', 10, false, GRAU);
+      TW(cx, e.kb + ' bit je Farbkanal → ' + zz(Math.pow(2, e.kb), 0) + ' Stufen je Farbe, ' + zz(Math.pow(2, 3 * e.kb), 0) + ' Farben', 10, 12, B - 20, 11, true);
+      TWU(cx, '8 bit (24-bit-Farbe) zeigt keine sichtbaren Stufen mehr', 10, H - 12, B - 20, 10, false, GRAU);
     }
     function rasterBild(cx, B, H) {
       const z = 1 + 15 * (0.5 - 0.5 * Math.cos(zeit * 0.6)), halb = B / 2, rr = 7, n = 16;
@@ -238,7 +256,7 @@
       if (g > 8) { cx.strokeStyle = F('--linie'); cx.lineWidth = 0.5; for (let i = 0; i <= n; i++) { strecke(cx, ox + i * g, oy, ox + i * g, oy + n * g, F('--linie'), 0.5); strecke(cx, ox, oy + i * g, ox + n * g, oy + i * g, F('--linie'), 0.5); } }
       kreis(cx, halb + halb / 2, oy + n * g / 2, rr * g, 'rgba(192,57,43,1)');
       strecke(cx, halb, 20, halb, H - 10, F('--linie'), 1);
-      T(cx, 'Rastergrafik: 16 × 16 Pixel', halb / 2, 18, 'center', 11, true); T(cx, 'Vektorgrafik: Kreis mit Radius r', halb * 1.5, 18, 'center', 11, true);
+      T(cx, B < 600 ? 'Raster 16 × 16' : 'Rastergrafik: 16 × 16 Pixel', halb / 2, 18, 'center', 11, true); T(cx, B < 600 ? 'Vektor' : 'Vektorgrafik: Kreis mit Radius r', halb * 1.5, 18, 'center', 11, true);
       T(cx, 'Vergrößerung ' + zz(z, 1) + '×', 10, H - 12, 'left', 10, false, GRAU);
     }
     const SUB = (function () { const w = 48, h = 24, p = []; for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) { let c = [245, 245, 245]; if (x > 4 && x < 20 && y > 4 && y < 19) c = [220, 30, 40]; if (x >= 20 && x < 36 && y > 4 && y < 19) c = [30, 80, 220]; if ((x === 10 || x === 11 || x === 28) && y > 6 && y < 17) c = [20, 20, 20]; if (x > 38 && x < 44 && y > 2 && y < 21 && (x + y) % 3 === 0) c = [20, 170, 60]; p.push(c); } return { w: w, h: h, p: p }; })();
