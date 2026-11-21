@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP – Formeln &amp; Rechner</title>
+  <meta name="description" content="Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/it/kompression.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP">
+  <meta property="og:description" content="Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.">
+  <meta property="og:url" content="https://tools.pr1m3.de/it/kompression.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP">
+  <meta name="twitter:description" content="Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/kompression.html#seite","name":"Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP","url":"https://tools.pr1m3.de/it/kompression.html","inLanguage":"de","description":"Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/kompression.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/kompression.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP","item":"https://tools.pr1m3.de/it/kompression.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/kompression.html#fragen","mainEntity":[{"@type":"Question","name":"Warum wird ein ZIP mit Fotos kaum kleiner?","acceptedAnswer":{"@type":"Answer","text":"JPEG, MP3, MP4 und andere verlustbehaftete Formate sind bereits stark komprimiert; ihre Daten wirken fast zufällig. Für Deflate bleibt kaum Redundanz übrig. Bei Text, Tabellen, Quellcode und unkomprimierten Bildern spart ZIP dagegen oft 60 bis 90 %."}},{"@type":"Question","name":"Kann man jede Datei verlustfrei kleiner machen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Es gibt mehr mögliche Dateien der Länge n als kürzere Dateien. Ein verlustfreies Verfahren, das manche Dateien verkleinert, muss andere vergrößern (Schubfachprinzip). Gute Verfahren verkleinern die typischen und vergrößern die untypischen nur minimal."}},{"@type":"Question","name":"Ist mehrfaches Zippen besser?","acceptedAnswer":{"@type":"Answer","text":"Nein. Nach dem ersten Durchgang sind die Daten nahezu entropieoptimal, ein zweiter Durchgang fügt nur Verwaltungsdaten hinzu."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/kompression.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+    .labor-text { width: 100%; min-height: 90px; padding: 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; font-family: var(--technik); box-sizing: border-box; }
+    .labor-leiste { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 8px 0; }
+    .labor-leiste select { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; }
+    .labor-bild { width: 100%; display: block; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); }
+    .bitfolge { font-family: var(--technik); font-size: .82rem; word-break: break-all; max-height: 140px; overflow: auto; background: var(--flaeche2); border: 1px solid var(--linie); border-radius: var(--rund-klein); padding: 6px 8px; }
+    .zwei-spalten { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
+    @media (max-width: 800px) { .zwei-spalten { grid-template-columns: minmax(0, 1fr); } }
+    .zwei-spalten > * { min-width: 0; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="labor" aria-labelledby="h-labor">
+      <h2 id="h-labor">Kompressionslabor: Huffman, Lauflänge und LZ77 an deinem Text</h2>
+      <div class="labor-leiste">
+        <label>Beispiel <select id="kBsp" data-nicht-merken><option value="satz">Satz</option><option value="abra">ABRAKADABRA</option><option value="zeile">Bildzeile (Schwarz/Weiß)</option><option value="zufall">Zufallszeichen</option></select></label>
+      </div>
+      <textarea id="kText" class="labor-text" maxlength="2000" aria-label="Text zum Komprimieren (höchstens 2 000 Zeichen)" data-nicht-merken></textarea>
+      <p class="hilfe">Höchstens 2 000 Zeichen. Alles wird nur hier im Browser gerechnet.</p>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Verfahren</th><th>Größe</th><th>Bit je Zeichen</th><th>gegenüber 8 bit</th></tr></thead><tbody id="kTab"></tbody></table></div>
+      <canvas id="kBaum" class="labor-bild" role="img" aria-label="Huffman-Baum: häufige Zeichen stehen weit oben und bekommen kurze Codes"></canvas>
+      <div class="zwei-spalten">
+        <div><h3 class="zwischen">Huffman-Codes</h3><div class="rahmen"><table class="tabelle"><thead><tr><th>Zeichen</th><th>Anzahl</th><th>Anteil</th><th>Code</th><th>Info-Gehalt</th></tr></thead><tbody id="kCodes"></tbody></table></div></div>
+        <div><h3 class="zwischen">LZ77-Tokens</h3><p class="hilfe">(Abstand, Länge) verweist auf eine frühere Stelle; sonst ein einzelnes Zeichen.</p><div class="bitfolge" id="kLz"></div>
+          <h3 class="zwischen">Huffman-Bitfolge</h3><div class="bitfolge" id="kBits"></div>
+          <h3 class="zwischen">Lauflängen</h3><div class="bitfolge" id="kRle"></div></div>
+      </div>
+    </section>
+
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Verfahren und Archivformate</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Entropie: die Grenze</h3><p>Die Entropie gibt an, wie viele Bit je Zeichen im Mittel mindestens nötig sind, wenn man nur die Häufigkeiten kennt. Seltene Zeichen tragen viel Information, häufige wenig. Gleich häufige Zeichen lassen sich nicht komprimieren – Zufallsdaten und bereits komprimierte Dateien deshalb auch nicht.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Huffman-Codierung</h3><p>Häufige Zeichen bekommen kurze, seltene lange Codes. Der Baum entsteht, indem man immer die zwei seltensten Knoten zusammenfasst. Kein Code ist der Anfang eines anderen (präfixfrei), deshalb braucht man keine Trennzeichen. Huffman steckt in ZIP, PNG, JPEG und MP3.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Wörterbuchverfahren (LZ77)</h3><p>Statt einzelne Zeichen zu zählen, sucht LZ77 Wiederholungen: „die 6 Zeichen ab 11 Stellen zurück“. Wiederkehrende Wörter, Tags oder Datenstrukturen schrumpfen so stark. Deflate (ZIP, gzip, PNG) kombiniert LZ77 mit Huffman.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Lauflängencodierung</h3><p>Folgen gleicher Werte werden als „Anzahl × Wert“ gespeichert: WWWWWWBBB → 6W3B. Ideal für Faxe, Schwarz-Weiß-Grafik und Bildzeilen mit großen Flächen, schädlich bei abwechslungsreichen Daten.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Format</th><th>Verfahren</th><th>Kompression</th><th>Tempo</th><th>typisch</th></tr></thead><tbody>
+        <tr><td>ZIP</td><td>Deflate (LZ77 + Huffman)</td><td>mittel</td><td>schnell</td><td>überall eingebaut, mehrere Dateien</td></tr>
+        <tr><td>gzip (.gz)</td><td>Deflate</td><td>mittel</td><td>schnell</td><td>Webserver, Linux, eine Datei (mit tar für Ordner)</td></tr>
+        <tr><td>bzip2 (.bz2)</td><td>Burrows-Wheeler + Huffman</td><td>gut</td><td>langsam</td><td>ältere Archive</td></tr>
+        <tr><td>7z, xz</td><td>LZMA / LZMA2</td><td>sehr gut</td><td>langsam beim Packen</td><td>Software-Pakete, Archive</td></tr>
+        <tr><td>Zstandard (.zst)</td><td>LZ77 + Entropiecodierung (FSE)</td><td>gut bis sehr gut, einstellbar</td><td>sehr schnell</td><td>Dateisysteme, Backups, Pakete</td></tr>
+        <tr><td>Brotli (.br)</td><td>LZ77 + Huffman + eingebautes Wörterbuch</td><td>gut</td><td>schnell beim Entpacken</td><td>Webseiten (HTML, CSS, JS)</td></tr>
+      </tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum wird ein ZIP mit Fotos kaum kleiner?</summary><p>JPEG, MP3, MP4 und andere verlustbehaftete Formate sind bereits stark komprimiert; ihre Daten wirken fast zufällig. Für Deflate bleibt kaum Redundanz übrig. Bei Text, Tabellen, Quellcode und unkomprimierten Bildern spart ZIP dagegen oft 60 bis 90 %.</p></details>
+        <details><summary>Kann man jede Datei verlustfrei kleiner machen?</summary><p>Nein. Es gibt mehr mögliche Dateien der Länge n als kürzere Dateien. Ein verlustfreies Verfahren, das manche Dateien verkleinert, muss andere vergrößern (Schubfachprinzip). Gute Verfahren verkleinern die typischen und vergrößern die untypischen nur minimal.</p></details>
+        <details><summary>Ist mehrfaches Zippen besser?</summary><p>Nein. Nach dem ersten Durchgang sind die Daten nahezu entropieoptimal, ein zweiter Durchgang fügt nur Verwaltungsdaten hinzu.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    let ansicht = 'entropie', takt = uhr(), zeit = 0;
+    function hb(p) { return p <= 0 || p >= 1 ? 0 : -(p * Math.log2(p) + (1 - p) * Math.log2(1 - p)); }
+    const LZB = 'ABRAKADABRA ABRAKADABRA SIMSALABIM';
+    // ---------- Huffman, LZ77, RLE ----------
+    function zaehle(t) { const m = new Map(); for (const z of t) m.set(z, (m.get(z) || 0) + 1); return m; }
+    function huffman(m) {
+      let k = []; m.forEach(function (n, z) { k.push({ n: n, z: z }); });
+      if (k.length === 1) return { baum: { n: k[0].n, l: k[0], r: null }, codes: new Map([[k[0].z, '0']]) };
+      k.sort(function (a, b) { return a.n - b.n || (a.z < b.z ? -1 : 1); });
+      let id = 0;
+      while (k.length > 1) { const a = k.shift(), b = k.shift(), neu = { n: a.n + b.n, l: a, r: b, id: id++ }; let i = 0; while (i < k.length && k[i].n <= neu.n) i++; k.splice(i, 0, neu); }
+      const codes = new Map(); (function lauf(x, c) { if (x.z !== undefined) { codes.set(x.z, c || '0'); return; } lauf(x.l, c + '0'); lauf(x.r, c + '1'); })(k[0], '');
+      return { baum: k[0], codes: codes };
+    }
+    function lz77(t, fenster) {
+      const z = Array.from(t), tok = []; let i = 0;
+      while (i < z.length) {
+        let bl = 0, bd = 0;
+        for (let j = Math.max(0, i - fenster); j < i; j++) { let l = 0; while (i + l < z.length && z[j + l] === z[i + l] && l < 258) l++; if (l > bl) { bl = l; bd = i - j; } }
+        if (bl >= 3) { tok.push([bd, bl]); i += bl; } else { tok.push(z[i]); i++; }
+      }
+      return tok;
+    }
+    function rle(t) { const z = Array.from(t), l = []; let i = 0; while (i < z.length) { let n = 1; while (i + n < z.length && z[i + n] === z[i] && n < 255) n++; l.push([n, z[i]]); i += n; } return l; }
+    function entropie(m, n) { let h = 0; m.forEach(function (c) { const p = c / n; h -= p * Math.log2(p); }); return h; }
+
+    function rechne(e) {
+      const r = {};
+      r.k = e.s0 / e.s1; r.spar = (1 - e.s1 / e.s0) * 100; r.bits = Math.log2(e.n); r.bitsGanz = Math.ceil(r.bits - 1e-9);
+      r.h = hb(e.p); r.info = -Math.log2(e.p);
+      return r;
+    }
+    const seite = R.seite({
+      titel: 'Datenkompression verstehen',
+      einleitung: 'Warum lassen sich Text und Tabellen stark komprimieren, Fotos und Zufallsdaten aber kaum? Entropie, Huffman-Codierung, Lauflängen und LZ77 – die Bausteine von ZIP, PNG, JPEG und MP3 – mit Rechner und Labor für deinen eigenen Text.',
+      hilfe: 'Beispiel: Ein Textdokument von 12 MB wird als ZIP 3 MB groß.',
+      gruppen: [
+        { titel: 'Kompression', farbe: BLAU, felder: [
+          { k: 's0', tex: 'S_0', name: 'Größe vorher', e: 'MB', min: 0.001, max: 1e9 },
+          { k: 's1', tex: 'S_1', name: 'Größe nachher', e: 'MB', min: 0.001, max: 1e9 }
+        ] },
+        { titel: 'Information', farbe: ROT, felder: [
+          { k: 'n', tex: 'N', name: 'Anzahl verschiedener Zeichen', e: '', min: 2, max: 1e12 },
+          { k: 'p', tex: 'p', name: 'Wahrscheinlichkeit eines Zeichens (bzw. einer 1)', e: '', min: 0.0001, max: 0.9999 }
+        ] }
+      ],
+      beispiel: { s0: 12, s1: 3, n: 26, p: 0.1 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (e.s1 > e.s0) H.meldung('Die Datei ist größer geworden – das passiert bei bereits komprimierten oder zufälligen Daten.', true);
+        H.kacheln([
+          [zz(r.k, 2) + ' : 1', 'Kompressionsfaktor', BLAU],
+          [zz(r.spar, 1) + ' %', 'Einsparung', GRUEN],
+          [zz(r.bits, 3) + ' bit', 'je Zeichen bei ' + zz(e.n, 0) + ' gleich häufigen Zeichen (ganzzahlig ' + r.bitsGanz + ' bit)', ORANGE],
+          [zz(r.info, 3) + ' bit', 'Informationsgehalt eines Zeichens mit p = ' + zz(e.p, 4), ROT],
+          [zz(r.h, 3) + ' bit', 'Entropie einer 0/1-Quelle mit p = ' + zz(e.p, 4), LILA]
+        ]);
+      },
+      weg: function (r, e) {
+        return [
+          ['Kompressionsfaktor', 'k = \\frac{S_0}{S_1} = \\frac{' + tz(e.s0, 3) + '}{' + tz(e.s1, 3) + '} = ' + E(tz(r.k, 2))],
+          ['Einsparung', 'e = \\left(1 - \\frac{S_1}{S_0}\\right) \\cdot 100\\,\\% = ' + E(tz(r.spar, 1) + '\\,\\%')],
+          ['Bit je Zeichen (gleich häufig)', 'b = \\log_2 N = \\log_2 ' + tz(e.n, 0) + ' = ' + E(tz(r.bits, 3) + '\\,\\text{bit}')],
+          ['Informationsgehalt', 'I = \\log_2 \\frac{1}{p} = \\log_2 \\frac{1}{' + tz(e.p, 4) + '} = ' + E(tz(r.info, 3) + '\\,\\text{bit}')],
+          ['Entropie zweier Zeichen', 'H = -p \\log_2 p - (1-p) \\log_2 (1-p) = ' + E(tz(r.h, 3) + '\\,\\text{bit}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Kompressionsfaktor', hilfe: 'Größen in derselben Einheit.',
+          felder: [{ k: 'k', tex: 'k', name: 'Kompressionsfaktor', e: '', min: 1, max: 1000 }, { k: 'S0', tex: 'S_0', name: 'Größe vorher', e: 'MB', min: 0.01, max: 1e6 }, { k: 'S1', tex: 'S_1', name: 'Größe nachher', e: 'MB', min: 0.001, max: 1e6 }],
+          beispiel: { S0: 12, S1: 3 },
+          gleichungen: [{ name: 'Faktor', v: ['k', 'S0', 'S1'], f: function (q) { return [q.k * q.S1, q.S0]; },
+            loese: { k: function (q) { return q.S0 / q.S1; }, S0: function (q) { return q.k * q.S1; }, S1: function (q) { return q.S0 / q.k; } },
+            weg: function (k, q) { return k === 'k' ? 'k = \\frac{S_0}{S_1} = \\frac{' + tz(q.S0, 2) + '}{' + tz(q.S1, 3) + '} = ' + E(tz(q.k, 2)) : k === 'S1' ? 'S_1 = \\frac{S_0}{k} = ' + E(tz(q.S1, 3) + '\\,\\text{MB}') : 'S_0 = k \\cdot S_1 = ' + E(tz(q.S0, 2) + '\\,\\text{MB}'); } }] },
+        { titel: 'Informationsgehalt', hilfe: 'I in bit; p Wahrscheinlichkeit zwischen 0 und 1.',
+          felder: [{ k: 'I', tex: 'I', name: 'Informationsgehalt', e: 'bit', min: 0.01, max: 40 }, { k: 'p', tex: 'p', name: 'Wahrscheinlichkeit', e: '', min: 0.0001, max: 0.99 }],
+          beispiel: { p: 0.125 },
+          gleichungen: [{ name: 'Information', v: ['I', 'p'], f: function (q) { return [q.I, -Math.log2(q.p)]; },
+            loese: { I: function (q) { return -Math.log2(q.p); }, p: function (q) { return Math.pow(2, -q.I); } },
+            weg: function (k, q) { return k === 'I' ? 'I = \\log_2 \\frac{1}{p} = \\log_2 \\frac{1}{' + tz(q.p, 4) + '} = ' + E(tz(q.I, 3) + '\\,\\text{bit}') : 'p = 2^{-I} = 2^{-' + tz(q.I, 3) + '} = ' + E(tz(q.p, 4)); } }] },
+        { titel: 'Bit für einen Zeichenvorrat', hilfe: 'N gleich häufige Zeichen.',
+          felder: [{ k: 'b', tex: 'b', name: 'Bit je Zeichen', e: 'bit', min: 1, max: 40 }, { k: 'N', tex: 'N', name: 'Anzahl der Zeichen', e: '', min: 2, max: 1e12, n: 0 }],
+          beispiel: { N: 64 },
+          gleichungen: [{ name: 'Zeichenvorrat', v: ['b', 'N'], f: function (q) { return [q.b, Math.log2(q.N)]; },
+            loese: { b: function (q) { return Math.log2(q.N); }, N: function (q) { return Math.pow(2, q.b); } },
+            weg: function (k, q) { return k === 'b' ? 'b = \\log_2 N = \\log_2 ' + tz(q.N, 0) + ' = ' + E(tz(q.b, 3) + '\\,\\text{bit}') : 'N = 2^b = 2^{' + tz(q.b, 2) + '} = ' + E(tz(q.N, 0)); } }] }
+      ],
+      sammlung: [
+        ['Kompressionsfaktor', 'k = \\frac{S_0}{S_1}', ''],
+        ['Einsparung', 'e = 1 - \\frac{S_1}{S_0}', ''],
+        ['Informationsgehalt', 'I = \\log_2 \\frac{1}{p}', 'seltene Zeichen tragen viel Information'],
+        ['Entropie', 'H = -\\sum_i p_i \\cdot \\log_2 p_i', 'untere Grenze für die mittlere Codelänge'],
+        ['Mittlere Codelänge', '\\bar{L} = \\sum_i p_i \\cdot l_i', 'Huffman: H ≤ L̄ < H + 1'],
+        ['Bit für N Zeichen', 'b = \\lceil \\log_2 N \\rceil', 'ASCII: 128 Zeichen → 7 bit'],
+        ['Redundanz', 'R = \\bar{L} - H', '']
+      ],
+      quellen: 'Grundlagen nach C. E. Shannon (1948), D. A. Huffman (1952), J. Ziv und A. Lempel (1977). Die Eigenschaften der Archivformate sind allgemeine Tendenzen; Ergebnisse hängen von Daten und Einstellungen ab.',
+      bild: { titel: 'Animation', label: 'Entropie, LZ77 und Lauflängencodierung', animiert: true,
+        hoehe: function (B) { return B < 600 ? 380 : 320; },
+        hinweis: function (r, e) { return ({ entropie: 'Entropie einer Quelle mit zwei Zeichen: am größten (1 bit), wenn beide gleich wahrscheinlich sind; fast 0, wenn eines fast immer kommt. Der Punkt ist p = ' + zz(e.p, 4) + '.', lz: 'LZ77 läuft über „' + LZB + '“: Gelb ist der schon gelesene Text (Fenster), rot der gefundene Treffer.', rle: 'Eine Bildzeile mit wenigen langen Läufen wird kurz, eine mit vielen Wechseln wird länger als vorher.' })[ansicht]; },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); zeit += dt; ({ entropie: entropieBild, lz: lzBild, rle: rleBild })[ansicht](cx, B, H, r, e); } }
+    });
+    function entropieBild(cx, B, H, r, e) {
+      const pts = []; for (let i = 0; i <= 200; i++) { const p = i / 200; pts.push([p, hb(p)]); }
+      diagramm(cx, 8, 8, B - 16, H - 16, [{ name: 'H(p) in bit', farbe: LILA, punkte: pts, punkt: [e.p, r.h] }], { titel: 'Entropie einer 0/1-Quelle', xl: 'Wahrscheinlichkeit p', xr: [0, 1], yr: [0, 1.1] });
+    }
+    function lzBild(cx, B, H) {
+      const z = Array.from(LZB), tok = lz77(LZB, 32), schritt = Math.floor(zeit / 1.2) % (tok.length + 2);
+      let pos = 0; for (let i = 0; i < Math.min(schritt, tok.length); i++) pos += typeof tok[i] === 'string' ? 1 : tok[i][1];
+      const w = Math.min(22, (B - 20) / z.length), x0 = 10, y0 = 40;
+      const t = tok[schritt];
+      z.forEach(function (c, i) {
+        let f = F('--flaeche'); if (i < pos) f = 'rgba(224,168,0,.3)';
+        if (t && typeof t !== 'string') { if (i >= pos - t[0] && i < pos - t[0] + t[1]) f = 'rgba(192,57,43,.45)'; if (i >= pos && i < pos + t[1]) f = 'rgba(46,139,87,.45)'; }
+        if (t && typeof t === 'string' && i === pos) f = 'rgba(46,139,87,.45)';
+        cx.fillStyle = f; cx.fillRect(x0 + i * w, y0, w - 1, w * 1.4); T(cx, c === ' ' ? '␣' : c, x0 + i * w + w / 2, y0 + w * 0.7, 'center', Math.min(14, w * 0.7), true);
+      });
+      T(cx, t ? (typeof t === 'string' ? 'Kein Treffer ≥ 3 Zeichen: Zeichen „' + t + '“ direkt speichern' : 'Treffer: ' + t[1] + ' Zeichen, ' + t[0] + ' Stellen zurück → (' + t[0] + ', ' + t[1] + ')') : 'fertig', x0, 20, 'left', 12, true);
+      // Token-Liste
+      let x = x0, y = y0 + w * 1.4 + 36;
+      for (let i = 0; i < Math.min(schritt + 1, tok.length); i++) {
+        const s = typeof tok[i] === 'string' ? (tok[i] === ' ' ? '␣' : tok[i]) : '(' + tok[i][0] + ',' + tok[i][1] + ')'; cx.font = '600 12px sans-serif'; const bw = cx.measureText(s).width + 10;
+        if (x + bw > B - 10) { x = x0; y += 24; }
+        cx.fillStyle = typeof tok[i] === 'string' ? 'rgba(107,119,133,.2)' : 'rgba(192,57,43,.2)'; cx.fillRect(x, y - 10, bw - 2, 20); T(cx, s, x + 4, y, 'left', 12, true); x += bw;
+      }
+      T(cx, z.length + ' Zeichen → ' + tok.length + ' Tokens', x0, H - 14, 'left', 11, true, GRAU);
+    }
+    function rleBild(cx, B, H) {
+      const zeilen = [['wenige lange Läufe', 'WWWWWWWWWWWWWWWWBBBBBBBBBWWWWWWWWWWWWBBBBBBWWWWWWWW'], ['viele Wechsel', 'WBWBWWBWBBWBWBWWBBWBWBWBWWBWBWBBWBWBWWBWBWBWBBWBWB']];
+      zeilen.forEach(function (z, k) {
+        const y = 30 + k * (H / 2 - 10), n = z[1].length, w = (B - 20) / n, l = rle(z[1]), hell = Math.floor(zeit * 8) % n;
+        T(cx, z[0], 10, y - 10, 'left', 11, true);
+        Array.from(z[1]).forEach(function (c, i) { cx.fillStyle = c === 'B' ? '#1B1E21' : '#F1F3F5'; cx.fillRect(10 + i * w, y, w, 26); });
+        cx.strokeStyle = ORANGE; cx.lineWidth = 2; cx.strokeRect(10 + hell * w, y, w, 26);
+        const code = l.map(function (q) { return q[0] + q[1]; }).join(' ');
+        T(cx, code.length > (B - 20) / 7 ? code.slice(0, Math.floor((B - 20) / 7) - 1) + '…' : code, 10, y + 44, 'left', 11, false, F('--text'));
+        T(cx, n + ' Pixel → ' + l.length + ' Läufe (je 1 Byte Anzahl + 1 Byte Farbe = ' + (l.length * 2) + ' Byte statt ' + n + ' Byte)', 10, y + 62, 'left', 11, true, l.length * 2 < n ? GRUEN : ROT);
+      });
+    }
+    ansicht = (ansichten(seite, [['entropie', 'Entropie'], ['lz', 'LZ77'], ['rle', 'Lauflängen']], 'entropie', function (a) { ansicht = a; }))();
+
+    // ---------- Labor ----------
+    const $ = function (id) { return document.getElementById(id); };
+    const BSP = { satz: 'Fischers Fritz fischt frische Fische, frische Fische fischt Fischers Fritz. Die Datenkompression nutzt Wiederholungen und ungleiche Häufigkeiten aus.', abra: 'ABRAKADABRA ABRAKADABRA ABRAKADABRA', zeile: 'WWWWWWWWWWWWWWWWWWWWBBBBBBWWWWWWWWWWWWWWWWWWWWWWWWBBBBBBBBBBBBWWWWWWWWWWWWWWWWWWWWWWWWWW', zufall: '' };
+    (function () { const z = zufall(11); let s = ''; const a = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789+/'; for (let i = 0; i < 150; i++) s += a[Math.floor(z() * 64)]; BSP.zufall = s; })();
+    let BAUM = null;
+    function zelle(tr, x, zahl) { const td = document.createElement('td'); if (zahl) td.className = 'zahl'; td.textContent = x; tr.append(td); }
+    function sichtbar(c) { return c === ' ' ? '␣' : c === '\n' ? '↵' : c === '\t' ? '⇥' : c; }
+    function auswerten() {
+      const t = $('kText').value.slice(0, 2000), z = Array.from(t), n = z.length, tab = $('kTab'), codes = $('kCodes');
+      tab.textContent = ''; codes.textContent = ''; $('kLz').textContent = ''; $('kBits').textContent = ''; $('kRle').textContent = '';
+      if (!n) { BAUM = null; zeichneBaum(); return; }
+      const m = zaehle(t), h = entropie(m, n), hf = huffman(m); BAUM = hf.baum;
+      let hb2 = 0; hf.codes.forEach(function (c, s) { hb2 += c.length * m.get(s); });
+      const tok = lz77(t, 255), lzBits = tok.reduce(function (s, k) { return s + (typeof k === 'string' ? 9 : 1 + 8 + 8); }, 0), rl = rle(t), rleBits = rl.length * 16;
+      const zeilen = [['unkomprimiert (8 bit je Zeichen)', n * 8], ['Entropie (untere Grenze für Huffman)', h * n], ['Huffman (ohne die Codetabelle)', hb2], ['LZ77 (1 Kennbit + 8 bit Zeichen oder 8 + 8 bit Verweis)', lzBits], ['Lauflänge (8 bit Anzahl + 8 bit Zeichen)', rleBits]];
+      zeilen.forEach(function (q) { const tr = document.createElement('tr'); zelle(tr, q[0]); zelle(tr, zz(q[1] / 8, 1) + ' Byte', true); zelle(tr, zz(q[1] / n, 2), true); zelle(tr, zz((q[1] / (n * 8)) * 100, 0) + ' %', true); tab.append(tr); });
+      const liste = []; m.forEach(function (c, s) { liste.push([s, c]); }); liste.sort(function (a, b) { return b[1] - a[1]; });
+      liste.slice(0, 40).forEach(function (q) { const tr = document.createElement('tr'); zelle(tr, sichtbar(q[0])); zelle(tr, String(q[1]), true); zelle(tr, zz(q[1] / n * 100, 1) + ' %', true); zelle(tr, hf.codes.get(q[0])); zelle(tr, zz(-Math.log2(q[1] / n), 2) + ' bit', true); codes.append(tr); });
+      if (liste.length > 40) { const tr = document.createElement('tr'); zelle(tr, '… ' + (liste.length - 40) + ' weitere'); codes.append(tr); }
+      $('kLz').textContent = tok.slice(0, 300).map(function (k) { return typeof k === 'string' ? sichtbar(k) : '(' + k[0] + ',' + k[1] + ')'; }).join(' ') + (tok.length > 300 ? ' …' : '');
+      $('kBits').textContent = z.slice(0, 200).map(function (c) { return hf.codes.get(c); }).join(' ') + (n > 200 ? ' …' : '');
+      $('kRle').textContent = rl.slice(0, 200).map(function (q) { return q[0] + sichtbar(q[1]); }).join(' ') + (rl.length > 200 ? ' …' : '');
+      zeichneBaum();
+    }
+    function zeichneBaum() {
+      const c = $('kBaum'), d = Math.min(2, window.devicePixelRatio || 1), B = c.clientWidth || 600;
+      // Blätter zählen und Tiefe
+      let blaetter = 0, tiefe = 0; (function lauf(x, t) { if (!x) return; tiefe = Math.max(tiefe, t); if (x.z !== undefined) { blaetter++; return; } lauf(x.l, t + 1); lauf(x.r, t + 1); })(BAUM, 0);
+      const H = Math.min(520, 60 + tiefe * 44);
+      if (c.width !== Math.round(B * d) || c.height !== Math.round(H * d)) { c.width = Math.round(B * d); c.height = Math.round(H * d); c.style.height = H + 'px'; }
+      const g = c.getContext('2d'); g.setTransform(d, 0, 0, d, 0, 0); g.clearRect(0, 0, B, H);
+      if (!BAUM) { T(g, 'Kein Text.', 10, 20, 'left', 12, false, GRAU); return; }
+      const dy = (H - 50) / Math.max(1, tiefe); let nr = 0; const bw = (B - 20) / Math.max(1, blaetter);
+      (function lauf(x, t) {
+        if (x.z !== undefined) { x.px = 10 + (nr + 0.5) * bw; nr++; } else { lauf(x.l, t + 1); if (x.r) lauf(x.r, t + 1); x.px = x.r ? (x.l.px + x.r.px) / 2 : x.l.px; }
+        x.py = 24 + t * dy;
+      })(BAUM, 0);
+      (function kanten(x) { if (x.z !== undefined) return; [x.l, x.r].forEach(function (k, i) { if (!k) return; strecke(g, x.px, x.py, k.px, k.py, F('--linie'), 1.5); if (bw > 10) T(g, String(i), (x.px + k.px) / 2 + (i ? 5 : -5), (x.py + k.py) / 2, i ? 'left' : 'right', 9, true, i ? BLAU : ROT); kanten(k); }); })(BAUM);
+      (function knoten(x) { if (x.z !== undefined) { kreis(g, x.px, x.py, Math.min(11, bw * 0.45), 'rgba(46,139,87,.85)'); if (bw > 9) T(g, sichtbar(x.z), x.px, x.py, 'center', Math.min(12, bw * 0.6), true, '#fff'); if (bw > 18) T(g, String(x.n), x.px, x.py + 16, 'center', 9, false, GRAU); return; } kreis(g, x.px, x.py, 4, F('--text')); knoten(x.l); if (x.r) knoten(x.r); })(BAUM);
+      T(g, 'Huffman-Baum: links 0, rechts 1; grün die Zeichen mit ihrer Anzahl', 10, H - 8, 'left', 10, false, GRAU);
+    }
+    $('kBsp').addEventListener('change', function () { $('kText').value = BSP[this.value] || ''; auswerten(); });
+    let warte = 0; $('kText').addEventListener('input', function () { clearTimeout(warte); warte = setTimeout(auswerten, 200); });
+    window.addEventListener('resize', zeichneBaum);
+    $('kText').value = BSP.satz; auswerten();
+    const main = document.querySelector('main'), loeser = main.querySelector('.loeser'), faq = main.querySelector('.seo-info');
+    if (loeser) loeser.parentNode.insertBefore($('labor'), loeser);
+    main.insertBefore($('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

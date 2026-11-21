@@ -226,6 +226,42 @@
    "beschreibung": "Mehrwertsteuer herausrechnen und aufschlagen, Skonto als Jahreszins, Rabatt und Skonto hintereinander."
   },
   {
+   "datei": "aufgabenblaetter/it/audioformate/01-bitrate-groesse-klang.md",
+   "thema": "it/audioformate.html",
+   "titel": "Audioformate – Bitrate, Größe und Klang",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "PCM-Datenrate, Dateigrößen von WAV, FLAC, MP3 und Opus, Kompressionsfaktor, Abtasttheorem und Aliasing, Dynamikumfang, Hörlabor mit Spektrogramm und ABX-Blindtest."
+  },
+  {
+   "datei": "aufgabenblaetter/it/bildformate/01-pixel-formate-jpeg.md",
+   "thema": "it/bildformate.html",
+   "titel": "Bildformate – Pixel, Farbtiefe und JPEG",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Unkomprimierte Bildgröße, Farbanzahl, Druckgröße, Formatwahl je Motiv, JPEG mit DCT und Quantisierung, Generationsverlust, Bildlabor mit Messung von Größe und PSNR."
+  },
+  {
+   "datei": "aufgabenblaetter/it/kompression/01-entropie-huffman-lz77.md",
+   "thema": "it/kompression.html",
+   "titel": "Datenkompression – Entropie, Huffman und LZ77",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Informationsgehalt und Entropie, Bit für einen Zeichenvorrat, Huffman-Baum von Hand, Lauflängencodierung, LZ77-Tokens, Kompressionsfaktor, Grenzen der Kompression."
+  },
+  {
+   "datei": "aufgabenblaetter/it/videoformate/01-datenrate-codecs-gop.md",
+   "thema": "it/videoformate.html",
+   "titel": "Videoformate – Datenrate, Codecs und Bildgruppen",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Unkomprimierte Videodatenrate, Farbunterabtastung, Kompressionsfaktor, Dateigröße und Datenvolumen, Vergleich der Codecs, I-, P- und B-Bilder, Videolabor mit Bewegungsschätzung und Paketverlust."
+  },
+  {
    "datei": "aufgabenblaetter/mechanik/anhalteweg/01-reaktion-bremsen.md",
    "thema": "mechanik/anhalteweg.html",
    "titel": "Anhalteweg – Reaktionsweg und Bremsweg",

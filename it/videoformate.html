@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Videoformate und Codecs im Vergleich: H.264, H.265, VP9, AV1 – Formeln &amp; Rechner</title>
+  <meta name="description" content="H.264, H.265, VP9 und AV1: Datenrate, Dateigröße und Datenvolumen für jede Auflösung und Bildrate. Videolabor mit echter Bewegungsschätzung, I- und P-Bildern und Paketverlust, dazu Bildgruppen, Auflösungen und Farbunterabtastung als Animation.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/it/videoformate.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Videoformate und Codecs im Vergleich: H.264, H.265, VP9, AV1">
+  <meta property="og:description" content="H.264, H.265, VP9 und AV1: Datenrate, Dateigröße und Datenvolumen für jede Auflösung und Bildrate. Videolabor mit echter Bewegungsschätzung, I- und P-Bildern und Paketverlust, dazu Bildgruppen, Auflösungen und Farbunterabtastung als Animation.">
+  <meta property="og:url" content="https://tools.pr1m3.de/it/videoformate.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Videoformate und Codecs im Vergleich: H.264, H.265, VP9, AV1">
+  <meta name="twitter:description" content="H.264, H.265, VP9 und AV1: Datenrate, Dateigröße und Datenvolumen für jede Auflösung und Bildrate. Videolabor mit echter Bewegungsschätzung, I- und P-Bildern und Paketverlust, dazu Bildgruppen, Auflösungen und Farbunterabtastung als Animation.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/videoformate.html#seite","name":"Videoformate und Codecs im Vergleich: H.264, H.265, VP9, AV1","url":"https://tools.pr1m3.de/it/videoformate.html","inLanguage":"de","description":"H.264, H.265, VP9 und AV1: Datenrate, Dateigröße und Datenvolumen für jede Auflösung und Bildrate. Videolabor mit echter Bewegungsschätzung, I- und P-Bildern und Paketverlust, dazu Bildgruppen, Auflösungen und Farbunterabtastung als Animation.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/videoformate.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/videoformate.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Videoformate und Codecs im Vergleich: H.264, H.265, VP9, AV1","item":"https://tools.pr1m3.de/it/videoformate.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/videoformate.html#fragen","mainEntity":[{"@type":"Question","name":"Warum ruckelt ein Video, obwohl die Leitung schnell genug ist?","acceptedAnswer":{"@type":"Answer","text":"Oft fehlt ein Hardware-Decoder für den Codec: Dann muss der Prozessor decodieren, und gerade bei AV1 oder H.265 in 4K schafft er das nicht immer. Auch kurzzeitige Datenraten-Spitzen bei variabler Rate können den Puffer leeren."}},{"@type":"Question","name":"Wie viel Datenvolumen braucht eine Stunde Video?","acceptedAnswer":{"@type":"Answer","text":"Grob: 1080p mit H.264 etwa 2 bis 3 GB, mit AV1 oder H.265 etwa 1 bis 1,5 GB; 4K mit H.265 etwa 7 bis 10 GB. Der Rechner oben schätzt es für deine Einstellungen."}},{"@type":"Question","name":"Warum entstehen bei schnellen Bewegungen Klötzchen?","acceptedAnswer":{"@type":"Answer","text":"Bei begrenzter Datenrate reicht der Platz nicht, um die großen Unterschiede zwischen den Bildern fein genug zu speichern. Der Codierer quantisiert gröber, Blockgrenzen werden sichtbar. Geht zusätzlich ein Paket verloren, wandern Fehler mit den Bewegungsvektoren durch das Bild, bis das nächste I-Bild kommt."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/videoformate.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+    .labor-leiste { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 8px 0; }
+    .labor-leiste label { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; max-width: 100%; }
+    .labor-leiste input[type=range] { width: 140px; min-height: 30px; }
+    .labor-leiste input[type=checkbox] { width: 20px; height: 20px; }
+    .labor-leiste output { font-family: var(--technik); font-weight: 700; min-width: 2.5em; }
+    .labor-leiste .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .labor-bild { width: 100%; display: block; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); }
+    .labor-info { font-family: var(--technik); font-weight: 600; margin: 6px 0; min-height: 1.4em; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="labor" aria-labelledby="h-labor">
+      <h2 id="h-labor">Videolabor: ein Codierer zum Zuschauen</h2>
+      <p>Ein kleiner, vollständiger Videocodierer: Er sucht für jeden 16 × 16-Block, wohin er sich bewegt hat (Bewegungsschätzung), speichert nur den Bewegungsvektor und den quantisierten Unterschied (P-Bild) und in festen Abständen ein ganzes Bild (I-Bild). Der Decodierer rechnet daraus das Video zurück. Simuliere einen Paketverlust und beobachte, wie sich der Fehler bis zum nächsten I-Bild fortpflanzt.</p>
+      <div class="labor-leiste">
+        <label>Quantisierung <input type="range" id="vQ" min="1" max="40" value="10" data-nicht-merken><output id="vQa">10</output></label>
+        <label>GOP-Länge <input type="range" id="vG" min="1" max="60" value="25" data-nicht-merken><output id="vGa">25</output></label>
+        <label><input type="checkbox" id="vMv" checked data-nicht-merken> Bewegungsvektoren</label>
+        <button type="button" class="knopf" id="vVerlust">Paket verlieren</button>
+        <button type="button" class="knopf-leise" id="vPause" aria-pressed="false">Pause</button>
+      </div>
+      <canvas id="vBild" class="labor-bild" role="img" aria-label="Links das Originalvideo, rechts das decodierte Video mit Bewegungsvektoren, darunter die Bits je Bild"></canvas>
+      <p class="labor-info" id="vInfo" role="status"></p>
+    </section>
+
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Codecs und Container</h2>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Codec</th><th>seit</th><th>Datenrate gegenüber H.264</th><th>Lizenz</th><th>typisch</th></tr></thead><tbody>
+        <tr><td>MPEG-2</td><td class="zahl">1995</td><td class="zahl">≈ 200 %</td><td>Patente ausgelaufen</td><td>DVD, älteres Fernsehen</td></tr>
+        <tr><td>H.264 / AVC</td><td class="zahl">2003</td><td class="zahl">100 %</td><td>Patentpool</td><td>läuft überall, Videokonferenzen, Blu-ray</td></tr>
+        <tr><td>H.265 / HEVC</td><td class="zahl">2013</td><td class="zahl">≈ 50 – 60 %</td><td>mehrere Patentpools</td><td>4K, UHD-Blu-ray, Kameras, Handys</td></tr>
+        <tr><td>VP9</td><td class="zahl">2013</td><td class="zahl">≈ 60 – 65 %</td><td>lizenzfrei</td><td>Videoplattformen im Web</td></tr>
+        <tr><td>AV1</td><td class="zahl">2018</td><td class="zahl">≈ 45 – 50 %</td><td>lizenzfrei</td><td>Streaming, neue Geräte mit Hardware-Decoder</td></tr>
+        <tr><td>H.266 / VVC</td><td class="zahl">2020</td><td class="zahl">≈ 30 – 35 %</td><td>Patentpools</td><td>noch wenig verbreitet</td></tr>
+      </tbody></table></div>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Container und Codec</h3><p>MP4, MKV, WebM oder MOV sind Container: Sie verpacken Videospur, Tonspuren, Untertitel und Kapitel. Wie das Bild komprimiert ist, sagt erst der Codec (z. B. H.264 oder AV1). Eine „MP4-Datei“ kann also ganz unterschiedliche Codecs enthalten.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>I-, P- und B-Bilder</h3><p>I-Bilder sind für sich allein decodierbar, aber groß. P-Bilder sagen nur, was sich gegenüber einem früheren Bild verändert hat, B-Bilder dürfen auch auf spätere Bilder verweisen und sind am kleinsten. Eine GOP (Group of Pictures) beginnt mit einem I-Bild; nur dort kann man ohne Vorgeschichte einsteigen.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Woher die Ersparnis kommt</h3><p>Räumlich: Wie bei JPEG werden Blöcke transformiert und quantisiert. Zeitlich: Aufeinanderfolgende Bilder sind fast gleich – mit Bewegungsvektoren wird nur übertragen, wohin sich Bildteile verschieben, plus ein kleiner Rest. Neuere Codecs haben flexiblere Blockgrößen, mehr Vorhersagerichtungen und bessere Filter.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Konstante oder variable Rate</h3><p>Mit konstanter Datenrate (CBR) schwankt die Qualität: Actionszenen werden blockig. Mit konstanter Qualität (CRF, CQ) schwankt die Datenrate: Ruhige Szenen brauchen wenig, schnelle viel. Für Archiv und Download ist konstante Qualität sinnvoll, für Live-Übertragungen eine begrenzte Rate.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum ruckelt ein Video, obwohl die Leitung schnell genug ist?</summary><p>Oft fehlt ein Hardware-Decoder für den Codec: Dann muss der Prozessor decodieren, und gerade bei AV1 oder H.265 in 4K schafft er das nicht immer. Auch kurzzeitige Datenraten-Spitzen bei variabler Rate können den Puffer leeren.</p></details>
+        <details><summary>Wie viel Datenvolumen braucht eine Stunde Video?</summary><p>Grob: 1080p mit H.264 etwa 2 bis 3 GB, mit AV1 oder H.265 etwa 1 bis 1,5 GB; 4K mit H.265 etwa 7 bis 10 GB. Der Rechner oben schätzt es für deine Einstellungen.</p></details>
+        <details><summary>Warum entstehen bei schnellen Bewegungen Klötzchen?</summary><p>Bei begrenzter Datenrate reicht der Platz nicht, um die großen Unterschiede zwischen den Bildern fein genug zu speichern. Der Codierer quantisiert gröber, Blockgrenzen werden sichtbar. Geht zusätzlich ein Paket verloren, wandern Fehler mit den Bewegungsvektoren durch das Bild, bis das nächste I-Bild kommt.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const AUFL = { p480: ['480p (SD)', 854, 480], p720: ['720p (HD)', 1280, 720], p1080: ['1080p (Full HD)', 1920, 1080], p1440: ['1440p (QHD)', 2560, 1440], p2160: ['2160p (4K UHD)', 3840, 2160], p4320: ['4320p (8K)', 7680, 4320] };
+    const CODEC = { mpeg2: ['MPEG-2', 2], h264: ['H.264 / AVC', 1], h265: ['H.265 / HEVC', 0.58], vp9: ['VP9', 0.63], av1: ['AV1', 0.48], vvc: ['H.266 / VVC', 0.35] };
+    const STUFE = { niedrig: ['niedrig (Mobil, Vorschau)', 0.5], mittel: ['mittel (Streaming)', 1], hoch: ['hoch (Archiv, Download)', 1.8] };
+    const SUB = { s420: ['4:2:0', 1.5, 1], s422: ['4:2:2', 2, 1.2], s444: ['4:4:4', 3, 1.5] };
+    let ansicht = 'gop', takt = uhr(), zeit = 0;
+    function rate(e, codec, stufe) {
+      const A = AUFL[e.aufl] || AUFL.p1080, px = A[1] * A[2], S = SUB[e.sub] || SUB.s420;
+      const bpp = 0.07 * CODEC[codec][1] * STUFE[stufe][1] * Math.pow(px / 2073600, -0.25) * S[2];
+      return bpp * px * 30 * Math.pow(e.fps / 30, 0.75) / 1e6;
+    }
+    function rechne(e) {
+      const A = AUFL[e.aufl] || AUFL.p1080, S = SUB[e.sub] || SUB.s420, r = { A: A };
+      r.px = A[1] * A[2]; r.roh = r.px * e.fps * (+e.tiefe) * S[1] / 1e6;
+      r.R = rate(e, e.codec, e.stufe); r.k = r.roh / r.R; r.bpp = r.R * 1e6 / (r.px * e.fps);
+      r.gb = r.R * e.dauer * 60 / 8000; r.stunde = r.R * 3600 / 8000; r.std = e.speicher / r.stunde;
+      r.reicht = r.R * 1.25 <= e.leitung;
+      return r;
+    }
+    function texRate(v) { return tz(v, v < 10 ? 2 : 1); }
+    // ---------- Animationen ----------
+    function gopBild(cx, B, H, r, e) {
+      const n = Math.max(1, Math.min(60, Math.round(e.gop))), bf = Math.max(0, Math.min(4, Math.round(e.bf))), zeige = Math.min(n * 2, B < 600 ? 18 : 30);
+      const x0 = 20, w = (B - 40) / zeige, y1 = H - 70, typen = [];
+      for (let i = 0; i < zeige; i++) { const k = i % n; typen.push(k === 0 ? 'I' : (bf > 0 && k % (bf + 1) !== 0 ? 'B' : 'P')); }
+      const groesse = { I: 1, P: 0.32, B: 0.14 }, farbe = { I: ROT, P: BLAU, B: GRUEN }, aktiv = Math.floor(zeit * 3) % zeige;
+      typen.forEach(function (t, i) {
+        const h = (y1 - 50) * groesse[t], x = x0 + i * w;
+        cx.globalAlpha = i === aktiv ? 1 : 0.7; cx.fillStyle = farbe[t]; cx.fillRect(x + 2, y1 - h, w - 4, h); cx.globalAlpha = 1;
+        T(cx, t, x + w / 2, y1 + 12, 'center', w > 14 ? 11 : 8, true, farbe[t]);
+      });
+      // Bezüge des aktiven Bilds
+      const t = typen[aktiv], xa = x0 + aktiv * w + w / 2;
+      const bezug = function (j) { if (j < 0 || j >= zeige) return; const xb = x0 + j * w + w / 2; cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(xb, y1 + 22); cx.quadraticCurveTo((xa + xb) / 2, y1 + 50, xa, y1 + 22); cx.stroke(); kreis(cx, xa, y1 + 22, 3, F('--text')); };
+      if (t === 'P') { let j = aktiv - 1; while (j >= 0 && typen[j] === 'B') j--; bezug(j); }
+      if (t === 'B') { let j = aktiv - 1; while (j >= 0 && typen[j] === 'B') j--; bezug(j); let k = aktiv + 1; while (k < zeige && typen[k] === 'B') k++; bezug(k); }
+      strecke(cx, xa, 30, xa, y1, ORANGE, 1.5, [3, 3]);
+      T(cx, 'GOP ' + n + ' Bilder, ' + bf + ' B-Bild' + (bf === 1 ? '' : 'er') + ' zwischen I/P · rot I, blau P, grün B (Höhe ≈ Größe)', 10, 14, 'left', B < 600 ? 9 : 11, true);
+      T(cx, t === 'I' ? 'I-Bild: ganz codiert, Einstiegspunkt' : t === 'P' ? 'P-Bild: verweist auf das vorige I- oder P-Bild' : 'B-Bild: verweist auf das vorige und das nächste I/P-Bild', 10, H - 12, 'left', 11, true, farbe[t]);
+    }
+    function auflBild(cx, B, H) {
+      const ks = Object.keys(AUFL), max = AUFL.p4320, s = Math.min((B - 20) / max[1], (H - 30) / max[2]);
+      ks.slice().reverse().forEach(function (k, i) { const a = AUFL[k], w = a[1] * s, h = a[2] * s; cx.fillStyle = 'rgba(43,123,185,' + (0.08 + i * 0.07) + ')'; cx.fillRect(10, 20, w, h); cx.strokeStyle = BLAU; cx.lineWidth = 1.5; cx.strokeRect(10, 20, w, h); T(cx, a[0] + ' · ' + zz(a[1] * a[2] / 1e6, 1) + ' MP', 14 + (k === 'p480' ? w + 4 : 0), 20 + h - 9, 'left', B < 600 ? 9 : 11, true); });
+      T(cx, 'Flächen maßstäblich: 4K hat viermal so viele Pixel wie 1080p, 8K sechzehnmal so viele.', 10, 12, 'left', 10, false, GRAU);
+    }
+    function subBild(cx, B, H) {
+      const ks = Object.keys(SUB), klein = B < 600, g = klein ? Math.min((B - 40) / 4, (H - 120) / 3 / 2) : Math.min((B - 80) / 12, (H - 80) / 2);
+      ks.forEach(function (k, n) {
+        const ox = klein ? 20 : 20 + n * (4 * g + 20), oy = klein ? 30 + n * (2 * g + 34) : 40;
+        T(cx, SUB[k][0] + ' – ' + zz(SUB[k][1], 1) + ' Werte je Pixel', ox, oy - 12, 'left', 11, true);
+        for (let y = 0; y < 2; y++) for (let x = 0; x < 4; x++) { cx.fillStyle = 'rgba(107,119,133,.2)'; cx.fillRect(ox + x * g, oy + y * g, g - 2, g - 2); kreis(cx, ox + x * g + g * 0.3, oy + y * g + g * 0.35, g * 0.14, F('--text')); }
+        for (let y = 0; y < 2; y++) for (let x = 0; x < 4; x++) {
+          const da = k === 's444' || (k === 's422' && x % 2 === 0) || (k === 's420' && x % 2 === 0 && y === 0);
+          if (da) { const w = k === 's444' ? g : 2 * g, h = k === 's420' ? 2 * g : g; cx.strokeStyle = ROT; cx.lineWidth = 2; cx.strokeRect(ox + x * g + 1, oy + y * g + 1, w - 4, h - 4); kreis(cx, ox + x * g + g * 0.65, oy + y * g + g * 0.65, g * 0.12, ROT); kreis(cx, ox + x * g + g * 0.82, oy + y * g + g * 0.65, g * 0.12, BLAU); }
+        }
+      });
+      T(cx, 'schwarz: Helligkeit (Y) · rot/blau: Farbdifferenz (Cb, Cr) und ihr Gültigkeitsbereich', 10, H - 12, 'left', klein ? 9 : 10, false, GRAU);
+    }
+    function bewegBild(cx, B, H) {
+      const klein = B < 600, g = klein ? Math.min(B - 40, (H - 90) / 2) : Math.min((B - 60) / 2, H - 70), o1 = [20, 34], o2 = klein ? [20, 54 + g] : [40 + g, 34];
+      const t = (zeit * 0.5) % 1, bx = 0.2 + 0.4 * t, by = 0.3 + 0.2 * Math.sin(t * PI2);
+      [o1, o2].forEach(function (o, k) {
+        cx.fillStyle = F('--flaeche'); cx.fillRect(o[0], o[1], g, g); for (let i = 0; i <= 8; i++) { strecke(cx, o[0] + i * g / 8, o[1], o[0] + i * g / 8, o[1] + g, F('--linie'), 0.5); strecke(cx, o[0], o[1] + i * g / 8, o[0] + g, o[1] + i * g / 8, F('--linie'), 0.5); }
+        const x = k ? bx + 0.15 : bx, y = k ? by + 0.05 : by; kreis(cx, o[0] + (x + 0.06) * g, o[1] + (y + 0.06) * g, g * 0.06, ORANGE);
+        T(cx, k ? 'aktuelles Bild' : 'Referenzbild', o[0], o[1] - 10, 'left', 11, true);
+      });
+      const bxk = Math.floor((bx + 0.15) * 8) / 8, byk = Math.floor((by + 0.05) * 8) / 8;
+      cx.strokeStyle = ROT; cx.lineWidth = 2.5; cx.strokeRect(o2[0] + bxk * g, o2[1] + byk * g, g / 8, g / 8);
+      cx.strokeStyle = BLAU; cx.setLineDash([4, 3]); cx.strokeRect(o1[0] + (bxk - 0.15) * g, o1[1] + (byk - 0.05) * g, g / 8, g / 8); cx.setLineDash([]);
+      cx.strokeStyle = 'rgba(43,123,185,.3)'; cx.strokeRect(o1[0] + (bxk - 0.25) * g, o1[1] + (byk - 0.15) * g, g / 8 + 0.2 * g, g / 8 + 0.2 * g);
+      pfeil(cx, o1[0] + (bxk - 0.15 + 1 / 16) * g, o1[1] + (byk - 0.05 + 1 / 16) * g, o1[0] + (bxk + 1 / 16) * g, o1[1] + (byk + 1 / 16) * g, ROT, 2);
+      T(cx, 'Der rote Block wird im Suchbereich (hellblau) des Referenzbilds gesucht; gespeichert wird nur der Vektor und der kleine Rest.', 10, H - 12, 'left', klein ? 9 : 10, false, GRAU);
+    }
+
+    // =====================================================================
+    // Videolabor: Bewegungskompensation mit 16×16-Blöcken
+    // =====================================================================
+    const $ = function (id) { return document.getElementById(id); };
+    const VW = 192, VH = 112, BS = 16, SR = 6, FPS = 25;
+    const VL = { n: 0, enc: null, dec: null, mv: [], bits: [], verlust: false, verlustAktiv: 0, pause: false, uhr: 0, letzt: null, typ: [] };
+    const TEX = (function () { const z = zufall(4), t = new Float32Array(512 * VH); for (let i = 0; i < t.length; i++) t[i] = z(); for (let k = 0; k < 2; k++) for (let i = 1; i < t.length - 1; i++) t[i] = (t[i - 1] + t[i] + t[i + 1]) / 3; return t; })();
+    function szene(n) {
+      const b = new Float32Array(VW * VH * 3), pan = n * 1.2, bx = 30 + ((n * 3.1) % 150), by = 60 + Math.sin(n * 0.21) * 28, tx = (n * 2) % (VW + 60) - 40;
+      for (let y = 0; y < VH; y++) for (let x = 0; x < VW; x++) {
+        const i = (y * VW + x) * 3, wx = x + pan, berg = 55 + Math.sin(wx / 23) * 10 + Math.sin(wx / 7.3) * 3;
+        let r, g, bl;
+        if (y < berg) { r = 90 + y; g = 150 + y * 0.6; bl = 230; }
+        else { const t = TEX[(y * 512 + (Math.floor(wx) % 512 + 512) % 512)]; r = 60 + t * 60; g = 110 + t * 70; bl = 50 + t * 30; if (Math.floor(wx / 24) % 5 === 0 && y > berg + 8 && y < berg + 30) { r = 160; g = 70; bl = 50; } }
+        const dx = x - bx, dy = y - by; if (dx * dx + dy * dy < 100) { r = 240; g = 190; bl = 40; if (dx * dx + dy * dy < 30 && dx < 0 && dy < 0) { r = 255; g = 240; bl = 160; } }
+        if (x > tx && x < tx + 40 && y > 12 && y < 24) { r = 255; g = 255; bl = 255; if ((x - tx) % 6 < 3 && y > 15 && y < 21) { r = 30; g = 30; bl = 30; } }
+        b[i] = r; b[i + 1] = g; b[i + 2] = bl;
+      }
+      return b;
+    }
+    function bitsVon(q) { return q === 0 ? 0.15 : 2 + 2 * Math.log2(Math.abs(q) + 1); }
+    function luma(b, x, y) { const i = (y * VW + x) * 3; return 0.3 * b[i] + 0.59 * b[i + 1] + 0.11 * b[i + 2]; }
+    // codiert ein Bild; liefert die Daten (für den Decodierer) und die Bitzahl
+    function codiereBild(cur, ref, iBild, q) {
+      const daten = { i: iBild, bl: [] }; let bits = 0;
+      const rec = new Float32Array(cur.length);
+      for (let by = 0; by < VH; by += BS) for (let bx = 0; bx < VW; bx += BS) {
+        let mvx = 0, mvy = 0;
+        if (!iBild) {
+          let best = Infinity;
+          for (let dy = -SR; dy <= SR; dy++) for (let dx = -SR; dx <= SR; dx++) {
+            if (bx + dx < 0 || by + dy < 0 || bx + dx + BS > VW || by + dy + BS > VH) continue;
+            let sad = 0; for (let y = 0; y < BS; y += 2) for (let x = 0; x < BS; x += 2) sad += Math.abs(luma(cur, bx + x, by + y) - luma(ref, bx + x + dx, by + y + dy));
+            sad += (Math.abs(dx) + Math.abs(dy)) * 2; if (sad < best) { best = sad; mvx = dx; mvy = dy; }
+          }
+        }
+        const res = new Int16Array(BS * BS * 3); let nz = 0, mittel = [0, 0, 0];
+        if (iBild) for (let y = 0; y < BS; y++) for (let x = 0; x < BS; x++) for (let c = 0; c < 3; c++) mittel[c] += cur[((by + y) * VW + bx + x) * 3 + c] / (BS * BS);
+        mittel = mittel.map(function (m) { return Math.round(m / 4) * 4; });
+        for (let y = 0; y < BS; y++) for (let x = 0; x < BS; x++) for (let c = 0; c < 3; c++) {
+          const i = ((by + y) * VW + bx + x) * 3 + c, vor = iBild ? mittel[c] : ref[((by + y + mvy) * VW + bx + x + mvx) * 3 + c];
+          const qq = Math.round((cur[i] - vor) / q), k = (y * BS + x) * 3 + c; res[k] = qq; if (qq) nz++; bits += bitsVon(qq);
+          rec[i] = Math.max(0, Math.min(255, vor + qq * q));
+        }
+        if (iBild) bits += 24; else bits += nz === 0 && mvx === 0 && mvy === 0 ? 1 : 2 + 2 * (Math.log2(Math.abs(mvx) + 1) + Math.log2(Math.abs(mvy) + 1)) + 1;
+        if (!iBild && nz === 0) bits -= BS * BS * 3 * 0.15 - 1;
+        daten.bl.push({ x: bx, y: by, mvx: mvx, mvy: mvy, res: res, mittel: mittel, nz: nz });
+      }
+      return { daten: daten, bits: Math.max(1, bits), rec: rec };
+    }
+    function decodiere(daten, ref, q) {
+      const out = new Float32Array(VW * VH * 3);
+      daten.bl.forEach(function (b) {
+        for (let y = 0; y < BS; y++) for (let x = 0; x < BS; x++) for (let c = 0; c < 3; c++) {
+          const i = ((b.y + y) * VW + b.x + x) * 3 + c, vor = daten.i ? b.mittel[c] : ref[((b.y + y + b.mvy) * VW + b.x + x + b.mvx) * 3 + c];
+          out[i] = Math.max(0, Math.min(255, vor + b.res[(y * BS + x) * 3 + c] * q));
+        }
+      });
+      return out;
+    }
+    function schrittVideo() {
+      const q = +$('vQ').value, gop = +$('vG').value, n = VL.n, cur = szene(n), iBild = n % gop === 0 || !VL.enc;
+      const c = codiereBild(cur, VL.enc, iBild, q);
+      VL.enc = c.rec; VL.cur = cur;
+      if (VL.verlust && !iBild) { VL.verlust = false; VL.verlustAktiv = 1; VL.verloren = n; /* Decodierer behält das alte Bild */ }
+      else VL.dec = decodiere(c.daten, VL.dec || c.rec, q);
+      if (iBild) VL.verlustAktiv = 0;
+      VL.mv = c.daten.bl; VL.bits.push([c.bits, iBild]); if (VL.bits.length > 75) VL.bits.shift(); VL.n++;
+      let fehler = 0; for (let i = 0; i < cur.length; i++) fehler += Math.pow(cur[i] - VL.dec[i], 2); VL.psnr = 10 * Math.log10(255 * 255 / (fehler / cur.length + 1e-9));
+    }
+    function zeigeBild(g, b, x, y, s) { const img = g.createImageData(VW, VH); for (let i = 0, j = 0; i < b.length; i += 3, j += 4) { img.data[j] = b[i]; img.data[j + 1] = b[i + 1]; img.data[j + 2] = b[i + 2]; img.data[j + 3] = 255; } const t = document.createElement('canvas'); t.width = VW; t.height = VH; t.getContext('2d').putImageData(img, 0, 0); g.imageSmoothingEnabled = false; g.drawImage(t, x, y, VW * s, VH * s); }
+    function videoZeichnen(t) {
+      const c = $('vBild'), d = Math.min(2, window.devicePixelRatio || 1), B = c.clientWidth || 600, klein = B < 600;
+      const s = klein ? (B - 8) / VW : (B - 12) / 2 / VW, bh = VH * s, H = (klein ? 2 * bh + 30 : bh + 22) + 140;
+      if (c.width !== Math.round(B * d) || c.height !== Math.round(H * d)) { c.width = Math.round(B * d); c.height = Math.round(H * d); c.style.height = H + 'px'; }
+      const dt = VL.letzt === null ? 0 : (t - VL.letzt) / 1000; VL.letzt = t;
+      if (!VL.pause) { VL.uhr += dt; let k = 0; while (VL.uhr > 1 / 12 && k < 2) { VL.uhr -= 1 / 12; schrittVideo(); k++; } }
+      if (!VL.cur) schrittVideo();
+      const g = c.getContext('2d'); g.setTransform(d, 0, 0, d, 0, 0); g.clearRect(0, 0, B, H);
+      const p1 = [4, 18], p2 = klein ? [4, bh + 40] : [8 + VW * s, 18];
+      zeigeBild(g, VL.cur, p1[0], p1[1], s); zeigeBild(g, VL.dec, p2[0], p2[1], s);
+      T(g, 'Original', p1[0], 9, 'left', 11, true); T(g, 'decodiert' + (VL.verlustAktiv ? ' – Fehler seit Paketverlust!' : ''), p2[0], p2[1] - 9, 'left', 11, true, VL.verlustAktiv ? ROT : F('--text'));
+      if ($('vMv').checked) VL.mv.forEach(function (b) { const x = p2[0] + (b.x + BS / 2) * s, y = p2[1] + (b.y + BS / 2) * s; if (b.mvx || b.mvy) pfeil(g, x, y, x - b.mvx * s * 1.5, y - b.mvy * s * 1.5, '#FFEB3B', 1.5); else kreis(g, x, y, 1.5, 'rgba(255,235,59,.7)'); });
+      // Bits je Bild
+      const gy = (klein ? 2 * bh + 48 : bh + 30), gh = H - gy - 6, mx = Math.max.apply(null, VL.bits.map(function (b) { return b[0]; }).concat([1000])), bw = (B - 60) / 75;
+      g.fillStyle = F('--flaeche'); g.fillRect(4, gy, B - 8, gh);
+      VL.bits.forEach(function (b, i) { const h = (gh - 30) * b[0] / mx; g.fillStyle = b[1] ? ROT : BLAU; g.fillRect(50 + i * bw, gy + gh - 8 - h, Math.max(1, bw - 1), h); });
+      T(g, 'Bits je Bild (rot I, blau P)', 10, gy + 12, 'left', 11, true); T(g, 'höchster Balken ' + zz(mx / 1000, 0) + ' kbit', B - 10, gy + 12, 'right', 9, false, GRAU);
+      const letzte = VL.bits.slice(-25), mittel = letzte.reduce(function (a, b) { return a + b[0]; }, 0) / Math.max(1, letzte.length);
+      $('vInfo').textContent = 'Bild ' + VL.n + ' · Datenrate ≈ ' + zz(mittel * FPS / 1000, 0) + ' kbit/s bei 25 Bildern/s · unkomprimiert ' + zz(VW * VH * 24 * FPS / 1000, 0) + ' kbit/s · Rauschabstand ' + zz(VL.psnr, 1) + ' dB' + (VL.verlustAktiv ? ' · Fehler wandern bis zum nächsten I-Bild' : '');
+      requestAnimationFrame(videoZeichnen);
+    }
+
+    const seite = R.seite({
+      titel: 'Videoformate und Codecs',
+      einleitung: 'H.264, H.265, VP9 und AV1: Wie viel Datenrate braucht ein Video, wie groß wird die Datei und warum geht die Kompression so weit? Der Rechner schätzt Datenrate und Speicherbedarf, das Videolabor zeigt Bewegungsschätzung, Bildtypen und Fehlerfortpflanzung.',
+      hilfe: 'Beispiel: Film von 120 min in 1080p mit 30 Bildern/s, H.264, mittlere Qualität, 50-Mbit/s-Anschluss, 1 TB Festplatte.',
+      gruppen: [
+        { titel: 'Video', farbe: BLAU, felder: [
+          { k: 'aufl', name: 'Auflösung', wahl: Object.keys(AUFL).map(function (k) { return [k, AUFL[k][0]]; }) },
+          { k: 'fps', tex: 'f', name: 'Bildrate', e: 'Bilder/s', min: 1, max: 240 },
+          { k: 'tiefe', name: 'Farbtiefe', wahl: [['8', '8 bit'], ['10', '10 bit (HDR)']] },
+          { k: 'sub', name: 'Farbunterabtastung', wahl: Object.keys(SUB).map(function (k) { return [k, SUB[k][0]]; }) }
+        ] },
+        { titel: 'Codec', farbe: ROT, felder: [
+          { k: 'codec', name: 'Codec', wahl: Object.keys(CODEC).map(function (k) { return [k, CODEC[k][0]]; }) },
+          { k: 'stufe', name: 'Qualitätsstufe', wahl: Object.keys(STUFE).map(function (k) { return [k, STUFE[k][0]]; }) }
+        ] },
+        { titel: 'Dauer, Speicher, Leitung', farbe: GRAU, felder: [
+          { k: 'dauer', tex: 't', name: 'Spieldauer', e: 'min', min: 0.01, max: 1e6 },
+          { k: 'speicher', tex: 'S', name: 'Speicherplatz', e: 'GB', min: 0.01, max: 1e7 },
+          { k: 'leitung', tex: 'R_\\text{L}', name: 'Internetanschluss', e: 'Mbit/s', min: 0.1, max: 100000 }
+        ] },
+        { titel: 'Animation GOP', farbe: LILA, felder: [
+          { k: 'gop', tex: 'N', name: 'GOP-Länge', e: 'Bilder', min: 1, max: 60, ganz: true },
+          { k: 'bf', tex: 'M', name: 'B-Bilder hintereinander', e: '', min: 0, max: 4, ganz: true }
+        ] }
+      ],
+      beispiel: { aufl: 'p1080', fps: 30, tiefe: '8', sub: 's420', codec: 'h264', stufe: 'mittel', dauer: 120, speicher: 1000, leitung: 50, gop: 12, bf: 2 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (!r.reicht) H.meldung('Der Anschluss reicht für ruckelfreies Streaming knapp oder gar nicht (mit 25 % Reserve gerechnet).', true);
+        if (e.sub !== 's420' && e.stufe !== 'hoch') H.meldung('4:2:2 und 4:4:4 sind für Schnitt und Grafik gedacht; zum Anschauen genügt 4:2:0.');
+        H.kacheln([
+          [zz(r.R, r.R < 10 ? 2 : 1) + ' Mbit/s', 'geschätzte Datenrate ' + CODEC[e.codec][0], BLAU],
+          [zz(r.gb, 2) + ' GB', 'Dateigröße für ' + zz(e.dauer, 0) + ' min', GRUEN],
+          [zz(r.roh, 0) + ' Mbit/s', 'unkomprimiert', GRAU],
+          [zz(r.k, 0) + ' : 1', 'Kompressionsfaktor', ORANGE],
+          [zz(r.stunde, 2) + ' GB', 'Datenvolumen je Stunde', LILA],
+          [zz(r.std, 0) + ' h', 'Spielzeit auf ' + zz(e.speicher, 0) + ' GB', ROT]
+        ]);
+        H.tabelle('Alle Codecs mit diesen Einstellungen', ['Codec', 'Datenrate', 'Größe', 'je Stunde'], Object.keys(CODEC).map(function (k) { const R2 = rate(e, k, e.stufe); return [CODEC[k][0], zz(R2, 2) + ' Mbit/s', zz(R2 * e.dauer * 60 / 8000, 2) + ' GB', zz(R2 * 3600 / 8000, 2) + ' GB']; }), { zahl: [1, 2, 3] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Unkomprimierte Datenrate', 'R_0 = B \\cdot H \\cdot f \\cdot b \\cdot s = ' + tz(r.A[1], 0) + ' \\cdot ' + tz(r.A[2], 0) + ' \\cdot ' + tz(e.fps, 0) + ' \\cdot ' + e.tiefe + ' \\cdot ' + tz(SUB[e.sub][1], 1) + '\\,\\tfrac{\\text{bit}}{\\text{s}} = ' + E(tz(r.roh, 0) + '\\,\\tfrac{\\text{Mbit}}{\\text{s}}')],
+          ['Bits je Pixel (Schätzung)', 'b_\\text{px} = \\frac{R}{B \\cdot H \\cdot f} = ' + E(tz(r.bpp, 3) + '\\,\\text{bit}')],
+          ['Kompressionsfaktor', 'k = \\frac{R_0}{R} = \\frac{' + tz(r.roh, 0) + '}{' + texRate(r.R) + '} = ' + E(tz(r.k, 0))],
+          ['Dateigröße', 'S = \\frac{R \\cdot t}{8} = \\frac{' + texRate(r.R) + '\\,\\tfrac{\\text{Mbit}}{\\text{s}} \\cdot ' + tz(e.dauer * 60, 0) + '\\,\\text{s}}{8\\,000\\,\\tfrac{\\text{Mbit}}{\\text{GB}}} = ' + E(tz(r.gb, 2) + '\\,\\text{GB}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Unkomprimierte Videodatenrate', hilfe: 's Werte je Pixel: 4:2:0 = 1,5; 4:2:2 = 2; 4:4:4 = 3. R in Mbit/s.',
+          felder: [{ k: 'R', tex: 'R_0', name: 'Datenrate', e: 'Mbit/s', min: 1, max: 1e6 }, { k: 'px', tex: 'N', name: 'Pixel je Bild', e: 'Mio.', min: 0.1, max: 40 }, { k: 'f', tex: 'f', name: 'Bildrate', e: 'Bilder/s', min: 1, max: 240 }, { k: 'b', tex: 'b', name: 'Bit je Wert', e: 'bit', min: 8, max: 16, fest: true }, { k: 's', tex: 's', name: 'Werte je Pixel', e: '', min: 1.5, max: 3, fest: true }],
+          beispiel: { px: 2.0736, f: 30, b: 8, s: 1.5 },
+          gleichungen: [{ name: 'Rohrate', v: ['R', 'px', 'f', 'b', 's'], f: function (q) { return [q.R, q.px * q.f * q.b * q.s]; },
+            loese: { R: function (q) { return q.px * q.f * q.b * q.s; }, px: function (q) { return q.R / (q.f * q.b * q.s); }, f: function (q) { return q.R / (q.px * q.b * q.s); }, b: function (q) { return q.R / (q.px * q.f * q.s); }, s: function (q) { return q.R / (q.px * q.f * q.b); } },
+            weg: function (k, q) { return k === 'R' ? 'R_0 = N \\cdot f \\cdot b \\cdot s = ' + tz(q.px, 4) + ' \\cdot ' + tz(q.f, 0) + ' \\cdot ' + tz(q.b, 0) + ' \\cdot ' + tz(q.s, 1) + ' = ' + E(tz(q.R, 1) + '\\,\\tfrac{\\text{Mbit}}{\\text{s}}') : k === 'f' ? 'f = \\frac{R_0}{N \\cdot b \\cdot s} = ' + E(tz(q.f, 1) + '\\,\\tfrac{\\text{Bilder}}{\\text{s}}') : k === 'px' ? 'N = \\frac{R_0}{f \\cdot b \\cdot s} = ' + E(tz(q.px, 3) + '\\,\\text{Mio.}') : k === 'b' ? 'b = \\frac{R_0}{N \\cdot f \\cdot s} = ' + E(tz(q.b, 1) + '\\,\\text{bit}') : 's = \\frac{R_0}{N \\cdot f \\cdot b} = ' + E(tz(q.s, 2)); } }] },
+        { titel: 'Dateigröße', hilfe: 'R in Mbit/s, t in min, S in GB.',
+          felder: [{ k: 'S', tex: 'S', name: 'Dateigröße', e: 'GB', min: 0.01, max: 1e5 }, { k: 'R', tex: 'R', name: 'Datenrate', e: 'Mbit/s', min: 0.1, max: 1000 }, { k: 't', tex: 't', name: 'Dauer', e: 'min', min: 1, max: 1e4 }],
+          beispiel: { R: 5, t: 90 },
+          gleichungen: [{ name: 'Größe', v: ['S', 'R', 't'], f: function (q) { return [q.S * 8000, q.R * q.t * 60]; },
+            loese: { S: function (q) { return q.R * q.t * 60 / 8000; }, R: function (q) { return q.S * 8000 / (q.t * 60); }, t: function (q) { return q.S * 8000 / (q.R * 60); } },
+            weg: function (k, q) { return k === 'S' ? 'S = \\frac{R \\cdot t}{8\\,000} = \\frac{' + tz(q.R, 2) + ' \\cdot ' + tz(q.t * 60, 0) + '}{8\\,000}\\,\\text{GB} = ' + E(tz(q.S, 2) + '\\,\\text{GB}') : k === 'R' ? 'R = \\frac{8\\,000 \\cdot S}{t} = ' + E(tz(q.R, 2) + '\\,\\tfrac{\\text{Mbit}}{\\text{s}}') : 't = \\frac{8\\,000 \\cdot S}{R} = ' + E(tz(q.t, 1) + '\\,\\text{min}'); } }] },
+        { titel: 'Kompressionsfaktor', hilfe: 'Rohrate gegen codierte Rate.',
+          felder: [{ k: 'k', tex: 'k', name: 'Kompressionsfaktor', e: '', min: 1, max: 5000 }, { k: 'R0', tex: 'R_0', name: 'unkomprimiert', e: 'Mbit/s', min: 1, max: 1e6 }, { k: 'R', tex: 'R', name: 'codiert', e: 'Mbit/s', min: 0.05, max: 1000 }],
+          beispiel: { R0: 746, R: 4.4 },
+          gleichungen: [{ name: 'Faktor', v: ['k', 'R0', 'R'], f: function (q) { return [q.k * q.R, q.R0]; },
+            loese: { k: function (q) { return q.R0 / q.R; }, R0: function (q) { return q.k * q.R; }, R: function (q) { return q.R0 / q.k; } },
+            weg: function (k, q) { return k === 'k' ? 'k = \\frac{R_0}{R} = \\frac{' + tz(q.R0, 1) + '}{' + tz(q.R, 2) + '} = ' + E(tz(q.k, 0)) : k === 'R' ? 'R = \\frac{R_0}{k} = ' + E(tz(q.R, 2) + '\\,\\tfrac{\\text{Mbit}}{\\text{s}}') : 'R_0 = k \\cdot R = ' + E(tz(q.R0, 1) + '\\,\\tfrac{\\text{Mbit}}{\\text{s}}'); } }] }
+      ],
+      sammlung: [
+        ['Unkomprimierte Datenrate', 'R_0 = B \\cdot H \\cdot f \\cdot b \\cdot s', 's Werte je Pixel (4:2:0 → 1,5)'],
+        ['Dateigröße', 'S = \\frac{R \\cdot t}{8}', ''],
+        ['Bits je Pixel', 'b_\\text{px} = \\frac{R}{B \\cdot H \\cdot f}', 'H.264 1080p: etwa 0,05 bis 0,15'],
+        ['Kompressionsfaktor', 'k = \\frac{R_0}{R}', '1080p30 Full HD, H.264: rund 170 : 1'],
+        ['Bilddauer', 'T = \\frac{1}{f}', '25 Bilder/s → 40 ms'],
+        ['Abstand der I-Bilder', 't_\\text{I} = \\frac{N}{f}', 'N GOP-Länge']
+      ],
+      quellen: 'Datenraten als Schätzung mit typischen Bits je Pixel für H.264 und üblichen Effizienzfaktoren der anderen Codecs; je nach Inhalt (Rauschen, Bewegung) und Encoder weichen echte Werte um den Faktor 2 und mehr ab.',
+      bild: { titel: 'Animation', label: 'Bildgruppe, Auflösungen, Farbunterabtastung und Bewegungsschätzung', animiert: true,
+        hoehe: function (B) { return ansicht === 'sub' && B < 600 ? 480 : B < 600 ? 380 : 340; },
+        hinweis: function (r, e) { return ({ gop: 'Ein I-Bild alle ' + e.gop + ' Bilder = alle ' + zz(e.gop / e.fps, 2) + ' s. Kürzere GOP: schnelleres Spulen und Einsteigen, aber höhere Datenrate.', aufl: 'Pixelzahlen der üblichen Auflösungen im Größenvergleich.', sub: 'Das Auge sieht Helligkeit schärfer als Farbe – deshalb wird die Farbe meist mit geringerer Auflösung gespeichert.', bew: 'Bewegungsschätzung: Für jeden Block wird im vorigen Bild die ähnlichste Stelle gesucht.' })[ansicht]; },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); zeit += dt; ({ gop: gopBild, aufl: auflBild, sub: subBild, bew: bewegBild })[ansicht](cx, B, H, r, e); } }
+    });
+    ansicht = (ansichten(seite, [['gop', 'Bildgruppe (GOP)'], ['aufl', 'Auflösungen'], ['sub', 'Farbunterabtastung'], ['bew', 'Bewegungsschätzung']], 'gop', function (a) { ansicht = a; }))();
+
+    $('vQ').addEventListener('input', function () { $('vQa').textContent = $('vQ').value; });
+    $('vG').addEventListener('input', function () { $('vGa').textContent = $('vG').value; });
+    $('vVerlust').addEventListener('click', function () { VL.verlust = true; });
+    $('vPause').addEventListener('click', function () { VL.pause = !VL.pause; this.setAttribute('aria-pressed', VL.pause ? 'true' : 'false'); this.textContent = VL.pause ? 'Weiter' : 'Pause'; });
+    requestAnimationFrame(videoZeichnen);
+    const main = document.querySelector('main'), loeser = main.querySelector('.loeser'), faq = main.querySelector('.seo-info');
+    if (loeser) loeser.parentNode.insertBefore($('labor'), loeser);
+    main.insertBefore($('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>
