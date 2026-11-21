@@ -2468,7 +2468,7 @@
             o.append(schritt('Schnee je m² Dachfläche: senkrecht und hangabwärts (Faktor für Dachneigung cos α)' + zus, 's_\\perp = s \\cdot \\cos^2\\alpha = ' + tz(L.s, 4) + ' \\cdot \\cos^2 ' + al + ' = ' + E(tz(L.sS, 4) + KNM) + ',\\quad s_\\parallel = s \\cdot \\cos\\alpha \\cdot \\sin\\alpha = ' + E(tz(L.sP, 4) + KNM)));
             o.append(schritt('Eigengewicht je m² Dachfläche: senkrecht und hangabwärts' + zus, 'g_\\perp = g_\\text{G} \\cdot \\cos\\alpha = ' + tz(g.gG, 4) + ' \\cdot \\cos ' + al + ' = ' + E(tz(L.GS, 4) + KNM) + ',\\quad g_\\parallel = g_\\text{G} \\cdot \\sin\\alpha = ' + E(tz(L.GP, 4) + KNM)));
           }
-          if (g.tiefland) o.append(schritt('Außergewöhnlich: Norddeutsches Tiefland, Teilsicherheiten 1,0' + zus, 's_\\text{A} = \\mu_1 \\cdot 2{,}3 \\cdot s_\\text{k} = ' + tz(L.sA, 3) + KNM + ',\\quad q_\\text{A,\\perp} = g_\\perp + s_\\text{A} \\cos^2\\alpha = ' + E(tz(L.qDA, 3) + KNM) + (c.aufgest ? '' : ',\\quad q_\\text{A,\\parallel} = ' + E(tz(L.qPA, 3) + KNM))));
+          if (g.tiefland) o.append(schritt('Außergewöhnlich: Norddeutsches Tiefland, Teilsicherheiten 1,0' + zus, 's_\\text{A} = \\mu_1 \\cdot 2{,}3 \\cdot s_\\text{k} = ' + tz(L.sA, 3) + KNM + ',\\quad q_{\\text{A},\\perp} = g_\\perp + s_\\text{A} \\cos^2\\alpha = ' + E(tz(L.qDA, 3) + KNM) + (c.aufgest ? '' : ',\\quad q_{\\text{A},\\parallel} = ' + E(tz(L.qPA, 3) + KNM))));
         });
         if (!c.aufgest && a.massgebend) {
           o.append(schritt('Breite der Randbereiche für Wind', 'e = \\min(b;\\ 2h) = \\min(' + tz(c.bb.x1 - c.bb.x0, 4) + ';\\ 2 \\cdot ' + tz(projekt.standort.hoeheM, 3) + ')' + MT + ' = ' + tz(c.eWind, 4) + MT + ',\\quad r = \\frac{e}{10} = ' + E(tz(c.windR, 3) + MT)));
