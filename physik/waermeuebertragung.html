@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wärmeübertragung: Leitung, Konvektion und Strahlung – Formeln &amp; Rechner</title>
+  <meta name="description" content="Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/waermeuebertragung.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Wärmeübertragung: Leitung, Konvektion und Strahlung">
+  <meta property="og:description" content="Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/waermeuebertragung.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Wärmeübertragung: Leitung, Konvektion und Strahlung">
+  <meta name="twitter:description" content="Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/waermeuebertragung.html#seite","name":"Wärmeübertragung: Leitung, Konvektion und Strahlung","url":"https://tools.pr1m3.de/physik/waermeuebertragung.html","inLanguage":"de","description":"Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/waermeuebertragung.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/waermeuebertragung.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Wärmeübertragung: Leitung, Konvektion und Strahlung","item":"https://tools.pr1m3.de/physik/waermeuebertragung.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/waermeuebertragung.html#fragen","mainEntity":[{"@type":"Question","name":"Warum fühlt sich Metall kälter an als Holz, obwohl beide gleich warm sind?","acceptedAnswer":{"@type":"Answer","text":"Metall leitet die Wärme schnell aus der Hand ab, Holz kaum. Die Haut misst nicht die Temperatur des Gegenstands, sondern wie schnell sie Wärme verliert."}},{"@type":"Question","name":"Was ist der Unterschied zwischen λ-Wert und U-Wert?","acceptedAnswer":{"@type":"Answer","text":"Der λ-Wert (Wärmeleitfähigkeit) ist eine Eigenschaft des Stoffs in W/(m·K). Der U-Wert gilt für ein ganzes Bauteil mit seiner Dicke und den Übergängen an den Oberflächen, in W/(m²·K). Mehr dazu auf der Seite „U-Wert und Schichtaufbau“."}},{"@type":"Question","name":"Wie viel Wärme strahlt ein Mensch ab?","acceptedAnswer":{"@type":"Answer","text":"Mit etwa 1,8 m² Haut bei 33 °C in einem 20 °C warmen Raum gibt ein Mensch netto rund 140 W durch Strahlung ab – einer der Gründe, warum kalte Wände unbehaglich sind, auch wenn die Luft warm ist."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/waermeuebertragung.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Drei Wege für die Wärme</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Wärmeleitung</h3><p>In festen Stoffen geben schwingende Teilchen ihre Bewegung an die Nachbarn weiter, in Metallen helfen die freien Elektronen kräftig mit. Kupfer leitet Wärme rund 10 000-mal besser als Dämmwolle. Gute Dämmstoffe schließen viel ruhende Luft ein.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Konvektion</h3><p>Flüssigkeiten und Gase tragen die Wärme mit: Warme Luft steigt am Heizkörper auf, kühlt an der Decke und am Fenster ab und sinkt wieder. Mit Gebläse oder Pumpe (erzwungene Konvektion) wird viel mehr Wärme übertragen als von selbst.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Wärmestrahlung</h3><p>Jeder Körper strahlt Infrarotlicht ab – je heißer, desto mehr (mit der vierten Potenz der absoluten Temperatur) und desto kurzwelliger. Strahlung braucht keinen Stoff, so kommt die Sonnenwärme durchs Weltall. Blanke Metallflächen strahlen wenig ab.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>In der Praxis</h3><p>Ein Heizkörper gibt seine Wärme meist zu etwa zwei Dritteln durch Konvektion und zu einem Drittel durch Strahlung ab. Durch eine Außenwand geht sie erst per Konvektion an die Oberfläche, dann per Leitung durch die Schichten und außen wieder per Konvektion und Strahlung weg.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum fühlt sich Metall kälter an als Holz, obwohl beide gleich warm sind?</summary><p>Metall leitet die Wärme schnell aus der Hand ab, Holz kaum. Die Haut misst nicht die Temperatur des Gegenstands, sondern wie schnell sie Wärme verliert.</p></details>
+        <details><summary>Was ist der Unterschied zwischen λ-Wert und U-Wert?</summary><p>Der λ-Wert (Wärmeleitfähigkeit) ist eine Eigenschaft des Stoffs in W/(m·K). Der U-Wert gilt für ein ganzes Bauteil mit seiner Dicke und den Übergängen an den Oberflächen, in W/(m²·K). Mehr dazu auf der Seite „U-Wert und Schichtaufbau“.</p></details>
+        <details><summary>Wie viel Wärme strahlt ein Mensch ab?</summary><p>Mit etwa 1,8 m² Haut bei 33 °C in einem 20 °C warmen Raum gibt ein Mensch netto rund 140 W durch Strahlung ab – einer der Gründe, warum kalte Wände unbehaglich sind, auch wenn die Luft warm ist.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? (Math.abs(sp - Math.round(sp)) > 1e-9 ? 1 : 0) : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const SIGMA = 5.670374e-8, WIEN = 2897.77;
+    const STOFFE = { kupfer: ['Kupfer', 380], alu: ['Aluminium', 220], stahl: ['Stahl', 50], beton: ['Stahlbeton', 2.3], ziegel: ['Vollziegel', 0.81], glas: ['Glas', 1.0], holz: ['Nadelholz', 0.13], gips: ['Gipskarton', 0.25], wolle: ['Mineralwolle', 0.035], eps: ['Polystyrol (EPS)', 0.032], luft: ['ruhende Luft', 0.026] };
+    const UEBERGANG = { innen: ['Luft innen, ruhig', 7.7], aussen: ['Luft außen, Wind', 25], geblaese: ['Luft mit Gebläse', 50], wasser: ['Wasser, ruhig', 500], wasserp: ['Wasser, gepumpt', 3000] };
+    let ansicht = 'leitung', takt = uhr();
+    const SIM = { t: 0, teil: null };
+    function rechne(e) {
+      const r = {}, dT = e.T1 - e.T2;
+      r.dT = dT; r.lam = (STOFFE[e.stoff] || STOFFE.ziegel)[1]; r.d = e.d / 1000;
+      r.RL = r.d / r.lam; r.PL = r.lam * e.A * dT / r.d; r.qL = r.PL / e.A;
+      r.h = (UEBERGANG[e.ueb] || UEBERGANG.innen)[1]; r.PK = r.h * e.A * dT; r.RK = 1 / r.h;
+      const K1 = e.T1 + 273.15, K2 = e.T2 + 273.15;
+      r.PS = e.eps * SIGMA * e.A * (Math.pow(K1, 4) - Math.pow(K2, 4)); r.hS = Math.abs(dT) > 1e-9 ? r.PS / (e.A * dT) : 4 * e.eps * SIGMA * Math.pow(K1, 3);
+      r.lmax = WIEN / Math.max(K1, 1); r.K1 = K1; r.K2 = K2;
+      r.U = 1 / (2 * r.RK + r.RL); r.PW = r.U * e.A * dT;
+      r.Tw1 = e.T1 - r.PW / e.A * r.RK; r.Tw2 = e.T2 + r.PW / e.A * r.RK;
+      return r;
+    }
+    function watt(w) { const a = Math.abs(w); return a >= 1e6 ? zz(w / 1e6, 2) + ' MW' : a >= 1e3 ? zz(w / 1e3, 2) + ' kW' : zz(w, a < 10 ? 2 : 1) + ' W'; }
+    const seite = R.seite({
+      titel: 'Wärmeübertragung',
+      einleitung: 'Wärmestrom durch Leitung in einer Schicht, durch Konvektion an einer Oberfläche und durch Strahlung, dazu der Wärmedurchgang durch eine Wand mit beiden Übergängen.',
+      hilfe: 'Beispiel: 1 m² Ziegelwand, 24 cm dick, innen 20 °C, außen −5 °C. Der Strahlungsteil rechnet mit denselben Temperaturen.',
+      gruppen: [
+        { titel: 'Temperaturen und Fläche', farbe: ROT, felder: [
+          { k: 'T1', tex: '\\vartheta_1', name: 'warme Seite', e: '°C', min: -200, max: 3000 },
+          { k: 'T2', tex: '\\vartheta_2', name: 'kalte Seite', e: '°C', min: -273, max: 3000 },
+          { k: 'A', tex: 'A', name: 'Fläche', e: 'm²', min: 0.0001, max: 1e6 }
+        ] },
+        { titel: 'Leitung', farbe: KUPFER, felder: [
+          { k: 'stoff', name: 'Stoff', wahl: Object.keys(STOFFE).map(function (k) { return [k, STOFFE[k][0] + ' (λ = ' + zz(STOFFE[k][1], STOFFE[k][1] < 1 ? 3 : 0) + ')']; }) },
+          { k: 'd', tex: 'd', name: 'Dicke', e: 'mm', min: 0.01, max: 10000 }
+        ] },
+        { titel: 'Konvektion und Strahlung', farbe: BLAU, felder: [
+          { k: 'ueb', name: 'Konvektion an der Oberfläche', wahl: Object.keys(UEBERGANG).map(function (k) { return [k, UEBERGANG[k][0] + ' (h ≈ ' + zz(UEBERGANG[k][1], 0) + ')']; }) },
+          { k: 'eps', tex: '\\varepsilon', name: 'Emissionsgrad (0,9 Putz, 0,05 blankes Alu)', e: '', min: 0, max: 1 }
+        ] }
+      ],
+      beispiel: { T1: 20, T2: -5, A: 1, stoff: 'ziegel', d: 240, ueb: 'innen', eps: 0.9 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.dT < 0) H.meldung('Die „warme“ Seite ist kälter: Die Wärme fließt dann in die andere Richtung, die Werte werden negativ.', true);
+        H.kacheln([
+          [watt(r.PL), 'Wärmeleitung durch ' + zz(e.d, 0) + ' mm ' + (STOFFE[e.stoff] || STOFFE.ziegel)[0], KUPFER],
+          [watt(r.PK), 'Konvektion (h = ' + zz(r.h, 1) + ' W/(m²·K))', BLAU],
+          [watt(r.PS), 'Strahlung (ε = ' + zz(e.eps, 2) + ')', ORANGE],
+          [zz(r.U, 3) + ' W/(m²·K)', 'U-Wert der Schicht mit Übergang auf beiden Seiten', GRUEN],
+          [watt(r.PW), 'Wärmestrom durch die Wand', GRUEN],
+          [zz(r.lmax, 2) + ' µm', 'stärkste Wellenlänge der Strahlung bei ' + zz(e.T1, 0) + ' °C', LILA]
+        ]);
+        H.tabelle('Kennwerte', ['Größe', 'Wert'], [
+          ['Wärmeleitwiderstand d/λ', zz(r.RL, 4) + ' m²·K/W'], ['Übergangswiderstand 1/h', zz(r.RK, 4) + ' m²·K/W'],
+          ['Wärmestromdichte Leitung', zz(r.qL, 2) + ' W/m²'], ['Oberflächentemperatur warm (Wand)', zz(r.Tw1, 1) + ' °C'], ['Oberflächentemperatur kalt (Wand)', zz(r.Tw2, 1) + ' °C'],
+          ['Ersatz-Übergangszahl der Strahlung', zz(r.hS, 2) + ' W/(m²·K)'],
+          ['absolute Temperaturen', zz(r.K1, 2) + ' K / ' + zz(r.K2, 2) + ' K']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Leitung', '\\Phi = \\frac{\\lambda \\cdot A \\cdot \\Delta\\vartheta}{d} = \\frac{' + tz(r.lam, 3) + ' \\cdot ' + tz(e.A, 3) + ' \\cdot ' + tz(r.dT, 1) + '}{' + tz(r.d, 4) + '}\\,\\text{W} = ' + E(tz(r.PL, 1) + '\\,\\text{W}')],
+          ['Konvektion', '\\Phi = h \\cdot A \\cdot \\Delta\\vartheta = ' + tz(r.h, 1) + ' \\cdot ' + tz(e.A, 3) + ' \\cdot ' + tz(r.dT, 1) + '\\,\\text{W} = ' + E(tz(r.PK, 1) + '\\,\\text{W}')],
+          ['Strahlung', '\\Phi = \\varepsilon \\sigma A (T_1^4 - T_2^4) = ' + tz(e.eps, 2) + ' \\cdot 5{,}67 \\cdot 10^{-8} \\cdot ' + tz(e.A, 3) + ' \\cdot (' + tz(r.K1, 2) + '^4 - ' + tz(r.K2, 2) + '^4)\\,\\text{W} = ' + E(tz(r.PS, 1) + '\\,\\text{W}')],
+          ['U-Wert', 'U = \\frac{1}{\\frac{1}{h} + \\frac{d}{\\lambda} + \\frac{1}{h}} = \\frac{1}{' + tz(r.RK, 3) + ' + ' + tz(r.RL, 3) + ' + ' + tz(r.RK, 3) + '}\\,\\tfrac{\\text{W}}{\\text{m}^2\\text{K}} = ' + E(tz(r.U, 3) + '\\,\\tfrac{\\text{W}}{\\text{m}^2\\text{K}}')],
+          ['Wien', '\\lambda_\\text{max} = \\frac{2898\\,\\mu\\text{m}\\,\\text{K}}{' + tz(r.K1, 2) + '\\,\\text{K}} = ' + E(tz(r.lmax, 2) + '\\,\\mu\\text{m}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Wärmeleitung durch eine Schicht', hilfe: 'λ in W/(m·K), Dicke in m.',
+          felder: [{ k: 'P', tex: '\\Phi', name: 'Wärmestrom', e: 'W', min: 0.001, max: 1e8 }, { k: 'lam', tex: '\\lambda', name: 'Wärmeleitfähigkeit', e: 'W/(m·K)', min: 0.01, max: 500 }, { k: 'A', tex: 'A', name: 'Fläche', e: 'm²', min: 0.01, max: 1e4 }, { k: 'dT', tex: '\\Delta\\vartheta', name: 'Temperaturdifferenz', e: 'K', min: 0.1, max: 2000 }, { k: 'd', tex: 'd', name: 'Dicke', e: 'm', min: 0.001, max: 5 }],
+          beispiel: { lam: 0.81, A: 1, dT: 25, d: 0.24 },
+          gleichungen: [{ name: 'Leitung', v: ['P', 'lam', 'A', 'dT', 'd'], f: function (q) { return [q.P * q.d, q.lam * q.A * q.dT]; },
+            loese: { P: function (q) { return q.lam * q.A * q.dT / q.d; }, lam: function (q) { return q.P * q.d / (q.A * q.dT); }, A: function (q) { return q.P * q.d / (q.lam * q.dT); }, dT: function (q) { return q.P * q.d / (q.lam * q.A); }, d: function (q) { return q.lam * q.A * q.dT / q.P; } },
+            weg: function (k, q) { return k === 'P' ? '\\Phi = \\frac{\\lambda A \\Delta\\vartheta}{d} = \\frac{' + tz(q.lam, 3) + ' \\cdot ' + tz(q.A, 2) + ' \\cdot ' + tz(q.dT, 1) + '}{' + tz(q.d, 3) + '}\\,\\text{W} = ' + E(tz(q.P, 1) + '\\,\\text{W}') : k === 'd' ? 'd = \\frac{\\lambda A \\Delta\\vartheta}{\\Phi} = ' + E(tz(q.d, 3) + '\\,\\text{m}') : k === 'lam' ? '\\lambda = \\frac{\\Phi d}{A \\Delta\\vartheta} = ' + E(tz(q.lam, 3) + '\\,\\tfrac{\\text{W}}{\\text{m K}}') : k === 'A' ? 'A = \\frac{\\Phi d}{\\lambda \\Delta\\vartheta} = ' + E(tz(q.A, 2) + '\\,\\text{m}^2') : '\\Delta\\vartheta = \\frac{\\Phi d}{\\lambda A} = ' + E(tz(q.dT, 1) + '\\,\\text{K}'); } }] },
+        { titel: 'Konvektion', hilfe: 'h: ruhige Luft etwa 5 bis 8, Wind 25, Wasser einige Hundert W/(m²·K).',
+          felder: [{ k: 'P', tex: '\\Phi', name: 'Wärmestrom', e: 'W', min: 0.001, max: 1e8 }, { k: 'h', tex: 'h', name: 'Wärmeübergangskoeffizient', e: 'W/(m²·K)', min: 1, max: 10000 }, { k: 'A', tex: 'A', name: 'Fläche', e: 'm²', min: 0.01, max: 1e4 }, { k: 'dT', tex: '\\Delta\\vartheta', name: 'Temperaturdifferenz', e: 'K', min: 0.1, max: 2000 }],
+          beispiel: { h: 7.7, A: 2, dT: 30 },
+          gleichungen: [{ name: 'Konvektion', v: ['P', 'h', 'A', 'dT'], f: function (q) { return [q.P, q.h * q.A * q.dT]; },
+            loese: { P: function (q) { return q.h * q.A * q.dT; }, h: function (q) { return q.P / (q.A * q.dT); }, A: function (q) { return q.P / (q.h * q.dT); }, dT: function (q) { return q.P / (q.h * q.A); } },
+            weg: function (k, q) { return k === 'P' ? '\\Phi = h A \\Delta\\vartheta = ' + tz(q.h, 1) + ' \\cdot ' + tz(q.A, 2) + ' \\cdot ' + tz(q.dT, 1) + '\\,\\text{W} = ' + E(tz(q.P, 1) + '\\,\\text{W}') : k === 'h' ? 'h = \\frac{\\Phi}{A \\Delta\\vartheta} = ' + E(tz(q.h, 2) + '\\,\\tfrac{\\text{W}}{\\text{m}^2\\text{K}}') : k === 'A' ? 'A = \\frac{\\Phi}{h \\Delta\\vartheta} = ' + E(tz(q.A, 2) + '\\,\\text{m}^2') : '\\Delta\\vartheta = \\frac{\\Phi}{h A} = ' + E(tz(q.dT, 1) + '\\,\\text{K}'); } }] },
+        { titel: 'Abgestrahlte Leistung (Stefan-Boltzmann)', hilfe: 'Temperatur in Kelvin, σ = 5,67·10⁻⁸ W/(m²·K⁴).',
+          felder: [{ k: 'P', tex: 'P', name: 'Strahlungsleistung', e: 'W', min: 0.001, max: 1e10 }, { k: 'eps', tex: '\\varepsilon', name: 'Emissionsgrad', e: '', min: 0.01, max: 1 }, { k: 'A', tex: 'A', name: 'Fläche', e: 'm²', min: 0.0001, max: 1e4 }, { k: 'T', tex: 'T', name: 'Temperatur', e: 'K', min: 50, max: 6000 }],
+          beispiel: { eps: 0.95, A: 1.8, T: 306 },
+          gleichungen: [{ name: 'Strahlung', v: ['P', 'eps', 'A', 'T'], f: function (q) { return [q.P, q.eps * SIGMA * q.A * Math.pow(q.T, 4)]; },
+            loese: { P: function (q) { return q.eps * SIGMA * q.A * Math.pow(q.T, 4); }, eps: function (q) { return q.P / (SIGMA * q.A * Math.pow(q.T, 4)); }, A: function (q) { return q.P / (q.eps * SIGMA * Math.pow(q.T, 4)); }, T: function (q) { return Math.pow(q.P / (q.eps * SIGMA * q.A), 0.25); } },
+            weg: function (k, q) { return k === 'P' ? 'P = \\varepsilon \\sigma A T^4 = ' + tz(q.eps, 2) + ' \\cdot 5{,}67 \\cdot 10^{-8} \\cdot ' + tz(q.A, 3) + ' \\cdot ' + tz(q.T, 1) + '^4\\,\\text{W} = ' + E(tz(q.P, 1) + '\\,\\text{W}') : k === 'T' ? 'T = \\sqrt[4]{\\frac{P}{\\varepsilon \\sigma A}} = ' + E(tz(q.T, 1) + '\\,\\text{K}') : k === 'A' ? 'A = \\frac{P}{\\varepsilon \\sigma T^4} = ' + E(tz(q.A, 3) + '\\,\\text{m}^2') : '\\varepsilon = \\frac{P}{\\sigma A T^4} = ' + E(tz(q.eps, 3)); } }] },
+        { titel: 'Wiensches Verschiebungsgesetz', hilfe: 'Wellenlänge der stärksten Strahlung; Sonne etwa 5800 K.',
+          felder: [{ k: 'l', tex: '\\lambda_\\text{max}', name: 'Wellenlänge', e: 'µm', min: 0.1, max: 100 }, { k: 'T', tex: 'T', name: 'Temperatur', e: 'K', min: 30, max: 30000 }],
+          beispiel: { T: 5800 },
+          gleichungen: [{ name: 'Wien', v: ['l', 'T'], f: function (q) { return [q.l * q.T, WIEN]; },
+            loese: { l: function (q) { return WIEN / q.T; }, T: function (q) { return WIEN / q.l; } },
+            weg: function (k, q) { return k === 'l' ? '\\lambda_\\text{max} = \\frac{2898\\,\\mu\\text{m K}}{' + tz(q.T, 0) + '\\,\\text{K}} = ' + E(tz(q.l, 3) + '\\,\\mu\\text{m}') : 'T = \\frac{2898\\,\\mu\\text{m K}}{' + tz(q.l, 3) + '\\,\\mu\\text{m}} = ' + E(tz(q.T, 0) + '\\,\\text{K}'); } }] }
+      ],
+      sammlung: [
+        ['Wärmeleitung', '\\Phi = \\frac{\\lambda \\cdot A \\cdot \\Delta\\vartheta}{d}', 'λ in W/(m·K)'],
+        ['Wärmeleitwiderstand', 'R = \\frac{d}{\\lambda}', 'in m²·K/W, Schichten addieren sich'],
+        ['Konvektion', '\\Phi = h \\cdot A \\cdot \\Delta\\vartheta', 'h = Wärmeübergangskoeffizient'],
+        ['Wärmedurchgang', 'U = \\frac{1}{R_{si} + \\sum \\frac{d}{\\lambda} + R_{se}}, \\quad \\Phi = U A \\Delta\\vartheta', 'nach DIN EN ISO 6946'],
+        ['Stefan-Boltzmann', 'P = \\varepsilon \\, \\sigma \\, A \\, T^4', 'σ = 5,67 · 10⁻⁸ W/(m²·K⁴)'],
+        ['Strahlungsaustausch', '\\Phi = \\varepsilon \\, \\sigma \\, A \\, (T_1^4 - T_2^4)', 'kleiner Körper in großem Raum'],
+        ['Wiensches Gesetz', '\\lambda_\\text{max} = \\frac{2898\\,\\mu\\text{m} \\cdot \\text{K}}{T}', ''],
+        ['Absolute Temperatur', 'T = \\vartheta + 273{,}15', 'in Kelvin']
+      ],
+      quellen: 'Bemessungswerte der Wärmeleitfähigkeit als Richtwerte (DIN 4108-4, DIN EN ISO 10456); Übergangszahlen als typische Werte. Strahlung: kleiner Körper, großer Umgebungsraum.',
+      bild: { titel: 'Animation', label: 'Wärmeleitung, Konvektion und Wärmestrahlung', animiert: true,
+        hoehe: function (B) { return B < 600 ? 420 : 380; },
+        hinweis: function (r, e) {
+          if (ansicht === 'leitung') return 'Links ist es warm, rechts kalt. Die Teilchen schwingen links heftiger und geben ihre Bewegung an die Nachbarn weiter. Die Linie zeigt den Temperaturverlauf durch die Wand mit beiden Übergängen.';
+          if (ansicht === 'konvektion') return 'Am Heizkörper erwärmte Luft steigt auf, kühlt am Fenster ab und sinkt wieder: eine Luftwalze im Raum.';
+          return 'Die Farbe des Strahlers und die Kurve zeigen, wo die Strahlung am stärksten ist: Bei ' + zz(e.T1, 0) + ' °C liegt sie bei ' + zz(r.lmax, 2) + ' µm' + (r.lmax > 0.75 ? ', also im unsichtbaren Infrarot.' : '.');
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); SIM.t += dt; ({ leitung: zeigeLeitung, konvektion: zeigeKonvektion, strahlung: zeigeStrahlung })[ansicht](cx, B, H, r, e, dt); } }
+    });
+    function tfarbe(f) { f = Math.max(0, Math.min(1, f)); return 'rgb(' + Math.round(43 + (192 - 43) * f) + ',' + Math.round(123 + (57 - 123) * f) + ',' + Math.round(185 + (43 - 185) * f) + ')'; }
+    function zeigeLeitung(cx, B, H, r, e) {
+      const x0 = 50, x1 = B - 50, y0 = 50, y1 = H - 140;
+      const tMin = Math.min(e.T1, e.T2), tMax = Math.max(e.T1, e.T2), sp = Math.max(tMax - tMin, 1e-6);
+      const g = cx.createLinearGradient(x0, 0, x1, 0); g.addColorStop(0, tfarbe((r.Tw1 - tMin) / sp)); g.addColorStop(1, tfarbe((r.Tw2 - tMin) / sp));
+      cx.globalAlpha = 0.35; cx.fillStyle = g; cx.fillRect(x0, y0, x1 - x0, y1 - y0); cx.globalAlpha = 1;
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+      const sp1 = 22, nx = Math.floor((x1 - x0 - 10) / sp1), ny = Math.floor((y1 - y0 - 10) / sp1), schnell = Math.min(1, Math.log10(1 + r.lam * 10) / 3.6);
+      for (let j = 0; j < ny; j++) for (let i = 0; i <= nx; i++) {
+        const f = i / nx, x = x0 + 10 + i * (x1 - x0 - 20) / nx, y = y0 + 12 + j * (y1 - y0 - 24) / Math.max(1, ny - 1);
+        const temp = r.Tw1 + (r.Tw2 - r.Tw1) * f, a = 1 + 5 * (temp - tMin) / sp, ph = SIM.t * (8 + 10 * schnell) + i * 1.7 + j * 2.3;
+        kreis(cx, x + a * Math.sin(ph), y + a * Math.cos(ph * 1.3), 4, tfarbe((temp - tMin) / sp));
+      }
+      T(cx, zz(e.T1, 1) + ' °C', x0 - 6, y0 - 12, 'left', 11, true, ROT); T(cx, zz(e.T2, 1) + ' °C', x1 + 6, y0 - 12, 'right', 11, true, BLAU);
+      const n = 3, pl = Math.min(40, 10 + 30 * Math.log10(1 + Math.abs(r.qL)) / 3);
+      for (let i = 0; i < n; i++) { const y = y0 + (i + 0.5) * (y1 - y0) / n, off = ((SIM.t * 30) % 30); pfeil(cx, 6 + off * 0.3, y, 6 + off * 0.3 + Math.min(pl, x0 - 12), y, ORANGE, 2); }
+      TW(cx, (STOFFE[e.stoff] || STOFFE.ziegel)[0] + ', ' + zz(e.d, 0) + ' mm, mit Übergängen: ' + zz(r.PW / e.A, 1) + ' W je m²', 10, 14, B - 20, 11, true);
+      // Temperaturverlauf
+      const gy0 = y1 + 20, gy1 = H - 20, Y = function (v) { return gy1 - (v - tMin) / sp * (gy1 - gy0); };
+      cx.fillStyle = F('--flaeche'); cx.fillRect(10, gy0 - 6, B - 20, gy1 - gy0 + 12);
+      zug(cx, [[10, Y(e.T1)], [x0, Y(r.Tw1)], [x1, Y(r.Tw2)], [B - 10, Y(e.T2)]], ROT, 2);
+      strecke(cx, x0, gy0 - 6, x0, gy1 + 6, F('--linie'), 1); strecke(cx, x1, gy0 - 6, x1, gy1 + 6, F('--linie'), 1);
+      T(cx, zz(r.Tw1, 1) + ' °C', x0 + 4, Y(r.Tw1) + (r.Tw1 > (tMin + tMax) / 2 ? 10 : -10), 'left', 9, true, GRAU);
+      T(cx, zz(r.Tw2, 1) + ' °C', x1 - 4, Y(r.Tw2) + (r.Tw2 > (tMin + tMax) / 2 ? 10 : -10), 'right', 9, true, GRAU);
+      T(cx, 'Temperaturverlauf', (x0 + x1) / 2, gy0 + 2, 'center', 9, false, GRAU);
+    }
+    function zeigeKonvektion(cx, B, H, r, e) {
+      const x0 = 14, x1 = B - 14, y0 = 40, y1 = H - 20, w = x1 - x0, h = y1 - y0;
+      cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.strokeRect(x0, y0, w, h);
+      cx.fillStyle = 'rgba(43,123,185,.25)'; cx.fillRect(x1 - 6, y0 + h * 0.2, 6, h * 0.45); T(cx, 'Fenster', x1 - 10, y0 + h * 0.18, 'right', 9, true, BLAU);
+      cx.fillStyle = ROT; for (let i = 0; i < 5; i++) cx.fillRect(x0 + 8 + i * 6, y1 - h * 0.35, 4, h * 0.28); T(cx, 'Heizkörper', x0 + 6, y1 - h * 0.38, 'left', 9, true, ROT);
+      if (!SIM.teil) { const z = zufall(3); SIM.teil = []; for (let i = 0; i < 80; i++) SIM.teil.push([z(), z() * 0.45 + 0.5]); }
+      const cxm = x0 + w / 2, cym = y0 + h / 2, ax = w * 0.38, ay = h * 0.36, v = 0.08 + Math.min(0.25, r.h / 400);
+      SIM.teil.forEach(function (p) {
+        const ph = (p[0] + SIM.t * v) * PI2, rr = p[1], x = cxm - ax * rr * Math.cos(ph), y = cym - ay * rr * Math.sin(ph);
+        const warm = 0.5 + 0.5 * Math.cos(ph - 0.4);
+        kreis(cx, x, y, 3.2, tfarbe(warm));
+      });
+      for (let k = 0; k < 4; k++) { const ph = k * Math.PI / 2 + 0.6, x = cxm - ax * 0.95 * Math.cos(ph), y = cym - ay * 0.95 * Math.sin(ph), d = 0.25; pfeil(cx, x, y, cxm - ax * 0.95 * Math.cos(ph + d), cym - ay * 0.95 * Math.sin(ph + d), GRAU, 1.5); }
+      TW(cx, 'Konvektion: ' + watt(r.PK) + ' bei h = ' + zz(r.h, 1) + ' W/(m²·K)', 10, 14, B - 20, 11, true);
+    }
+    function planck(l, T) { const c1 = 3.7418e8, c2 = 14388; return c1 / (Math.pow(l, 5) * (Math.exp(c2 / (l * T)) - 1)); }
+    function gluehfarbe(T) { if (T < 800) return '#3a2a2a'; if (T < 1000) return '#7a1f10'; if (T < 1300) return '#c0392b'; if (T < 1600) return '#e07a1f'; if (T < 2200) return '#f5b041'; if (T < 3500) return '#fde68a'; return '#ffffff'; }
+    function zeigeStrahlung(cx, B, H, r, e) {
+      const eng = B < 600, xm = eng ? B / 2 : B * 0.25, ym = eng ? 110 : H / 2, R0 = 34;
+      const glow = gluehfarbe(r.K1);
+      const n = 10, pp = Math.min(1, Math.log10(1 + Math.max(r.PS / e.A, 0)) / 5);
+      for (let i = 0; i < n; i++) { const a = i / n * PI2, d = R0 + 6 + ((SIM.t * 40 + i * 13) % 50); const wl = Math.max(2, Math.min(12, r.lmax * 1.2)); const pts = []; for (let s = 0; s < 22; s++) { const q = d + s * 1.6; pts.push([xm + Math.cos(a) * q - Math.sin(a) * Math.sin(s / wl * PI2) * 3, ym + Math.sin(a) * q + Math.cos(a) * Math.sin(s / wl * PI2) * 3]); } cx.globalAlpha = 0.3 + 0.7 * pp; zug(cx, pts, ORANGE, 1.5); cx.globalAlpha = 1; }
+      kreis(cx, xm, ym, R0, glow, F('--text'), 1.5);
+      T(cx, zz(e.T1, 0) + ' °C', xm, ym, 'center', 11, true, r.K1 > 1600 ? '#222' : '#fff');
+      TW(cx, 'Strahlung ' + watt(r.PS) + ' netto, Maximum bei ' + zz(r.lmax, 2) + ' µm', 10, 14, B - 20, 11, true);
+      // Spektrum
+      const gx = eng ? 8 : B * 0.5, gy = eng ? 200 : 40, gw = eng ? B - 16 : B * 0.5 - 10, gh = eng ? H - 208 : H - 60;
+      const lmax = Math.min(30, Math.max(3, r.lmax * 4)), pts = [], pts2 = [];
+      let m = 0; for (let i = 1; i <= 200; i++) { const l = lmax * i / 200, v = planck(l, r.K1); pts.push([l, v]); if (v > m) m = v; pts2.push([l, planck(l, r.K2)]); }
+      const nrm = function (a) { return a.map(function (p) { return [p[0], m > 0 ? p[1] / m : 0]; }); };
+      const K = diagramm(cx, gx, gy, gw, gh, [{ name: zz(e.T1, 0) + ' °C', farbe: ORANGE, punkte: nrm(pts), punkt: [r.lmax, 1] }, { name: zz(e.T2, 0) + ' °C', farbe: BLAU, punkte: nrm(pts2) }], { titel: 'Strahlungsspektrum (relativ)', xr: [0, lmax], yr: [0, 1.1], xl: 'Wellenlänge in µm' });
+      if (lmax > 0.4) { const xa = K.X(0.38), xb = K.X(Math.min(0.75, lmax)); const g = cx.createLinearGradient(xa, 0, xb, 0); ['#8b00ff', '#0000ff', '#00b0ff', '#00c000', '#ffff00', '#ff8000', '#ff0000'].forEach(function (c, i) { g.addColorStop(i / 6, c); }); cx.fillStyle = g; cx.fillRect(xa, K.y1 - 6, Math.max(1, xb - xa), 6); }
+      T(cx, 'sichtbar', K.X(0.56), K.y1 - 14, 'center', 8, false, GRAU);
+    }
+    ansicht = (ansichten(seite, [['leitung', 'Leitung'], ['konvektion', 'Konvektion'], ['strahlung', 'Strahlung']], 'leitung', function (a) { ansicht = a; SIM.t = 0; }))();
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

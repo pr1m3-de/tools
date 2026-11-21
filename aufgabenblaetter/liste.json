@@ -271,6 +271,15 @@
    "beschreibung": "Reaktions-, Brems- und Anhalteweg physikalisch und mit Faustformeln, Einfluss von Geschwindigkeit, Fahrbahn und Reaktionszeit, Aufprallgeschwindigkeit, Geschwindigkeit aus der Bremsspur."
   },
   {
+   "datei": "aufgabenblaetter/mechanik/energie-impuls/01-stoss-energieerhaltung.md",
+   "thema": "mechanik/energie-impuls.html",
+   "titel": "Energie und Impuls",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Unelastischer Auffahrunfall mit Energieverlust, elastischer Stoß zweier Kugeln, Lage- und Bewegungsenergie beim Fallen und auf der schiefen Ebene mit Reibung."
+  },
+  {
    "datei": "aufgabenblaetter/mechanik/wurf/01-waagerechter-schraeger-wurf.md",
    "thema": "mechanik/wurf.html",
    "titel": "Wurf – waagerecht und schräg",
@@ -298,6 +307,15 @@
    "beschreibung": "Achsneigung und Jahreszeiten, Mittagshöhe der Sonne und Polartag, Abstand Erde–Sonne, die drei Keplerschen Gesetze mit Umlaufzeiten, Perihel und Aphel, Bahngeschwindigkeit."
   },
   {
+   "datei": "aufgabenblaetter/physik/druck-auftrieb/01-hydraulik-schweredruck-auftrieb.md",
+   "thema": "physik/druck-auftrieb.html",
+   "titel": "Druck und Auftrieb",
+   "stufe": "mittel",
+   "aufgaben": 3,
+   "loesungen": 3,
+   "beschreibung": "Hydraulischer Wagenheber mit Kraft- und Wegübersetzung, Schweredruck beim Tauchen und in der Tiefsee, Auftrieb von Holz und Stahl in Süß- und Meerwasser."
+  },
+  {
    "datei": "aufgabenblaetter/physik/optik/01-reflexion-brechung.md",
    "thema": "physik/optik.html",
    "titel": "Optik – Reflexion, Brechung und Totalreflexion",
@@ -314,6 +332,24 @@
    "aufgaben": 4,
    "loesungen": 4,
    "beschreibung": "Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung, Zerfallsgleichungen, Zerfallsgesetz und Halbwertszeit, Aktivität und Kernzahl, Kettenreaktion."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/schwingungen-wellen/01-pendel-wellen-doppler.md",
+   "thema": "physik/schwingungen-wellen.html",
+   "titel": "Schwingungen und Wellen",
+   "stufe": "mittel",
+   "aufgaben": 5,
+   "loesungen": 5,
+   "beschreibung": "Periodendauer von Feder- und Fadenpendel, Höchstgeschwindigkeit und Energie, Resonanz, Wellenlänge von Schall in Luft und Wasser und der Doppler-Effekt."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/waermeuebertragung/01-leitung-konvektion-strahlung.md",
+   "thema": "physik/waermeuebertragung.html",
+   "titel": "Wärmeübertragung",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Wärmeleitung durch Ziegel und Dämmung, U-Wert einer Außenwand, Konvektion am Heizkörper, Wärmestrahlung des Menschen und Wiensches Verschiebungsgesetz."
   },
   {
    "datei": "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",

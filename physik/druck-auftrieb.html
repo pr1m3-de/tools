@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Druck und Auftrieb: Hydraulik, Schweredruck und Archimedes – Formeln &amp; Rechner</title>
+  <meta name="description" content="Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Wasser, Öl und anderen Flüssigkeiten, Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt ein Körper? Mit Animationen und Lernaufgaben.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/druck-auftrieb.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Druck und Auftrieb: Hydraulik, Schweredruck und Archimedes">
+  <meta property="og:description" content="Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Wasser, Öl und anderen Flüssigkeiten, Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt ein Körper? Mit Animationen und Lernaufgaben.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/druck-auftrieb.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Druck und Auftrieb: Hydraulik, Schweredruck und Archimedes">
+  <meta name="twitter:description" content="Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Wasser, Öl und anderen Flüssigkeiten, Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt ein Körper? Mit Animationen und Lernaufgaben.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/druck-auftrieb.html#seite","name":"Druck und Auftrieb: Hydraulik, Schweredruck und Archimedes","url":"https://tools.pr1m3.de/physik/druck-auftrieb.html","inLanguage":"de","description":"Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Wasser, Öl und anderen Flüssigkeiten, Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt ein Körper? Mit Animationen und Lernaufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/druck-auftrieb.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/druck-auftrieb.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Druck und Auftrieb: Hydraulik, Schweredruck und Archimedes","item":"https://tools.pr1m3.de/physik/druck-auftrieb.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/druck-auftrieb.html#fragen","mainEntity":[{"@type":"Question","name":"Wie groß ist der Druck in 10 m Wassertiefe?","acceptedAnswer":{"@type":"Answer","text":"Der Schweredruck ist ρ · g · h = 1000 · 9,81 · 10 Pa ≈ 0,98 bar. Dazu kommt der Luftdruck von etwa 1 bar, zusammen also rund 2 bar."}},{"@type":"Question","name":"Warum schwimmt ein Schiff aus Stahl?","acceptedAnswer":{"@type":"Answer","text":"Der Rumpf ist hohl. Er verdrängt so viel Wasser, dass dessen Gewicht dem Gewicht des ganzen Schiffs entspricht. Die mittlere Dichte von Stahl und Luft im Rumpf ist kleiner als die von Wasser."}},{"@type":"Question","name":"Warum schwimmt man im Meer leichter?","acceptedAnswer":{"@type":"Answer","text":"Salzwasser hat eine größere Dichte (rund 1025 kg/m³, im Toten Meer bis 1240 kg/m³). Für denselben Auftrieb muss weniger Körpervolumen eintauchen."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/druck-auftrieb.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Druck in Flüssigkeiten</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Druck</h3><p>Druck ist Kraft je Fläche: p = F / A. In einer eingeschlossenen Flüssigkeit breitet er sich in alle Richtungen gleich aus. Darauf beruhen Hebebühne, Bremsanlage und Bagger: Eine kleine Kraft auf einen kleinen Kolben erzeugt eine große Kraft am großen Kolben.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Goldene Regel</h3><p>Die Hydraulik spart keine Arbeit. Was an Kraft gewonnen wird, geht an Weg verloren: Der kleine Kolben muss um so viel weiter gedrückt werden, wie der große Kolben mehr Fläche hat.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Schweredruck</h3><p>Das Gewicht der Flüssigkeit darüber drückt nach unten: Je 10 m Wassertiefe kommt rund 1 bar dazu. Der Druck hängt nur von der Tiefe ab, nicht von der Form des Gefäßes – deshalb steht Wasser in verbundenen Rohren überall gleich hoch.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Auftrieb</h3><p>Unten auf einen Körper drückt mehr Wasser als oben. Die Differenz ist der Auftrieb, und er ist genau so groß wie das Gewicht der verdrängten Flüssigkeit (Archimedes). Ist der Körper im Mittel leichter als die Flüssigkeit, schwimmt er.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie groß ist der Druck in 10 m Wassertiefe?</summary><p>Der Schweredruck ist ρ · g · h = 1000 · 9,81 · 10 Pa ≈ 0,98 bar. Dazu kommt der Luftdruck von etwa 1 bar, zusammen also rund 2 bar.</p></details>
+        <details><summary>Warum schwimmt ein Schiff aus Stahl?</summary><p>Der Rumpf ist hohl. Er verdrängt so viel Wasser, dass dessen Gewicht dem Gewicht des ganzen Schiffs entspricht. Die mittlere Dichte von Stahl und Luft im Rumpf ist kleiner als die von Wasser.</p></details>
+        <details><summary>Warum schwimmt man im Meer leichter?</summary><p>Salzwasser hat eine größere Dichte (rund 1025 kg/m³, im Toten Meer bis 1240 kg/m³). Für denselben Auftrieb muss weniger Körpervolumen eintauchen.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? (Math.abs(sp - Math.round(sp)) > 1e-9 ? 1 : 0) : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const G = 9.81, P0 = 101325;
+    const FL = { wasser: ['Süßwasser', 1000], meer: ['Meerwasser', 1025], totes: ['Totes Meer', 1240], oel: ['Hydrauliköl', 870], benzin: ['Benzin', 745], quecksilber: ['Quecksilber', 13546] };
+    const FLUESSIG = 'rgba(14,124,134,.35)';
+    let ansicht = 'presse', takt = uhr();
+    const SIM = { t: 0, y: null };
+    function rechne(e) {
+      const r = {};
+      r.A1 = Math.PI * Math.pow(e.d1 / 2000, 2); r.A2 = Math.PI * Math.pow(e.d2 / 2000, 2);
+      r.p = e.F1 / r.A1; r.F2 = r.p * r.A2; r.ue = r.A2 / r.A1; r.s2 = e.s1 / r.ue; r.W = e.F1 * e.s1 / 100;
+      r.m2 = r.F2 / G;
+      r.rho = (FL[e.fl] || FL.wasser)[1];
+      r.ps = r.rho * G * e.h; r.pa = r.ps + P0;
+      r.V = e.V / 1000; r.FA = r.rho * G * r.V; r.FG = e.mK * G; r.rhoK = e.mK / r.V;
+      r.schwimmt = r.rhoK < r.rho; r.anteil = Math.min(1, r.rhoK / r.rho);
+      r.Fnetto = r.FA - r.FG;
+      return r;
+    }
+    function kraft(n) { const a = Math.abs(n); return a >= 1e6 ? zz(n / 1e6, 2) + ' MN' : a >= 1e3 ? zz(n / 1e3, 2) + ' kN' : zz(n, a < 10 ? 2 : 1) + ' N'; }
+    function bar(pa) { return pa >= 1e4 ? zz(pa / 1e5, 3) + ' bar' : zz(pa / 100, 1) + ' hPa'; }
+    const seite = R.seite({
+      titel: 'Druck und Auftrieb',
+      einleitung: 'Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Flüssigkeiten und Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt der Körper?',
+      hilfe: 'Beispiel: Wagenheber mit 20-mm- und 80-mm-Kolben, 200 N Handkraft. Dazu 10 m Wassertiefe und ein Holzklotz mit 5 Litern und 3 kg.',
+      gruppen: [
+        { titel: 'Hydraulische Presse', farbe: BLAU, felder: [
+          { k: 'F1', tex: 'F_1', name: 'Kraft am kleinen Kolben', e: 'N', min: 0.01, max: 1e7 },
+          { k: 'd1', tex: 'd_1', name: 'Durchmesser kleiner Kolben', e: 'mm', min: 1, max: 5000 },
+          { k: 'd2', tex: 'd_2', name: 'Durchmesser großer Kolben', e: 'mm', min: 1, max: 5000 },
+          { k: 's1', tex: 's_1', name: 'Hub des kleinen Kolbens', e: 'cm', min: 0.01, max: 1000 }
+        ] },
+        { titel: 'Flüssigkeit', farbe: TUERKIS, felder: [
+          { k: 'fl', name: 'Flüssigkeit', wahl: Object.keys(FL).map(function (k) { return [k, FL[k][0] + ' (' + zz(FL[k][1], 0) + ' kg/m³)']; }) },
+          { k: 'h', tex: 'h', name: 'Tiefe', e: 'm', min: 0, max: 11000 }
+        ] },
+        { titel: 'Körper', farbe: ORANGE, felder: [
+          { k: 'V', tex: 'V', name: 'Volumen', e: 'L', min: 0.001, max: 1e6 },
+          { k: 'mK', tex: 'm', name: 'Masse', e: 'kg', min: 0.001, max: 1e7 }
+        ] }
+      ],
+      beispiel: { F1: 200, d1: 20, d2: 80, s1: 10, fl: 'wasser', h: 10, V: 5, mK: 3 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (e.d2 < e.d1) H.meldung('Der „große“ Kolben ist kleiner als der kleine: Die Kraft wird dann kleiner, der Weg größer.', true);
+        H.meldung(r.schwimmt ? 'Der Körper schwimmt: ' + zz(r.anteil * 100, 0) + ' % seines Volumens tauchen ein.' : Math.abs(r.rhoK - r.rho) < 1e-9 ? 'Der Körper schwebt.' : 'Der Körper sinkt. Unter Wasser wiegt er scheinbar nur noch ' + kraft(-r.Fnetto) + '.');
+        H.kacheln([
+          [kraft(r.F2), 'Kraft am großen Kolben (' + zz(r.m2, r.m2 < 10 ? 2 : 0) + ' kg)', BLAU],
+          [bar(r.p), 'Druck in der Presse', BLAU],
+          [zz(r.s2, 3) + ' cm', 'Hub des großen Kolbens', GRUEN],
+          [bar(r.ps), 'Schweredruck in ' + zz(e.h, 1) + ' m', TUERKIS],
+          [bar(r.pa), 'absoluter Druck (mit Luftdruck)', TUERKIS],
+          [kraft(r.FA), 'Auftrieb bei ganz eingetauchtem Körper', ORANGE],
+          [zz(r.rhoK, 0) + ' kg/m³', 'mittlere Dichte des Körpers', r.schwimmt ? GRUEN : ROT]
+        ]);
+        H.tabelle('Presse', ['Größe', 'Wert'], [
+          ['Kolbenfläche klein', zz(r.A1 * 1e4, 3) + ' cm²'], ['Kolbenfläche groß', zz(r.A2 * 1e4, 3) + ' cm²'],
+          ['Kraftübersetzung', zz(r.ue, 2) + '-fach'], ['Arbeit (auf beiden Seiten gleich)', zz(r.W, 2) + ' J'],
+          ['Hübe für 10 cm am großen Kolben', zz(Math.ceil(10 / Math.max(r.s2, 1e-9)), 0)]
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Fläche', 'A_1 = \\frac{\\pi d_1^2}{4} = \\frac{\\pi \\cdot (' + tz(e.d1 / 1000, 4) + '\\,\\text{m})^2}{4} = ' + tz(r.A1, 6) + '\\,\\text{m}^2'],
+          ['Druck', 'p = \\frac{F_1}{A_1} = \\frac{' + tz(e.F1, 2) + '\\,\\text{N}}{' + tz(r.A1, 6) + '\\,\\text{m}^2} = ' + E(tz(r.p, 0) + '\\,\\text{Pa}')],
+          ['Kraft', 'F_2 = F_1 \\cdot \\frac{A_2}{A_1} = F_1 \\cdot \\left(\\frac{d_2}{d_1}\\right)^2 = ' + tz(e.F1, 2) + '\\,\\text{N} \\cdot ' + tz(r.ue, 3) + ' = ' + E(tz(r.F2, 1) + '\\,\\text{N}')],
+          ['Weg', 's_2 = s_1 \\cdot \\frac{A_1}{A_2} = \\frac{' + tz(e.s1, 2) + '\\,\\text{cm}}{' + tz(r.ue, 3) + '} = ' + E(tz(r.s2, 3) + '\\,\\text{cm}')],
+          ['Schweredruck', 'p = \\rho g h = ' + tz(r.rho, 0) + ' \\cdot 9{,}81 \\cdot ' + tz(e.h, 2) + '\\,\\text{Pa} = ' + E(tz(r.ps, 0) + '\\,\\text{Pa}')],
+          ['Auftrieb', 'F_A = \\rho_\\text{Fl} \\, g \\, V = ' + tz(r.rho, 0) + ' \\cdot 9{,}81 \\cdot ' + tz(r.V, 5) + '\\,\\text{N} = ' + E(tz(r.FA, 2) + '\\,\\text{N}')],
+          ['Gewicht', 'F_G = m g = ' + tz(e.mK, 3) + ' \\cdot 9{,}81\\,\\text{N} = ' + E(tz(r.FG, 2) + '\\,\\text{N}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Druck', hilfe: 'p = F / A, 1 bar = 100 000 Pa = 10 N/cm².',
+          felder: [{ k: 'p', tex: 'p', name: 'Druck', e: 'Pa', min: 0.01, max: 1e10 }, { k: 'F', tex: 'F', name: 'Kraft', e: 'N', min: 0.01, max: 1e8 }, { k: 'A', tex: 'A', name: 'Fläche', e: 'm²', min: 1e-6, max: 1e4 }],
+          beispiel: { F: 200, A: 0.000314 },
+          gleichungen: [{ name: 'Druck', v: ['p', 'F', 'A'], f: function (q) { return [q.p, q.F / q.A]; },
+            loese: { p: function (q) { return q.F / q.A; }, F: function (q) { return q.p * q.A; }, A: function (q) { return q.F / q.p; } },
+            weg: function (k, q) { return k === 'p' ? 'p = \\frac{F}{A} = \\frac{' + tz(q.F, 2) + '\\,\\text{N}}{' + tz(q.A, 6) + '\\,\\text{m}^2} = ' + E(tz(q.p, 0) + '\\,\\text{Pa}') : k === 'F' ? 'F = p \\cdot A = ' + tz(q.p, 0) + ' \\cdot ' + tz(q.A, 6) + '\\,\\text{N} = ' + E(tz(q.F, 2) + '\\,\\text{N}') : 'A = \\frac{F}{p} = ' + E(tz(q.A, 6) + '\\,\\text{m}^2'); } }] },
+        { titel: 'Hydraulische Presse', hilfe: 'Gleicher Druck auf beiden Seiten: F₁/A₁ = F₂/A₂.',
+          felder: [{ k: 'F1', tex: 'F_1', name: 'Kraft klein', e: 'N', min: 0.1, max: 1e6 }, { k: 'A1', tex: 'A_1', name: 'Fläche klein', e: 'cm²', min: 0.01, max: 1e4 }, { k: 'F2', tex: 'F_2', name: 'Kraft groß', e: 'N', min: 0.1, max: 1e8 }, { k: 'A2', tex: 'A_2', name: 'Fläche groß', e: 'cm²', min: 0.01, max: 1e5 }],
+          beispiel: { F1: 200, A1: 3.14, A2: 50.3 },
+          gleichungen: [{ name: 'Presse', v: ['F1', 'A1', 'F2', 'A2'], f: function (q) { return [q.F1 * q.A2, q.F2 * q.A1]; },
+            loese: { F2: function (q) { return q.F1 * q.A2 / q.A1; }, F1: function (q) { return q.F2 * q.A1 / q.A2; }, A2: function (q) { return q.F2 * q.A1 / q.F1; }, A1: function (q) { return q.F1 * q.A2 / q.F2; } },
+            weg: function (k, q) { return k === 'F2' ? 'F_2 = F_1 \\cdot \\frac{A_2}{A_1} = ' + tz(q.F1, 2) + ' \\cdot \\frac{' + tz(q.A2, 2) + '}{' + tz(q.A1, 2) + '}\\,\\text{N} = ' + E(tz(q.F2, 1) + '\\,\\text{N}') : k === 'F1' ? 'F_1 = F_2 \\cdot \\frac{A_1}{A_2} = ' + E(tz(q.F1, 2) + '\\,\\text{N}') : k === 'A2' ? 'A_2 = A_1 \\cdot \\frac{F_2}{F_1} = ' + E(tz(q.A2, 2) + '\\,\\text{cm}^2') : 'A_1 = A_2 \\cdot \\frac{F_1}{F_2} = ' + E(tz(q.A1, 3) + '\\,\\text{cm}^2'); } }] },
+        { titel: 'Schweredruck', hilfe: 'Wasser: ρ = 1000 kg/m³.',
+          felder: [{ k: 'p', tex: 'p', name: 'Schweredruck', e: 'Pa', min: 1, max: 1e9 }, { k: 'rho', tex: '\\rho', name: 'Dichte', e: 'kg/m³', min: 500, max: 14000 }, { k: 'h', tex: 'h', name: 'Tiefe', e: 'm', min: 0.01, max: 11000 }, { k: 'g', tex: 'g', name: 'Fallbeschleunigung', e: 'm/s²', min: 1, max: 30, fest: true }],
+          beispiel: { rho: 1000, h: 10, g: 9.81 },
+          gleichungen: [{ name: 'Schweredruck', v: ['p', 'rho', 'h', 'g'], f: function (q) { return [q.p, q.rho * q.g * q.h]; },
+            loese: { p: function (q) { return q.rho * q.g * q.h; }, rho: function (q) { return q.p / (q.g * q.h); }, h: function (q) { return q.p / (q.rho * q.g); }, g: function (q) { return q.p / (q.rho * q.h); } },
+            weg: function (k, q) { return k === 'p' ? 'p = \\rho g h = ' + tz(q.rho, 0) + ' \\cdot ' + tz(q.g, 2) + ' \\cdot ' + tz(q.h, 2) + '\\,\\text{Pa} = ' + E(tz(q.p, 0) + '\\,\\text{Pa}') : k === 'h' ? 'h = \\frac{p}{\\rho g} = \\frac{' + tz(q.p, 0) + '}{' + tz(q.rho, 0) + ' \\cdot ' + tz(q.g, 2) + '}\\,\\text{m} = ' + E(tz(q.h, 2) + '\\,\\text{m}') : k === 'rho' ? '\\rho = \\frac{p}{g h} = ' + E(tz(q.rho, 0) + '\\,\\tfrac{\\text{kg}}{\\text{m}^3}') : 'g = \\frac{p}{\\rho h} = ' + E(tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}'); } }] },
+        { titel: 'Auftrieb', hilfe: 'Auftrieb = Gewicht der verdrängten Flüssigkeit.',
+          felder: [{ k: 'FA', tex: 'F_A', name: 'Auftriebskraft', e: 'N', min: 0.001, max: 1e9 }, { k: 'rho', tex: '\\rho_\\text{Fl}', name: 'Dichte der Flüssigkeit', e: 'kg/m³', min: 500, max: 14000 }, { k: 'V', tex: 'V', name: 'eingetauchtes Volumen', e: 'm³', min: 1e-6, max: 1e5 }, { k: 'g', tex: 'g', name: 'Fallbeschleunigung', e: 'm/s²', min: 1, max: 30, fest: true }],
+          beispiel: { rho: 1000, V: 0.005, g: 9.81 },
+          gleichungen: [{ name: 'Auftrieb', v: ['FA', 'rho', 'V', 'g'], f: function (q) { return [q.FA, q.rho * q.g * q.V]; },
+            loese: { FA: function (q) { return q.rho * q.g * q.V; }, rho: function (q) { return q.FA / (q.g * q.V); }, V: function (q) { return q.FA / (q.rho * q.g); }, g: function (q) { return q.FA / (q.rho * q.V); } },
+            weg: function (k, q) { return k === 'FA' ? 'F_A = \\rho g V = ' + tz(q.rho, 0) + ' \\cdot ' + tz(q.g, 2) + ' \\cdot ' + tz(q.V, 5) + '\\,\\text{N} = ' + E(tz(q.FA, 2) + '\\,\\text{N}') : k === 'V' ? 'V = \\frac{F_A}{\\rho g} = ' + E(tz(q.V, 5) + '\\,\\text{m}^3') : k === 'rho' ? '\\rho = \\frac{F_A}{g V} = ' + E(tz(q.rho, 0) + '\\,\\tfrac{\\text{kg}}{\\text{m}^3}') : 'g = \\frac{F_A}{\\rho V} = ' + E(tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}'); } }] }
+      ],
+      sammlung: [
+        ['Druck', 'p = \\frac{F}{A}', '1 bar = 10⁵ Pa = 10 N/cm²'],
+        ['Kolbenfläche', 'A = \\frac{\\pi d^2}{4}', ''],
+        ['Hydraulische Presse', '\\frac{F_1}{A_1} = \\frac{F_2}{A_2}', 'gleicher Druck überall'],
+        ['Wegübersetzung', 's_1 \\cdot A_1 = s_2 \\cdot A_2', 'verdrängtes Volumen gleich'],
+        ['Schweredruck', 'p = \\rho \\cdot g \\cdot h', 'Wasser: rund 1 bar je 10 m'],
+        ['Absoluter Druck', 'p_\\text{abs} = p_\\text{Luft} + \\rho g h', 'Luftdruck ≈ 1013 hPa'],
+        ['Auftrieb (Archimedes)', 'F_A = \\rho_\\text{Fl} \\cdot g \\cdot V_\\text{eingetaucht}', ''],
+        ['Schwimmen', '\\rho_\\text{Körper} < \\rho_\\text{Fl}', 'eingetauchter Anteil = ρ_Körper / ρ_Fl'],
+        ['Dichte', '\\rho = \\frac{m}{V}', '']
+      ],
+      quellen: 'Ideale, inkompressible Flüssigkeit ohne Reibung; Dichten bei etwa 20 °C; Luftdruck 1013,25 hPa.',
+      bild: { titel: 'Animation', label: 'Hydraulische Presse, Schweredruck in der Tiefe und Auftrieb', animiert: true,
+        hoehe: function (B) { return B < 600 ? 420 : 380; },
+        hinweis: function (r, e) {
+          if (ansicht === 'presse') return 'Der kleine Kolben wird ' + zz(e.s1, 1) + ' cm gedrückt, der große hebt sich nur ' + zz(r.s2, 2) + ' cm – dafür mit ' + zz(r.ue, 1) + '-facher Kraft.';
+          if (ansicht === 'tiefe') return 'Die Pfeile zeigen den Druck von allen Seiten. Er nimmt gleichmäßig mit der Tiefe zu, in ' + FL[e.fl][0] + ' um ' + bar(r.rho * G) + ' je Meter.';
+          return 'Auf die Unterseite drückt mehr Flüssigkeit als auf die Oberseite – die Differenz ist der Auftrieb. ' + (r.schwimmt ? 'Der Körper steigt, bis Auftrieb und Gewicht gleich sind.' : 'Das Gewicht ist größer: Der Körper sinkt.');
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); SIM.t += dt; ({ presse: zeigePresse, tiefe: zeigeTiefe, auftrieb: zeigeAuftrieb })[ansicht](cx, B, H, r, e, dt); } }
+    });
+    function zeigePresse(cx, B, H, r, e) {
+      const eng = B < 600, yb = H - 40, ytop = eng ? 150 : 130;
+      const dm = Math.max(e.d1, e.d2), wmax = eng ? B * 0.42 : B * 0.3;
+      const w1 = Math.max(10, wmax * e.d1 / dm), w2 = Math.max(10, wmax * e.d2 / dm);
+      const x1 = B * 0.12, x2 = B - B * 0.08 - w2;
+      const f = 0.5 - 0.5 * Math.cos(SIM.t * PI2 / 4), hub1 = 50, hub2 = hub1 * Math.min(1, w1 * w1 / (w2 * w2));
+      const k1 = ytop + f * hub1, k2 = ytop + 40 - f * hub2 * 1;
+      cx.fillStyle = FLUESSIG;
+      cx.fillRect(x1, k1, w1, yb - k1); cx.fillRect(x2, k2, w2, yb - k2); cx.fillRect(x1, yb - 30, x2 + w2 - x1, 30);
+      cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.beginPath();
+      cx.moveTo(x1, ytop - 30); cx.lineTo(x1, yb); cx.lineTo(x2 + w2, yb); cx.lineTo(x2 + w2, ytop - 30);
+      cx.moveTo(x1 + w1, ytop - 30); cx.lineTo(x1 + w1, yb - 30); cx.lineTo(x2, yb - 30); cx.lineTo(x2, ytop - 30); cx.stroke();
+      cx.fillStyle = GRAU; cx.fillRect(x1, k1 - 8, w1, 8); cx.fillRect(x2, k2 - 8, w2, 8);
+      pfeil(cx, x1 + w1 / 2, k1 - 50, x1 + w1 / 2, k1 - 10, ROT, 2.5);
+      const l2 = Math.min(90, 40 * Math.sqrt(r.ue));
+      pfeil(cx, x2 + w2 / 2, k2 - 10, x2 + w2 / 2, k2 - 10 - l2, BLAU, Math.min(6, 2 + r.ue / 8));
+      T(cx, 'F₁ = ' + kraft(e.F1), Math.max(10, x1 + w1 / 2 - 30), ytop - 62, 'left', 10, true, ROT);
+      T(cx, 'F₂ = ' + kraft(r.F2), x2 + w2, Math.max(16, k2 - 20 - l2), 'right', 10, true, BLAU);
+      T(cx, 'p = ' + bar(r.p), (x1 + x2 + w2) / 2, yb - 15, 'center', 11, true);
+      T(cx, 'Übersetzung ' + zz(r.ue, 2) + '-fach', 10, 14, 'left', 11, true);
+      TW(cx, 'Weg: ' + zz(e.s1, 1) + ' cm → ' + zz(r.s2, 2) + ' cm', 10, 30, B - 20, 10, false, GRAU);
+    }
+    function zeigeTiefe(cx, B, H, r, e) {
+      const eng = B < 600, x0 = 20, x1 = eng ? B - 20 : B * 0.55, y0 = 40, y1 = H - 20, hm = Math.max(e.h * 1.25, 1);
+      cx.fillStyle = FLUESSIG; cx.fillRect(x0, y0, x1 - x0, y1 - y0);
+      strecke(cx, x0, y0, x1, y0, TUERKIS, 2);
+      const sk = (y1 - y0) / hm;
+      // Skala
+      const st = schritt(hm, 5); teilung([0, hm], st).forEach(function (v) { const y = y0 + v * sk; strecke(cx, x0, y, x0 + 8, y, F('--text'), 1); if (v > 0) T(cx, zz(v, stellen(st)) + ' m', x0 + 11, y, 'left', 9, false, GRAU); });
+      // Taucher bzw. Körper auf Tiefe h, schwankt leicht
+      const yt = y0 + e.h * sk + Math.sin(SIM.t * 1.5) * 3, xt = (x0 + x1) / 2 + 20;
+      const pl = function (d) { return 6 + 34 * Math.min(1, d / hm); };
+      const L = pl(e.h);
+      [[0, -1], [0, 1], [-1, 0], [1, 0]].forEach(function (d) { const sx = xt + d[0] * (L + 16), sy = yt + d[1] * (L + 16); pfeil(cx, sx, sy, xt + d[0] * 16, yt + d[1] * 16, BLAU, 2); });
+      kreis(cx, xt, yt, 14, ORANGE, F('--text'), 1.5);
+      for (let i = 1; i <= 4; i++) { const d = hm * i / 5, y = y0 + d * sk, l = pl(d); pfeil(cx, x1 - 6 - l, y, x1 - 6, y, 'rgba(43,123,185,.6)', 1.5); }
+      const tx = eng ? 10 : x1 + 16;
+      if (eng) { TW(cx, 'in ' + zz(e.h, 1) + ' m: Schweredruck ' + bar(r.ps) + ', absolut ' + bar(r.pa), 10, 14, B - 20, 10, true); }
+      else {
+        T(cx, FL[e.fl][0], tx, 50, 'left', 11, true, TUERKIS);
+        T(cx, 'Tiefe ' + zz(e.h, 2) + ' m', tx, 74, 'left', 11, true);
+        T(cx, 'Schweredruck ' + bar(r.ps), tx, 94, 'left', 11, false, BLAU);
+        T(cx, '+ Luftdruck ' + bar(P0), tx, 112, 'left', 11, false, GRAU);
+        T(cx, '= ' + bar(r.pa) + ' absolut', tx, 132, 'left', 11, true);
+        TW(cx, 'Auf jeden Quadratzentimeter drückt ' + kraft(r.pa / 1e4) + ', das ist das Gewicht von ' + zz(r.pa / 1e4 / G, 2) + ' kg.', tx, 160, B - tx - 10, 10, false, GRAU);
+      }
+    }
+    function zeigeAuftrieb(cx, B, H, r, e, dt) {
+      const eng = B < 600, x0 = 20, x1 = eng ? B - 20 : B * 0.6, ys = 90, y1 = H - 20;
+      const a = Math.max(40, Math.min(90, 20 * Math.cbrt(r.V * 1000))), xk = (x0 + x1) / 2 - a / 2;
+      const ziel = r.schwimmt ? ys - a + a * r.anteil : y1 - a;
+      if (SIM.y === null || SIM.t < 0.05) SIM.y = ys + 20;
+      SIM.y += (ziel - SIM.y) * Math.min(1, dt * 1.2);
+      if (Math.abs(SIM.y - ziel) < 0.5 && SIM.t > 5) { SIM.t = 0; SIM.y = ys + 20; }
+      cx.fillStyle = FLUESSIG; cx.fillRect(x0, ys, x1 - x0, y1 - ys); strecke(cx, x0, ys, x1, ys, TUERKIS, 2);
+      strecke(cx, x0, 30, x0, y1, F('--text'), 2); strecke(cx, x1, 30, x1, y1, F('--text'), 2); strecke(cx, x0, y1, x1, y1, F('--text'), 2);
+      const y = SIM.y;
+      cx.fillStyle = r.rhoK < 900 ? '#B07A3E' : GRAU; cx.fillRect(xk, y, a, a); cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.strokeRect(xk, y, a, a);
+      const ein = Math.max(0, Math.min(1, (y + a - ys) / a)), FA = r.FA * ein, fm = Math.max(r.FA, r.FG, 1e-9), lk = 70 / fm;
+      pfeil(cx, xk + a * 0.3, y + a / 2, xk + a * 0.3, y + a / 2 + r.FG * lk, ROT, 2.5);
+      if (FA * lk > 3) pfeil(cx, xk + a * 0.7, y + a / 2, xk + a * 0.7, y + a / 2 - FA * lk, BLAU, 2.5);
+      T(cx, 'F_G', xk + a * 0.3 - 6, y + a / 2 + r.FG * lk + 4, 'right', 10, true, ROT);
+      T(cx, 'F_A', xk + a * 0.7 + 6, y + a / 2 - FA * lk, 'left', 10, true, BLAU);
+      const tx = eng ? 10 : x1 + 16;
+      if (eng) TW(cx, 'Gewicht ' + kraft(r.FG) + ', Auftrieb ' + kraft(FA) + (r.schwimmt ? ' – schwimmt, ' + zz(r.anteil * 100, 0) + ' % unter Wasser' : ' – sinkt'), 10, 14, B - 20, 10, true);
+      else {
+        T(cx, 'Körper ' + zz(e.V, 2) + ' L, ' + zz(e.mK, 2) + ' kg', tx, 50, 'left', 11, true);
+        T(cx, 'Dichte ' + zz(r.rhoK, 0) + ' kg/m³', tx, 70, 'left', 11, false, GRAU);
+        T(cx, 'Gewicht ' + kraft(r.FG), tx, 96, 'left', 11, true, ROT);
+        T(cx, 'Auftrieb jetzt ' + kraft(FA), tx, 116, 'left', 11, true, BLAU);
+        T(cx, r.schwimmt ? 'schwimmt (' + zz(r.anteil * 100, 0) + ' % unter)' : 'sinkt', tx, 142, 'left', 11, true, r.schwimmt ? GRUEN : ROT);
+      }
+    }
+    ansicht = (ansichten(seite, [['presse', 'Hydraulische Presse'], ['tiefe', 'Schweredruck'], ['auftrieb', 'Auftrieb']], 'presse', function (a) { ansicht = a; SIM.t = 0; SIM.y = null; }))();
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energie und Impuls: Stoß, Rampe und Energieerhaltung – Formeln &amp; Rechner</title>
+  <meta name="description" content="Gerader Stoß zweier Körper – elastisch, unelastisch oder dazwischen – mit Impuls- und Energiebilanz, Energieerhaltung auf der schiefen Ebene mit Reibung und ein Kugelstoßpendel als Animation.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/mechanik/energie-impuls.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Energie und Impuls: Stoß, Rampe und Energieerhaltung">
+  <meta property="og:description" content="Gerader Stoß zweier Körper – elastisch, unelastisch oder dazwischen – mit Impuls- und Energiebilanz, Energieerhaltung auf der schiefen Ebene mit Reibung und ein Kugelstoßpendel als Animation.">
+  <meta property="og:url" content="https://tools.pr1m3.de/mechanik/energie-impuls.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Energie und Impuls: Stoß, Rampe und Energieerhaltung">
+  <meta name="twitter:description" content="Gerader Stoß zweier Körper – elastisch, unelastisch oder dazwischen – mit Impuls- und Energiebilanz, Energieerhaltung auf der schiefen Ebene mit Reibung und ein Kugelstoßpendel als Animation.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/mechanik/energie-impuls.html#seite","name":"Energie und Impuls: Stoß, Rampe und Energieerhaltung","url":"https://tools.pr1m3.de/mechanik/energie-impuls.html","inLanguage":"de","description":"Gerader Stoß zweier Körper – elastisch, unelastisch oder dazwischen – mit Impuls- und Energiebilanz, Energieerhaltung auf der schiefen Ebene mit Reibung und ein Kugelstoßpendel als Animation.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/mechanik/energie-impuls.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/mechanik/energie-impuls.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Energie und Impuls: Stoß, Rampe und Energieerhaltung","item":"https://tools.pr1m3.de/mechanik/energie-impuls.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/mechanik/energie-impuls.html#fragen","mainEntity":[{"@type":"Question","name":"Warum ist ein Aufprall mit 100 km/h viermal so schlimm wie mit 50 km/h?","acceptedAnswer":{"@type":"Answer","text":"Die Bewegungsenergie wächst mit dem Quadrat der Geschwindigkeit: E = ½ · m · v². Doppelte Geschwindigkeit bedeutet vierfache Energie, die beim Aufprall in Verformung umgesetzt werden muss."}},{"@type":"Question","name":"Wie schnell ist man nach 10 m freiem Fall?","acceptedAnswer":{"@type":"Answer","text":"Aus m · g · h = ½ · m · v² folgt v = √(2 · g · h) = √(2 · 9,81 · 10) m/s ≈ 14 m/s, also rund 50 km/h. Umgekehrt entspricht ein Aufprall mit 50 km/h einem Sturz aus etwa 10 m Höhe."}},{"@type":"Question","name":"Bleibt bei einem Auffahrunfall der Impuls erhalten, obwohl die Autos kaputt sind?","acceptedAnswer":{"@type":"Answer","text":"Ja. Direkt beim Stoß wirken nur die Kräfte zwischen den Fahrzeugen, und die heben sich nach dem Wechselwirkungsgesetz auf. Verloren geht nur Bewegungsenergie, nicht Impuls."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/mechanik/energie-impuls.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Was beim Stoßen erhalten bleibt</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Impulserhaltung</h3><p>Der Impuls p = m · v hat eine Richtung. Bei jedem Stoß zweier Körper bleibt die Summe der Impulse gleich – egal ob die Körper abprallen, sich verformen oder zusammenkleben. Was der eine an Impuls verliert, gewinnt der andere.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Elastischer Stoß</h3><p>Prallen die Körper ohne bleibende Verformung ab (Stahlkugeln, Billard), bleibt auch die Bewegungsenergie erhalten. Gleich schwere Körper tauschen dabei ihre Geschwindigkeiten: Die stoßende Kugel bleibt stehen, die gestoßene fliegt weiter.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Unelastischer Stoß</h3><p>Bleiben die Körper aneinander hängen (Auffahrunfall, Knetmasse), fahren sie gemeinsam weiter. Ein Teil der Bewegungsenergie wird zu Verformungsarbeit und Wärme – das ist die Energie, die eine Knautschzone aufnehmen muss.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Energieerhaltung</h3><p>Energie geht nie verloren, sie wandelt sich nur um: Lageenergie wird beim Herunterrutschen zu Bewegungsenergie, Reibung macht daraus Wärme. Ohne Reibung ist die Geschwindigkeit unten nur von der Höhe abhängig, nicht von der Form der Bahn.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum ist ein Aufprall mit 100 km/h viermal so schlimm wie mit 50 km/h?</summary><p>Die Bewegungsenergie wächst mit dem Quadrat der Geschwindigkeit: E = ½ · m · v². Doppelte Geschwindigkeit bedeutet vierfache Energie, die beim Aufprall in Verformung umgesetzt werden muss.</p></details>
+        <details><summary>Wie schnell ist man nach 10 m freiem Fall?</summary><p>Aus m · g · h = ½ · m · v² folgt v = √(2 · g · h) = √(2 · 9,81 · 10) m/s ≈ 14 m/s, also rund 50 km/h. Umgekehrt entspricht ein Aufprall mit 50 km/h einem Sturz aus etwa 10 m Höhe.</p></details>
+        <details><summary>Bleibt bei einem Auffahrunfall der Impuls erhalten, obwohl die Autos kaputt sind?</summary><p>Ja. Direkt beim Stoß wirken nur die Kräfte zwischen den Fahrzeugen, und die heben sich nach dem Wechselwirkungsgesetz auf. Verloren geht nur Bewegungsenergie, nicht Impuls.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? (Math.abs(sp - Math.round(sp)) > 1e-9 ? 1 : 0) : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const G = 9.81;
+    let ansicht = 'stoss', takt = uhr();
+    const SIM = { t: 0 };
+    function stosszahl(e) { return e.art === 'elastisch' ? 1 : e.art === 'unelastisch' ? 0 : e.k; }
+    function rechne(e) {
+      const r = {}, k = stosszahl(e), M = e.m1 + e.m2;
+      r.k = k; r.trifft = e.v1 > e.v2;
+      r.p = e.m1 * e.v1 + e.m2 * e.v2; r.vs = r.p / M;
+      if (r.trifft) { r.u1 = (r.p - e.m2 * k * (e.v1 - e.v2)) / M; r.u2 = (r.p + e.m1 * k * (e.v1 - e.v2)) / M; }
+      else { r.u1 = e.v1; r.u2 = e.v2; }
+      r.E0 = 0.5 * e.m1 * e.v1 * e.v1 + 0.5 * e.m2 * e.v2 * e.v2;
+      r.E1 = 0.5 * e.m1 * r.u1 * r.u1 + 0.5 * e.m2 * r.u2 * r.u2;
+      r.dE = Math.max(0, r.E0 - r.E1);
+      // Rampe
+      const a = e.alpha * GRAD;
+      r.s = e.h / Math.sin(a); r.l = e.h / Math.tan(a);
+      r.aR = G * (Math.sin(a) - e.mu * Math.cos(a)); r.rutscht = r.aR > 1e-9;
+      r.WR = e.mu * e.mr * G * Math.cos(a) * r.s; r.Ep = e.mr * G * e.h;
+      r.Ek = r.rutscht ? Math.max(0, r.Ep - r.WR) : 0;
+      r.vu = Math.sqrt(2 * r.Ek / e.mr); r.vfrei = Math.sqrt(2 * G * e.h);
+      r.t1 = r.rutscht ? Math.sqrt(2 * r.s / r.aR) : Infinity;
+      r.sAus = e.mu > 0 ? r.vu * r.vu / (2 * e.mu * G) : Infinity;
+      return r;
+    }
+    function joule(j) { const a = Math.abs(j); return a >= 1e6 ? zz(j / 1e6, 2) + ' MJ' : a >= 1e3 ? zz(j / 1e3, 2) + ' kJ' : zz(j, a < 10 ? 2 : 1) + ' J'; }
+    function ms(v) { return zz(v, 2) + ' m/s'; }
+    const seite = R.seite({
+      titel: 'Energie und Impuls',
+      einleitung: 'Gerader Stoß zweier Körper (elastisch, unelastisch oder dazwischen) mit Impuls- und Energiebilanz, dazu die Energieerhaltung auf einer schiefen Ebene mit Reibung.',
+      hilfe: 'Geschwindigkeiten nach rechts positiv, nach links negativ. Beispiel: Ein Auto (1200 kg, 15 m/s) fährt auf ein langsameres (900 kg, 5 m/s) auf.',
+      gruppen: [
+        { titel: 'Körper 1 (links)', farbe: BLAU, felder: [
+          { k: 'm1', tex: 'm_1', name: 'Masse', e: 'kg', min: 0.001, max: 1e7 },
+          { k: 'v1', tex: 'v_1', name: 'Geschwindigkeit', e: 'm/s', min: -1000, max: 1000 }
+        ] },
+        { titel: 'Körper 2 (rechts)', farbe: ROT, felder: [
+          { k: 'm2', tex: 'm_2', name: 'Masse', e: 'kg', min: 0.001, max: 1e7 },
+          { k: 'v2', tex: 'v_2', name: 'Geschwindigkeit', e: 'm/s', min: -1000, max: 1000 }
+        ] },
+        { titel: 'Stoß', farbe: GRAU, felder: [
+          { k: 'art', name: 'Art des Stoßes', wahl: [['elastisch', 'elastisch (abprallen)'], ['unelastisch', 'unelastisch (zusammenkleben)'], ['teil', 'teilelastisch']] },
+          { k: 'k', tex: 'k', name: 'Stoßzahl (0 = klebt, 1 = elastisch)', e: '', min: 0, max: 1, wenn: function (e) { return e.art === 'teil'; } }
+        ] },
+        { titel: 'Schiefe Ebene', farbe: GRUEN, felder: [
+          { k: 'mr', tex: 'm', name: 'Masse', e: 'kg', min: 0.001, max: 1e6 },
+          { k: 'h', tex: 'h', name: 'Höhe', e: 'm', min: 0.01, max: 10000 },
+          { k: 'alpha', tex: '\\alpha', name: 'Neigungswinkel', e: '°', min: 1, max: 89 },
+          { k: 'mu', tex: '\\mu', name: 'Gleitreibungszahl (0 = reibungsfrei)', e: '', min: 0, max: 2 }
+        ] }
+      ],
+      beispiel: { m1: 1200, v1: 15, m2: 900, v2: 5, art: 'unelastisch', k: 0.5, mr: 20, h: 3, alpha: 30, mu: 0.15 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (!r.trifft) H.meldung('Körper 1 ist nicht schneller als Körper 2 – er holt ihn nicht ein, es gibt keinen Stoß.', true);
+        if (!r.rutscht) H.meldung('Die Reibung hält den Körper fest: Für ein Rutschen muss tan α größer als μ sein (hier ' + zz(Math.tan(e.alpha * GRAD), 2) + ' ≤ ' + zz(e.mu, 2) + ').', true);
+        H.kacheln([
+          [ms(r.u1), 'Körper 1 nach dem Stoß', BLAU],
+          [ms(r.u2), 'Körper 2 nach dem Stoß', ROT],
+          [zz(r.p, 1) + ' kg·m/s', 'Gesamtimpuls (bleibt gleich)', GRAU],
+          [joule(r.dE), 'in Verformung und Wärme (' + zz(r.E0 > 0 ? r.dE / r.E0 * 100 : 0, 0) + ' %)', ORANGE],
+          [ms(r.vu), 'Geschwindigkeit am Fuß der Ebene', GRUEN],
+          [joule(r.WR), 'Reibungsarbeit auf der Ebene', ORANGE]
+        ]);
+        H.tabelle('Stoß: vorher und nachher', ['', 'vorher', 'nachher'], [
+          ['Geschwindigkeit Körper 1', ms(e.v1), ms(r.u1)],
+          ['Geschwindigkeit Körper 2', ms(e.v2), ms(r.u2)],
+          ['Impuls Körper 1', zz(e.m1 * e.v1, 1) + ' kg·m/s', zz(e.m1 * r.u1, 1) + ' kg·m/s'],
+          ['Impuls Körper 2', zz(e.m2 * e.v2, 1) + ' kg·m/s', zz(e.m2 * r.u2, 1) + ' kg·m/s'],
+          ['Bewegungsenergie gesamt', joule(r.E0), joule(r.E1)]
+        ], { zahl: [1, 2] });
+        H.tabelle('Schiefe Ebene', ['Größe', 'Wert'], [
+          ['Länge der Ebene', zz(r.s, 2) + ' m'],
+          ['Lageenergie oben', joule(r.Ep)],
+          ['Bewegungsenergie unten', joule(r.Ek)],
+          ['Geschwindigkeit ohne Reibung', ms(r.vfrei) + ' (' + zz(r.vfrei * 3.6, 0) + ' km/h)'],
+          ['Rutschzeit', isFinite(r.t1) ? zz(r.t1, 2) + ' s' : '–'],
+          ['Ausrollweg danach auf gleicher Unterlage', isFinite(r.sAus) ? zz(r.sAus, 2) + ' m' : 'unbegrenzt (keine Reibung)']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        const w = [['Impuls vorher', 'p = m_1 v_1 + m_2 v_2 = ' + tz(e.m1, 3) + ' \\cdot ' + tz(e.v1, 2) + ' + ' + tz(e.m2, 3) + ' \\cdot ' + tz(e.v2, 2) + ' = ' + E(tz(r.p, 1) + '\\,\\text{kg}\\,\\tfrac{\\text{m}}{\\text{s}}')]];
+        if (r.trifft && r.k === 0) w.push(['gemeinsame Geschwindigkeit', "v' = \\frac{p}{m_1 + m_2} = \\frac{" + tz(r.p, 1) + '}{' + tz(e.m1 + e.m2, 3) + '}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(r.u1, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}')]);
+        else if (r.trifft) {
+          w.push(['Körper 1 nachher', "v_1' = \\frac{p - m_2 k (v_1 - v_2)}{m_1 + m_2} = \\frac{" + tz(r.p, 1) + ' - ' + tz(e.m2, 3) + ' \\cdot ' + tz(r.k, 2) + ' \\cdot ' + tz(e.v1 - e.v2, 2) + '}{' + tz(e.m1 + e.m2, 3) + '}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(r.u1, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}')]);
+          w.push(['Körper 2 nachher', "v_2' = \\frac{p + m_1 k (v_1 - v_2)}{m_1 + m_2} = " + E(tz(r.u2, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}')]);
+        }
+        w.push(['Energieverlust', '\\Delta E = E_\\text{vorher} - E_\\text{nachher} = ' + tz(r.E0, 1) + '\\,\\text{J} - ' + tz(r.E1, 1) + '\\,\\text{J} = ' + E(tz(r.dE, 1) + '\\,\\text{J}')]);
+        w.push(['Lageenergie', 'E_\\text{pot} = m g h = ' + tz(e.mr, 3) + ' \\cdot 9{,}81 \\cdot ' + tz(e.h, 2) + '\\,\\text{J} = ' + E(tz(r.Ep, 1) + '\\,\\text{J}')]);
+        w.push(['Reibungsarbeit', 'W_R = \\mu\\, m g \\cos\\alpha \\cdot s = ' + tz(e.mu, 2) + ' \\cdot ' + tz(e.mr, 3) + ' \\cdot 9{,}81 \\cdot \\cos ' + tz(e.alpha, 1) + '° \\cdot ' + tz(r.s, 2) + '\\,\\text{m} = ' + E(tz(r.WR, 1) + '\\,\\text{J}')]);
+        w.push(['Geschwindigkeit unten', 'v = \\sqrt{\\frac{2 (E_\\text{pot} - W_R)}{m}} = \\sqrt{\\frac{2 \\cdot ' + tz(r.Ek, 1) + '}{' + tz(e.mr, 3) + '}}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(r.vu, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Bewegungsenergie', hilfe: 'E = ½ · m · v²',
+          felder: [{ k: 'E', tex: 'E_\\text{kin}', name: 'Bewegungsenergie', e: 'J', min: 0.01, max: 1e9 }, { k: 'm', tex: 'm', name: 'Masse', e: 'kg', min: 0.01, max: 1e5 }, { k: 'v', tex: 'v', name: 'Geschwindigkeit', e: 'm/s', min: 0.1, max: 1000 }],
+          beispiel: { m: 1200, v: 13.9 },
+          gleichungen: [{ name: 'Ekin', v: ['E', 'm', 'v'], f: function (q) { return [q.E, q.m * q.v * q.v / 2]; },
+            loese: { E: function (q) { return q.m * q.v * q.v / 2; }, m: function (q) { return 2 * q.E / (q.v * q.v); }, v: function (q) { return Math.sqrt(2 * q.E / q.m); } },
+            weg: function (k, q) { return k === 'E' ? 'E = \\tfrac{1}{2} m v^2 = \\tfrac{1}{2} \\cdot ' + tz(q.m, 2) + ' \\cdot ' + tz(q.v, 2) + '^2\\,\\text{J} = ' + E(tz(q.E, 1) + '\\,\\text{J}') : k === 'm' ? 'm = \\frac{2E}{v^2} = \\frac{2 \\cdot ' + tz(q.E, 1) + '}{' + tz(q.v, 2) + '^2}\\,\\text{kg} = ' + E(tz(q.m, 2) + '\\,\\text{kg}') : 'v = \\sqrt{\\frac{2E}{m}} = \\sqrt{\\frac{2 \\cdot ' + tz(q.E, 1) + '}{' + tz(q.m, 2) + '}}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}'); } }] },
+        { titel: 'Lageenergie', hilfe: 'E = m · g · h, g = 9,81 m/s².',
+          felder: [{ k: 'E', tex: 'E_\\text{pot}', name: 'Lageenergie', e: 'J', min: 0.01, max: 1e9 }, { k: 'm', tex: 'm', name: 'Masse', e: 'kg', min: 0.01, max: 1e5 }, { k: 'h', tex: 'h', name: 'Höhe', e: 'm', min: 0.01, max: 1e4 }, { k: 'g', tex: 'g', name: 'Fallbeschleunigung', e: 'm/s²', min: 1, max: 30, fest: true }],
+          beispiel: { m: 20, h: 3, g: 9.81 },
+          gleichungen: [{ name: 'Epot', v: ['E', 'm', 'h', 'g'], f: function (q) { return [q.E, q.m * q.g * q.h]; },
+            loese: { E: function (q) { return q.m * q.g * q.h; }, m: function (q) { return q.E / (q.g * q.h); }, h: function (q) { return q.E / (q.m * q.g); }, g: function (q) { return q.E / (q.m * q.h); } },
+            weg: function (k, q) { return k === 'E' ? 'E = m g h = ' + tz(q.m, 2) + ' \\cdot ' + tz(q.g, 2) + ' \\cdot ' + tz(q.h, 2) + '\\,\\text{J} = ' + E(tz(q.E, 1) + '\\,\\text{J}') : k === 'm' ? 'm = \\frac{E}{g h} = ' + E(tz(q.m, 2) + '\\,\\text{kg}') : k === 'h' ? 'h = \\frac{E}{m g} = \\frac{' + tz(q.E, 1) + '}{' + tz(q.m, 2) + ' \\cdot ' + tz(q.g, 2) + '}\\,\\text{m} = ' + E(tz(q.h, 2) + '\\,\\text{m}') : 'g = \\frac{E}{m h} = ' + E(tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}'); } }] },
+        { titel: 'Impuls', hilfe: 'p = m · v',
+          felder: [{ k: 'p', tex: 'p', name: 'Impuls', e: 'kg·m/s', min: 0.01, max: 1e8 }, { k: 'm', tex: 'm', name: 'Masse', e: 'kg', min: 0.01, max: 1e5 }, { k: 'v', tex: 'v', name: 'Geschwindigkeit', e: 'm/s', min: 0.1, max: 1000 }],
+          beispiel: { m: 0.16, v: 30 },
+          gleichungen: [{ name: 'Impuls', v: ['p', 'm', 'v'], f: function (q) { return [q.p, q.m * q.v]; },
+            loese: { p: function (q) { return q.m * q.v; }, m: function (q) { return q.p / q.v; }, v: function (q) { return q.p / q.m; } },
+            weg: function (k, q) { return k === 'p' ? 'p = m v = ' + tz(q.m, 3) + '\\,\\text{kg} \\cdot ' + tz(q.v, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.p, 2) + '\\,\\text{kg}\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'm' ? 'm = \\frac{p}{v} = ' + E(tz(q.m, 3) + '\\,\\text{kg}') : 'v = \\frac{p}{m} = \\frac{' + tz(q.p, 2) + '}{' + tz(q.m, 3) + '}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}'); } }] },
+        { titel: 'Geschwindigkeit aus der Fallhöhe', hilfe: 'Ohne Reibung: m·g·h = ½·m·v²',
+          felder: [{ k: 'v', tex: 'v', name: 'Geschwindigkeit unten', e: 'm/s', min: 0.1, max: 500 }, { k: 'h', tex: 'h', name: 'Höhe', e: 'm', min: 0.01, max: 1e4 }, { k: 'g', tex: 'g', name: 'Fallbeschleunigung', e: 'm/s²', min: 1, max: 30, fest: true }],
+          beispiel: { h: 10, g: 9.81 },
+          gleichungen: [{ name: 'Fall', v: ['v', 'h', 'g'], f: function (q) { return [q.v, Math.sqrt(2 * q.g * q.h)]; },
+            loese: { v: function (q) { return Math.sqrt(2 * q.g * q.h); }, h: function (q) { return q.v * q.v / (2 * q.g); }, g: function (q) { return q.v * q.v / (2 * q.h); } },
+            weg: function (k, q) { return k === 'v' ? 'v = \\sqrt{2 g h} = \\sqrt{2 \\cdot ' + tz(q.g, 2) + ' \\cdot ' + tz(q.h, 2) + '}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'h' ? 'h = \\frac{v^2}{2g} = \\frac{' + tz(q.v, 2) + '^2}{2 \\cdot ' + tz(q.g, 2) + '}\\,\\text{m} = ' + E(tz(q.h, 2) + '\\,\\text{m}') : 'g = \\frac{v^2}{2h} = ' + E(tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}'); } }] },
+        { titel: 'Unelastischer Stoß', hilfe: 'Beide Körper bewegen sich danach gemeinsam mit v.',
+          felder: [{ k: 'v', tex: "v'", name: 'gemeinsame Geschwindigkeit', e: 'm/s', min: -500, max: 500 }, { k: 'm1', tex: 'm_1', name: 'Masse 1', e: 'kg', min: 0.1, max: 1e5 }, { k: 'v1', tex: 'v_1', name: 'Geschwindigkeit 1', e: 'm/s', min: -500, max: 500 }, { k: 'm2', tex: 'm_2', name: 'Masse 2', e: 'kg', min: 0.1, max: 1e5 }, { k: 'v2', tex: 'v_2', name: 'Geschwindigkeit 2', e: 'm/s', min: -500, max: 500 }],
+          beispiel: { m1: 1200, v1: 15, m2: 900, v2: 5 },
+          gleichungen: [{ name: 'Stoß', v: ['v', 'm1', 'v1', 'm2', 'v2'], f: function (q) { return [q.v * (q.m1 + q.m2), q.m1 * q.v1 + q.m2 * q.v2]; },
+            loese: { v: function (q) { return (q.m1 * q.v1 + q.m2 * q.v2) / (q.m1 + q.m2); }, v1: function (q) { return ((q.m1 + q.m2) * q.v - q.m2 * q.v2) / q.m1; }, v2: function (q) { return ((q.m1 + q.m2) * q.v - q.m1 * q.v1) / q.m2; }, m1: function (q) { return q.m2 * (q.v2 - q.v) / (q.v - q.v1); }, m2: function (q) { return q.m1 * (q.v1 - q.v) / (q.v - q.v2); } },
+            weg: function (k, q) { return k === 'v' ? "v' = \\frac{m_1 v_1 + m_2 v_2}{m_1 + m_2} = \\frac{" + tz(q.m1, 2) + ' \\cdot ' + tz(q.v1, 2) + ' + ' + tz(q.m2, 2) + ' \\cdot ' + tz(q.v2, 2) + '}{' + tz(q.m1, 2) + ' + ' + tz(q.m2, 2) + '}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'v1' ? "v_1 = \\frac{(m_1 + m_2) v' - m_2 v_2}{m_1} = " + E(tz(q.v1, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'v2' ? "v_2 = \\frac{(m_1 + m_2) v' - m_1 v_1}{m_2} = " + E(tz(q.v2, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'm1' ? "m_1 = m_2 \\frac{v_2 - v'}{v' - v_1} = " + E(tz(q.m1, 2) + '\\,\\text{kg}') : "m_2 = m_1 \\frac{v_1 - v'}{v' - v_2} = " + E(tz(q.m2, 2) + '\\,\\text{kg}'); } }] }
+      ],
+      sammlung: [
+        ['Impuls', 'p = m \\cdot v', 'Richtung wie die Geschwindigkeit'],
+        ['Impulserhaltung', "m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'", 'bei jedem Stoß'],
+        ['Unelastischer Stoß', "v' = \\frac{m_1 v_1 + m_2 v_2}{m_1 + m_2}", 'Körper bewegen sich gemeinsam weiter'],
+        ['Elastischer Stoß', "v_1' = \\frac{(m_1 - m_2) v_1 + 2 m_2 v_2}{m_1 + m_2}", 'v₂′ entsprechend mit vertauschten Indizes'],
+        ['Stoßzahl', "k = \\frac{v_2' - v_1'}{v_1 - v_2}", '1 elastisch, 0 unelastisch'],
+        ['Bewegungsenergie', 'E_\\text{kin} = \\tfrac{1}{2} m v^2', ''],
+        ['Lageenergie', 'E_\\text{pot} = m g h', ''],
+        ['Energieerhaltung ohne Reibung', 'v = \\sqrt{2 g h}', 'unabhängig von Masse und Bahnform'],
+        ['Reibungsarbeit auf der schiefen Ebene', 'W_R = \\mu\\, m g \\cos\\alpha \\cdot s', 's = Länge der Ebene'],
+        ['Kraftstoß', 'F \\cdot \\Delta t = \\Delta p', 'längere Stoßzeit, kleinere Kraft']
+      ],
+      quellen: 'Gerader, zentraler Stoß; Massen als starre Körper; konstante Gleitreibung, Luftwiderstand vernachlässigt; g = 9,81 m/s².',
+      bild: { titel: 'Animation', label: 'Stoß zweier Wagen, schiefe Ebene mit Energiebalken und Kugelstoßpendel', animiert: true,
+        hoehe: function (B) { return ansicht === 'pendel' ? Math.min(380, Math.round(B * 0.55) + 80) : B < 600 ? 420 : 380; },
+        hinweis: function (r, e) {
+          if (ansicht === 'stoss') return 'Die Pfeile zeigen den Impuls jedes Wagens. Ihre Summe bleibt beim Stoß gleich, die Bewegungsenergie (Balken) nimmt bei unelastischen Stößen ab.';
+          if (ansicht === 'rampe') return 'Die Balken zeigen die Aufteilung der Energie: Lageenergie wird zu Bewegungsenergie, Reibung macht daraus Wärme. Die Summe bleibt gleich.';
+          return 'Kugelstoßpendel: Gleich schwere Kugeln geben Impuls und Energie beim elastischen Stoß vollständig an die nächste weiter, deshalb fliegt am anderen Ende genau eine Kugel weg. ' + (e.art === 'teil' ? 'Mit Stoßzahl ' + zz(r.k, 2) + ' klingt die Bewegung ab.' : 'Für einen teilelastischen Stoß „teilelastisch“ wählen.');
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); SIM.t += dt; ({ stoss: zeigeStoss, rampe: zeigeRampe, pendel: zeigePendel })[ansicht](cx, B, H, r, e); } }
+    });
+    function wagen(cx, x0, y, w, h, farbe, text) {
+      cx.fillStyle = farbe; cx.fillRect(x0, y - h - 8, w, h); cx.strokeStyle = F('--text'); cx.lineWidth = 1.2; cx.strokeRect(x0, y - h - 8, w, h);
+      kreis(cx, x0 + w * 0.25, y - 4, 4.5, F('--text')); kreis(cx, x0 + w * 0.75, y - 4, 4.5, F('--text'));
+      T(cx, text, x0 + w / 2, y - h / 2 - 8, 'center', 10, true, '#fff');
+    }
+    function balken(cx, x, y, w, werte, max, titel) {
+      T(cx, titel, x, y, 'left', 10, true);
+      let yy = y + 14;
+      werte.forEach(function (v) { const l = max > 0 ? Math.max(0, v[1]) / max * (w - 92) : 0; T(cx, v[0], x, yy + 5, 'left', 9, false, GRAU); cx.fillStyle = v[2]; cx.fillRect(x + 58, yy, Math.max(1, l), 10); T(cx, joule(v[1]), x + 62 + l, yy + 5, 'left', 9, true, v[2]); yy += 16; });
+      return yy;
+    }
+    function zeigeStoss(cx, B, H, r, e) {
+      const eng = B < 600, y = eng ? 130 : 140, xc = B / 2;
+      const vm = Math.max(Math.abs(e.v1), Math.abs(e.v2), Math.abs(r.u1), Math.abs(r.u2), 1e-6), s = (B * 0.32) / 2.2 / vm;
+      const mm = Math.max(e.m1, e.m2), w1 = 26 + 44 * Math.cbrt(e.m1 / mm), w2 = 26 + 44 * Math.cbrt(e.m2 / mm);
+      const tc = (SIM.t % 6.2) - 2.6, t = Math.min(tc, 2.6), vor = t < 0 || !r.trifft;
+      const re1 = xc + s * (vor ? e.v1 : r.u1) * t, li2 = xc + s * (vor ? e.v2 : r.u2) * t + (r.trifft ? 0 : 30);
+      strecke(cx, 0, y, B, y, F('--linie'), 2);
+      cx.save(); cx.beginPath(); cx.rect(0, 0, B, y + 4); cx.clip();
+      wagen(cx, re1 - w1, y, w1, 26, BLAU, zz(e.m1, 0) + ' kg');
+      wagen(cx, li2, y, w2, 26, ROT, zz(e.m2, 0) + ' kg');
+      cx.restore();
+      const pm = Math.max(Math.abs(e.m1 * e.v1), Math.abs(e.m2 * e.v2), Math.abs(e.m1 * r.u1), Math.abs(e.m2 * r.u2), 1e-9), ps = (B * 0.4) / pm;
+      const p1 = e.m1 * (vor ? e.v1 : r.u1), p2 = e.m2 * (vor ? e.v2 : r.u2);
+      const py = y - 56;
+      if (Math.abs(p1) * ps > 3) pfeil(cx, re1 - w1 / 2, py, re1 - w1 / 2 + p1 * ps * 0.5, py, BLAU, 2.5);
+      if (Math.abs(p2) * ps > 3) pfeil(cx, li2 + w2 / 2, py - 12, li2 + w2 / 2 + p2 * ps * 0.5, py - 12, ROT, 2.5);
+      TW(cx, (vor ? 'vor dem Stoß' : 'nach dem Stoß') + ': v₁ = ' + ms(vor ? e.v1 : r.u1) + ', v₂ = ' + ms(vor ? e.v2 : r.u2), 10, 14, B - 20, 11, true);
+      // Impulssumme
+      const ys = y + 30;
+      T(cx, 'Impuls gesamt', 10, ys, 'left', 10, true);
+      const x0 = eng ? 100 : 120;
+      let acc = 0; [[p1, BLAU], [p2, ROT]].forEach(function (q) { const l = q[0] * ps * 0.5; cx.fillStyle = q[1]; cx.fillRect(Math.min(x0 + acc, x0 + acc + l), ys - 5, Math.abs(l), 10); acc += l; });
+      T(cx, zz(r.p, 0) + ' kg·m/s', x0 + Math.max(acc, 0) + 6, ys, 'left', 9, true, GRAU);
+      const yb = ys + 26, em = Math.max(r.E0, 1e-9);
+      const zu = !vor ? r.dE : 0;
+      balken(cx, 10, yb, B - 20, [['Körper 1', 0.5 * e.m1 * Math.pow(vor ? e.v1 : r.u1, 2), BLAU], ['Körper 2', 0.5 * e.m2 * Math.pow(vor ? e.v2 : r.u2, 2), ROT], ['Wärme', zu, ORANGE]], em, 'Bewegungsenergie');
+    }
+    function zeigeRampe(cx, B, H, r, e) {
+      const eng = B < 600, oben = 40, unten = eng ? 230 : H - 30;
+      const flachM = isFinite(r.sAus) ? Math.min(r.sAus, r.l * 1.5) : r.l * 1.5, gesamt = r.l + Math.max(flachM, r.l * 0.4);
+      const sk = Math.min((B - 40) / gesamt, (unten - oben - 20) / e.h), xa = 20, ya = unten - e.h * sk, xb = xa + r.l * sk;
+      cx.fillStyle = 'rgba(107,119,133,.25)'; cx.beginPath(); cx.moveTo(xa, unten); cx.lineTo(xa, ya); cx.lineTo(xb, unten); cx.closePath(); cx.fill();
+      strecke(cx, xa, ya, xb, unten, F('--text'), 2); strecke(cx, xb, unten, B, unten, F('--text'), 2);
+      T(cx, 'h = ' + zz(e.h, 2) + ' m, ' + zz(e.alpha, 0) + '°', xa, ya - 12, 'left', 10, true, GRAU);
+      const t1 = r.t1, t2 = e.mu > 0 ? r.vu / (e.mu * G) : Math.max(1, (B - xb) / sk / Math.max(r.vu, 1e-6));
+      const tg = (isFinite(t1) ? t1 : 0) + (isFinite(t2) ? t2 : 0), f = Math.max(1, Math.min(4, tg)) / Math.max(tg, 1e-6);
+      const tt = (SIM.t % (Math.max(1, Math.min(4, tg)) + 1.2)) / f;
+      let sx, sy, ang, vNow, hNow, wr;
+      if (!r.rutscht) { sx = xa; sy = ya; ang = Math.atan2(unten - ya, xb - xa); vNow = 0; hNow = e.h; wr = 0; }
+      else if (tt < t1) { const s = r.aR * tt * tt / 2; sx = xa + s * Math.cos(e.alpha * GRAD) * sk; sy = ya + s * Math.sin(e.alpha * GRAD) * sk; ang = e.alpha * GRAD; vNow = r.aR * tt; hNow = e.h - s * Math.sin(e.alpha * GRAD); wr = e.mu * e.mr * G * Math.cos(e.alpha * GRAD) * s; }
+      else { const t = Math.min(tt - t1, isFinite(t2) ? t2 : 0), s = r.vu * t - e.mu * G * t * t / 2; sx = Math.min(B - 12, xb + s * sk); sy = unten; ang = 0; vNow = Math.max(0, r.vu - e.mu * G * t); hNow = 0; wr = r.WR + e.mu * e.mr * G * s; }
+      cx.save(); cx.translate(sx, sy); cx.rotate(ang); cx.fillStyle = GRUEN; cx.fillRect(-11, -18, 22, 18); cx.strokeStyle = F('--text'); cx.lineWidth = 1.2; cx.strokeRect(-11, -18, 22, 18); cx.restore();
+      T(cx, 'v = ' + ms(vNow), 10, 14, 'left', 11, true);
+      if (e.mu > 0) T(cx, 'Reibung μ = ' + zz(e.mu, 2), B - 10, 14, 'right', 10, false, GRAU);
+      const yb = eng ? 262 : 30, xbal = eng ? 10 : B * 0.55, wb = eng ? B - 20 : B * 0.45 - 10;
+      const ep = e.mr * G * hNow, ek = 0.5 * e.mr * vNow * vNow;
+      balken(cx, xbal, yb + (eng ? 0 : 10), wb, [['Lage', ep, BLAU], ['Bewegung', ek, GRUEN], ['Wärme', Math.min(r.Ep, wr), ORANGE], ['Summe', ep + ek + Math.min(r.Ep, wr), GRAU]], r.Ep, 'Energie');
+    }
+    function zeigePendel(cx, B, H, r, e) {
+      const n = 5, R0 = Math.min(16, (B - 40) / 14), xm = B / 2, top = 40, w = 2 * R0, L = Math.min(H - 120, 220, (B / 2 - n * R0 - 14) / Math.sin(0.55));
+      const om = PI2 / 1.6, zyk = SIM.t * om, halb = Math.floor(zyk / Math.PI), kp = e.art === 'unelastisch' ? 1 : r.k, amp0 = 0.55, amp = amp0 * Math.pow(Math.max(kp, 0.0001), halb), phase = zyk % Math.PI;
+      const a = amp * Math.sin(phase), rechts = halb % 2 === 0;
+      decke(cx, xm, top, n * R0 + 30);
+      for (let i = 0; i < n; i++) {
+        const xh = xm + (i - (n - 1) / 2) * w; let ph = 0;
+        if (rechts && i === n - 1) ph = a; if (!rechts && i === 0) ph = -a;
+                const x = xh + Math.sin(ph) * L, y = top + Math.cos(ph) * L;
+        strecke(cx, xh, top, x, y, F('--text'), 1.2);
+        kreis(cx, x, y, R0 - 0.5, i === 0 ? BLAU : i === n - 1 ? ROT : GRAU, F('--text'), 1.2);
+      }
+      T(cx, kp >= 1 ? 'Stahlkugeln, elastischer Stoß' : 'Stoßzahl ' + zz(kp, 2), 10, 14, 'left', 11, true);
+      if (amp < 0.02) SIM.t = 0;
+    }
+    function decke(cx, x, y, b) { strecke(cx, x - b, y, x + b, y, F('--text'), 2); for (let i = -b; i < b; i += 8) strecke(cx, x + i, y, x + i + 6, y - 6, GRAU, 1); }
+    ansicht = (ansichten(seite, [['stoss', 'Stoß'], ['rampe', 'Schiefe Ebene'], ['pendel', 'Kugelstoßpendel']], 'stoss', function (a) { ansicht = a; SIM.t = 0; }))();
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>
