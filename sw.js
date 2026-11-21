@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = '234afa5f3c';
+const STAND = '0baa675113';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -70,6 +70,13 @@ const DATEIEN = [
   "elektro/drehfeldmaschinen.html",
   "elektro/motorpruefstand.html",
   "elektro/elektromagnetismus.html",
+  "physik/optik.html",
+  "physik/aggregatzustaende.html",
+  "physik/astronomie.html",
+  "physik/radioaktivitaet.html",
+  "mechanik/anhalteweg.html",
+  "mechanik/wurf.html",
+  "elektro/halbleiter.html",
   "gebaeudeautomation/knx-planung.html",
   "steuerung/sps.html",
   "steuerung/kleinsteuerung.html",
@@ -178,6 +185,7 @@ const DATEIEN = [
   "aufgabenblaetter/elektro/einbruchmeldeanlage/02-gma-pruefungsaufgaben.md",
   "aufgabenblaetter/elektro/elektromagnetismus/01-feld-kraft-induktion.md",
   "aufgabenblaetter/elektro/grundgroessen/01-grundgroessen-und-leiterwiderstand.md",
+  "aufgabenblaetter/elektro/halbleiter/01-diode-gleichrichter-solarzelle.md",
   "aufgabenblaetter/elektro/kleintransformatoren/01-kleintrafos-und-messwandler.md",
   "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
   "aufgabenblaetter/elektro/motorpruefstand/01-typenschild-nennpunkt.md",
@@ -192,6 +200,12 @@ const DATEIEN = [
   "aufgabenblaetter/gebaeudeautomation/smart-home/01-systeme-und-automationen.md",
   "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
   "aufgabenblaetter/liste.json",
+  "aufgabenblaetter/mechanik/anhalteweg/01-reaktion-bremsen.md",
+  "aufgabenblaetter/mechanik/wurf/01-waagerechter-schraeger-wurf.md",
+  "aufgabenblaetter/physik/aggregatzustaende/01-teilchenmodell-waerme.md",
+  "aufgabenblaetter/physik/astronomie/01-erdjahr-kepler.md",
+  "aufgabenblaetter/physik/optik/01-reflexion-brechung.md",
+  "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",
   "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",
   "aufgabenblaetter/steuerung/sps/01-sps-grundlagen.md",
   "aufgabenblaetter/steuerung/sps/02-st-programmieren.md"

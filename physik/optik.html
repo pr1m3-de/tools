@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Optik: Reflexion, Streuung und Lichtbrechung – Formeln &amp; Rechner</title>
+  <meta name="description" content="Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit Brechzahlen, Grenzwinkel und Totalreflexion im Lichtwellenleiter – mit Animationen zum Ziehen und Rechner in jede Richtung.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/optik.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Optik: Reflexion, Streuung und Lichtbrechung">
+  <meta property="og:description" content="Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit Brechzahlen, Grenzwinkel und Totalreflexion im Lichtwellenleiter – mit Animationen zum Ziehen und Rechner in jede Richtung.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/optik.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Optik: Reflexion, Streuung und Lichtbrechung">
+  <meta name="twitter:description" content="Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit Brechzahlen, Grenzwinkel und Totalreflexion im Lichtwellenleiter – mit Animationen zum Ziehen und Rechner in jede Richtung.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/optik.html#seite","name":"Optik: Reflexion, Streuung und Lichtbrechung","url":"https://tools.pr1m3.de/physik/optik.html","inLanguage":"de","description":"Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit Brechzahlen, Grenzwinkel und Totalreflexion im Lichtwellenleiter – mit Animationen zum Ziehen und Rechner in jede Richtung.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/optik.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/optik.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Optik: Reflexion, Streuung und Lichtbrechung","item":"https://tools.pr1m3.de/physik/optik.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/optik.html#fragen","mainEntity":[{"@type":"Question","name":"Warum sieht ein Stab im Wasser geknickt aus?","acceptedAnswer":{"@type":"Answer","text":"Licht vom Teil unter Wasser wird beim Austritt an der Oberfläche vom Lot weg gebrochen. Das Auge verlängert die Strahlen geradlinig zurück und sieht den Stab deshalb höher, als er ist – er scheint an der Oberfläche abzuknicken. Aus demselben Grund wirken Becken flacher als sie sind."}},{"@type":"Question","name":"Warum glitzert ein Diamant so stark?","acceptedAnswer":{"@type":"Answer","text":"Diamant hat mit 2,42 eine sehr große Brechzahl und damit einen Grenzwinkel von nur etwa 24°. Fast alles Licht, das von innen auf die Facetten trifft, wird total reflektiert und tritt erst nach mehreren Reflexionen oben wieder aus."}},{"@type":"Question","name":"Was unterscheidet Spiegel und weiße Wand?","acceptedAnswer":{"@type":"Answer","text":"Beide reflektieren fast alles Licht. Der Spiegel ist glatt und reflektiert gerichtet – man sieht ein Bild. Die Wand ist rau und streut das Licht in alle Richtungen – man sieht nur die helle Fläche."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/optik.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Licht an Grenzflächen</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#E0A800"><h3>Reflexion</h3><p>An einer glatten Fläche wird Licht gerichtet zurückgeworfen: Einfallswinkel gleich Reflexionswinkel, beide zum Lot gemessen, und einfallender Strahl, Lot und reflektierter Strahl liegen in einer Ebene. Im ebenen Spiegel scheint das Bild genauso weit hinter dem Spiegel zu liegen wie der Gegenstand davor.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Streuung</h3><p>Eine raue Fläche besteht aus vielen kleinen, verschieden geneigten Flächenstücken. Jedes reflektiert nach dem Reflexionsgesetz, zusammen wird das Licht in alle Richtungen verteilt (diffuse Reflexion). Deshalb sehen wir Gegenstände von überall – und Papier spiegelt nicht.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Brechung</h3><p>In Glas oder Wasser ist Licht langsamer als in Luft. Trifft es schräg auf die Grenzfläche, ändert es dort seine Richtung: beim Übergang ins optisch dichtere Medium zum Lot hin, ins dünnere vom Lot weg. Senkrecht einfallendes Licht wird nicht abgelenkt.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Totalreflexion</h3><p>Geht Licht vom dichteren ins dünnere Medium und ist der Einfallswinkel größer als der Grenzwinkel, kann es nicht mehr austreten: Es wird vollständig reflektiert. So leiten Lichtwellenleiter Licht über viele Kilometer, und Prismen in Ferngläsern lenken es ohne Spiegelbelag um.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Stoff</th><th>Brechzahl n</th><th>Lichtgeschwindigkeit</th><th>Grenzwinkel gegen Luft</th></tr></thead><tbody id="stofftabelle"></tbody></table></div>
+      <p class="hilfe">Brechzahlen für gelbes Licht (589 nm) bei Raumtemperatur; Glas je nach Sorte 1,45 bis 1,9.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum sieht ein Stab im Wasser geknickt aus?</summary><p>Licht vom Teil unter Wasser wird beim Austritt an der Oberfläche vom Lot weg gebrochen. Das Auge verlängert die Strahlen geradlinig zurück und sieht den Stab deshalb höher, als er ist – er scheint an der Oberfläche abzuknicken. Aus demselben Grund wirken Becken flacher als sie sind.</p></details>
+        <details><summary>Warum glitzert ein Diamant so stark?</summary><p>Diamant hat mit 2,42 eine sehr große Brechzahl und damit einen Grenzwinkel von nur etwa 24°. Fast alles Licht, das von innen auf die Facetten trifft, wird total reflektiert und tritt erst nach mehreren Reflexionen oben wieder aus.</p></details>
+        <details><summary>Was unterscheidet Spiegel und weiße Wand?</summary><p>Beide reflektieren fast alles Licht. Der Spiegel ist glatt und reflektiert gerichtet – man sieht ein Bild. Die Wand ist rau und streut das Licht in alle Richtungen – man sieht nur die helle Fläche.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const C0 = 299792.458;
+    const STOFFE = [['Vakuum', 1], ['Luft', 1.0003], ['Wasser', 1.333], ['Eis', 1.31], ['Ethanol', 1.361], ['Plexiglas (PMMA)', 1.49], ['Kronglas', 1.52], ['Flintglas', 1.62], ['Diamant', 2.42]];
+    function stoffName(n) { let b = null, d = 0.006; STOFFE.forEach(function (s) { if (s[0] === 'Vakuum') return; if (Math.abs(s[1] - n) < d) { d = Math.abs(s[1] - n); b = s[0]; } }); return b || 'n = ' + zz(n, 3); }
+    let ansicht = 'brechung';
+    let geom = null;   // für das Ziehen
+    const rauhFlaeche = (function () { const z = zufall(11), p = []; for (let i = 0; i <= 14; i++) p.push([i / 14, (z() - 0.5) * 30]); return p; })();
+
+    function fresnel(n1, n2, a) {
+      const s = n1 * Math.sin(a) / n2; if (s >= 1) return 1;
+      const b = Math.asin(s), ci = Math.cos(a), ct = Math.cos(b);
+      const rs = Math.pow((n1 * ci - n2 * ct) / (n1 * ci + n2 * ct), 2), rp = Math.pow((n1 * ct - n2 * ci) / (n1 * ct + n2 * ci), 2);
+      return (rs + rp) / 2;
+    }
+    function rechne(e) {
+      const r = {}, a = e.alpha * GRAD;
+      r.sinb = e.n1 * Math.sin(a) / e.n2;
+      r.total = r.sinb > 1;
+      r.beta = r.total ? NaN : Math.asin(r.sinb) / GRAD;
+      r.grenz = e.n1 > e.n2 ? Math.asin(e.n2 / e.n1) / GRAD : NaN;
+      r.c1 = C0 / e.n1; r.c2 = C0 / e.n2;
+      r.R = fresnel(e.n1, e.n2, a); r.Tr = 1 - r.R;
+      r.ablenk = r.total ? NaN : e.alpha - r.beta;
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'Optik: Reflexion, Streuung und Brechung',
+      einleitung: 'Was Licht an einer Grenzfläche tut: zurückgeworfen, gestreut oder gebrochen – und wann es die Grenzfläche gar nicht mehr verlassen kann. Trage zwei Brechzahlen und den Einfallswinkel ein oder ziehe in der Zeichnung an der Lampe.',
+      hilfe: 'Licht kommt aus Medium 1. Brechzahlen: Luft 1,000 · Wasser 1,333 · Plexiglas 1,49 · Kronglas 1,52 · Flintglas 1,62 · Diamant 2,42.',
+      gruppen: [
+        { titel: 'Medien', farbe: BLAU, felder: [
+          { k: 'n1', tex: 'n_1', name: 'Brechzahl Medium 1 (Licht kommt von hier)', e: '', min: 1, max: 4 },
+          { k: 'n2', tex: 'n_2', name: 'Brechzahl Medium 2', e: '', min: 1, max: 4 }
+        ] },
+        { titel: 'Lichtstrahl', farbe: GELB, felder: [
+          { k: 'alpha', tex: '\\alpha', name: 'Einfallswinkel zum Lot', e: '°', min: 0, max: 89.9 }
+        ] }
+      ],
+      beispiel: { n1: 1, n2: 1.333, alpha: 45 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.total) H.meldung('Totalreflexion: Der Einfallswinkel ist größer als der Grenzwinkel (' + zz(r.grenz, 1) + '°). Das Licht bleibt vollständig in Medium 1.');
+        else if (e.n1 > e.n2) H.meldung('Übergang ins optisch dünnere Medium: Der Strahl wird vom Lot weg gebrochen. Ab ' + zz(r.grenz, 1) + '° tritt Totalreflexion ein.');
+        else if (e.n1 < e.n2) H.meldung('Übergang ins optisch dichtere Medium: Der Strahl wird zum Lot hin gebrochen. Totalreflexion ist in dieser Richtung nicht möglich.');
+        else H.meldung('Gleiche Brechzahlen: Das Licht geht ungebrochen hindurch.');
+        H.kacheln([
+          [r.total ? 'keiner' : zz(r.beta, 1) + '°', 'Brechungswinkel β', BLAU],
+          [zz(e.alpha, 1) + '°', 'Reflexionswinkel α′', GELB],
+          [isFinite(r.grenz) ? zz(r.grenz, 1) + '°' : '–', 'Grenzwinkel der Totalreflexion', ROT],
+          [zz(r.R * 100, 1) + ' %', 'reflektierter Anteil', GRAU],
+          [zz(r.c1, 0) + ' km/s', 'Lichtgeschwindigkeit in Medium 1', GRUEN],
+          [zz(r.c2, 0) + ' km/s', 'Lichtgeschwindigkeit in Medium 2', GRUEN]
+        ]);
+        H.tabelle('Weitere Werte', ['Größe', 'Wert'], [
+          ['Medium 1', stoffName(e.n1)], ['Medium 2', stoffName(e.n2)],
+          ['Ablenkung des gebrochenen Strahls', r.total ? '–' : zz(r.ablenk, 1) + '°'],
+          ['durchgelassener Anteil', zz(r.Tr * 100, 1) + ' %'],
+          ['senkrechter Einfall: reflektiert', zz(Math.pow((e.n1 - e.n2) / (e.n1 + e.n2), 2) * 100, 2) + ' %']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        const w = [];
+        w.push(['Reflexionsgesetz', '\\alpha\' = \\alpha = ' + E(tz(e.alpha, 1) + '°')]);
+        w.push(['Brechungsgesetz', 'n_1 \\cdot \\sin\\alpha = n_2 \\cdot \\sin\\beta \\;\\Rightarrow\\; \\sin\\beta = \\frac{' + tz(e.n1, 3) + ' \\cdot \\sin ' + tz(e.alpha, 1) + '°}{' + tz(e.n2, 3) + '} = ' + tz(r.sinb, 4) + (r.total ? ' > 1 \\;\\Rightarrow\\; ' + E('\\text{Totalreflexion}') : ' \\;\\Rightarrow\\; \\beta = ' + E(tz(r.beta, 1) + '°'))]);
+        if (isFinite(r.grenz)) w.push(['Grenzwinkel', '\\sin\\alpha_\\text{g} = \\frac{n_2}{n_1} = \\frac{' + tz(e.n2, 3) + '}{' + tz(e.n1, 3) + '} \\;\\Rightarrow\\; \\alpha_\\text{g} = ' + E(tz(r.grenz, 1) + '°')]);
+        w.push(['Lichtgeschwindigkeit', 'c_1 = \\frac{c_0}{n_1} = \\frac{299\\,792\\,\\text{km/s}}{' + tz(e.n1, 3) + '} = ' + E(tz(r.c1, 0) + '\\,\\text{km/s}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Brechungsgesetz', hilfe: 'Drei von vier Größen eintragen. Beispiel: Luft nach Wasser unter 45°.',
+          felder: [{ k: 'n1', tex: 'n_1', name: 'Brechzahl Medium 1', e: '', min: 1, max: 2.5 }, { k: 'a', tex: '\\alpha', name: 'Einfallswinkel', e: '°', min: 1, max: 89 }, { k: 'n2', tex: 'n_2', name: 'Brechzahl Medium 2', e: '', min: 1, max: 2.5 }, { k: 'b', tex: '\\beta', name: 'Brechungswinkel', e: '°', min: 1, max: 89 }],
+          beispiel: { n1: 1, a: 45, n2: 1.333 },
+          gleichungen: [{ name: 'Brechung', v: ['n1', 'a', 'n2', 'b'], f: function (q) { return [q.n1 * Math.sin(q.a * GRAD), q.n2 * Math.sin(q.b * GRAD)]; },
+            loese: { b: function (q) { return Math.asin(q.n1 * Math.sin(q.a * GRAD) / q.n2) / GRAD; }, a: function (q) { return Math.asin(q.n2 * Math.sin(q.b * GRAD) / q.n1) / GRAD; }, n2: function (q) { return q.n1 * Math.sin(q.a * GRAD) / Math.sin(q.b * GRAD); }, n1: function (q) { return q.n2 * Math.sin(q.b * GRAD) / Math.sin(q.a * GRAD); } },
+            weg: function (k, q) {
+              if (k === 'b') return '\\sin\\beta = \\frac{n_1 \\cdot \\sin\\alpha}{n_2} = \\frac{' + tz(q.n1, 3) + ' \\cdot \\sin ' + tz(q.a, 1) + '°}{' + tz(q.n2, 3) + '} \\;\\Rightarrow\\; \\beta = ' + E(tz(q.b, 1) + '°');
+              if (k === 'a') return '\\sin\\alpha = \\frac{n_2 \\cdot \\sin\\beta}{n_1} = \\frac{' + tz(q.n2, 3) + ' \\cdot \\sin ' + tz(q.b, 1) + '°}{' + tz(q.n1, 3) + '} \\;\\Rightarrow\\; \\alpha = ' + E(tz(q.a, 1) + '°');
+              if (k === 'n2') return 'n_2 = \\frac{n_1 \\cdot \\sin\\alpha}{\\sin\\beta} = \\frac{' + tz(q.n1, 3) + ' \\cdot \\sin ' + tz(q.a, 1) + '°}{\\sin ' + tz(q.b, 1) + '°} = ' + E(tz(q.n2, 3));
+              return 'n_1 = \\frac{n_2 \\cdot \\sin\\beta}{\\sin\\alpha} = \\frac{' + tz(q.n2, 3) + ' \\cdot \\sin ' + tz(q.b, 1) + '°}{\\sin ' + tz(q.a, 1) + '°} = ' + E(tz(q.n1, 3));
+            } }] },
+        { titel: 'Grenzwinkel der Totalreflexion', hilfe: 'Medium 1 ist das optisch dichtere. Beispiel: Glas (1,5) gegen Luft.',
+          felder: [{ k: 'g', tex: '\\alpha_\\text{g}', name: 'Grenzwinkel', e: '°', min: 5, max: 89 }, { k: 'n1', tex: 'n_1', name: 'Brechzahl dichteres Medium', e: '', min: 1.01, max: 3 }, { k: 'n2', tex: 'n_2', name: 'Brechzahl dünneres Medium', e: '', min: 1, max: 2.5 }],
+          beispiel: { n1: 1.5, n2: 1 },
+          gleichungen: [{ name: 'Grenzwinkel', v: ['g', 'n1', 'n2'], f: function (q) { return [q.n1 * Math.sin(q.g * GRAD), q.n2]; },
+            loese: { g: function (q) { return Math.asin(q.n2 / q.n1) / GRAD; }, n2: function (q) { return q.n1 * Math.sin(q.g * GRAD); }, n1: function (q) { return q.n2 / Math.sin(q.g * GRAD); } },
+            weg: function (k, q) {
+              if (k === 'g') return '\\sin\\alpha_\\text{g} = \\frac{n_2}{n_1} = \\frac{' + tz(q.n2, 3) + '}{' + tz(q.n1, 3) + '} \\;\\Rightarrow\\; \\alpha_\\text{g} = ' + E(tz(q.g, 1) + '°');
+              if (k === 'n2') return 'n_2 = n_1 \\cdot \\sin\\alpha_\\text{g} = ' + tz(q.n1, 3) + ' \\cdot \\sin ' + tz(q.g, 1) + '° = ' + E(tz(q.n2, 3));
+              return 'n_1 = \\frac{n_2}{\\sin\\alpha_\\text{g}} = \\frac{' + tz(q.n2, 3) + '}{\\sin ' + tz(q.g, 1) + '°} = ' + E(tz(q.n1, 3));
+            } }] },
+        { titel: 'Brechzahl und Lichtgeschwindigkeit', hilfe: 'c₀ = 299 792 km/s im Vakuum.',
+          felder: [{ k: 'c', tex: 'c', name: 'Lichtgeschwindigkeit im Stoff', e: 'km/s', min: 75000, max: 299792 }, { k: 'n', tex: 'n', name: 'Brechzahl', e: '', min: 1, max: 4 }],
+          beispiel: { n: 1.333 },
+          gleichungen: [{ name: 'Brechzahl', v: ['c', 'n'], f: function (q) { return [q.c * q.n, C0]; },
+            loese: { c: function (q) { return C0 / q.n; }, n: function (q) { return C0 / q.c; } },
+            weg: function (k, q) { return k === 'c' ? 'c = \\frac{c_0}{n} = \\frac{299\\,792\\,\\text{km/s}}{' + tz(q.n, 3) + '} = ' + E(tz(q.c, 0) + '\\,\\text{km/s}') : 'n = \\frac{c_0}{c} = \\frac{299\\,792\\,\\text{km/s}}{' + tz(q.c, 0) + '\\,\\text{km/s}} = ' + E(tz(q.n, 3)); } }] }
+      ],
+      sammlung: [
+        ['Reflexionsgesetz', '\\alpha\' = \\alpha', 'beide Winkel zum Lot gemessen'],
+        ['Brechungsgesetz (Snellius)', 'n_1 \\cdot \\sin\\alpha = n_2 \\cdot \\sin\\beta', ''],
+        ['Brechzahl', 'n = \\frac{c_0}{c}', 'c₀ = 299 792 km/s'],
+        ['Brechungsgesetz mit Geschwindigkeiten', '\\frac{\\sin\\alpha}{\\sin\\beta} = \\frac{c_1}{c_2}', ''],
+        ['Grenzwinkel', '\\sin\\alpha_\\text{g} = \\frac{n_2}{n_1}', 'nur für n₁ > n₂'],
+        ['Reflexion bei senkrechtem Einfall', 'R = \\left(\\frac{n_1 - n_2}{n_1 + n_2}\\right)^2', 'Luft–Glas: rund 4 %'],
+        ['Bildweite am ebenen Spiegel', 'b = g', 'Bild hinter dem Spiegel, gleich groß, seitenverkehrt']
+      ],
+      quellen: 'Brechzahlen aus Tabellenwerken der Physik (Natriumlicht 589 nm). Reflektierter Anteil nach den Fresnelschen Formeln für unpolarisiertes Licht.',
+      bild: { titel: 'Animation', label: 'Lichtstrahlen an einer Grenzfläche', animiert: true,
+        hoehe: function (B) { return B < 600 ? 420 : 400; },
+        hinweis: function (r, e) {
+          if (ansicht === 'brechung') return 'Ziehe an der Lampe, um den Einfallswinkel zu ändern. Die Lichtpunkte laufen in Medium 2 um den Faktor ' + zz(e.n1 / e.n2, 2) + ' so schnell wie in Medium 1.';
+          if (ansicht === 'spiegel') return 'Das Auge sieht den Pfeil hinter dem Spiegel: Es verlängert die reflektierten Strahlen geradlinig nach hinten. Ziehe am Auge.';
+          if (ansicht === 'streuung') return 'Links glatt: Das Bündel bleibt geordnet. Rechts rau: Jedes Flächenstück hat ein eigenes Lot, das Licht wird zerstreut.';
+          return 'Licht tritt unter dem Einfallswinkel in den Kern (n = ' + zz(Math.max(e.n1, e.n2), 2) + ') ein. Trifft es flacher als der Grenzwinkel auf den Mantel (n = ' + zz(Math.min(e.n1, e.n2), 2) + '), wird es total reflektiert.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { ({ brechung: brechung, spiegel: spiegel, streuung: streuung, leiter: leiter })[ansicht](cx, B, H, t, r, e); } }
+    });
+
+    // ---------- Lichtpunkte entlang eines Strahls ----------
+    function strahl(cx, x1, y1, x2, y2, t, tempo, deckung, breite) {
+      if (deckung <= 0.01) return;
+      cx.globalAlpha = Math.min(1, 0.25 + deckung);
+      strecke(cx, x1, y1, x2, y2, GELB, breite || 3);
+      const L = Math.hypot(x2 - x1, y2 - y1), ab = 26;
+      cx.globalAlpha = Math.min(1, deckung + 0.1);
+      for (let s = (t / 1000 * 60 * tempo) % ab; s < L; s += ab) kreis(cx, x1 + (x2 - x1) * s / L, y1 + (y2 - y1) * s / L, 3.2, '#FFF3B0', ORANGE, 1);
+      cx.globalAlpha = 1;
+    }
+    function lampe(cx, x, y, w) {
+      cx.save(); cx.translate(x, y); cx.rotate(w);
+      cx.fillStyle = GRAU; cx.fillRect(-24, -9, 22, 18); kreis(cx, 0, 0, 9, GELB, ORANGE, 2);
+      cx.restore();
+    }
+    function winkelBogen(cx, x, y, rr, a0, a1, farbe, text) {
+      cx.strokeStyle = farbe; cx.lineWidth = 1.6; cx.beginPath(); cx.arc(x, y, rr, Math.min(a0, a1), Math.max(a0, a1)); cx.stroke();
+      const m = (a0 + a1) / 2; T(cx, text, x + Math.cos(m) * (rr + 13), y + Math.sin(m) * (rr + 13), 'center', 12, true, farbe);
+    }
+    function mediumFarbe(n) { return 'rgba(43,123,185,' + Math.min(0.42, (n - 1) * 0.3).toFixed(3) + ')'; }
+
+    function brechung(cx, B, H, t, r, e) {
+      const px = B / 2, py = H * 0.5, L = Math.min(B * 0.46, H * 0.46), a = e.alpha * GRAD;
+      cx.fillStyle = mediumFarbe(e.n1); cx.fillRect(0, 0, B, py); cx.fillStyle = mediumFarbe(e.n2); cx.fillRect(0, py, B, H - py);
+      strecke(cx, 0, py, B, py, F('--text'), 1.5);
+      strecke(cx, px, 30, px, H - 30, F('--text'), 1, [5, 4]); T(cx, 'Lot', px - 5, py + 80, 'right', 10, false, GRAU);
+      T(cx, 'Medium 1: ' + stoffName(e.n1) + ' (n₁ = ' + zz(e.n1, 3) + ')', 10, 16, 'left', 11, true);
+      T(cx, 'Medium 2: ' + stoffName(e.n2) + ' (n₂ = ' + zz(e.n2, 3) + ')', 10, H - 14, 'left', 11, true);
+      const sx = px - L * Math.sin(a), sy = py - L * Math.cos(a);
+      strahl(cx, sx, sy, px, py, t, 1 / e.n1, 1);
+      strahl(cx, px, py, px + L * Math.sin(a), py - L * Math.cos(a), t, 1 / e.n1, r.R, 2.5);
+      if (!r.total) { const b = r.beta * GRAD; strahl(cx, px, py, px + L * Math.sin(b), py + L * Math.cos(b), t, 1 / e.n2, r.Tr); }
+      lampe(cx, sx, sy, Math.atan2(py - sy, px - sx));
+      if (e.alpha > 1) { winkelBogen(cx, px, py, 42, -Math.PI / 2 - a, -Math.PI / 2, GELB, 'α'); winkelBogen(cx, px, py, 58, -Math.PI / 2, -Math.PI / 2 + a, GRAU, 'α′'); }
+      if (!r.total && r.beta > 1) winkelBogen(cx, px, py, 46, Math.PI / 2 - r.beta * GRAD, Math.PI / 2, BLAU, 'β');
+      const info = 'α = ' + zz(e.alpha, 1) + '°  ' + (r.total ? 'Totalreflexion' : 'β = ' + zz(r.beta, 1) + '°') + '  reflektiert ' + zz(r.R * 100, 0) + ' %';
+      if (B < 600) T(cx, info, B - 10, 36, 'right', 10, true, r.total ? ROT : F('--text')); else T(cx, info, B - 10, py - 12, 'right', 11, true, r.total ? ROT : F('--text'));
+      if (isFinite(r.grenz)) { const g = r.grenz * GRAD; strecke(cx, px, py, px - L * 0.7 * Math.sin(g), py - L * 0.7 * Math.cos(g), ROT, 1, [3, 4]); T(cx, 'Grenzwinkel ' + zz(r.grenz, 1) + '°', px - L * 0.72 * Math.sin(g) - 4, py - L * 0.72 * Math.cos(g), 'right', 10, false, ROT); }
+      geom = { art: 'brechung', px: px, py: py };
+    }
+    function spiegel(cx, B, H, t, r, e) {
+      const my = H * 0.7, a = e.alpha * GRAD, P = [B / 2, my], L = Math.min(B * 0.42, H * 0.6);
+      cx.fillStyle = 'rgba(107,119,133,.25)'; cx.fillRect(B * 0.06, my, B * 0.88, 10);
+      for (let x = B * 0.06; x < B * 0.94; x += 10) strecke(cx, x, my + 10, x + 7, my + 17, GRAU, 1);
+      strecke(cx, B * 0.06, my, B * 0.94, my, F('--text'), 2.5); T(cx, 'ebener Spiegel', B * 0.94, my + 28, 'right', 10, false, GRAU);
+      // Auge auf dem reflektierten Strahl, Gegenstandsspitze auf dem einfallenden
+      const auge = [P[0] + L * Math.sin(a), my - L * Math.cos(a)], spitze = [P[0] - L * 0.75 * Math.sin(a), my - L * 0.75 * Math.cos(a)];
+      const hoch = Math.min(H * 0.22, my - spitze[1] - 6), fuss = [spitze[0], spitze[1] + hoch];
+      // Gegenstand und Bild
+      pfeil(cx, fuss[0], fuss[1], spitze[0], spitze[1], ROT, 3); T(cx, 'Gegenstand', spitze[0] - 8, (spitze[1] + fuss[1]) / 2, 'right', 10, true, ROT);
+      cx.globalAlpha = 0.45; pfeil(cx, fuss[0], 2 * my - fuss[1], spitze[0], 2 * my - spitze[1], ROT, 3); cx.globalAlpha = 1;
+      T(cx, 'Bild', spitze[0] - 8, my + (my - spitze[1] + my - fuss[1]) / 2 - my + my, 'right', 10, true, ROT);
+      [spitze, fuss].forEach(function (q, i) {
+        const bild = [q[0], 2 * my - q[1]], k = (my - bild[1]) / (auge[1] - bild[1]), rx = bild[0] + (auge[0] - bild[0]) * k;
+        strahl(cx, q[0], q[1], rx, my, t, 1, i ? 0.35 : 1, i ? 2 : 3); strahl(cx, rx, my, auge[0], auge[1], t, 1, i ? 0.35 : 1, i ? 2 : 3);
+        strecke(cx, rx, my, bild[0], bild[1], GELB, 1.2, [4, 4]);
+      });
+      strecke(cx, P[0], my - L * 0.9, P[0], my, F('--text'), 1, [5, 4]);
+      if (e.alpha > 1) { winkelBogen(cx, P[0], my, 40, -Math.PI / 2 - a, -Math.PI / 2, GELB, 'α'); winkelBogen(cx, P[0], my, 40, -Math.PI / 2, -Math.PI / 2 + a, GELB, 'α′'); }
+      // Auge
+      cx.save(); cx.translate(auge[0], auge[1]); cx.rotate(Math.atan2(my - auge[1], P[0] - auge[0]));
+      cx.fillStyle = F('--flaeche'); cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.beginPath(); cx.moveTo(-14, 0); cx.quadraticCurveTo(0, -12, 14, 0); cx.quadraticCurveTo(0, 12, -14, 0); cx.fill(); cx.stroke(); kreis(cx, 6, 0, 4.5, F('--text'));
+      cx.restore(); T(cx, 'Auge', auge[0], auge[1] - 20, 'center', 10, true);
+      T(cx, 'Gegenstandsweite = Bildweite', 10, 16, 'left', 11, true);
+      geom = { art: 'spiegel', px: P[0], py: my };
+    }
+    function streuung(cx, B, H, t, r, e) {
+      const klein = B < 600, a = Math.max(15, Math.min(70, e.alpha)) * GRAD, yS = H * 0.68, halb = B / 2;
+      const d = [Math.sin(a), Math.cos(a)];
+      [0, 1].forEach(function (rau) {
+        const x0 = rau ? halb + 10 : 10, x1 = rau ? B - 10 : halb - 10, w = x1 - x0;
+        const pts = rau ? rauhFlaeche.map(function (p) { return [x0 + p[0] * w, yS + p[1]]; }) : [[x0, yS], [x1, yS]];
+        cx.fillStyle = 'rgba(107,119,133,.22)'; cx.beginPath(); cx.moveTo(x0, H); pts.forEach(function (p) { cx.lineTo(p[0], p[1]); }); cx.lineTo(x1, H); cx.closePath(); cx.fill();
+        zug(cx, pts, F('--text'), 2);
+        T(cx, rau ? 'raue Fläche: Streuung' : 'glatte Fläche: Spiegelung', (x0 + x1) / 2, H - 16, 'center', klein ? 10 : 12, true);
+        cx.save(); cx.beginPath(); cx.rect(x0 - 10, 0, w + 20, H); cx.clip();
+        const n = 7;
+        for (let i = 0; i < n; i++) {
+          const zx = x0 + w * (0.22 + 0.56 * i / (n - 1)), lang = (yS - 30) / d[1], qx = zx - d[0] * lang, qy = yS - d[1] * lang;
+          // Schnitt mit der Fläche
+          let best = null;
+          for (let j = 0; j < pts.length - 1; j++) {
+            const ax = pts[j][0], ay = pts[j][1], bx = pts[j + 1][0], by = pts[j + 1][1], ex = bx - ax, ey = by - ay;
+            const den = d[0] * ey - d[1] * ex; if (Math.abs(den) < 1e-9) continue;
+            const s = ((ax - qx) * ey - (ay - qy) * ex) / den, u = ((ax - qx) * d[1] - (ay - qy) * d[0]) / den;
+            if (s > 0 && u >= 0 && u <= 1 && (!best || s < best.s)) { const l = Math.hypot(ex, ey); best = { s: s, n: [ey / l, -ex / l] }; }
+          }
+          if (!best) continue;
+          const hx = qx + d[0] * best.s, hy = qy + d[1] * best.s;
+          let nn = best.n; if (nn[1] > 0) nn = [-nn[0], -nn[1]];
+          const dn = d[0] * nn[0] + d[1] * nn[1]; let rr = [d[0] - 2 * dn * nn[0], d[1] - 2 * dn * nn[1]];
+          if (rr[1] > -0.15) { rr = [rr[0], -0.15 - Math.abs(rr[1])]; const l = Math.hypot(rr[0], rr[1]); rr = [rr[0] / l, rr[1] / l]; }   // sonst Mehrfachreflexion in der Mulde
+          const lg = Math.min(H * 0.55, w * 0.7);
+          strahl(cx, qx, qy, hx, hy, t, 1, 0.9, 2.2);
+          strahl(cx, hx, hy, hx + rr[0] * lg, hy + rr[1] * lg, t, 1, 0.9, 2.2);
+        }
+        cx.restore();
+      });
+      strecke(cx, halb, 0, halb, H, F('--linie'), 1);
+      geom = null;
+    }
+    function leiter(cx, B, H, t, r, e) {
+      const nk = Math.max(e.n1, e.n2), nm = Math.min(e.n1, e.n2), x0 = B * 0.18, x1 = B - 12, ym = H * 0.5, h = Math.min(46, H * 0.12), hm = h + 16;
+      cx.fillStyle = mediumFarbe(nm); cx.fillRect(x0, ym - hm, x1 - x0, 2 * hm); cx.fillStyle = mediumFarbe(nk); cx.fillRect(x0, ym - h, x1 - x0, 2 * h);
+      strecke(cx, x0, ym - h, x1, ym - h, F('--text'), 1); strecke(cx, x0, ym + h, x1, ym + h, F('--text'), 1);
+      T(cx, 'Mantel n = ' + zz(nm, 2), x0 + 6, ym - hm - 9, 'left', 10, true); T(cx, 'Kern n = ' + zz(nk, 2), x0 + 6, ym + h + 9 + (hm - h) + 6, 'left', 10, true);
+      // Eintritt aus Luft an der Stirnfläche
+      const a = e.alpha * GRAD, sb = Math.sin(a) / nk, b = Math.asin(Math.min(1, sb)), th = 90 - b / GRAD, gr = nk > nm ? Math.asin(nm / nk) / GRAD : 90;
+      const qx = x0 - 70 * Math.cos(a), qy = ym - 70 * Math.sin(a);
+      strecke(cx, x0, ym - 80, x0, ym + 80, F('--text'), 1, [4, 4]);
+      strahl(cx, qx, qy, x0, ym, t, 1, 1); lampe(cx, qx, qy, a);
+      // Zickzack im Kern
+      let x = x0, y = ym, dir = 1, I = 1, n = 0;
+      const tot = th > gr;
+      while (x < x1 && n < 40 && I > 0.03) {
+        const ziel = dir > 0 ? ym + h : ym - h, dx = Math.abs(ziel - y) / Math.tan(Math.max(b, 0.01));
+        let nx = x + dx, ny = ziel;
+        if (nx > x1) { ny = y + (ziel - y) * (x1 - x) / dx; nx = x1; strahl(cx, x, y, nx, ny, t, 1 / nk, I); break; }
+        strahl(cx, x, y, nx, ny, t, 1 / nk, I);
+        if (!tot) {
+          // teilweiser Austritt in den Mantel
+          const Rr = fresnel(nk, nm, th * GRAD), sa = nk / nm * Math.sin(th * GRAD), aw = Math.asin(Math.min(1, sa));
+          strahl(cx, nx, ny, nx + Math.sin(aw) * 26, ny + dir * Math.cos(aw) * 26, t, 1 / nm, I * (1 - Rr), 2);
+          I *= Rr;
+        }
+        x = nx; y = ny; dir = -dir; n++;
+      }
+      T(cx, 'Auftreffwinkel am Mantel ' + zz(th, 1) + '° ' + (tot ? '> ' : '≤ ') + 'Grenzwinkel ' + zz(gr, 1) + '°', 10, 16, 'left', B < 600 ? 10 : 11, true, tot ? GRUEN : ROT);
+      T(cx, tot ? 'Totalreflexion: Das Licht bleibt im Kern.' : 'Bei jeder Reflexion tritt Licht aus.', 10, 32, 'left', B < 600 ? 10 : 11, true, tot ? GRUEN : ROT);
+      geom = null;
+    }
+    ansicht = (ansichten(seite, [['brechung', 'Brechung'], ['spiegel', 'Spiegel'], ['streuung', 'Streuung'], ['leiter', 'Lichtleiter']], 'brechung', function (a) { ansicht = a; }))();
+
+    // Ziehen an Lampe oder Auge
+    const cv = bildCanvas(); let zieht = false;
+    function ziehen(ev) {
+      if (!geom) return; const p = zeiger(cv, ev); if (p[1] > geom.py - 4) return;
+      const w = Math.atan2(geom.art === 'brechung' ? geom.px - p[0] : p[0] - geom.px, geom.py - p[1]) / GRAD;
+      seite.setze({ alpha: Math.round(Math.max(0, Math.min(89, w)) * 10) / 10 });
+    }
+    if (cv) {
+      cv.addEventListener('pointerdown', function (ev) { if (!geom) return; zieht = true; try { cv.setPointerCapture(ev.pointerId); } catch (x) { /* egal */ } ziehen(ev); });
+      cv.addEventListener('pointermove', function (ev) { if (zieht) ziehen(ev); });
+      ['pointerup', 'pointercancel'].forEach(function (n) { cv.addEventListener(n, function () { zieht = false; }); });
+    }
+    // Stofftabelle und Wissen hinter den Rechner
+    const tb = document.getElementById('stofftabelle');
+    STOFFE.forEach(function (s) {
+      const tr = document.createElement('tr'); [s[0], zz(s[1], s[1] === 1 ? 0 : 3), zz(C0 / s[1], 0) + ' km/s', s[1] > 1.01 ? zz(Math.asin(1 / s[1]) / GRAD, 1) + '°' : '–'].forEach(function (x, i) { const td = document.createElement('td'); if (i) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr);
+    });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

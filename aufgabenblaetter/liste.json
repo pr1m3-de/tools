@@ -100,6 +100,15 @@
    "beschreibung": "Grundgrößen und Einheiten, Ladung, Stromdichte, Leiterwiderstand, Widerstand bei Erwärmung, Leistung mit Energiekosten und Wirkungsgrad."
   },
   {
+   "datei": "aufgabenblaetter/elektro/halbleiter/01-diode-gleichrichter-solarzelle.md",
+   "thema": "elektro/halbleiter.html",
+   "titel": "Halbleiter – Diode, Gleichrichter und Solarzelle",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Stromleitung in Metallen und Halbleitern, Dotierung, pn-Übergang und Diode, Brückengleichrichter mit Ladekondensator und Brummspannung, Solarzelle mit Wirkungsgrad."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/kleintransformatoren/01-kleintrafos-und-messwandler.md",
    "thema": "elektro/kleintransformatoren.html",
    "titel": "Kleintransformatoren und Messwandler",
@@ -215,6 +224,60 @@
    "aufgaben": 5,
    "loesungen": 5,
    "beschreibung": "Mehrwertsteuer herausrechnen und aufschlagen, Skonto als Jahreszins, Rabatt und Skonto hintereinander."
+  },
+  {
+   "datei": "aufgabenblaetter/mechanik/anhalteweg/01-reaktion-bremsen.md",
+   "thema": "mechanik/anhalteweg.html",
+   "titel": "Anhalteweg – Reaktionsweg und Bremsweg",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Reaktions-, Brems- und Anhalteweg physikalisch und mit Faustformeln, Einfluss von Geschwindigkeit, Fahrbahn und Reaktionszeit, Aufprallgeschwindigkeit, Geschwindigkeit aus der Bremsspur."
+  },
+  {
+   "datei": "aufgabenblaetter/mechanik/wurf/01-waagerechter-schraeger-wurf.md",
+   "thema": "mechanik/wurf.html",
+   "titel": "Wurf – waagerecht und schräg",
+   "stufe": "mittel",
+   "aufgaben": 3,
+   "loesungen": 3,
+   "beschreibung": "Freier Fall, waagerechter Wurf mit Fallzeit, Wurfweite und Aufprallgeschwindigkeit, Unabhängigkeitsprinzip, schräger Wurf mit Steighöhe und bestem Abwurfwinkel, Wurf auf dem Mond."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/aggregatzustaende/01-teilchenmodell-waerme.md",
+   "thema": "physik/aggregatzustaende.html",
+   "titel": "Aggregatzustände – Teilchenmodell und Wärme",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Teilchenmodell von fest, flüssig und gasförmig, Erwärmungskurve von Wasser, Wärme beim Erwärmen, Schmelzen und Verdampfen, Heizdauer und Mischungstemperatur."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/astronomie/01-erdjahr-kepler.md",
+   "thema": "physik/astronomie.html",
+   "titel": "Astronomie – Jahreszeiten und Keplersche Gesetze",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Achsneigung und Jahreszeiten, Mittagshöhe der Sonne und Polartag, Abstand Erde–Sonne, die drei Keplerschen Gesetze mit Umlaufzeiten, Perihel und Aphel, Bahngeschwindigkeit."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/optik/01-reflexion-brechung.md",
+   "thema": "physik/optik.html",
+   "titel": "Optik – Reflexion, Brechung und Totalreflexion",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Reflexionsgesetz und Spiegelbild, diffuse Reflexion, Brechungsgesetz mit Brechzahlen, Lichtgeschwindigkeit im Stoff, Grenzwinkel, Totalreflexion im Lichtwellenleiter."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",
+   "thema": "physik/radioaktivitaet.html",
+   "titel": "Radioaktivität – Strahlung, Zerfall und Kernspaltung",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung, Zerfallsgleichungen, Zerfallsgesetz und Halbwertszeit, Aktivität und Kernzahl, Kettenreaktion."
   },
   {
    "datei": "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",

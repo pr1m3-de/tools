@@ -257,6 +257,13 @@
         <li><a href="elektro/drehfeldmaschinen.html">Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</a> – Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment und Wirkungsgrad vom Typenschild, Stern und Dreieck am Klemmbrett, Drehrichtung, Kennlinie der Asynchronmaschine mit Motor-, Generator- und Bremsbetrieb und die Synchronmaschine mit Lastwinkel – mit Animationen zum Ausprobieren.</li>
         <li><a href="elektro/motorpruefstand.html">Motorprüfstand: Asynchronmotor messen</a> – Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor: Typenschild auswerten, sicher anschließen, Stern oder Dreieck am Klemmbrett, Arbeitspunkte von Hand anfahren und Kennlinien im Hochlauf aufnehmen – Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad, Generatorbetrieb, Strombegrenzung und Erwärmung, mit Messtabelle und CSV.</li>
         <li><a href="elektro/elektromagnetismus.html">Elektromagnetismus: Animationen</a> – Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.</li>
+        <li><a href="physik/optik.html">Optik: Reflexion, Streuung und Brechung</a> – Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit Brechzahlen, Grenzwinkel und Totalreflexion im Lichtwellenleiter – mit Animationen zum Ziehen und Rechner in jede Richtung.</li>
+        <li><a href="physik/aggregatzustaende.html">Aggregatzustände und Wärme</a> – Teilchenmodell der Aggregatzustände in Bewegung und Erwärmungskurve: Wärme zum Erwärmen, Schmelzen und Verdampfen von Wasser, Aluminium und Blei, Heizdauer und Anteil der Umwandlungswärme – mit Abschnitten Schritt für Schritt.</li>
+        <li><a href="physik/astronomie.html">Astronomie: Erdjahr und Keplersche Gesetze</a> – Warum es Jahreszeiten gibt: Erde mit geneigter Achse auf ihrer Bahn, Sonnenhöhe mittags und Tageslänge für jeden Ort und Tag. Dazu die drei Keplerschen Gesetze mit Planetenbahn, Flächensatz und Umlaufzeiten der Planeten.</li>
+        <li><a href="physik/radioaktivitaet.html">Radioaktivität und Kernspaltung</a> – Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, Kettenreaktion bei der Kernspaltung. Rechner für Restaktivität, Kernzahl und Zerfälle bekannter Nuklide.</li>
+        <li><a href="mechanik/anhalteweg.html">Anhalteweg: Reaktionsweg und Bremsweg</a> – Anhalteweg aus Reaktionsweg und Bremsweg: physikalisch und mit den Faustformeln der Fahrschule, mit Fahrbahnzustand, Steigung und Aufprallgeschwindigkeit an einem Hindernis – als Animation und im Vergleich verschiedener Geschwindigkeiten.</li>
+        <li><a href="mechanik/wurf.html">Waagerechter und schräger Wurf</a> – Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit beim waagerechten und schrägen Wurf, auf Erde, Mond, Mars und Jupiter – mit Teilbewegungen in der Animation, Fallen und Werfen im Vergleich und dem besten Abwurfwinkel.</li>
+        <li><a href="elektro/halbleiter.html">Halbleiter, Diode und Gleichrichter</a> – Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.</li>
       </ul>
     </section>
   </noscript>
@@ -1284,14 +1291,75 @@
         gruppe: 'Grundlagen',
         pfad: 'elektro/elektromagnetismus.html',
         bereich: 'Elektrotechnik',
+        auchIn: ['Physik'],
         themen: ['Elektromagnetismus', 'Magnetfeld', 'Leiter', 'Rechte-Faust-Regel', 'Lorentzkraft', 'Leiterschaukel', 'Drei-Finger-Regel', 'Gleichstrommotor', 'Kommutator', 'Induktion', 'Induktionsgesetz', 'Lenzsche Regel', 'Generator', 'Wechselstromgenerator', 'Drehstromgenerator', 'Schleifringe', 'Elektromagnet', 'Klingel', 'Selbstunterbrecher', 'Fluss'],
         text: 'Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.',
         tex: 'u_\\text{i} = -N \\cdot \\frac{\\Delta \\Phi}{\\Delta t}'
+      },
+      {
+        titel: 'Optik: Reflexion, Streuung und Brechung',
+        pfad: 'physik/optik.html',
+        bereich: 'Physik',
+        themen: ['Optik', 'Licht', 'Reflexion', 'Reflexionsgesetz', 'Spiegel', 'Spiegelbild', 'Streuung', 'diffuse Reflexion', 'Brechung', 'Lichtbrechung', 'Brechungsgesetz', 'Snellius', 'Brechzahl', 'Totalreflexion', 'Grenzwinkel', 'Lichtwellenleiter', 'Lichtgeschwindigkeit'],
+        text: 'Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit Brechzahlen, Grenzwinkel und Totalreflexion im Lichtwellenleiter – mit Animationen zum Ziehen und Rechner in jede Richtung.',
+        tex: 'n_1 \\cdot \\sin\\alpha = n_2 \\cdot \\sin\\beta'
+      },
+      {
+        titel: 'Aggregatzustände und Wärme',
+        pfad: 'physik/aggregatzustaende.html',
+        bereich: 'Physik',
+        themen: ['Aggregatzustand', 'Teilchenmodell', 'fest', 'flüssig', 'gasförmig', 'Schmelzen', 'Erstarren', 'Verdampfen', 'Kondensieren', 'Schmelzwärme', 'Verdampfungswärme', 'spezifische Wärmekapazität', 'Erwärmungskurve', 'Wärmemenge', 'Siedepunkt', 'Schmelzpunkt'],
+        text: 'Teilchenmodell der Aggregatzustände in Bewegung und Erwärmungskurve: Wärme zum Erwärmen, Schmelzen und Verdampfen von Wasser, Aluminium und Blei, Heizdauer und Anteil der Umwandlungswärme – mit Abschnitten Schritt für Schritt.',
+        tex: 'Q = c \\cdot m \\cdot \\Delta\\vartheta'
+      },
+      {
+        titel: 'Astronomie: Erdjahr und Keplersche Gesetze',
+        pfad: 'physik/astronomie.html',
+        bereich: 'Physik',
+        themen: ['Astronomie', 'Erdjahr', 'Jahreszeiten', 'Erdachse', 'Neigung', 'Sonnenhöhe', 'Mittagshöhe', 'Tageslänge', 'Deklination', 'Polartag', 'Kepler', 'Keplersche Gesetze', 'Ellipse', 'Flächensatz', 'Umlaufzeit', 'Planeten', 'Perihel', 'Aphel'],
+        text: 'Warum es Jahreszeiten gibt: Erde mit geneigter Achse auf ihrer Bahn, Sonnenhöhe mittags und Tageslänge für jeden Ort und Tag. Dazu die drei Keplerschen Gesetze mit Planetenbahn, Flächensatz und Umlaufzeiten der Planeten.',
+        tex: 'T^2 = a^3'
+      },
+      {
+        titel: 'Radioaktivität und Kernspaltung',
+        pfad: 'physik/radioaktivitaet.html',
+        bereich: 'Physik',
+        themen: ['Radioaktivität', 'Kernstrahlung', 'Alphastrahlung', 'Betastrahlung', 'Gammastrahlung', 'Abschirmung', 'Halbwertszeit', 'Zerfallsgesetz', 'Aktivität', 'Becquerel', 'Zerfallskonstante', 'Nuklid', 'Kernspaltung', 'Kettenreaktion', 'Uran', 'Steuerstab'],
+        text: 'Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, Kettenreaktion bei der Kernspaltung. Rechner für Restaktivität, Kernzahl und Zerfälle bekannter Nuklide.',
+        tex: 'N = N_0 \\cdot \\left(\\tfrac{1}{2}\\right)^{t/T_{1/2}}'
+      },
+      {
+        titel: 'Anhalteweg: Reaktionsweg und Bremsweg',
+        pfad: 'mechanik/anhalteweg.html',
+        bereich: 'Mechanik',
+        auchIn: ['Physik'],
+        themen: ['Anhalteweg', 'Reaktionsweg', 'Bremsweg', 'Reaktionszeit', 'Bremsverzögerung', 'Haftreibung', 'Faustformel', 'Gefahrbremsung', 'Aufprallgeschwindigkeit', 'Fahrbahn', 'Glatteis', 'Verkehr'],
+        text: 'Anhalteweg aus Reaktionsweg und Bremsweg: physikalisch und mit den Faustformeln der Fahrschule, mit Fahrbahnzustand, Steigung und Aufprallgeschwindigkeit an einem Hindernis – als Animation und im Vergleich verschiedener Geschwindigkeiten.',
+        tex: 's_\\text{B} = \\frac{v^2}{2a}'
+      },
+      {
+        titel: 'Waagerechter und schräger Wurf',
+        pfad: 'mechanik/wurf.html',
+        bereich: 'Mechanik',
+        auchIn: ['Physik'],
+        themen: ['Wurf', 'waagerechter Wurf', 'schräger Wurf', 'Wurfparabel', 'Wurfweite', 'Flugzeit', 'freier Fall', 'Fallzeit', 'Fallbeschleunigung', 'Unabhängigkeitsprinzip', 'Abwurfwinkel'],
+        text: 'Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit beim waagerechten und schrägen Wurf, auf Erde, Mond, Mars und Jupiter – mit Teilbewegungen in der Animation, Fallen und Werfen im Vergleich und dem besten Abwurfwinkel.',
+        tex: 'x = v_0 \\cdot \\sqrt{\\frac{2h}{g}}'
+      },
+      {
+        titel: 'Halbleiter, Diode und Gleichrichter',
+        gruppe: 'Grundlagen',
+        pfad: 'elektro/halbleiter.html',
+        bereich: 'Elektrotechnik',
+        auchIn: ['Physik'],
+        themen: ['Halbleiter', 'Elektronenleitung', 'Metall', 'Strommodell', 'Eigenleitung', 'Dotierung', 'n-Leiter', 'p-Leiter', 'pn-Übergang', 'Sperrschicht', 'Diode', 'Diodenkennlinie', 'Brückengleichrichter', 'Graetzschaltung', 'Ladekondensator', 'Brummspannung', 'Solarzelle', 'MPP'],
+        text: 'Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.',
+        tex: '\\Delta U = \\frac{I}{2 \\cdot f \\cdot C}'
       }
     ];
 
     // Reihenfolge und Farben der Bereiche; Untergruppen in dieser Reihenfolge
-    const BEREICHE = { 'Elektrotechnik': '#2B7BB9', 'Mechanik': '#6E6FA6', 'Sanitärtechnik': '#0E6B6A', 'Heizungstechnik': '#C2410C', 'Brandschutz': '#E4572E', 'Arbeitsschutz': '#2F9E44', 'Dach und Klempnerei': '#A0785A', 'IT und Netzwerk': '#3B5BDB', 'Geld und Kalkulation': '#A16207', 'Gebäudeautomation': '#9333EA', 'Steuerungstechnik': '#0E7C86', 'Werkzeuge': '#6B7785' };
+    const BEREICHE = { 'Elektrotechnik': '#2B7BB9', 'Mechanik': '#6E6FA6', 'Sanitärtechnik': '#0E6B6A', 'Heizungstechnik': '#C2410C', 'Brandschutz': '#E4572E', 'Arbeitsschutz': '#2F9E44', 'Dach und Klempnerei': '#A0785A', 'IT und Netzwerk': '#3B5BDB', 'Geld und Kalkulation': '#A16207', 'Gebäudeautomation': '#9333EA', 'Steuerungstechnik': '#0E7C86', 'Physik': '#C2255C', 'Werkzeuge': '#6B7785' };
     const GRUPPEN = ['Grundlagen', 'Installation und Schutz', 'Energie und Photovoltaik'];
     const farbe = function (b) { return BEREICHE[b] || 'var(--leise)'; };
 

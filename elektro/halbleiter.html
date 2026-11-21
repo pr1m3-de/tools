@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Halbleiter, Diode, Brückengleichrichter und Solarzelle – Formeln &amp; Rechner</title>
+  <meta name="description" content="Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/halbleiter.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Halbleiter, Diode, Brückengleichrichter und Solarzelle">
+  <meta property="og:description" content="Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/halbleiter.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Halbleiter, Diode, Brückengleichrichter und Solarzelle">
+  <meta name="twitter:description" content="Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/halbleiter.html#seite","name":"Halbleiter, Diode, Brückengleichrichter und Solarzelle","url":"https://tools.pr1m3.de/elektro/halbleiter.html","inLanguage":"de","description":"Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/halbleiter.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/halbleiter.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Halbleiter, Diode, Brückengleichrichter und Solarzelle","item":"https://tools.pr1m3.de/elektro/halbleiter.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/halbleiter.html#fragen","mainEntity":[{"@type":"Question","name":"Warum ist die Gleichspannung nach dem Gleichrichter höher als die Wechselspannung?","acceptedAnswer":{"@type":"Answer","text":"Der Kondensator lädt sich auf den Scheitelwert auf, und der ist √2-mal so groß wie der Effektivwert – abzüglich der zwei Diodenspannungen. Aus 12 V Wechselspannung werden so ohne Last rund 15,6 V."}},{"@type":"Question","name":"Welche technische Stromrichtung gilt?","acceptedAnswer":{"@type":"Answer","text":"Die technische Stromrichtung geht außen vom Plus- zum Minuspol. Die Elektronen bewegen sich umgekehrt. Diodenpfeile und Schaltzeichen zeigen immer die technische Richtung."}},{"@type":"Question","name":"Wie groß muss der Ladekondensator sein?","acceptedAnswer":{"@type":"Answer","text":"Faustregel für den Brückengleichrichter: C = I / (2 · f · ΔU). Bei 0,5 A und 1 V erlaubter Brummspannung an 50 Hz sind das 5 000 µF."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/halbleiter.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Vom Elektron zum Gleichrichter</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#B87333"><h3>Metalle</h3><p>Im Metall sitzen positive Atomrümpfe auf festen Gitterplätzen, die äußeren Elektronen bewegen sich frei als Elektronengas. Mit Spannung driften sie langsam zum Pluspol – nur Millimeter je Sekunde, das Signal breitet sich aber fast mit Lichtgeschwindigkeit aus. Wärmeres Metall: Die Rümpfe schwingen stärker, die Elektronen stoßen öfter an, der Widerstand steigt.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Halbleiter</h3><p>Im reinen Silizium sind alle vier Außenelektronen in Bindungen festgehalten. Erst Wärme oder Licht löst einzelne Elektronen; zurück bleibt ein Loch, das wie eine positive Ladung wandert (Eigenleitung). Wärmer heißt hier: mehr freie Ladungsträger, kleinerer Widerstand.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Dotieren</h3><p>Ein paar Fremdatome verändern die Leitfähigkeit stark. Phosphor hat fünf Außenelektronen – eines bleibt frei: n-Leiter. Bor hat nur drei – es fehlt eines, ein Loch entsteht: p-Leiter.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>pn-Übergang und Diode</h3><p>Wo p- und n-Gebiet aneinanderstoßen, füllen Elektronen die Löcher auf; es entsteht eine Sperrschicht ohne freie Ladungsträger. In Durchlassrichtung (Plus an p) wird sie abgebaut, ab etwa 0,6 bis 0,7 V fließt bei Silizium kräftig Strom. In Sperrrichtung wird sie breiter, nur ein winziger Sperrstrom fließt.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Brückengleichrichter</h3><p>Vier Dioden in Brückenschaltung (Graetzschaltung) leiten beide Halbwellen in derselben Richtung durch die Last: In jeder Halbwelle sind zwei Dioden leitend. Ein Ladekondensator glättet die pulsierende Gleichspannung; übrig bleibt eine Brummspannung mit doppelter Netzfrequenz.</p></article>
+        <article class="wissen-karte" style="--farbe:#E0A800"><h3>Solarzelle</h3><p>Eine großflächige Diode: Licht erzeugt in der Sperrschicht Elektron-Loch-Paare, das elektrische Feld trennt sie – Elektronen zur n-Seite, Löcher zur p-Seite. Über einen äußeren Verbraucher fließt Strom. Die meiste Leistung gibt die Zelle im Punkt der größten Leistung (MPP) ab.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum ist die Gleichspannung nach dem Gleichrichter höher als die Wechselspannung?</summary><p>Der Kondensator lädt sich auf den Scheitelwert auf, und der ist √2-mal so groß wie der Effektivwert – abzüglich der zwei Diodenspannungen. Aus 12 V Wechselspannung werden so ohne Last rund 15,6 V.</p></details>
+        <details><summary>Welche technische Stromrichtung gilt?</summary><p>Die technische Stromrichtung geht außen vom Plus- zum Minuspol. Die Elektronen bewegen sich umgekehrt. Diodenpfeile und Schaltzeichen zeigen immer die technische Richtung.</p></details>
+        <details><summary>Wie groß muss der Ladekondensator sein?</summary><p>Faustregel für den Brückengleichrichter: C = I / (2 · f · ΔU). Bei 0,5 A und 1 V erlaubter Brummspannung an 50 Hz sind das 5 000 µF.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const UT = 0.02585;
+    let ansicht = 'graetz', takt = uhr(), zeit = 0;
+    const SIM = { metall: null, hl: null, solar: [] };
+    // Diode (Silizium-Kleinsignal): I = Is · (e^(U/(n·UT)) − 1)
+    const DIS = 1e-8, DN = 1.8;
+    function diodeI(u) { return DIS * (Math.exp(Math.min(u, 0.9) / (DN * UT)) - 1); }
+    // Solarzelle: Kurzschlussstrom 35 mA/cm² bei 1000 W/m², I0 je cm², n = 1,3
+    function solar(E, A, u) { const isc = 0.035 * A * E / 1000, i0 = 3.4e-10 * A; return isc - i0 * (Math.exp(u / (1.3 * UT)) - 1); }
+    function solarKenn(E, A) {
+      const isc = 0.035 * A * E / 1000, uoc = 1.3 * UT * Math.log(isc / (3.4e-10 * A) + 1);
+      let best = [0, 0, 0]; for (let i = 0; i <= 400; i++) { const u = uoc * i / 400, ii = solar(E, A, u), p = u * ii; if (p > best[2]) best = [u, ii, p]; }
+      return { isc: isc, uoc: uoc, umpp: best[0], impp: best[1], pmpp: best[2], ff: best[2] / (isc * uoc || 1) };
+    }
+    function rechne(e) {
+      const r = {};
+      r.uh = W2 * e.u; r.uaus = Math.max(0, r.uh - 2 * e.uf);
+      r.mittelOhne = 2 * r.uaus / Math.PI;
+      r.du = e.c > 0 ? (e.i / 1000) / (2 * e.f * e.c * 1e-6) : Infinity;
+      r.du = Math.min(r.du, r.uaus);
+      r.udc = r.uaus - r.du / 2;
+      r.ur = r.uh; r.idiode = e.i / 2; r.fb = 2 * e.f;
+      r.pLast = r.udc * e.i / 1000;
+      r.id = diodeI(e.ud);
+      r.sol = solarKenn(e.E, e.A); r.eta = r.sol.pmpp / (e.E * e.A / 1e4);
+      return r;
+    }
+    const seite = R.seite({
+      titel: 'Halbleiter, Diode und Gleichrichter',
+      einleitung: 'Wie Strom in Metallen und Halbleitern fließt, wie eine Diode sperrt und leitet, wie der Brückengleichrichter aus Wechsel- Gleichspannung macht und wie die Solarzelle Licht in Strom umsetzt. Der Rechner dimensioniert Brückengleichrichter mit Ladekondensator und eine Solarzelle.',
+      hilfe: 'Beispiel: Trafo 12 V / 50 Hz, Ladekondensator 2 200 µF, Laststrom 500 mA, Silizium-Dioden mit 0,7 V.',
+      gruppen: [
+        { titel: 'Brückengleichrichter', farbe: GRUEN, felder: [
+          { k: 'u', tex: 'U', name: 'Wechselspannung (Effektivwert)', e: 'V', min: 1, max: 1000 },
+          { k: 'f', tex: 'f', name: 'Frequenz', e: 'Hz', min: 1, max: 1000 },
+          { k: 'c', tex: 'C', name: 'Ladekondensator (0 = ohne)', e: 'µF', min: 0, max: 1e6 },
+          { k: 'i', tex: 'I', name: 'Laststrom', e: 'mA', min: 1, max: 1e5 },
+          { k: 'uf', tex: 'U_\\text{F}', name: 'Durchlassspannung je Diode', e: 'V', min: 0.1, max: 3 }
+        ] },
+        { titel: 'Diode und Solarzelle (Animationen)', farbe: GELB, felder: [
+          { k: 'ud', tex: 'U_\\text{D}', name: 'Spannung an der Diode', e: 'V', min: -1.5, max: 0.85 },
+          { k: 'E', tex: 'E', name: 'Bestrahlungsstärke', e: 'W/m²', min: 1, max: 1500 },
+          { k: 'A', tex: 'A', name: 'Fläche der Solarzelle', e: 'cm²', min: 0.1, max: 1000 },
+          { k: 'dot', name: 'Halbleiter-Animation', wahl: [['eigen', 'reines Silizium (Eigenleitung)'], ['n', 'n-dotiert (Phosphor)'], ['p', 'p-dotiert (Bor)']] }
+        ] }
+      ],
+      beispiel: { u: 12, f: 50, c: 2200, i: 500, uf: 0.7, ud: 0.65, E: 1000, A: 100, dot: 'eigen' },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (e.c > 0 && r.du > r.uaus * 0.2) H.meldung('Die Brummspannung ist größer als 20 % der Ausgangsspannung – der Kondensator ist für diesen Strom zu klein.', true);
+        if (e.c === 0) H.meldung('Ohne Ladekondensator ist die Ausgangsspannung pulsierend; angegeben ist ihr Mittelwert.');
+        H.kacheln([
+          [zz(r.uh, 2) + ' V', 'Scheitelwert der Wechselspannung', BLAU],
+          [zz(e.c > 0 ? r.udc : r.mittelOhne, 2) + ' V', e.c > 0 ? 'Gleichspannung (Mittelwert mit Brumm)' : 'Mittelwert ohne Kondensator', GRUEN],
+          [zz(e.c > 0 ? r.du : r.uaus, 2) + ' V', 'Brummspannung Spitze–Spitze (' + zz(r.fb, 0) + ' Hz)', ORANGE],
+          [zz(r.ur, 1) + ' V', 'Sperrspannung je Diode mindestens', ROT],
+          [zz(r.sol.pmpp * 1000, 0) + ' mW', 'Solarzelle im MPP (η = ' + zz(r.eta * 100, 1) + ' %)', GELB],
+          [zz(r.id * 1000, r.id < 1e-3 ? 4 : 1) + ' mA', 'Diodenstrom bei ' + zz(e.ud, 2) + ' V', LILA]
+        ]);
+        H.tabelle('Weitere Werte', ['Größe', 'Wert'], [
+          ['Spitze der Ausgangsspannung (Û − 2 U_F)', zz(r.uaus, 2) + ' V'], ['mittlerer Strom je Diode', zz(r.idiode, 0) + ' mA'], ['Leistung an der Last', zz(r.pLast, 2) + ' W'],
+          ['Solarzelle Leerlaufspannung', zz(r.sol.uoc, 3) + ' V'], ['Solarzelle Kurzschlussstrom', zz(r.sol.isc, 3) + ' A'], ['Solarzelle MPP', zz(r.sol.umpp, 3) + ' V / ' + zz(r.sol.impp, 3) + ' A'], ['Füllfaktor', zz(r.sol.ff * 100, 1) + ' %']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        const w = [
+          ['Scheitelwert', '\\hat{U} = \\sqrt{2} \\cdot U = \\sqrt{2} \\cdot ' + tz(e.u, 2) + '\\,\\text{V} = ' + E(tz(r.uh, 2) + '\\,\\text{V}')],
+          ['Spitze am Ausgang', '\\hat{U}_\\text{a} = \\hat{U} - 2 \\cdot U_\\text{F} = ' + tz(r.uh, 2) + ' - 2 \\cdot ' + tz(e.uf, 2) + ' = ' + E(tz(r.uaus, 2) + '\\,\\text{V}')]
+        ];
+        if (e.c > 0) w.push(['Brummspannung', '\\Delta U = \\frac{I}{2 \\cdot f \\cdot C} = \\frac{' + tz(e.i / 1000, 3) + '\\,\\text{A}}{2 \\cdot ' + tz(e.f, 0) + '\\,\\text{Hz} \\cdot ' + tz(e.c, 0) + '\\,\\mu\\text{F}} = ' + E(tz(r.du, 2) + '\\,\\text{V}')], ['Gleichspannung', 'U_\\text{d} \\approx \\hat{U}_\\text{a} - \\frac{\\Delta U}{2} = ' + E(tz(r.udc, 2) + '\\,\\text{V}')]);
+        else w.push(['Mittelwert ohne Kondensator', '\\bar{U} = \\frac{2}{\\pi} \\cdot \\hat{U}_\\text{a} = ' + E(tz(r.mittelOhne, 2) + '\\,\\text{V}')]);
+        w.push(['Solarzelle', '\\eta = \\frac{P_\\text{MPP}}{E \\cdot A} = \\frac{' + tz(r.sol.pmpp, 3) + '\\,\\text{W}}{' + tz(e.E, 0) + '\\,\\tfrac{\\text{W}}{\\text{m}^2} \\cdot ' + tz(e.A / 1e4, 4) + '\\,\\text{m}^2} = ' + E(tz(r.eta * 100, 1) + '\\,\\%')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Scheitelwert', hilfe: 'Sinusförmige Wechselspannung.',
+          felder: [{ k: 'Ud', tex: '\\hat{U}', name: 'Scheitelwert', e: 'V', min: 0.1, max: 1e5 }, { k: 'U', tex: 'U', name: 'Effektivwert', e: 'V', min: 0.1, max: 1e5 }],
+          beispiel: { U: 12 },
+          gleichungen: [{ name: 'Scheitel', v: ['Ud', 'U'], f: function (q) { return [q.Ud, W2 * q.U]; }, loese: { Ud: function (q) { return W2 * q.U; }, U: function (q) { return q.Ud / W2; } },
+            weg: function (k, q) { return k === 'Ud' ? '\\hat{U} = \\sqrt{2} \\cdot U = \\sqrt{2} \\cdot ' + tz(q.U, 2) + '\\,\\text{V} = ' + E(tz(q.Ud, 2) + '\\,\\text{V}') : 'U = \\frac{\\hat{U}}{\\sqrt{2}} = ' + E(tz(q.U, 2) + '\\,\\text{V}'); } }] },
+        { titel: 'Brummspannung beim Brückengleichrichter', hilfe: 'I in A, f in Hz, C in µF, ΔU in V.',
+          felder: [{ k: 'du', tex: '\\Delta U', name: 'Brummspannung', e: 'V', min: 0.01, max: 100 }, { k: 'I', tex: 'I', name: 'Laststrom', e: 'A', min: 0.001, max: 100 }, { k: 'f', tex: 'f', name: 'Netzfrequenz', e: 'Hz', min: 1, max: 1000 }, { k: 'C', tex: 'C', name: 'Kapazität', e: 'µF', min: 1, max: 1e6 }],
+          beispiel: { I: 0.5, f: 50, C: 2200 },
+          gleichungen: [{ name: 'Brumm', v: ['du', 'I', 'f', 'C'], f: function (q) { return [q.du * 2 * q.f * q.C * 1e-6, q.I]; },
+            loese: { du: function (q) { return q.I / (2 * q.f * q.C * 1e-6); }, I: function (q) { return q.du * 2 * q.f * q.C * 1e-6; }, f: function (q) { return q.I / (2 * q.du * q.C * 1e-6); }, C: function (q) { return q.I / (2 * q.f * q.du) * 1e6; } },
+            weg: function (k, q) { return k === 'du' ? '\\Delta U = \\frac{I}{2 f C} = \\frac{' + tz(q.I, 3) + '}{2 \\cdot ' + tz(q.f, 0) + ' \\cdot ' + tz(q.C, 0) + ' \\cdot 10^{-6}}\\,\\text{V} = ' + E(tz(q.du, 2) + '\\,\\text{V}') : k === 'C' ? 'C = \\frac{I}{2 f \\Delta U} = \\frac{' + tz(q.I, 3) + '}{2 \\cdot ' + tz(q.f, 0) + ' \\cdot ' + tz(q.du, 2) + '}\\,\\text{F} = ' + E(tz(q.C, 0) + '\\,\\mu\\text{F}') : k === 'I' ? 'I = 2 f C \\Delta U = ' + E(tz(q.I, 3) + '\\,\\text{A}') : 'f = \\frac{I}{2 C \\Delta U} = ' + E(tz(q.f, 1) + '\\,\\text{Hz}'); } }] },
+        { titel: 'Wirkungsgrad der Solarzelle', hilfe: 'P in W, E in W/m², A in cm².',
+          felder: [{ k: 'eta', tex: '\\eta', name: 'Wirkungsgrad', e: '%', min: 0.5, max: 50 }, { k: 'P', tex: 'P', name: 'elektrische Leistung', e: 'W', min: 0.001, max: 1000 }, { k: 'E', tex: 'E', name: 'Bestrahlungsstärke', e: 'W/m²', min: 10, max: 1500 }, { k: 'A', tex: 'A', name: 'Fläche', e: 'cm²', min: 1, max: 30000 }],
+          beispiel: { P: 1.7, E: 1000, A: 100 },
+          gleichungen: [{ name: 'Solar', v: ['eta', 'P', 'E', 'A'], f: function (q) { return [q.eta / 100 * q.E * q.A / 1e4, q.P]; },
+            loese: { eta: function (q) { return q.P / (q.E * q.A / 1e4) * 100; }, P: function (q) { return q.eta / 100 * q.E * q.A / 1e4; }, E: function (q) { return q.P / (q.eta / 100 * q.A / 1e4); }, A: function (q) { return q.P / (q.eta / 100 * q.E) * 1e4; } },
+            weg: function (k, q) { return k === 'eta' ? '\\eta = \\frac{P}{E \\cdot A} = \\frac{' + tz(q.P, 3) + '\\,\\text{W}}{' + tz(q.E, 0) + '\\,\\tfrac{\\text{W}}{\\text{m}^2} \\cdot ' + tz(q.A / 1e4, 4) + '\\,\\text{m}^2} = ' + E(tz(q.eta, 1) + '\\,\\%') : k === 'P' ? 'P = \\eta \\cdot E \\cdot A = ' + E(tz(q.P, 3) + '\\,\\text{W}') : k === 'E' ? 'E = \\frac{P}{\\eta \\cdot A} = ' + E(tz(q.E, 0) + '\\,\\tfrac{\\text{W}}{\\text{m}^2}') : 'A = \\frac{P}{\\eta \\cdot E} = ' + E(tz(q.A, 1) + '\\,\\text{cm}^2'); } }] }
+      ],
+      sammlung: [
+        ['Scheitelwert', '\\hat{U} = \\sqrt{2} \\cdot U', ''],
+        ['Ausgangsspitze Brückengleichrichter', '\\hat{U}_\\text{a} = \\hat{U} - 2 \\cdot U_\\text{F}', 'zwei Dioden leiten gleichzeitig'],
+        ['Mittelwert ohne Glättung', '\\bar{U} = \\frac{2}{\\pi} \\cdot \\hat{U}_\\text{a}', 'Zweiweggleichrichtung'],
+        ['Brummspannung', '\\Delta U = \\frac{I}{2 \\cdot f \\cdot C}', 'Brückengleichrichter, Brummfrequenz 2f'],
+        ['Diodenkennlinie', 'I = I_\\text{S} \\cdot \\left(e^{U/(n \\cdot U_\\text{T})} - 1\\right)', 'U_T ≈ 26 mV bei 27 °C'],
+        ['Solarzelle Wirkungsgrad', '\\eta = \\frac{P_\\text{MPP}}{E \\cdot A}', ''],
+        ['Füllfaktor', 'FF = \\frac{P_\\text{MPP}}{U_\\text{L} \\cdot I_\\text{K}}', 'U_L Leerlaufspannung, I_K Kurzschlussstrom'],
+        ['Driftgeschwindigkeit', 'v = \\frac{I}{n \\cdot e \\cdot A}', 'n Elektronendichte, Kupfer 8,5 · 10²⁸ 1/m³']
+      ],
+      quellen: 'Diode als Silizium-Kleinsignaldiode modelliert (Is = 10 nA, n = 1,8), Solarzelle als ideale Diode mit 35 mA/cm² Kurzschlussstrom bei 1 000 W/m². Brummspannung als Näherung für große Kondensatoren.',
+      bild: { titel: 'Animation', label: 'Ladungsträger in Metall und Halbleiter, Diode, Brückengleichrichter und Solarzelle', animiert: true,
+        hoehe: function (B) { return ansicht === 'graetz' ? (B < 600 ? 500 : 440) : B < 600 ? 460 : 380; },
+        hinweis: function (r, e) {
+          return ({ metall: 'Graue Atomrümpfe, blaue Elektronen. Mit Spannung driften die Elektronen zum Pluspol – technische Stromrichtung ist umgekehrt.',
+            halbleiter: 'Siliziumgitter mit Elektronenpaarbindungen. Blau: freie Elektronen, Kreise: Löcher. Elektronen wandern zum Pluspol, Löcher zum Minuspol.',
+            diode: 'Spannung an der Diode im Feld „Spannung an der Diode“ einstellen: positiv = Durchlassrichtung (Plus an p), negativ = Sperrrichtung.',
+            graetz: 'Grün: Stromweg in der positiven Halbwelle (D1, D3), blau: in der negativen (D2, D4). Unten Eingangs- und Ausgangsspannung.',
+            solar: 'Gelb: Licht. Jedes absorbierte Photon erzeugt ein Elektron (blau) und ein Loch (rot). Das Feld der Sperrschicht trennt sie, über die Lampe fließt Strom.' })[ansicht];
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); zeit += dt; ({ metall: metall, halbleiter: halbleiter, diode: diode, graetz: graetz, solar: solarBild })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    // ---------- Metall ----------
+    function metall(cx, B, H, dt) {
+      if (!SIM.metall) { const z = zufall(3), el = []; for (let i = 0; i < 60; i++) el.push({ x: z(), y: z(), vx: z() - 0.5, vy: z() - 0.5 }); SIM.metall = el; }
+      const x0 = 50, x1 = B - 50, y0 = 50, y1 = H - 70, w = x1 - x0, h = y1 - y0, nx = Math.max(6, Math.round(w / 52)), ny = Math.max(4, Math.round(h / 52));
+      cx.fillStyle = 'rgba(184,115,51,.12)'; cx.fillRect(x0, y0, w, h);
+      for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) { const x = x0 + (i + 0.5) * w / nx + Math.sin(zeit * 20 + i * 3 + j) * 2, y = y0 + (j + 0.5) * h / ny + Math.cos(zeit * 17 + i + j * 5) * 2; kreis(cx, x, y, 9, '#9AA3AD', '#5F6B76', 1); T(cx, '+', x, y, 'center', 11, true, '#fff'); }
+      SIM.metall.forEach(function (p) {
+        p.vx += (Math.random() - 0.5) * dt * 8; p.vy += (Math.random() - 0.5) * dt * 8; const l = Math.hypot(p.vx, p.vy) || 1; p.vx = p.vx / l * 0.5; p.vy = p.vy / l * 0.5;
+        p.x += (p.vx - 0.12) * dt * 0.6; p.y += p.vy * dt * 0.6;
+        if (p.x < 0) p.x += 1; if (p.x > 1) p.x -= 1; if (p.y < 0) { p.y = 0; p.vy = Math.abs(p.vy); } if (p.y > 1) { p.y = 1; p.vy = -Math.abs(p.vy); }
+        kreis(cx, x0 + p.x * w, y0 + p.y * h, 4, BLAU);
+      });
+      // Pole
+      cx.fillStyle = ROT; cx.fillRect(x0 - 26, y0, 20, h); T(cx, '+', x0 - 16, y0 - 14, 'center', 16, true, ROT);
+      cx.fillStyle = BLAU; cx.fillRect(x1 + 6, y0, 20, h); T(cx, '−', x1 + 16, y0 - 14, 'center', 16, true, BLAU);
+      pfeil(cx, x0 + w * 0.65, y1 + 22, x0 + w * 0.35, y1 + 22, BLAU, 2); T(cx, 'Elektronen', x0 + w * 0.35 - 6, y1 + 22, 'right', 10, true, BLAU);
+      pfeil(cx, x0 + w * 0.35, y1 + 44, x0 + w * 0.65, y1 + 44, ROT, 2); T(cx, B < 600 ? 'Strom (technisch)' : 'technische Stromrichtung', x0 + w * 0.65 + 6, y1 + 44, 'left', 10, true, ROT);
+    }
+    // ---------- Halbleiter ----------
+    function halbleiter(cx, B, H, dt, r, e) {
+      const nx = B < 600 ? 6 : 9, ny = 5, x0 = 40, x1 = B - 40, y0 = 40, y1 = H - 60, dx = (x1 - x0) / nx, dy = (y1 - y0) / ny;
+      if (!SIM.hl || SIM.hl.art !== e.dot || SIM.hl.nx !== nx) {
+        const fremd = {}; if (e.dot !== 'eigen') [[1, 1], [4, 3], [nx - 2, 1], [2, 4]].forEach(function (q) { fremd[q[0] + ',' + q[1]] = e.dot; });
+        const tr = []; Object.keys(fremd).forEach(function (k) { const q = k.split(',').map(Number); tr.push({ x: x0 + (q[0] + 0.5) * dx + dx / 2, y: y0 + (q[1] + 0.5) * dy, art: e.dot === 'n' ? 'e' : 'l' }); });
+        SIM.hl = { art: e.dot, nx: nx, fremd: fremd, tr: tr, uhr: 0 };
+      }
+      const S = SIM.hl;
+      // Paarbildung bei Eigenleitung
+      S.uhr += dt; if (e.dot === 'eigen' && S.uhr > 1.2 && S.tr.length < 12) { S.uhr = 0; const i = Math.floor(Math.random() * nx), j = Math.floor(Math.random() * ny), x = x0 + (i + 0.5) * dx + dx / 2, y = y0 + (j + 0.5) * dy; S.tr.push({ x: x, y: y, art: 'e', blitz: 1 }, { x: x, y: y, art: 'l', blitz: 1 }); }
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 3;
+      for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) {
+        const x = x0 + (i + 0.5) * dx, y = y0 + (j + 0.5) * dy;
+        if (i < nx - 1) { strecke(cx, x + 12, y - 3, x + dx - 12, y - 3, GRAU, 1.5); strecke(cx, x + 12, y + 3, x + dx - 12, y + 3, GRAU, 1.5); kreis(cx, x + dx / 2 - 5, y - 3, 2.5, '#5C7A99'); kreis(cx, x + dx / 2 + 5, y + 3, 2.5, '#5C7A99'); }
+        if (j < ny - 1) { strecke(cx, x - 3, y + 12, x - 3, y + dy - 12, GRAU, 1.5); strecke(cx, x + 3, y + 12, x + 3, y + dy - 12, GRAU, 1.5); }
+        const f = S.fremd[i + ',' + j];
+        kreis(cx, x, y, 12, f === 'n' ? '#E0A800' : f === 'p' ? '#2E8B57' : '#9AA3AD', '#5F6B76', 1);
+        T(cx, f === 'n' ? 'P' : f === 'p' ? 'B' : 'Si', x, y, 'center', 9, true, '#fff');
+      }
+      // Ladungsträger: Elektronen nach links (Pluspol), Löcher nach rechts
+      for (let k = S.tr.length - 1; k >= 0; k--) {
+        const p = S.tr[k]; p.x += (p.art === 'e' ? -1 : 1) * dt * (p.art === 'e' ? 34 : 18) + (Math.random() - 0.5) * 2; p.y += (Math.random() - 0.5) * 2;
+        if (p.x < x0) { if (e.dot === 'eigen') { S.tr.splice(k, 1); continue; } p.x = x1; } if (p.x > x1) { if (e.dot === 'eigen') { S.tr.splice(k, 1); continue; } p.x = x0; }
+        if (p.blitz) { kreis(cx, p.x, p.y, 14 * p.blitz, 'rgba(224,168,0,' + (p.blitz * 0.5).toFixed(2) + ')'); p.blitz = Math.max(0, p.blitz - dt); }
+        if (p.art === 'e') kreis(cx, p.x, p.y, 5, BLAU); else kreis(cx, p.x, p.y, 5, F('--flaeche2'), ROT, 2);
+      }
+      cx.fillStyle = ROT; cx.fillRect(x0 - 30, y0, 16, y1 - y0); T(cx, '+', x0 - 22, y0 - 14, 'center', 16, true, ROT);
+      cx.fillStyle = BLAU; cx.fillRect(x1 + 14, y0, 16, y1 - y0); T(cx, '−', x1 + 22, y0 - 14, 'center', 16, true, BLAU);
+      const txt = { eigen: ['Eigenleitung: Wärme bricht Bindungen auf,', 'Elektron und Loch entstehen paarweise'], n: ['n-Leiter: Phosphor (P) gibt sein', 'fünftes Elektron frei'], p: ['p-Leiter: Bor (B) fehlt ein Elektron –', 'es entsteht ein Loch'] }[e.dot];
+      if (B < 600) { T(cx, txt[0], 10, H - 30, 'left', 10, true); T(cx, txt[1], 10, H - 14, 'left', 10, true); } else T(cx, txt.join(' '), 10, H - 18, 'left', 11, true);
+    }
+    // ---------- Diode ----------
+    function diode(cx, B, H, dt, r, e) {
+      const klein = B < 600, x0 = 30, bw = klein ? B - 60 : B * 0.5, x1 = x0 + bw, y0 = 40, bh = klein ? 150 : H - 120, mx = x0 + bw / 2;
+      const sp = Math.max(4, 26 * Math.sqrt(Math.max(0.02, (0.72 - Math.min(e.ud, 0.7)) / 0.72)));
+      cx.fillStyle = 'rgba(192,57,43,.12)'; cx.fillRect(x0, y0, bw / 2, bh); cx.fillStyle = 'rgba(43,123,185,.12)'; cx.fillRect(mx, y0, bw / 2, bh);
+      cx.fillStyle = 'rgba(107,119,133,.25)'; cx.fillRect(mx - sp, y0, 2 * sp, bh);
+      T(cx, 'p', x0 + 10, y0 + 14, 'left', 14, true, ROT); T(cx, 'n', x1 - 10, y0 + 14, 'right', 14, true, BLAU); T(cx, 'Sperrschicht', mx, y0 + bh + 14, 'center', 10, false, GRAU);
+      const z = zufall(5), fluss = Math.min(1, r.id / 0.02);
+      for (let i = 0; i < 26; i++) {
+        const bx = z(), by = z(), v = (zeit * 0.25 * fluss + bx) % 1;
+        const xl = x0 + 6 + (e.ud > 0.5 ? v : bx) * (bw / 2 - 6), xr = x1 - 6 - (e.ud > 0.5 ? v : bx) * (bw / 2 - 6), y = y0 + 8 + by * (bh - 16);
+        const lx = e.ud > 0.5 ? xl : Math.min(xl, mx - sp - 6), rx = e.ud > 0.5 ? xr : Math.max(xr, mx + sp + 6);
+        kreis(cx, lx, y, 4.5, F('--flaeche2'), ROT, 2); kreis(cx, rx, y, 4.5, BLAU);
+      }
+      // Pole
+      const plus = e.ud >= 0;
+      T(cx, plus ? '+' : '−', x0 - 14, y0 + bh / 2, 'center', 18, true, plus ? ROT : BLAU); T(cx, plus ? '−' : '+', x1 + 14, y0 + bh / 2, 'center', 18, true, plus ? BLAU : ROT);
+      // Schaltzeichen
+      const sy = y0 + bh + 40, sx = mx;
+      strecke(cx, sx - 60, sy, sx + 60, sy, F('--text'), 2); cx.fillStyle = F('--text'); cx.beginPath(); cx.moveTo(sx - 12, sy - 12); cx.lineTo(sx + 10, sy); cx.lineTo(sx - 12, sy + 12); cx.closePath(); cx.fill(); strecke(cx, sx + 10, sy - 12, sx + 10, sy + 12, F('--text'), 3);
+      T(cx, 'Anode (p)', sx - 64, sy, 'right', 10, false, GRAU); T(cx, 'Kathode (n)', sx + 64, sy, 'left', 10, false, GRAU);
+      T(cx, e.ud > 0.5 ? 'Durchlassrichtung: Strom fließt' : e.ud >= 0 ? 'Unter der Schleusenspannung: kaum Strom' : 'Sperrrichtung: Sperrschicht breit, kein Strom', 10, 16, 'left', 11, true, e.ud > 0.5 ? GRUEN : ROT);
+      // Kennlinie
+      const gx = klein ? 8 : x1 + 30, gy = klein ? sy + 26 : 10, gw = klein ? B - 16 : B - gx - 8, gh = klein ? H - gy - 6 : H - 20;
+      const pts = []; for (let u = -1.5; u <= 0.85; u += 0.005) pts.push([u, diodeI(u) * 1000]);
+      diagramm(cx, gx, gy, gw, gh, [{ name: 'I in mA', farbe: ROT, punkte: pts, punkt: [e.ud, r.id * 1000] }], { titel: 'Kennlinie', xl: 'U in V', xr: [-1.5, 1], yr: [-10, 100] });
+    }
+    // ---------- Brückengleichrichter ----------
+    function graetz(cx, B, H, dt, r, e) {
+      const klein = B < 600, per = 2.5, ph = (zeit % per) / per, ue = Math.sin(PI2 * ph), pos = ue >= 0;
+      const ch = klein ? 230 : H * 0.55, mx = klein ? B * 0.42 : B * 0.45, my = ch / 2 + 6, d = Math.min(klein ? 52 : 70, ch * 0.32);
+      const P = { o: [mx, my - d], u: [mx, my + d], l: [mx - d, my], r: [mx + d, my] };
+      // Quelle links
+      const qx = klein ? 34 : mx - d - 110;
+      kreis(cx, qx, my, 18, F('--flaeche'), F('--text'), 2); cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.beginPath(); for (let i = 0; i <= 20; i++) { const x = qx - 10 + i, y = my - Math.sin(i / 20 * PI2) * 6; if (i) cx.lineTo(x, y); else cx.moveTo(x, y); } cx.stroke();
+      T(cx, zz(e.u, 1) + ' V ~', qx, my + 30, 'center', 10, true);
+      const gruen = 'rgba(46,139,87,1)', blau = BLAU, aus = F('--linie');
+      // Leitungen Quelle → Brücke links/rechts? Quelle an o und u
+      zug(cx, [[qx, my - 18], [qx, my - d - 24], [mx, my - d - 24], P.o], pos ? gruen : blau, 2.5);
+      zug(cx, [[qx, my + 18], [qx, my + d + 24], [mx, my + d + 24], P.u], pos ? gruen : blau, 2.5);
+      // Dioden: D1 o→r, D2 u→r, D3 l→u, D4 l→o (Pfeil = technische Stromrichtung)
+      const dio = [['D1', P.o, P.r, pos], ['D2', P.u, P.r, !pos], ['D3', P.l, P.u, pos], ['D4', P.l, P.o, !pos]];
+      dio.forEach(function (q) {
+        const a = q[1], b = q[2], an = q[3], f = an ? (pos ? gruen : blau) : aus, mxx = (a[0] + b[0]) / 2, myy = (a[1] + b[1]) / 2, w = Math.atan2(b[1] - a[1], b[0] - a[0]);
+        strecke(cx, a[0], a[1], b[0], b[1], f, an ? 2.5 : 1.5);
+        cx.save(); cx.translate(mxx, myy); cx.rotate(w); cx.fillStyle = an ? f : F('--text'); cx.beginPath(); cx.moveTo(-9, -9); cx.lineTo(7, 0); cx.lineTo(-9, 9); cx.closePath(); cx.fill(); cx.fillRect(7, -9, 2.5, 18); cx.restore();
+        T(cx, q[0], mxx + (b[0] > a[0] ? 14 : -14), myy + (b[1] > a[1] ? -12 : 12) * (a[0] === mx ? 1 : 1), 'center', 10, true, an ? f : GRAU);
+      });
+      // Last und Kondensator rechts: + an r, − an l
+      const lx = mx + d + (klein ? 34 : 60), lt = my - d - 10, lb = my + d + 10;
+      zug(cx, [P.r, [lx, my], [lx, lt]], pos ? gruen : blau, 2.5); zug(cx, [[lx, lb], [lx, my + d + 40], [mx - d - 30, my + d + 40], [mx - d - 30, my], P.l], pos ? gruen : blau, 2.5);
+      cx.fillStyle = F('--flaeche'); cx.fillRect(lx - 10, lt, 20, lb - lt); cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.strokeRect(lx - 10, lt, 20, lb - lt); T(cx, 'Last', lx, lt - 8, 'center', 10, true);
+      if (e.c > 0) { const kx = lx + (klein ? 34 : 50); strecke(cx, lx, lt + 6, kx, lt + 6, F('--text'), 1.5); strecke(cx, lx, lb - 6, kx, lb - 6, F('--text'), 1.5); strecke(cx, kx, lt + 6, kx, my - 5, F('--text'), 1.5); strecke(cx, kx, lb - 6, kx, my + 5, F('--text'), 1.5); strecke(cx, kx - 12, my - 5, kx + 12, my - 5, F('--text'), 3); strecke(cx, kx - 12, my + 5, kx + 12, my + 5, F('--text'), 3); T(cx, 'C', kx + 16, my, 'left', 10, true); }
+      T(cx, '+', lx - 16, lt + 6, 'center', 13, true, ROT); T(cx, '−', lx - 16, lb - 6, 'center', 13, true, BLAU);
+      T(cx, pos ? 'positive Halbwelle: D1 und D3 leiten' : 'negative Halbwelle: D2 und D4 leiten', 10, 14, 'left', 11, true, pos ? GRUEN : BLAU);
+      // Spannungsverläufe
+      const gy = ch + 14, gh = H - gy - 6, tau = e.c > 0 ? (r.udc / (e.i / 1000)) * e.c * 1e-6 : 0;
+      const pe = [], pa = [], perioden = 2; let uc = r.uaus;
+      for (let i = 0; i <= 400; i++) {
+        const tt = i / 400 * perioden / e.f, ui = r.uh * Math.sin(PI2 * e.f * tt), gl = Math.max(0, Math.abs(ui) - 2 * e.uf);
+        if (e.c > 0) { uc = Math.max(gl, uc * Math.exp(-(perioden / e.f / 400) / tau)); pa.push([tt * 1000, uc]); } else pa.push([tt * 1000, gl]);
+        pe.push([tt * 1000, ui]);
+      }
+      const D = diagramm(cx, 8, gy, B - 16, gh, [{ name: 'u_ein', farbe: GRAU, punkte: pe, breite: 1.5 }, { name: 'u_aus', farbe: GRUEN, punkte: pa, breite: 2.5 }], { titel: 'Spannungen über zwei Perioden', xl: 't in ms', xr: [0, perioden / e.f * 1000], yr: runde([-r.uh * 1.1, r.uh * 1.1]) });
+      const tm = (ph * 1 + Math.floor(zeit / per) % perioden) / e.f * 1000;
+      strecke(cx, D.X(tm), D.y0, D.X(tm), D.y1, F('--text'), 1, [3, 3]);
+    }
+    // ---------- Solarzelle ----------
+    function solarBild(cx, B, H, dt, r, e) {
+      const klein = B < 600, x0 = 30, bw = klein ? B - 110 : B * 0.5, y0 = 70, nH = 26, pH = klein ? 110 : H - 180;
+      cx.fillStyle = 'rgba(43,123,185,.22)'; cx.fillRect(x0, y0, bw, nH); cx.fillStyle = 'rgba(192,57,43,.16)'; cx.fillRect(x0, y0 + nH, bw, pH); cx.fillStyle = 'rgba(107,119,133,.3)'; cx.fillRect(x0, y0 + nH - 4, bw, 12);
+      for (let x = x0 + 20; x < x0 + bw; x += 50) { cx.fillStyle = '#C9CDD2'; cx.fillRect(x, y0 - 6, 8, 6); }
+      cx.fillStyle = '#8A949E'; cx.fillRect(x0, y0 + nH + pH, bw, 8);
+      T(cx, 'n', x0 + bw + 8, y0 + nH / 2, 'left', 13, true, BLAU); T(cx, 'p', x0 + bw + 8, y0 + nH + pH / 2, 'left', 13, true, ROT);
+      // Photonen
+      const S = SIM.solar, rate = e.E / 1000 * 4;
+      if (Math.random() < dt * rate * 3) S.push({ x: x0 + 20 + Math.random() * (bw - 40), y: 0, art: 'ph', tief: y0 + nH + Math.random() * pH * 0.4 });
+      for (let i = S.length - 1; i >= 0; i--) {
+        const p = S[i];
+        if (p.art === 'ph') { p.y += dt * 160; cx.strokeStyle = GELB; cx.lineWidth = 2; cx.beginPath(); for (let s = -16; s <= 0; s += 2) cx.lineTo(p.x + Math.sin((p.y + s) * 0.5) * 3, p.y + s); cx.stroke(); if (p.y >= p.tief) { S.splice(i, 1, { x: p.x, y: p.y, art: 'e', blitz: 1 }, { x: p.x, y: p.y, art: 'l', blitz: 1 }); } continue; }
+        if (p.blitz) { kreis(cx, p.x, p.y, 12 * p.blitz, 'rgba(224,168,0,' + (p.blitz * 0.5).toFixed(2) + ')'); p.blitz = Math.max(0, p.blitz - dt * 2); }
+        if (p.art === 'e') { p.y -= dt * 40; if (p.y < y0) { S.splice(i, 1); continue; } kreis(cx, p.x, p.y, 4.5, BLAU); }
+        else { p.y += dt * 25; if (p.y > y0 + nH + pH) { S.splice(i, 1); continue; } kreis(cx, p.x, p.y, 4.5, F('--flaeche2'), ROT, 2); }
+      }
+      if (S.length > 200) S.splice(0, S.length - 200);
+      // Stromkreis mit Lampe
+      const lx = x0 + bw + 40, ly = y0 + nH + pH / 2, hell = Math.min(1, r.sol.pmpp / (0.035 * e.A * 0.55));
+      zug(cx, [[x0 + bw / 2, y0 - 6], [x0 + bw / 2, y0 - 30], [lx, y0 - 30], [lx, ly - 16]], F('--text'), 2);
+      zug(cx, [[x0 + bw / 2, y0 + nH + pH + 8], [x0 + bw / 2, y0 + nH + pH + 26], [lx, y0 + nH + pH + 26], [lx, ly + 16]], F('--text'), 2);
+      kreis(cx, lx, ly, 16, 'rgba(255,200,0,' + (0.1 + 0.85 * hell).toFixed(2) + ')', F('--text'), 2);
+      T(cx, 'E = ' + zz(e.E, 0) + ' W/m²', 10, 16, 'left', 11, true, ORANGE);
+      // Kennlinie
+      const gx = klein ? 8 : lx + 40, gy = klein ? y0 + nH + pH + 40 : 10, gw = klein ? B - 16 : B - gx - 8, gh = klein ? H - gy - 6 : H - 20;
+      const ik = [], pk = []; for (let u = 0; u <= r.sol.uoc; u += r.sol.uoc / 100) { const ii = Math.max(0, solar(e.E, e.A, u)); ik.push([u, ii]); pk.push([u, u * ii]); }
+      diagramm(cx, gx, gy, gw, gh, [{ name: 'I in A', farbe: BLAU, punkte: ik, punkt: [r.sol.umpp, r.sol.impp] }, { name: 'P in W', farbe: ORANGE, punkte: pk, punkt: [r.sol.umpp, r.sol.pmpp] }], { titel: 'Kennlinie, MPP ' + zz(r.sol.pmpp, 2) + ' W', xl: 'U in V', xr: [0, Math.max(0.1, r.sol.uoc * 1.05)], yr: runde([0, Math.max(r.sol.isc, r.sol.pmpp) * 1.1]) });
+    }
+    ansicht = (ansichten(seite, [['metall', 'Metall'], ['halbleiter', 'Halbleiter'], ['diode', 'Diode'], ['graetz', 'Brückengleichrichter'], ['solar', 'Solarzelle']], 'graetz', function (a) { ansicht = a; SIM.solar.length = 0; }))();
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>
