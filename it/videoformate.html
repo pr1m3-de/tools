@@ -110,6 +110,23 @@
     const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
     const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
     function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
     function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
     function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
     function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
@@ -119,7 +136,8 @@
     // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
     function diagramm(cx, x, y, w, h, reihen, o) {
       cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
-      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
       const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
       const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
       cx.strokeStyle = F('--linie'); cx.beginPath();
@@ -131,8 +149,8 @@
       strecke(cx, x0, y0, x0, y1, F('--text'), 1);
       T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
       if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
-      let lx = x + 8;
-      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
       reihen.forEach(function (r) {
         cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
         zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
@@ -187,7 +205,7 @@
     // ---------- Animationen ----------
     function gopBild(cx, B, H, r, e) {
       const n = Math.max(1, Math.min(60, Math.round(e.gop))), bf = Math.max(0, Math.min(4, Math.round(e.bf))), zeige = Math.min(n * 2, B < 600 ? 18 : 30);
-      const x0 = 20, w = (B - 40) / zeige, y1 = H - 70, typen = [];
+      const x0 = 20, w = (B - 40) / zeige, y1 = H - (B < 600 ? 88 : 70), typen = [];
       for (let i = 0; i < zeige; i++) { const k = i % n; typen.push(k === 0 ? 'I' : (bf > 0 && k % (bf + 1) !== 0 ? 'B' : 'P')); }
       const groesse = { I: 1, P: 0.32, B: 0.14 }, farbe = { I: ROT, P: BLAU, B: GRUEN }, aktiv = Math.floor(zeit * 3) % zeige;
       typen.forEach(function (t, i) {
@@ -201,16 +219,25 @@
       if (t === 'P') { let j = aktiv - 1; while (j >= 0 && typen[j] === 'B') j--; bezug(j); }
       if (t === 'B') { let j = aktiv - 1; while (j >= 0 && typen[j] === 'B') j--; bezug(j); let k = aktiv + 1; while (k < zeige && typen[k] === 'B') k++; bezug(k); }
       strecke(cx, xa, 30, xa, y1, ORANGE, 1.5, [3, 3]);
-      T(cx, 'GOP ' + n + ' Bilder, ' + bf + ' B-Bild' + (bf === 1 ? '' : 'er') + ' zwischen I/P · rot I, blau P, grün B (Höhe ≈ Größe)', 10, 14, 'left', B < 600 ? 9 : 11, true);
-      T(cx, t === 'I' ? 'I-Bild: ganz codiert, Einstiegspunkt' : t === 'P' ? 'P-Bild: verweist auf das vorige I- oder P-Bild' : 'B-Bild: verweist auf das vorige und das nächste I/P-Bild', 10, H - 12, 'left', 11, true, farbe[t]);
+      TW(cx, 'GOP ' + n + ' Bilder, ' + bf + ' B-Bild' + (bf === 1 ? '' : 'er') + ' zwischen I/P · rot I, blau P, grün B (Höhe ≈ Größe)', 10, 14, B - 20, B < 600 ? 10 : 11, true);
+      TWU(cx, t === 'I' ? 'I-Bild: ganz codiert, Einstiegspunkt' : t === 'P' ? 'P-Bild: verweist auf das vorige I- oder P-Bild' : 'B-Bild: verweist auf das vorige und das nächste I/P-Bild', 10, H - 12, B - 20, 11, true, farbe[t]);
     }
     function auflBild(cx, B, H) {
-      const ks = Object.keys(AUFL), max = AUFL.p4320, s = Math.min((B - 20) / max[1], (H - 30) / max[2]);
-      ks.slice().reverse().forEach(function (k, i) { const a = AUFL[k], w = a[1] * s, h = a[2] * s; cx.fillStyle = 'rgba(43,123,185,' + (0.08 + i * 0.07) + ')'; cx.fillRect(10, 20, w, h); cx.strokeStyle = BLAU; cx.lineWidth = 1.5; cx.strokeRect(10, 20, w, h); T(cx, a[0] + ' · ' + zz(a[1] * a[2] / 1e6, 1) + ' MP', 14 + (k === 'p480' ? w + 4 : 0), 20 + h - 9, 'left', B < 600 ? 9 : 11, true); });
-      T(cx, 'Flächen maßstäblich: 4K hat viermal so viele Pixel wie 1080p, 8K sechzehnmal so viele.', 10, 12, 'left', 10, false, GRAU);
+      const ks = Object.keys(AUFL), farben = [GRUEN, TUERKIS, BLAU, LILA, ORANGE, ROT], klein = B < 600, max = AUFL.p4320;
+      const titel = klein ? ['Flächen maßstäblich', '4K = 4 × 1080p · 8K = 16 × 1080p'] : ['Flächen maßstäblich: 4K hat viermal so viele Pixel wie 1080p, 8K sechzehnmal so viele.'];
+      titel.forEach(function (t, i) { T(cx, t, 10, 14 + i * 16, 'left', 11, i === 0, i === 0 ? F('--text') : GRAU); });
+      const oben = 14 + titel.length * 16 + 4, legH = klein ? ks.length * 22 + 6 : 0, legW = klein ? 0 : 230;
+      const s = Math.min((B - 20 - legW) / max[1], (H - oben - legH - 8) / max[2]);
+      ks.slice().reverse().forEach(function (k) { const a = AUFL[k], f = farben[ks.indexOf(k)]; cx.globalAlpha = 0.16; cx.fillStyle = f; cx.fillRect(10, oben, a[1] * s, a[2] * s); cx.globalAlpha = 1; cx.strokeStyle = f; cx.lineWidth = 2; cx.strokeRect(10, oben, a[1] * s, a[2] * s); });
+      ks.forEach(function (k, i) {
+        const a = AUFL[k], mp = a[1] * a[2] / 1e6, x = klein ? 10 : 30 + max[1] * s, y = klein ? oben + max[2] * s + 18 + i * 22 : oben + 12 + i * 26;
+        cx.fillStyle = farben[i]; cx.fillRect(x, y - 7, 14, 14);
+        T(cx, a[0], x + 22, y, 'left', 12, true);
+        T(cx, (klein && B < 440 ? '' : zz(a[1], 0) + ' × ' + zz(a[2], 0) + ' · ') + zz(mp, 1) + ' MP · ' + zz(mp / 2.0736, mp < 1 ? 2 : 1) + ' × 1080p', klein ? B - 10 : x + 22, klein ? y : y + 13, klein ? 'right' : 'left', 10, false, GRAU);
+      });
     }
     function subBild(cx, B, H) {
-      const ks = Object.keys(SUB), klein = B < 600, g = klein ? Math.min((B - 40) / 4, (H - 120) / 3 / 2) : Math.min((B - 80) / 12, (H - 80) / 2);
+      const ks = Object.keys(SUB), klein = B < 600, g = klein ? Math.min((B - 40) / 4, (H - 150) / 3 / 2) : Math.min((B - 80) / 12, (H - 80) / 2);
       ks.forEach(function (k, n) {
         const ox = klein ? 20 : 20 + n * (4 * g + 20), oy = klein ? 30 + n * (2 * g + 34) : 40;
         T(cx, SUB[k][0] + ' – ' + zz(SUB[k][1], 1) + ' Werte je Pixel', ox, oy - 12, 'left', 11, true);
@@ -220,10 +247,10 @@
           if (da) { const w = k === 's444' ? g : 2 * g, h = k === 's420' ? 2 * g : g; cx.strokeStyle = ROT; cx.lineWidth = 2; cx.strokeRect(ox + x * g + 1, oy + y * g + 1, w - 4, h - 4); kreis(cx, ox + x * g + g * 0.65, oy + y * g + g * 0.65, g * 0.12, ROT); kreis(cx, ox + x * g + g * 0.82, oy + y * g + g * 0.65, g * 0.12, BLAU); }
         }
       });
-      T(cx, 'schwarz: Helligkeit (Y) · rot/blau: Farbdifferenz (Cb, Cr) und ihr Gültigkeitsbereich', 10, H - 12, 'left', klein ? 9 : 10, false, GRAU);
+      TWU(cx, 'schwarz: Helligkeit (Y) · rot/blau: Farbdifferenz (Cb, Cr) und ihr Gültigkeitsbereich', 10, H - 12, B - 20, 10, false, GRAU);
     }
     function bewegBild(cx, B, H) {
-      const klein = B < 600, g = klein ? Math.min(B - 40, (H - 90) / 2) : Math.min((B - 60) / 2, H - 70), o1 = [20, 34], o2 = klein ? [20, 54 + g] : [40 + g, 34];
+      const klein = B < 600, g = klein ? Math.min(B - 40, (H - 120) / 2) : Math.min((B - 60) / 2, H - 70), o1 = [20, 34], o2 = klein ? [20, 54 + g] : [40 + g, 34];
       const t = (zeit * 0.5) % 1, bx = 0.2 + 0.4 * t, by = 0.3 + 0.2 * Math.sin(t * PI2);
       [o1, o2].forEach(function (o, k) {
         cx.fillStyle = F('--flaeche'); cx.fillRect(o[0], o[1], g, g); for (let i = 0; i <= 8; i++) { strecke(cx, o[0] + i * g / 8, o[1], o[0] + i * g / 8, o[1] + g, F('--linie'), 0.5); strecke(cx, o[0], o[1] + i * g / 8, o[0] + g, o[1] + i * g / 8, F('--linie'), 0.5); }
@@ -235,7 +262,7 @@
       cx.strokeStyle = BLAU; cx.setLineDash([4, 3]); cx.strokeRect(o1[0] + (bxk - 0.15) * g, o1[1] + (byk - 0.05) * g, g / 8, g / 8); cx.setLineDash([]);
       cx.strokeStyle = 'rgba(43,123,185,.3)'; cx.strokeRect(o1[0] + (bxk - 0.25) * g, o1[1] + (byk - 0.15) * g, g / 8 + 0.2 * g, g / 8 + 0.2 * g);
       pfeil(cx, o1[0] + (bxk - 0.15 + 1 / 16) * g, o1[1] + (byk - 0.05 + 1 / 16) * g, o1[0] + (bxk + 1 / 16) * g, o1[1] + (byk + 1 / 16) * g, ROT, 2);
-      T(cx, 'Der rote Block wird im Suchbereich (hellblau) des Referenzbilds gesucht; gespeichert wird nur der Vektor und der kleine Rest.', 10, H - 12, 'left', klein ? 9 : 10, false, GRAU);
+      TWU(cx, 'Der rote Block wird im Suchbereich (hellblau) des Referenzbilds gesucht; gespeichert wird nur der Vektor und der kleine Rest.', 10, H - 12, B - 20, 10, false, GRAU);
     }
 
     // =====================================================================
@@ -409,7 +436,7 @@
       ],
       quellen: 'Datenraten als Schätzung mit typischen Bits je Pixel für H.264 und üblichen Effizienzfaktoren der anderen Codecs; je nach Inhalt (Rauschen, Bewegung) und Encoder weichen echte Werte um den Faktor 2 und mehr ab.',
       bild: { titel: 'Animation', label: 'Bildgruppe, Auflösungen, Farbunterabtastung und Bewegungsschätzung', animiert: true,
-        hoehe: function (B) { return ansicht === 'sub' && B < 600 ? 480 : B < 600 ? 380 : 340; },
+        hoehe: function (B) { if (ansicht === 'aufl') return B < 600 ? Math.round((B - 20) * 9 / 16 + 6 * 22 + 70) : 360; return ansicht === 'sub' && B < 600 ? 480 : B < 600 ? 380 : 340; },
         hinweis: function (r, e) { return ({ gop: 'Ein I-Bild alle ' + e.gop + ' Bilder = alle ' + zz(e.gop / e.fps, 2) + ' s. Kürzere GOP: schnelleres Spulen und Einsteigen, aber höhere Datenrate.', aufl: 'Pixelzahlen der üblichen Auflösungen im Größenvergleich.', sub: 'Das Auge sieht Helligkeit schärfer als Farbe – deshalb wird die Farbe meist mit geringerer Auflösung gespeichert.', bew: 'Bewegungsschätzung: Für jeden Block wird im vorigen Bild die ähnlichste Stelle gesucht.' })[ansicht]; },
         zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); zeit += dt; ({ gop: gopBild, aufl: auflBild, sub: subBild, bew: bewegBild })[ansicht](cx, B, H, r, e); } }
     });
