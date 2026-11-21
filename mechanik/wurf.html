@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waagerechter und schräger Wurf – Formeln &amp; Rechner</title>
+  <meta name="description" content="Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit beim waagerechten und schrägen Wurf, auf Erde, Mond, Mars und Jupiter – mit Teilbewegungen in der Animation, Fallen und Werfen im Vergleich und dem besten Abwurfwinkel.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/mechanik/wurf.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Waagerechter und schräger Wurf">
+  <meta property="og:description" content="Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit beim waagerechten und schrägen Wurf, auf Erde, Mond, Mars und Jupiter – mit Teilbewegungen in der Animation, Fallen und Werfen im Vergleich und dem besten Abwurfwinkel.">
+  <meta property="og:url" content="https://tools.pr1m3.de/mechanik/wurf.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Waagerechter und schräger Wurf">
+  <meta name="twitter:description" content="Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit beim waagerechten und schrägen Wurf, auf Erde, Mond, Mars und Jupiter – mit Teilbewegungen in der Animation, Fallen und Werfen im Vergleich und dem besten Abwurfwinkel.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/mechanik/wurf.html#seite","name":"Waagerechter und schräger Wurf","url":"https://tools.pr1m3.de/mechanik/wurf.html","inLanguage":"de","description":"Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit beim waagerechten und schrägen Wurf, auf Erde, Mond, Mars und Jupiter – mit Teilbewegungen in der Animation, Fallen und Werfen im Vergleich und dem besten Abwurfwinkel.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/mechanik/wurf.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/mechanik/wurf.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Waagerechter und schräger Wurf","item":"https://tools.pr1m3.de/mechanik/wurf.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/mechanik/wurf.html#fragen","mainEntity":[{"@type":"Question","name":"Wie weit fliegt ein Ball, der mit 10 m/s waagerecht aus 5 m Höhe geworfen wird?","acceptedAnswer":{"@type":"Answer","text":"Die Fallzeit ist √(2 · 5 m / 9,81 m/s²) = 1,01 s, in dieser Zeit fliegt er waagerecht 10 m/s · 1,01 s = 10,1 m weit."}},{"@type":"Question","name":"Fällt ein schwerer Körper schneller?","acceptedAnswer":{"@type":"Answer","text":"Ohne Luftwiderstand nicht – alle Körper fallen gleich schnell. Mit Luft fällt ein Blatt Papier langsamer als eine Kugel, weil der Luftwiderstand im Verhältnis zum Gewicht viel größer ist."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/mechanik/wurf.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Zwei Bewegungen in einer</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Unabhängigkeitsprinzip</h3><p>Ein geworfener Körper führt zwei Bewegungen gleichzeitig aus, die sich nicht stören: waagerecht eine gleichförmige Bewegung mit konstanter Geschwindigkeit, senkrecht einen freien Fall mit der Fallbeschleunigung g. Zusammen ergibt sich eine Parabel (Luftwiderstand vernachlässigt).</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Gleich schnell am Boden</h3><p>Ein waagerecht geworfener und ein gleichzeitig fallen gelassener Ball aus derselben Höhe kommen gleichzeitig unten an. Die Fallzeit hängt nur von der Höhe und von g ab, nicht von der Abwurfgeschwindigkeit.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Schräger Wurf</h3><p>Wird schräg nach oben geworfen, steigt der Körper erst, bis die senkrechte Geschwindigkeit null ist, und fällt dann. Vom Boden aus fliegt er unter 45° am weitesten; Winkel, die sich zu 90° ergänzen (30° und 60°), ergeben dieselbe Weite.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Wirklichkeit</h3><p>Mit Luftwiderstand fliegen leichte oder schnelle Körper deutlich kürzer, die Bahn fällt am Ende steiler ab. Beim Kugelstoßen liegt der beste Winkel deshalb – und wegen der Abwurfhöhe – eher bei 37° bis 40°.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie weit fliegt ein Ball, der mit 10 m/s waagerecht aus 5 m Höhe geworfen wird?</summary><p>Die Fallzeit ist √(2 · 5 m / 9,81 m/s²) = 1,01 s, in dieser Zeit fliegt er waagerecht 10 m/s · 1,01 s = 10,1 m weit.</p></details>
+        <details><summary>Fällt ein schwerer Körper schneller?</summary><p>Ohne Luftwiderstand nicht – alle Körper fallen gleich schnell. Mit Luft fällt ein Blatt Papier langsamer als eine Kugel, weil der Luftwiderstand im Verhältnis zum Gewicht viel größer ist.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const ORTE = { erde: ['Erde', 9.81], mond: ['Mond', 1.62], mars: ['Mars', 3.71], jupiter: ['Jupiter', 24.79] };
+    let ansicht = 'bahn', takt = uhr();
+    const SIM = { t: 0 };
+    function bahn(v0, h, a, g) {
+      const vx = v0 * Math.cos(a * GRAD), vy = v0 * Math.sin(a * GRAD), tf = (vy + Math.sqrt(vy * vy + 2 * g * h)) / g;
+      return { vx: vx, vy: vy, tf: tf, x: vx * tf, hmax: h + (vy > 0 ? vy * vy / (2 * g) : 0), th: vy > 0 ? vy / g : 0 };
+    }
+    function rechne(e) {
+      const g = (ORTE[e.ort] || ORTE.erde)[1], r = bahn(e.v0, e.h, e.alpha, g);
+      r.g = g; r.vyE = r.vy - g * r.tf; r.vE = Math.hypot(r.vx, r.vyE); r.wE = Math.atan2(-r.vyE, r.vx) / GRAD;
+      r.tFall = Math.sqrt(2 * e.h / g);
+      return r;
+    }
+    const seite = R.seite({
+      titel: 'Waagerechter und schräger Wurf',
+      einleitung: 'Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit ohne Luftwiderstand. Mit Abwurfwinkel 0° ist es der waagerechte Wurf, mit positivem Winkel der schräge Wurf nach oben.',
+      hilfe: 'Beispiel: Ein Ball wird mit 10 m/s waagerecht von einem 5 m hohen Balkon geworfen.',
+      gruppen: [
+        { titel: 'Abwurf', farbe: BLAU, felder: [
+          { k: 'v0', tex: 'v_0', name: 'Abwurfgeschwindigkeit', e: 'm/s', min: 0.1, max: 1000 },
+          { k: 'alpha', tex: '\\alpha', name: 'Abwurfwinkel (0° = waagerecht)', e: '°', min: -80, max: 89 },
+          { k: 'h', tex: 'h', name: 'Abwurfhöhe über dem Boden', e: 'm', min: 0, max: 10000 }
+        ] },
+        { titel: 'Ort', farbe: GRAU, felder: [
+          { k: 'ort', name: 'Fallbeschleunigung', wahl: Object.keys(ORTE).map(function (k) { return [k, ORTE[k][0] + ' (' + zz(ORTE[k][1], 2) + ' m/s²)']; }) }
+        ] }
+      ],
+      beispiel: { v0: 10, alpha: 0, h: 5, ort: 'erde' },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (e.h === 0 && e.alpha <= 0) H.meldung('Aus 0 m Höhe ohne Steigwinkel landet der Körper sofort.', true);
+        H.kacheln([
+          [zz(r.x, 2) + ' m', 'Wurfweite', BLAU],
+          [zz(r.tf, 2) + ' s', 'Flugzeit', GRAU],
+          [zz(r.hmax, 2) + ' m', 'größte Höhe über dem Boden', GRUEN],
+          [zz(r.vE, 2) + ' m/s', 'Geschwindigkeit beim Aufprall (' + zz(r.vE * 3.6, 0) + ' km/h)', ROT],
+          [zz(r.wE, 1) + '°', 'Auftreffwinkel zum Boden', ORANGE]
+        ]);
+        H.tabelle('Komponenten', ['Größe', 'Wert'], [['waagerechte Geschwindigkeit (bleibt gleich)', zz(r.vx, 2) + ' m/s'], ['senkrechte Geschwindigkeit beim Abwurf', zz(r.vy, 2) + ' m/s'], ['senkrechte Geschwindigkeit beim Aufprall', zz(r.vyE, 2) + ' m/s'], ['Steigzeit bis zum höchsten Punkt', zz(r.th, 2) + ' s'], ['Fallzeit eines fallen gelassenen Körpers aus h', zz(r.tFall, 2) + ' s']], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        const w = [['Komponenten', 'v_x = v_0 \\cos\\alpha = ' + E(tz(r.vx, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}') + ', \\quad v_{y0} = v_0 \\sin\\alpha = ' + E(tz(r.vy, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}')]];
+        if (Math.abs(e.alpha) < 1e-9) w.push(['Fallzeit', 't = \\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\cdot ' + tz(e.h, 2) + '\\,\\text{m}}{' + tz(r.g, 2) + '\\,\\text{m/s}^2}} = ' + E(tz(r.tf, 3) + '\\,\\text{s}')]);
+        else w.push(['Flugzeit', 't = \\frac{v_{y0} + \\sqrt{v_{y0}^2 + 2gh}}{g} = \\frac{' + tz(r.vy, 2) + ' + \\sqrt{' + tz(r.vy, 2) + '^2 + 2 \\cdot ' + tz(r.g, 2) + ' \\cdot ' + tz(e.h, 2) + '}}{' + tz(r.g, 2) + '}\\,\\text{s} = ' + E(tz(r.tf, 3) + '\\,\\text{s}')]);
+        w.push(['Wurfweite', 'x = v_x \\cdot t = ' + tz(r.vx, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}} \\cdot ' + tz(r.tf, 3) + '\\,\\text{s} = ' + E(tz(r.x, 2) + '\\,\\text{m}')]);
+        w.push(['Aufprallgeschwindigkeit', 'v = \\sqrt{v_x^2 + (v_{y0} - g t)^2} = \\sqrt{' + tz(r.vx, 2) + '^2 + ' + tz(r.vyE, 2) + '^2}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(r.vE, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Freier Fall: Höhe und Fallzeit', hilfe: 'Erde: g = 9,81 m/s².',
+          felder: [{ k: 'h', tex: 'h', name: 'Fallhöhe', e: 'm', min: 0.1, max: 2000 }, { k: 'g', tex: 'g', name: 'Fallbeschleunigung', e: 'm/s²', min: 1, max: 30 }, { k: 't', tex: 't', name: 'Fallzeit', e: 's', min: 0.05, max: 60 }],
+          beispiel: { h: 20, g: 9.81 },
+          gleichungen: [{ name: 'Fall', v: ['h', 'g', 't'], f: function (q) { return [q.h, q.g * q.t * q.t / 2]; },
+            loese: { h: function (q) { return q.g * q.t * q.t / 2; }, t: function (q) { return Math.sqrt(2 * q.h / q.g); }, g: function (q) { return 2 * q.h / (q.t * q.t); } },
+            weg: function (k, q) { return k === 't' ? 't = \\sqrt{\\frac{2h}{g}} = \\sqrt{\\frac{2 \\cdot ' + tz(q.h, 2) + '}{' + tz(q.g, 2) + '}}\\,\\text{s} = ' + E(tz(q.t, 3) + '\\,\\text{s}') : k === 'h' ? 'h = \\tfrac{1}{2} g t^2 = \\tfrac{1}{2} \\cdot ' + tz(q.g, 2) + ' \\cdot ' + tz(q.t, 3) + '^2\\,\\text{m} = ' + E(tz(q.h, 2) + '\\,\\text{m}') : 'g = \\frac{2h}{t^2} = ' + E(tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}'); } }] },
+        { titel: 'Wurfweite beim waagerechten Wurf', hilfe: 'x = v₀ · t mit der Fallzeit t.',
+          felder: [{ k: 'x', tex: 'x', name: 'Wurfweite', e: 'm', min: 0.01, max: 1e4 }, { k: 'v', tex: 'v_0', name: 'Abwurfgeschwindigkeit', e: 'm/s', min: 0.1, max: 500 }, { k: 't', tex: 't', name: 'Flugzeit', e: 's', min: 0.05, max: 60 }],
+          beispiel: { v: 10, t: 1.01 },
+          gleichungen: [{ name: 'Weite', v: ['x', 'v', 't'], f: function (q) { return [q.x, q.v * q.t]; },
+            loese: { x: function (q) { return q.v * q.t; }, v: function (q) { return q.x / q.t; }, t: function (q) { return q.x / q.v; } },
+            weg: function (k, q) { return k === 'x' ? 'x = v_0 \\cdot t = ' + tz(q.v, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}} \\cdot ' + tz(q.t, 3) + '\\,\\text{s} = ' + E(tz(q.x, 2) + '\\,\\text{m}') : k === 'v' ? 'v_0 = \\frac{x}{t} = ' + E(tz(q.v, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : 't = \\frac{x}{v_0} = ' + E(tz(q.t, 3) + '\\,\\text{s}'); } }] },
+        { titel: 'Fallgeschwindigkeit', hilfe: 'Senkrechte Geschwindigkeit nach der Zeit t, aus der Ruhe.',
+          felder: [{ k: 'v', tex: 'v_y', name: 'senkrechte Geschwindigkeit', e: 'm/s', min: 0.1, max: 1000 }, { k: 'g', tex: 'g', name: 'Fallbeschleunigung', e: 'm/s²', min: 1, max: 30 }, { k: 't', tex: 't', name: 'Zeit', e: 's', min: 0.05, max: 60 }],
+          beispiel: { g: 9.81, t: 2 },
+          gleichungen: [{ name: 'Geschwindigkeit', v: ['v', 'g', 't'], f: function (q) { return [q.v, q.g * q.t]; },
+            loese: { v: function (q) { return q.g * q.t; }, g: function (q) { return q.v / q.t; }, t: function (q) { return q.v / q.g; } },
+            weg: function (k, q) { return k === 'v' ? 'v_y = g \\cdot t = ' + tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}^2} \\cdot ' + tz(q.t, 2) + '\\,\\text{s} = ' + E(tz(q.v, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 't' ? 't = \\frac{v_y}{g} = ' + E(tz(q.t, 2) + '\\,\\text{s}') : 'g = \\frac{v_y}{t} = ' + E(tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}'); } }] }
+      ],
+      sammlung: [
+        ['Waagerechte Bewegung', 'x = v_0 \\cos\\alpha \\cdot t', 'gleichförmig'],
+        ['Senkrechte Bewegung', 'y = h + v_0 \\sin\\alpha \\cdot t - \\tfrac{1}{2} g t^2', 'freier Fall überlagert'],
+        ['Fallzeit (waagerechter Wurf)', 't = \\sqrt{\\frac{2h}{g}}', ''],
+        ['Wurfweite (waagerechter Wurf)', 'x = v_0 \\cdot \\sqrt{\\frac{2h}{g}}', ''],
+        ['Wurfweite vom Boden (schräger Wurf)', 'x = \\frac{v_0^2 \\cdot \\sin(2\\alpha)}{g}', 'größte Weite bei 45°'],
+        ['Steighöhe', 'h_\\text{max} = \\frac{(v_0 \\sin\\alpha)^2}{2g}', 'über der Abwurfhöhe'],
+        ['Bahngleichung', 'y = h + x \\tan\\alpha - \\frac{g\\,x^2}{2 v_0^2 \\cos^2\\alpha}', 'Wurfparabel'],
+        ['Aufprallgeschwindigkeit', 'v = \\sqrt{v_0^2 + 2gh}', 'unabhängig vom Winkel']
+      ],
+      quellen: 'Ohne Luftwiderstand, Fallbeschleunigung konstant (Erde 9,81 m/s²).',
+      bild: { titel: 'Animation', label: 'Wurfparabel mit Geschwindigkeitskomponenten', animiert: true,
+        hoehe: function (B) { return B < 600 ? 400 : 380; },
+        hinweis: function (r, e) { return ansicht === 'bahn' ? 'Die Schatten am Boden und an der Wand zeigen die beiden Teilbewegungen: waagerecht gleichförmig, senkrecht ein freier Fall. Zeitlupe auf ' + zz(Math.max(3, r.tf) , 1) + ' s.' : ansicht === 'fall' ? 'Beide Kugeln starten gleichzeitig in ' + zz(e.h, 1) + ' m Höhe: die eine fällt, die andere wird waagerecht geworfen. Sie landen zugleich.' : 'Gleiche Abwurfgeschwindigkeit ' + zz(e.v0, 1) + ' m/s vom Boden aus, verschiedene Winkel: 45° fliegt am weitesten.'; },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); SIM.t += dt; ({ bahn: zeigeBahn, fall: zeigeFall, winkel: zeigeWinkel })[ansicht](cx, B, H, r, e); } }
+    });
+    function feld(B, H, xm, ym) {
+      const x0 = 46, x1 = B - 14, y0 = 20, y1 = H - 36;
+      const s = Math.min((x1 - x0) / Math.max(xm, 1e-6), (y1 - y0) / Math.max(ym, 1e-6));
+      return { X: function (x) { return x0 + x * s; }, Y: function (y) { return y1 - y * s; }, x0: x0, y1: y1, s: s, x1: x1, y0: y0 };
+    }
+    function boden(cx, B, K) { cx.fillStyle = 'rgba(46,139,87,.25)'; cx.fillRect(0, K.y1, B, 40); strecke(cx, 0, K.y1, B, K.y1, GRUEN, 2); }
+    function achsen(cx, K, xm, ym) {
+      const sx = schritt(xm, 5), sy = schritt(ym, 4);
+      teilung([0, xm], sx).forEach(function (v) { T(cx, zz(v, stellen(sx)), K.X(v), K.y1 + 12, 'center', 9, false, GRAU); });
+      teilung([0, ym], sy).forEach(function (v) { if (K.Y(v) > K.y0 - 4) T(cx, zz(v, stellen(sy)), K.x0 - 6, K.Y(v), 'right', 9, false, GRAU); });
+      T(cx, 'm', K.x1, K.y1 + 24, 'right', 9, false, GRAU);
+    }
+    function zeigeBahn(cx, B, H, r, e) {
+      const ym = Math.max(r.hmax, 0.5) * 1.15, xm = Math.max(r.x, 0.5) * 1.08, K = feld(B, H, xm, ym);
+      boden(cx, B, K); achsen(cx, K, xm, ym);
+      // Turm
+      cx.fillStyle = 'rgba(107,119,133,.35)'; cx.fillRect(K.X(0) - 14, K.Y(e.h), 14, K.y1 - K.Y(e.h));
+      const pos = function (t) { return [r.vx * t, e.h + r.vy * t - r.g * t * t / 2]; };
+      const pts = []; for (let i = 0; i <= 100; i++) { const p = pos(r.tf * i / 100); pts.push([K.X(p[0]), K.Y(p[1])]); }
+      zug(cx, pts, F('--linie'), 2, [5, 4]);
+      const dauer = Math.max(3, r.tf), f = (SIM.t % (dauer + 1.2)) / dauer, tt = Math.min(1, f) * r.tf, p = pos(tt);
+      // Zwischenstände in gleichen Zeitabständen
+      for (let i = 1; i < 8; i++) { const q = pos(r.tf * i / 8); if (r.tf * i / 8 > tt) break; kreis(cx, K.X(q[0]), K.Y(q[1]), 4, 'rgba(43,123,185,.35)'); strecke(cx, K.X(q[0]), K.Y(q[1]), K.X(q[0]), K.y1, F('--linie'), 1, [2, 3]); strecke(cx, K.X(q[0]), K.Y(q[1]), K.x0, K.Y(q[1]), F('--linie'), 1, [2, 3]); }
+      // Schatten
+      kreis(cx, K.X(p[0]), K.y1 + 4, 5, 'rgba(46,139,87,.8)'); kreis(cx, K.x0 - 18, K.Y(p[1]), 5, 'rgba(192,57,43,.8)');
+      // Geschwindigkeit
+      const vy = r.vy - r.g * tt, sk = 40 / Math.max(r.vE, Math.hypot(r.vx, r.vy), 1e-6);
+      pfeil(cx, K.X(p[0]), K.Y(p[1]), K.X(p[0]) + r.vx * sk, K.Y(p[1]), GRUEN, 2);
+      if (Math.abs(vy) * sk > 3) pfeil(cx, K.X(p[0]), K.Y(p[1]), K.X(p[0]), K.Y(p[1]) - vy * sk, ROT, 2);
+      pfeil(cx, K.X(p[0]), K.Y(p[1]), K.X(p[0]) + r.vx * sk, K.Y(p[1]) - vy * sk, BLAU, 2.4);
+      kreis(cx, K.X(p[0]), K.Y(p[1]), 8, ORANGE, F('--text'), 1.5);
+      T(cx, 't = ' + zz(tt, 2) + ' s   x = ' + zz(p[0], 2) + ' m   y = ' + zz(Math.max(0, p[1]), 2) + ' m', B - 10, 14, 'right', 11, true);
+      T(cx, 'grün vₓ  rot v_y  blau v', B - 10, 30, 'right', 10, false, GRAU);
+    }
+    function zeigeFall(cx, B, H, r, e) {
+      const tf = Math.sqrt(2 * Math.max(e.h, 0.01) / r.g), vx = e.v0, xm = Math.max(vx * tf, 0.5) * 1.1, ym = Math.max(e.h, 0.5) * 1.1, K = feld(B, H, xm, ym);
+      boden(cx, B, K); achsen(cx, K, xm, ym);
+      const dauer = Math.max(2.5, tf), f = (SIM.t % (dauer + 1.2)) / dauer, tt = Math.min(1, f) * tf, y = e.h - r.g * tt * tt / 2;
+      for (let i = 1; i < 6; i++) { const q = tf * i / 6; if (q > tt) break; const yy = e.h - r.g * q * q / 2; strecke(cx, K.x0, K.Y(yy), K.X(vx * q), K.Y(yy), F('--linie'), 1, [3, 3]); kreis(cx, K.X(0), K.Y(yy), 4, 'rgba(192,57,43,.35)'); kreis(cx, K.X(vx * q), K.Y(yy), 4, 'rgba(43,123,185,.35)'); }
+      kreis(cx, K.X(0), K.Y(Math.max(0, y)), 8, ROT, F('--text'), 1.5);
+      kreis(cx, K.X(vx * tt), K.Y(Math.max(0, y)), 8, BLAU, F('--text'), 1.5);
+      T(cx, 'fallen gelassen', K.X(0) + 12, K.Y(e.h) - 12, 'left', 10, true, ROT); T(cx, 'waagerecht geworfen', B - 10, 30, 'right', 10, true, BLAU);
+      T(cx, 'Fallzeit beider: ' + zz(tf, 2) + ' s', B - 10, 14, 'right', 11, true);
+    }
+    function zeigeWinkel(cx, B, H, r, e) {
+      const W = [15, 30, 45, 60, 75], fa = [GELB, ORANGE, ROT, LILA, BLAU], v = e.v0, g = r.g;
+      const xm = v * v / g * 1.08, ym = v * v / (2 * g) * Math.pow(Math.sin(75 * GRAD), 2) * 1.15, K = feld(B, H, xm, ym);
+      boden(cx, B, K); achsen(cx, K, xm, ym);
+      const dauer = 3, f = Math.min(1, (SIM.t % (dauer + 1.2)) / dauer);
+      W.forEach(function (w, i) {
+        const vx = v * Math.cos(w * GRAD), vy = v * Math.sin(w * GRAD), tf = 2 * vy / g, pts = [];
+        for (let k = 0; k <= 60; k++) { const t = tf * k / 60 * f; pts.push([K.X(vx * t), K.Y(vy * t - g * t * t / 2)]); }
+        zug(cx, pts, fa[i], w === 45 ? 3 : 2);
+        const tt = tf * f; kreis(cx, K.X(vx * tt), K.Y(Math.max(0, vy * tt - g * tt * tt / 2)), 5, fa[i]);
+        if (f >= 1) T(cx, w + '°: ' + zz(vx * tf, 1) + ' m', K.X(vx * tf), K.y1 - 10 - (i % 2) * 14, 'center', 10, true, fa[i]);
+      });
+      T(cx, 'v₀ = ' + zz(v, 1) + ' m/s vom Boden', B - 10, 14, 'right', 11, true);
+    }
+    ansicht = (ansichten(seite, [['bahn', 'Wurfbahn'], ['fall', 'Werfen und Fallen'], ['winkel', 'Abwurfwinkel']], 'bahn', function (a) { ansicht = a; SIM.t = 0; }))();
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

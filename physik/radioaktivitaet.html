@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Radioaktivität und Kernspaltung: Strahlung, Halbwertszeit, Kettenreaktion – Formeln &amp; Rechner</title>
+  <meta name="description" content="Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, Kettenreaktion bei der Kernspaltung. Rechner für Restaktivität, Kernzahl und Zerfälle bekannter Nuklide.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/radioaktivitaet.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Radioaktivität und Kernspaltung: Strahlung, Halbwertszeit, Kettenreaktion">
+  <meta property="og:description" content="Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, Kettenreaktion bei der Kernspaltung. Rechner für Restaktivität, Kernzahl und Zerfälle bekannter Nuklide.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/radioaktivitaet.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Radioaktivität und Kernspaltung: Strahlung, Halbwertszeit, Kettenreaktion">
+  <meta name="twitter:description" content="Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, Kettenreaktion bei der Kernspaltung. Rechner für Restaktivität, Kernzahl und Zerfälle bekannter Nuklide.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/radioaktivitaet.html#seite","name":"Radioaktivität und Kernspaltung: Strahlung, Halbwertszeit, Kettenreaktion","url":"https://tools.pr1m3.de/physik/radioaktivitaet.html","inLanguage":"de","description":"Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, Kettenreaktion bei der Kernspaltung. Rechner für Restaktivität, Kernzahl und Zerfälle bekannter Nuklide.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/radioaktivitaet.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/radioaktivitaet.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Radioaktivität und Kernspaltung: Strahlung, Halbwertszeit, Kettenreaktion","item":"https://tools.pr1m3.de/physik/radioaktivitaet.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/radioaktivitaet.html#fragen","mainEntity":[{"@type":"Question","name":"Ist nach zwei Halbwertszeiten alles zerfallen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Nach einer Halbwertszeit ist die Hälfte übrig, nach zwei ein Viertel, nach drei ein Achtel. Die Menge nähert sich null, erreicht sie aber nie in einem festen Zeitpunkt."}},{"@type":"Question","name":"Was bedeutet Becquerel?","acceptedAnswer":{"@type":"Answer","text":"1 Becquerel (Bq) ist ein Zerfall je Sekunde. Die Aktivität sagt, wie viele Kerne in einer Probe pro Sekunde zerfallen – nicht, wie gefährlich die Strahlung für den Menschen ist. Dafür gibt es die Dosis in Sievert."}},{"@type":"Question","name":"Wie schützt man sich vor Strahlung?","acceptedAnswer":{"@type":"Answer","text":"Abstand halten (die Strahlung nimmt mit dem Quadrat des Abstands ab), Aufenthaltsdauer kurz halten, abschirmen (Material passend zur Strahlungsart) und radioaktive Stoffe nicht in den Körper gelangen lassen."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/radioaktivitaet.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Strahlung aus dem Atomkern</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Alphastrahlung (α)</h3><p>Der Kern stößt ein Heliumkern-Teilchen aus zwei Protonen und zwei Neutronen aus. Die Ordnungszahl sinkt um 2, die Massenzahl um 4. α-Teilchen sind schwer und doppelt positiv geladen, sie geben ihre Energie schnell ab: Ein Blatt Papier oder wenige Zentimeter Luft halten sie auf. Gefährlich sind α-Strahler, wenn sie eingeatmet oder verschluckt werden.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Betastrahlung (β⁻)</h3><p>Im Kern wandelt sich ein Neutron in ein Proton um; dabei wird ein Elektron mit hoher Geschwindigkeit ausgesandt. Die Ordnungszahl steigt um 1, die Massenzahl bleibt. β-Strahlung reicht in Luft einige Meter weit und wird von wenigen Millimetern Aluminium abgeschirmt.</p></article>
+        <article class="wissen-karte" style="--farbe:#E0A800"><h3>Gammastrahlung (γ)</h3><p>Energiereiche elektromagnetische Strahlung, die oft nach einem α- oder β-Zerfall aus dem noch angeregten Kern kommt. Sie hat keine Ladung und keine Masse, wird im Magnetfeld nicht abgelenkt und nur abgeschwächt, nie ganz aufgehalten – am besten durch dicke Schichten aus Blei oder Beton.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Zufall und Halbwertszeit</h3><p>Wann ein einzelner Kern zerfällt, lässt sich nicht vorhersagen. Bei sehr vielen Kernen zerfällt aber in jeder Halbwertszeit genau die Hälfte der noch vorhandenen. Nach 10 Halbwertszeiten ist noch etwa ein Tausendstel übrig.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Kernspaltung</h3><p>Ein langsames Neutron wird von einem Uran-235-Kern eingefangen, der Kern wird instabil und zerplatzt in zwei mittelschwere Bruchstücke (z. B. Barium und Krypton) und 2 bis 3 neue Neutronen. Dabei werden etwa 200 MeV frei – rund das Zehnmillionenfache einer chemischen Reaktion.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Kettenreaktion</h3><p>Lösen die neuen Neutronen im Mittel genau eine weitere Spaltung aus (Multiplikationsfaktor k = 1), läuft die Reaktion gleichmäßig – wie im Kernreaktor, wo Steuerstäbe überzählige Neutronen einfangen. Bei k &gt; 1 wächst sie lawinenartig an, bei k &lt; 1 erlischt sie.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Nuklid</th><th>Halbwertszeit</th><th>Strahlung</th><th>Vorkommen, Nutzung</th></tr></thead><tbody id="nuklidtabelle"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Ist nach zwei Halbwertszeiten alles zerfallen?</summary><p>Nein. Nach einer Halbwertszeit ist die Hälfte übrig, nach zwei ein Viertel, nach drei ein Achtel. Die Menge nähert sich null, erreicht sie aber nie in einem festen Zeitpunkt.</p></details>
+        <details><summary>Was bedeutet Becquerel?</summary><p>1 Becquerel (Bq) ist ein Zerfall je Sekunde. Die Aktivität sagt, wie viele Kerne in einer Probe pro Sekunde zerfallen – nicht, wie gefährlich die Strahlung für den Menschen ist. Dafür gibt es die Dosis in Sievert.</p></details>
+        <details><summary>Wie schützt man sich vor Strahlung?</summary><p>Abstand halten (die Strahlung nimmt mit dem Quadrat des Abstands ab), Aufenthaltsdauer kurz halten, abschirmen (Material passend zur Strahlungsart) und radioaktive Stoffe nicht in den Körper gelangen lassen.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const JAHR = 365.25 * 86400, EINHEIT = { s: 1, min: 60, h: 3600, d: 86400, a: JAHR }, ENAME = { s: 's', min: 'min', h: 'h', d: 'Tage', a: 'Jahre' };
+    // [Name, Halbwertszeit, Einheit, Strahlung α β γ, Vorkommen]
+    const NUKLIDE = {
+      i131: ['Iod-131', 8.02, 'd', [0, 1, 1], 'Spaltprodukt, Schilddrüsentherapie'],
+      cs137: ['Cäsium-137', 30.08, 'a', [0, 1, 1], 'Spaltprodukt (γ über Barium-137m)'],
+      co60: ['Cobalt-60', 5.27, 'a', [0, 1, 1], 'Bestrahlung, Werkstoffprüfung'],
+      sr90: ['Strontium-90', 28.8, 'a', [0, 1, 0], 'Spaltprodukt'],
+      c14: ['Kohlenstoff-14', 5730, 'a', [0, 1, 0], 'Altersbestimmung (Radiokarbon)'],
+      rn222: ['Radon-222', 3.82, 'd', [1, 0, 0], 'Edelgas aus dem Boden'],
+      ra226: ['Radium-226', 1600, 'a', [1, 0, 1], 'Uran-Zerfallsreihe'],
+      am241: ['Americium-241', 432.2, 'a', [1, 0, 1], 'früher in Rauchmeldern'],
+      u238: ['Uran-238', 4.468e9, 'a', [1, 0, 0], 'Natururan'],
+      tc99m: ['Technetium-99m', 6.01, 'h', [0, 0, 1], 'medizinische Diagnostik'],
+      eigen: ['eigenes Nuklid', 0, 's', [1, 1, 1], '']
+    };
+    let ansicht = 'strahlung', takt = uhr();
+    const ART = [['α', ROT, 7], ['β⁻', BLAU, 3.5], ['γ', GELB, 0]];
+    const SIM = { strahl: [], kerne: null, kurve: [], zeit: 0, pause: 0, sp: null };
+
+    function rechne(e) {
+      const N = NUKLIDE[e.nuklid] || NUKLIDE.i131, r = { N: N };
+      r.T = e.nuklid === 'eigen' ? e.th * EINHEIT[e.the] : N[1] * EINHEIT[N[2]];
+      r.Tanz = e.nuklid === 'eigen' ? zz(e.th, 3) + ' ' + ENAME[e.the] : zz(N[1], N[1] >= 1e6 ? 0 : 2).replace(/^4 468 000 000$/, '4,468 Mrd.') + ' ' + ENAME[N[2]];
+      r.t = e.t * EINHEIT[e.te];
+      r.n = r.t / r.T;
+      r.anteil = Math.pow(2, -r.n);
+      r.lam = Math.LN2 / r.T;
+      r.A = e.A0 * r.anteil;
+      r.N0 = e.A0 / r.lam; r.Nt = r.N0 * r.anteil; r.zerf = r.N0 - r.Nt;
+      r.tau = 1 / r.lam;
+      r.t1000 = r.T * Math.log2(1000);
+      return r;
+    }
+    function zeitText(s) { const l = [['a', JAHR], ['d', 86400], ['h', 3600], ['min', 60], ['s', 1]]; for (let i = 0; i < l.length; i++) if (s >= l[i][1] * (i === 4 ? 0 : 1)) return zz(s / l[i][1], s / l[i][1] >= 100 ? 0 : 2) + ' ' + ENAME[l[i][0]]; return zz(s, 3) + ' s'; }
+    function zerlege(v, n) { let ex = Math.floor(Math.log10(Math.abs(v))), m = v / Math.pow(10, ex); if (Math.abs(Math.round(m * Math.pow(10, n))) >= 10 * Math.pow(10, n)) { ex++; m /= 10; } return [m, ex]; }
+    function hoch(ex) { const z = '⁰¹²³⁴⁵⁶⁷⁸⁹'; return String(ex).replace('-', '⁻').replace(/\d/g, function (d) { return z[+d]; }); }
+    function gross(v) { if (!isFinite(v)) return '–'; if (v === 0) return '0'; if (Math.abs(v) < 1e6 && Math.abs(v) >= 0.01) return zz(v, Math.abs(v) < 10 ? 2 : 0); const q = zerlege(v, 2); return zz(q[0], 2) + ' · 10' + hoch(q[1]); }
+    function texGross(v, n) { if (!isFinite(v)) return '–'; if (Math.abs(v) < 1e6 && Math.abs(v) >= 1e-3) return tz(v, n === undefined ? (Math.abs(v) < 1 ? 4 : 2) : n); if (v === 0) return '0'; const q = zerlege(v, 3); return tz(q[0], 3) + ' \\cdot 10^{' + q[1] + '}'; }
+
+    const seite = R.seite({
+      titel: 'Radioaktivität und Kernspaltung',
+      einleitung: 'Wie radioaktive Stoffe zerfallen, was α-, β- und γ-Strahlung unterscheidet und wie eine Kettenreaktion entsteht. Der Rechner bestimmt Restaktivität, Anzahl der Kerne und Zerfälle aus Halbwertszeit und Zeit.',
+      hilfe: 'Beispiel: Iod-131 mit 1 GBq Anfangsaktivität, nach 24 Tagen.',
+      gruppen: [
+        { titel: 'Nuklid', farbe: ROT, felder: [
+          { k: 'nuklid', name: 'Nuklid', wahl: Object.keys(NUKLIDE).map(function (k) { return [k, NUKLIDE[k][0]]; }) },
+          { k: 'th', tex: 'T_{1/2}', name: 'Halbwertszeit', e: '', min: 1e-6, max: 1e12, wenn: function (e) { return e.nuklid === 'eigen'; } },
+          { k: 'the', name: 'Einheit der Halbwertszeit', wahl: [['s', 'Sekunden'], ['min', 'Minuten'], ['h', 'Stunden'], ['d', 'Tage'], ['a', 'Jahre']], wenn: function (e) { return e.nuklid === 'eigen'; } },
+          { k: 'A0', tex: 'A_0', name: 'Anfangsaktivität', e: 'Bq', min: 1e-3, max: 1e20 }
+        ] },
+        { titel: 'Zeit', farbe: GRAU, felder: [
+          { k: 't', tex: 't', name: 'vergangene Zeit', e: '', min: 0, max: 1e12 },
+          { k: 'te', name: 'Einheit der Zeit', wahl: [['s', 'Sekunden'], ['min', 'Minuten'], ['h', 'Stunden'], ['d', 'Tage'], ['a', 'Jahre']] }
+        ] },
+        { titel: 'Kettenreaktion (Animation)', farbe: GRUEN, felder: [
+          { k: 'stab', tex: 'p', name: 'Absorption der Steuerstäbe', e: '%', min: 0, max: 100 }
+        ] }
+      ],
+      beispiel: { nuklid: 'i131', th: 10, the: 'min', A0: 1e9, t: 24, te: 'd', stab: 50 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.n > 60) H.meldung('Nach mehr als 60 Halbwertszeiten ist praktisch nichts mehr übrig (weniger als ein Trillionstel).');
+        if (r.Nt < 1 && r.N0 >= 1) H.meldung('Rechnerisch ist weniger als ein Kern übrig – der Zerfall einzelner Kerne ist Zufall, das Gesetz gilt nur für große Anzahlen.', true);
+        H.kacheln([
+          [gross(r.A) + ' Bq', 'Aktivität nach ' + rd(e.t, 2) + ' ' + ENAME[e.te], ROT],
+          [zz(r.anteil * 100, r.anteil < 0.01 ? 4 : 2) + ' %', 'noch vorhanden', ORANGE],
+          [zz(r.n, 2), 'vergangene Halbwertszeiten', GRAU],
+          [gross(r.N0), 'Kerne am Anfang', BLAU],
+          [gross(r.zerf), 'zerfallene Kerne', LILA],
+          [zeitText(r.t1000), 'bis nur noch ein Tausendstel übrig ist', GRUEN]
+        ]);
+        H.tabelle('Kenngrößen ' + r.N[0], ['Größe', 'Wert'], [
+          ['Halbwertszeit', r.Tanz + ' = ' + gross(r.T) + ' s'], ['Zerfallskonstante λ', gross(r.lam) + ' 1/s'], ['mittlere Lebensdauer τ = 1/λ', zeitText(r.tau)],
+          ['Strahlung', ['α', 'β⁻', 'γ'].filter(function (x, i) { return r.N[3][i]; }).join(', ') || '–'], ['Kerne nach der Zeit', gross(r.Nt)]
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Anzahl der Halbwertszeiten', 'n = \\frac{t}{T_{1/2}} = \\frac{' + texGross(r.t) + '\\,\\text{s}}{' + texGross(r.T) + '\\,\\text{s}} = ' + E(tz(r.n, 3))],
+          ['Zerfallsgesetz', 'A = A_0 \\cdot \\left(\\tfrac{1}{2}\\right)^{n} = ' + texGross(e.A0) + '\\,\\text{Bq} \\cdot 0{,}5^{' + tz(r.n, 3) + '} = ' + E(texGross(r.A) + '\\,\\text{Bq}')],
+          ['Zerfallskonstante', '\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{0{,}693}{' + texGross(r.T) + '\\,\\text{s}} = ' + E(texGross(r.lam) + '\\,\\tfrac{1}{\\text{s}}')],
+          ['Anzahl der Kerne', 'N_0 = \\frac{A_0}{\\lambda} = \\frac{' + texGross(e.A0) + '\\,\\text{Bq}}{' + texGross(r.lam) + '\\,\\tfrac{1}{\\text{s}}} = ' + E(texGross(r.N0))]
+        ];
+      },
+      loeser: [
+        { titel: 'Zerfallsgesetz', hilfe: 'N und N₀ in derselben Einheit (Kerne, Bq, Gramm …), t und T in derselben Zeiteinheit.',
+          felder: [{ k: 'N', tex: 'N', name: 'noch vorhanden', e: '', min: 0.001, max: 1e12 }, { k: 'N0', tex: 'N_0', name: 'am Anfang', e: '', min: 1, max: 1e12 }, { k: 't', tex: 't', name: 'Zeit', e: '', min: 0.01, max: 1e6 }, { k: 'T', tex: 'T_{1/2}', name: 'Halbwertszeit', e: '', min: 0.01, max: 1e6 }],
+          beispiel: { N0: 800, t: 24, T: 8 },
+          gleichungen: [{ name: 'Zerfall', v: ['N', 'N0', 't', 'T'], f: function (q) { return [q.N, q.N0 * Math.pow(2, -q.t / q.T)]; },
+            loese: { N: function (q) { return q.N0 * Math.pow(2, -q.t / q.T); }, N0: function (q) { return q.N * Math.pow(2, q.t / q.T); }, t: function (q) { return q.T * Math.log2(q.N0 / q.N); }, T: function (q) { return q.t / Math.log2(q.N0 / q.N); } },
+            weg: function (k, q) {
+              if (k === 'N') return 'N = N_0 \\cdot 2^{-t/T_{1/2}} = ' + tz(q.N0, 2) + ' \\cdot 2^{-' + tz(q.t, 2) + '/' + tz(q.T, 2) + '} = ' + E(tz(q.N, 3));
+              if (k === 'N0') return 'N_0 = N \\cdot 2^{t/T_{1/2}} = ' + tz(q.N, 3) + ' \\cdot 2^{' + tz(q.t, 2) + '/' + tz(q.T, 2) + '} = ' + E(tz(q.N0, 2));
+              if (k === 't') return 't = T_{1/2} \\cdot \\log_2\\frac{N_0}{N} = ' + tz(q.T, 2) + ' \\cdot \\log_2\\frac{' + tz(q.N0, 2) + '}{' + tz(q.N, 3) + '} = ' + E(tz(q.t, 2));
+              return 'T_{1/2} = \\frac{t}{\\log_2(N_0/N)} = \\frac{' + tz(q.t, 2) + '}{\\log_2(' + tz(q.N0, 2) + '/' + tz(q.N, 3) + ')} = ' + E(tz(q.T, 2));
+            } }] },
+        { titel: 'Zerfallskonstante', hilfe: 'λ in 1/s, Halbwertszeit in s.',
+          felder: [{ k: 'l', tex: '\\lambda', name: 'Zerfallskonstante', e: '1/s', min: 1e-12, max: 1 }, { k: 'T', tex: 'T_{1/2}', name: 'Halbwertszeit', e: 's', min: 1, max: 1e12 }],
+          beispiel: { T: 692928 },
+          gleichungen: [{ name: 'Konstante', v: ['l', 'T'], f: function (q) { return [q.l * q.T, Math.LN2]; },
+            loese: { l: function (q) { return Math.LN2 / q.T; }, T: function (q) { return Math.LN2 / q.l; } },
+            weg: function (k, q) { return k === 'l' ? '\\lambda = \\frac{\\ln 2}{T_{1/2}} = \\frac{0{,}693}{' + texGross(q.T, 0) + '\\,\\text{s}} = ' + E(texGross(q.l) + '\\,\\tfrac{1}{\\text{s}}') : 'T_{1/2} = \\frac{\\ln 2}{\\lambda} = ' + E(texGross(q.T, 0) + '\\,\\text{s}'); } }] },
+        { titel: 'Aktivität', hilfe: 'A in Bq (Zerfälle je Sekunde).',
+          felder: [{ k: 'A', tex: 'A', name: 'Aktivität', e: 'Bq', min: 1, max: 1e15 }, { k: 'l', tex: '\\lambda', name: 'Zerfallskonstante', e: '1/s', min: 1e-12, max: 1 }, { k: 'N', tex: 'N', name: 'Anzahl der Kerne', e: '', min: 1, max: 1e25 }],
+          beispiel: { l: 1e-6, N: 1e12 },
+          gleichungen: [{ name: 'Aktivität', v: ['A', 'l', 'N'], f: function (q) { return [q.A, q.l * q.N]; },
+            loese: { A: function (q) { return q.l * q.N; }, l: function (q) { return q.A / q.N; }, N: function (q) { return q.A / q.l; } },
+            weg: function (k, q) { return k === 'A' ? 'A = \\lambda \\cdot N = ' + texGross(q.l) + '\\,\\tfrac{1}{\\text{s}} \\cdot ' + texGross(q.N) + ' = ' + E(texGross(q.A) + '\\,\\text{Bq}') : k === 'N' ? 'N = \\frac{A}{\\lambda} = ' + E(texGross(q.N)) : '\\lambda = \\frac{A}{N} = ' + E(texGross(q.l) + '\\,\\tfrac{1}{\\text{s}}'); } }] }
+      ],
+      sammlung: [
+        ['Zerfallsgesetz', 'N(t) = N_0 \\cdot \\left(\\tfrac{1}{2}\\right)^{t/T_{1/2}} = N_0 \\cdot e^{-\\lambda t}', ''],
+        ['Zerfallskonstante', '\\lambda = \\frac{\\ln 2}{T_{1/2}}', 'ln 2 ≈ 0,693'],
+        ['Aktivität', 'A = \\lambda \\cdot N', '1 Bq = 1 Zerfall je Sekunde'],
+        ['Aktivität über der Zeit', 'A(t) = A_0 \\cdot \\left(\\tfrac{1}{2}\\right)^{t/T_{1/2}}', ''],
+        ['Alphazerfall', '{}^{A}_{Z}\\text{X} \\rightarrow {}^{A-4}_{Z-2}\\text{Y} + {}^{4}_{2}\\text{He}', ''],
+        ['Betazerfall', '{}^{A}_{Z}\\text{X} \\rightarrow {}^{A}_{Z+1}\\text{Y} + {}^{\\;0}_{-1}e', 'n → p + e⁻ (+ Antineutrino)'],
+        ['Kernspaltung (Beispiel)', '{}^{235}_{92}\\text{U} + {}^{1}_{0}n \\rightarrow {}^{141}_{56}\\text{Ba} + {}^{92}_{36}\\text{Kr} + 3\\,{}^{1}_{0}n', 'rund 200 MeV je Spaltung'],
+        ['Abschwächung durch Abschirmung', 'I = I_0 \\cdot \\left(\\tfrac{1}{2}\\right)^{d/d_{1/2}}', 'd₁/₂ Halbwertsdicke']
+      ],
+      quellen: 'Halbwertszeiten gerundet nach der Nuklidkarte. Die Kettenreaktion ist ein vereinfachtes Modell, kein Reaktormodell.',
+      bild: { titel: 'Animation', label: 'Radioaktive Strahlung, Zerfall und Kettenreaktion', animiert: true,
+        hoehe: function (B) { return B < 600 ? 460 : 400; },
+        hinweis: function (r, e) {
+          if (ansicht === 'strahlung') return 'Rot α, blau β, gelb γ. Grau: Strahlungsart, die ' + r.N[0] + ' nicht aussendet.';
+          if (ansicht === 'magnet') return 'Magnetfeld in die Bildebene: α (positiv, schwer) wird schwach nach oben, β⁻ (negativ, leicht) stark nach unten abgelenkt, γ gar nicht.';
+          if (ansicht === 'zerfall') return '400 Kerne, eine Halbwertszeit dauert hier 3 s. Die Punkte folgen der Zerfallskurve, aber nie genau: Jeder Zerfall ist Zufall.';
+          return 'Steuerstäbe fangen ' + zz(e.stab, 0) + ' % der Neutronen ein, die sie treffen. Eine Spaltung setzt 2 oder 3 Neutronen frei.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); ({ strahlung: strahlung, magnet: strahlung, zerfall: zerfall, spaltung: spaltung })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    // ---------- Strahlung und Abschirmung ----------
+    function strahlung(cx, B, H, dt, r, e) {
+      const mag = ansicht === 'magnet', klein = B < 600, qx = 40, qy = H / 2, z = SIM.strahl;
+      // Quelle
+      cx.fillStyle = GRAU; cx.fillRect(qx - 30, qy - 30, 34, 60); cx.fillStyle = F('--flaeche'); cx.fillRect(qx - 2, qy - 6, 8, 12);
+      T(cx, r.N[0].replace('eigenes Nuklid', 'Quelle'), qx - 12, qy + 44, 'center', 10, true);
+      const lagen = mag ? [] : [[B * 0.36, 'Papier', '#D9C8A0', 4], [B * 0.58, 'Aluminium 5 mm', '#A9B4BE', 10], [B * 0.82, 'Blei 5 cm', '#5F6B76', 28]];
+      lagen.forEach(function (l, i) { cx.fillStyle = l[2]; cx.fillRect(l[0], 30, l[3], H - 60); T(cx, l[1], l[0] + l[3] / 2, H - 16 - (klein && i === 1 ? 14 : 0), 'center', klein ? 9 : 10, true); });
+      if (mag) {
+        cx.fillStyle = 'rgba(147,51,234,.08)'; cx.fillRect(B * 0.25, 20, B * 0.7, H - 40);
+        for (let x = B * 0.28; x < B * 0.95; x += 34) for (let y = 40; y < H - 30; y += 34) { strecke(cx, x - 4, y - 4, x + 4, y + 4, LILA, 1.2); strecke(cx, x + 4, y - 4, x - 4, y + 4, LILA, 1.2); }
+        T(cx, 'Magnetfeld B (in die Bildebene)', B * 0.27, 30, 'left', 11, true, LILA);
+      }
+      // neue Teilchen
+      const sendet = r.N[3];
+      for (let k = 0; k < 3; k++) if (Math.random() < dt * 5) z.push({ k: k, x: qx + 6, y: qy + (Math.random() - 0.5) * 8, vx: [140, 260, 330][k], vy: (Math.random() - 0.5) * 20, aktiv: !!sendet[k], leben: 1, ph: Math.random() * 6 });
+      for (let i = z.length - 1; i >= 0; i--) {
+        const p = z[i];
+        if (mag && p.x > B * 0.25 && p.k < 2) { const om = p.k === 0 ? -0.9 : 3.2, vx = p.vx, vy = p.vy; p.vx = vx * Math.cos(om * dt) - vy * Math.sin(om * dt); p.vy = vx * Math.sin(om * dt) + vy * Math.cos(om * dt); }
+        p.x += p.vx * dt; p.y += p.vy * dt; p.ph += dt * 30;
+        if (!mag) {
+          if (p.k === 0 && p.x > lagen[0][0]) p.leben = 0;
+          if (p.k === 1 && p.x > lagen[1][0] + Math.random() * 8) p.leben = 0;
+          if (p.k === 2 && p.x > lagen[2][0] && p.x < lagen[2][0] + lagen[2][3] && Math.random() < dt * 8) p.leben = 0;
+        }
+        if (p.leben <= 0 || p.x > B + 10 || p.y < -10 || p.y > H + 10 || p.x < 0) { z.splice(i, 1); continue; }
+        const farbe = p.aktiv ? ART[p.k][1] : 'rgba(107,119,133,.35)';
+        if (p.k === 2) { cx.strokeStyle = farbe; cx.lineWidth = 2; cx.beginPath(); for (let s = -14; s <= 0; s += 2) cx.lineTo(p.x + s, p.y + Math.sin(p.ph + s * 0.6) * 3); cx.stroke(); }
+        else kreis(cx, p.x, p.y, ART[p.k][2], farbe);
+      }
+      if (z.length > 400) z.splice(0, z.length - 400);
+      // Spuren-Legende
+      ART.forEach(function (a, i) { T(cx, a[0], B - 10 - (2 - i) * 34, 16, 'right', 13, true, sendet[i] ? a[1] : GRAU); });
+    }
+    // ---------- Zerfall von 400 Kernen ----------
+    function zerfall(cx, B, H, dt, r) {
+      const n = 20, TS = 3;
+      if (!SIM.kerne || SIM.pause > 2.5) { SIM.kerne = []; for (let i = 0; i < n * n; i++) SIM.kerne.push({ z: false, blitz: 0 }); SIM.kurve = [[0, 400]]; SIM.zeit = 0; SIM.pause = 0; }
+      const p = 1 - Math.pow(0.5, dt / TS);
+      let rest = 0;
+      SIM.kerne.forEach(function (k) { if (!k.z && Math.random() < p) { k.z = true; k.blitz = 1; } if (!k.z) rest++; k.blitz = Math.max(0, k.blitz - dt * 2); });
+      SIM.zeit += dt; if (SIM.kurve.length === 0 || SIM.zeit - SIM.kurve[SIM.kurve.length - 1][0] > 0.25) SIM.kurve.push([SIM.zeit, rest]);
+      if (rest < 8) SIM.pause += dt;
+      const klein = B < 600, g = klein ? Math.min(B - 20, H * 0.5) : Math.min(H - 40, B * 0.45), gx = klein ? (B - g) / 2 : 14, gy = klein ? 10 : 20, z = g / n;
+      SIM.kerne.forEach(function (k, i) {
+        const x = gx + (i % n + 0.5) * z, y = gy + (Math.floor(i / n) + 0.5) * z;
+        if (k.blitz > 0) kreis(cx, x, y, z * (0.45 + k.blitz * 0.4), 'rgba(224,168,0,' + (k.blitz * 0.7).toFixed(2) + ')');
+        kreis(cx, x, y, z * 0.36, k.z ? 'rgba(107,119,133,.35)' : ROT);
+      });
+      T(cx, 'noch ' + rest + ' von 400', gx, gy + g + 14, 'left', 11, true, ROT);
+      const px = klein ? 8 : gx + g + 20, py = klein ? gy + g + 26 : 10, pw = klein ? B - 16 : B - px - 10, ph = klein ? H - py - 8 : H - 20;
+      const theo = []; for (let s = 0; s <= 6 * TS; s += 0.2) theo.push([s / TS, 400 * Math.pow(0.5, s / TS)]);
+      diagramm(cx, px, py, pw, ph, [{ name: 'Theorie N₀ · 0,5^n', farbe: GRAU, punkte: theo, breite: 1.5, strich: [5, 4] }, { name: 'gezählt', farbe: ROT, punkte: SIM.kurve.map(function (q) { return [q[0] / TS, q[1]]; }), punkt: [SIM.zeit / TS, rest] }], { titel: 'Anzahl der Kerne', xl: 'Halbwertszeiten', xr: [0, 6], yr: [0, 400] });
+      void r;
+    }
+    // ---------- Kettenreaktion ----------
+    function spaltung(cx, B, H, dt, r, e) {
+      const S = SIM.sp && SIM.sp.B === B && SIM.sp.H === H ? SIM.sp : null;
+      if (!S || S.ende > 2.5) {
+        const z = zufall(Math.floor(Math.random() * 1e6) + 1), kerne = [];
+        for (let i = 0; i < 400 && kerne.length < Math.floor(B * H / 2300); i++) { const x = 30 + z() * (B - 60), y = 40 + z() * (H - 80); if (kerne.every(function (k) { return Math.hypot(k.x - x, k.y - y) > 22; })) kerne.push({ x: x, y: y, ganz: true, t: 0 }); }
+        SIM.sp = { B: B, H: H, kerne: kerne, n: [{ x: 6, y: H / 2, vx: 120, vy: 6 }], bruch: [], spalt: 0, gefangen: 0, ende: 0, verl: 0 };
+        return;
+      }
+      const stabe = [B * 0.33, B * 0.66].map(function (x) { return [x - 5, 30, 10, H - 64]; });
+      stabe.forEach(function (s) { cx.fillStyle = 'rgba(107,119,133,.65)'; cx.fillRect(s[0], s[1], s[2], s[3]); });
+      T(cx, 'Steuerstäbe', B * 0.33 + 8, 36, 'left', 10, true, GRAU);
+      for (let i = S.n.length - 1; i >= 0; i--) {
+        const p = S.n[i]; p.x += p.vx * dt; p.y += p.vy * dt;
+        let weg = p.x < 0 || p.x > B || p.y < 0 || p.y > H;
+        if (weg) S.verl++;
+        stabe.forEach(function (s) { if (!weg && p.x > s[0] && p.x < s[0] + s[2] && p.y > s[1] && p.y < s[1] + s[3] && !p.durch) { if (Math.random() < e.stab / 100) { weg = true; S.gefangen++; } else p.durch = s; } });
+        if (p.durch && (p.x < p.durch[0] || p.x > p.durch[0] + p.durch[2])) p.durch = null;
+        if (!weg) for (let j = 0; j < S.kerne.length; j++) {
+          const k = S.kerne[j]; if (!k.ganz || Math.hypot(k.x - p.x, k.y - p.y) > 13) continue;
+          k.ganz = false; k.t = 1; S.spalt++; weg = true;
+          const w = Math.random() * PI2; S.bruch.push({ x: k.x, y: k.y, vx: Math.cos(w) * 40, vy: Math.sin(w) * 40, f: '#7A5195', l: 1.6 }, { x: k.x, y: k.y, vx: -Math.cos(w) * 40, vy: -Math.sin(w) * 40, f: '#1F9E89', l: 1.6 });
+          const neu = Math.random() < 0.5 ? 2 : 3;
+          for (let m = 0; m < neu; m++) { const a = Math.random() * PI2; S.n.push({ x: k.x, y: k.y, vx: Math.cos(a) * 120, vy: Math.sin(a) * 120 }); }
+          break;
+        }
+        if (weg) S.n.splice(i, 1);
+      }
+      if (S.n.length > 300) S.n.splice(0, S.n.length - 300);
+      S.kerne.forEach(function (k) { if (k.ganz) { kreis(cx, k.x, k.y, 9, '#2E8B57', '#1D5C3A', 1.5); } else if (k.t > 0) { kreis(cx, k.x, k.y, 9 + (1 - k.t) * 30, 'rgba(255,196,0,' + (k.t * 0.6).toFixed(2) + ')'); k.t = Math.max(0, k.t - dt * 1.5); } });
+      for (let i = S.bruch.length - 1; i >= 0; i--) { const b = S.bruch[i]; b.x += b.vx * dt; b.y += b.vy * dt; b.l -= dt; if (b.l <= 0) { S.bruch.splice(i, 1); continue; } cx.globalAlpha = Math.min(1, b.l); kreis(cx, b.x, b.y, 6, b.f); cx.globalAlpha = 1; }
+      S.n.forEach(function (p) { kreis(cx, p.x, p.y, 3.2, BLAU, '#fff', 1); });
+      if (!S.n.length) S.ende += dt;
+      const ganz = S.kerne.filter(function (k) { return k.ganz; }).length;
+      T(cx, 'Spaltungen ' + S.spalt + ' · Uran-235 übrig ' + ganz + ' · Neutronen ' + S.n.length + ' · eingefangen ' + S.gefangen, 8, H - 12, 'left', B < 600 ? 9 : 11, true);
+      if (!S.n.length) T(cx, S.spalt <= 2 ? 'Die Reaktion ist erloschen.' : 'Kettenreaktion beendet.', B / 2, H / 2, 'center', 14, true, ROT);
+      T(cx, 'grün U-235 · blau Neutron · violett/türkis Spaltprodukte', 8, 14, 'left', B < 600 ? 9 : 10, false, GRAU);
+    }
+    ansicht = (ansichten(seite, [['strahlung', 'Abschirmung'], ['magnet', 'Magnetfeld'], ['zerfall', 'Zerfall'], ['spaltung', 'Kettenreaktion']], 'strahlung', function (a) { ansicht = a; SIM.strahl.length = 0; SIM.sp = null; SIM.kerne = null; }))();
+    const tb = document.getElementById('nuklidtabelle');
+    Object.keys(NUKLIDE).forEach(function (k) {
+      if (k === 'eigen') return; const N = NUKLIDE[k], tr = document.createElement('tr');
+      [N[0], (N[1] >= 1e6 ? '4,468 Mrd.' : zz(N[1], N[1] < 100 ? 2 : 0)) + ' ' + ENAME[N[2]], ['α', 'β⁻', 'γ'].filter(function (x, i) { return N[3][i]; }).join(', '), N[4]].forEach(function (x, i) { const td = document.createElement('td'); if (i === 1) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr);
+    });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Aggregatzustände und Wärme: Teilchenmodell, Schmelzen, Verdampfen – Formeln &amp; Rechner</title>
+  <meta name="description" content="Teilchenmodell der Aggregatzustände in Bewegung und Erwärmungskurve: Wärme zum Erwärmen, Schmelzen und Verdampfen von Wasser, Aluminium und Blei, Heizdauer und Anteil der Umwandlungswärme – mit Abschnitten Schritt für Schritt.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/aggregatzustaende.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Aggregatzustände und Wärme: Teilchenmodell, Schmelzen, Verdampfen">
+  <meta property="og:description" content="Teilchenmodell der Aggregatzustände in Bewegung und Erwärmungskurve: Wärme zum Erwärmen, Schmelzen und Verdampfen von Wasser, Aluminium und Blei, Heizdauer und Anteil der Umwandlungswärme – mit Abschnitten Schritt für Schritt.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/aggregatzustaende.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Aggregatzustände und Wärme: Teilchenmodell, Schmelzen, Verdampfen">
+  <meta name="twitter:description" content="Teilchenmodell der Aggregatzustände in Bewegung und Erwärmungskurve: Wärme zum Erwärmen, Schmelzen und Verdampfen von Wasser, Aluminium und Blei, Heizdauer und Anteil der Umwandlungswärme – mit Abschnitten Schritt für Schritt.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/aggregatzustaende.html#seite","name":"Aggregatzustände und Wärme: Teilchenmodell, Schmelzen, Verdampfen","url":"https://tools.pr1m3.de/physik/aggregatzustaende.html","inLanguage":"de","description":"Teilchenmodell der Aggregatzustände in Bewegung und Erwärmungskurve: Wärme zum Erwärmen, Schmelzen und Verdampfen von Wasser, Aluminium und Blei, Heizdauer und Anteil der Umwandlungswärme – mit Abschnitten Schritt für Schritt.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/aggregatzustaende.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/aggregatzustaende.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Aggregatzustände und Wärme: Teilchenmodell, Schmelzen, Verdampfen","item":"https://tools.pr1m3.de/physik/aggregatzustaende.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/aggregatzustaende.html#fragen","mainEntity":[{"@type":"Question","name":"Warum braucht Verdampfen so viel mehr Energie als Schmelzen?","acceptedAnswer":{"@type":"Answer","text":"Beim Schmelzen werden die Teilchen nur beweglich, bleiben aber dicht beieinander. Beim Verdampfen müssen sie sich ganz voneinander lösen und gegen den Luftdruck Platz schaffen. Bei Wasser ist die Verdampfungswärme fast siebenmal so groß wie die Schmelzwärme."}},{"@type":"Question","name":"Wie heißen die Übergänge zwischen den Zuständen?","acceptedAnswer":{"@type":"Answer","text":"Fest → flüssig: Schmelzen, umgekehrt Erstarren. Flüssig → gasförmig: Verdampfen (unterhalb des Siedepunkts Verdunsten), umgekehrt Kondensieren. Fest → gasförmig direkt: Sublimieren, umgekehrt Resublimieren."}},{"@type":"Question","name":"Warum kocht Wasser im Gebirge schon unter 100 °C?","acceptedAnswer":{"@type":"Answer","text":"Der Siedepunkt hängt vom Luftdruck ab. Auf 3 000 m Höhe ist der Druck nur etwa 700 hPa, Wasser siedet dort bei rund 90 °C. Im Schnellkochtopf ist der Druck höher, das Wasser wird bis etwa 120 °C heiß."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/aggregatzustaende.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Das Teilchenmodell</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Fest</h3><p>Die Teilchen sind durch Anziehungskräfte an feste Plätze gebunden; kommen sie sich zu nahe, stoßen sie sich ab. Sie schwingen nur um ihre Plätze – umso heftiger, je wärmer der Körper ist. Feste Körper haben deshalb eine eigene Form und ein festes Volumen.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Flüssig</h3><p>Die Bindungen sind schwächer: Die Teilchen bleiben dicht beieinander, können aber aneinander vorbeigleiten und Plätze tauschen. Flüssigkeiten haben ein festes Volumen, aber keine eigene Form – sie füllen das Gefäß von unten.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Gasförmig</h3><p>Die Teilchen sind nicht mehr gebunden. Sie fliegen geradlinig, bis sie an andere Teilchen oder die Wand stoßen, und ändern dabei Richtung und Geschwindigkeit. Gase füllen jeden Raum ganz aus und lassen sich zusammendrücken.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Warum bleibt die Temperatur beim Schmelzen gleich?</h3><p>Die zugeführte Energie wird gebraucht, um die Bindungen zwischen den Teilchen zu lösen, nicht um sie schneller zu machen. Erst wenn alles geschmolzen (oder verdampft) ist, steigt die Temperatur weiter. Beim Erstarren und Kondensieren wird genau diese Wärme wieder frei.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Stoff</th><th>c fest</th><th>c flüssig</th><th>c gasförmig</th><th>Schmelzpunkt</th><th>Schmelzwärme</th><th>Siedepunkt</th><th>Verdampfungswärme</th></tr></thead><tbody id="stofftabelle"></tbody></table></div>
+      <p class="hilfe">c in kJ/(kg·K), Wärmen in kJ/kg, Temperaturen in °C bei Normaldruck (1 013 hPa). Gerundete Tabellenwerte; die spezifische Wärmekapazität wird in jedem Zustand als konstant angenommen.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum braucht Verdampfen so viel mehr Energie als Schmelzen?</summary><p>Beim Schmelzen werden die Teilchen nur beweglich, bleiben aber dicht beieinander. Beim Verdampfen müssen sie sich ganz voneinander lösen und gegen den Luftdruck Platz schaffen. Bei Wasser ist die Verdampfungswärme fast siebenmal so groß wie die Schmelzwärme.</p></details>
+        <details><summary>Wie heißen die Übergänge zwischen den Zuständen?</summary><p>Fest → flüssig: Schmelzen, umgekehrt Erstarren. Flüssig → gasförmig: Verdampfen (unterhalb des Siedepunkts Verdunsten), umgekehrt Kondensieren. Fest → gasförmig direkt: Sublimieren, umgekehrt Resublimieren.</p></details>
+        <details><summary>Warum kocht Wasser im Gebirge schon unter 100 °C?</summary><p>Der Siedepunkt hängt vom Luftdruck ab. Auf 3 000 m Höhe ist der Druck nur etwa 700 hPa, Wasser siedet dort bei rund 90 °C. Im Schnellkochtopf ist der Druck höher, das Wasser wird bis etwa 120 °C heiß.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    // c in kJ/(kg·K), q in kJ/kg, T in °C
+    const STOFFE = {
+      wasser: { name: 'Wasser', cs: 2.09, cl: 4.19, cg: 2.08, Ts: 0, qs: 334, Tv: 100, qv: 2257 },
+      aluminium: { name: 'Aluminium', cs: 0.90, cl: 1.18, cg: 0.77, Ts: 660, qs: 397, Tv: 2470, qv: 10900 },
+      blei: { name: 'Blei', cs: 0.13, cl: 0.15, cg: 0.10, Ts: 327, qs: 23, Tv: 1749, qv: 858 }
+    };
+    let ansicht = 'kurve';
+    const FARBE = { fest: BLAU, fluessig: TUERKIS, gas: ORANGE };
+    let takt = uhr();
+    const T_KURVE = teilchen(48, 3), T_DREI = [teilchen(48, 5), teilchen(48, 6), teilchen(48, 7)];
+    let fortschritt = 0;
+
+    function zustand(S, T, heizen) {
+      if (T < S.Ts || (T === S.Ts && heizen)) return 'fest';
+      if (T < S.Tv || (T === S.Tv && heizen)) return 'fluessig';
+      return 'gas';
+    }
+    // Abschnitte von T1 nach T2: [{ art, von, bis, Q (kJ), c oder q }]
+    function abschnitte(S, m, T1, T2) {
+      const auf = T2 >= T1, l = [];
+      const temp = [[-Infinity, S.Ts, 'fest', S.cs], [S.Ts, S.Tv, 'fluessig', S.cl], [S.Tv, Infinity, 'gas', S.cg]];
+      if (auf) {
+        temp.forEach(function (b, i) {
+          const a = Math.max(T1, b[0]), e = Math.min(T2, b[1]);
+          if (e > a) l.push({ art: 'erwaermen', zustand: b[2], von: a, bis: e, c: b[3], Q: m * b[3] * (e - a) });
+          if (i === 0 && T1 <= S.Ts && T2 > S.Ts) l.push({ art: 'schmelzen', von: S.Ts, bis: S.Ts, q: S.qs, Q: m * S.qs });
+          if (i === 1 && T1 <= S.Tv && T2 > S.Tv) l.push({ art: 'verdampfen', von: S.Tv, bis: S.Tv, q: S.qv, Q: m * S.qv });
+        });
+      } else {
+        temp.slice().reverse().forEach(function (b, j) {
+          const i = 2 - j, a = Math.min(T1, b[1]), e = Math.max(T2, b[0]);
+          if (a > e) l.push({ art: 'abkuehlen', zustand: b[2], von: a, bis: e, c: b[3], Q: -m * b[3] * (a - e) });
+          if (i === 2 && T1 >= S.Tv && T2 < S.Tv) l.push({ art: 'kondensieren', von: S.Tv, bis: S.Tv, q: S.qv, Q: -m * S.qv });
+          if (i === 1 && T1 >= S.Ts && T2 < S.Ts) l.push({ art: 'erstarren', von: S.Ts, bis: S.Ts, q: S.qs, Q: -m * S.qs });
+        });
+      }
+      return l;
+    }
+    const NAMEN = { erwaermen: 'erwärmen', abkuehlen: 'abkühlen', schmelzen: 'schmelzen', erstarren: 'erstarren', verdampfen: 'verdampfen', kondensieren: 'kondensieren' };
+    const ZNAME = { fest: 'fest', fluessig: 'flüssig', gas: 'gasförmig' };
+    function rechne(e) {
+      const S = STOFFE[e.stoff] || STOFFE.wasser, r = { S: S };
+      r.l = abschnitte(S, e.m, e.T1, e.T2);
+      r.Q = r.l.reduce(function (s, a) { return s + a.Q; }, 0);
+      r.t = Math.abs(r.Q) * 1000 / e.P;
+      r.z1 = zustand(S, e.T1, e.T2 >= e.T1); r.z2 = zustand(S, e.T2, e.T2 < e.T1);
+      r.Qsens = r.l.filter(function (a) { return a.c; }).reduce(function (s, a) { return s + Math.abs(a.Q); }, 0);
+      return r;
+    }
+    function dauer(s) { return s < 120 ? zz(s, 0) + ' s' : s < 7200 ? zz(s / 60, 1) + ' min' : zz(s / 3600, 2) + ' h'; }
+
+    const seite = R.seite({
+      titel: 'Aggregatzustände und Wärme',
+      einleitung: 'Wie viel Wärme braucht es, um Eis zu schmelzen, Wasser zu erhitzen und zu verdampfen – und was passiert dabei mit den Teilchen? Der Rechner zerlegt den Weg von der Anfangs- zur Endtemperatur in Abschnitte und zeichnet die Erwärmungskurve.',
+      hilfe: 'Beispiel: 1 kg Eis von −20 °C bis zu Dampf von 120 °C mit einer 2-kW-Heizplatte (ohne Verluste).',
+      gruppen: [
+        { titel: 'Stoff', farbe: BLAU, felder: [
+          { k: 'stoff', name: 'Stoff', wahl: Object.keys(STOFFE).map(function (k) { return [k, STOFFE[k].name]; }) },
+          { k: 'm', tex: 'm', name: 'Masse', e: 'kg', min: 0.001, max: 100000 }
+        ] },
+        { titel: 'Temperaturen und Heizung', farbe: ROT, felder: [
+          { k: 'T1', tex: '\\vartheta_1', name: 'Anfangstemperatur', e: '°C', min: -273, max: 5000 },
+          { k: 'T2', tex: '\\vartheta_2', name: 'Endtemperatur', e: '°C', min: -273, max: 5000 },
+          { k: 'P', tex: 'P', name: 'Heiz- bzw. Kühlleistung', e: 'W', min: 1, max: 1e8 }
+        ] }
+      ],
+      beispiel: { stoff: 'wasser', m: 1, T1: -20, T2: 120, P: 2000 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (e.T1 === e.T2) H.meldung('Anfangs- und Endtemperatur sind gleich – es wird keine Wärme umgesetzt.');
+        if (r.Q < 0) H.meldung('Abkühlen: Der Stoff gibt die Wärme ab, beim Kondensieren und Erstarren wird die Umwandlungswärme wieder frei.');
+        H.kacheln([
+          [zz(Math.abs(r.Q), r.Q && Math.abs(r.Q) < 10 ? 2 : 0) + ' kJ', r.Q >= 0 ? 'zuzuführende Wärme' : 'abgegebene Wärme', ROT],
+          [zz(Math.abs(r.Q) / 3600, 3) + ' kWh', 'dasselbe in Kilowattstunden', ORANGE],
+          [dauer(r.t), 'Zeit bei ' + zz(e.P, 0) + ' W', BLAU],
+          [ZNAME[r.z1] + ' → ' + ZNAME[r.z2], 'Zustand am Anfang und am Ende', TUERKIS],
+          [zz(Math.abs(r.Q) ? (Math.abs(r.Q) - r.Qsens) / Math.abs(r.Q) * 100 : 0, 0) + ' %', 'Anteil der Umwandlungswärme', LILA]
+        ]);
+        H.tabelle('Abschnitte', ['Abschnitt', 'Temperatur', 'Wärme', 'Zeit'], r.l.map(function (a) {
+          return [NAMEN[a.art] + (a.zustand ? ' (' + ZNAME[a.zustand] + ')' : ''), a.c ? zz(a.von, 0) + ' → ' + zz(a.bis, 0) + ' °C' : zz(a.von, 0) + ' °C konstant', zz(a.Q, 1) + ' kJ', dauer(Math.abs(a.Q) * 1000 / e.P)];
+        }), { zahl: [2, 3] });
+      },
+      weg: function (r, e) {
+        const w = [];
+        r.l.forEach(function (a) {
+          if (a.c) w.push([NAMEN[a.art] + ' (' + ZNAME[a.zustand] + ')', 'Q = c \\cdot m \\cdot \\Delta\\vartheta = ' + tz(a.c, 2) + '\\,\\tfrac{\\text{kJ}}{\\text{kg K}} \\cdot ' + tz(e.m, 3) + '\\,\\text{kg} \\cdot ' + tz(Math.abs(a.bis - a.von), 1) + '\\,\\text{K} = ' + E(tz(Math.abs(a.Q), 1) + '\\,\\text{kJ}')]);
+          else w.push([NAMEN[a.art], 'Q = m \\cdot ' + (a.art === 'schmelzen' || a.art === 'erstarren' ? 'q_\\text{s}' : 'q_\\text{v}') + ' = ' + tz(e.m, 3) + '\\,\\text{kg} \\cdot ' + tz(a.q, 0) + '\\,\\tfrac{\\text{kJ}}{\\text{kg}} = ' + E(tz(Math.abs(a.Q), 1) + '\\,\\text{kJ}')]);
+        });
+        if (r.l.length) w.push(['Summe und Zeit', 'Q = ' + E(tz(Math.abs(r.Q), 1) + '\\,\\text{kJ}') + ', \\quad t = \\frac{Q}{P} = \\frac{' + tz(Math.abs(r.Q) * 1000, 0) + '\\,\\text{J}}{' + tz(e.P, 0) + '\\,\\text{W}} = ' + E(tz(r.t, 0) + '\\,\\text{s}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Wärme beim Erwärmen', hilfe: 'Wasser: c = 4,19 kJ/(kg·K).',
+          felder: [{ k: 'Q', tex: 'Q', name: 'Wärme', e: 'kJ', min: 0.01, max: 1e7 }, { k: 'c', tex: 'c', name: 'spezifische Wärmekapazität', e: 'kJ/(kg·K)', min: 0.1, max: 15 }, { k: 'm', tex: 'm', name: 'Masse', e: 'kg', min: 0.01, max: 1e4 }, { k: 'dT', tex: '\\Delta\\vartheta', name: 'Temperaturänderung', e: 'K', min: 0.1, max: 1000 }],
+          beispiel: { c: 4.19, m: 2, dT: 60 },
+          gleichungen: [{ name: 'Wärme', v: ['Q', 'c', 'm', 'dT'], f: function (q) { return [q.Q, q.c * q.m * q.dT]; },
+            loese: { Q: function (q) { return q.c * q.m * q.dT; }, c: function (q) { return q.Q / (q.m * q.dT); }, m: function (q) { return q.Q / (q.c * q.dT); }, dT: function (q) { return q.Q / (q.c * q.m); } },
+            weg: function (k, q) {
+              if (k === 'Q') return 'Q = c \\cdot m \\cdot \\Delta\\vartheta = ' + tz(q.c, 2) + ' \\cdot ' + tz(q.m, 2) + ' \\cdot ' + tz(q.dT, 1) + ' = ' + E(tz(q.Q, 1) + '\\,\\text{kJ}');
+              if (k === 'c') return 'c = \\frac{Q}{m \\cdot \\Delta\\vartheta} = \\frac{' + tz(q.Q, 1) + '}{' + tz(q.m, 2) + ' \\cdot ' + tz(q.dT, 1) + '} = ' + E(tz(q.c, 2) + '\\,\\tfrac{\\text{kJ}}{\\text{kg K}}');
+              if (k === 'm') return 'm = \\frac{Q}{c \\cdot \\Delta\\vartheta} = \\frac{' + tz(q.Q, 1) + '}{' + tz(q.c, 2) + ' \\cdot ' + tz(q.dT, 1) + '} = ' + E(tz(q.m, 2) + '\\,\\text{kg}');
+              return '\\Delta\\vartheta = \\frac{Q}{c \\cdot m} = \\frac{' + tz(q.Q, 1) + '}{' + tz(q.c, 2) + ' \\cdot ' + tz(q.m, 2) + '} = ' + E(tz(q.dT, 1) + '\\,\\text{K}');
+            } }] },
+        { titel: 'Schmelz- und Verdampfungswärme', hilfe: 'Wasser: Schmelzwärme 334 kJ/kg, Verdampfungswärme 2 257 kJ/kg.',
+          felder: [{ k: 'Q', tex: 'Q', name: 'Wärme', e: 'kJ', min: 0.01, max: 1e8 }, { k: 'm', tex: 'm', name: 'Masse', e: 'kg', min: 0.01, max: 1e4 }, { k: 'q', tex: 'q', name: 'spezifische Umwandlungswärme', e: 'kJ/kg', min: 10, max: 15000 }],
+          beispiel: { m: 0.5, q: 334 },
+          gleichungen: [{ name: 'Umwandlung', v: ['Q', 'm', 'q'], f: function (x) { return [x.Q, x.m * x.q]; },
+            loese: { Q: function (x) { return x.m * x.q; }, m: function (x) { return x.Q / x.q; }, q: function (x) { return x.Q / x.m; } },
+            weg: function (k, x) { return k === 'Q' ? 'Q = m \\cdot q = ' + tz(x.m, 2) + '\\,\\text{kg} \\cdot ' + tz(x.q, 0) + '\\,\\tfrac{\\text{kJ}}{\\text{kg}} = ' + E(tz(x.Q, 1) + '\\,\\text{kJ}') : k === 'm' ? 'm = \\frac{Q}{q} = \\frac{' + tz(x.Q, 1) + '}{' + tz(x.q, 0) + '} = ' + E(tz(x.m, 3) + '\\,\\text{kg}') : 'q = \\frac{Q}{m} = \\frac{' + tz(x.Q, 1) + '}{' + tz(x.m, 2) + '} = ' + E(tz(x.q, 0) + '\\,\\tfrac{\\text{kJ}}{\\text{kg}}'); } }] },
+        { titel: 'Heizleistung und Zeit', hilfe: 'Ohne Verluste; Q in kJ, P in W, t in s.',
+          felder: [{ k: 'Q', tex: 'Q', name: 'Wärme', e: 'kJ', min: 0.01, max: 1e7 }, { k: 'P', tex: 'P', name: 'Leistung', e: 'W', min: 1, max: 1e6 }, { k: 't', tex: 't', name: 'Zeit', e: 's', min: 1, max: 1e7 }],
+          beispiel: { Q: 754, P: 2000 },
+          gleichungen: [{ name: 'Leistung', v: ['Q', 'P', 't'], f: function (x) { return [x.Q * 1000, x.P * x.t]; },
+            loese: { Q: function (x) { return x.P * x.t / 1000; }, P: function (x) { return x.Q * 1000 / x.t; }, t: function (x) { return x.Q * 1000 / x.P; } },
+            weg: function (k, x) { return k === 't' ? 't = \\frac{Q}{P} = \\frac{' + tz(x.Q * 1000, 0) + '\\,\\text{J}}{' + tz(x.P, 0) + '\\,\\text{W}} = ' + E(tz(x.t, 0) + '\\,\\text{s}') : k === 'P' ? 'P = \\frac{Q}{t} = \\frac{' + tz(x.Q * 1000, 0) + '\\,\\text{J}}{' + tz(x.t, 0) + '\\,\\text{s}} = ' + E(tz(x.P, 0) + '\\,\\text{W}') : 'Q = P \\cdot t = ' + tz(x.P, 0) + '\\,\\text{W} \\cdot ' + tz(x.t, 0) + '\\,\\text{s} = ' + E(tz(x.Q, 1) + '\\,\\text{kJ}'); } }] }
+      ],
+      sammlung: [
+        ['Wärme beim Erwärmen oder Abkühlen', 'Q = c \\cdot m \\cdot \\Delta\\vartheta', 'c spezifische Wärmekapazität'],
+        ['Schmelzwärme', 'Q_\\text{s} = m \\cdot q_\\text{s}', 'wird beim Erstarren wieder frei'],
+        ['Verdampfungswärme', 'Q_\\text{v} = m \\cdot q_\\text{v}', 'wird beim Kondensieren wieder frei'],
+        ['Heizleistung', 'P = \\frac{Q}{t}', '1 kWh = 3 600 kJ'],
+        ['Temperatur in Kelvin', 'T = \\vartheta + 273{,}15\\,\\text{K}', 'Temperaturdifferenzen: 1 K = 1 °C'],
+        ['Mischungstemperatur', '\\vartheta_\\text{m} = \\frac{c_1 m_1 \\vartheta_1 + c_2 m_2 \\vartheta_2}{c_1 m_1 + c_2 m_2}', 'ohne Zustandsänderung, ohne Verluste']
+      ],
+      quellen: 'Stoffwerte gerundet nach Tabellenwerken der Physik bei Normaldruck. Wärmeverluste an die Umgebung sind nicht berücksichtigt.',
+      bild: { titel: 'Animation', label: 'Teilchenmodell und Erwärmungskurve', animiert: true,
+        hoehe: function (B) { return ansicht === 'drei' ? (B < 600 ? 560 : 300) : (B < 600 ? 560 : 340); },
+        hinweis: function (r) { return ansicht === 'kurve' ? 'Die Animation läuft die Kurve ab. Auf den waagerechten Stücken bleibt die Temperatur gleich, bis der Zustand ganz gewechselt hat.' : 'Fest: schwingen am Platz. Flüssig: dicht, aber gegeneinander verschiebbar. Gasförmig: frei fliegend mit Stößen.'; },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); if (ansicht === 'kurve') kurve(cx, B, H, t, dt, r, e); else drei(cx, B, H, dt); } }
+    });
+
+    // ---------- Teilchen (Koordinaten 0 … 1, Breite 1, Höhe hv) ----------
+    function teilchen(n, seed) {
+      const z = zufall(seed), sp = 8, p = [];
+      for (let i = 0; i < n; i++) p.push({ u: (i + 0.5) / n, gx: (i % sp + 0.5 + (Math.floor(i / sp) % 2) * 0.5) / (sp + 0.5), gy: Math.floor(i / sp), x: 0, y: 0, vx: (z() - 0.5), vy: (z() - 0.5), ph: z() * PI2, z: z });
+      p.forEach(function (q) { q.x = q.gx; q.y = 0; });
+      return { p: p, rad: 0.042, zeilen: Math.ceil(n / sp) };
+    }
+    function teilchenSchritt(S, dt, fs, fv, tRel, hv, fest) {
+      const p = S.p, rr = S.rad, d0 = 1 / (8.5);
+      p.forEach(function (q) {
+        q.zu = fest || (q.u >= fs ? 'fest' : q.u < fv ? 'gas' : 'fluessig');
+        const gyp = rr + q.gy * d0 * 0.9;
+        if (q.zu === 'fest') {
+          q.ph += dt * 18; const a = 0.004 + 0.012 * tRel;
+          const zx = q.gx + Math.sin(q.ph * 1.3 + q.u * 40) * a, zy = gyp + Math.cos(q.ph + q.u * 70) * a;
+          q.x += (zx - q.x) * Math.min(1, dt * 12); q.y += (zy - q.y) * Math.min(1, dt * 12); q.vx = 0; q.vy = 0;
+        } else if (q.zu === 'fluessig') {
+          const v = 0.25 + 0.3 * tRel;
+          q.vx += (q.z() - 0.5) * 6 * v * dt; q.vy += (q.z() - 0.5) * 6 * v * dt - 0.6 * dt;
+          q.vx *= 0.96; q.vy *= 0.96; q.x += q.vx * dt; q.y += q.vy * dt;
+        } else {
+          const v = 0.45 + 0.35 * tRel, l = Math.hypot(q.vx, q.vy) || 1; q.vx = q.vx / l * v; q.vy = q.vy / l * v;
+          q.x += q.vx * dt; q.y += q.vy * dt;
+        }
+      });
+      // Abstoßung und Stöße
+      for (let it = 0; it < 3; it++) for (let i = 0; i < p.length; i++) for (let j = i + 1; j < p.length; j++) {
+        const a = p[i], b = p[j]; if (a.zu === 'fest' && b.zu === 'fest') continue;
+        const dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy), m = 2 * rr * 0.95;
+        if (d < m && d > 1e-6) {
+          const nx = dx / d, ny = dy / d, ue = (m - d) / 2;
+          if (a.zu !== 'fest') { a.x -= nx * ue * (b.zu === 'fest' ? 2 : 1); a.y -= ny * ue * (b.zu === 'fest' ? 2 : 1); }
+          if (b.zu !== 'fest') { b.x += nx * ue * (a.zu === 'fest' ? 2 : 1); b.y += ny * ue * (a.zu === 'fest' ? 2 : 1); }
+          if (a.zu === 'gas' || b.zu === 'gas') {
+            const va = a.vx * nx + a.vy * ny, vb = b.vx * nx + b.vy * ny;
+            if (va - vb > 0) { a.vx += (vb - va) * nx; a.vy += (vb - va) * ny; b.vx += (va - vb) * nx; b.vy += (va - vb) * ny; }
+          }
+        }
+      }
+      p.forEach(function (q) {
+        if (q.zu === 'fest') return;
+        if (q.x < rr) { q.x = rr; q.vx = Math.abs(q.vx); } if (q.x > 1 - rr) { q.x = 1 - rr; q.vx = -Math.abs(q.vx); }
+        if (q.y < rr) { q.y = rr; q.vy = Math.abs(q.vy); } if (q.y > hv - rr) { q.y = hv - rr; q.vy = -Math.abs(q.vy); }
+      });
+    }
+    function teilchenZeichnen(cx, S, x, y, w, h, hv, titel) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.beginPath(); cx.moveTo(x, y); cx.lineTo(x, y + h); cx.lineTo(x + w, y + h); cx.lineTo(x + w, y); cx.stroke();
+      const sx = function (v) { return x + v * w; }, sy = function (v) { return y + h - v / hv * h; }, rp = S.rad * w;
+      const p = S.p;
+      cx.strokeStyle = BLAU; cx.globalAlpha = 0.45; cx.lineWidth = 1.5;
+      for (let i = 0; i < p.length; i++) for (let j = i + 1; j < p.length; j++) { const a = p[i], b = p[j]; if (a.zu === 'fest' && b.zu === 'fest' && Math.hypot(a.gx - b.gx, (a.gy - b.gy) * 0.106) < 0.14) { cx.beginPath(); cx.moveTo(sx(a.x), sy(a.y)); cx.lineTo(sx(b.x), sy(b.y)); cx.stroke(); } }
+      cx.globalAlpha = 1;
+      p.forEach(function (q) { kreis(cx, sx(q.x), sy(q.y), rp, FARBE[q.zu], 'rgba(0,0,0,.25)', 1); });
+      if (titel) T(cx, titel, x + w / 2, y - 12, 'center', 12, true);
+    }
+    function kurve(cx, B, H, t, dt, r, e) {
+      const klein = B < 600, l = r.l, Qges = l.reduce(function (s, a) { return s + Math.abs(a.Q); }, 0);
+      fortschritt = (fortschritt + dt / 10) % 1.2; const f = Math.min(1, fortschritt);
+      // aktueller Abschnitt
+      let Qf = f * Qges, temp = e.T1, fs = r.z1 === 'fest' ? 0 : 1, fv = r.z1 === 'gas' ? 1 : 0, rest = Qf;
+      for (let i = 0; i < l.length; i++) {
+        const a = l[i], q = Math.abs(a.Q); const anteil = q > 0 ? Math.min(1, rest / q) : 1;
+        if (a.c) temp = a.von + (a.bis - a.von) * anteil;
+        if (a.art === 'schmelzen') fs = anteil; if (a.art === 'erstarren') fs = 1 - anteil;
+        if (a.art === 'verdampfen') fv = anteil; if (a.art === 'kondensieren') fv = 1 - anteil;
+        if (a.art === 'erwaermen' || a.art === 'abkuehlen') { if (a.zustand === 'fest') { fs = 0; fv = 0; } if (a.zustand === 'fluessig') { fs = 1; fv = 0; } if (a.zustand === 'gas') { fs = 1; fv = 1; } }
+        rest -= q; if (rest <= 0) break;
+      }
+      const S = r.S, spanne = Math.max(1, S.Tv - S.Ts), tRel = Math.max(0, Math.min(1, (temp - S.Ts + spanne * 0.3) / (spanne * 1.6)));
+      const hv = 0.9;
+      teilchenSchritt(T_KURVE, dt, fs, fv, tRel, hv);
+      const bw = klein ? Math.min(B - 40, 260) : Math.min(260, B * 0.32), bh = bw * hv, bx = klein ? (B - bw) / 2 : 24, by = 34;
+      teilchenZeichnen(cx, T_KURVE, bx, by, bw, bh, hv, zz(temp, 1) + ' °C');
+      T(cx, 'fest', bx, by + bh + 16, 'left', 10, true, BLAU); T(cx, 'flüssig', bx + bw / 2, by + bh + 16, 'center', 10, true, TUERKIS); T(cx, 'gasförmig', bx + bw, by + bh + 16, 'right', 10, true, ORANGE);
+      // Kurve
+      const gx = klein ? 8 : bx + bw + 24, gy = klein ? by + bh + 34 : 8, gw = klein ? B - 16 : B - gx - 8, gh = klein ? H - gy - 8 : H - 16;
+      const tMin = Math.min(e.T1, e.T2), tMax = Math.max(e.T1, e.T2), pad = Math.max(5, (tMax - tMin) * 0.1);
+      const pts = [[0, e.T1]]; let qa = 0; l.forEach(function (a) { qa += Math.abs(a.Q); pts.push([qa, a.bis]); });
+      const D = diagramm(cx, gx, gy, gw, gh, [{ name: 'ϑ in °C', farbe: ROT, punkte: pts, punkt: [Qf, temp] }], { titel: (e.T2 >= e.T1 ? 'Erwärmungskurve' : 'Abkühlungskurve') + ' von ' + (r.S.name), xl: 'Q in kJ', xr: [0, Math.max(1e-6, Qges)], yr: runde([tMin - pad, tMax + pad]) });
+      let q0 = 0; l.forEach(function (a) { const q1 = q0 + Math.abs(a.Q); if (!a.c && (D.X(q1) - D.X(q0)) > 50) T(cx, NAMEN[a.art], (D.X(q0) + D.X(q1)) / 2, D.Y(a.von) - 10, 'center', 10, true, LILA); q0 = q1; });
+    }
+    function drei(cx, B, H, dt) {
+      const klein = B < 600, hv = 0.9, zust = ['fest', 'fluessig', 'gas'], titel = ['fest', 'flüssig', 'gasförmig'];
+      zust.forEach(function (z, i) {
+        teilchenSchritt(T_DREI[i], dt, 0, 0, 0.5, hv, z);
+        const w = klein ? Math.min(B - 40, (H - 28 - 3 * 40) / 3 / hv) : (B - 80) / 3, h = w * hv, x = klein ? (B - w) / 2 : 20 + i * (w + 20), y = klein ? 28 + i * (h + 40) : 34;
+        teilchenZeichnen(cx, T_DREI[i], x, y, w, h, hv, titel[i]);
+      });
+    }
+    ansicht = (ansichten(seite, [['kurve', 'Erwärmungskurve'], ['drei', 'Drei Zustände']], 'kurve', function (a) { ansicht = a; }))();
+    // Tabelle
+    const tb = document.getElementById('stofftabelle');
+    Object.keys(STOFFE).forEach(function (k) {
+      const s = STOFFE[k], tr = document.createElement('tr');
+      [s.name, zz(s.cs, 2), zz(s.cl, 2), zz(s.cg, 2), zz(s.Ts, 0) + ' °C', zz(s.qs, 0), zz(s.Tv, 0) + ' °C', zz(s.qv, 0)].forEach(function (x, i) { const td = document.createElement('td'); if (i) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr);
+    });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

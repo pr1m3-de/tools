@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Astronomie: Erdjahr, Jahreszeiten und Keplersche Gesetze – Formeln &amp; Rechner</title>
+  <meta name="description" content="Warum es Jahreszeiten gibt: Erde mit geneigter Achse auf ihrer Bahn, Sonnenhöhe mittags und Tageslänge für jeden Ort und Tag. Dazu die drei Keplerschen Gesetze mit Planetenbahn, Flächensatz und Umlaufzeiten der Planeten.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/astronomie.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Astronomie: Erdjahr, Jahreszeiten und Keplersche Gesetze">
+  <meta property="og:description" content="Warum es Jahreszeiten gibt: Erde mit geneigter Achse auf ihrer Bahn, Sonnenhöhe mittags und Tageslänge für jeden Ort und Tag. Dazu die drei Keplerschen Gesetze mit Planetenbahn, Flächensatz und Umlaufzeiten der Planeten.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/astronomie.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Astronomie: Erdjahr, Jahreszeiten und Keplersche Gesetze">
+  <meta name="twitter:description" content="Warum es Jahreszeiten gibt: Erde mit geneigter Achse auf ihrer Bahn, Sonnenhöhe mittags und Tageslänge für jeden Ort und Tag. Dazu die drei Keplerschen Gesetze mit Planetenbahn, Flächensatz und Umlaufzeiten der Planeten.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/astronomie.html#seite","name":"Astronomie: Erdjahr, Jahreszeiten und Keplersche Gesetze","url":"https://tools.pr1m3.de/physik/astronomie.html","inLanguage":"de","description":"Warum es Jahreszeiten gibt: Erde mit geneigter Achse auf ihrer Bahn, Sonnenhöhe mittags und Tageslänge für jeden Ort und Tag. Dazu die drei Keplerschen Gesetze mit Planetenbahn, Flächensatz und Umlaufzeiten der Planeten.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/astronomie.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/astronomie.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Astronomie: Erdjahr, Jahreszeiten und Keplersche Gesetze","item":"https://tools.pr1m3.de/physik/astronomie.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/astronomie.html#fragen","mainEntity":[{"@type":"Question","name":"Ist es im Sommer wärmer, weil die Erde der Sonne näher ist?","acceptedAnswer":{"@type":"Answer","text":"Nein. Die Erde ist Anfang Januar am nächsten an der Sonne (rund 147 Mio. km) und Anfang Juli am weitesten weg (rund 152 Mio. km). Entscheidend ist der Einfallswinkel der Sonnenstrahlen und die Tageslänge, beides hängt an der Neigung der Erdachse."}},{"@type":"Question","name":"Was ist ein Polartag?","acceptedAnswer":{"@type":"Answer","text":"Nördlich des Polarkreises (66,56° N) geht die Sonne um die Sommersonnenwende nicht unter, um die Wintersonnenwende nicht auf. Die Breite des Polarkreises ist 90° minus die Achsneigung."}},{"@type":"Question","name":"Wie hoch steht die Sonne mittags?","acceptedAnswer":{"@type":"Answer","text":"Mittagshöhe = 90° − geografische Breite + Deklination der Sonne. Die Deklination schwankt im Jahr zwischen +23,44° (Juni) und −23,44° (Dezember). In 51° Nord sind das im Sommer gut 62°, im Winter nur gut 15°."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/astronomie.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Erde und Planeten</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#E0A800"><h3>Warum es Jahreszeiten gibt</h3><p>Die Erdachse ist um 23,44° gegen die Senkrechte zur Bahnebene geneigt und zeigt das ganze Jahr in dieselbe Richtung im Raum. Im Juni ist die Nordhalbkugel der Sonne zugeneigt: Die Sonne steht hoch, die Tage sind lang, die Strahlung trifft steil auf. Im Dezember ist es umgekehrt. Der Abstand zur Sonne spielt kaum eine Rolle – im Nordwinter ist die Erde der Sonne sogar am nächsten.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>1. Keplersches Gesetz</h3><p>Die Planeten bewegen sich auf Ellipsen, in deren einem Brennpunkt die Sonne steht. Bei den meisten Planeten sind die Ellipsen fast kreisrund; Kometen haben dagegen sehr langgestreckte Bahnen.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>2. Keplersches Gesetz</h3><p>Die Verbindungslinie Sonne–Planet (Fahrstrahl) überstreicht in gleichen Zeiten gleich große Flächen. Nahe der Sonne (Perihel) läuft der Planet deshalb schneller, weit weg (Aphel) langsamer.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>3. Keplersches Gesetz</h3><p>Die Quadrate der Umlaufzeiten verhalten sich wie die dritten Potenzen der großen Halbachsen: T₁² : T₂² = a₁³ : a₂³. Mit der Erde als Maßstab (1 Jahr, 1 AE) gilt einfach T² = a³.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Himmelskörper</th><th>große Halbachse</th><th>Exzentrizität</th><th>Umlaufzeit</th><th>T² / a³</th><th>mittlere Bahngeschwindigkeit</th></tr></thead><tbody id="planetentabelle"></tbody></table></div>
+      <p class="hilfe">1 AE (Astronomische Einheit) = 149,6 Mio. km, mittlerer Abstand Erde–Sonne. Umlaufzeiten gemessen; T²/a³ liegt für alle bei 1 – das 3. Keplersche Gesetz.</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Ist es im Sommer wärmer, weil die Erde der Sonne näher ist?</summary><p>Nein. Die Erde ist Anfang Januar am nächsten an der Sonne (rund 147 Mio. km) und Anfang Juli am weitesten weg (rund 152 Mio. km). Entscheidend ist der Einfallswinkel der Sonnenstrahlen und die Tageslänge, beides hängt an der Neigung der Erdachse.</p></details>
+        <details><summary>Was ist ein Polartag?</summary><p>Nördlich des Polarkreises (66,56° N) geht die Sonne um die Sommersonnenwende nicht unter, um die Wintersonnenwende nicht auf. Die Breite des Polarkreises ist 90° minus die Achsneigung.</p></details>
+        <details><summary>Wie hoch steht die Sonne mittags?</summary><p>Mittagshöhe = 90° − geografische Breite + Deklination der Sonne. Die Deklination schwankt im Jahr zwischen +23,44° (Juni) und −23,44° (Dezember). In 51° Nord sind das im Sommer gut 62°, im Winter nur gut 15°.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8;
+      reihen.forEach(function (r) { if (!r.name) return; T(cx, r.name, lx, y + 25, 'left', 10, true, r.farbe); cx.font = '600 10px sans-serif'; lx += cx.measureText(r.name).width + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? 0 : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const NEIGUNG = 23.44, AE = 149.6, VERDE = 29.78;
+    const PLANETEN = {
+      merkur: ['Merkur', 0.387, 0.206, 0.241], venus: ['Venus', 0.723, 0.007, 0.615], erde: ['Erde', 1, 0.017, 1], mars: ['Mars', 1.524, 0.093, 1.881],
+      jupiter: ['Jupiter', 5.203, 0.049, 11.86], saturn: ['Saturn', 9.537, 0.054, 29.46], uranus: ['Uranus', 19.19, 0.047, 84.01], neptun: ['Neptun', 30.07, 0.009, 164.8], halley: ['Halleyscher Komet', 17.83, 0.967, 75.3]
+    };
+    const MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'], TAGE = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    function datum(d) { d = Math.max(1, Math.min(365, Math.round(d))); let m = 0; while (d > TAGE[m]) { d -= TAGE[m]; m++; } return d + '. ' + MONATE[m]; }
+    function deklination(d) { return -NEIGUNG * Math.cos(PI2 / 365 * (d + 10)); }
+    function sonne(phi, d) {
+      const dek = deklination(d), h = 90 - Math.abs(phi - dek);
+      const c = (Math.sin(-0.833 * GRAD) - Math.sin(phi * GRAD) * Math.sin(dek * GRAD)) / (Math.cos(phi * GRAD) * Math.cos(dek * GRAD));
+      const tag = c <= -1 ? 24 : c >= 1 ? 0 : 2 * Math.acos(c) / GRAD / 15;
+      return { dek: dek, h: h, tag: tag, c: c };
+    }
+    function abstandErde(d) { const M = PI2 * (d - 3) / 365.256, e = 0.0167; let Ex = M; for (let i = 0; i < 8; i++) Ex = Ex - (Ex - e * Math.sin(Ex) - M) / (1 - e * Math.cos(Ex)); return AE * (1 - e * Math.cos(Ex)); }
+    function zeit(h) { const s = Math.round(h * 60); return Math.floor(s / 60) + ':' + ('0' + s % 60).slice(-2); }
+    let ansicht = 'erdjahr', takt = uhr(), jahrTag = 172, keplerZeit = 0;
+
+    function rechne(e) {
+      const r = sonne(e.phi, e.tag), P = PLANETEN[e.planet] || PLANETEN.erde;
+      r.P = P; r.a = P[1]; r.ex = P[2]; r.T = Math.pow(r.a, 1.5);
+      r.rp = r.a * (1 - r.ex); r.ra = r.a * (1 + r.ex);
+      r.vm = VERDE / Math.sqrt(r.a); r.vp = r.vm * Math.sqrt((1 + r.ex) / (1 - r.ex)); r.va = r.vm * Math.sqrt((1 - r.ex) / (1 + r.ex));
+      r.abst = abstandErde(e.tag);
+      return r;
+    }
+    const seite = R.seite({
+      titel: 'Astronomie: Erdjahr und Keplersche Gesetze',
+      einleitung: 'Warum es Jahreszeiten gibt und wie sich Planeten um die Sonne bewegen. Oben Sonnenstand und Tageslänge für deinen Ort und ein Datum, darunter Bahndaten eines Planeten nach den Keplerschen Gesetzen.',
+      hilfe: 'Breite: Nord positiv, Süd negativ (Berlin 52,5°, München 48,1°, Hamburg 53,6°). Tag des Jahres: 1 = 1. Januar, 172 = 21. Juni, 355 = 21. Dezember.',
+      gruppen: [
+        { titel: 'Ort und Datum', farbe: GELB, felder: [
+          { k: 'phi', tex: '\\varphi', name: 'geografische Breite', e: '°', min: -90, max: 90 },
+          { k: 'tag', tex: 'd', name: 'Tag des Jahres', e: '', min: 1, max: 365, ganz: true }
+        ] },
+        { titel: 'Planetenbahn', farbe: BLAU, felder: [
+          { k: 'planet', name: 'Himmelskörper', wahl: Object.keys(PLANETEN).map(function (k) { return [k, PLANETEN[k][0]]; }) },
+          { k: 'darst', name: 'Ellipse in der Animation', wahl: [['echt', 'wie in Wirklichkeit'], ['stark', 'stark gestreckt (e = 0,6)']] }
+        ] }
+      ],
+      beispiel: { phi: 51, tag: 172, planet: 'erde', darst: 'stark' },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.c <= -1) H.meldung('Polartag: Die Sonne geht an diesem Tag nicht unter.');
+        if (r.c >= 1) H.meldung('Polarnacht: Die Sonne geht an diesem Tag nicht auf.');
+        if (r.ex > 0.5) H.meldung(r.P[0] + ': sehr langgestreckte Bahn – im Perihel ist er ' + zz(r.vp / r.va, 0) + '-mal so schnell wie im Aphel.');
+        H.kacheln([
+          [zz(r.h, 1) + '°', 'Sonnenhöhe mittags am ' + datum(e.tag), GELB],
+          [zz(r.tag, 1) + ' h', 'Tageslänge (Sonne über dem Horizont)', ORANGE],
+          [zz(r.dek, 2) + '°', 'Deklination der Sonne', ROT],
+          [zz(r.abst, 1) + ' Mio. km', 'Abstand Erde–Sonne an diesem Tag', GRAU],
+          [zz(r.T, r.T < 10 ? 2 : 1) + ' Jahre', 'Umlaufzeit ' + r.P[0], BLAU],
+          [zz(r.vm, 1) + ' km/s', 'mittlere Bahngeschwindigkeit', GRUEN]
+        ]);
+        H.tabelle('Sonne und Bahn', ['Größe', 'Wert'], [
+          ['Sonnenaufgang (wahre Ortszeit)', r.tag > 0 && r.tag < 24 ? zeit(12 - r.tag / 2) + ' Uhr' : '–'],
+          ['Sonnenuntergang (wahre Ortszeit)', r.tag > 0 && r.tag < 24 ? zeit(12 + r.tag / 2) + ' Uhr' : '–'],
+          ['Perihel (sonnennächster Punkt)', zz(r.rp, 3) + ' AE = ' + zz(r.rp * AE, 1) + ' Mio. km'],
+          ['Aphel (sonnenfernster Punkt)', zz(r.ra, 3) + ' AE = ' + zz(r.ra * AE, 1) + ' Mio. km'],
+          ['Geschwindigkeit im Perihel', zz(r.vp, 1) + ' km/s'], ['Geschwindigkeit im Aphel', zz(r.va, 1) + ' km/s'],
+          ['Umlaufzeit in Tagen', zz(r.T * 365.256, 0) + ' d']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Deklination', '\\delta = -23{,}44° \\cdot \\cos\\left(\\frac{360°}{365} \\cdot (' + e.tag + ' + 10)\\right) = ' + E(tz(r.dek, 2) + '°')],
+          ['Mittagshöhe', 'h = 90° - |\\varphi - \\delta| = 90° - |' + tz(e.phi, 1) + '° - (' + tz(r.dek, 2) + '°)| = ' + E(tz(r.h, 1) + '°')],
+          ['Tageslänge', '\\cos\\omega_0 = \\frac{\\sin(-0{,}83°) - \\sin\\varphi \\sin\\delta}{\\cos\\varphi \\cos\\delta} = ' + tz(Math.max(-1, Math.min(1, r.c)), 3) + ' \\;\\Rightarrow\\; t = \\frac{2\\,\\omega_0}{15°/\\text{h}} = ' + E(tz(r.tag, 1) + '\\,\\text{h}')],
+          ['Umlaufzeit (3. Keplersches Gesetz)', 'T = a^{3/2} = ' + tz(r.a, 3) + '^{1{,}5}\\,\\text{Jahre} = ' + E(tz(r.T, 2) + '\\,\\text{Jahre}')],
+          ['Perihel und Aphel', 'r_\\text{P} = a\\,(1 - e) = ' + E(tz(r.rp, 3) + '\\,\\text{AE}') + ', \\quad r_\\text{A} = a\\,(1 + e) = ' + E(tz(r.ra, 3) + '\\,\\text{AE}')],
+          ['Bahngeschwindigkeit', '\\bar v = \\frac{2 \\pi \\cdot a}{T} = \\frac{29{,}78\\,\\text{km/s}}{\\sqrt{' + tz(r.a, 3) + '}} = ' + E(tz(r.vm, 1) + '\\,\\text{km/s}')]
+        ];
+      },
+      loeser: [
+        { titel: '3. Keplersches Gesetz', hilfe: 'Umlaufzeit in Erdjahren, große Halbachse in AE (für Körper, die die Sonne umlaufen).',
+          felder: [{ k: 'T', tex: 'T', name: 'Umlaufzeit', e: 'Jahre', min: 0.1, max: 300 }, { k: 'a', tex: 'a', name: 'große Halbachse', e: 'AE', min: 0.2, max: 45 }],
+          beispiel: { a: 5.2 },
+          gleichungen: [{ name: 'Kepler', v: ['T', 'a'], f: function (q) { return [q.T * q.T, q.a * q.a * q.a]; },
+            loese: { T: function (q) { return Math.pow(q.a, 1.5); }, a: function (q) { return Math.pow(q.T, 2 / 3); } },
+            weg: function (k, q) { return k === 'T' ? 'T = \\sqrt{a^3} = \\sqrt{' + tz(q.a, 3) + '^3}\\,\\text{Jahre} = ' + E(tz(q.T, 2) + '\\,\\text{Jahre}') : 'a = \\sqrt[3]{T^2} = \\sqrt[3]{' + tz(q.T, 2) + '^2}\\,\\text{AE} = ' + E(tz(q.a, 3) + '\\,\\text{AE}'); } }] },
+        { titel: 'Mittagshöhe der Sonne', hilfe: 'Nordhalbkugel nördlich der Wendekreise. Deklination: Juni +23,44°, März und September 0°, Dezember −23,44°.',
+          felder: [{ k: 'h', tex: 'h', name: 'Mittagshöhe', e: '°', min: 0, max: 90 }, { k: 'phi', tex: '\\varphi', name: 'geografische Breite', e: '°', min: 23.5, max: 66 }, { k: 'd', tex: '\\delta', name: 'Deklination der Sonne', e: '°', min: -23.44, max: 23.44 }],
+          beispiel: { phi: 51, d: 23.44 },
+          gleichungen: [{ name: 'Mittagshöhe', v: ['h', 'phi', 'd'], f: function (q) { return [q.h, 90 - q.phi + q.d]; },
+            loese: { h: function (q) { return 90 - q.phi + q.d; }, phi: function (q) { return 90 - q.h + q.d; }, d: function (q) { return q.h - 90 + q.phi; } },
+            weg: function (k, q) { return k === 'h' ? 'h = 90° - \\varphi + \\delta = 90° - ' + tz(q.phi, 1) + '° + (' + tz(q.d, 2) + '°) = ' + E(tz(q.h, 1) + '°') : k === 'phi' ? '\\varphi = 90° - h + \\delta = ' + E(tz(q.phi, 1) + '°') : '\\delta = h - 90° + \\varphi = ' + E(tz(q.d, 2) + '°'); } }] },
+        { titel: 'Bahngeschwindigkeit (Kreisbahn)', hilfe: 'Erde: r = 149,6 Mio. km, T = 365,25 Tage.',
+          felder: [{ k: 'v', tex: 'v', name: 'Bahngeschwindigkeit', e: 'km/s', min: 0.1, max: 100 }, { k: 'r', tex: 'r', name: 'Bahnradius', e: 'Mio. km', min: 1, max: 5000 }, { k: 'T', tex: 'T', name: 'Umlaufzeit', e: 'Tage', min: 1, max: 100000 }],
+          beispiel: { r: 149.6, T: 365.25 },
+          gleichungen: [{ name: 'Geschwindigkeit', v: ['v', 'r', 'T'], f: function (q) { return [q.v * q.T * 86400, PI2 * q.r * 1e6]; },
+            loese: { v: function (q) { return PI2 * q.r * 1e6 / (q.T * 86400); }, r: function (q) { return q.v * q.T * 86400 / (PI2 * 1e6); }, T: function (q) { return PI2 * q.r * 1e6 / (q.v * 86400); } },
+            weg: function (k, q) { return k === 'v' ? 'v = \\frac{2 \\pi \\cdot r}{T} = \\frac{2 \\pi \\cdot ' + tz(q.r, 1) + ' \\cdot 10^6\\,\\text{km}}{' + tz(q.T, 2) + ' \\cdot 86\\,400\\,\\text{s}} = ' + E(tz(q.v, 2) + '\\,\\text{km/s}') : k === 'r' ? 'r = \\frac{v \\cdot T}{2 \\pi} = ' + E(tz(q.r, 1) + '\\,\\text{Mio. km}') : 'T = \\frac{2 \\pi \\cdot r}{v} = ' + E(tz(q.T, 1) + '\\,\\text{Tage}'); } }] },
+        { titel: 'Perihel und Aphel', hilfe: 'Mars: a = 1,524 AE, e = 0,093.',
+          felder: [{ k: 'rp', tex: 'r_\\text{P}', name: 'Perihelabstand', e: 'AE', min: 0.01, max: 50 }, { k: 'a', tex: 'a', name: 'große Halbachse', e: 'AE', min: 0.2, max: 45 }, { k: 'e', tex: 'e', name: 'Exzentrizität', e: '', min: 0, max: 0.97 }],
+          beispiel: { a: 1.524, e: 0.093 },
+          gleichungen: [{ name: 'Perihel', v: ['rp', 'a', 'e'], f: function (q) { return [q.rp, q.a * (1 - q.e)]; },
+            loese: { rp: function (q) { return q.a * (1 - q.e); }, a: function (q) { return q.rp / (1 - q.e); }, e: function (q) { return 1 - q.rp / q.a; } },
+            weg: function (k, q) { return k === 'rp' ? 'r_\\text{P} = a \\cdot (1 - e) = ' + tz(q.a, 3) + ' \\cdot (1 - ' + tz(q.e, 3) + ') = ' + E(tz(q.rp, 3) + '\\,\\text{AE}') : k === 'a' ? 'a = \\frac{r_\\text{P}}{1 - e} = ' + E(tz(q.a, 3) + '\\,\\text{AE}') : 'e = 1 - \\frac{r_\\text{P}}{a} = ' + E(tz(q.e, 3)); } }] }
+      ],
+      sammlung: [
+        ['1. Keplersches Gesetz (Ellipse)', 'r = \\frac{a\\,(1 - e^2)}{1 + e \\cos\\nu}', 'Sonne in einem Brennpunkt, ν Winkel ab Perihel'],
+        ['2. Keplersches Gesetz (Flächensatz)', '\\frac{\\Delta A}{\\Delta t} = \\text{konstant}', ''],
+        ['3. Keplersches Gesetz', '\\frac{T_1^2}{T_2^2} = \\frac{a_1^3}{a_2^3}', 'mit Erdjahren und AE: T² = a³'],
+        ['Perihel und Aphel', 'r_\\text{P} = a\\,(1 - e), \\quad r_\\text{A} = a\\,(1 + e)', ''],
+        ['Bahngeschwindigkeit', 'v = \\frac{2 \\pi \\cdot r}{T}', 'Kreisbahn'],
+        ['Deklination der Sonne (Näherung)', '\\delta = -23{,}44° \\cdot \\cos\\left(\\frac{360°}{365} \\cdot (d + 10)\\right)', 'd Tag des Jahres'],
+        ['Mittagshöhe', 'h = 90° - \\varphi + \\delta', 'Nordhalbkugel, Sonne im Süden'],
+        ['Tageslänge', '\\cos\\omega_0 = -\\tan\\varphi \\cdot \\tan\\delta, \\quad t = \\frac{2\\,\\omega_0}{15°/\\text{h}}', 'ohne Lichtbrechung; der Rechner berücksichtigt sie (−0,83°)'],
+        ['Polarkreis', '\\varphi_\\text{P} = 90° - 23{,}44° = 66{,}56°', '']
+      ],
+      quellen: 'Bahndaten gerundet; Deklination und Abstand Erde–Sonne als Näherung (Genauigkeit etwa ±0,5° bzw. ±0,2 Mio. km). Tageslänge mit mittlerer Lichtbrechung am Horizont.',
+      bild: { titel: 'Animation', label: 'Erde auf ihrer Bahn um die Sonne mit geneigter Achse', animiert: true,
+        hoehe: function (B) { return ansicht === 'gesetz3' ? 360 : B < 600 ? 520 : 420; },
+        hinweis: function (r, e) {
+          if (ansicht === 'erdjahr') return 'Ein Jahr dauert hier 30 s. Die Achse zeigt immer in dieselbe Richtung. Rechts: Sonnenstand mittags in ' + zz(e.phi, 1) + '° Breite am angezeigten Tag.';
+          if (ansicht === 'kepler') return 'Die farbigen Flächen werden jeweils in gleicher Zeit überstrichen (je 1/12 der Umlaufzeit). Sie sind gleich groß – nahe der Sonne kurz und breit, weit weg lang und schmal.';
+          return 'Doppelt logarithmische Darstellung: Alle Körper liegen auf einer Geraden mit Steigung 1,5, denn T = a^1,5.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); if (ansicht === 'erdjahr') erdjahr(cx, B, H, dt, r, e); else if (ansicht === 'kepler') kepler(cx, B, H, dt, r, e); else gesetz3(cx, B, H, r); } }
+    });
+
+    function sonneZeichnen(cx, x, y, rr) {
+      const g = cx.createRadialGradient(x, y, rr * 0.2, x, y, rr * 1.8); g.addColorStop(0, 'rgba(255,200,0,.9)'); g.addColorStop(1, 'rgba(255,200,0,0)');
+      cx.fillStyle = g; cx.beginPath(); cx.arc(x, y, rr * 1.8, 0, PI2); cx.fill(); kreis(cx, x, y, rr, '#FFC400', ORANGE, 1.5);
+    }
+    function erde(cx, x, y, re, sx, sy, mitAchse) {
+      kreis(cx, x, y, re, '#2B7BB9'); cx.fillStyle = '#2E8B57'; cx.beginPath(); cx.ellipse(x - re * 0.2, y - re * 0.1, re * 0.35, re * 0.5, 0.4, 0, PI2); cx.fill();
+      const w = Math.atan2(sy - y, sx - x);
+      cx.fillStyle = 'rgba(0,0,0,.55)'; cx.beginPath(); cx.arc(x, y, re, w + Math.PI / 2, w + 3 * Math.PI / 2); cx.closePath(); cx.fill();
+      if (mitAchse) { const a = NEIGUNG * GRAD, l = re * 1.7; strecke(cx, x - Math.sin(a) * l, y + Math.cos(a) * l, x + Math.sin(a) * l, y - Math.cos(a) * l, F('--text'), 2); T(cx, 'N', x + Math.sin(a) * (l + 8), y - Math.cos(a) * (l + 8), 'center', 10, true); }
+    }
+    function erdjahr(cx, B, H, dt, r, e) {
+      const klein = B < 600;
+      jahrTag = (jahrTag + dt * 365 / 30 - 1 + 365) % 365 + 1;
+      const ow = klein ? B : B * 0.62, oh = klein ? H * 0.52 : H, mx = ow / 2, my = oh / 2 + 8, Rx = ow * 0.38, Ry = Rx * 0.36;
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1.5; cx.beginPath(); cx.ellipse(mx, my, Rx, Ry, 0, 0, PI2); cx.stroke();
+      const pos = function (d) { const th = Math.PI + PI2 * (d - 172) / 365.25; return [mx + Rx * Math.cos(th), my - Ry * Math.sin(th)]; };
+      const marken = [[80, '21. März'], [172, '21. Juni'], [266, '23. Sept.'], [355, '21. Dez.']];
+      // Hintere Hälfte zuerst, damit die Sonne davor liegt
+      const p = pos(jahrTag), q = pos(e.tag), vorn = p[1] > my;
+      marken.forEach(function (m) { const s = pos(m[0]); kreis(cx, s[0], s[1], 3, GRAU); T(cx, m[1], s[0], s[1] + (s[1] > my ? 16 : -14), 'center', 10, false, GRAU); });
+      kreis(cx, q[0], q[1], 13, null, ROT, 2);
+      if (!vorn) erde(cx, p[0], p[1], 11, mx, my, true);
+      sonneZeichnen(cx, mx, my, 20);
+      if (vorn) erde(cx, p[0], p[1], 11, mx, my, true);
+      T(cx, datum(jahrTag), 10, 16, 'left', 12, true);
+      T(cx, 'roter Ring: ' + datum(e.tag), 10, 32, 'left', 10, false, ROT);
+      // Sonnenstand am Ort für den laufenden Tag
+      const s = sonne(e.phi, jahrTag);
+      const kx = klein ? 16 : ow + 10, ky = klein ? oh + 10 : 20, kw = klein ? B - 32 : B - ow - 20, kh = klein ? H - oh - 20 : H - 40;
+      cx.fillStyle = F('--flaeche'); cx.fillRect(kx, ky, kw, kh); cx.strokeStyle = F('--linie'); cx.strokeRect(kx, ky, kw, kh);
+      const hx = kx + kw * 0.5, hy = ky + kh * 0.72, hr = Math.min(kw * 0.42, kh * 0.6);
+      cx.fillStyle = 'rgba(46,139,87,.25)'; cx.fillRect(kx + 1, hy, kw - 2, ky + kh - hy - 1); strecke(cx, kx + 4, hy, kx + kw - 4, hy, GRUEN, 2);
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.beginPath(); cx.arc(hx, hy, hr, Math.PI, 2 * Math.PI); cx.stroke();
+      const hw = Math.max(-5, s.h) * GRAD, sx = hx + Math.cos(hw) * hr, sy = hy - Math.sin(hw) * hr;
+      if (s.h > 0) { strecke(cx, hx, hy, sx, sy, ORANGE, 2, [4, 3]); cx.strokeStyle = ORANGE; cx.lineWidth = 1.5; cx.beginPath(); cx.arc(hx, hy, 30, -hw, 0); cx.stroke(); T(cx, zz(s.h, 1) + '°', hx + 36, hy - 10, 'left', 11, true, ORANGE); sonneZeichnen(cx, sx, sy, 9); }
+      kreis(cx, hx, hy, 4, F('--text'));
+      T(cx, 'Mittags in ' + zz(e.phi, 1) + '° Breite', kx + 8, ky + 14, 'left', 11, true);
+      T(cx, 'Süden', kx + kw - 8, hy + 14, 'right', 10, false, GRAU);
+      T(cx, s.c <= -1 ? 'Polartag' : s.c >= 1 ? 'Polarnacht' : 'Tag ' + zz(s.tag, 1) + ' h', kx + 8, ky + kh - 12, 'left', 11, true, ORANGE);
+      // Tag-Nacht-Balken
+      const bx = kx + kw * 0.45, bw = kw * 0.5, by = ky + kh - 18;
+      cx.fillStyle = '#334'; cx.fillRect(bx, by, bw, 10); cx.fillStyle = '#FFC400'; cx.fillRect(bx + bw * (12 - s.tag / 2) / 24, by, bw * s.tag / 24, 10);
+    }
+    function loeseKepler(M, e) { let Ex = e > 0.8 ? Math.PI : M; for (let i = 0; i < 30; i++) Ex = Ex - (Ex - e * Math.sin(Ex) - M) / (1 - e * Math.cos(Ex)); return Ex; }
+    function kepler(cx, B, H, dt, r, e) {
+      const ex = e.darst === 'stark' ? Math.max(0.6, r.ex) : r.ex;
+      const per = 12;   // Sekunden je Umlauf in der Animation
+      keplerZeit = (keplerZeit + dt / per) % 1;
+      const a = Math.min(B * 0.4, H * 0.4 / Math.sqrt(1 - ex * ex)), bb = a * Math.sqrt(1 - ex * ex), c = a * ex;
+      const mx = B / 2 - c * 0.0, my = H / 2 + 6, fx = mx + c, fy = my;   // Sonne im rechten Brennpunkt, Perihel rechts
+      const punkt = function (f) { const Ex = loeseKepler(PI2 * f, ex); return [mx + a * Math.cos(Ex), my - bb * Math.sin(Ex)]; };
+      const n = 12, farben = ['rgba(43,123,185,.25)', 'rgba(46,139,87,.25)'];
+      for (let k = 0; k < n; k++) {
+        cx.fillStyle = farben[k % 2]; cx.beginPath(); cx.moveTo(fx, fy);
+        for (let j = 0; j <= 20; j++) { const p = punkt((k + j / 20) / n); cx.lineTo(p[0], p[1]); }
+        cx.closePath(); cx.fill();
+      }
+      // laufender Sektor kräftiger
+      const k0 = Math.floor(keplerZeit * n);
+      cx.fillStyle = 'rgba(224,168,0,.45)'; cx.beginPath(); cx.moveTo(fx, fy);
+      for (let j = 0; j <= 30; j++) { const p = punkt(k0 / n + (keplerZeit - k0 / n) * j / 30); cx.lineTo(p[0], p[1]); } cx.closePath(); cx.fill();
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.beginPath(); cx.ellipse(mx, my, a, bb, 0, 0, PI2); cx.stroke();
+      kreis(cx, mx - c, my, 3, GRAU); T(cx, 'Brennpunkt', mx - c, my + 14, 'center', 9, false, GRAU);
+      strecke(cx, mx - a, my, mx + a, my, F('--linie'), 1, [4, 4]);
+      sonneZeichnen(cx, fx, fy, 12);
+      const p = punkt(keplerZeit), dist = Math.hypot(p[0] - fx, p[1] - fy);
+      strecke(cx, fx, fy, p[0], p[1], ORANGE, 2);
+      // Geschwindigkeit: Tangente, Betrag nach Vis-Viva
+      const p2 = punkt(keplerZeit + 0.001), tx = p2[0] - p[0], ty = p2[1] - p[1], tl = Math.hypot(tx, ty) || 1, v = Math.sqrt(2 / (dist / a) - 1);
+      pfeil(cx, p[0], p[1], p[0] + tx / tl * 30 * v, p[1] + ty / tl * 30 * v, ROT, 2.2);
+      kreis(cx, p[0], p[1], 8, BLAU, F('--text'), 1.5);
+      T(cx, 'Perihel', mx + a + 4, my - 12, 'right', 10, true); T(cx, 'Aphel', mx - a - 4, my - 12, 'left', 10, true);
+      T(cx, r.P[0] + (e.darst === 'stark' && r.ex < 0.6 ? ' (Ellipse übertrieben, e = 0,6)' : ' (e = ' + zz(r.ex, 3) + ')'), 10, 16, 'left', 11, true);
+      T(cx, 'Geschwindigkeit ' + zz(v * r.vm, 1) + ' km/s', 10, H - 14, 'left', 11, true, ROT);
+    }
+    function gesetz3(cx, B, H, r) {
+      const x0 = 56, x1 = B - 16, y0 = 24, y1 = H - 40, la = [-0.5, 1.6], lt = [-0.8, 2.6];
+      const X = function (a) { return x0 + (Math.log10(a) - la[0]) / (la[1] - la[0]) * (x1 - x0); }, Y = function (t) { return y1 - (Math.log10(t) - lt[0]) / (lt[1] - lt[0]) * (y1 - y0); };
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x0, y0, x1 - x0, y1 - y0);
+      [0.5, 1, 2, 5, 10, 20].forEach(function (a) { strecke(cx, X(a), y0, X(a), y1, F('--linie'), 1); T(cx, zz(a, a < 1 ? 1 : 0), X(a), y1 + 12, 'center', 9, false, GRAU); });
+      [0.2, 1, 10, 100].forEach(function (t) { strecke(cx, x0, Y(t), x1, Y(t), F('--linie'), 1); T(cx, zz(t, t < 1 ? 1 : 0), x0 - 4, Y(t), 'right', 9, false, GRAU); });
+      T(cx, 'große Halbachse a in AE', x1, y1 + 28, 'right', 10, false, GRAU); T(cx, 'T in Jahren', x0 - 4, y0 - 10, 'left', 10, true);
+      zug(cx, [[X(0.32), Y(Math.pow(0.32, 1.5))], [X(39), Y(Math.pow(39, 1.5))]], ROT, 1.5, [5, 4]);
+      Object.keys(PLANETEN).forEach(function (k) {
+        const P = PLANETEN[k], x = X(P[1]), y = Y(P[3]), aktiv = P === r.P;
+        kreis(cx, x, y, aktiv ? 7 : 5, aktiv ? ORANGE : BLAU, F('--text'), 1);
+        const re = x > x1 - 70; T(cx, P[0].replace('Halleyscher Komet', 'Halley'), re ? x - 10 : x + 8, y + (k === 'halley' ? 14 : re ? 0 : -10), re ? 'right' : 'left', 10, aktiv, aktiv ? ORANGE : F('--text'));
+      });
+      T(cx, 'T = a^1,5', X(2), Y(Math.pow(2, 1.5)) + 18, 'left', 11, true, ROT);
+    }
+    ansicht = (ansichten(seite, [['erdjahr', 'Erdjahr'], ['kepler', 'Keplerbahn'], ['gesetz3', '3. Gesetz']], 'erdjahr', function (a) { ansicht = a; }))();
+    const tb = document.getElementById('planetentabelle');
+    Object.keys(PLANETEN).forEach(function (k) {
+      const P = PLANETEN[k], tr = document.createElement('tr');
+      [P[0], zz(P[1], 3) + ' AE', zz(P[2], 3), zz(P[3], P[3] < 10 ? 3 : 1) + ' Jahre', zz(P[3] * P[3] / Math.pow(P[1], 3), 3), zz(VERDE / Math.sqrt(P[1]), 1) + ' km/s'].forEach(function (x, i) { const td = document.createElement('td'); if (i) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr);
+    });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>
