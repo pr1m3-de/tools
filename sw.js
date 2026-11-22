@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = 'a95ca0bb88';
+const STAND = 'e3ecf2029d';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -108,6 +108,9 @@ const DATEIEN = [
   "elektro/transformator.html",
   "elektro/wallbox.html",
   "elektro/wechselstrom.html",
+  "steuerung/digitaltechnik.html",
+  "elektro/netzsysteme.html",
+  "elektro/transistor-opv.html",
   "elektro/warmwasser.html",
   "favicon.png",
   "geld/amortisation.html",
@@ -198,9 +201,11 @@ const DATEIEN = [
   "aufgabenblaetter/elektro/leitungsdimensionierung/01-motor-in-fuenf-schritten.md",
   "aufgabenblaetter/elektro/motorpruefstand/01-typenschild-nennpunkt.md",
   "aufgabenblaetter/elektro/motorpruefstand/02-kennlinien-stern-dreieck.md",
+  "aufgabenblaetter/elektro/netzsysteme/01-tn-tt-it-abschaltung.md",
   "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",
   "aufgabenblaetter/elektro/transformator/01-einphasentransformator.md",
   "aufgabenblaetter/elektro/transformator/02-drehstromtransformator.md",
+  "aufgabenblaetter/elektro/transistor-opv/01-schalter-verstaerker.md",
   "aufgabenblaetter/elektro/wechselstrom/01-wechselstrom-und-rlc.md",
   "aufgabenblaetter/gebaeudeautomation/knx-planung/01-knx-grundlagen.md",
   "aufgabenblaetter/gebaeudeautomation/knx-planung/02-topologie-und-adressen.md",
@@ -222,6 +227,7 @@ const DATEIEN = [
   "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",
   "aufgabenblaetter/physik/schwingungen-wellen/01-pendel-wellen-doppler.md",
   "aufgabenblaetter/physik/waermeuebertragung/01-leitung-konvektion-strahlung.md",
+  "aufgabenblaetter/steuerung/digitaltechnik/01-gatter-flipflop-zaehler.md",
   "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",
   "aufgabenblaetter/steuerung/sps/01-sps-grundlagen.md",
   "aufgabenblaetter/steuerung/sps/02-st-programmieren.md"

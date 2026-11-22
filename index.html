@@ -272,6 +272,9 @@
         <li><a href="mechanik/energie-impuls.html">Energie und Impuls: Stoß und Energieerhaltung</a> – Gerader Stoß zweier Körper – elastisch, unelastisch oder dazwischen – mit Impuls- und Energiebilanz, Energieerhaltung auf der schiefen Ebene mit Reibung und ein Kugelstoßpendel als Animation.</li>
         <li><a href="physik/druck-auftrieb.html">Druck und Auftrieb: Hydraulik, Schweredruck, Archimedes</a> – Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Wasser, Öl und anderen Flüssigkeiten, Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt ein Körper? Mit Animationen und Lernaufgaben.</li>
         <li><a href="physik/waermeuebertragung.html">Wärmeübertragung: Leitung, Konvektion, Strahlung</a> – Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.</li>
+        <li><a href="elektro/transistor-opv.html">Transistor und Operationsverstärker</a> – NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.</li>
+        <li><a href="steuerung/digitaltechnik.html">Digitaltechnik: Gatter, Flipflops, Zähler, Addierer</a> – Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.</li>
+        <li><a href="elektro/netzsysteme.html">Netzsysteme TN, TT und IT: Fehlerstromweg und Abschaltung</a> – Körperschluss im TN-S-, TN-C-S-, TN-C-, TT- und IT-System: Fehlerstromweg als Animation, Berührungsspannung, Abschaltung durch Leitungsschutzschalter oder RCD, Abschaltbedingungen nach DIN VDE 0100-410 und Auslösekennlinien.</li>
       </ul>
     </section>
   </noscript>
@@ -1434,6 +1437,33 @@
         themen: ['Wärmeübertragung', 'Wärmeleitung', 'Wärmeleitfähigkeit', 'Lambda-Wert', 'Konvektion', 'Wärmeübergang', 'Wärmestrahlung', 'Stefan-Boltzmann', 'Emissionsgrad', 'Wiensches Gesetz', 'Infrarot', 'U-Wert', 'Wärmestrom'],
         text: 'Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.',
         tex: '\\Phi = \\frac{\\lambda \\cdot A \\cdot \\Delta\\vartheta}{d}'
+      },
+      {
+        titel: 'Transistor und Operationsverstärker',
+        gruppe: 'Grundlagen',
+        pfad: 'elektro/transistor-opv.html',
+        bereich: 'Elektrotechnik',
+        themen: ['Transistor', 'Bipolartransistor', 'NPN', 'Stromverstärkung', 'Basiswiderstand', 'Transistor als Schalter', 'Übersteuerung', 'Sättigung', 'Kennlinienfeld', 'Lastgerade', 'Arbeitspunkt', 'Operationsverstärker', 'OPV', 'invertierender Verstärker', 'nichtinvertierender Verstärker', 'Spannungsfolger', 'Komparator'],
+        text: 'NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.',
+        tex: 'R_B = \\frac{U_E - U_{BE}}{I_B}'
+      },
+      {
+        titel: 'Digitaltechnik: Gatter, Flipflops, Zähler, Addierer',
+        pfad: 'steuerung/digitaltechnik.html',
+        bereich: 'Steuerungstechnik',
+        auchIn: ['Elektrotechnik', 'IT und Netzwerk'],
+        themen: ['Digitaltechnik', 'Logikgatter', 'UND', 'ODER', 'NICHT', 'NAND', 'NOR', 'XOR', 'Wahrheitstabelle', 'Flipflop', 'RS-Flipflop', 'D-Flipflop', 'T-Flipflop', 'Taktflanke', 'Zähler', 'Frequenzteiler', 'Binärzahl', 'Addierer', 'Volladdierer', 'Übertrag'],
+        text: 'Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.',
+        tex: 'f_a = \\frac{f_e}{2^n}'
+      },
+      {
+        titel: 'Netzsysteme TN, TT und IT: Fehlerstromweg und Abschaltung',
+        gruppe: 'Installation und Schutz',
+        pfad: 'elektro/netzsysteme.html',
+        bereich: 'Elektrotechnik',
+        themen: ['Netzsystem', 'Netzform', 'TN-S', 'TN-C', 'TN-C-S', 'TT-System', 'IT-System', 'PEN', 'Schutzleiter', 'Körperschluss', 'Fehlerstrom', 'Berührungsspannung', 'Abschaltbedingung', 'Schleifenimpedanz', 'RCD', 'Fehlerstrom-Schutzschalter', 'Leitungsschutzschalter', 'Auslösekennlinie', 'Erderwiderstand', 'Isolationswächter', 'VDE 0100-410'],
+        text: 'Körperschluss im TN-S-, TN-C-S-, TN-C-, TT- und IT-System: Fehlerstromweg als Animation, Berührungsspannung, Abschaltung durch Leitungsschutzschalter oder RCD, Abschaltbedingungen nach DIN VDE 0100-410 und Auslösekennlinien.',
+        tex: 'Z_S \\cdot I_a \\le U_0'
       }
     ];
 

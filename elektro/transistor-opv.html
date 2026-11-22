@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Transistor und Operationsverstärker: Schalten und Verstärken – Formeln &amp; Rechner</title>
+  <meta name="description" content="NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/elektro/transistor-opv.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Transistor und Operationsverstärker: Schalten und Verstärken">
+  <meta property="og:description" content="NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.">
+  <meta property="og:url" content="https://tools.pr1m3.de/elektro/transistor-opv.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Transistor und Operationsverstärker: Schalten und Verstärken">
+  <meta name="twitter:description" content="NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#seite","name":"Transistor und Operationsverstärker: Schalten und Verstärken","url":"https://tools.pr1m3.de/elektro/transistor-opv.html","inLanguage":"de","description":"NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#pfad"},"dateModified":"2026-11-22"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Transistor und Operationsverstärker: Schalten und Verstärken","item":"https://tools.pr1m3.de/elektro/transistor-opv.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#fragen","mainEntity":[{"@type":"Question","name":"Wie groß muss der Basiswiderstand sein?","acceptedAnswer":{"@type":"Answer","text":"Kollektorstrom durch Stromverstärkung teilen, mit dem Übersteuerungsfaktor malnehmen, dann R_B = (U_E − 0,7 V) / I_B. Den nächstkleineren Normwert wählen. Beispiel: 100 mA, B = 100, Faktor 3, 5 V Steuerspannung: I_B = 3 mA, R_B = 1,43 kΩ → 1,2 kΩ."}},{"@type":"Question","name":"Warum braucht ein Relais am Transistor eine Freilaufdiode?","acceptedAnswer":{"@type":"Answer","text":"Beim Abschalten erzeugt die Spule eine hohe Gegenspannung, die den Transistor zerstören kann. Die Diode parallel zur Spule (in Sperrrichtung zur Versorgung) lässt den Strom gefahrlos auslaufen."}},{"@type":"Question","name":"Warum ist das Ausgangssignal des Verstärkers oben und unten abgeschnitten?","acceptedAnswer":{"@type":"Answer","text":"Der Ausgang kann die Versorgungsspannung nicht überschreiten, bei vielen Typen bleibt er sogar 1 bis 2 V darunter. Ist Verstärkung mal Eingangsspannung größer, wird das Signal begrenzt (Übersteuerung)."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Kleiner Strom steuert großen Strom</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Bipolartransistor</h3><p>Ein NPN-Transistor hat drei Anschlüsse: Basis, Kollektor und Emitter. Fließt ein kleiner Basisstrom, lässt er einen etwa B-mal größeren Kollektorstrom durch (B = Stromverstärkung, typisch 100 bis 500). Ohne Basisstrom sperrt er. Die Basis-Emitter-Strecke verhält sich wie eine Diode mit rund 0,7 V.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Transistor als Schalter</h3><p>Damit der Transistor sicher ganz durchschaltet, gibt man mehr Basisstrom als nötig (Übersteuerung, Faktor 2 bis 5). Dann bleiben nur etwa 0,2 V zwischen Kollektor und Emitter, und im Transistor wird kaum Wärme frei. Halb durchgesteuert wird er dagegen heiß.</p></article>
+        <article class="wissen-karte" style="--farbe:#9333EA"><h3>Operationsverstärker</h3><p>Ein Operationsverstärker verstärkt die Differenz seiner beiden Eingänge riesig (100 000-fach und mehr). Erst die Gegenkopplung über Widerstände legt eine genaue Verstärkung fest: invertierend −R₂/R₁, nichtinvertierend 1 + R₂/R₁. Mehr als die Versorgungsspannung kann er nicht ausgeben.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Komparator</h3><p>Ohne Gegenkopplung kippt der Ausgang ganz nach plus oder minus, je nachdem, welcher Eingang höher ist. So wird aus einem Sensorsignal ein Schaltsignal, zum Beispiel ein Dämmerungsschalter oder eine Füllstandsmeldung.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie groß muss der Basiswiderstand sein?</summary><p>Kollektorstrom durch Stromverstärkung teilen, mit dem Übersteuerungsfaktor malnehmen, dann R_B = (U_E − 0,7 V) / I_B. Den nächstkleineren Normwert wählen. Beispiel: 100 mA, B = 100, Faktor 3, 5 V Steuerspannung: I_B = 3 mA, R_B = 1,43 kΩ → 1,2 kΩ.</p></details>
+        <details><summary>Warum braucht ein Relais am Transistor eine Freilaufdiode?</summary><p>Beim Abschalten erzeugt die Spule eine hohe Gegenspannung, die den Transistor zerstören kann. Die Diode parallel zur Spule (in Sperrrichtung zur Versorgung) lässt den Strom gefahrlos auslaufen.</p></details>
+        <details><summary>Warum ist das Ausgangssignal des Verstärkers oben und unten abgeschnitten?</summary><p>Der Ausgang kann die Versorgungsspannung nicht überschreiten, bei vielen Typen bleibt er sogar 1 bis 2 V darunter. Ist Verstärkung mal Eingangsspannung größer, wird das Signal begrenzt (Übersteuerung).</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? (Math.abs(sp - Math.round(sp)) > 1e-9 ? 1 : 0) : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const E12 = [1, 1.2, 1.5, 1.8, 2.2, 2.7, 3.3, 3.9, 4.7, 5.6, 6.8, 8.2];
+    const SCHALTUNG = { inv: 'invertierender Verstärker', nichtinv: 'nichtinvertierender Verstärker', folger: 'Spannungsfolger (Impedanzwandler)', komp: 'Komparator' };
+    let ansicht = 'schalter', takt = uhr();
+    const SIM = { t: 0 };
+    function normUnten(r) { if (!(r > 0)) return 0; const p = Math.pow(10, Math.floor(Math.log10(r))); let w = E12[0] * p; E12.forEach(function (n) { if (n * p <= r * 1.0001) w = n * p; }); return w; }
+    function ohm(r) { return r >= 1e6 ? zz(r / 1e6, 2) + ' MΩ' : r >= 1e3 ? zz(r / 1e3, 2) + ' kΩ' : zz(r, r < 10 ? 2 : 0) + ' Ω'; }
+    function amp(i) { const a = Math.abs(i); return a >= 1 ? zz(i, 2) + ' A' : a >= 1e-3 ? zz(i * 1e3, 2) + ' mA' : zz(i * 1e6, 1) + ' µA'; }
+    function rechne(e) {
+      const r = {};
+      r.IC = Math.max(0, (e.UB - e.Usat) / e.RL); r.IBmin = r.IC / e.B; r.IB = r.IBmin * e.ue;
+      r.RB = e.UE > e.UBE ? (e.UE - e.UBE) / r.IB : NaN; r.RBn = normUnten(r.RB);
+      r.IBn = r.RBn > 0 ? (e.UE - e.UBE) / r.RBn : 0; r.ueN = r.IBmin > 0 ? r.IBn / r.IBmin : 0;
+      r.PT = e.Usat * r.IC + e.UBE * r.IBn; r.PL = (e.UB - e.Usat) * r.IC;
+      r.Phalb = e.UB * e.UB / (4 * e.RL);
+      r.usat = Math.max(0.1, e.Us - 1.5);
+      r.V = e.sch === 'inv' ? -e.R2 / e.R1 : e.sch === 'nichtinv' ? 1 + e.R2 / e.R1 : e.sch === 'folger' ? 1 : NaN;
+      r.Ua = e.sch === 'komp' ? (e.Ue > e.Uref ? r.usat : -r.usat) : Math.max(-r.usat, Math.min(r.usat, r.V * e.Ue));
+      r.ueber = e.sch !== 'komp' && Math.abs(r.V * e.Ue) > r.usat;
+      r.Rein = e.sch === 'inv' ? e.R1 * 1000 : Infinity;
+      r.VdB = isFinite(r.V) ? 20 * Math.log10(Math.max(Math.abs(r.V), 1e-9)) : NaN;
+      return r;
+    }
+    const seite = R.seite({
+      titel: 'Transistor und Operationsverstärker',
+      einleitung: 'NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung.',
+      hilfe: 'Beispiel: Eine 12-V-Last mit 120 Ω (100 mA) soll von einem 5-V-Ausgang geschaltet werden. Der Operationsverstärker verstärkt 0,5 V invertierend mit 10 kΩ und 47 kΩ an ±15 V.',
+      gruppen: [
+        { titel: 'Transistor als Schalter', farbe: BLAU, felder: [
+          { k: 'UB', tex: 'U_B', name: 'Betriebsspannung der Last', e: 'V', min: 0.5, max: 1000 },
+          { k: 'RL', tex: 'R_L', name: 'Lastwiderstand', e: 'Ω', min: 0.1, max: 1e7 },
+          { k: 'B', tex: 'B', name: 'Stromverstärkung (Datenblatt, kleinster Wert)', e: '', min: 5, max: 2000 },
+          { k: 'UE', tex: 'U_E', name: 'Steuerspannung am Eingang', e: 'V', min: 0.1, max: 100 },
+          { k: 'ue', tex: '\\ddot{u}', name: 'Übersteuerungsfaktor', e: '', min: 1, max: 20 },
+          { k: 'UBE', tex: 'U_{BE}', name: 'Basis-Emitter-Spannung', e: 'V', min: 0.3, max: 1.5 },
+          { k: 'Usat', tex: 'U_{CE,sat}', name: 'Sättigungsspannung', e: 'V', min: 0.01, max: 2 }
+        ] },
+        { titel: 'Operationsverstärker', farbe: LILA, felder: [
+          { k: 'sch', name: 'Schaltung', wahl: Object.keys(SCHALTUNG).map(function (k) { return [k, SCHALTUNG[k]]; }) },
+          { k: 'R1', tex: 'R_1', name: 'Eingangswiderstand', e: 'kΩ', min: 0.01, max: 10000, wenn: function (e) { return e.sch === 'inv' || e.sch === 'nichtinv'; } },
+          { k: 'R2', tex: 'R_2', name: 'Rückkopplungswiderstand', e: 'kΩ', min: 0.01, max: 100000, wenn: function (e) { return e.sch === 'inv' || e.sch === 'nichtinv'; } },
+          { k: 'Uref', tex: 'U_\\text{ref}', name: 'Vergleichsspannung', e: 'V', min: -50, max: 50, wenn: function (e) { return e.sch === 'komp'; } },
+          { k: 'Ue', tex: 'U_e', name: 'Eingangsspannung (Scheitelwert)', e: 'V', min: -50, max: 50 },
+          { k: 'Us', tex: '\\pm U_S', name: 'Versorgung (symmetrisch)', e: 'V', min: 2, max: 50 }
+        ] }
+      ],
+      beispiel: { UB: 12, RL: 120, B: 100, UE: 5, ue: 3, UBE: 0.7, Usat: 0.2, sch: 'inv', R1: 10, R2: 47, Uref: 1, Ue: 0.5, Us: 15 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (!(e.UE > e.UBE)) H.meldung('Die Steuerspannung ist kleiner als die Basis-Emitter-Spannung: Der Transistor schaltet nicht durch.', true);
+        else if (r.ueN < 1.5) H.meldung('Mit dem Normwiderstand ist der Transistor nur ' + zz(r.ueN, 1) + '-fach übersteuert – zu knapp, er könnte nicht ganz durchschalten.', true);
+        if (r.ueber) H.meldung('Der Verstärker ist übersteuert: ' + zz(r.V, 2) + ' × ' + zz(e.Ue, 2) + ' V wären ' + zz(r.V * e.Ue, 2) + ' V, der Ausgang schafft nur ±' + zz(r.usat, 1) + ' V. Die Spitzen werden abgeschnitten.', true);
+        H.kacheln([
+          [amp(r.IC), 'Kollektorstrom (Laststrom)', BLAU],
+          [amp(r.IB), 'nötiger Basisstrom mit Übersteuerung', BLAU],
+          [ohm(r.RB), 'Basiswiderstand rechnerisch', GRUEN],
+          [ohm(r.RBn), 'Normwert E12 (nächstkleiner)', GRUEN],
+          [zz(r.PT * 1000, 1) + ' mW', 'Verlustleistung im Transistor (durchgeschaltet)', ORANGE],
+          [e.sch === 'komp' ? '–' : zz(r.V, 3), 'Spannungsverstärkung' + (isFinite(r.VdB) ? ' (' + zz(r.VdB, 1) + ' dB)' : ''), LILA],
+          [zz(r.Ua, 2) + ' V', 'Ausgangsspannung bei U_e = ' + zz(e.Ue, 2) + ' V', LILA]
+        ]);
+        H.tabelle('Schalter im Detail', ['Größe', 'Wert'], [
+          ['kleinster Basisstrom I_C / B', amp(r.IBmin)], ['Basisstrom mit Normwiderstand', amp(r.IBn) + ' (' + zz(r.ueN, 1) + '-fach)'],
+          ['Leistung in der Last', zz(r.PL, 3) + ' W'], ['Verlust bei halb durchgesteuertem Transistor (schlimmster Fall)', zz(r.Phalb, 3) + ' W'],
+          ['Eingangswiderstand des Verstärkers', isFinite(r.Rein) ? ohm(r.Rein) : 'sehr hoch (Eingang des Operationsverstärkers)'],
+          ['größte Ausgangsspannung', '±' + zz(r.usat, 1) + ' V (1,5 V unter der Versorgung angenommen)']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        const w = [
+          ['Kollektorstrom', 'I_C = \\frac{U_B - U_{CE,sat}}{R_L} = \\frac{' + tz(e.UB, 2) + ' - ' + tz(e.Usat, 2) + '}{' + tz(e.RL, 2) + '}\\,\\text{A} = ' + E(tz(r.IC * 1000, 2) + '\\,\\text{mA}')],
+          ['Basisstrom', 'I_B = \\ddot{u} \\cdot \\frac{I_C}{B} = ' + tz(e.ue, 1) + ' \\cdot \\frac{' + tz(r.IC * 1000, 2) + '\\,\\text{mA}}{' + tz(e.B, 0) + '} = ' + E(tz(r.IB * 1000, 3) + '\\,\\text{mA}')]
+        ];
+        if (e.UE > e.UBE) w.push(['Basiswiderstand', 'R_B = \\frac{U_E - U_{BE}}{I_B} = \\frac{' + tz(e.UE, 2) + ' - ' + tz(e.UBE, 2) + '}{' + tz(r.IB, 6) + '}\\,\\Omega = ' + E(tz(r.RB, 0) + '\\,\\Omega') + ' \\Rightarrow ' + tz(r.RBn, 0) + '\\,\\Omega']);
+        w.push(['Verlustleistung', 'P_T \\approx U_{CE,sat} \\cdot I_C + U_{BE} \\cdot I_B = ' + E(tz(r.PT * 1000, 1) + '\\,\\text{mW}')]);
+        if (e.sch === 'inv') w.push(['Verstärkung', 'V = -\\frac{R_2}{R_1} = -\\frac{' + tz(e.R2, 2) + '}{' + tz(e.R1, 2) + '} = ' + E(tz(r.V, 3))]);
+        if (e.sch === 'nichtinv') w.push(['Verstärkung', 'V = 1 + \\frac{R_2}{R_1} = 1 + \\frac{' + tz(e.R2, 2) + '}{' + tz(e.R1, 2) + '} = ' + E(tz(r.V, 3))]);
+        if (e.sch !== 'komp') w.push(['Ausgang', 'U_a = V \\cdot U_e = ' + tz(r.V, 3) + ' \\cdot ' + tz(e.Ue, 3) + '\\,\\text{V} = ' + tz(r.V * e.Ue, 3) + '\\,\\text{V}' + (r.ueber ? ' \\Rightarrow ' + E(tz(r.Ua, 2) + '\\,\\text{V}') + '\\text{ (begrenzt)}' : '')]);
+        else w.push(['Komparator', 'U_e ' + (e.Ue > e.Uref ? '>' : '\\le') + ' U_\\text{ref} \\Rightarrow U_a = ' + E(tz(r.Ua, 1) + '\\,\\text{V}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Stromverstärkung', hilfe: 'B = I_C / I_B',
+          felder: [{ k: 'B', tex: 'B', name: 'Stromverstärkung', e: '', min: 10, max: 1000 }, { k: 'IC', tex: 'I_C', name: 'Kollektorstrom', e: 'mA', min: 1, max: 5000 }, { k: 'IB', tex: 'I_B', name: 'Basisstrom', e: 'mA', min: 0.001, max: 100 }],
+          beispiel: { IC: 100, IB: 1 },
+          gleichungen: [{ name: 'Verstärkung', v: ['B', 'IC', 'IB'], f: function (q) { return [q.IC, q.B * q.IB]; },
+            loese: { B: function (q) { return q.IC / q.IB; }, IC: function (q) { return q.B * q.IB; }, IB: function (q) { return q.IC / q.B; } },
+            weg: function (k, q) { return k === 'B' ? 'B = \\frac{I_C}{I_B} = \\frac{' + tz(q.IC, 2) + '}{' + tz(q.IB, 3) + '} = ' + E(tz(q.B, 1)) : k === 'IC' ? 'I_C = B \\cdot I_B = ' + tz(q.B, 0) + ' \\cdot ' + tz(q.IB, 3) + '\\,\\text{mA} = ' + E(tz(q.IC, 2) + '\\,\\text{mA}') : 'I_B = \\frac{I_C}{B} = \\frac{' + tz(q.IC, 2) + '}{' + tz(q.B, 0) + '}\\,\\text{mA} = ' + E(tz(q.IB, 3) + '\\,\\text{mA}'); } }] },
+        { titel: 'Basiswiderstand', hilfe: 'U_BE ≈ 0,7 V bei Silizium.',
+          felder: [{ k: 'RB', tex: 'R_B', name: 'Basiswiderstand', e: 'kΩ', min: 0.01, max: 1000 }, { k: 'UE', tex: 'U_E', name: 'Steuerspannung', e: 'V', min: 1, max: 50 }, { k: 'UBE', tex: 'U_{BE}', name: 'Basis-Emitter-Spannung', e: 'V', min: 0.5, max: 1, fest: true }, { k: 'IB', tex: 'I_B', name: 'Basisstrom', e: 'mA', min: 0.001, max: 100 }],
+          beispiel: { UE: 5, UBE: 0.7, IB: 3 },
+          gleichungen: [{ name: 'Basis', v: ['RB', 'UE', 'UBE', 'IB'], f: function (q) { return [q.RB * q.IB, q.UE - q.UBE]; },
+            loese: { RB: function (q) { return (q.UE - q.UBE) / q.IB; }, IB: function (q) { return (q.UE - q.UBE) / q.RB; }, UE: function (q) { return q.RB * q.IB + q.UBE; }, UBE: function (q) { return q.UE - q.RB * q.IB; } },
+            weg: function (k, q) { return k === 'RB' ? 'R_B = \\frac{U_E - U_{BE}}{I_B} = \\frac{' + tz(q.UE, 2) + ' - ' + tz(q.UBE, 2) + '}{' + tz(q.IB, 3) + '\\,\\text{mA}} = ' + E(tz(q.RB, 3) + '\\,\\text{k}\\Omega') : k === 'IB' ? 'I_B = \\frac{U_E - U_{BE}}{R_B} = ' + E(tz(q.IB, 3) + '\\,\\text{mA}') : k === 'UE' ? 'U_E = R_B I_B + U_{BE} = ' + E(tz(q.UE, 2) + '\\,\\text{V}') : 'U_{BE} = U_E - R_B I_B = ' + E(tz(q.UBE, 2) + '\\,\\text{V}'); } }] },
+        { titel: 'Invertierender Verstärker', hilfe: 'Betrag der Verstärkung |V| = R₂ / R₁.',
+          felder: [{ k: 'V', tex: '|V|', name: 'Betrag der Verstärkung', e: '', min: 0.01, max: 10000 }, { k: 'R1', tex: 'R_1', name: 'Eingangswiderstand', e: 'kΩ', min: 0.1, max: 1000 }, { k: 'R2', tex: 'R_2', name: 'Rückkopplungswiderstand', e: 'kΩ', min: 0.1, max: 10000 }],
+          beispiel: { R1: 10, R2: 47 },
+          gleichungen: [{ name: 'Invertierer', v: ['V', 'R1', 'R2'], f: function (q) { return [q.V * q.R1, q.R2]; },
+            loese: { V: function (q) { return q.R2 / q.R1; }, R1: function (q) { return q.R2 / q.V; }, R2: function (q) { return q.V * q.R1; } },
+            weg: function (k, q) { return k === 'V' ? '|V| = \\frac{R_2}{R_1} = \\frac{' + tz(q.R2, 2) + '}{' + tz(q.R1, 2) + '} = ' + E(tz(q.V, 3)) : k === 'R1' ? 'R_1 = \\frac{R_2}{|V|} = ' + E(tz(q.R1, 3) + '\\,\\text{k}\\Omega') : 'R_2 = |V| \\cdot R_1 = ' + E(tz(q.R2, 3) + '\\,\\text{k}\\Omega'); } }] },
+        { titel: 'Nichtinvertierender Verstärker', hilfe: 'V = 1 + R₂ / R₁',
+          felder: [{ k: 'V', tex: 'V', name: 'Verstärkung', e: '', min: 1.01, max: 10000 }, { k: 'R1', tex: 'R_1', name: 'Widerstand gegen Masse', e: 'kΩ', min: 0.1, max: 1000 }, { k: 'R2', tex: 'R_2', name: 'Rückkopplungswiderstand', e: 'kΩ', min: 0.1, max: 10000 }],
+          beispiel: { R1: 10, R2: 90 },
+          gleichungen: [{ name: 'Nichtinvertierer', v: ['V', 'R1', 'R2'], f: function (q) { return [q.V * q.R1, q.R1 + q.R2]; },
+            loese: { V: function (q) { return 1 + q.R2 / q.R1; }, R1: function (q) { return q.R2 / (q.V - 1); }, R2: function (q) { return (q.V - 1) * q.R1; } },
+            weg: function (k, q) { return k === 'V' ? 'V = 1 + \\frac{R_2}{R_1} = 1 + \\frac{' + tz(q.R2, 2) + '}{' + tz(q.R1, 2) + '} = ' + E(tz(q.V, 3)) : k === 'R1' ? 'R_1 = \\frac{R_2}{V - 1} = ' + E(tz(q.R1, 3) + '\\,\\text{k}\\Omega') : 'R_2 = (V - 1) \\cdot R_1 = ' + E(tz(q.R2, 3) + '\\,\\text{k}\\Omega'); } }] }
+      ],
+      sammlung: [
+        ['Stromverstärkung', 'B = \\frac{I_C}{I_B}', 'Gleichstromverstärkung, Datenblatt: h_FE'],
+        ['Emitterstrom', 'I_E = I_C + I_B', ''],
+        ['Kollektorstrom im Schalterbetrieb', 'I_C = \\frac{U_B - U_{CE,sat}}{R_L}', ''],
+        ['Basisstrom mit Übersteuerung', 'I_B = \\ddot{u} \\cdot \\frac{I_C}{B}', 'ü = 2 … 5'],
+        ['Basiswiderstand', 'R_B = \\frac{U_E - U_{BE}}{I_B}', 'U_BE ≈ 0,7 V'],
+        ['Verlustleistung', 'P_T = U_{CE} \\cdot I_C', ''],
+        ['Invertierender Verstärker', 'V = -\\frac{R_2}{R_1}', 'Ausgang gegenphasig'],
+        ['Nichtinvertierender Verstärker', 'V = 1 + \\frac{R_2}{R_1}', ''],
+        ['Spannungsfolger', 'V = 1', 'hoher Eingangs-, kleiner Ausgangswiderstand'],
+        ['Verstärkung in Dezibel', 'V_\\text{dB} = 20 \\cdot \\lg |V|', '']
+      ],
+      quellen: 'Vereinfachte Modelle: Basis-Emitter-Strecke als feste Spannung, idealer Operationsverstärker mit Begrenzung 1,5 V unter der Versorgung. Normreihe E12 nach DIN EN 60063.',
+      bild: { titel: 'Animation', label: 'Transistor als Schalter, Ausgangskennlinienfeld und Operationsverstärker', animiert: true,
+        hoehe: function (B) { return B < 600 ? 420 : 380; },
+        hinweis: function (r, e) {
+          if (ansicht === 'schalter') return 'Der Eingang wird alle zwei Sekunden ein- und ausgeschaltet. Der kleine Basisstrom (grün) steuert den großen Laststrom (blau).';
+          if (ansicht === 'kennlinie') return 'Der Arbeitspunkt läuft auf der Lastgeraden vom Sperrbereich (unten rechts) in die Sättigung (oben links). Dazwischen fällt viel Spannung am Transistor ab und er wird heiß.';
+          return SCHALTUNG[e.sch] + ': oben das Eingangssignal, darunter der Ausgang' + (r.ueber ? ' – abgeschnitten, weil übersteuert.' : '.');
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); SIM.t += dt; ({ schalter: zeigeSchalter, kennlinie: zeigeKennlinie, opv: zeigeOpv })[ansicht](cx, B, H, r, e); } }
+    });
+    function lauf(cx, pts, n, ph, farbe, rr) {
+      // Punkte entlang eines Linienzugs bewegen
+      const l = []; let ges = 0; for (let i = 1; i < pts.length; i++) { const d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); l.push(d); ges += d; }
+      for (let k = 0; k < n; k++) { let s = ((k / n + ph) % 1) * ges, i = 0; while (i < l.length - 1 && s > l[i]) { s -= l[i]; i++; } const f = l[i] > 0 ? s / l[i] : 0; kreis(cx, pts[i][0] + (pts[i + 1][0] - pts[i][0]) * f, pts[i][1] + (pts[i + 1][1] - pts[i][1]) * f, rr || 3, farbe); }
+    }
+    function widerstand(cx, x, y, w, h, senk, text) {
+      cx.fillStyle = F('--flaeche'); cx.strokeStyle = F('--text'); cx.lineWidth = 1.5;
+      if (senk) { cx.fillRect(x - h / 2, y, h, w); cx.strokeRect(x - h / 2, y, h, w); if (text) T(cx, text, x + h / 2 + 4, y + w / 2, 'left', 10, true); }
+      else { cx.fillRect(x, y - h / 2, w, h); cx.strokeRect(x, y - h / 2, w, h); if (text) T(cx, text, x + w / 2, y - h / 2 - 8, 'center', 10, true); }
+    }
+    function zeigeSchalter(cx, B, H, r, e) {
+      const an = (SIM.t % 4) < 2, xT = B * 0.6, yT = H * 0.55, xL = xT + 10, yTop = 50, yGnd = H - 50, xE = 24;
+      const L = an && e.UE > e.UBE;
+      // Schienen
+      strecke(cx, xE - 10, yTop, B - 20, yTop, ROT, 2); T(cx, '+' + zz(e.UB, 1) + ' V', B - 20, yTop - 10, 'right', 10, true, ROT);
+      strecke(cx, xE - 10, yGnd, B - 20, yGnd, F('--text'), 2); T(cx, '0 V', B - 20, yGnd + 12, 'right', 10, true, GRAU);
+      // Last als Lampe
+      const yl = yTop + 50; strecke(cx, xL, yTop, xL, yl - 16, F('--text'), 1.5);
+      kreis(cx, xL, yl, 16, L ? 'rgba(224,168,0,.9)' : F('--flaeche'), F('--text'), 1.5);
+      strecke(cx, xL - 11, yl - 11, xL + 11, yl + 11, F('--text'), 1.2); strecke(cx, xL - 11, yl + 11, xL + 11, yl - 11, F('--text'), 1.2);
+      if (L) for (let i = 0; i < 8; i++) { const a = i / 8 * PI2; strecke(cx, xL + Math.cos(a) * 20, yl + Math.sin(a) * 20, xL + Math.cos(a) * 27, yl + Math.sin(a) * 27, GELB, 2); }
+      T(cx, 'Last ' + ohm(e.RL), xL + 32, yl, 'left', 10, true);
+      strecke(cx, xL, yl + 16, xL, yT - 22, F('--text'), 1.5);
+      // Transistor
+      kreis(cx, xT, yT, 24, null, F('--text'), 1.5);
+      strecke(cx, xT - 8, yT - 14, xT - 8, yT + 14, F('--text'), 3);
+      strecke(cx, xT - 8, yT - 6, xL, yT - 22, F('--text'), 1.5); strecke(cx, xT - 8, yT + 6, xL, yT + 22, F('--text'), 1.5);
+      pfeil(cx, xT - 4, yT + 10, xL - 2, yT + 20, F('--text'), 1.2);
+      strecke(cx, xL, yT + 22, xL, yGnd, F('--text'), 1.5);
+      T(cx, 'C', xL + 6, yT - 26, 'left', 9, true, GRAU); T(cx, 'E', xL + 6, yT + 28, 'left', 9, true, GRAU); T(cx, 'B', xT - 30, yT - 10, 'left', 9, true, GRAU);
+      // Basiskreis
+      const xRB = xE + 22, wRB = Math.max(30, Math.min(60, xT - 34 - xRB - 10));
+      strecke(cx, xE, yT, xRB, yT, F('--text'), 1.5); widerstand(cx, xRB, yT, wRB, 14, false, '');
+      T(cx, 'R_B ' + ohm(r.RBn), xRB, yT + 20, 'left', 10, true);
+      strecke(cx, xRB + wRB, yT, xT - 8, yT, F('--text'), 1.5);
+      // Eingangsquelle (Schalter)
+      kreis(cx, xE, yT, 6, an ? GRUEN : F('--flaeche'), F('--text'), 1.5);
+      strecke(cx, xE, yT + 6, xE, yGnd, F('--linie'), 1, [3, 3]);
+      T(cx, (an ? zz(e.UE, 1) + ' V' : '0 V') + ' Eingang', xE - 8, yT - 18, 'left', 10, true, an ? GRUEN : GRAU);
+      if (L) {
+        lauf(cx, [[xL, yTop], [xL, yT - 22], [xT - 8, yT - 6], [xT - 8, yT + 6], [xL, yT + 22], [xL, yGnd]], 12, SIM.t * 0.4, BLAU, 3.5);
+        lauf(cx, [[xE, yT], [xT - 8, yT], [xT - 8, yT + 6], [xL, yT + 22], [xL, yGnd]], 4, SIM.t * 0.4, GRUEN, 2.5);
+      }
+      TW(cx, L ? 'Ein: I_B = ' + amp(r.IBn) + ', I_C = ' + amp(r.IC) + ', Lampe leuchtet' : 'Aus: kein Basisstrom, Transistor sperrt', 10, 14, B - 20, 11, true, L ? GRUEN : GRAU);
+      T(cx, L ? 'U_CE ≈ ' + zz(e.Usat, 2) + ' V' : 'U_CE = ' + zz(e.UB, 1) + ' V', xL + 8, yT + 46, 'left', 10, false, GRAU);
+    }
+    function ic(ib, uce, e) { return e.B * ib * (1 - Math.exp(-uce / 0.12)) * (1 + uce / 80); }
+    function zeigeKennlinie(cx, B, H, r, e) {
+      const ibMax = Math.max(r.IBmin * 1.6, 1e-9), icMax = Math.max(r.IC * 1.25, e.B * ibMax * 1.05), um = e.UB * 1.1, rs = [];
+      for (let k = 1; k <= 5; k++) { const ib = ibMax * k / 5, pts = []; for (let i = 0; i <= 80; i++) { const u = um * i / 80; pts.push([u, ic(ib, u, e) * 1000]); } rs.push({ name: k === 5 ? 'I_B bis ' + amp(ib) : '', farbe: GRAU, punkte: pts, breite: 1 }); }
+      rs.push({ name: 'Lastgerade', farbe: ROT, punkte: [[0, e.UB / e.RL * 1000], [e.UB, 0]], breite: 2 });
+      const f = 0.5 - 0.5 * Math.cos(SIM.t * PI2 / 6), ib = ibMax * f;
+      let lo = 0, hi = e.UB; for (let i = 0; i < 50; i++) { const m = (lo + hi) / 2; if (ic(ib, m, e) > (e.UB - m) / e.RL) hi = m; else lo = m; }
+      const u = (lo + hi) / 2, i0 = (e.UB - u) / e.RL;
+      rs.push({ farbe: BLAU, punkte: [], punkt: [u, i0 * 1000] });
+      const zl = TW(cx, 'Arbeitspunkt: I_B = ' + amp(ib) + ' · U_CE = ' + zz(u, 2) + ' V · I_C = ' + amp(i0) + ' · Verlust ' + zz(u * i0 * 1000, 0) + ' mW', 10, 14, B - 20, 10, true, BLAU, 14);
+      diagramm(cx, 8, 14 + zl * 14, B - 16, H - 22 - zl * 14, rs, { titel: 'Ausgangskennlinienfeld, I_C in mA', xr: [0, um], yr: [0, icMax * 1000], xl: 'U_CE in V' });
+    }
+    function zeigeOpv(cx, B, H, r, e) {
+      const eng = B < 600, sy = eng ? 120 : 130;
+      // Schaltbild
+      const s = 34, xo = Math.max(B / 2, s + 100), yo = 70;
+      cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(xo - s, yo - s); cx.lineTo(xo - s, yo + s); cx.lineTo(xo + s, yo); cx.closePath(); cx.stroke();
+      T(cx, '−', xo - s + 6, yo - 14, 'left', 12, true); T(cx, '+', xo - s + 6, yo + 14, 'left', 12, true);
+      strecke(cx, xo + s, yo, xo + s + 40, yo, F('--text'), 1.5); kreis(cx, xo + s + 40, yo, 3, F('--text')); T(cx, 'U_a', xo + s + 46, yo, 'left', 10, true, LILA);
+      if (e.sch === 'inv' || e.sch === 'nichtinv') {
+        strecke(cx, xo - s, yo - 14, xo - s - 20, yo - 14, F('--text'), 1.5); strecke(cx, xo - s - 20, yo - 14, xo - s - 20, yo - 46, F('--text'), 1.5);
+        widerstand(cx, xo - 22, yo - 46, 44, 12, false, 'R₂ ' + zz(e.R2, 1) + ' kΩ'); strecke(cx, xo - s - 20, yo - 46, xo - 22, yo - 46, F('--text'), 1.5); strecke(cx, xo + 22, yo - 46, xo + s + 20, yo - 46, F('--text'), 1.5); strecke(cx, xo + s + 20, yo - 46, xo + s + 20, yo, F('--text'), 1.5);
+        if (e.sch === 'inv') { widerstand(cx, xo - s - 70, yo - 14, 44, 12, false, ''); T(cx, 'R₁', xo - s - 48, yo + 2, 'center', 9, true); strecke(cx, xo - s - 26, yo - 14, xo - s - 20, yo - 14, F('--text'), 1.5); strecke(cx, xo - s - 70, yo - 14, xo - s - 84, yo - 14, F('--text'), 1.5); T(cx, 'U_e', xo - s - 84, yo - 26, 'left', 10, true, BLAU); strecke(cx, xo - s, yo + 14, xo - s - 14, yo + 14, F('--text'), 1.5); strecke(cx, xo - s - 14, yo + 14, xo - s - 14, yo + 30, F('--text'), 1.5); strecke(cx, xo - s - 20, yo + 30, xo - s - 8, yo + 30, F('--text'), 2); }
+        else { strecke(cx, xo - s, yo + 14, xo - s - 50, yo + 14, F('--text'), 1.5); T(cx, 'U_e', xo - s - 52, yo + 14, 'right', 10, true, BLAU); widerstand(cx, xo - s - 20, yo - 8, 30, 12, true, 'R₁'); strecke(cx, xo - s - 26, yo + 22, xo - s - 14, yo + 22, F('--text'), 2); }
+      } else if (e.sch === 'folger') {
+        strecke(cx, xo - s, yo - 14, xo - s - 14, yo - 14, F('--text'), 1.5); strecke(cx, xo - s - 14, yo - 14, xo - s - 14, yo - 46, F('--text'), 1.5); strecke(cx, xo - s - 14, yo - 46, xo + s + 20, yo - 46, F('--text'), 1.5); strecke(cx, xo + s + 20, yo - 46, xo + s + 20, yo, F('--text'), 1.5);
+        strecke(cx, xo - s, yo + 14, xo - s - 50, yo + 14, F('--text'), 1.5); T(cx, 'U_e', xo - s - 52, yo + 14, 'right', 10, true, BLAU);
+      } else {
+        strecke(cx, xo - s, yo + 14, xo - s - 50, yo + 14, F('--text'), 1.5); T(cx, 'U_e', xo - s - 52, yo + 14, 'right', 10, true, BLAU);
+        strecke(cx, xo - s, yo - 14, xo - s - 50, yo - 14, F('--text'), 1.5); T(cx, 'U_ref', xo - s - 52, yo - 14, 'right', 10, true, ORANGE);
+      }
+      // Signale
+      const tN = 2, ph = SIM.t * 0.5, pe = [], pa = [];
+      for (let i = 0; i <= 200; i++) { const t = tN * i / 200, ue = e.Ue * Math.sin(PI2 * (t + ph)); pe.push([t, ue]); pa.push([t, e.sch === 'komp' ? (ue > e.Uref ? r.usat : -r.usat) : Math.max(-r.usat, Math.min(r.usat, r.V * ue))]); }
+      let am = Math.abs(e.Ue); pa.forEach(function (p) { am = Math.max(am, Math.abs(p[1])); }); if (e.sch === 'komp') am = Math.max(am, Math.abs(e.Uref));
+      const ym = Math.max(am, 0.1) * 1.3;
+      const reihen = [{ name: 'U_e', farbe: BLAU, punkte: pe, breite: 1.5 }, { name: 'U_a', farbe: LILA, punkte: pa, breite: 2.2 }];
+      if (r.usat <= ym) { reihen.push({ name: 'Grenze', farbe: ROT, punkte: [[0, r.usat], [tN, r.usat]], breite: 1, strich: [4, 3] }); reihen.push({ farbe: ROT, punkte: [[0, -r.usat], [tN, -r.usat]], breite: 1, strich: [4, 3] }); }
+      if (e.sch === 'komp') reihen.push({ name: 'U_ref', farbe: ORANGE, punkte: [[0, e.Uref], [tN, e.Uref]], breite: 1.2 });
+      diagramm(cx, 8, sy + 10, B - 16, H - sy - 18, reihen, { titel: SCHALTUNG[e.sch] + (isFinite(r.V) ? ', V = ' + zz(r.V, 2) : ''), xr: [0, tN], yr: [-ym, ym], xl: 'Perioden' });
+    }
+    ansicht = (ansichten(seite, [['schalter', 'Schalter'], ['kennlinie', 'Kennlinienfeld'], ['opv', 'Operationsverstärker']], 'schalter', function (a) { ansicht = a; SIM.t = 0; }))();
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>
