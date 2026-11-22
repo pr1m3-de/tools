@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = 'f44da2c5e1';
+const STAND = 'a95ca0bb88';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -76,6 +76,10 @@ const DATEIEN = [
   "physik/radioaktivitaet.html",
   "mechanik/anhalteweg.html",
   "mechanik/wurf.html",
+  "physik/waermeuebertragung.html",
+  "physik/schwingungen-wellen.html",
+  "physik/druck-auftrieb.html",
+  "mechanik/energie-impuls.html",
   "elektro/halbleiter.html",
   "gebaeudeautomation/knx-planung.html",
   "steuerung/sps.html",
@@ -209,11 +213,15 @@ const DATEIEN = [
   "aufgabenblaetter/it/videoformate/01-datenrate-codecs-gop.md",
   "aufgabenblaetter/liste.json",
   "aufgabenblaetter/mechanik/anhalteweg/01-reaktion-bremsen.md",
+  "aufgabenblaetter/mechanik/energie-impuls/01-stoss-energieerhaltung.md",
   "aufgabenblaetter/mechanik/wurf/01-waagerechter-schraeger-wurf.md",
   "aufgabenblaetter/physik/aggregatzustaende/01-teilchenmodell-waerme.md",
   "aufgabenblaetter/physik/astronomie/01-erdjahr-kepler.md",
+  "aufgabenblaetter/physik/druck-auftrieb/01-hydraulik-schweredruck-auftrieb.md",
   "aufgabenblaetter/physik/optik/01-reflexion-brechung.md",
   "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",
+  "aufgabenblaetter/physik/schwingungen-wellen/01-pendel-wellen-doppler.md",
+  "aufgabenblaetter/physik/waermeuebertragung/01-leitung-konvektion-strahlung.md",
   "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",
   "aufgabenblaetter/steuerung/sps/01-sps-grundlagen.md",
   "aufgabenblaetter/steuerung/sps/02-st-programmieren.md"

@@ -268,6 +268,10 @@
         <li><a href="it/bildformate.html">Bildformate: JPEG, PNG, WebP, AVIF, GIF im Vergleich</a> – JPEG, PNG, WebP, AVIF, GIF und SVG im Vergleich: Dateigröße, Farbtiefe, Druckgröße und welches Format zu welchem Motiv passt. Bildlabor mit echter Codierung im Browser, Lupe, Fehlerbild und PSNR, dazu JPEG-Block, Farbtiefe und Raster gegen Vektor.</li>
         <li><a href="it/videoformate.html">Videoformate: H.264, H.265, VP9, AV1 im Vergleich</a> – H.264, H.265, VP9 und AV1: Datenrate, Dateigröße und Datenvolumen für jede Auflösung und Bildrate. Videolabor mit echter Bewegungsschätzung, I- und P-Bildern und Paketverlust, dazu Bildgruppen, Auflösungen und Farbunterabtastung als Animation.</li>
         <li><a href="it/kompression.html">Datenkompression: Entropie, Huffman, LZ77, ZIP</a> – Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.</li>
+        <li><a href="physik/schwingungen-wellen.html">Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler</a> – Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und Wellenlänge in verschiedenen Stoffen und der Doppler-Effekt bis zum Überschallknall – mit Animationen und Lernaufgaben.</li>
+        <li><a href="mechanik/energie-impuls.html">Energie und Impuls: Stoß und Energieerhaltung</a> – Gerader Stoß zweier Körper – elastisch, unelastisch oder dazwischen – mit Impuls- und Energiebilanz, Energieerhaltung auf der schiefen Ebene mit Reibung und ein Kugelstoßpendel als Animation.</li>
+        <li><a href="physik/druck-auftrieb.html">Druck und Auftrieb: Hydraulik, Schweredruck, Archimedes</a> – Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Wasser, Öl und anderen Flüssigkeiten, Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt ein Körper? Mit Animationen und Lernaufgaben.</li>
+        <li><a href="physik/waermeuebertragung.html">Wärmeübertragung: Leitung, Konvektion, Strahlung</a> – Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.</li>
       </ul>
     </section>
   </noscript>
@@ -1395,6 +1399,41 @@
         themen: ['Kompression', 'Datenkompression', 'verlustfrei', 'Entropie', 'Informationsgehalt', 'Huffman', 'Huffman-Baum', 'LZ77', 'Lauflängencodierung', 'RLE', 'Deflate', 'ZIP', 'gzip', '7z', 'Zstandard', 'Brotli', 'Kompressionsfaktor', 'Redundanz'],
         text: 'Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.',
         tex: 'H = -\\sum_i p_i \\log_2 p_i'
+      },
+      {
+        titel: 'Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler',
+        pfad: 'physik/schwingungen-wellen.html',
+        bereich: 'Physik',
+        themen: ['Schwingung', 'Federpendel', 'Fadenpendel', 'Periodendauer', 'Frequenz', 'Amplitude', 'Dämpfung', 'Resonanz', 'Eigenfrequenz', 'Welle', 'Wellenlänge', 'Querwelle', 'Längswelle', 'Schall', 'Schallgeschwindigkeit', 'Doppler-Effekt', 'Machzahl', 'Überschall'],
+        text: 'Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und Wellenlänge in verschiedenen Stoffen und der Doppler-Effekt bis zum Überschallknall – mit Animationen und Lernaufgaben.',
+        tex: 'T = 2\\pi \\sqrt{\\frac{m}{D}}'
+      },
+      {
+        titel: 'Energie und Impuls: Stoß und Energieerhaltung',
+        pfad: 'mechanik/energie-impuls.html',
+        bereich: 'Mechanik',
+        auchIn: ['Physik'],
+        themen: ['Energie', 'Impuls', 'Impulserhaltung', 'Energieerhaltung', 'Stoß', 'elastischer Stoß', 'unelastischer Stoß', 'Stoßzahl', 'Bewegungsenergie', 'Lageenergie', 'kinetische Energie', 'potentielle Energie', 'schiefe Ebene', 'Reibungsarbeit', 'Kugelstoßpendel'],
+        text: 'Gerader Stoß zweier Körper – elastisch, unelastisch oder dazwischen – mit Impuls- und Energiebilanz, Energieerhaltung auf der schiefen Ebene mit Reibung und ein Kugelstoßpendel als Animation.',
+        tex: 'm_1 v_1 + m_2 v_2 = m_1 v_1\' + m_2 v_2\''
+      },
+      {
+        titel: 'Druck und Auftrieb: Hydraulik, Schweredruck, Archimedes',
+        pfad: 'physik/druck-auftrieb.html',
+        bereich: 'Physik',
+        auchIn: ['Mechanik'],
+        themen: ['Druck', 'hydraulische Presse', 'Hydraulik', 'Kolben', 'Kraftübersetzung', 'Schweredruck', 'Wassertiefe', 'Luftdruck', 'Auftrieb', 'Archimedes', 'Dichte', 'Schwimmen', 'Sinken', 'Schweben'],
+        text: 'Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Wasser, Öl und anderen Flüssigkeiten, Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt ein Körper? Mit Animationen und Lernaufgaben.',
+        tex: 'F_A = \\rho_\\text{Fl} \\cdot g \\cdot V'
+      },
+      {
+        titel: 'Wärmeübertragung: Leitung, Konvektion, Strahlung',
+        pfad: 'physik/waermeuebertragung.html',
+        bereich: 'Physik',
+        auchIn: ['Heizungstechnik'],
+        themen: ['Wärmeübertragung', 'Wärmeleitung', 'Wärmeleitfähigkeit', 'Lambda-Wert', 'Konvektion', 'Wärmeübergang', 'Wärmestrahlung', 'Stefan-Boltzmann', 'Emissionsgrad', 'Wiensches Gesetz', 'Infrarot', 'U-Wert', 'Wärmestrom'],
+        text: 'Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.',
+        tex: '\\Phi = \\frac{\\lambda \\cdot A \\cdot \\Delta\\vartheta}{d}'
       }
     ];
 

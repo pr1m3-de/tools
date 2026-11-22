@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler – Formeln &amp; Rechner</title>
+  <meta name="description" content="Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und Wellenlänge in verschiedenen Stoffen und der Doppler-Effekt bis zum Überschallknall – mit Animationen und Lernaufgaben.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/schwingungen-wellen.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler">
+  <meta property="og:description" content="Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und Wellenlänge in verschiedenen Stoffen und der Doppler-Effekt bis zum Überschallknall – mit Animationen und Lernaufgaben.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/schwingungen-wellen.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler">
+  <meta name="twitter:description" content="Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und Wellenlänge in verschiedenen Stoffen und der Doppler-Effekt bis zum Überschallknall – mit Animationen und Lernaufgaben.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/schwingungen-wellen.html#seite","name":"Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler","url":"https://tools.pr1m3.de/physik/schwingungen-wellen.html","inLanguage":"de","description":"Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und Wellenlänge in verschiedenen Stoffen und der Doppler-Effekt bis zum Überschallknall – mit Animationen und Lernaufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/schwingungen-wellen.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/schwingungen-wellen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler","item":"https://tools.pr1m3.de/physik/schwingungen-wellen.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/schwingungen-wellen.html#fragen","mainEntity":[{"@type":"Question","name":"Wie lang muss ein Pendel für eine Sekunde Halbschwingung sein?","acceptedAnswer":{"@type":"Answer","text":"Für eine Periodendauer von 2 s gilt l = g · T² / (4π²) = 9,81 · 4 / 39,48 m ≈ 0,994 m. Dieses „Sekundenpendel“ steckt in vielen Standuhren."}},{"@type":"Question","name":"Warum hängt die Schallgeschwindigkeit von der Temperatur ab?","acceptedAnswer":{"@type":"Answer","text":"In warmer Luft bewegen sich die Moleküle schneller und geben Stöße schneller weiter. Näherungsweise gilt c ≈ 331 m/s + 0,6 m/s je °C, bei 20 °C also etwa 343 m/s."}},{"@type":"Question","name":"Ändert sich beim Doppler-Effekt die Lautstärke oder die Tonhöhe?","acceptedAnswer":{"@type":"Answer","text":"Die Tonhöhe. Die Frequenz, mit der die Wellenberge beim Hörer ankommen, ändert sich. Die Lautstärke ändert sich zusätzlich mit dem Abstand, das ist aber ein anderer Effekt."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/schwingungen-wellen.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Hin und her, auf und ab</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Harmonische Schwingung</h3><p>Eine rücktreibende Kraft, die mit der Auslenkung wächst (Feder: F = −D·x), erzeugt eine Sinusschwingung. Die Periodendauer hängt nur von Masse und Federhärte ab, nicht von der Auslenkung. Beim Fadenpendel zählen nur Länge und Fallbeschleunigung, solange die Auslenkung klein bleibt (unter etwa 15°).</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Dämpfung und Resonanz</h3><p>Reibung nimmt der Schwingung Energie, die Ausschläge klingen ab. Wird ein Schwinger periodisch angestoßen, schwingt er am stärksten, wenn die Anregung seine Eigenfrequenz trifft. Bei schwacher Dämpfung kann die Resonanz Bauteile zerstören – deshalb haben Maschinen, Brücken und Autos Schwingungsdämpfer.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Wellen</h3><p>Eine Welle transportiert Energie, aber kein Material: Jedes Teilchen schwingt nur um seinen Platz und stößt das nächste an. Schwingen die Teilchen quer zur Ausbreitung, ist es eine Querwelle (Seil, Wasser); längs dazu eine Längswelle (Schall). Es gilt immer c = λ · f.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Doppler-Effekt</h3><p>Nähert sich eine Schallquelle, werden die Wellenberge vor ihr zusammengeschoben: Der Ton klingt höher. Entfernt sie sich, klingt er tiefer – wie beim Martinshorn. Erreicht die Quelle die Schallgeschwindigkeit, laufen alle Wellenfronten zusammen: Es entsteht der Überschallknall.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie lang muss ein Pendel für eine Sekunde Halbschwingung sein?</summary><p>Für eine Periodendauer von 2 s gilt l = g · T² / (4π²) = 9,81 · 4 / 39,48 m ≈ 0,994 m. Dieses „Sekundenpendel“ steckt in vielen Standuhren.</p></details>
+        <details><summary>Warum hängt die Schallgeschwindigkeit von der Temperatur ab?</summary><p>In warmer Luft bewegen sich die Moleküle schneller und geben Stöße schneller weiter. Näherungsweise gilt c ≈ 331 m/s + 0,6 m/s je °C, bei 20 °C also etwa 343 m/s.</p></details>
+        <details><summary>Ändert sich beim Doppler-Effekt die Lautstärke oder die Tonhöhe?</summary><p>Die Tonhöhe. Die Frequenz, mit der die Wellenberge beim Hörer ankommen, ändert sich. Die Lautstärke ändert sich zusätzlich mit dem Abstand, das ist aber ein anderer Effekt.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? (Math.abs(sp - Math.round(sp)) > 1e-9 ? 1 : 0) : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const MEDIEN = { luft: ['Luft', 0], helium: ['Helium (20 °C)', 1007], wasser: ['Wasser (20 °C)', 1484], holz: ['Holz, längs zur Faser', 4000], beton: ['Beton', 3800], stahl: ['Stahl', 5920] };
+    let ansicht = 'schwinger', takt = uhr();
+    const SIM = { t: 0, wellen: [], tE: 0 };
+    function rechne(e) {
+      const r = {};
+      r.T = e.art === 'faden' ? PI2 * Math.sqrt(e.l / e.g) : PI2 * Math.sqrt(e.m / e.D);
+      r.f = 1 / r.T; r.w0 = PI2 / r.T; r.A = e.A / 100;
+      r.DL = e.d / r.w0; r.aperiodisch = e.d >= r.w0;
+      r.wd = r.aperiodisch ? 0 : Math.sqrt(r.w0 * r.w0 - e.d * e.d); r.Td = r.wd > 0 ? PI2 / r.wd : Infinity;
+      r.vmax = r.A * r.w0; r.amax = r.A * r.w0 * r.w0;
+      r.phi = e.art === 'faden' ? r.A / e.l : 0;
+      r.E = e.art === 'faden' ? e.m * e.g * e.l * (1 - Math.cos(Math.min(r.phi, Math.PI))) : 0.5 * e.D * r.A * r.A;
+      r.th = e.d > 0 ? Math.LN2 / e.d : Infinity;
+      r.vMax = r.DL < Math.SQRT1_2 && r.DL > 0 ? 1 / (2 * r.DL * Math.sqrt(1 - r.DL * r.DL)) : (r.DL > 0 ? 1 : Infinity);
+      r.c = e.medium === 'luft' ? 331.3 * Math.sqrt(1 + e.temp / 273.15) : (MEDIEN[e.medium] || MEDIEN.luft)[1];
+      r.lam = r.c / e.fs;
+      r.ueber = e.vQ >= r.c;
+      r.fVor = r.ueber ? NaN : e.fs * (r.c + e.vB) / (r.c - e.vQ);
+      r.fWeg = e.fs * Math.max(0, r.c - e.vB) / (r.c + e.vQ);
+      r.mach = e.vQ / r.c;
+      return r;
+    }
+    function hz(f) { return f >= 1000 ? zz(f / 1000, 2) + ' kHz' : zz(f, f < 10 ? 2 : 1) + ' Hz'; }
+    function laenge(m) { return m >= 1 ? zz(m, 2) + ' m' : m >= 0.01 ? zz(m * 100, 1) + ' cm' : zz(m * 1000, 2) + ' mm'; }
+    const seite = R.seite({
+      titel: 'Schwingungen und Wellen',
+      einleitung: 'Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Wellenlänge und Schallgeschwindigkeit in verschiedenen Stoffen und der Doppler-Effekt einer bewegten Schallquelle.',
+      hilfe: 'Beispiel: 0,5 kg an einer Feder mit 20 N/m, 5 cm ausgelenkt, schwach gedämpft. Dazu ein Ton mit 440 Hz von einem Auto mit 20 m/s.',
+      gruppen: [
+        { titel: 'Schwinger', farbe: BLAU, felder: [
+          { k: 'art', name: 'Art', wahl: [['feder', 'Federpendel'], ['faden', 'Fadenpendel']] },
+          { k: 'm', tex: 'm', name: 'Masse', e: 'kg', min: 0.001, max: 10000 },
+          { k: 'D', tex: 'D', name: 'Federkonstante', e: 'N/m', min: 0.01, max: 1e7, wenn: function (e) { return e.art !== 'faden'; } },
+          { k: 'l', tex: 'l', name: 'Pendellänge', e: 'm', min: 0.01, max: 1000, wenn: function (e) { return e.art === 'faden'; } },
+          { k: 'g', tex: 'g', name: 'Fallbeschleunigung', e: 'm/s²', min: 1, max: 30, wenn: function (e) { return e.art === 'faden'; } },
+          { k: 'A', tex: '\\hat{x}', name: 'Auslenkung (Amplitude, beim Fadenpendel Bogen)', e: 'cm', min: 0.1, max: 1000 },
+          { k: 'd', tex: '\\delta', name: 'Abklingkonstante (0 = ungedämpft)', e: '1/s', min: 0, max: 1000 }
+        ] },
+        { titel: 'Welle', farbe: GRUEN, felder: [
+          { k: 'medium', name: 'Stoff', wahl: Object.keys(MEDIEN).map(function (k) { return [k, MEDIEN[k][0]]; }) },
+          { k: 'temp', tex: '\\vartheta', name: 'Lufttemperatur', e: '°C', min: -50, max: 60, wenn: function (e) { return e.medium === 'luft'; } },
+          { k: 'fs', tex: 'f', name: 'Frequenz des Tons', e: 'Hz', min: 0.1, max: 1e6 }
+        ] },
+        { titel: 'Doppler-Effekt', farbe: ORANGE, felder: [
+          { k: 'vQ', tex: 'v_Q', name: 'Geschwindigkeit der Quelle', e: 'm/s', min: 0, max: 2000 },
+          { k: 'vB', tex: 'v_B', name: 'Geschwindigkeit des Hörers', e: 'm/s', min: 0, max: 2000 }
+        ] }
+      ],
+      beispiel: { art: 'feder', m: 0.5, D: 20, l: 1, g: 9.81, A: 5, d: 0.15, medium: 'luft', temp: 20, fs: 440, vQ: 20, vB: 0 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.aperiodisch) H.meldung('Die Dämpfung ist so stark (δ ≥ ω₀), dass der Schwinger nicht mehr schwingt, sondern nur langsam in die Ruhelage kriecht (Kriechfall).', true);
+        if (e.art === 'faden' && r.phi > 15 * GRAD) H.meldung('Die Auslenkung entspricht ' + zz(r.phi / GRAD, 0) + '°. Über etwa 15° wird die Formel für die Periodendauer ungenau: Das echte Pendel schwingt etwas langsamer.', true);
+        if (r.ueber) H.meldung('Die Quelle ist so schnell wie der Schall oder schneller (Mach ' + zz(r.mach, 2) + '). Vor ihr kommt kein Ton an; die Wellenfronten bilden einen Kegel, den der Hörer als Überschallknall wahrnimmt.', true);
+        H.kacheln([
+          [zz(r.T, 3) + ' s', 'Periodendauer T', BLAU],
+          [hz(r.f), 'Eigenfrequenz f₀', BLAU],
+          [zz(r.vmax, 3) + ' m/s', 'größte Geschwindigkeit', GRUEN],
+          [(r.E < 0.01 ? zz(r.E * 1000, 2) + ' mJ' : zz(r.E, 3) + ' J'), 'Schwingungsenergie', ORANGE],
+          [laenge(r.lam), 'Wellenlänge λ in ' + (MEDIEN[e.medium] || MEDIEN.luft)[0], GRUEN],
+          [r.ueber ? '–' : hz(r.fVor), 'gehörter Ton beim Annähern', ROT],
+          [hz(r.fWeg), 'gehörter Ton beim Entfernen', LILA]
+        ]);
+        H.tabelle('Weitere Werte', ['Größe', 'Wert'], [
+          ['Kreisfrequenz ω₀', zz(r.w0, 3) + ' 1/s'],
+          ['größte Beschleunigung', zz(r.amax, 3) + ' m/s² (' + zz(r.amax / 9.81, 2) + ' g)'],
+          ['Dämpfungsgrad D = δ/ω₀', zz(r.DL, 3)],
+          ['Amplitude halbiert nach', isFinite(r.th) ? zz(r.th, 2) + ' s (' + zz(r.th / r.T, 1) + ' Schwingungen)' : 'nie (ungedämpft)'],
+          ['größte Überhöhung bei Resonanz', isFinite(r.vMax) ? zz(r.vMax, 1) + '-fach' : 'unbegrenzt (ungedämpft)'],
+          ['Schallgeschwindigkeit c', zz(r.c, 1) + ' m/s (' + zz(r.c * 3.6, 0) + ' km/h)'],
+          ['Periodendauer des Tons', r.fs > 0 ? zz(1000 / e.fs, 3) + ' ms' : '–'],
+          ['Machzahl der Quelle', zz(r.mach, 3)]
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        const w = [];
+        if (e.art === 'faden') w.push(['Periodendauer', 'T = 2\\pi \\sqrt{\\frac{l}{g}} = 2\\pi \\sqrt{\\frac{' + tz(e.l, 3) + '\\,\\text{m}}{' + tz(e.g, 2) + '\\,\\text{m/s}^2}} = ' + E(tz(r.T, 3) + '\\,\\text{s}')]);
+        else w.push(['Periodendauer', 'T = 2\\pi \\sqrt{\\frac{m}{D}} = 2\\pi \\sqrt{\\frac{' + tz(e.m, 3) + '\\,\\text{kg}}{' + tz(e.D, 3) + '\\,\\text{N/m}}} = ' + E(tz(r.T, 3) + '\\,\\text{s}')]);
+        w.push(['Frequenz', 'f_0 = \\frac{1}{T} = \\frac{1}{' + tz(r.T, 3) + '\\,\\text{s}} = ' + E(tz(r.f, 3) + '\\,\\text{Hz}')]);
+        w.push(['Höchstgeschwindigkeit', 'v_\\text{max} = \\hat{x} \\cdot \\omega_0 = ' + tz(r.A, 3) + '\\,\\text{m} \\cdot ' + tz(r.w0, 3) + '\\,\\tfrac{1}{\\text{s}} = ' + E(tz(r.vmax, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}')]);
+        if (e.art !== 'faden') w.push(['Energie', 'E = \\tfrac{1}{2} D \\hat{x}^2 = \\tfrac{1}{2} \\cdot ' + tz(e.D, 3) + ' \\cdot ' + tz(r.A, 3) + '^2\\,\\text{J} = ' + E(tz(r.E, 4) + '\\,\\text{J}')]);
+        if (e.temp !== undefined && e.medium === 'luft') w.push(['Schallgeschwindigkeit', 'c = 331{,}3\\,\\tfrac{\\text{m}}{\\text{s}} \\cdot \\sqrt{1 + \\frac{' + tz(e.temp, 1) + '}{273{,}15}} = ' + E(tz(r.c, 1) + '\\,\\tfrac{\\text{m}}{\\text{s}}')]);
+        w.push(['Wellenlänge', '\\lambda = \\frac{c}{f} = \\frac{' + tz(r.c, 1) + '\\,\\text{m/s}}{' + tz(e.fs, 2) + '\\,\\text{Hz}} = ' + E(tz(r.lam, 4) + '\\,\\text{m}')]);
+        if (!r.ueber) w.push(['Doppler (nähern)', "f' = f \\cdot \\frac{c + v_B}{c - v_Q} = " + tz(e.fs, 2) + ' \\cdot \\frac{' + tz(r.c, 1) + ' + ' + tz(e.vB, 1) + '}{' + tz(r.c, 1) + ' - ' + tz(e.vQ, 1) + '}\\,\\text{Hz} = ' + E(tz(r.fVor, 1) + '\\,\\text{Hz}')]);
+        w.push(['Doppler (entfernen)', "f' = f \\cdot \\frac{c - v_B}{c + v_Q} = " + E(tz(r.fWeg, 1) + '\\,\\text{Hz}')]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Federpendel', hilfe: 'Periodendauer, Masse und Federkonstante – zwei bekannt, die dritte wird berechnet.',
+          felder: [{ k: 'T', tex: 'T', name: 'Periodendauer', e: 's', min: 0.01, max: 100 }, { k: 'm', tex: 'm', name: 'Masse', e: 'kg', min: 0.01, max: 1000 }, { k: 'D', tex: 'D', name: 'Federkonstante', e: 'N/m', min: 0.1, max: 1e5 }],
+          beispiel: { m: 0.5, D: 20 },
+          gleichungen: [{ name: 'Federpendel', v: ['T', 'm', 'D'], f: function (q) { return [q.T, PI2 * Math.sqrt(q.m / q.D)]; },
+            loese: { T: function (q) { return PI2 * Math.sqrt(q.m / q.D); }, m: function (q) { return q.D * q.T * q.T / (4 * Math.PI * Math.PI); }, D: function (q) { return 4 * Math.PI * Math.PI * q.m / (q.T * q.T); } },
+            weg: function (k, q) { return k === 'T' ? 'T = 2\\pi\\sqrt{\\frac{m}{D}} = 2\\pi\\sqrt{\\frac{' + tz(q.m, 3) + '}{' + tz(q.D, 3) + '}}\\,\\text{s} = ' + E(tz(q.T, 3) + '\\,\\text{s}') : k === 'm' ? 'm = \\frac{D\\,T^2}{4\\pi^2} = \\frac{' + tz(q.D, 3) + ' \\cdot ' + tz(q.T, 3) + '^2}{4\\pi^2}\\,\\text{kg} = ' + E(tz(q.m, 3) + '\\,\\text{kg}') : 'D = \\frac{4\\pi^2 m}{T^2} = \\frac{4\\pi^2 \\cdot ' + tz(q.m, 3) + '}{' + tz(q.T, 3) + '^2}\\,\\tfrac{\\text{N}}{\\text{m}} = ' + E(tz(q.D, 3) + '\\,\\tfrac{\\text{N}}{\\text{m}}'); } }] },
+        { titel: 'Fadenpendel', hilfe: 'Gilt für kleine Auslenkungen. Erde: g = 9,81 m/s².',
+          felder: [{ k: 'T', tex: 'T', name: 'Periodendauer', e: 's', min: 0.1, max: 100 }, { k: 'l', tex: 'l', name: 'Pendellänge', e: 'm', min: 0.01, max: 500 }, { k: 'g', tex: 'g', name: 'Fallbeschleunigung', e: 'm/s²', min: 1, max: 30, fest: true }],
+          beispiel: { l: 1, g: 9.81 },
+          gleichungen: [{ name: 'Fadenpendel', v: ['T', 'l', 'g'], f: function (q) { return [q.T, PI2 * Math.sqrt(q.l / q.g)]; },
+            loese: { T: function (q) { return PI2 * Math.sqrt(q.l / q.g); }, l: function (q) { return q.g * q.T * q.T / (4 * Math.PI * Math.PI); }, g: function (q) { return 4 * Math.PI * Math.PI * q.l / (q.T * q.T); } },
+            weg: function (k, q) { return k === 'T' ? 'T = 2\\pi\\sqrt{\\frac{l}{g}} = 2\\pi\\sqrt{\\frac{' + tz(q.l, 3) + '}{' + tz(q.g, 2) + '}}\\,\\text{s} = ' + E(tz(q.T, 3) + '\\,\\text{s}') : k === 'l' ? 'l = \\frac{g\\,T^2}{4\\pi^2} = \\frac{' + tz(q.g, 2) + ' \\cdot ' + tz(q.T, 3) + '^2}{4\\pi^2}\\,\\text{m} = ' + E(tz(q.l, 3) + '\\,\\text{m}') : 'g = \\frac{4\\pi^2 l}{T^2} = ' + E(tz(q.g, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}'); } }] },
+        { titel: 'Wellengleichung', hilfe: 'Ausbreitungsgeschwindigkeit, Wellenlänge und Frequenz. Schall in Luft bei 20 °C: 343 m/s.',
+          felder: [{ k: 'c', tex: 'c', name: 'Ausbreitungsgeschwindigkeit', e: 'm/s', min: 0.1, max: 1e4 }, { k: 'lam', tex: '\\lambda', name: 'Wellenlänge', e: 'm', min: 0.0001, max: 1e4 }, { k: 'f', tex: 'f', name: 'Frequenz', e: 'Hz', min: 0.1, max: 1e6 }],
+          beispiel: { c: 343, f: 440 },
+          gleichungen: [{ name: 'Welle', v: ['c', 'lam', 'f'], f: function (q) { return [q.c, q.lam * q.f]; },
+            loese: { c: function (q) { return q.lam * q.f; }, lam: function (q) { return q.c / q.f; }, f: function (q) { return q.c / q.lam; } },
+            weg: function (k, q) { return k === 'c' ? 'c = \\lambda \\cdot f = ' + tz(q.lam, 4) + '\\,\\text{m} \\cdot ' + tz(q.f, 2) + '\\,\\text{Hz} = ' + E(tz(q.c, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'lam' ? '\\lambda = \\frac{c}{f} = \\frac{' + tz(q.c, 2) + '}{' + tz(q.f, 2) + '}\\,\\text{m} = ' + E(tz(q.lam, 4) + '\\,\\text{m}') : 'f = \\frac{c}{\\lambda} = \\frac{' + tz(q.c, 2) + '}{' + tz(q.lam, 4) + '}\\,\\text{Hz} = ' + E(tz(q.f, 2) + '\\,\\text{Hz}'); } }] },
+        { titel: 'Doppler: bewegte Quelle, die sich nähert', hilfe: 'Der Hörer steht still. f′ ist der gehörte Ton.',
+          felder: [{ k: 'fh', tex: "f'", name: 'gehörte Frequenz', e: 'Hz', min: 1, max: 1e5 }, { k: 'f', tex: 'f', name: 'Frequenz der Quelle', e: 'Hz', min: 1, max: 1e5 }, { k: 'v', tex: 'v_Q', name: 'Geschwindigkeit der Quelle', e: 'm/s', min: 0.1, max: 300 }, { k: 'c', tex: 'c', name: 'Schallgeschwindigkeit', e: 'm/s', min: 300, max: 400, fest: true }],
+          beispiel: { f: 440, v: 20, c: 343 },
+          gleichungen: [{ name: 'Doppler', v: ['fh', 'f', 'v', 'c'], f: function (q) { return [q.fh, q.f * q.c / (q.c - q.v)]; },
+            loese: { fh: function (q) { return q.f * q.c / (q.c - q.v); }, f: function (q) { return q.fh * (q.c - q.v) / q.c; }, v: function (q) { return q.c * (1 - q.f / q.fh); }, c: function (q) { return q.fh * q.v / (q.fh - q.f); } },
+            weg: function (k, q) { return k === 'fh' ? "f' = f \\cdot \\frac{c}{c - v_Q} = " + tz(q.f, 1) + ' \\cdot \\frac{' + tz(q.c, 1) + '}{' + tz(q.c, 1) + ' - ' + tz(q.v, 1) + '}\\,\\text{Hz} = ' + E(tz(q.fh, 1) + '\\,\\text{Hz}') : k === 'f' ? "f = f' \\cdot \\frac{c - v_Q}{c} = " + E(tz(q.f, 1) + '\\,\\text{Hz}') : k === 'v' ? "v_Q = c \\cdot \\left(1 - \\frac{f}{f'}\\right) = " + tz(q.c, 1) + ' \\cdot \\left(1 - \\frac{' + tz(q.f, 1) + '}{' + tz(q.fh, 1) + '}\\right) = ' + E(tz(q.v, 2) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : "c = \\frac{f' \\, v_Q}{f' - f} = " + E(tz(q.c, 1) + '\\,\\tfrac{\\text{m}}{\\text{s}}'); } }] }
+      ],
+      sammlung: [
+        ['Federpendel', 'T = 2\\pi \\sqrt{\\frac{m}{D}}', 'unabhängig von der Auslenkung'],
+        ['Fadenpendel', 'T = 2\\pi \\sqrt{\\frac{l}{g}}', 'für kleine Auslenkungen, unabhängig von der Masse'],
+        ['Frequenz und Kreisfrequenz', 'f = \\frac{1}{T}, \\quad \\omega = 2\\pi f', ''],
+        ['Auslenkung', 'x(t) = \\hat{x} \\cdot e^{-\\delta t} \\cos(\\omega_d t)', 'gedämpft mit der Abklingkonstante δ'],
+        ['Gedämpfte Kreisfrequenz', '\\omega_d = \\sqrt{\\omega_0^2 - \\delta^2}', ''],
+        ['Höchstgeschwindigkeit', 'v_\\text{max} = \\hat{x} \\cdot \\omega_0', 'beim Durchgang durch die Ruhelage'],
+        ['Schwingungsenergie', 'E = \\tfrac{1}{2} D \\hat{x}^2', 'Federpendel'],
+        ['Resonanzkurve', '\\frac{\\hat{x}}{\\hat{x}_0} = \\frac{1}{\\sqrt{(1-\\eta^2)^2 + (2 D \\eta)^2}}', 'η = Anregungs- durch Eigenfrequenz, D = δ/ω₀'],
+        ['Wellengleichung', 'c = \\lambda \\cdot f', ''],
+        ['Schall in Luft', 'c \\approx 331{,}3\\,\\tfrac{\\text{m}}{\\text{s}} \\cdot \\sqrt{1 + \\frac{\\vartheta}{273{,}15\\,°\\text{C}}}', 'rund 343 m/s bei 20 °C'],
+        ['Doppler-Effekt', "f' = f \\cdot \\frac{c \\pm v_B}{c \\mp v_Q}", 'obere Zeichen: Annähern'],
+        ['Machzahl', 'Ma = \\frac{v_Q}{c}', 'ab 1 Überschall']
+      ],
+      quellen: 'Lineare Federn und kleine Pendelausschläge, geschwindigkeitsproportionale Dämpfung. Schallgeschwindigkeiten in festen Stoffen sind Richtwerte für Längswellen.',
+      bild: { titel: 'Animation', label: 'Federpendel, Resonanz, Quer- und Längswelle und Doppler-Effekt', animiert: true,
+        hoehe: function (B) { return B < 600 ? 470 : 400; },
+        hinweis: function (r, e) {
+          if (ansicht === 'schwinger') return 'Oben bewegt sich der Schwinger, darunter das Weg-Zeit-Diagramm. ' + (r.T < 0.8 || r.T > 4 ? 'Zeit gedehnt bzw. gerafft, damit eine Schwingung ' + zz(Math.max(0.8, Math.min(4, r.T)), 1) + ' s dauert.' : 'Echtzeit.');
+          if (ansicht === 'resonanz') return 'Der Aufhängepunkt wird langsam immer schneller auf und ab bewegt. Trifft die Anregung die Eigenfrequenz, schwingt die Masse am stärksten. Dämpfungsgrad D = ' + zz(Math.max(r.DL, 0.02), 2) + '.';
+          if (ansicht === 'welle') return 'Oben eine Querwelle (Seil), unten eine Längswelle (Schall). Die markierten Teilchen bleiben an ihrem Platz und schwingen nur. Stark verlangsamt.';
+          return 'Die Quelle sendet in gleichen Abständen Wellenberge. Vor ihr liegen sie dichter (höherer Ton), hinter ihr weiter auseinander (tieferer Ton). Machzahl ' + zz(r.mach, 2) + '.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); SIM.t += dt; ({ schwinger: zeigeSchwinger, resonanz: zeigeResonanz, welle: zeigeWelle, doppler: zeigeDoppler })[ansicht](cx, B, H, r, e, dt); } }
+    });
+    function feder(cx, x, y0, y1, breite, farbe) {
+      const n = 14, pts = [[x, y0]], l = y1 - y0;
+      pts.push([x, y0 + l * 0.08]);
+      for (let i = 0; i < n; i++) pts.push([x + (i % 2 ? breite : -breite), y0 + l * (0.12 + 0.76 * (i + 0.5) / n)]);
+      pts.push([x, y0 + l * 0.92]); pts.push([x, y1]);
+      zug(cx, pts, farbe, 1.8);
+    }
+    function decke(cx, x, y, b) { strecke(cx, x - b, y, x + b, y, F('--text'), 2); for (let i = -b; i < b; i += 8) strecke(cx, x + i, y, x + i + 6, y - 6, GRAU, 1); }
+    function zeigeSchwinger(cx, B, H, r, e) {
+      const eng = B < 600, Tz = Math.max(0.8, Math.min(4, r.T)), k = r.T / Tz, tEnde = Math.min(14 * r.T, Math.max(6 * r.T, e.d > 0 ? 4.6 / e.d : 0), 40 * r.T);
+      const tr = (SIM.t * k) % (tEnde * 1.05);
+      const om = r.aperiodisch ? 0 : r.wd, d = e.d;
+      const xs = function (t) { if (r.aperiodisch) { const s = Math.sqrt(Math.max(0, d * d - r.w0 * r.w0)), l1 = -d + s, l2 = -d - s; return Math.abs(l1 - l2) < 1e-9 ? Math.exp(-d * t) * (1 + d * t) : (l2 * Math.exp(l1 * t) - l1 * Math.exp(l2 * t)) / (l2 - l1); } return Math.exp(-d * t) * Math.cos(om * t); };
+      const u = xs(tr);
+      const bx = eng ? B / 2 : B * 0.24, top = 30, hh = eng ? 200 : H - 60;
+      if (e.art === 'faden') {
+        const phi = Math.max(-0.7, Math.min(0.7, r.phi)) * u, lpx = hh - 30, px = bx + Math.sin(phi) * lpx, py = top + Math.cos(phi) * lpx;
+        decke(cx, bx, top, 30);
+        strecke(cx, bx, top, bx, top + lpx + 12, F('--linie'), 1, [3, 4]);
+        cx.strokeStyle = F('--linie'); cx.setLineDash([2, 3]); cx.beginPath(); cx.arc(bx, top, lpx, Math.PI / 2 - Math.min(0.7, r.phi), Math.PI / 2 + Math.min(0.7, r.phi)); cx.stroke(); cx.setLineDash([]);
+        strecke(cx, bx, top, px, py, F('--text'), 1.5);
+        kreis(cx, px, py, 11, BLAU, F('--text'), 1.5);
+        T(cx, 'l = ' + laenge(e.l), bx + 8, top + lpx * 0.4, 'left', 10, false, GRAU);
+      } else {
+        const ruhe = top + hh * 0.55, amp = hh * 0.28, y = ruhe + u * amp;
+        decke(cx, bx, top, 30);
+        feder(cx, bx, top, y - 16, 12, F('--text'));
+        strecke(cx, bx - 40, ruhe, bx + 40, ruhe, F('--linie'), 1, [3, 4]);
+        T(cx, 'Ruhelage', bx + 44, ruhe, 'left', 9, false, GRAU);
+        cx.fillStyle = BLAU; cx.fillRect(bx - 26, y - 16, 52, 32); cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.strokeRect(bx - 26, y - 16, 52, 32);
+        T(cx, zz(e.m, e.m < 1 ? 2 : 1) + ' kg', bx, y, 'center', 10, true, '#fff');
+        const v = -(xs(tr + 1e-3) - u) / 1e-3;
+        if (Math.abs(v) > 0.05) pfeil(cx, bx + 34, y, bx + 34, y - Math.max(-40, Math.min(40, v / Math.max(r.w0, 1e-6) * 30)), GRUEN, 2);
+      }
+      T(cx, 'T = ' + zz(r.T, 3) + ' s', 10, 14, 'left', 11, true);
+      if (Math.abs(k - 1) > 0.05) T(cx, (k > 1 ? 'Zeitraffer ' : 'Zeitlupe ') + zz(k > 1 ? k : 1 / k, 1) + '×', B - 10, 14, 'right', 10, false, GRAU);
+      const pts = [], ein = [], aus = []; for (let i = 0; i <= 240; i++) { const t = tEnde * i / 240; pts.push([t, e.A * xs(t)]); if (d > 0 && !r.aperiodisch) { ein.push([t, e.A * Math.exp(-d * t)]); aus.push([t, -e.A * Math.exp(-d * t)]); } }
+      const gx = eng ? 8 : B * 0.48, gy = eng ? 240 : 10, gw = eng ? B - 16 : B * 0.52 - 10, gh = eng ? H - 248 : H - 20;
+      const reihen = [{ name: 'Auslenkung in cm', farbe: BLAU, punkte: pts, punkt: [tr, e.A * u] }];
+      if (ein.length) { reihen.push({ name: 'Hüllkurve', farbe: ROT, punkte: ein, breite: 1, strich: [4, 3] }); reihen.push({ farbe: ROT, punkte: aus, breite: 1, strich: [4, 3] }); }
+      diagramm(cx, gx, gy, gw, gh, reihen, { titel: 'Weg-Zeit-Diagramm', xr: [0, tEnde], yr: [-e.A * 1.1, e.A * 1.1], xl: 't in s' });
+    }
+    function zeigeResonanz(cx, B, H, r, e, dt) {
+      const eng = B < 600, D = Math.max(r.DL, 0.02), dauer = 16, f = (SIM.t % (dauer + 2)) / dauer, eta = 0.2 + 2.3 * Math.min(1, f);
+      const V = function (n) { return 1 / Math.sqrt(Math.pow(1 - n * n, 2) + Math.pow(2 * D * n, 2)); };
+      const vmax = Math.min(60, V(Math.sqrt(Math.max(0.01, 1 - 2 * D * D))) * 1.1);
+      const ph = Math.atan2(2 * D * eta, 1 - eta * eta);
+      SIM.tE += dt * eta * PI2 * 0.9;
+      const bx = eng ? B / 2 : B * 0.22, top = 40, hh = eng ? 190 : H - 70, a0 = 6, ruhe = top + hh * 0.55;
+      const yA = top + a0 * Math.cos(SIM.tE), ym = ruhe + hh * 0.38 * Math.min(1, V(eta) / vmax) * Math.cos(SIM.tE - ph);
+      cx.fillStyle = ORANGE; cx.fillRect(bx - 34, yA - 6, 68, 6);
+      pfeil(cx, bx + 44, top, bx + 44, top - 10, ORANGE, 1.5); pfeil(cx, bx + 44, top, bx + 44, top + 10, ORANGE, 1.5);
+      feder(cx, bx, yA, ym - 15, 11, F('--text'));
+      strecke(cx, bx - 40, ruhe, bx + 40, ruhe, F('--linie'), 1, [3, 4]);
+      cx.fillStyle = BLAU; cx.fillRect(bx - 17, ym - 15, 34, 30); cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.strokeRect(bx - 17, ym - 15, 34, 30);
+      T(cx, 'Anregung', bx + 54, top, 'left', 9, true, ORANGE);
+      TW(cx, 'Anregung ' + zz(eta, 2) + ' × f₀ = ' + hz(eta * r.f) + ' · Ausschlag ' + zz(V(eta), 1) + '×', 10, 14, eng ? B - 20 : B * 0.44, 10, true);
+      const pts = []; for (let i = 0; i <= 200; i++) { const n = 2.6 * i / 200; pts.push([n, V(n)]); }
+      const gx = eng ? 8 : B * 0.46, gy = eng ? 250 : 10, gw = eng ? B - 16 : B * 0.54 - 10, gh = eng ? H - 258 : H - 20;
+      const K = diagramm(cx, gx, gy, gw, gh, [{ name: 'Ausschlag / Anregung (D = ' + zz(D, 2) + ')', farbe: BLAU, punkte: pts, punkt: [eta, Math.min(V(eta), vmax)] }], { titel: 'Resonanzkurve', xr: [0, 2.6], yr: [0, Math.ceil(vmax)], xl: 'Anregung / Eigenfrequenz' });
+      strecke(cx, K.X(1), K.y0, K.X(1), K.y1, ROT, 1, [3, 3]);
+      T(cx, 'f₀', K.X(1) + 3, K.y0 + 8, 'left', 9, true, ROT);
+    }
+    function zeigeWelle(cx, B, H, r, e) {
+      const eng = B < 600, ph = SIM.t * PI2 * 0.6, L = (B - 30) / 2.5, k = PI2 / L, x0 = 15, x1 = B - 15;
+      const y0 = eng ? 120 : 110, amp = 30;
+      T(cx, 'Querwelle', 10, 14, 'left', 11, true, BLAU);
+      TW(cx, 'f = ' + hz(e.fs) + ' · c = ' + zz(r.c, 0) + ' m/s · λ = ' + laenge(r.lam), B - 10, 14, eng ? B - 90 : B / 2, 10, false, GRAU, 14, 'right');
+      const pts = []; for (let x = x0; x <= x1; x += 2) pts.push([x, y0 - amp * Math.sin(k * (x - x0) - ph)]);
+      zug(cx, pts, BLAU, 2.4);
+      strecke(cx, x0, y0, x1, y0, F('--linie'), 1, [3, 4]);
+      for (let i = 0; i < 26; i++) { const x = x0 + i * (x1 - x0) / 25, y = y0 - amp * Math.sin(k * (x - x0) - ph); kreis(cx, x, y, i === 5 ? 6 : 3.5, i === 5 ? ROT : F('--text')); }
+      // Wellenlänge zwischen zwei Bergen
+      const xb = x0 + ((ph / k + L / 4) % L + L) % L, xb2 = xb + L;
+      if (xb2 < x1) { const yl = y0 - amp - 14; strecke(cx, xb, yl, xb2, yl, GRUEN, 1.5); strecke(cx, xb, yl - 5, xb, yl + 5, GRUEN, 1.5); strecke(cx, xb2, yl - 5, xb2, yl + 5, GRUEN, 1.5); T(cx, 'λ', (xb + xb2) / 2, yl - 8, 'center', 12, true, GRUEN); }
+      pfeil(cx, x1 - 60, y0 + amp + 14, x1 - 10, y0 + amp + 14, GRAU, 1.5); T(cx, 'Ausbreitung', x1 - 64, y0 + amp + 14, 'right', 9, false, GRAU);
+      // Längswelle
+      const ly = eng ? 230 : 210, lh = eng ? H - ly - 40 : H - ly - 40;
+      T(cx, 'Längswelle (Schall)', 10, ly - 8, 'left', 11, true, GRUEN);
+      const reihen = Math.max(4, Math.floor(lh / 14)), spalten = Math.floor((x1 - x0) / 7), rnd = zufall(7);
+      for (let j = 0; j < reihen; j++) for (let i = 0; i < spalten; i++) {
+        const xr = x0 + i * 7, x = xr + L * 0.09 * Math.sin(k * (xr - x0) - ph), y = ly + 8 + j * 14 + rnd() * 3;
+        const mark = i === 18 && j === Math.floor(reihen / 2);
+        kreis(cx, x, y, mark ? 4.5 : 2.2, mark ? ROT : GRUEN);
+      }
+      const xv = x0 + (((ph + Math.PI) / k) % L + L) % L; T(cx, 'Verdichtung', Math.max(x0 + 30, Math.min(x1 - 30, xv)), ly + reihen * 14 + 14, 'center', 9, true, GRUEN);
+    }
+    function zeigeDoppler(cx, B, H, r, e, dt) {
+      const eng = B < 600, cp = eng ? 70 : 90, M = Math.min(1.8, r.mach), yq = H / 2 + 6, per = 0.35, xStart = B * 0.18, weg = B * 0.64;
+      const zyklus = Math.max(4, weg / Math.max(M * cp, 1e-6));
+      const tz2 = SIM.t % Math.min(zyklus, M > 0 ? weg / (M * cp) : 6);
+      if (tz2 < SIM.tE) SIM.wellen = [];
+      SIM.tE = tz2;
+      const xq = xStart + M * cp * tz2;
+      if (!SIM.wellen.length || tz2 - SIM.wellen[SIM.wellen.length - 1][1] >= per) SIM.wellen.push([xq, tz2]);
+      SIM.wellen = SIM.wellen.filter(function (w) { return (tz2 - w[1]) * cp < B * 1.2; });
+      SIM.wellen.forEach(function (w) { const rr = (tz2 - w[1]) * cp; cx.strokeStyle = M >= 1 ? ROT : BLAU; cx.globalAlpha = Math.max(0.15, 1 - rr / (B * 0.9)); cx.lineWidth = 1.5; cx.beginPath(); cx.arc(w[0], yq, Math.max(0.1, rr), 0, PI2); cx.stroke(); cx.globalAlpha = 1; });
+      kreis(cx, xq, yq, 9, ORANGE, F('--text'), 1.5);
+      if (M > 0) pfeil(cx, xq + 12, yq, xq + 12 + 30, yq, ORANGE, 2);
+      // Hörer
+      const hv = B - 18, hh = 18;
+      kreis(cx, hv, yq, 7, GRUEN); kreis(cx, hh, yq, 7, LILA);
+      TW(cx, r.ueber ? 'vorn: noch nichts zu hören' : 'vorn: ' + hz(r.fVor), B - 10, yq + 26, eng ? 120 : 200, 10, true, r.ueber ? ROT : GRUEN, 14, 'right');
+      TW(cx, 'hinten: ' + hz(r.fWeg), 10, yq + 26, eng ? 120 : 200, 10, true, LILA);
+      TW(cx, 'Quelle ' + hz(e.fs) + ' mit ' + zz(e.vQ, 1) + ' m/s (' + zz(e.vQ * 3.6, 0) + ' km/h), Schall ' + zz(r.c, 0) + ' m/s', 10, 14, B - 20, 10, true);
+      if (r.mach >= 1) TWU(cx, 'Machscher Kegel, halber Öffnungswinkel ' + zz(Math.asin(1 / r.mach) / GRAD, 0) + '°', 10, H - 10, B - 20, 10, true, ROT);
+    }
+    ansicht = (ansichten(seite, [['schwinger', 'Pendel'], ['resonanz', 'Resonanz'], ['welle', 'Welle'], ['doppler', 'Doppler']], 'schwinger', function (a) { ansicht = a; SIM.t = 0; SIM.tE = 0; SIM.wellen = []; }))();
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>
