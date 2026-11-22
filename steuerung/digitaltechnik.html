@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer – Formeln &amp; Rechner</title>
+  <meta name="description" content="Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/steuerung/digitaltechnik.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer">
+  <meta property="og:description" content="Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.">
+  <meta property="og:url" content="https://tools.pr1m3.de/steuerung/digitaltechnik.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer">
+  <meta name="twitter:description" content="Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#seite","name":"Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer","url":"https://tools.pr1m3.de/steuerung/digitaltechnik.html","inLanguage":"de","description":"Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#pfad"},"dateModified":"2026-11-22"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer","item":"https://tools.pr1m3.de/steuerung/digitaltechnik.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#fragen","mainEntity":[{"@type":"Question","name":"Wie viele Stufen braucht ein Frequenzteiler von 32 768 Hz auf 1 Hz?","acceptedAnswer":{"@type":"Answer","text":"32 768 = 2¹⁵, also 15 Flipflop-Stufen. Deshalb haben Uhrenquarze genau diese Frequenz."}},{"@type":"Question","name":"Was ist der Unterschied zwischen Schaltnetz und Schaltwerk?","acceptedAnswer":{"@type":"Answer","text":"Ein Schaltnetz (nur Gatter) hängt allein von den aktuellen Eingängen ab. Ein Schaltwerk enthält Speicher (Flipflops) und hängt auch von der Vorgeschichte ab, zum Beispiel ein Zähler oder eine Ablaufsteuerung."}},{"@type":"Question","name":"Wie hängen Gatter und SPS zusammen?","acceptedAnswer":{"@type":"Answer","text":"In einer SPS werden dieselben Verknüpfungen programmiert, im Funktionsplan sogar mit denselben Schaltzeichen (&, ≥1, =1). Speicher heißen dort SR- oder RS-Glied, Flankenerkennung R_TRIG."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+    canvas.rechner-bild { cursor: pointer; }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Alles aus 0 und 1</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Logikgatter</h3><p>UND gibt nur 1 aus, wenn alle Eingänge 1 sind; ODER, wenn mindestens einer 1 ist; NICHT dreht um. NAND und NOR sind die negierten Fassungen – aus NAND-Gattern allein lässt sich jede andere Schaltung bauen. XOR (Exklusiv-ODER) meldet, ob die Eingänge verschieden sind. Schaltzeichen nach DIN EN 60617.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Flipflops speichern</h3><p>Ein Flipflop merkt sich ein Bit. Beim RS-Flipflop setzt S auf 1 und R zurück auf 0. Das D-Flipflop übernimmt den Wert am Eingang D nur in dem Moment, in dem der Takt von 0 auf 1 springt (Taktflanke). Das T-Flipflop kippt bei jeder Taktflanke um.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Zähler und Teiler</h3><p>Hängt man T-Flipflops hintereinander, halbiert jede Stufe die Frequenz: Es entsteht ein Binärzähler. Mit n Stufen zählt er von 0 bis 2ⁿ − 1. So teilen Uhren den Takt eines 32 768-Hz-Quarzes mit 15 Stufen genau auf 1 Hz herunter.</p></article>
+        <article class="wissen-karte" style="--farbe:#9333EA"><h3>Rechnen mit Gattern</h3><p>Ein Halbaddierer addiert zwei Bits: XOR liefert die Summe, UND den Übertrag. Volladdierer berücksichtigen zusätzlich den Übertrag von der Stelle davor. Hintereinander geschaltet addieren sie beliebig lange Binärzahlen – so rechnet jeder Prozessor.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie viele Stufen braucht ein Frequenzteiler von 32 768 Hz auf 1 Hz?</summary><p>32 768 = 2¹⁵, also 15 Flipflop-Stufen. Deshalb haben Uhrenquarze genau diese Frequenz.</p></details>
+        <details><summary>Was ist der Unterschied zwischen Schaltnetz und Schaltwerk?</summary><p>Ein Schaltnetz (nur Gatter) hängt allein von den aktuellen Eingängen ab. Ein Schaltwerk enthält Speicher (Flipflops) und hängt auch von der Vorgeschichte ab, zum Beispiel ein Zähler oder eine Ablaufsteuerung.</p></details>
+        <details><summary>Wie hängen Gatter und SPS zusammen?</summary><p>In einer SPS werden dieselben Verknüpfungen programmiert, im Funktionsplan sogar mit denselben Schaltzeichen (&amp;, ≥1, =1). Speicher heißen dort SR- oder RS-Glied, Flankenerkennung R_TRIG.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? (Math.abs(sp - Math.round(sp)) > 1e-9 ? 1 : 0) : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const GATTER = {
+      und: ['UND (AND)', '&', false, function (a, b) { return a & b; }],
+      oder: ['ODER (OR)', '≥1', false, function (a, b) { return a | b; }],
+      nicht: ['NICHT (NOT)', '1', true, function (a) { return a ? 0 : 1; }],
+      nand: ['NAND', '&', true, function (a, b) { return (a & b) ? 0 : 1; }],
+      nor: ['NOR', '≥1', true, function (a, b) { return (a | b) ? 0 : 1; }],
+      xor: ['XOR (Exklusiv-ODER)', '=1', false, function (a, b) { return a ^ b; }],
+      xnor: ['XNOR (Äquivalenz)', '=1', true, function (a, b) { return (a ^ b) ? 0 : 1; }]
+    };
+    const FF = { rs: 'RS-Flipflop', d: 'D-Flipflop (taktflankengesteuert)', t: 'T-Flipflop (kippt bei jeder Flanke)' };
+    let ansicht = 'gatter', takt = uhr();
+    const SIM = { t: 0, a: 0, b: 0, hand: false, ziele: [] };
+    function bin(z, n) { let s = (z >>> 0).toString(2); while (s.length < n) s = '0' + s; return s; }
+    function rechne(e) {
+      const r = {}, A = Math.round(e.A), Bz = Math.round(e.Bz), n = Math.max(1, Math.min(32, Math.round(e.n)));
+      r.A = A; r.Bz = Bz; r.S = A + Bz; r.bits = Math.max(4, Math.ceil(Math.log2(Math.max(A, Bz, 1) + 1)));
+      r.ueber = r.S >= Math.pow(2, r.bits); r.n = n;
+      r.N = Math.pow(2, n); r.fa = e.f / r.N; r.Tz = r.N / e.f; r.max = r.N - 1;
+      r.g = GATTER[e.gatter] || GATTER.und;
+      return r;
+    }
+    function hex(z) { return (z >>> 0).toString(16).toUpperCase(); }
+    function zeit(s) { return s >= 3600 ? zz(s / 3600, 2) + ' h' : s >= 60 ? zz(s / 60, 2) + ' min' : s >= 1 ? zz(s, 3) + ' s' : s >= 1e-3 ? zz(s * 1e3, 3) + ' ms' : zz(s * 1e6, 3) + ' µs'; }
+    function hz(f) { return f >= 1e6 ? zz(f / 1e6, 3) + ' MHz' : f >= 1e3 ? zz(f / 1e3, 3) + ' kHz' : f >= 0.01 ? zz(f, 3) + ' Hz' : zz(f * 1000, 3) + ' mHz'; }
+    const seite = R.seite({
+      titel: 'Digitaltechnik',
+      einleitung: 'Logikgatter mit Wahrheitstabelle zum Anklicken, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Addierer mit Übertrag.',
+      hilfe: 'Im Bild die Eingänge A und B antippen. Beispiel: Ein Uhrenquarz mit 32 768 Hz wird mit 15 Stufen auf 1 Hz geteilt.',
+      gruppen: [
+        { titel: 'Gatter und Flipflop', farbe: BLAU, felder: [
+          { k: 'gatter', name: 'Gatter', wahl: Object.keys(GATTER).map(function (k) { return [k, GATTER[k][0]]; }) },
+          { k: 'ff', name: 'Flipflop', wahl: Object.keys(FF).map(function (k) { return [k, FF[k]]; }) }
+        ] },
+        { titel: 'Addierer', farbe: LILA, felder: [
+          { k: 'A', tex: 'A', name: 'erste Zahl', e: '', min: 0, max: 65535, n: 0 },
+          { k: 'Bz', tex: 'B', name: 'zweite Zahl', e: '', min: 0, max: 65535, n: 0 }
+        ] },
+        { titel: 'Zähler und Frequenzteiler', farbe: ORANGE, felder: [
+          { k: 'f', tex: 'f_e', name: 'Taktfrequenz', e: 'Hz', min: 0.001, max: 1e10 },
+          { k: 'n', tex: 'n', name: 'Anzahl Stufen (Bits)', e: '', min: 1, max: 32, n: 0 }
+        ] }
+      ],
+      beispiel: { gatter: 'und', ff: 'd', A: 11, Bz: 6, f: 32768, n: 15 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.ueber) H.meldung('Die Summe passt nicht mehr in ' + r.bits + ' Bit: Es entsteht ein Übertrag in die nächste Stelle.', true);
+        H.kacheln([
+          [zz(r.S, 0), 'Summe A + B dezimal', LILA],
+          [bin(r.S, r.bits + (r.ueber ? 1 : 0)), 'Summe binär', LILA],
+          ['0x' + hex(r.S), 'Summe hexadezimal', LILA],
+          [zz(r.N, 0), 'Zustände mit ' + r.n + ' Bit (0 bis ' + zz(r.max, 0) + ')', ORANGE],
+          [hz(r.fa), 'Frequenz am letzten Ausgang', ORANGE],
+          [zeit(r.Tz), 'Dauer eines vollen Zählzyklus', ORANGE]
+        ]);
+        const g = r.g, zeilen = e.gatter === 'nicht' ? [['0', '–', String(g[3](0))], ['1', '–', String(g[3](1))]] : [[0, 0], [0, 1], [1, 0], [1, 1]].map(function (p) { return [String(p[0]), String(p[1]), String(g[3](p[0], p[1]))]; });
+        H.tabelle('Wahrheitstabelle ' + g[0], ['A', 'B', 'Y'], zeilen, { zahl: [0, 1, 2] });
+        H.tabelle('Zahlen', ['', 'dezimal', 'binär', 'hex'], [['A', zz(r.A, 0), bin(r.A, r.bits), hex(r.A)], ['B', zz(r.Bz, 0), bin(r.Bz, r.bits), hex(r.Bz)], ['A + B', zz(r.S, 0), bin(r.S, r.bits), hex(r.S)]], { zahl: [1, 2, 3] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Zustände', 'N = 2^n = 2^{' + r.n + '} = ' + E(tz(r.N, 0))],
+          ['Ausgangsfrequenz', 'f_a = \\frac{f_e}{2^n} = \\frac{' + tz(e.f, 3) + '\\,\\text{Hz}}{' + tz(r.N, 0) + '} = ' + E(tz(r.fa, 6) + '\\,\\text{Hz}')],
+          ['Zählzyklus', 'T = \\frac{2^n}{f_e} = ' + E(tz(r.Tz, 6) + '\\,\\text{s}')],
+          ['Addition', tz(r.A, 0) + ' + ' + tz(r.Bz, 0) + ' = ' + bin(r.A, r.bits) + '_2 + ' + bin(r.Bz, r.bits) + '_2 = ' + E(bin(r.S, r.bits) + '_2')]
+        ];
+      },
+      loeser: [
+        { titel: 'Frequenzteiler', hilfe: 'Jede Flipflop-Stufe halbiert die Frequenz.',
+          felder: [{ k: 'fa', tex: 'f_a', name: 'Ausgangsfrequenz', e: 'Hz', min: 0.001, max: 1e9 }, { k: 'fe', tex: 'f_e', name: 'Eingangsfrequenz', e: 'Hz', min: 1, max: 1e9 }, { k: 'n', tex: 'n', name: 'Stufen', e: '', min: 1, max: 24, n: 0 }],
+          beispiel: { fe: 32768, n: 15 },
+          gleichungen: [{ name: 'Teiler', v: ['fa', 'fe', 'n'], f: function (q) { return [q.fa * Math.pow(2, q.n), q.fe]; },
+            loese: { fa: function (q) { return q.fe / Math.pow(2, q.n); }, fe: function (q) { return q.fa * Math.pow(2, q.n); }, n: function (q) { return Math.log(q.fe / q.fa) / Math.LN2; } },
+            weg: function (k, q) { return k === 'fa' ? 'f_a = \\frac{f_e}{2^n} = \\frac{' + tz(q.fe, 2) + '}{2^{' + tz(q.n, 0) + '}}\\,\\text{Hz} = ' + E(tz(q.fa, 4) + '\\,\\text{Hz}') : k === 'fe' ? 'f_e = f_a \\cdot 2^n = ' + E(tz(q.fe, 2) + '\\,\\text{Hz}') : 'n = \\log_2 \\frac{f_e}{f_a} = ' + E(tz(q.n, 0)); } }] },
+        { titel: 'Zählbereich', hilfe: 'Mit n Bit lassen sich 2ⁿ Zustände darstellen.',
+          felder: [{ k: 'N', tex: 'N', name: 'Anzahl Zustände', e: '', min: 2, max: 4294967296, n: 0 }, { k: 'n', tex: 'n', name: 'Bits', e: '', min: 1, max: 32, n: 0 }],
+          beispiel: { n: 8 },
+          gleichungen: [{ name: 'Bits', v: ['N', 'n'], f: function (q) { return [q.N, Math.pow(2, q.n)]; },
+            loese: { N: function (q) { return Math.pow(2, q.n); }, n: function (q) { return Math.log(q.N) / Math.LN2; } },
+            weg: function (k, q) { return k === 'N' ? 'N = 2^n = 2^{' + tz(q.n, 0) + '} = ' + E(tz(q.N, 0)) : 'n = \\log_2 N = \\log_2 ' + tz(q.N, 0) + ' = ' + E(tz(q.n, 0)); } }] }
+      ],
+      sammlung: [
+        ['UND', 'Y = A \\land B', 'Schaltzeichen &'],
+        ['ODER', 'Y = A \\lor B', 'Schaltzeichen ≥1'],
+        ['NICHT', 'Y = \\overline{A}', ''],
+        ['NAND', 'Y = \\overline{A \\land B}', ''],
+        ['NOR', 'Y = \\overline{A \\lor B}', ''],
+        ['XOR', 'Y = (A \\land \\overline{B}) \\lor (\\overline{A} \\land B)', 'Schaltzeichen =1'],
+        ['De Morgan', '\\overline{A \\land B} = \\overline{A} \\lor \\overline{B}, \\quad \\overline{A \\lor B} = \\overline{A} \\land \\overline{B}', ''],
+        ['Halbaddierer', 'S = A \\oplus B, \\quad C = A \\land B', ''],
+        ['Volladdierer', 'S = A \\oplus B \\oplus C_\\text{ein}, \\quad C_\\text{aus} = (A \\land B) \\lor (C_\\text{ein} \\land (A \\oplus B))', ''],
+        ['Zählbereich', 'N = 2^n', 'höchster Wert 2ⁿ − 1'],
+        ['Frequenzteiler', 'f_a = \\frac{f_e}{2^n}', 'n hintereinander geschaltete T-Flipflops']
+      ],
+      quellen: 'Positive Logik (1 = High). Schaltzeichen nach DIN EN 60617-12; Flipflops ideal ohne Laufzeit.',
+      bild: { titel: 'Simulation', label: 'Logikgatter zum Anklicken, Flipflop-Zeitdiagramm, Binärzähler und Addierer', animiert: true,
+        hoehe: function (B) { return B < 600 ? 420 : 380; },
+        hinweis: function (r, e) {
+          if (ansicht === 'gatter') return 'Eingänge A und B antippen, um sie umzuschalten. Ohne Antippen laufen alle Kombinationen automatisch durch; die passende Zeile der Wahrheitstabelle leuchtet.';
+          if (ansicht === 'ff') return FF[e.ff] + ': Das Zeitdiagramm läuft von rechts nach links. ' + (e.ff === 'd' ? 'Q übernimmt D nur bei der steigenden Taktflanke (Pfeil).' : e.ff === 't' ? 'Q kippt bei jeder steigenden Flanke – der Ausgang hat die halbe Taktfrequenz.' : 'S setzt, R setzt zurück; sind beide 0, bleibt der Zustand gespeichert.');
+          if (ansicht === 'zaehler') return 'Jede Stufe kippt, wenn die vorige von 1 auf 0 fällt. So zählen die Ausgänge binär, und jede Stufe hat die halbe Frequenz der vorigen. Gezeigt werden höchstens 6 Stufen, stark verlangsamt.';
+          return 'Die Volladdierer arbeiten von rechts nach links. Der Übertrag (orange) wandert zur nächsten Stelle weiter.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); SIM.t += dt; SIM.ziele = []; ({ gatter: zeigeGatter, ff: zeigeFF, zaehler: zeigeZaehler, addierer: zeigeAddierer })[ansicht](cx, B, H, r, e); } }
+    });
+    function lampe(cx, x, y, an, farbe, text) { kreis(cx, x, y, 10, an ? (farbe || GELB) : F('--flaeche'), F('--text'), 1.5); if (text) T(cx, text, x, y + 22, 'center', 10, true, GRAU); }
+    function schalter(cx, x, y, w, h, an, text) {
+      cx.fillStyle = an ? GRUEN : F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--text'); cx.lineWidth = 1.5; cx.strokeRect(x, y, w, h);
+      T(cx, text + ' = ' + (an ? 1 : 0), x + w / 2, y + h / 2, 'center', 12, true, an ? '#fff' : F('--text'));
+    }
+    function symbol(cx, x, y, w, h, zeichen, negiert, eingaenge) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--text'); cx.lineWidth = 2; cx.strokeRect(x, y, w, h);
+      T(cx, zeichen, x + w / 2, y + 18, 'center', 14, true);
+      if (negiert) kreis(cx, x + w + 5, y + h / 2, 5, F('--flaeche'), F('--text'), 2);
+      return eingaenge;
+    }
+    function zeigeGatter(cx, B, H, r, e) {
+      const g = r.g, ein = e.gatter === 'nicht' ? 1 : 2;
+      if (!SIM.hand) { const k = Math.floor(SIM.t / 1.5) % 4; SIM.a = k >> 1; SIM.b = k & 1; }
+      const a = SIM.a, b = ein === 2 ? SIM.b : 0, y = ein === 2 ? g[3](a, b) : g[3](a);
+      const sw = 64, sh = 30, xs = 10, gx = B * 0.42, gw = 60, gh = 80, gy = 40;
+      const ya = ein === 2 ? gy + 22 : gy + gh / 2, yb = gy + gh - 22;
+      schalter(cx, xs, ya - sh / 2, sw, sh, a, 'A'); SIM.ziele.push([xs, ya - sh / 2, sw, sh, 'a']);
+      strecke(cx, xs + sw, ya, gx, ya, a ? GRUEN : F('--linie'), a ? 3 : 1.5);
+      if (ein === 2) { schalter(cx, xs, yb - sh / 2, sw, sh, b, 'B'); SIM.ziele.push([xs, yb - sh / 2, sw, sh, 'b']); strecke(cx, xs + sw, yb, gx, yb, b ? GRUEN : F('--linie'), b ? 3 : 1.5); }
+      symbol(cx, gx, gy, gw, gh, g[1], g[2]);
+      const xo = gx + gw + (g[2] ? 10 : 0), xl = Math.min(B - 30, xo + 70);
+      strecke(cx, xo, gy + gh / 2, xl - 10, gy + gh / 2, y ? GRUEN : F('--linie'), y ? 3 : 1.5);
+      lampe(cx, xl, gy + gh / 2, y, GELB, 'Y = ' + y);
+      T(cx, g[0], 10, 14, 'left', 11, true);
+      // Wahrheitstabelle
+      const ty = gy + gh + 40, zeilen = ein === 2 ? [[0, 0], [0, 1], [1, 0], [1, 1]] : [[0], [1]], cw = Math.min(70, (B - 40) / 3), tx = (B - cw * (ein + 1)) / 2;
+      const kopf = ein === 2 ? ['A', 'B', 'Y'] : ['A', 'Y'];
+      kopf.forEach(function (k, i) { T(cx, k, tx + cw * i + cw / 2, ty, 'center', 12, true); });
+      strecke(cx, tx, ty + 10, tx + cw * kopf.length, ty + 10, F('--text'), 1);
+      zeilen.forEach(function (z, j) {
+        const yy = ty + 28 + j * 26, aktiv = z[0] === a && (ein === 1 || z[1] === b), out = ein === 2 ? g[3](z[0], z[1]) : g[3](z[0]);
+        if (aktiv) { cx.fillStyle = 'rgba(224,168,0,.25)'; cx.fillRect(tx, yy - 12, cw * kopf.length, 24); }
+        z.concat([out]).forEach(function (v, i) { T(cx, String(v), tx + cw * i + cw / 2, yy, 'center', 12, aktiv, i === z.length ? (v ? GRUEN : GRAU) : F('--text')); });
+      });
+      TWU(cx, SIM.hand ? 'Handbetrieb – Eingänge antippen' : 'Automatik – zum Umschalten antippen', 10, H - 10, B - 20, 10, false, GRAU);
+    }
+    function spur(cx, x0, x1, y, h, werte, farbe, name) {
+      T(cx, name, x0 - 6, y - h / 2, 'right', 11, true, farbe);
+      const pts = []; const n = werte.length, dx = (x1 - x0) / n;
+      werte.forEach(function (v, i) { const yy = y - v * h; if (i) pts.push([x0 + i * dx, pts[pts.length - 1][1]]); pts.push([x0 + i * dx, yy]); pts.push([x0 + (i + 1) * dx, yy]); });
+      zug(cx, pts, farbe, 2);
+      strecke(cx, x0, y, x1, y, F('--linie'), 1, [2, 3]);
+    }
+    function zeigeFF(cx, B, H, r, e) {
+      const n = 32, k0 = Math.floor(SIM.t / 0.35) + n, wahr = function (i, s) { const x = Math.sin(i * 12.9898 + s * 78.233) * 43758.5453; return (x - Math.floor(x)) < 0.5 ? 0 : 1; };
+      const C = [], D = [], S = [], Rr = [], Q = [];
+      let q = 0;
+      for (let i = k0 - n - 24; i < k0; i++) {
+        const c = i % 2, d = wahr(Math.floor(i / 3), 1), sv = wahr(Math.floor(i / 2), 2) & wahr(Math.floor(i / 2), 5), rv = sv ? 0 : wahr(Math.floor(i / 2), 3) & wahr(Math.floor(i / 2), 7);
+        if (e.ff === 'rs') { if (sv) q = 1; else if (rv) q = 0; }
+        else if (e.ff === 'd') { if (c === 1) q = d; }
+        else q = Math.floor((i + 1) / 2) % 2;
+        if (i >= k0 - n) { C.push(c); D.push(d); S.push(sv); Rr.push(rv); Q.push(q); }
+      }
+      const x0 = 46, x1 = B - 10, h = 26, spuren = e.ff === 't' ? 2 : 3, gap = (H - 80) / spuren;
+      let y = 50 + h;
+      T(cx, FF[e.ff], 10, 14, 'left', 11, true);
+      if (e.ff === 'rs') { spur(cx, x0, x1, y, h, S, GRUEN, 'S'); y += gap; spur(cx, x0, x1, y, h, Rr, ROT, 'R'); y += gap; }
+      else {
+        spur(cx, x0, x1, y, h, C, GRAU, 'C'); const dx = (x1 - x0) / n;
+        C.forEach(function (c, i) { if (i && c === 1 && C[i - 1] === 0) pfeil(cx, x0 + i * dx, y + 4, x0 + i * dx, y - h - 2, ORANGE, 1.2); });
+        y += gap; if (e.ff === 'd') { spur(cx, x0, x1, y, h, D, BLAU, 'D'); y += gap; }
+      }
+      spur(cx, x0, x1, y, h, Q, LILA, 'Q');
+      kreis(cx, x1 - 4, y - Q[Q.length - 1] * h, 5, LILA);
+    }
+    function zeigeZaehler(cx, B, H, r, e) {
+      const st = Math.min(6, r.n), schritt = 0.6, z = Math.floor(SIM.t / schritt) % Math.pow(2, st);
+      T(cx, 'Zählerstand ' + z + ' = ' + bin(z, st) + '₂', 10, 14, 'left', 12, true);
+      const lw = Math.min(46, (B - 20) / st);
+      for (let i = 0; i < st; i++) { const bit = (z >> (st - 1 - i)) & 1, x = 10 + lw * i + lw / 2; lampe(cx, x, 46, bit, ROT, 'Q' + (st - 1 - i)); T(cx, String(Math.pow(2, st - 1 - i)), x, 84, 'center', 9, false, GRAU); }
+      const x0 = 46, x1 = B - 10, n = 32, h = 18, y0 = 110, gap = Math.min(44, (H - y0 - 10) / (st + 1));
+      const sp = []; for (let k = 0; k < n; k++) sp.push(Math.floor(SIM.t / schritt) - n / 2 + 1 + Math.floor(k / 2));
+      const cl = []; for (let k = 0; k < n; k++) cl.push((k + (Math.floor(SIM.t / (schritt / 2)) % 2)) % 2 ? 0 : 1);
+      spur(cx, x0, x1, y0 + h, h, cl, GRAU, 'Takt');
+      for (let i = 0; i < st; i++) { const w = sp.map(function (v) { const vv = ((v % Math.pow(2, st)) + Math.pow(2, st)) % Math.pow(2, st); return (vv >> i) & 1; }); spur(cx, x0, x1, y0 + h + gap * (i + 1), h, w, [ROT, ORANGE, GELB, GRUEN, BLAU, LILA][i], 'Q' + i); }
+      if (r.n > st) TWU(cx, 'Insgesamt ' + r.n + ' Stufen: ' + hz(e.f) + ' → ' + hz(r.fa), 10, H - 6, B - 20, 10, true, GRAU);
+    }
+    function zeigeAddierer(cx, B, H, r, e) {
+      const nb = 4, A = r.A & 15, Bz = r.Bz & 15, sch = Math.floor(SIM.t / 0.9) % (nb + 3), cw = (B - 30) / nb;
+      T(cx, 'Volladdierer (4 Bit): ' + A + ' + ' + Bz + (r.A > 15 || r.Bz > 15 ? ' (untere 4 Bit)' : ''), 10, 14, 'left', 11, true);
+      let c = 0; const S = [], Cs = [];
+      for (let i = 0; i < nb; i++) { const a = (A >> i) & 1, b = (Bz >> i) & 1; S.push(a ^ b ^ c); c = (a & b) | (c & (a ^ b)); Cs.push(c); }
+      for (let i = 0; i < nb; i++) {
+        const k = nb - 1 - i, x = 20 + k * cw, a = (A >> i) & 1, b = (Bz >> i) & 1, fertig = sch > i;
+        lampe(cx, x + cw * 0.3, 54, a, BLAU, 'A' + i); lampe(cx, x + cw * 0.7, 54, b, BLAU, 'B' + i);
+        cx.fillStyle = F('--flaeche'); cx.fillRect(x + 6, 100, cw - 12, 70); cx.strokeStyle = fertig ? LILA : F('--text'); cx.lineWidth = 2; cx.strokeRect(x + 6, 100, cw - 12, 70);
+        T(cx, 'Σ', x + cw / 2, 124, 'center', 16, true, fertig ? LILA : GRAU);
+        T(cx, 'Stelle ' + i, x + cw / 2, 152, 'center', 9, false, GRAU);
+        lampe(cx, x + cw / 2, 210, fertig && S[i], LILA, 'S' + i);
+        { const xc = x + 6, yc = 135, an = fertig && Cs[i]; if (an) pfeil(cx, xc, yc, xc - 12, yc, ORANGE, 2); else strecke(cx, xc, yc, xc - 12, yc, F('--linie'), 1.5); if (an) T(cx, '1', xc - 6, yc - 9, 'center', 9, true, ORANGE); }
+      }
+      const ue = sch > nb - 1 && Cs[nb - 1];
+      lampe(cx, 14, 210, ue, ORANGE, 'Ü');
+      const erg = sch >= nb ? (A + Bz) : null;
+      T(cx, erg === null ? 'rechnet …' : 'Ergebnis: ' + bin(erg, ue ? 5 : 4) + '₂ = ' + erg, 10, 262, 'left', 12, true, erg === null ? GRAU : LILA);
+      TW(cx, 'Jede Stelle: S = A ⊕ B ⊕ Cein, Caus = A·B + Cein·(A ⊕ B)', 10, 290, B - 20, 10, false, GRAU);
+    }
+    ansicht = (ansichten(seite, [['gatter', 'Gatter'], ['ff', 'Flipflop'], ['zaehler', 'Zähler'], ['addierer', 'Addierer']], 'gatter', function (a) { ansicht = a; SIM.t = 0; }))();
+    const cv = bildCanvas();
+    if (cv) cv.addEventListener('click', function (ev) {
+      const p = zeiger(cv, ev);
+      SIM.ziele.forEach(function (z) { if (p[0] >= z[0] && p[0] <= z[0] + z[2] && p[1] >= z[1] && p[1] <= z[1] + z[3]) { SIM.hand = true; if (z[4] === 'a') SIM.a = 1 - SIM.a; else SIM.b = 1 - SIM.b; seite.neu(); } });
+    });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

@@ -145,6 +145,15 @@
    "beschreibung": "Hochlauf am virtuellen Prüfstand: Kennlinien von Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad aufnehmen, Strombegrenzung verstehen, Dreieck und Stern vergleichen, günstigen Arbeitsbereich und Motorschutz begründen."
   },
   {
+   "datei": "aufgabenblaetter/elektro/netzsysteme/01-tn-tt-it-abschaltung.md",
+   "thema": "elektro/netzsysteme.html",
+   "titel": "Netzsysteme TN, TT und IT",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Bedeutung der Kurzzeichen, Abschaltbedingung im TN-System mit B- und C-Automat, Fehlerstrom und Berührungsspannung im TT-System, Erderwiderstand mit RCD, erster Fehler im IT-System."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/ohmsches-gesetz/01-grundlagen.md",
    "thema": "elektro/ohmsches-gesetz.html",
    "titel": "Ohmsches Gesetz und Kirchhoff – Grundlagen",
@@ -170,6 +179,15 @@
    "aufgaben": 7,
    "loesungen": 7,
    "beschreibung": "Typenschild, Kurzschlussspannung, Bemessungsströme, Schaltgruppe Dyn5, Anzapfungen, Belastung und Kompensation, Parallelbetrieb, Öl oder Gießharz."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/transistor-opv/01-schalter-verstaerker.md",
+   "thema": "elektro/transistor-opv.html",
+   "titel": "Transistor und Operationsverstärker",
+   "stufe": "mittel",
+   "aufgaben": 3,
+   "loesungen": 3,
+   "beschreibung": "Basiswiderstand für einen Transistorschalter mit Übersteuerung und Normwert, Verlustleistung, Relais mit Freilaufdiode, invertierender und nichtinvertierender Verstärker mit Begrenzung, Komparator."
   },
   {
    "datei": "aufgabenblaetter/elektro/wechselstrom/01-wechselstrom-und-rlc.md",
@@ -350,6 +368,15 @@
    "aufgaben": 4,
    "loesungen": 4,
    "beschreibung": "Wärmeleitung durch Ziegel und Dämmung, U-Wert einer Außenwand, Konvektion am Heizkörper, Wärmestrahlung des Menschen und Wiensches Verschiebungsgesetz."
+  },
+  {
+   "datei": "aufgabenblaetter/steuerung/digitaltechnik/01-gatter-flipflop-zaehler.md",
+   "thema": "steuerung/digitaltechnik.html",
+   "titel": "Digitaltechnik",
+   "stufe": "leicht",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Wahrheitstabellen der Grundgatter, NICHT aus NAND, De Morgan, D- und T-Flipflop, Binärzähler als Frequenzteiler, binäre Addition mit Übertrag."
   },
   {
    "datei": "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",
