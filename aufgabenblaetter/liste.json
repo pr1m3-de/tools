@@ -262,6 +262,24 @@
    "beschreibung": "Unkomprimierte Bildgröße, Farbanzahl, Druckgröße, Formatwahl je Motiv, JPEG mit DCT und Quantisierung, Generationsverlust, Bildlabor mit Messung von Größe und PSNR."
   },
   {
+   "datei": "aufgabenblaetter/it/dateisysteme/01-bloecke-laufwerke.md",
+   "thema": "it/dateisysteme.html",
+   "titel": "Dateisysteme und Speicher",
+   "stufe": "leicht",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Belegter Platz und Verschnitt bei verschiedenen Blockgrößen, Grenzen von FAT32, GB und GiB, Kopierzeit vieler kleiner Dateien auf Festplatte und SSD, Fragmentierung."
+  },
+  {
+   "datei": "aufgabenblaetter/it/dns-http-tls/01-webseite-laden.md",
+   "thema": "it/dns-http-tls.html",
+   "titel": "DNS, HTTP und TLS",
+   "stufe": "mittel",
+   "aufgaben": 3,
+   "loesungen": 3,
+   "beschreibung": "Ablauf einer DNS-Auflösung, TCP-Handschlag, Umläufe von TLS 1.2, TLS 1.3 und QUIC, Zeit bis zum ersten Byte, Übertragungszeit und kleinste Umlaufzeit aus der Entfernung."
+  },
+  {
    "datei": "aufgabenblaetter/it/kompression/01-entropie-huffman-lz77.md",
    "thema": "it/kompression.html",
    "titel": "Datenkompression – Entropie, Huffman und LZ77",
@@ -269,6 +287,15 @@
    "aufgaben": 4,
    "loesungen": 4,
    "beschreibung": "Informationsgehalt und Entropie, Bit für einen Zeichenvorrat, Huffman-Baum von Hand, Lauflängencodierung, LZ77-Tokens, Kompressionsfaktor, Grenzen der Kompression."
+  },
+  {
+   "datei": "aufgabenblaetter/it/pruefsummen/01-paritaet-hamming-crc.md",
+   "thema": "it/pruefsummen.html",
+   "titel": "Prüfsummen und Fehlerkorrektur",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Paritätsbit bilden und prüfen, Grenzen der Parität, Hamming(7,4) codieren und einen Fehler über das Syndrom korrigieren, CRC-8 als Division, fehlerfreie Pakete bei einer Bitfehlerrate."
   },
   {
    "datei": "aufgabenblaetter/it/videoformate/01-datenrate-codecs-gop.md",
