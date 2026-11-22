@@ -186,6 +186,41 @@
     html.lern-start .tr-knopf { display: none !important; }
     .app-tab .kurz { display: none; }
     @media (max-width: 760px) { .app-tab .lang { display: none; } .app-tab .kurz { display: inline; } }
+
+    .lernstand-balken { display: flex; height: 10px; border-radius: 5px; overflow: hidden; background: var(--linie); margin-bottom: 12px; }
+    .lernstand-balken i { display: block; height: 100%; }
+    .lernstand-raster { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); }
+    .lernstand-gruppe h3 { margin: 0 0 6px; font-size: .95rem; display: flex; align-items: center; gap: 6px; }
+    .lernstand-gruppe .punkt { width: 10px; height: 10px; border-radius: 50%; background: var(--farbe); display: inline-block; flex: none; }
+    .lernstand-thema { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; width: 100%; text-align: left; padding: 6px 8px; margin: 0 0 4px; border: 1px solid var(--linie); border-left: 3px solid var(--farbe); border-radius: var(--rund-klein); background: var(--flaeche2); color: var(--text); font: inherit; font-size: .88rem; cursor: pointer; }
+    .lernstand-thema small { color: var(--leise); font-family: var(--technik); white-space: nowrap; }
+    .lernstand-thema:hover, .lernstand-thema:focus-visible { border-color: var(--farbe); }
+    .pruef-wahl { border: none; padding: 0; margin: 12px 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .pruef-wahl legend { font-weight: 600; font-size: .9rem; margin-bottom: 6px; padding: 0; }
+    .pruef-kopf { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .pruef-uhr { font: 700 1.2rem var(--technik); }
+    .pruef-uhr.knapp { color: var(--fehler); }
+    .pruef-punkte { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+    .pruef-punkt { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--linie); background: var(--flaeche); color: var(--leise); font: 600 .8rem var(--technik); cursor: pointer; padding: 0; }
+    .pruef-punkt.beantwortet { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .pruef-punkt.aktuell { outline: 2px solid var(--ergebnis); outline-offset: 2px; }
+    .pruef-abgabe { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+    .pruef-ergebnis { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 14px 18px; align-items: center; }
+    .pruef-ergebnis > .pruef-bereiche, .pruef-ergebnis > .pruef-knoepfe { grid-column: 1 / -1; }
+    .pruef-knoepfe { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pruef-note { width: 86px; height: 86px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--ergebnis-flaeche); color: var(--ergebnis); }
+    .pruef-note b { font: 800 2.2rem/1 var(--technik); }
+    .pruef-note span { font-size: .72rem; font-weight: 600; }
+    .pruef-note.note-4 { background: var(--achtung-flaeche); color: var(--text); }
+    .pruef-note.note-5, .pruef-note.note-6 { background: var(--fehler-flaeche); color: var(--fehler); }
+    .pruef-bereiche { display: grid; gap: 8px; }
+    .pruef-einzel { border-bottom: 1px solid var(--linie); padding: 8px 0; }
+    .pruef-einzel summary { cursor: pointer; }
+    .pruef-einzel.gut summary b { color: var(--ergebnis); }
+    .pruef-einzel.schlecht summary b { color: var(--fehler); }
+    .pruef-verlauf { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    .pruef-verlauf th, .pruef-verlauf td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--linie); }
+    @media (max-width: 760px) { .app-tab.nur-breit { display: none; } }
     @media print { .app-nav, #p-start, .themen-leiste, .app-meldung { display: none !important; } html.lern-app-aktiv body { padding-bottom: 0; } }
 
     /* ---------- Kopfrechnen ---------- */
@@ -367,6 +402,7 @@
         <button type="button" class="app-tab" data-modus="aufgaben" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg><span class="app-tab-text">Aufgaben</span></button>
         <button type="button" class="app-tab" data-modus="karten" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.5" width="13" height="13" rx="2"/><path d="M7.5 6.5V5a1.5 1.5 0 0 1 1.5-1.5h10A1.5 1.5 0 0 1 20.5 5v10a1.5 1.5 0 0 1-1.5 1.5h-2.5"/></svg><span class="app-tab-text">Karten</span></button>
         <button type="button" class="app-tab" data-modus="kopf" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/></svg><span class="app-tab-text"><span class="lang">Kopfrechnen</span><span class="kurz">Kopf</span></span></button>
+        <button type="button" class="app-tab nur-breit" data-modus="pruefung" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 2M10 3.5h4M12 3.5V6"/></svg><span class="app-tab-text">Prüfung</span></button>
         <button type="button" class="app-tab" data-modus="blaetter" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8l4.5 4.5v12.5H6z"/><path d="M14 3.5V8h4.5M9 12.5h6M9 16h6"/></svg><span class="app-tab-text">Blätter</span></button>
         <button type="button" class="app-tab" data-modus="sammlung" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5c2.5-1.3 5-1.3 7.5 0v14c-2.5-1.3-5-1.3-7.5 0z"/><path d="M12 5.5c2.5-1.3 5-1.3 7.5 0v14c-2.5-1.3-5-1.3-7.5 0"/></svg><span class="app-tab-text">Formeln</span></button>
     </nav>
@@ -387,6 +423,7 @@
         <div class="app-kacheln" id="kacheln"></div>
         <div class="app-karte vorschlag" id="vorschlag" hidden></div>
         <div class="app-karte"><div class="karte-kopf"><h2>Deine Themen</h2><button type="button" class="knopf" id="themen-oeffnen2">Themen wählen</button></div><div id="bereich-fortschritt" class="bereich-fortschritt"></div></div>
+        <div class="app-karte"><div class="karte-kopf"><h2>Lernstand je Thema</h2><span class="hinweis-klein" id="lernstand-zahl"></span></div><div id="lernstand"></div></div>
         <div class="app-karte"><div class="karte-kopf"><h2>Erfolge</h2><span class="hinweis-klein" id="erfolge-zahl"></span></div><div id="erfolge" class="erfolge"></div></div>
       </div>
     </section>
@@ -429,6 +466,8 @@
       </div>
 
       <div id="p-kopf" hidden><div id="kopfrechnen"></div></div>
+
+      <div id="p-pruefung" hidden><div id="pruefung"></div></div>
 
       <div id="p-blaetter" hidden>
         <div id="blatt-uebersicht"></div>
@@ -561,7 +600,7 @@
       });
       document.getElementById('zahl-gewaehlt').textContent = gewaehlt.length + ' von ' + themen.length + ' Themen gewählt';
     }
-    function wahlGeaendert() { fokus = null; schreib(S_WAHL, gewaehlt); auswahlZeigen(); themenLeiste(); if (modus === 'start') startZeigen(); kartenStapel = null; if (modus === 'aufgaben' && !aktuelle) neueAufgabe(); if (modus === 'karten') naechsteKarte(); if (modus === 'sammlung') sammlungZeigen(); blaetterKnopf(); if (modus === 'blaetter' && document.getElementById('blatt-ansicht').hidden) blaetterZeigen(); }
+    function wahlGeaendert() { fokus = null; schreib(S_WAHL, gewaehlt); auswahlZeigen(); themenLeiste(); if (modus === 'start') startZeigen(); kartenStapel = null; if (modus === 'aufgaben' && !aktuelle) neueAufgabe(); if (modus === 'karten') naechsteKarte(); if (modus === 'sammlung') sammlungZeigen(); blaetterKnopf(); if (modus === 'blaetter' && document.getElementById('blatt-ansicht').hidden) blaetterZeigen(); if (modus === 'pruefung' && !P) pruefungZeigen(); }
 
     // ---------- Seiten im Hintergrund laden und Formeln und Löser auslesen ----------
     let formelCache = { stand: '', seiten: {} };
@@ -760,11 +799,11 @@
         }
         if (!gewertet) {
           gewertet = true; stand.gesamt++; if (ok) { stand.richtig++; stand.serie++; stand.beste = Math.max(stand.beste, stand.serie); } else stand.serie = 0;
-          const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; if (ok) tt[0]++; stand.themen[a.pfad] = tt; schreib(S_STAND, stand); standZeigen(); zaehle();
+          const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; if (ok) tt[0]++; stand.themen[a.pfad] = tt; merke(a.pfad, ok); schreib(S_STAND, stand); standZeigen(); zaehle();
         }
         if (ok) { loes.hidden = false; neu.focus(); }
       });
-      zeig.addEventListener('click', function () { loes.hidden = false; if (!gewertet) { gewertet = true; stand.gesamt++; stand.serie = 0; const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; stand.themen[a.pfad] = tt; schreib(S_STAND, stand); standZeigen(); zaehle(); } });
+      zeig.addEventListener('click', function () { loes.hidden = false; if (!gewertet) { gewertet = true; stand.gesamt++; stand.serie = 0; const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; stand.themen[a.pfad] = tt; merke(a.pfad, false); schreib(S_STAND, stand); standZeigen(); zaehle(); } });
       neu.addEventListener('click', neueAufgabe);
       if (document.activeElement && document.activeElement.closest && document.activeElement.closest('#p-aufgaben')) inp.focus();
     }
@@ -775,7 +814,7 @@
       teil('Serie', String(stand.serie)); teil('Beste Serie', String(stand.beste));
       const schwach = Object.keys(stand.themen).filter(function (p) { return stand.themen[p][1] >= 3 && thema(p); }).sort(function (x, y) { return stand.themen[x][0] / stand.themen[x][1] - stand.themen[y][0] / stand.themen[y][1]; })[0];
       if (schwach && stand.themen[schwach][0] / stand.themen[schwach][1] < 0.7) teil('Üben lohnt bei', thema(schwach).titel);
-      const r = el('button', 'knopf', 'Stand zurücksetzen'); r.type = 'button'; r.addEventListener('click', function () { stand = { richtig: 0, gesamt: 0, serie: 0, beste: 0, themen: {}, karten: stand.karten || [0, 0] }; schreib(S_STAND, stand); standZeigen(); }); z.append(r);
+      const r = el('button', 'knopf', 'Stand zurücksetzen'); r.type = 'button'; r.addEventListener('click', function () { stand = { richtig: 0, gesamt: 0, serie: 0, beste: 0, themen: {}, verlauf: {}, zuletzt: {}, karten: stand.karten || [0, 0] }; schreib(S_STAND, stand); standZeigen(); }); z.append(r);
     }
 
     // ---------- Formelkarten ----------
@@ -1013,10 +1052,11 @@
       ['aufgaben', 'Aufgaben', 'Rechnen mit zufälligen Werten, Lösungsweg nach dem Prüfen', '#2B7BB9'],
       ['karten', 'Formelkarten', 'Formel aufdecken, gewusst oder nochmal', '#6E6FA6'],
       ['kopf', 'Kopfrechnen', '42 Tricks bis Profi, Sprint auf Zeit – ohne Taschenrechner', '#E4572E'],
+      ['pruefung', 'Prüfung', 'Gemischte Aufgaben auf Zeit, Note erst nach dem Abgeben', '#C2255C'],
       ['blaetter', 'Aufgabenblätter', 'Zum Ausdrucken, mit Lösungen und QR-Code', '#2E8B57'],
       ['sammlung', 'Formelsammlung', 'Alle Formeln deiner Themen zum Nachschlagen', '#0E6B6A']
     ];
-    const NAMEN = { aufgaben: 'Aufgaben', karten: 'Formelkarten', kopf: 'Kopfrechnen', blaetter: 'Aufgabenblätter', sammlung: 'Formelsammlung' };
+    const NAMEN = { aufgaben: 'Aufgaben', karten: 'Formelkarten', kopf: 'Kopfrechnen', pruefung: 'Prüfung', blaetter: 'Aufgabenblätter', sammlung: 'Formelsammlung' };
     let fokus = null;
     function quote() { return stand.gesamt ? Math.round(stand.richtig / stand.gesamt * 100) : null; }
     function startZeigen() {
@@ -1053,7 +1093,8 @@
         karten: stand.karten[1] ? stand.karten[0] + ' gewusst' : (formelZahl ? formelZahl + ' Formeln bereit' : 'Formeln deiner Themen'),
         kopf: (Number(kopfStand.serieBest) ? 'beste Serie ' + kopfStand.serieBest : 'noch nicht trainiert') + (kopfBest ? ' · Sprint ' + kopfBest : ''),
         blaetter: blaetter.length ? blaetter.filter(function (b) { return gewaehlt.indexOf(b.thema) >= 0; }).length + ' von ' + blaetter.length + ' zu deinen Themen' : 'bald verfügbar',
-        sammlung: gewaehlt.length + ' Themen gewählt'
+        sammlung: gewaehlt.length + ' Themen gewählt',
+        pruefung: pruefungen.length ? 'zuletzt ' + Math.round(pruefungen[pruefungen.length - 1].r / pruefungen[pruefungen.length - 1].n * 100) + ' % (Note ' + note(Math.round(pruefungen[pruefungen.length - 1].r / pruefungen[pruefungen.length - 1].n * 100))[0] + ')' : 'noch keine geschrieben'
       };
       ARTEN.forEach(function (a) {
         if (a[0] === 'blaetter' && !blaetter.length) return;
@@ -1085,13 +1126,14 @@
         z2.append(kopf2, bal); z2.addEventListener('click', function () { document.getElementById('themen-suche').value = b; themenOeffnen(); });
         bf.append(z2);
       });
+      lernstandZeigen();
       // Erfolge
       const kopfSerie = Number(kopfStand.serieBest) || 0, bereicheGeuebt = {}; Object.keys(stand.themen).forEach(function (p) { const t = thema(p); if (t && stand.themen[p][1]) bereicheGeuebt[t.bereich] = 1; });
       const tagMax = Object.keys(tage).reduce(function (m, k) { return Math.max(m, tage[k]); }, 0), sTage = besteSerieTage();
       const ERF = [
         ['Erster Schritt', 'erste Aufgabe gerechnet', stand.gesamt, 1], ['Zehnerserie', '10 richtig in Folge', stand.beste, 10], ['Fleißig', '50 Aufgaben', stand.gesamt, 50], ['Ausdauer', '250 Aufgaben', stand.gesamt, 250],
         ['Dranbleiben', '3 Tage in Folge', sTage, 3], ['Wochenserie', '7 Tage in Folge', sTage, 7], ['Tagesziel', 'Tagesziel einmal erreicht', tagMax, ziel], ['Kartenprofi', '100 Formelkarten gewusst', stand.karten[0], 100],
-        ['Kopfrechner', '20 richtig in Folge beim Kopfrechnen', kopfSerie, 20], ['Sprinter', '20 richtige in einem Sprint', kopfBest, 20], ['Allrounder', 'Aufgaben aus 5 Bereichen', Object.keys(bereicheGeuebt).length, 5]
+        ['Kopfrechner', '20 richtig in Folge beim Kopfrechnen', kopfSerie, 20], ['Sprinter', '20 richtige in einem Sprint', kopfBest, 20], ['Allrounder', 'Aufgaben aus 5 Bereichen', Object.keys(bereicheGeuebt).length, 5], ['Prüfungsreif', 'Prüfung mit mindestens 81 % (gut)', pruefungen.reduce(function (m, x) { return Math.max(m, Math.round(x.r / x.n * 100)); }, 0), 81]
       ];
       const ez = document.getElementById('erfolge'); ez.textContent = ''; let frei = 0;
       ERF.forEach(function (x, i) {
@@ -1115,15 +1157,260 @@
     function themenOeffnen() { const t = document.getElementById('themen-tafel'); t.hidden = false; auswahlZeigen(); t.scrollIntoView({ block: 'start', behavior: 'smooth' }); }
     function themenSchliessen() { document.getElementById('themen-tafel').hidden = true; document.getElementById('themen-suche').value = ''; auswahlZeigen(); }
 
+    // ---------- Lernstand je Thema ----------
+    if (!stand.verlauf || typeof stand.verlauf !== 'object' || Array.isArray(stand.verlauf)) stand.verlauf = {};
+    if (!stand.zuletzt || typeof stand.zuletzt !== 'object' || Array.isArray(stand.zuletzt)) stand.zuletzt = {};
+    if (!stand.themen || typeof stand.themen !== 'object' || Array.isArray(stand.themen)) stand.themen = {};
+    Object.keys(stand.verlauf).forEach(function (p) { const v = stand.verlauf[p]; if (!Array.isArray(v)) { delete stand.verlauf[p]; return; } stand.verlauf[p] = v.filter(function (x) { return x === 0 || x === 1; }).slice(-10); });
+    Object.keys(stand.zuletzt).forEach(function (p) { if (!/^\d{4}-\d{2}-\d{2}$/.test(String(stand.zuletzt[p]))) delete stand.zuletzt[p]; });
+    // ältere Stände ohne Verlauf aus den Summen nachbilden
+    Object.keys(stand.themen).forEach(function (p) {
+      const t = stand.themen[p]; if (stand.verlauf[p] || !Array.isArray(t) || !(t[1] > 0) || !(t[0] >= 0)) return;
+      const n = Math.min(10, t[1]), r = Math.round(Math.min(1, t[0] / t[1]) * n), v = []; for (let i = 0; i < n; i++) v.push(i < n - r ? 0 : 1); stand.verlauf[p] = v;
+    });
+    function merke(pfad, ok) {
+      if (!stand.verlauf || typeof stand.verlauf !== 'object') stand.verlauf = {};
+      if (!stand.zuletzt || typeof stand.zuletzt !== 'object') stand.zuletzt = {};
+      const v = Array.isArray(stand.verlauf[pfad]) ? stand.verlauf[pfad] : []; v.push(ok ? 1 : 0); stand.verlauf[pfad] = v.slice(-10); stand.zuletzt[pfad] = tagSchluessel(new Date());
+    }
+    function quoteThema(p) { const v = (stand.verlauf || {})[p] || [], l = v.slice(-5); return l.length ? l.reduce(function (a, x) { return a + x; }, 0) / l.length : 0; }
+    function lernstufe(p) {
+      const v = (stand.verlauf || {})[p] || [];
+      if (!v.length) return 'neu';
+      if (v.length < 3) return 'begonnen';
+      const q = quoteThema(p);
+      if (v.length >= 5 && q >= 0.8) { const z = (stand.zuletzt || {})[p]; return z && (Date.now() - new Date(z + 'T12:00:00').getTime()) / 864e5 >= 14 ? 'wiederholen' : 'sicher'; }
+      return q >= 0.6 ? 'fast' : 'ueben';
+    }
+    const LERNSTUFEN = [
+      ['ueben', 'Üben', '#C0392B', 'weniger als 60 % der letzten Aufgaben richtig'],
+      ['wiederholen', 'Wiederholen', '#6E6FA6', 'sicher, aber seit zwei Wochen nicht geübt'],
+      ['fast', 'Fast sicher', '#E0A800', '60 bis 80 % der letzten Aufgaben richtig'],
+      ['begonnen', 'Begonnen', '#6B7785', 'weniger als 3 Aufgaben gerechnet'],
+      ['sicher', 'Sicher', '#2E8B57', 'mindestens 5 Aufgaben, die letzten zu 80 % richtig']
+    ];
+    function lernstandZeigen() {
+      const z = document.getElementById('lernstand'); if (!z) return; z.textContent = '';
+      const mitAufg = gewaehlt.filter(function (p) { return thema(p) && (!formelCache.seiten[p] || formelCache.seiten[p].aufgaben); });
+      const gruppen = {}; let neu = 0;
+      mitAufg.forEach(function (p) { const st = lernstufe(p); if (st === 'neu') { neu++; return; } (gruppen[st] = gruppen[st] || []).push(p); });
+      const ges = mitAufg.length || 1, bal = el('div', 'lernstand-balken');
+      bal.setAttribute('role', 'img');
+      const teile = [];
+      LERNSTUFEN.slice().reverse().concat([['neu', 'noch nicht geübt', 'transparent']]).forEach(function (x) { const n = x[0] === 'neu' ? neu : (gruppen[x[0]] || []).length; if (!n) return; const i = el('i'); i.style.width = (n / ges * 100) + '%'; i.style.background = x[2]; i.title = x[1] + ': ' + n; bal.append(i); teile.push(x[1] + ' ' + n); });
+      bal.setAttribute('aria-label', 'Lernstand: ' + teile.join(', '));
+      z.append(bal);
+      document.getElementById('lernstand-zahl').textContent = (gruppen.sicher || []).length + ' von ' + mitAufg.length + ' sicher';
+      if (!Object.keys(gruppen).length) { z.append(el('p', 'hinweis-klein', 'Noch keine Aufgaben gerechnet. Nach ein paar Aufgaben je Thema siehst du hier, was sitzt und was du üben solltest.')); return; }
+      const raster = el('div', 'lernstand-raster');
+      LERNSTUFEN.forEach(function (x) {
+        const l = gruppen[x[0]]; if (!l || !l.length) return;
+        const sp = el('div', 'lernstand-gruppe'); sp.style.setProperty('--farbe', x[2]);
+        const h = el('h3'); h.append(el('span', 'punkt'), document.createTextNode(x[1] + ' (' + l.length + ')')); h.title = x[3]; sp.append(h, el('small', 'hinweis-klein', x[3]));
+        l.sort(function (a, b) { return quoteThema(a) - quoteThema(b); }).slice(0, 6).forEach(function (p) {
+          const t = thema(p), k = el('button', 'lernstand-thema'); k.type = 'button';
+          k.append(el('span', '', t.titel), el('small', '', Math.round(quoteThema(p) * 100) + ' %'));
+          k.title = 'Gezielt üben: ' + t.titel;
+          k.addEventListener('click', function () { fokus = p; aktuelle = null; modusWaehlen('aufgaben'); themenLeiste(); });
+          sp.append(k);
+        });
+        if (l.length > 6) sp.append(el('small', 'hinweis-klein', 'und ' + (l.length - 6) + ' weitere'));
+        raster.append(sp);
+      });
+      z.append(raster);
+      if (neu) z.append(el('p', 'hinweis-klein', neu + (neu === 1 ? ' deiner Themen ist' : ' deiner Themen sind') + ' noch nicht geübt.'));
+    }
+
+    // ---------- Prüfung ----------
+    const S_PRUEF = 'lernen-pruefungen', S_PRUEF_EINST = 'lernen-pruefung-einst';
+    let pruefungen = lies(S_PRUEF, []); if (!Array.isArray(pruefungen)) pruefungen = [];
+    pruefungen = pruefungen.filter(function (x) { return x && /^\d{4}-\d{2}-\d{2}$/.test(String(x.d)) && x.n > 0 && x.n <= 100 && x.r >= 0 && x.r <= x.n; }).map(function (x) { return { d: String(x.d), n: Math.round(x.n), r: Math.round(x.r), s: Math.max(0, Math.round(Number(x.s) || 0)) }; }).slice(-30);
+    let pruefEinst = lies(S_PRUEF_EINST, null);
+    if (!pruefEinst || typeof pruefEinst !== 'object') pruefEinst = {};
+    if ([10, 20, 30].indexOf(pruefEinst.n) < 0) pruefEinst.n = 20;
+    if (['auto', 'ohne', '15', '30', '60', '90'].indexOf(String(pruefEinst.zeit)) < 0) pruefEinst.zeit = 'auto';
+    if (['gemischt', 'leicht', 'mittel', 'schwer'].indexOf(pruefEinst.stufe) < 0) pruefEinst.stufe = 'gemischt';
+    pruefEinst = { n: pruefEinst.n, zeit: String(pruefEinst.zeit), stufe: pruefEinst.stufe };
+    let P = null, pruefUhr = null;
+    function note(p) { return p >= 92 ? [1, 'sehr gut'] : p >= 81 ? [2, 'gut'] : p >= 67 ? [3, 'befriedigend'] : p >= 50 ? [4, 'ausreichend'] : p >= 30 ? [5, 'mangelhaft'] : [6, 'ungenügend']; }
+    function pruefMinuten(e) { return e.zeit === 'ohne' ? 0 : e.zeit === 'auto' ? e.n * 3 : Number(e.zeit); }
+    function uhrText(s) { s = Math.max(0, Math.ceil(s)); const m = Math.floor(s / 60); return m + ':' + ('0' + (s % 60)).slice(-2); }
+    function pruefRest() { return P && P.minuten ? Math.max(0, P.minuten * 60 - (Date.now() - P.start) / 1000) : Infinity; }
+    function pruefQuelle() { return gewaehlt.filter(function (p) { return thema(p) && (!formelCache.seiten[p] || formelCache.seiten[p].aufgaben); }); }
+    function pruefungZeigen() {
+      const box = document.getElementById('pruefung');
+      if (P && P.phase === 'laeuft') { pruefAufgabe(); return; }
+      if (P && P.phase === 'ende') { pruefErgebnis(); return; }
+      if (P && P.phase === 'bau') return;
+      box.textContent = '';
+      const k = el('div', 'karte');
+      k.append(el('h3', '', 'Prüfungssimulation'), el('p', '', 'Gemischte Aufgaben aus deinen Themen, auf Wunsch auf Zeit. Ob eine Antwort stimmt, siehst du erst nach dem Abgeben – wie in der Prüfung. Bewertet wird nach dem üblichen Notenschlüssel der Kammern: ab 92 % sehr gut, ab 81 % gut, ab 67 % befriedigend, ab 50 % ausreichend.'));
+      const reihe = function (titel, name, werte) {
+        const f = el('fieldset', 'pruef-wahl'); f.append(el('legend', '', titel));
+        werte.forEach(function (w) { const b = el('button', 'knopf', w[1]); b.type = 'button'; b.setAttribute('aria-pressed', String(w[0]) === String(pruefEinst[name]) ? 'true' : 'false'); b.addEventListener('click', function () { pruefEinst[name] = w[0]; schreib(S_PRUEF_EINST, pruefEinst); pruefungZeigen(); }); f.append(b); });
+        return f;
+      };
+      k.append(reihe('Aufgaben', 'n', [[10, '10'], [20, '20'], [30, '30']]));
+      k.append(reihe('Zeit', 'zeit', [['auto', pruefEinst.n * 3 + ' min (3 je Aufgabe)'], ['ohne', 'ohne Zeit'], ['15', '15 min'], ['30', '30 min'], ['60', '60 min'], ['90', '90 min']]));
+      k.append(reihe('Schwierigkeit', 'stufe', [['gemischt', 'gemischt'], ['leicht', 'leicht'], ['mittel', 'mittel'], ['schwer', 'schwer']]));
+      const quelle = pruefQuelle();
+      k.append(el('p', 'hinweis-klein', quelle.length ? 'Die Aufgaben kommen aus ' + quelle.length + (quelle.length === 1 ? ' gewähltem Thema' : ' gewählten Themen') + '. Mit „Themen ändern“ grenzt du sie zum Beispiel auf deinen Prüfungsbereich ein.' : 'Bitte zuerst Themen wählen – oben „Themen ändern“.'));
+      const los = el('button', 'knopf-haupt', 'Prüfung starten'); los.type = 'button'; los.disabled = !quelle.length;
+      los.addEventListener('click', function () { pruefungBauen(quelle); });
+      k.append(los);
+      box.append(k);
+      if (pruefungen.length) {
+        const h = el('div', 'karte'); h.append(el('h3', '', 'Bisherige Prüfungen'));
+        const t = el('table', 'pruef-verlauf'), kopf = el('tr'); ['Datum', 'Aufgaben', 'Ergebnis', 'Note', 'Zeit'].forEach(function (x) { kopf.append(el('th', '', x)); }); t.append(kopf);
+        pruefungen.slice().reverse().slice(0, 10).forEach(function (x) { const tr = el('tr'), pz = Math.round(x.r / x.n * 100), nt = note(pz); [x.d.split('-').reverse().join('.'), String(x.n), x.r + ' richtig, ' + pz + ' %', nt[0] + ' (' + nt[1] + ')', x.s ? uhrText(x.s) + ' min' : '–'].forEach(function (v) { tr.append(el('td', '', v)); }); t.append(tr); });
+        const weg = el('button', 'knopf', 'Verlauf löschen'); weg.type = 'button'; weg.addEventListener('click', function () { pruefungen = []; schreib(S_PRUEF, pruefungen); pruefungZeigen(); });
+        h.append(t, weg); box.append(h);
+      }
+    }
+    function pruefungBauen(quelle) {
+      const box = document.getElementById('pruefung'), n = pruefEinst.n, mein = { phase: 'bau', aufgaben: [], antworten: [], i: 0, start: 0, minuten: pruefMinuten(pruefEinst) };
+      P = mein;
+      box.textContent = '';
+      const k = el('div', 'karte'), txt = el('p', 'warte', 'Aufgaben werden zusammengestellt … 0 von ' + n), bal = el('div', 'balken'), bi = el('i'); bal.append(bi); k.append(txt, bal); box.append(k);
+      const reihe = quelle.slice(); for (let i = reihe.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)), x = reihe[i]; reihe[i] = reihe[j]; reihe[j] = x; }
+      let pos = 0, versuche = 0;
+      (function naechste() {
+        if (P !== mein) return;
+        if (mein.aufgaben.length >= n || versuche > n * 6) {
+          if (!mein.aufgaben.length) { P = null; box.textContent = ''; box.append(el('p', 'warte', 'Aus den gewählten Themen ließ sich keine Aufgabe bilden. Bitte andere Themen wählen.')); return; }
+          mein.phase = 'laeuft'; mein.start = Date.now(); pruefUhrStarten(); if (modus === 'pruefung') pruefAufgabe(); return;
+        }
+        versuche++; const pfad = reihe[pos++ % reihe.length];
+        lade(pfad).then(function (d) {
+          if (P !== mein || !d.loeser || !d.loeser.length) return;
+          const st = pruefEinst.stufe === 'gemischt' ? ['leicht', 'mittel', 'mittel', 'schwer'][Math.floor(Math.random() * 4)] : pruefEinst.stufe;
+          const lo = d.loeser[Math.floor(Math.random() * d.loeser.length)], a = aufgabeAus(lo, st);
+          if (a) { a.pfad = pfad; a.lo = lo; mein.aufgaben.push(a); mein.antworten.push(''); }
+        }).catch(function () { /* Thema überspringen */ }).then(function () {
+          txt.textContent = 'Aufgaben werden zusammengestellt … ' + mein.aufgaben.length + ' von ' + n; bi.style.width = (mein.aufgaben.length / n * 100) + '%';
+          naechste();
+        });
+      })();
+    }
+    function pruefUhrStarten() {
+      clearInterval(pruefUhr);
+      pruefUhr = setInterval(function () {
+        if (!P || P.phase !== 'laeuft') { clearInterval(pruefUhr); return; }
+        const r = pruefRest(), u = document.getElementById('pruef-uhr');
+        if (u && isFinite(r)) { u.textContent = uhrText(r); u.classList.toggle('knapp', r < 120); }
+        if (r <= 0) { meldung('Die Zeit ist um – die Prüfung wurde abgegeben.'); pruefAbgeben(); }
+      }, 1000);
+    }
+    function pruefAufgabe() {
+      const box = document.getElementById('pruefung'), a = P.aufgaben[P.i], lo = a.lo, t = thema(a.pfad) || { titel: a.pfad, bereich: '' }, zf = feld(lo, a.ziel);
+      box.textContent = '';
+      const inp = el('input'); inp.type = 'text'; inp.inputMode = 'decimal'; inp.value = P.antworten[P.i]; inp.placeholder = 'Ergebnis';
+      inp.setAttribute('aria-label', 'Lösung: ' + (zf.name || a.ziel)); inp.setAttribute('data-nicht-merken', ''); inp.maxLength = 40;
+      const speichern = function () { P.antworten[P.i] = inp.value.trim().slice(0, 40); };
+      const kopf = el('div', 'pruef-kopf'), rest = pruefRest();
+      kopf.append(el('b', '', 'Aufgabe ' + (P.i + 1) + ' von ' + P.aufgaben.length));
+      const u = el('span', 'pruef-uhr' + (rest < 120 ? ' knapp' : ''), isFinite(rest) ? uhrText(rest) : 'ohne Zeit'); u.id = 'pruef-uhr'; u.setAttribute('aria-label', 'verbleibende Zeit'); kopf.append(u);
+      box.append(kopf);
+      const punkte = el('div', 'pruef-punkte'); punkte.setAttribute('role', 'group'); punkte.setAttribute('aria-label', 'Zu Aufgabe springen');
+      P.aufgaben.forEach(function (x, j) {
+        const b = el('button', 'pruef-punkt' + (P.antworten[j] !== '' ? ' beantwortet' : '') + (j === P.i ? ' aktuell' : ''), String(j + 1)); b.type = 'button';
+        b.setAttribute('aria-label', 'Aufgabe ' + (j + 1) + (P.antworten[j] !== '' ? ', beantwortet' : ', offen')); if (j === P.i) b.setAttribute('aria-current', 'step');
+        b.addEventListener('click', function () { speichern(); P.i = j; pruefAufgabe(); });
+        punkte.append(b);
+      });
+      box.append(punkte);
+      const k = el('div', 'karte'); k.style.borderLeftColor = farbe(t.bereich);
+      const th = el('div', 'thema'); th.append(el('span', '', t.titel), el('span', '', t.bereich)); k.append(th, el('h3', '', 'Gegeben'));
+      const ul = el('ul', 'gegeben');
+      a.gegeben.forEach(function (x) { const f = feld(lo, x[0]), li = el('li'), sym = el('span'); formel(sym, f.tex || x[0], false); li.append(sym, el('span', 'gwert', '= ' + zahl(x[1]) + (f.e ? ' ' + f.e : '')), el('span', 'gname', f.name || '')); ul.append(li); });
+      k.append(ul);
+      const ges = el('p', 'gesucht'), sym = el('span'); formel(sym, zf.tex || a.ziel, false); ges.append(document.createTextNode('Gesucht: ' + (zf.name || a.ziel) + ' '), sym); k.append(ges);
+      const form = el('form', 'antwort'); form.setAttribute('autocomplete', 'off');
+      const zur = el('button', 'knopf', '← Zurück'); zur.type = 'button'; zur.disabled = P.i === 0;
+      const letzte = P.i >= P.aufgaben.length - 1, vor = el('button', 'knopf-haupt', letzte ? 'Speichern' : 'Weiter →'); vor.type = 'submit';
+      form.append(inp, el('span', 'einheit', zf.e || ''), zur, vor); k.append(form);
+      const hinweis = el('p', 'hinweis-klein', 'Komma oder Punkt als Dezimaltrennzeichen. Gewertet wird mit 2 % Toleranz.'); k.append(hinweis);
+      form.addEventListener('submit', function (ev) { ev.preventDefault(); speichern(); if (!letzte) { P.i++; pruefAufgabe(); } else { pruefAufgabe(); abgabeFrage(); } });
+      zur.addEventListener('click', function () { speichern(); P.i--; pruefAufgabe(); });
+      inp.addEventListener('input', function () { speichern(); const pk = punkte.children[P.i]; if (pk) pk.classList.toggle('beantwortet', inp.value.trim() !== ''); });
+      box.append(k);
+      const ab = el('div', 'pruef-abgabe'); ab.id = 'pruef-abgabe';
+      const abg = el('button', 'knopf-haupt', 'Abgeben'); abg.type = 'button'; abg.addEventListener('click', function () { speichern(); abgabeFrage(); });
+      const abbr = el('button', 'knopf', 'Abbrechen'); abbr.type = 'button'; abbr.addEventListener('click', function () { clearInterval(pruefUhr); P = null; pruefungZeigen(); });
+      ab.append(abg, abbr); box.append(ab);
+      if (modus === 'pruefung') inp.focus({ preventScroll: true });
+    }
+    function abgabeFrage() {
+      const ab = document.getElementById('pruef-abgabe'); if (!ab) return;
+      const offen = P.antworten.filter(function (x) { return x === ''; }).length;
+      ab.textContent = '';
+      ab.append(el('span', '', offen ? offen + (offen === 1 ? ' Aufgabe ist' : ' Aufgaben sind') + ' noch ohne Antwort. Trotzdem abgeben?' : 'Alle Aufgaben beantwortet. Jetzt abgeben?'));
+      const ja = el('button', 'knopf-haupt', 'Ja, abgeben'); ja.type = 'button'; ja.addEventListener('click', pruefAbgeben);
+      const nein = el('button', 'knopf', 'Weiter bearbeiten'); nein.type = 'button'; nein.addEventListener('click', pruefAufgabe);
+      ab.append(ja, nein); ja.focus();
+    }
+    function pruefAbgeben() {
+      if (!P || P.phase !== 'laeuft') return;
+      clearInterval(pruefUhr);
+      P.phase = 'ende'; P.dauer = Math.min((Date.now() - P.start) / 1000, P.minuten ? P.minuten * 60 : Infinity); P.ok = [];
+      P.aufgaben.forEach(function (a, j) {
+        const u = parse(P.antworten[j]), ok = isFinite(u) && Math.abs(u - a.antwort) / Math.max(Math.abs(a.antwort), 1e-12) <= 0.02;
+        P.ok.push(ok);
+        stand.gesamt++; if (ok) stand.richtig++;
+        const tt = stand.themen[a.pfad] || [0, 0]; tt[1]++; if (ok) tt[0]++; stand.themen[a.pfad] = tt; merke(a.pfad, ok); zaehle();
+      });
+      stand.serie = 0; schreib(S_STAND, stand); standZeigen();
+      const r = P.ok.filter(Boolean).length;
+      pruefungen.push({ d: tagSchluessel(new Date()), n: P.aufgaben.length, r: r, s: Math.round(P.dauer) }); pruefungen = pruefungen.slice(-30); schreib(S_PRUEF, pruefungen);
+      pruefErgebnis();
+      if (modus === 'pruefung') window.scrollTo(0, 0);
+    }
+    function pruefErgebnis() {
+      const box = document.getElementById('pruefung'); box.textContent = '';
+      const n = P.aufgaben.length, r = P.ok.filter(Boolean).length, pz = Math.round(r / n * 100), nt = note(pz);
+      const k = el('div', 'karte pruef-ergebnis');
+      const gross = el('div', 'pruef-note note-' + nt[0]); gross.append(el('b', '', String(nt[0])), el('span', '', nt[1])); gross.setAttribute('aria-label', 'Note ' + nt[0] + ', ' + nt[1]);
+      const tx = el('div'); tx.append(el('h3', '', r + ' von ' + n + ' richtig (' + pz + ' %)'), el('p', 'hinweis-klein', 'Zeit: ' + uhrText(P.dauer) + ' min' + (P.minuten ? ' von ' + P.minuten + ' min' : '') + '. ' + (pz >= 50 ? 'Bestanden.' : 'Nicht bestanden – dafür sind mindestens 50 % nötig.')));
+      k.append(gross, tx);
+      const ber = {}; P.aufgaben.forEach(function (a, j) { const t = thema(a.pfad), b = t ? t.bereich : '–'; ber[b] = ber[b] || [0, 0]; ber[b][1]++; if (P.ok[j]) ber[b][0]++; });
+      const bl = el('div', 'pruef-bereiche');
+      Object.keys(ber).forEach(function (b) { const z = el('div', 'bereich-zeile'); z.style.setProperty('--farbe', farbe(b)); const kk = el('span', 'bereich-kopf'); kk.append(el('b', '', b), el('small', '', ber[b][0] + ' von ' + ber[b][1] + ' richtig')); const ba = el('span', 'fortschritt'), i = el('i'); i.style.width = Math.round(ber[b][0] / ber[b][1] * 100) + '%'; ba.append(i); z.append(kk, ba); bl.append(z); });
+      k.append(bl);
+      const kn = el('div', 'pruef-knoepfe'), neu = el('button', 'knopf-haupt', 'Neue Prüfung'); neu.type = 'button'; neu.addEventListener('click', function () { P = null; pruefungZeigen(); }); kn.append(neu);
+      const falsch = {}; P.aufgaben.forEach(function (a, j) { if (!P.ok[j]) falsch[a.pfad] = (falsch[a.pfad] || 0) + 1; });
+      const schw = Object.keys(falsch).sort(function (x, y) { return falsch[y] - falsch[x]; })[0];
+      if (schw && thema(schw)) { const ue = el('button', 'knopf', 'Gezielt üben: ' + thema(schw).titel); ue.type = 'button'; ue.addEventListener('click', function () { fokus = schw; aktuelle = null; modusWaehlen('aufgaben'); themenLeiste(); }); kn.append(ue); }
+      k.append(kn); box.append(k);
+      const liste = el('div', 'karte'); liste.append(el('h3', '', 'Alle Aufgaben'), el('p', 'hinweis-klein', 'Antippen für Angaben und Lösungsweg.'));
+      P.aufgaben.forEach(function (a, j) {
+        const zf = feld(a.lo, a.ziel), t = thema(a.pfad) || { titel: a.pfad }, d = el('details', 'pruef-einzel' + (P.ok[j] ? ' gut' : ' schlecht')), s = el('summary');
+        const ein = zf.e ? ' ' + zf.e : '';
+        s.append(el('b', '', (P.ok[j] ? '✓ ' : '✗ ') + (j + 1) + '. ' + t.titel), el('span', '', ' – ' + (zf.name || a.ziel) + ': ' + (P.antworten[j] === '' ? 'keine Antwort' : P.antworten[j] + ein) + (P.ok[j] ? '' : ', richtig wäre ' + zahl(a.antwort) + ein)));
+        d.append(s);
+        let gefuellt = false;
+        d.addEventListener('toggle', function () {
+          if (!d.open || gefuellt) return; gefuellt = true;
+          const ul = el('ul', 'gegeben');
+          a.gegeben.forEach(function (x) { const f = feld(a.lo, x[0]), li = el('li'), sym = el('span'); formel(sym, f.tex || x[0], false); li.append(sym, el('span', 'gwert', '= ' + zahl(x[1]) + (f.e ? ' ' + f.e : '')), el('span', 'gname', f.name || '')); ul.append(li); });
+          const ol = el('ol', 'weg');
+          a.weg.forEach(function (w) { const li = el('li'); if (w[0]) li.append(el('div', 'titel', w[0])); const rr = el('div', 'rechnung'); formel(rr, w[1], false); li.append(rr); ol.append(li); });
+          const lk = el('a', '', 'im Rechner nachvollziehen'); lk.href = a.pfad;
+          d.append(ul, ol, lk);
+        });
+        liste.append(d);
+      });
+      box.append(liste);
+    }
+
     // ---------- Bedienung ----------
     let modus = 'start';
-    const MODI = ['start', 'aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf'], ANKER = { start: 'start', aufgaben: 'aufgaben', karten: 'karten', sammlung: 'formeln', blaetter: 'blaetter', kopf: 'kopfrechnen' };
+    const MODI = ['start', 'aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf', 'pruefung'], ANKER = { start: 'start', aufgaben: 'aufgaben', karten: 'karten', sammlung: 'formeln', blaetter: 'blaetter', kopf: 'kopfrechnen', pruefung: 'pruefung' };
     function ansicht(m, ohneAnker) {
       modus = m;
       Array.prototype.forEach.call(document.querySelectorAll('.modi [data-modus]'), function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-modus') === m ? 'true' : 'false'); });
       document.getElementById('p-start').hidden = m !== 'start'; document.documentElement.classList.toggle('lern-start', m === 'start');
       document.getElementById('ueben-bereich').hidden = m === 'start';
-      ['aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf'].forEach(function (x) { document.getElementById('p-' + x).hidden = x !== m; });
+      ['aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf', 'pruefung'].forEach(function (x) { document.getElementById('p-' + x).hidden = x !== m; });
       document.getElementById('themen-leiste').hidden = m === 'start' || m === 'kopf';
       if (m === 'kopf' || m === 'start') document.getElementById('themen-tafel').hidden = true;
       if (m === 'kopf') kopfStarten(); else if (kopf) kopf.verlassen();
@@ -1135,6 +1422,7 @@
       if (m === 'karten') naechsteKarte();
       if (m === 'sammlung') sammlungZeigen();
       if (m === 'blaetter') blaetterZeigen();
+      if (m === 'pruefung') pruefungZeigen();
     }
     Array.prototype.forEach.call(document.querySelectorAll('.modi [data-modus]'), function (k) {
       k.addEventListener('click', function () { ansicht(k.getAttribute('data-modus')); if (innerWidth > 760) return; window.scrollTo(0, 0); });
