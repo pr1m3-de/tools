@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = 'e3ecf2029d';
+const STAND = '861bec89dd';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -142,6 +142,9 @@ const DATEIEN = [
   "heizung/wohnungslueftung.html",
   "it/backup.html",
   "it/datenrate.html",
+  "it/pruefsummen.html",
+  "it/dns-http-tls.html",
+  "it/dateisysteme.html",
   "it/homelab-server.html",
   "it/homelab.html",
   "it/netzwerkkabel-poe.html",
@@ -214,7 +217,10 @@ const DATEIEN = [
   "aufgabenblaetter/geld/mehrwertsteuer-skonto/01-brutto-netto-skonto.md",
   "aufgabenblaetter/it/audioformate/01-bitrate-groesse-klang.md",
   "aufgabenblaetter/it/bildformate/01-pixel-formate-jpeg.md",
+  "aufgabenblaetter/it/dateisysteme/01-bloecke-laufwerke.md",
+  "aufgabenblaetter/it/dns-http-tls/01-webseite-laden.md",
   "aufgabenblaetter/it/kompression/01-entropie-huffman-lz77.md",
+  "aufgabenblaetter/it/pruefsummen/01-paritaet-hamming-crc.md",
   "aufgabenblaetter/it/videoformate/01-datenrate-codecs-gop.md",
   "aufgabenblaetter/liste.json",
   "aufgabenblaetter/mechanik/anhalteweg/01-reaktion-bremsen.md",

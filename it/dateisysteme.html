@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD – Formeln &amp; Rechner</title>
+  <meta name="description" content="Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/it/dateisysteme.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD">
+  <meta property="og:description" content="Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.">
+  <meta property="og:url" content="https://tools.pr1m3.de/it/dateisysteme.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD">
+  <meta name="twitter:description" content="Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/dateisysteme.html#seite","name":"Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD","url":"https://tools.pr1m3.de/it/dateisysteme.html","inLanguage":"de","description":"Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/dateisysteme.html#pfad"},"dateModified":"2026-11-22"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/dateisysteme.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD","item":"https://tools.pr1m3.de/it/dateisysteme.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/dateisysteme.html#fragen","mainEntity":[{"@type":"Question","name":"Warum lässt sich eine 5-GB-Datei nicht auf einen USB-Stick kopieren, obwohl Platz frei ist?","acceptedAnswer":{"@type":"Answer","text":"Der Stick ist vermutlich mit FAT32 formatiert. Dort darf eine einzelne Datei höchstens 4 GiB minus 1 Byte groß sein. Mit exFAT oder NTFS formatieren (vorher sichern!)."}},{"@type":"Question","name":"Sollte man eine SSD defragmentieren?","acceptedAnswer":{"@type":"Answer","text":"Nein. Es bringt keinen Geschwindigkeitsvorteil und kostet Schreibzyklen. Betriebssysteme schicken stattdessen TRIM-Befehle, damit die SSD gelöschte Blöcke intern aufräumen kann."}},{"@type":"Question","name":"Warum dauert das Kopieren vieler kleiner Dateien so lange?","acceptedAnswer":{"@type":"Answer","text":"Für jede Datei müssen Verzeichnis, Metadaten und Daten an verschiedenen Stellen gelesen und geschrieben werden. Die Zahl der Zugriffe pro Sekunde (IOPS) begrenzt dann, nicht die Übertragungsrate. Eine ZIP-Datei mit denselben Inhalten kopiert sich viel schneller."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/dateisysteme.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+    .wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+    .wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+    .wissen-karte p { font-size: .93rem; line-height: 1.45; }
+    .ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+    .ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    canvas.rechner-bild { touch-action: none; }
+    @media print { .ansichten { display: none; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Wie Dateien auf den Datenträger kommen</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Blöcke</h3><p>Ein Dateisystem teilt den Datenträger in gleich große Blöcke (Cluster), meist 4 KiB. Jede Datei belegt ganze Blöcke – auch eine Datei mit 1 Byte braucht einen vollen Block. Bei vielen kleinen Dateien und großen Blöcken geht dadurch viel Platz verloren (Verschnitt).</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Fragmentierung</h3><p>Werden Dateien gelöscht und neue geschrieben, landen Teile einer Datei in verstreuten Lücken. Eine Festplatte muss dann den Lesekopf oft bewegen und wird langsam. Bei SSDs spielt das kaum eine Rolle, weil jeder Block gleich schnell erreichbar ist.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>HDD und SSD</h3><p>Eine Festplatte (HDD) liest mit einem Kopf über drehenden Scheiben: lange Dateien schnell, verstreute kleine Zugriffe sehr langsam (etwa 100 pro Sekunde). Eine SSD speichert in Flash-Zellen ohne Mechanik und schafft zehntausende bis hunderttausende Zugriffe pro Sekunde.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>GB oder GiB?</h3><p>Laufwerke werden dezimal angegeben (1 GB = 10⁹ Byte), viele Betriebssysteme zeigen binär an (1 GiB = 2³⁰ Byte). Deshalb erscheint ein 1-TB-Laufwerk mit rund 931 „GB“ – es fehlt nichts.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum lässt sich eine 5-GB-Datei nicht auf einen USB-Stick kopieren, obwohl Platz frei ist?</summary><p>Der Stick ist vermutlich mit FAT32 formatiert. Dort darf eine einzelne Datei höchstens 4 GiB minus 1 Byte groß sein. Mit exFAT oder NTFS formatieren (vorher sichern!).</p></details>
+        <details><summary>Sollte man eine SSD defragmentieren?</summary><p>Nein. Es bringt keinen Geschwindigkeitsvorteil und kostet Schreibzyklen. Betriebssysteme schicken stattdessen TRIM-Befehle, damit die SSD gelöschte Blöcke intern aufräumen kann.</p></details>
+        <details><summary>Warum dauert das Kopieren vieler kleiner Dateien so lange?</summary><p>Für jede Datei müssen Verzeichnis, Metadaten und Daten an verschiedenen Stellen gelesen und geschrieben werden. Die Zahl der Zugriffe pro Sekunde (IOPS) begrenzt dann, nicht die Übertragungsrate. Eine ZIP-Datei mit denselben Inhalten kopiert sich viel schneller.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, tz = R.tz, E = R.E, F = R.farbe, zz = R.zahl, rd = R.rund;
+    const PI2 = 2 * Math.PI, W2 = Math.SQRT2, GRAD = Math.PI / 180;
+    const BLAU = '#2B7BB9', ROT = '#C0392B', GRUEN = '#2E8B57', ORANGE = '#E07A1F', LILA = '#9333EA', GRAU = '#6B7785', GELB = '#E0A800', KUPFER = '#B87333', TUERKIS = '#0E7C86';
+    function T(cx, s, x, y, a, g, fett, c) { R.Z.text(cx, s, x, y, a || 'left', g || 11, !!fett, c); }
+    // Text mit Zeilenumbruch auf maxW; gibt die Zeilenzahl zurück
+    function TW(cx, s, x, y, maxW, g, fett, c, lh, a) {
+      g = g || 11; lh = lh || g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      const worte = String(s).split(' '), zeilen = []; let z = '';
+      worte.forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { zeilen.push(z); z = w; } else z = t; });
+      if (z) zeilen.push(z);
+      zeilen.forEach(function (t, i) { T(cx, t, x, y + i * lh, a || 'left', g, fett, c); });
+      return zeilen.length;
+    }
+    // wie TW, aber die letzte Zeile steht auf yUnten
+    function TWU(cx, s, x, yUnten, maxW, g, fett, c) {
+      g = g || 11; const lh = g + 4;
+      cx.font = (fett ? '600 ' : '') + g + 'px ' + (F('--technik') || 'sans-serif');
+      let n = 1, z = ''; String(s).split(' ').forEach(function (w) { const t = z ? z + ' ' + w : w; if (z && cx.measureText(t).width > maxW) { n++; z = w; } else z = t; });
+      return TW(cx, s, x, yUnten - (n - 1) * lh, maxW, g, fett, c, lh);
+    }
+    function pfeil(cx, x1, y1, x2, y2, farbe, b) { cx.strokeStyle = farbe; cx.fillStyle = farbe; cx.lineWidth = b || 2; R.Z.pfeil(cx, x1, y1, x2, y2, 6 + (b || 2) * 1.5); }
+    function kreis(cx, x, y, r, fuell, rand, b) { cx.beginPath(); cx.arc(x, y, Math.max(0.1, r), 0, PI2); if (fuell) { cx.fillStyle = fuell; cx.fill(); } if (rand) { cx.strokeStyle = rand; cx.lineWidth = b || 1.5; cx.stroke(); } }
+    function strecke(cx, x1, y1, x2, y2, farbe, b, strich) { cx.strokeStyle = farbe; cx.lineWidth = b || 1.5; if (strich) cx.setLineDash(strich); cx.beginPath(); cx.moveTo(x1, y1); cx.lineTo(x2, y2); cx.stroke(); if (strich) cx.setLineDash([]); }
+    function zug(cx, pts, farbe, b, strich) { if (pts.length < 2) return; cx.strokeStyle = farbe; cx.lineWidth = b || 2; if (strich) cx.setLineDash(strich); cx.beginPath(); pts.forEach(function (p, i) { if (i) cx.lineTo(p[0], p[1]); else cx.moveTo(p[0], p[1]); }); cx.stroke(); if (strich) cx.setLineDash([]); }
+    // Zeitschritt in s aus der Bildzeit (0 bei Neuzeichnen ohne Zeitfortschritt)
+    function uhr() { let alt = null; return function (t) { const d = alt === null ? 0 : (t - alt) / 1000; alt = t; return Math.max(0, Math.min(0.05, d)); }; }
+    // Diagramm: reihen [{ name, farbe, punkte: [[x, y]], breite, punkt: [x, y], strich }]
+    function diagramm(cx, x, y, w, h, reihen, o) {
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x, y, w, h); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x, y, w, h);
+      let lz = 1, lx0 = x + 8; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); reihen.forEach(function (r) { if (!r.name) return; const bw = cx.measureText(r.name).width; if (lx0 > x + 8 && lx0 + bw > x + w - 6) { lx0 = x + 8; lz++; } lx0 += bw + 14; });
+      const x0 = x + 46, x1 = x + w - 10, y0 = y + 40 + (lz - 1) * 13, y1 = y + h - 30, xr = o.xr, yr = o.yr;
+      const X = function (v) { return x0 + (v - xr[0]) / (xr[1] - xr[0]) * (x1 - x0); }, Y = function (v) { return y1 - (Math.max(yr[0], Math.min(yr[1], v)) - yr[0]) / (yr[1] - yr[0]) * (y1 - y0); };
+      const ys = schritt(yr[1] - yr[0], 4), xs = schritt(xr[1] - xr[0], Math.max(2, Math.min(5, Math.floor((x1 - x0) / 70))));
+      cx.strokeStyle = F('--linie'); cx.beginPath();
+      teilung(yr, ys).forEach(function (v) { cx.moveTo(x0, Y(v)); cx.lineTo(x1, Y(v)); });
+      cx.stroke();
+      teilung(yr, ys).forEach(function (v) { T(cx, zz(v, stellen(ys)), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      teilung(xr, xs).forEach(function (v) { T(cx, zz(v, stellen(xs)), X(v), y1 + 10, 'center', 9, false, GRAU); });
+      if (yr[0] < 0 && yr[1] > 0) strecke(cx, x0, Y(0), x1, Y(0), F('--text'), 1);
+      strecke(cx, x0, y0, x0, y1, F('--text'), 1);
+      T(cx, o.titel, x + 8, y + 12, 'left', 11, true);
+      if (o.xl) T(cx, o.xl, x1, y1 + 22, 'right', 10, false, GRAU);
+      let lx = x + 8, ly = y + 25;
+      reihen.forEach(function (r) { if (!r.name) return; cx.font = '600 10px ' + (F('--technik') || 'sans-serif'); const bw = cx.measureText(r.name).width; if (lx > x + 8 && lx + bw > x + w - 6) { lx = x + 8; ly += 13; } T(cx, r.name, lx, ly, 'left', 10, true, r.farbe); lx += bw + 14; });
+      reihen.forEach(function (r) {
+        cx.save(); cx.beginPath(); cx.rect(x0, y0 - 2, x1 - x0, y1 - y0 + 4); cx.clip();
+        zug(cx, r.punkte.filter(function (p) { return isFinite(p[0]) && isFinite(p[1]); }).map(function (p) { return [X(p[0]), Y(p[1])]; }), r.farbe, r.breite || 2, r.strich);
+        cx.restore();
+        if (r.punkt && isFinite(r.punkt[0]) && isFinite(r.punkt[1])) kreis(cx, X(r.punkt[0]), Y(r.punkt[1]), 4.5, r.farbe);
+      });
+      return { X: X, Y: Y, x0: x0, x1: x1, y0: y0, y1: y1 };
+    }
+    // Achsenteilung mit runden Schritten
+    function schritt(spanne, n) { if (!(spanne > 0)) return 1; const roh = spanne / n, p = Math.pow(10, Math.floor(Math.log10(roh))), m = roh / p; return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p; }
+    function teilung(b, sp) { const l = []; for (let v = Math.ceil(b[0] / sp - 1e-9) * sp; v <= b[1] + sp * 1e-6 && l.length < 30; v += sp) l.push(Math.abs(v) < sp * 1e-9 ? 0 : v); return l; }
+    function stellen(sp) { return sp >= 1 ? (Math.abs(sp - Math.round(sp)) > 1e-9 ? 1 : 0) : Math.min(4, Math.ceil(-Math.log10(sp) - 1e-9)); }
+    function runde(b, n) { const sp = schritt(b[1] - b[0], n || 4); return [Math.floor(b[0] / sp) * sp, Math.ceil(b[1] / sp) * sp]; }
+    // Leiste mit Ansichten über dem Bild
+    function ansichten(seite, liste, start, wechsel) {
+      let jetzt = start;
+      const ziel = seite && seite.bildZusatz; if (!ziel) return function () { return jetzt; };
+      const leiste = document.createElement('div'); leiste.className = 'ansichten'; leiste.setAttribute('role', 'group'); leiste.setAttribute('aria-label', 'Ansicht wählen');
+      const knoepfe = liste.map(function (a) {
+        const k = document.createElement('button'); k.type = 'button'; k.className = 'knopf'; k.textContent = a[1]; k.setAttribute('data-nicht-merken', '');
+        k.setAttribute('aria-pressed', a[0] === jetzt ? 'true' : 'false');
+        k.addEventListener('click', function () { jetzt = a[0]; knoepfe.forEach(function (x, i) { x.setAttribute('aria-pressed', liste[i][0] === jetzt ? 'true' : 'false'); }); if (wechsel) wechsel(jetzt); seite.neu(); });
+        leiste.append(k); return k;
+      });
+      const cv = ziel.parentNode.querySelector('canvas'); ziel.parentNode.insertBefore(leiste, cv || ziel);
+      return function () { return jetzt; };
+    }
+    // Zufall mit festem Startwert (gleiches Bild bei jedem Neuzeichnen)
+    function zufall(s) { let x = s || 1; return function () { x = (x * 16807) % 2147483647; return (x - 1) / 2147483646; }; }
+    function bildCanvas() { return document.querySelector('canvas.rechner-bild'); }
+    // Zeigerposition im Bild in CSS-Pixeln
+    function zeiger(cv, ev) { const r = cv.getBoundingClientRect(); return [ev.clientX - r.left, ev.clientY - r.top]; }
+    const GiB = Math.pow(2, 30), TiB = Math.pow(2, 40), EiB = Math.pow(2, 60);
+    const FS = {
+      fat32: ['FAT32', 4 * GiB - 1, 2 * TiB, 'USB-Sticks, Speicherkarten bis 32 GB, sehr verbreitet'],
+      exfat: ['exFAT', 16 * EiB, 128 * Math.pow(2, 50), 'große USB-Sticks und Karten, ohne Journal'],
+      ntfs: ['NTFS', 16 * TiB, 256 * TiB, 'Systemlaufwerke unter Windows, mit Journal und Rechten'],
+      ext4: ['ext4', 16 * TiB, EiB, 'Linux-Standard, mit Journal'],
+      btrfs: ['Btrfs', 16 * EiB, 16 * EiB, 'Linux, mit Schnappschüssen und Prüfsummen'],
+      zfs: ['ZFS', 16 * EiB, 256 * Math.pow(2, 70), 'Server und NAS, Prüfsummen, Schnappschüsse, RAID eingebaut']
+    };
+    const LW = { hdd: ['Festplatte (HDD, 7200 U/min)', 200, 120, 8.5], sata: ['SSD mit SATA', 540, 80000, 0.08], nvme: ['SSD mit NVMe (PCIe 4.0)', 6500, 500000, 0.02], usb: ['USB-Stick (USB 3)', 120, 1500, 0.7] };
+    const FARBEN = [BLAU, GRUEN, ORANGE, LILA, TUERKIS, ROT, GELB, KUPFER];
+    let ansicht = 'bloecke', takt = uhr();
+    const SIM = { t: 0 };
+    function bytes(b) { const a = Math.abs(b); return a >= TiB ? zz(b / TiB, 2) + ' TiB' : a >= GiB ? zz(b / GiB, 2) + ' GiB' : a >= 1048576 ? zz(b / 1048576, 2) + ' MiB' : a >= 1024 ? zz(b / 1024, 2) + ' KiB' : zz(b, 0) + ' B'; }
+    function dauer(s) { return s >= 3600 ? zz(s / 3600, 2) + ' h' : s >= 60 ? zz(s / 60, 1) + ' min' : s >= 1 ? zz(s, 1) + ' s' : zz(s * 1000, 0) + ' ms'; }
+    function rechne(e) {
+      const r = {}, fs = FS[e.fs] || FS.ntfs, lw = LW[e.lw] || LW.sata, bs = Number(e.block) || 4096, d = e.dsize * 1024, N = Math.max(1, Math.round(e.anzahl));
+      r.fs = fs; r.lw = lw; r.bs = bs; r.N = N;
+      r.bloecke = Math.max(1, Math.ceil(d / bs)); r.belegt = r.bloecke * bs * N; r.netto = d * N; r.verschnitt = r.belegt - r.netto; r.vq = r.belegt > 0 ? r.verschnitt / r.belegt : 0;
+      r.zuGross = d > fs[1];
+      r.kapB = e.kap * 1e9; r.kapGiB = r.kapB / GiB; r.volZuGross = r.kapB > fs[2];
+      r.tSeq = r.netto / (lw[1] * 1e6); r.tZugriff = N * 2 / lw[2]; r.tKopie = r.tSeq + r.tZugriff;
+      r.tZip = r.netto / (lw[1] * 1e6) + 2 / lw[2];
+      r.passen = Math.floor(r.kapB / Math.max(bs * r.bloecke, 1));
+      return r;
+    }
+    const seite = R.seite({
+      titel: 'Dateisysteme und Speicher',
+      einleitung: 'Belegter Platz und Verschnitt je nach Blockgröße, Grenzen der Dateisysteme FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf HDD, SSD und USB-Stick sowie die Umrechnung von GB in GiB.',
+      hilfe: 'Beispiel: 100 000 Fotos-Vorschaubilder mit je 3 KB auf einer SATA-SSD mit 1 TB und NTFS (4-KiB-Blöcke).',
+      gruppen: [
+        { titel: 'Dateien', farbe: BLAU, felder: [
+          { k: 'dsize', tex: 's', name: 'Größe einer Datei', e: 'KiB', min: 0.001, max: 1e10 },
+          { k: 'anzahl', tex: 'N', name: 'Anzahl der Dateien', e: '', min: 1, max: 1e9, n: 0 }
+        ] },
+        { titel: 'Dateisystem', farbe: GRUEN, felder: [
+          { k: 'fs', name: 'Dateisystem', wahl: Object.keys(FS).map(function (k) { return [k, FS[k][0]]; }) },
+          { k: 'block', name: 'Blockgröße (Cluster)', wahl: [['512', '512 B'], ['4096', '4 KiB (üblich)'], ['32768', '32 KiB'], ['131072', '128 KiB'], ['1048576', '1 MiB']] }
+        ] },
+        { titel: 'Laufwerk', farbe: ORANGE, felder: [
+          { k: 'lw', name: 'Laufwerk', wahl: Object.keys(LW).map(function (k) { return [k, LW[k][0]]; }) },
+          { k: 'kap', tex: 'C', name: 'Kapazität laut Hersteller', e: 'GB', min: 0.1, max: 1e6 }
+        ] }
+      ],
+      beispiel: { dsize: 3, anzahl: 100000, fs: 'ntfs', block: '4096', lw: 'sata', kap: 1000 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.zuGross) H.meldung('Eine Datei mit ' + bytes(e.dsize * 1024) + ' ist für ' + r.fs[0] + ' zu groß – dort sind höchstens ' + bytes(r.fs[1]) + ' je Datei erlaubt.', true);
+        if (r.volZuGross) H.meldung('Ein Laufwerk mit ' + zz(e.kap, 0) + ' GB lässt sich mit ' + r.fs[0] + ' nicht als ein Volume nutzen (höchstens ' + bytes(r.fs[2]) + ').', true);
+        if (r.vq > 0.5) H.meldung('Über die Hälfte des belegten Platzes ist Verschnitt: Für so kleine Dateien ist die Blockgröße zu groß.', true);
+        H.kacheln([
+          [bytes(r.netto), 'Nutzdaten', BLAU],
+          [bytes(r.belegt), 'belegt auf dem Datenträger', BLAU],
+          [zz(r.vq * 100, 1) + ' %', 'Verschnitt (' + bytes(r.verschnitt) + ')', r.vq > 0.3 ? ROT : GRUEN],
+          [dauer(r.tKopie), 'Kopierzeit einzeln auf ' + r.lw[0], ORANGE],
+          [dauer(r.tZip), 'Kopierzeit als ein Archiv', GRUEN],
+          [zz(r.kapGiB, 1) + ' GiB', zz(e.kap, 0) + ' GB in binärer Anzeige', GRAU]
+        ]);
+        H.tabelle('Dateisysteme im Vergleich', ['Dateisystem', 'größte Datei', 'größtes Volume', 'Einsatz'], Object.keys(FS).map(function (k) { const f = FS[k]; return [f[0] + (k === e.fs ? ' ◀' : ''), bytes(f[1]).replace('16 384 TiB', '16 EiB'), f[2] >= EiB ? zz(f[2] / EiB, 0) + ' EiB' : bytes(f[2]), f[3]]; }));
+        H.tabelle('Laufwerke', ['Laufwerk', 'Übertragung', 'Zugriffe je s', 'Zugriffszeit'], Object.keys(LW).map(function (k) { const l = LW[k]; return [l[0] + (k === e.lw ? ' ◀' : ''), zz(l[1], 0) + ' MB/s', zz(l[2], 0), zz(l[3], 2) + ' ms']; }), { zahl: [1, 2, 3] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Blöcke je Datei', 'n = \\left\\lceil \\frac{s}{b} \\right\\rceil = \\left\\lceil \\frac{' + tz(e.dsize * 1024, 0) + '\\,\\text{B}}{' + tz(r.bs, 0) + '\\,\\text{B}} \\right\\rceil = ' + E(tz(r.bloecke, 0))],
+          ['Belegt', 'B = N \\cdot n \\cdot b = ' + tz(r.N, 0) + ' \\cdot ' + tz(r.bloecke, 0) + ' \\cdot ' + tz(r.bs, 0) + '\\,\\text{B} = ' + E(tz(r.belegt / 1048576, 2) + '\\,\\text{MiB}')],
+          ['Verschnitt', '\\frac{B - N \\cdot s}{B} = ' + E(tz(r.vq * 100, 1) + '\\,\\%')],
+          ['Kopierzeit', 't \\approx \\frac{N \\cdot s}{v} + \\frac{2N}{\\text{IOPS}} = ' + tz(r.tSeq, 3) + '\\,\\text{s} + ' + tz(r.tZugriff, 3) + '\\,\\text{s} = ' + E(tz(r.tKopie, 2) + '\\,\\text{s}')],
+          ['GB in GiB', '\\frac{' + tz(e.kap, 0) + ' \\cdot 10^9}{2^{30}} = ' + E(tz(r.kapGiB, 1) + '\\,\\text{GiB}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Übertragungszeit', hilfe: 'Datenmenge geteilt durch Übertragungsrate.',
+          felder: [{ k: 't', tex: 't', name: 'Zeit', e: 's', min: 0.01, max: 1e6 }, { k: 'S', tex: 'S', name: 'Datenmenge', e: 'MB', min: 1, max: 1e8 }, { k: 'v', tex: 'v', name: 'Übertragungsrate', e: 'MB/s', min: 1, max: 20000 }],
+          beispiel: { S: 50000, v: 540 },
+          gleichungen: [{ name: 'Zeit', v: ['t', 'S', 'v'], f: function (q) { return [q.t * q.v, q.S]; },
+            loese: { t: function (q) { return q.S / q.v; }, S: function (q) { return q.t * q.v; }, v: function (q) { return q.S / q.t; } },
+            weg: function (k, q) { return k === 't' ? 't = \\frac{S}{v} = \\frac{' + tz(q.S, 0) + '\\,\\text{MB}}{' + tz(q.v, 0) + '\\,\\text{MB/s}} = ' + E(tz(q.t, 1) + '\\,\\text{s}') : k === 'S' ? 'S = v \\cdot t = ' + E(tz(q.S, 0) + '\\,\\text{MB}') : 'v = \\frac{S}{t} = ' + E(tz(q.v, 1) + '\\,\\text{MB/s}'); } }] },
+        { titel: 'Zugriffe pro Sekunde', hilfe: 'Viele kleine Dateien: Zeit = Anzahl Zugriffe / IOPS.',
+          felder: [{ k: 't', tex: 't', name: 'Zeit', e: 's', min: 0.001, max: 1e6 }, { k: 'N', tex: 'N', name: 'Anzahl Zugriffe', e: '', min: 1, max: 1e9, n: 0 }, { k: 'I', tex: '\\text{IOPS}', name: 'Zugriffe je Sekunde', e: '1/s', min: 50, max: 1e6 }],
+          beispiel: { N: 200000, I: 120 },
+          gleichungen: [{ name: 'IOPS', v: ['t', 'N', 'I'], f: function (q) { return [q.t * q.I, q.N]; },
+            loese: { t: function (q) { return q.N / q.I; }, N: function (q) { return q.t * q.I; }, I: function (q) { return q.N / q.t; } },
+            weg: function (k, q) { return k === 't' ? 't = \\frac{N}{\\text{IOPS}} = \\frac{' + tz(q.N, 0) + '}{' + tz(q.I, 0) + '}\\,\\text{s} = ' + E(tz(q.t, 1) + '\\,\\text{s}') : k === 'N' ? 'N = t \\cdot \\text{IOPS} = ' + E(tz(q.N, 0)) : '\\text{IOPS} = \\frac{N}{t} = ' + E(tz(q.I, 0) + '\\,\\tfrac{1}{\\text{s}}'); } }] },
+        { titel: 'GB in GiB umrechnen', hilfe: '1 GB = 10⁹ Byte, 1 GiB = 2³⁰ Byte = 1 073 741 824 Byte.',
+          felder: [{ k: 'gib', tex: 'C_\\text{GiB}', name: 'Kapazität binär', e: 'GiB', min: 0.1, max: 1e6 }, { k: 'gb', tex: 'C_\\text{GB}', name: 'Kapazität dezimal', e: 'GB', min: 0.1, max: 1e6 }],
+          beispiel: { gb: 1000 },
+          gleichungen: [{ name: 'Einheit', v: ['gib', 'gb'], f: function (q) { return [q.gib * GiB, q.gb * 1e9]; },
+            loese: { gib: function (q) { return q.gb * 1e9 / GiB; }, gb: function (q) { return q.gib * GiB / 1e9; } },
+            weg: function (k, q) { return k === 'gib' ? 'C_\\text{GiB} = \\frac{' + tz(q.gb, 1) + ' \\cdot 10^9}{2^{30}} = ' + E(tz(q.gib, 2) + '\\,\\text{GiB}') : 'C_\\text{GB} = \\frac{' + tz(q.gib, 2) + ' \\cdot 2^{30}}{10^9} = ' + E(tz(q.gb, 2) + '\\,\\text{GB}'); } }] }
+      ],
+      sammlung: [
+        ['Blöcke je Datei', 'n = \\left\\lceil \\frac{s}{b} \\right\\rceil', 'aufgerundet, s = Dateigröße, b = Blockgröße'],
+        ['Belegter Platz', 'B = N \\cdot n \\cdot b', ''],
+        ['Verschnitt (Mittelwert)', '\\approx \\frac{b}{2} \\text{ je Datei}', 'bei zufälligen Dateigrößen'],
+        ['Binäre Einheiten', '1\\,\\text{KiB} = 2^{10}\\,\\text{B}, \\; 1\\,\\text{MiB} = 2^{20}\\,\\text{B}, \\; 1\\,\\text{GiB} = 2^{30}\\,\\text{B}', 'IEC 80000-13'],
+        ['Übertragungszeit', 't = \\frac{S}{v}', 'große, zusammenhängende Dateien'],
+        ['Zugriffszeit begrenzt', 't = \\frac{N}{\\text{IOPS}}', 'viele kleine Zugriffe'],
+        ['Mittlere Drehwartezeit HDD', 't = \\frac{1}{2} \\cdot \\frac{60\\,\\text{s}}{n}', 'n = Drehzahl in U/min, 7200 → 4,2 ms']
+      ],
+      quellen: 'Grenzen der Dateisysteme nach den jeweiligen Spezifikationen (übliche Blockgrößen); Laufwerkswerte typisch, je nach Modell sehr verschieden. Kopierzeit grob mit zwei Zugriffen je Datei.',
+      bild: { titel: 'Animation', label: 'Blöcke und Verschnitt, Fragmentierung und Zugriff bei HDD und SSD', animiert: true,
+        hoehe: function (B) { return B < 600 ? 420 : 380; },
+        hinweis: function (r, e) {
+          if (ansicht === 'bloecke') return 'Jedes Kästchen ist ein Block mit ' + bytes(r.bs) + '. Farbig: Nutzdaten, schraffiert: Verschnitt. Dateien werden der Reihe nach geschrieben.';
+          if (ansicht === 'fragment') return 'Dateien werden geschrieben und gelöscht. Neue Dateien füllen die Lücken und werden zerstückelt. Der Lesekopf (rot) muss für die blaue Datei mehrmals springen.';
+          return 'Dieselben acht verstreuten Blöcke lesen: Der Kopf der Festplatte muss sich bewegen und auf die Drehung warten, die SSD liest alle gleichzeitig. Zeit stark gedehnt.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); SIM.t += dt; ({ bloecke: zeigeBloecke, fragment: zeigeFragment, zugriff: zeigeZugriff })[ansicht](cx, B, H, r, e); } }
+    });
+    function schraffur(cx, x, y, w, h, farbe) { cx.save(); cx.beginPath(); cx.rect(x, y, w, h); cx.clip(); cx.strokeStyle = farbe; cx.lineWidth = 1; for (let i = -h; i < w; i += 5) { cx.beginPath(); cx.moveTo(x + i, y + h); cx.lineTo(x + i + h, y); cx.stroke(); } cx.restore(); }
+    function zeigeBloecke(cx, B, H, r, e) {
+      const sp = B < 600 ? 12 : 16, gr = Math.floor((B - 20) / sp), zeilen = Math.floor((H - 70) / gr), n = sp * zeilen;
+      // Dateigrößen in Blöcken: reale Größe, aber Variation ±60 % für die Darstellung
+      const z = zufall(5), dateien = [];
+      let pos = 0, i = 0;
+      while (pos < n && i < 200) { const s = Math.max(1, e.dsize * 1024 * (0.4 + 1.2 * z())), nb = Math.ceil(s / r.bs); dateien.push([pos, nb, s / r.bs]); pos += nb; i++; }
+      const sicht = Math.min(dateien.length, Math.floor(SIM.t * 3) % (dateien.length + 6));
+      for (let k = 0; k < n; k++) { const x = 10 + (k % sp) * gr, y = 50 + Math.floor(k / sp) * gr; cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x + 1, y + 1, gr - 2, gr - 2); }
+      let nutz = 0, bel = 0;
+      dateien.slice(0, sicht).forEach(function (d, j) {
+        const f = FARBEN[j % FARBEN.length];
+        for (let b = 0; b < d[1]; b++) {
+          const k = d[0] + b; if (k >= n) break;
+          const x = 10 + (k % sp) * gr + 1, y = 50 + Math.floor(k / sp) * gr + 1, voll = Math.min(1, d[2] - b);
+          cx.globalAlpha = 0.85; cx.fillStyle = f; cx.fillRect(x, y, (gr - 2) * voll, gr - 2); cx.globalAlpha = 1;
+          if (voll < 1) schraffur(cx, x + (gr - 2) * voll, y, (gr - 2) * (1 - voll), gr - 2, f);
+          bel += 1; nutz += voll;
+        }
+      });
+      T(cx, 'Blockgröße ' + bytes(r.bs) + ', Dateien je ~' + bytes(e.dsize * 1024), 10, 14, 'left', 11, true);
+      T(cx, 'Verschnitt im Bild: ' + zz(bel > 0 ? (1 - nutz / bel) * 100 : 0, 0) + ' %', 10, 32, 'left', 10, true, bel > 0 && 1 - nutz / bel > 0.3 ? ROT : GRUEN);
+    }
+    function zeigeFragment(cx, B, H, r, e) {
+      const n = 48, sp = B < 600 ? 8 : 12, gr = Math.floor((B - 20) / sp), y0 = 50;
+      const plan = [[0, 6, 'A'], [6, 4, 'B'], [10, 8, 'C'], [18, 5, 'D'], [23, 6, 'E']];
+      const schritt = Math.floor(SIM.t / 1.2) % 9;
+      const belegt = new Array(n).fill(null);
+      plan.forEach(function (p, j) { if (schritt >= j) for (let b = 0; b < p[1]; b++) belegt[p[0] + b] = [p[2], FARBEN[(j + 1) % FARBEN.length]]; });
+      if (schritt >= 5) { [6, 7, 8, 9, 18, 19, 20, 21, 22].forEach(function (k) { belegt[k] = null; }); }
+      let teile = [];
+      if (schritt >= 6) { const frei = []; for (let k = 0; k < n && frei.length < 14; k++) if (!belegt[k]) frei.push(k); frei.forEach(function (k) { belegt[k] = ['F', BLAU]; }); teile = frei; }
+      for (let k = 0; k < n; k++) {
+        const x = 10 + (k % sp) * gr, y = y0 + Math.floor(k / sp) * gr;
+        cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x + 1, y + 1, gr - 2, gr - 2);
+        if (belegt[k]) { cx.fillStyle = belegt[k][1]; cx.globalAlpha = belegt[k][0] === 'F' ? 1 : 0.55; cx.fillRect(x + 2, y + 2, gr - 4, gr - 4); cx.globalAlpha = 1; T(cx, belegt[k][0], x + gr / 2, y + gr / 2, 'center', 10, true, '#fff'); }
+      }
+      if (schritt >= 7 && teile.length) {
+        const pts = teile.map(function (k) { return [10 + (k % sp) * gr + gr / 2, y0 + Math.floor(k / sp) * gr + gr / 2]; });
+        zug(cx, pts, ROT, 1.5, [4, 3]);
+        const sprung = []; teile.forEach(function (k, j) { if (j && k !== teile[j - 1] + 1) sprung.push(k); });
+        const f = (SIM.t % 1.2) / 1.2, idx = Math.min(pts.length - 1, Math.floor(f * pts.length));
+        kreis(cx, pts[idx][0], pts[idx][1], 7, null, ROT, 2.5);
+        TWU(cx, 'Datei F liegt in ' + (sprung.length + 1) + ' Stücken: Die Festplatte muss ' + sprung.length + '-mal springen (je etwa ' + zz(LW.hdd[3], 1) + ' ms).', 10, H - 10, B - 20, 10, true, ROT);
+      }
+      const txt = ['A schreiben', 'B schreiben', 'C schreiben', 'D schreiben', 'E schreiben', 'B und D löschen', 'F (14 Blöcke) in die Lücken schreiben', 'F lesen', 'F lesen'][schritt];
+      T(cx, (schritt + 1) + '. ' + txt, 10, 14, 'left', 11, true);
+    }
+    function zeigeZugriff(cx, B, H, r, e) {
+      const eng = B < 600, z = zufall(11), ziele = []; for (let i = 0; i < 8; i++) ziele.push([0.25 + 0.7 * z(), z() * PI2]);
+      const xm = eng ? B / 2 : B * 0.27, ym = 140, R0 = Math.min(100, (eng ? B : B * 0.5) / 2 - 20);
+      // HDD
+      const dreh = SIM.t * 2.2, per = 1.6, k = Math.floor(SIM.t / per) % 8, f = (SIM.t % per) / per;
+      kreis(cx, xm, ym, R0, 'rgba(107,119,133,.25)', F('--text'), 1.5); kreis(cx, xm, ym, 10, F('--flaeche'), F('--text'), 1.5);
+      for (let i = 1; i < 5; i++) kreis(cx, xm, ym, R0 * (0.2 + i * 0.18), null, F('--linie'), 0.7);
+      ziele.forEach(function (p, i) { const a = p[1] + dreh, rr = p[0] * R0; kreis(cx, xm + Math.cos(a) * rr, ym + Math.sin(a) * rr, 4, i < k ? GRUEN : i === k ? ORANGE : BLAU); });
+      const alt = k ? ziele[k - 1][0] : 0.3, neu = ziele[k][0], rk = (f < 0.5 ? alt + (neu - alt) * (f / 0.5) : neu) * R0;
+      const px = Math.min(B - 10, xm + (R0 + 22) * 0.8), py = Math.max(44, ym - (R0 + 22) * 0.6);
+      strecke(cx, px, py, xm + rk * 0.8, ym - rk * 0.6, ROT, 3); kreis(cx, px, py, 5, ROT);
+      kreis(cx, xm + rk * 0.8, ym - rk * 0.6, 4, ROT);
+      T(cx, 'Festplatte: ' + (f < 0.5 ? 'Kopf bewegt sich' : 'wartet auf Drehung'), 10, 14, 'left', 11, true, ROT);
+      T(cx, 'Block ' + (k + 1) + ' von 8 – zusammen ~' + zz(8 * LW.hdd[3], 0) + ' ms', 10, 30, 'left', 10, false, GRAU);
+      // SSD
+      const sy = eng ? 270 : 60, sx = eng ? 20 : B * 0.58, sw = eng ? B - 40 : B * 0.38, sh = 90;
+      T(cx, 'SSD: alle Flash-Chips gleichzeitig – ~' + zz(8 * LW.sata[3] / 4, 2) + ' ms', sx, sy - 12, 'left', eng ? 10 : 11, true, GRUEN);
+      for (let c = 0; c < 4; c++) { const x = sx + c * sw / 4 + 4, w = sw / 4 - 8; cx.fillStyle = F('--flaeche'); cx.fillRect(x, sy, w, sh); cx.strokeStyle = F('--text'); cx.lineWidth = 1.2; cx.strokeRect(x, sy, w, sh); for (let j = 0; j < 2; j++) { const an = (SIM.t % per) / per < 0.3; kreis(cx, x + w / 2, sy + 25 + j * 40, 6, an ? GRUEN : BLAU); } T(cx, 'Chip ' + (c + 1), x + w / 2, sy + sh + 12, 'center', 9, false, GRAU); }
+    }
+    ansicht = (ansichten(seite, [['bloecke', 'Blöcke'], ['fragment', 'Fragmentierung'], ['zugriff', 'HDD und SSD']], 'bloecke', function (a) { ansicht = a; SIM.t = 0; }))();
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

@@ -275,6 +275,9 @@
         <li><a href="elektro/transistor-opv.html">Transistor und Operationsverstärker</a> – NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.</li>
         <li><a href="steuerung/digitaltechnik.html">Digitaltechnik: Gatter, Flipflops, Zähler, Addierer</a> – Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.</li>
         <li><a href="elektro/netzsysteme.html">Netzsysteme TN, TT und IT: Fehlerstromweg und Abschaltung</a> – Körperschluss im TN-S-, TN-C-S-, TN-C-, TT- und IT-System: Fehlerstromweg als Animation, Berührungsspannung, Abschaltung durch Leitungsschutzschalter oder RCD, Abschaltbedingungen nach DIN VDE 0100-410 und Auslösekennlinien.</li>
+        <li><a href="it/dateisysteme.html">Dateisysteme und Speicher: Blöcke, Fragmentierung, HDD und SSD</a> – Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.</li>
+        <li><a href="it/dns-http-tls.html">DNS, HTTP und TLS Schritt für Schritt</a> – Was beim Aufruf einer Webseite passiert: DNS-Auflösung über Root, TLD und Nameserver, TCP-Handschlag, TLS 1.2 und 1.3, HTTP/2 und HTTP/3 als Ablaufdiagramm – mit Ladezeit-Rechner aus Umlaufzeit, Protokoll und Bandbreite.</li>
+        <li><a href="it/pruefsummen.html">Prüfsummen und Fehlerkorrektur: Parität, Hamming, CRC</a> – Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die Wahrscheinlichkeit fehlerfreier Pakete bei einer Bitfehlerrate.</li>
       </ul>
     </section>
   </noscript>
@@ -1464,6 +1467,33 @@
         themen: ['Netzsystem', 'Netzform', 'TN-S', 'TN-C', 'TN-C-S', 'TT-System', 'IT-System', 'PEN', 'Schutzleiter', 'Körperschluss', 'Fehlerstrom', 'Berührungsspannung', 'Abschaltbedingung', 'Schleifenimpedanz', 'RCD', 'Fehlerstrom-Schutzschalter', 'Leitungsschutzschalter', 'Auslösekennlinie', 'Erderwiderstand', 'Isolationswächter', 'VDE 0100-410'],
         text: 'Körperschluss im TN-S-, TN-C-S-, TN-C-, TT- und IT-System: Fehlerstromweg als Animation, Berührungsspannung, Abschaltung durch Leitungsschutzschalter oder RCD, Abschaltbedingungen nach DIN VDE 0100-410 und Auslösekennlinien.',
         tex: 'Z_S \\cdot I_a \\le U_0'
+      },
+      {
+        titel: 'Dateisysteme und Speicher: Blöcke, Fragmentierung, HDD und SSD',
+        gruppe: 'Betrieb',
+        pfad: 'it/dateisysteme.html',
+        bereich: 'IT und Netzwerk',
+        themen: ['Dateisystem', 'FAT32', 'exFAT', 'NTFS', 'ext4', 'Btrfs', 'ZFS', 'Blockgröße', 'Cluster', 'Verschnitt', 'Fragmentierung', 'Defragmentieren', 'HDD', 'Festplatte', 'SSD', 'NVMe', 'IOPS', 'Zugriffszeit', 'GiB', 'Kopierzeit'],
+        text: 'Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.',
+        tex: 'n = \\left\\lceil \\frac{s}{b} \\right\\rceil'
+      },
+      {
+        titel: 'DNS, HTTP und TLS Schritt für Schritt',
+        gruppe: 'Netzwerk',
+        pfad: 'it/dns-http-tls.html',
+        bereich: 'IT und Netzwerk',
+        themen: ['DNS', 'Namensauflösung', 'Resolver', 'Root-Server', 'TTL', 'TCP', 'Handschlag', 'TLS', 'TLS 1.3', 'HTTPS', 'Zertifikat', 'HTTP', 'HTTP/2', 'HTTP/3', 'QUIC', '0-RTT', 'Umlaufzeit', 'RTT', 'Latenz', 'TTFB', 'Ladezeit', 'Slow Start'],
+        text: 'Was beim Aufruf einer Webseite passiert: DNS-Auflösung über Root, TLD und Nameserver, TCP-Handschlag, TLS 1.2 und 1.3, HTTP/2 und HTTP/3 als Ablaufdiagramm – mit Ladezeit-Rechner aus Umlaufzeit, Protokoll und Bandbreite.',
+        tex: 't_\\text{TTFB} \\approx n \\cdot \\text{RTT} + t_S'
+      },
+      {
+        titel: 'Prüfsummen und Fehlerkorrektur: Parität, Hamming, CRC',
+        gruppe: 'Grundlagen',
+        pfad: 'it/pruefsummen.html',
+        bereich: 'IT und Netzwerk',
+        themen: ['Prüfsumme', 'Parität', 'Paritätsbit', 'Hamming-Code', 'Fehlerkorrektur', 'ECC', 'Syndrom', 'CRC', 'zyklische Redundanzprüfung', 'Generatorpolynom', 'XOR', 'Bitfehlerrate', 'Coderate', 'Übertragungsfehler'],
+        text: 'Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die Wahrscheinlichkeit fehlerfreier Pakete bei einer Bitfehlerrate.',
+        tex: 'P = (1 - p)^n'
       }
     ];
 
