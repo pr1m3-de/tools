@@ -638,3 +638,10 @@ ol.weg li::before {
 .verwandt a:hover, .verwandt a:focus-visible { border-color: var(--text); }
 .verwandt a span { font-size: .86rem; color: var(--leise); line-height: 1.35; }
 @media print { .verwandt { display: none !important; } }
+
+/* Rückfrage (window.Nachfrage aus basis.js) */
+.nachfrage-hg { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0, 0, 0, .45); }
+.nachfrage { max-width: 440px; width: 100%; box-sizing: border-box; padding: 18px; border-radius: var(--rund); background: var(--flaeche); color: var(--text); border: 1px solid var(--linie); box-shadow: 0 10px 40px rgba(0, 0, 0, .35); }
+.nachfrage p { margin: 0 0 16px; line-height: 1.45; }
+.nachfrage-knoepfe { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+@media print { .nachfrage-hg { display: none !important; } }

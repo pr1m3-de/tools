@@ -1675,11 +1675,16 @@
     Object.keys(MODELLE).forEach(function (k) { const o = kn('option', '', MODELLE[k].name); o.value = k; $('anlageWahl').append(o); });
     ROH_WERTE.forEach(function (r) { const o = kn('option', '', '0 … ' + r.toLocaleString('de-DE')); o.value = r; $('roh').append(o); });
     const geaendert = function () { return P && $('code').value !== BSP[P.bsp][5]; };
-    $('laden').addEventListener('click', function () {
+    // Beispiel wechseln: sofort bei der Auswahl, „Laden“ lädt das gewählte Beispiel neu (z. B. nach eigenen Änderungen)
+    function beispielWechseln() {
       const k = $('beispiel').value;
-      if (geaendert() && !window.confirm('Beispiel laden? Dein geändertes Programm wird ersetzt (vorher „Als Datei speichern“ oder „Link kopieren“).')) return;
-      beispielLaden(k); speichernJetzt(); meldung('Beispiel geladen und übersetzt – mit „RUN“ starten.');
-    });
+      if (!BSP[k]) return;
+      window.Nachfrage('Beispiel „' + BSP[k][1] + '“ laden? Dein geändertes Programm wird ersetzt (vorher „Als Datei speichern“ oder „Link kopieren“).', function () {
+        beispielLaden(k); speichernJetzt(); meldung('Beispiel „' + BSP[k][1] + '“ geladen und übersetzt – mit „RUN“ starten.');
+      }, !geaendert(), 'Beispiel laden', function () { if (P) $('beispiel').value = P.bsp; });
+    }
+    $('beispiel').addEventListener('change', beispielWechseln);
+    $('laden').addEventListener('click', beispielWechseln);
     $('anlageWahl').addEventListener('change', function () {
       const neu = $('anlageWahl').value;
       stoppen(); anlageSetzen(neu, neu === BSP[P.bsp][2] ? BSP[P.bsp][3] : {}, null); P.anlage = neu;

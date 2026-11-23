@@ -531,7 +531,13 @@
     // ---------- Beispiele ----------
     BEISPIELE.forEach(function (x) { const o = kn('option', '', x[1]); o.value = x[0]; $('beispiel').append(o); });
     function laden(p) { P = p; zustandNeu(); $('beispiel').value = P.bsp; const x = BSP[P.bsp]; $('beispielText').textContent = x ? x[2] : ''; layout(); bloeckeAufbauen(); ioAufbauen(); }
-    $('laden').addEventListener('click', function () { if (!window.confirm('Beispiel laden? Dein Programm wird ersetzt (vorher „Link kopieren“ zum Sichern).')) return; laden(projektAus(BSP[$('beispiel').value])); if ($('beispiel').value === 'wasser') minute = 6 * 60 + 25; speichernJetzt(); meldung('Beispiel geladen.'); });
+    // Beispiel wechseln: sofort bei der Auswahl; „Laden“ lädt das gewählte Beispiel neu
+    function beispielWechseln() {
+      const k = $('beispiel').value; if (!BSP[k]) return;
+      Nachfrage('Beispiel laden? Dein Programm wird ersetzt (vorher „Link kopieren“ zum Sichern).', function () { laden(projektAus(BSP[k])); if (k === 'wasser') minute = 6 * 60 + 25; speichernJetzt(); meldung('Beispiel geladen.'); }, false, 'Beispiel laden', function () { if (P) $('beispiel').value = P.bsp; });
+    }
+    $('beispiel').addEventListener('change', beispielWechseln);
+    $('laden').addEventListener('click', beispielWechseln);
 
     // ---------- Schleife ----------
     let letzt = performance.now(), rest = 0, breite = 0, anzeige = 0;

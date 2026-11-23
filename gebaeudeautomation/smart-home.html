@@ -1012,9 +1012,10 @@
       const alle = $('regeln').querySelectorAll('.regel'); if (alle.length) { alle[alle.length - 1].scrollIntoView({ block: 'nearest' }); alle[alle.length - 1].querySelector('input').focus(); }
     });
     $('vorlageLaden').addEventListener('click', function () {
-      if (!window.confirm('Vorlage laden? Deine Räume, Geräte und Regeln werden ersetzt. (Über „Link kopieren“ kannst du sie vorher sichern.)')) return;
-      P = pruefen(vorlage($('vorlage').value)); minute = 6 * 60; PROT.length = 0; protNeu = true; Object.keys(letzteRegel).forEach(function (k) { delete letzteRegel[k]; });
-      entsBauen(); zustandNeu(); struktur(); status('Vorlage geladen: ' + $('vorlage').selectedOptions[0].textContent + '.');
+      Nachfrage('Vorlage laden? Deine Räume, Geräte und Regeln werden ersetzt. (Über „Link kopieren“ kannst du sie vorher sichern.)', function () {
+        P = pruefen(vorlage($('vorlage').value)); minute = 6 * 60; PROT.length = 0; protNeu = true; Object.keys(letzteRegel).forEach(function (k) { delete letzteRegel[k]; });
+        entsBauen(); zustandNeu(); struktur(); status('Vorlage geladen: ' + $('vorlage').selectedOptions[0].textContent + '.');
+      });
     });
     $('protLeeren').addEventListener('click', function () { PROT.length = 0; protNeu = true; });
     function status(t, schlecht) { $('status').textContent = t; $('status').className = 'meldung-sim ' + (schlecht ? 'schlecht' : 'gut'); }

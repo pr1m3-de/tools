@@ -321,8 +321,9 @@
         datei.addEventListener('click', function () { herunterladen(p); });
         const weg = document.createElement('button'); weg.type = 'button'; weg.className = 'knopf-leise'; weg.textContent = 'löschen';
         weg.addEventListener('click', function () {
-          if (!window.confirm('Projekt „' + t.textContent + '“ löschen?')) return;
-          const l = projekte(); l.splice(i, 1); schreiben(PROJEKTE, JSON.stringify(l)); projekteZeigen();
+          Nachfrage('Projekt „' + t.textContent + '“ löschen?', function () {
+            const l = projekte(); l.splice(i, 1); schreiben(PROJEKTE, JSON.stringify(l)); projekteZeigen();
+          });
         });
         kn.append(laden, datei, weg);
         li.append(f, t, kn, info); ul.append(li);
@@ -377,9 +378,10 @@
       r.readAsText(f); ev.target.value = '';
     });
     document.getElementById('alleLeeren').addEventListener('click', function () {
-      if (!window.confirm('Eingaben aller Rechner zurücksetzen? Gespeicherte Projekte bleiben erhalten.')) return;
-      SEITEN.forEach(function (s) { schreiben(schluessel(s[0]), null); if (s[3]) schreiben(s[3], null); });
-      seitenZeigen(); melden('meldung1', 'Alle Eingaben zurückgesetzt.');
+      Nachfrage('Eingaben aller Rechner zurücksetzen? Gespeicherte Projekte bleiben erhalten.', function () {
+        SEITEN.forEach(function (s) { schreiben(schluessel(s[0]), null); if (s[3]) schreiben(s[3], null); });
+        seitenZeigen(); melden('meldung1', 'Alle Eingaben zurückgesetzt.');
+      });
     });
     document.getElementById('drucken').addEventListener('click', function () { qrVorbereitet.then(function () { window.print(); }); });
     // Kopf für den Druck wie bei den Rechnern: Titel, Datum, Bauvorhaben, Bearbeiter, Firma

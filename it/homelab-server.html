@@ -479,8 +479,9 @@
         kopf.append(knoten('span', '', h.name), knoten('span', 'info', r ? zahl(r.pool.nutzTB, 2) + ' TB nutzbar · ' + r.lasten.length + ' Dienste' : ''));
         kopf.append(knopf('×', 'weg-k', function () {
           if (P.hosts.length < 2) { status('Mindestens ein Server bleibt bestehen.'); return; }
-          if (!window.confirm(h.name + ' löschen? Fest zugeordnete Dienste werden automatisch verteilt.')) return;
-          P.hosts.splice(P.hosts.indexOf(h), 1); P.lasten.forEach(function (l) { if (l.host === h.id) l.host = ''; }); aufbauen();
+          Nachfrage(h.name + ' löschen? Fest zugeordnete Dienste werden automatisch verteilt.', function () {
+            P.hosts.splice(P.hosts.indexOf(h), 1); P.lasten.forEach(function (l) { if (l.host === h.id) l.host = ''; }); aufbauen();
+          });
         }, h.name + ' entfernen'));
         d.append(kopf);
         const g = knoten('div', 'raster');
@@ -716,8 +717,8 @@
     }
     function animieren(t) { zeit = t / 1000; zeichnen(); requestAnimationFrame(animieren); }
     function herunterladen(text, name, typ) { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: typ + ';charset=utf-8' })); a.download = name; document.body.append(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
-    $('beispiel').addEventListener('click', function () { if (!window.confirm('Beispiel laden? Die aktuelle Planung wird ersetzt.')) return; P = pruefen(beispiel()); aufbauen(); status('Beispiel geladen.'); });
-    $('leer').addEventListener('click', function () { if (!window.confirm('Neu beginnen? Die aktuelle Planung wird ersetzt.')) return; P = pruefen(leerPlan()); aufbauen(); status('Neue Planung mit einem Server.'); });
+    $('beispiel').addEventListener('click', function () { Nachfrage('Beispiel laden? Die aktuelle Planung wird ersetzt.', function () { P = pruefen(beispiel()); aufbauen(); status('Beispiel geladen.'); }); });
+    $('leer').addEventListener('click', function () { Nachfrage('Neu beginnen? Die aktuelle Planung wird ersetzt.', function () { P = pruefen(leerPlan()); aufbauen(); status('Neue Planung mit einem Server.'); }); });
     $('dateiSpeichern').addEventListener('click', function () { herunterladen(JSON.stringify(P, null, 1), (P.name || 'homelab').replace(/[^A-Za-z0-9äöüÄÖÜß_-]+/g, '-').slice(0, 40) + '-server.json', 'application/json'); });
     $('dateiLaden').addEventListener('change', function (ev) {
       const d = ev.target.files && ev.target.files[0]; if (!d) return;

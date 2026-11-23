@@ -861,10 +861,11 @@
       if (aktiv(g) && portListe(g).length) leiste.append(knopf('Anschließen', 'knopf-leise', function () { const n = anschliessen(g); aufbauen(); status(n ? g.name + ' angeschlossen (' + n + ' Kabel).' : 'Kein freier passender Port gefunden.'); }));
       leiste.append(knopf('Löschen', 'knopf-leise', function () {
         const n = P.kabel.filter(function (k) { return k.a[0] === g.id || k.b[0] === g.id; }).length;
-        if (!window.confirm(g.name + ' löschen' + (n ? ' und ' + n + ' Kabel daran entfernen' : '') + '?')) return;
-        P.kabel = P.kabel.filter(function (k) { return k.a[0] !== g.id && k.b[0] !== g.id; });
-        P.geraete.splice(P.geraete.indexOf(g), 1); P.geraete.forEach(function (x) { if (x.usv === g.id) x.usv = ''; });
-        aufbauen(); status(g.name + ' gelöscht.');
+        Nachfrage(g.name + ' löschen' + (n ? ' und ' + n + ' Kabel daran entfernen' : '') + '?', function () {
+          P.kabel = P.kabel.filter(function (k) { return k.a[0] !== g.id && k.b[0] !== g.id; });
+          P.geraete.splice(P.geraete.indexOf(g), 1); P.geraete.forEach(function (x) { if (x.usv === g.id) x.usv = ''; });
+          aufbauen(); status(g.name + ' gelöscht.');
+        });
       }));
       innen.append(leiste);
     }
@@ -1000,8 +1001,9 @@
         const kopf = knoten('div', 'kabel-kopf'); kopf.append(sw, knoten('span', 'info', A ? P.geraete.filter(function (g) { return vlansVon(g).indexOf(v.id) >= 0; }).length + ' Geräte' : ''));
         kopf.append(knopf('×', 'weg-k', function () {
           if (P.vlans.length < 2) { status('Mindestens ein VLAN bleibt bestehen.'); return; }
-          if (!window.confirm('VLAN ' + v.vid + ' (' + v.name + ') löschen? Geräte darin verlieren ihr VLAN.')) return;
-          P.vlans.splice(i, 1); P.geraete.forEach(function (g) { if (g.vlan === v.id) g.vlan = ''; g.weitere = g.weitere.filter(function (x) { return x !== v.id; }); }); aufbauen();
+          Nachfrage('VLAN ' + v.vid + ' (' + v.name + ') löschen? Geräte darin verlieren ihr VLAN.', function () {
+            P.vlans.splice(i, 1); P.geraete.forEach(function (g) { if (g.vlan === v.id) g.vlan = ''; g.weitere = g.weitere.filter(function (x) { return x !== v.id; }); }); aufbauen();
+          });
         }, 'VLAN entfernen'));
         d.append(kopf, r); z.append(d);
       });
@@ -1348,8 +1350,8 @@
       document.querySelectorAll('.kabel-zeile').forEach(function (d) { const id = d.getAttribute('data-k'); d.classList.toggle('fehler', !!A.kFehler[id]); });
     }
     function animieren(t) { pulsT = t / 1000; if (UI.ansicht === 'topo' && A) topoZeichnen(); requestAnimationFrame(animieren); }
-    $('beispiel').addEventListener('click', function () { if (!window.confirm('Beispiel laden? Die aktuelle Planung wird ersetzt.')) return; P = pruefen(beispiel()); UI.offen = {}; UI.gewaehlt = ''; aufbauen(); status('Beispiel geladen.'); });
-    $('leer').addEventListener('click', function () { if (!window.confirm('Neu beginnen? Die aktuelle Planung wird ersetzt.')) return; P = pruefen(leerPlan()); UI.offen = {}; UI.gewaehlt = ''; aufbauen(); status('Leere Planung mit einem Router angelegt.'); });
+    $('beispiel').addEventListener('click', function () { Nachfrage('Beispiel laden? Die aktuelle Planung wird ersetzt.', function () { P = pruefen(beispiel()); UI.offen = {}; UI.gewaehlt = ''; aufbauen(); status('Beispiel geladen.'); }); });
+    $('leer').addEventListener('click', function () { Nachfrage('Neu beginnen? Die aktuelle Planung wird ersetzt.', function () { P = pruefen(leerPlan()); UI.offen = {}; UI.gewaehlt = ''; aufbauen(); status('Leere Planung mit einem Router angelegt.'); }); });
     $('dateiSpeichern').addEventListener('click', function () { herunterladen(JSON.stringify(P, null, 1), (P.name || 'homelab').replace(/[^A-Za-z0-9äöüÄÖÜß_-]+/g, '-').slice(0, 40) + '.json', 'application/json'); });
     $('dateiLaden').addEventListener('change', function (ev) {
       const d = ev.target.files && ev.target.files[0]; if (!d) return;

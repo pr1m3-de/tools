@@ -874,6 +874,36 @@
   }
   function lsLesen(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSchreiben(k, v) { try { if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) { /* ohne Speicher */ } }
+  // ---------- Rückfrage im Seitenfenster ----------
+  // Ersatz für window.confirm: blockiert nichts und funktioniert auch in eingebetteten Browsern
+  // (Apps, die Dialoge unterdrücken – dort lieferte confirm stillschweigend „Abbrechen“).
+  // Nachfrage(text, weiter, ohneFrage, jaText, abbruch): ruft weiter() nach „Ja“ auf, sonst abbruch(); mit ohneFrage === true sofort weiter().
+  window.Nachfrage = function (text, weiter, ohneFrage, jaText, abbruch) {
+    if (ohneFrage) { weiter(); return; }
+    const alt = document.activeElement, hg = document.createElement('div'), d = document.createElement('div'), p = document.createElement('p');
+    hg.className = 'nachfrage-hg'; d.className = 'nachfrage'; d.setAttribute('role', 'alertdialog'); d.setAttribute('aria-modal', 'true');
+    p.id = 'nachfrage-text'; p.textContent = text; d.setAttribute('aria-describedby', 'nachfrage-text');
+    const ja = document.createElement('button'), nein = document.createElement('button'), leiste = document.createElement('div');
+    ja.type = 'button'; nein.type = 'button'; ja.className = 'knopf-haupt'; nein.className = 'knopf'; leiste.className = 'nachfrage-knoepfe';
+    ja.textContent = jaText || 'Ja, fortfahren'; nein.textContent = 'Abbrechen';
+    leiste.append(nein, ja); d.append(p, leiste); hg.append(d); document.body.append(hg);
+    let offen = true;
+    const zu = function (ok) {
+      if (!offen) return; offen = false; hg.remove(); document.removeEventListener('keydown', taste, true);
+      if (alt && alt.focus && document.contains(alt)) alt.focus({ preventScroll: true });
+      if (ok) weiter(); else if (abbruch) abbruch();
+    };
+    const taste = function (e) {
+      if (e.key === 'Escape') { e.preventDefault(); zu(false); }
+      else if (e.key === 'Tab') { e.preventDefault(); (document.activeElement === ja ? nein : ja).focus(); }
+    };
+    ja.addEventListener('click', function () { zu(true); });
+    nein.addEventListener('click', function () { zu(false); });
+    hg.addEventListener('click', function (e) { if (e.target === hg) zu(false); });
+    document.addEventListener('keydown', taste, true);
+    nein.focus();
+  };
+
   window.Teilen = {
     namen: LINK_NAMEN,
     hat: function (name) { return Object.prototype.hasOwnProperty.call(linkRoh, name); },
@@ -914,9 +944,10 @@
       const zeigen = function () { k.hidden = !lsLesen(schluessel + ':vorher'); };
       k.addEventListener('click', function () {
         const t = lsLesen(schluessel + ':vorher'); if (!t) { zeigen(); return; }
-        if (!window.confirm('Vorherige ' + (was || 'Werte') + ' wiederherstellen? Der Stand aus dem Link wird ersetzt.')) return;
-        lsSchreiben(schluessel + ':vorher', null);
-        wiederherstellen(t); zeigen();
+        window.Nachfrage('Vorherige ' + (was || 'Werte') + ' wiederherstellen? Der Stand aus dem Link wird ersetzt.', function () {
+          lsSchreiben(schluessel + ':vorher', null);
+          wiederherstellen(t); zeigen();
+        }, false, 'Wiederherstellen');
       });
       ziel.append(k); zeigen();
       return { zeigen: zeigen };
