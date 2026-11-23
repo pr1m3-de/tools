@@ -800,7 +800,7 @@
   //  - vor dem Übernehmen wird der bisherige Stand gesichert („Vorherige Werte wiederherstellen“)
   //  - Inhalte werden geprüft; strukturierte Daten laufen durch Teilen.entschaerfen
   //  - alte Links mit ?werte=, ?plan=, ?anlage= funktionieren weiter
-  const LINK_NAMEN = ['werte', 'plan', 'anlage', 'dach', 'uebernahme'];
+  const LINK_NAMEN = ['werte', 'plan', 'anlage', 'dach', 'uebernahme', 'pruefung'];
   const linkRoh = {};
   (function linkAbholen() {
     let geaendert = false;
