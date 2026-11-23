@@ -14,6 +14,7 @@
  *     keine KaTeX-Fehler, keine Anfragen an fremde Adressen, kein NaN/Infinity/undefined im Text
  *  4. Lernbereich: je Schwierigkeit 25 zufällige Rechenaufgaben aus allen Themen; die angezeigte Lösung
  *     wird eingetragen und muss als richtig bewertet werden, kein NaN/Infinity/undefined
+ * Schritt 3 und 4 laufen gleichzeitig, Schritt 3 mit mehreren Seiten parallel (PARALLEL, Standard 4).
  * Umgebung: CHROMIUM_PFAD = eigener Chromium/Chrome, NUR_LERNEN=1 überspringt Schritt 3
  */
 'use strict';
@@ -104,36 +105,39 @@ function server() {
 
 // 3. Seiten im Browser
 async function seitenPruefen(browser, basis) {
-  console.log('3. Seiten im Browser (380 und 1280 px)');
   const liste = seitenListe().filter(function (p) { return p !== '404.html'; });
-  for (const p of liste) {
-    for (const breite of [380, 1280]) {
-      const ctx = await browser.newContext({ viewport: { width: breite, height: 900 }, serviceWorkers: 'block' });
-      const seite = await ctx.newPage(), probleme = [];
-      seite.on('pageerror', function (e) { probleme.push('JS-Fehler: ' + e.message); });
-      seite.on('console', function (m) { if (m.type() === 'error') probleme.push('Konsole: ' + m.text()); });
-      seite.on('request', function (r) { const u = r.url(); if (!u.startsWith(basis) && !u.startsWith('data:') && !u.startsWith('blob:')) probleme.push('fremde Anfrage: ' + u); });
-      try {
-        await seite.goto(basis + '/' + p, { waitUntil: 'load', timeout: 30000 });
-        await seite.waitForTimeout(600);
-        const w = await seite.evaluate(function () {
-          const t = document.body ? document.body.innerText : '';
-          return { ueber: document.documentElement.scrollWidth > window.innerWidth + 1, katex: document.querySelectorAll('.katex-error').length, nan: /(^|[^A-Za-z])(NaN|Infinity|undefined)([^A-Za-z]|$)/.test(t) };
-        });
-        if (w.ueber) probleme.push('seitlicher Überlauf');
-        if (w.katex) probleme.push(w.katex + ' KaTeX-Fehler');
-        if (w.nan) probleme.push('NaN, Infinity oder undefined im Text');
-      } catch (e) { probleme.push('lädt nicht: ' + e.message.split('\n')[0]); }
-      probleme.filter(function (x, i, l) { return l.indexOf(x) === i; }).forEach(function (x) { melde('Seite', p + ' bei ' + breite + ' px: ' + x); });
-      await ctx.close();
-    }
+  const auftraege = []; liste.forEach(function (p) { [380, 1280].forEach(function (b) { auftraege.push([p, b]); }); });
+  const parallel = Math.max(1, Math.min(8, Number(process.env.PARALLEL) || 4));
+  let naechster = 0;
+  async function einzeln(p, breite) {
+    const ctx = await browser.newContext({ viewport: { width: breite, height: 900 }, serviceWorkers: 'block' });
+    const seite = await ctx.newPage(), probleme = [];
+    seite.on('pageerror', function (e) { probleme.push('JS-Fehler: ' + e.message); });
+    seite.on('console', function (m) { if (m.type() === 'error') probleme.push('Konsole: ' + m.text()); });
+    seite.on('request', function (r) { const u = r.url(); if (!u.startsWith(basis) && !u.startsWith('data:') && !u.startsWith('blob:')) probleme.push('fremde Anfrage: ' + u); });
+    try {
+      await seite.goto(basis + '/' + p, { waitUntil: 'load', timeout: 30000 });
+      await seite.waitForTimeout(400);
+      const w = await seite.evaluate(function () {
+        const t = document.body ? document.body.innerText : '';
+        return { ueber: document.documentElement.scrollWidth > window.innerWidth + 1, katex: document.querySelectorAll('.katex-error').length, nan: /(^|[^A-Za-z])(NaN|Infinity|undefined)([^A-Za-z]|$)/.test(t) };
+      });
+      if (w.ueber) probleme.push('seitlicher Überlauf');
+      if (w.katex) probleme.push(w.katex + ' KaTeX-Fehler');
+      if (w.nan) probleme.push('NaN, Infinity oder undefined im Text');
+    } catch (e) { probleme.push('lädt nicht: ' + e.message.split('\n')[0]); }
+    probleme.filter(function (x, i, l) { return l.indexOf(x) === i; }).forEach(function (x) { melde('Seite', p + ' bei ' + breite + ' px: ' + x); });
+    await ctx.close();
   }
-  console.log('   ' + liste.length + ' Seiten geprüft');
+  async function arbeiter() { while (naechster < auftraege.length) { const a = auftraege[naechster++]; await einzeln(a[0], a[1]); } }
+  const arbeit = []; for (let i = 0; i < parallel; i++) arbeit.push(arbeiter());
+  await Promise.all(arbeit);
+  console.log('3. Seiten im Browser (380 und 1280 px): ' + liste.length + ' Seiten, ' + parallel + ' gleichzeitig');
 }
 
 // 4. Lernbereich
 async function lernenPruefen(browser, basis) {
-  console.log('4. Lernbereich: zufällige Aufgaben je Schwierigkeit');
+
   const ctx = await browser.newContext({ viewport: { width: 1280, height: 900 }, serviceWorkers: 'block' });
   // nur Rechenaufgaben (Verständnisfragen haben eine feste richtige Antwort und werden in Schritt 2 geprüft)
   await ctx.addInitScript(function () { try { localStorage.setItem('lernen-fragen', 'false'); } catch (e) { /* egal */ } });
@@ -159,7 +163,7 @@ async function lernenPruefen(browser, basis) {
     }
   }
   js.forEach(function (x) { melde('Lernen', 'JS-Fehler: ' + x); });
-  console.log('   ' + geprueft + ' Aufgaben gerechnet');
+  console.log('4. Lernbereich: ' + geprueft + ' zufällige Aufgaben gerechnet');
   await ctx.close();
 }
 
@@ -171,7 +175,7 @@ async function lernenPruefen(browser, basis) {
     if (playwright) {
       const s = await server(), basis = 'http://127.0.0.1:' + s.address().port;
       const browser = await playwright.chromium.launch(process.env.CHROMIUM_PFAD ? { executablePath: process.env.CHROMIUM_PFAD } : {});
-      try { if (!process.env.NUR_LERNEN) await seitenPruefen(browser, basis); await lernenPruefen(browser, basis); } finally { await browser.close(); s.close(); }
+      try { await Promise.all([process.env.NUR_LERNEN ? null : seitenPruefen(browser, basis), lernenPruefen(browser, basis)]); } finally { await browser.close(); s.close(); }
     }
   }
   console.log(fehler.length ? '\n' + fehler.length + ' Probleme gefunden.' : '\nAlles in Ordnung.');
