@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = '042865dbc5';
+const STAND = 'f90dd74e59';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -44,6 +44,8 @@ const DATEIEN = [
   "assets/kopfrechnen.js",
   "assets/rechner.css",
   "assets/rechner.js",
+  "assets/baukasten.js",
+  "assets/baukasten.css",
   "assets/stil.css",
   "assets/symbol-192.png",
   "assets/symbol-512.png",

@@ -1,0 +1,10 @@
+/* Gemeinsame Teile der Seiten mit Animationsbaukasten */
+.wissen-raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(290px, 100%), 1fr)); gap: 12px; margin: 8px 0; }
+.wissen-karte { border: 1px solid var(--linie); border-left: 4px solid var(--farbe, var(--linie)); border-radius: var(--rund); padding: 10px 12px; background: var(--flaeche2); min-width: 0; }
+.wissen-karte h3 { margin: 0 0 4px; font-size: 1.02rem; }
+.wissen-karte p { font-size: .93rem; line-height: 1.45; }
+.ansichten { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+.ansichten .knopf { font-size: .85rem; padding: 5px 10px; }
+.ansichten .knopf[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+canvas.rechner-bild { touch-action: none; }
+@media print { .ansichten { display: none; } }
