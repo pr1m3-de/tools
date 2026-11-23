@@ -80,7 +80,7 @@
     const kBsp = knoten('button', 'knopf-leise', 'Beispielwerte wiederherstellen'); kBsp.type = 'button'; tEin.append(kBsp);
     oben.append(tEin);
 
-    let cv = null, cx = null, bildHinweis = null, kAnim = null, zusatzBild = null;
+    let cv = null, cx = null, bildHinweis = null, kAnim = null, kSchritt = null, kTempo = null, bildAnsage = null, zusatzBild = null;
     if (K.bild) {
       const tBild = knoten('section', 'tafel bild-tafel'); const hB = knoten('h2', '', K.bild.titel || 'Ansicht'); hB.id = id('bild');
       tBild.setAttribute('aria-labelledby', hB.id); tBild.append(hB);
@@ -88,8 +88,15 @@
       cx = cv.getContext('2d'); tBild.append(cv);
       zusatzBild = knoten('div', 'bild-zusatz'); tBild.append(zusatzBild);
       const st = knoten('div', 'steuerung');
-      if (K.bild.animiert) { kAnim = knoten('button', 'knopf', '■ Anhalten'); kAnim.type = 'button'; kAnim.setAttribute('data-nicht-merken', ''); st.append(kAnim); }
+      if (K.bild.animiert) {
+        kAnim = knoten('button', 'knopf', '■ Anhalten'); kAnim.type = 'button'; kAnim.setAttribute('data-nicht-merken', ''); kAnim.setAttribute('aria-pressed', 'false'); st.append(kAnim);
+        kSchritt = knoten('button', 'knopf', 'Schritt ▸'); kSchritt.type = 'button'; kSchritt.setAttribute('data-nicht-merken', ''); kSchritt.title = 'Ein kurzes Stück weiterlaufen lassen'; kSchritt.hidden = true; st.append(kSchritt);
+        const lt = knoten('label', 'tempo-wahl', 'Tempo '); kTempo = knoten('select'); kTempo.setAttribute('data-nicht-merken', '');
+        [['0.25', '¼×'], ['0.5', '½×'], ['1', '1×'], ['2', '2×']].forEach(function (o) { const op = knoten('option', '', o[1]); op.value = o[0]; if (o[0] === '1') op.selected = true; kTempo.append(op); });
+        lt.append(kTempo); st.append(lt);
+      }
       bildHinweis = knoten('span', 'zustand'); st.append(bildHinweis);
+      bildAnsage = knoten('span', 'nur-vorlesen'); bildAnsage.setAttribute('aria-live', 'polite'); st.append(bildAnsage);
       tBild.append(st);
       oben.append(tBild);
     }
@@ -337,6 +344,8 @@
 
     // ---------- Zeichnung ----------
     let B = 600, Hh = 300, dpr = 1, laeuft = !!(K.bild && K.bild.animiert), letzteZeit = 0;
+    // Bildzeit: läuft nur, solange die Animation spielt und sichtbar ist; Tempo wählbar
+    let bildZeit = 0, echtAlt = null, tempo = 1, imBild = true, letzterHinweis = '';
     const bewegungAus = false;
     function groesse() {
       if (!cv) return;
@@ -357,14 +366,25 @@
       cx.clearRect(0, 0, B, Hh);
       cx.fillStyle = farbe('--flaeche2'); cx.fillRect(0, 0, B, Hh);
       try { K.bild.zeichne(cx, B, Hh, t, r, e); } catch (x) { if (window.console) console.warn(x); }
-      if (bildHinweis && K.bild.hinweis) bildHinweis.textContent = K.bild.hinweis(r, e);
+      if (bildHinweis && K.bild.hinweis) {
+        const hw = K.bild.hinweis(r, e);
+        if (hw !== letzterHinweis) { letzterHinweis = hw; bildHinweis.textContent = hw; cv.setAttribute('aria-label', (K.bild.label || K.titel) + '. ' + hw); }
+      }
     }
-    function schleife(t) { if (laeuft && !bewegungAus) zeichnen(t); requestAnimationFrame(schleife); }
+    function ansagen() { if (bildAnsage && letzterHinweis) { bildAnsage.textContent = ''; setTimeout(function () { bildAnsage.textContent = letzterHinweis; }, 50); } }
+    function schleife(t) {
+      const d = echtAlt === null ? 0 : Math.max(0, Math.min(100, t - echtAlt)); echtAlt = t;
+      if (laeuft && !bewegungAus && imBild && !document.hidden) { bildZeit += d * tempo; zeichnen(bildZeit); }
+      requestAnimationFrame(schleife);
+    }
     if (cv) {
-      if (kAnim) kAnim.addEventListener('click', function () { laeuft = !laeuft; kAnim.textContent = laeuft ? '■ Anhalten' : '▶ Abspielen'; zeichnen(performance.now()); });
+      if (kAnim) kAnim.addEventListener('click', function () { laeuft = !laeuft; kAnim.textContent = laeuft ? '■ Anhalten' : '▶ Abspielen'; kAnim.setAttribute('aria-pressed', laeuft ? 'false' : 'true'); kSchritt.hidden = laeuft; zeichnen(bildZeit); });
+      if (kSchritt) kSchritt.addEventListener('click', function () { for (let i = 0; i < 20; i++) { bildZeit += 25; zeichnen(bildZeit); } });
+      if (kTempo) kTempo.addEventListener('change', function () { tempo = Number(kTempo.value) || 1; });
+      if (window.IntersectionObserver) new IntersectionObserver(function (l) { imBild = l[l.length - 1].isIntersecting; }).observe(cv);
       let uhr = 0;
-      window.addEventListener('resize', function () { clearTimeout(uhr); uhr = setTimeout(function () { groesse(); zeichnen(performance.now()); }, 60); });
-      document.addEventListener('themawechsel', function () { zeichnen(performance.now()); });
+      window.addEventListener('resize', function () { clearTimeout(uhr); uhr = setTimeout(function () { groesse(); zeichnen(bildZeit); }, 60); });
+      document.addEventListener('themawechsel', function () { zeichnen(bildZeit); });
       window.addEventListener('beforeprint', function () { zeichnen(letzteZeit); });
     }
 
@@ -372,7 +392,7 @@
     groesse();
     rechnen();
     if (cv) { zeichnen(0); requestAnimationFrame(schleife); }
-    return { werte: function () { return e; }, neu: rechnen, setze: function (o) { setzeWerte(o); rechnen(); }, bildZusatz: zusatzBild };
+    return { werte: function () { return e; }, neu: rechnen, setze: function (o) { setzeWerte(o); rechnen(); }, bildZusatz: zusatzBild, ansagen: function () { zeichnen(bildZeit); ansagen(); } };
   }
 
   // ---------- Löser in jede Richtung ----------
