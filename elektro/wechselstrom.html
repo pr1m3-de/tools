@@ -128,6 +128,17 @@
       </div>
     </section>
   </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="kompensation.html"><b>Blindleistungskompensation</b><span>Blindleistungskompensation mit Schaltplänen</span></a></li>
+      <li><a href="kondensator.html"><b>Kondensatoren</b><span>Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und …</span></a></li>
+      <li><a href="ohmsches-gesetz.html"><b>Ohmsches Gesetz und Kirchhoff</b><span>Spannung, Strom und Widerstand in jede Richtung rechnen, Reihen- und Parallelschaltung mit fließenden Ladungen, …</span></a></li>
+      <li><a href="drehfeldmaschinen.html"><b>Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</b><span>Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -388,6 +399,10 @@
             { name: 'Ausgang HP', v: ['Uah', 'kh', 'Ue'], f: function (q) { return [q.Uah, q.kh * q.Ue]; }, loese: { Uah: function (q) { return q.kh * q.Ue; }, kh: function (q) { return q.Uah / q.Ue; }, Ue: function (q) { return q.Uah / q.kh; } },
               weg: function (k, q) { return k === 'Uah' ? 'U_\\text{a} = \\frac{U_\\text{a}}{U_\\text{e}} \\cdot U_\\text{e} = ' + tz(q.kh, 4) + ' \\cdot ' + tz(q.Ue, 3) + '\\,\\text{V} = ' + E(tz(q.Uah, 4) + '\\,\\text{V}') : k === 'kh' ? '\\frac{U_\\text{a}}{U_\\text{e}} = ' + E(tz(q.kh, 4)) : 'U_\\text{e} = ' + E(tz(q.Ue, 3) + '\\,\\text{V}'); } }
           ] }
+      ],
+      weiter: [
+        { pfad: 'kompensation.html', titel: 'Blindleistung kompensieren', text: function (r, e) { return 'übernimmt P = ' + R.zahl(r.P / 1000, 3) + ' kW, cos φ = ' + R.zahl(r.cos, 3); },
+          werte: function (r, e) { if (!(r.P > 0) || !(r.phi > 0) || r.cos > 0.999) return null; const o = { netz: 1, u: e.u, quelle: 'direkt', p: r.P / 1000, c1: r.cos }; if (e.f === 50 || e.f === 60) o.f = e.f; return o; } }
       ],
       sammlung: [
         ['Periodendauer und Frequenz', 'f = \\frac{1}{T} \\qquad \\omega = 2\\pi \\cdot f', 'ω in 1/s'],

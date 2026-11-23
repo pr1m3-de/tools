@@ -95,3 +95,11 @@ h3.zwischen { margin: 22px 0 6px; font-size: 1.15rem; }
 .tempo-wahl { display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; color: var(--leise); }
 .tempo-wahl select { padding: 4px 6px; border: 1px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; }
 .steuerung .knopf[hidden] { display: none; }
+.weiter-links { margin-top: 14px; display: grid; gap: 8px; grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr)); }
+.weiter-links h3 { grid-column: 1 / -1; margin: 0; font-size: .95rem; }
+.weiter-link { display: flex; flex-direction: column; gap: 2px; padding: 9px 12px; border: 1px solid var(--linie); border-left: 3px solid var(--ergebnis); border-radius: var(--rund-klein); background: var(--flaeche2); color: var(--text); text-decoration: none; }
+.weiter-link:hover, .weiter-link:focus-visible { border-color: var(--ergebnis); }
+.weiter-link small { color: var(--leise); }
+.uebernommen { margin: 0 0 10px; padding: 8px 12px; border-radius: var(--rund-klein); background: var(--ergebnis-flaeche); font-size: .92rem; }
+.uebernommen[hidden], .weiter-links[hidden] { display: none; }
+@media print { .weiter-links { display: none !important; } }

@@ -58,6 +58,17 @@
       </div>
     </section>
   </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="datenrate.html"><b>Datenrate und Übertragungszeit</b><span>Echte Übertragungszeit aus Datenmenge, Bandbreite, Overhead, Latenz, TCP-Fenster und Paketverlust</span></a></li>
+      <li><a href="paketreise.html"><b>Paketreise durchs Netz</b><span>Webseitenaufruf Schritt für Schritt mit Simulation</span></a></li>
+      <li><a href="homelab.html"><b>Homelab-Planer</b><span>Heimnetz und Homelab planen: Geräte mit Ports, jedes Kabel über Patchfeld und Dose, Rack, VLANs und IP-Plan, …</span></a></li>
+      <li><a href="subnetz.html"><b>IP-Subnetzrechner</b><span>IPv4 und IPv6: Netzadresse, Broadcast, nutzbarer Bereich, Hosts, Maske und Wildcard aus Adresse und Präfix, …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -156,6 +167,10 @@
           gleichungen: [{ name: 'TTFB', v: ['T', 'n', 'rtt', 'ts'], f: function (q) { return [q.T, q.n * q.rtt + q.ts]; },
             loese: { T: function (q) { return q.n * q.rtt + q.ts; }, rtt: function (q) { return (q.T - q.ts) / q.n; }, ts: function (q) { return q.T - q.n * q.rtt; }, n: function (q) { return (q.T - q.ts) / q.rtt; } },
             weg: function (k, q) { return k === 'T' ? 't = n \\cdot \\text{RTT} + t_S = ' + tz(q.n, 0) + ' \\cdot ' + tz(q.rtt, 1) + ' + ' + tz(q.ts, 0) + '\\,\\text{ms} = ' + E(tz(q.T, 0) + '\\,\\text{ms}') : k === 'rtt' ? '\\text{RTT} = \\frac{t - t_S}{n} = ' + E(tz(q.rtt, 1) + '\\,\\text{ms}') : k === 'ts' ? 't_S = t - n \\cdot \\text{RTT} = ' + E(tz(q.ts, 0) + '\\,\\text{ms}') : 'n = \\frac{t - t_S}{\\text{RTT}} = ' + E(tz(q.n, 0)); } }] }
+      ],
+      weiter: [
+        { pfad: 'datenrate.html', titel: 'Download-Zeit und Durchsatz mit dieser Leitung', text: function (r, e) { return 'übernimmt RTT = ' + zz(e.rtt, 0) + ' ms und ' + zz(e.bw, 1) + ' Mbit/s'; },
+          werte: function (r, e) { return { rtt: e.rtt, rate: e.bw, rEinheit: 'Mbit' }; } }
       ],
       sammlung: [
         ['Umlaufzeit', '\\text{RTT} \\ge \\frac{2d}{v}', 'v ≈ 200 000 km/s in Glasfaser'],

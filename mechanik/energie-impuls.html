@@ -58,6 +58,17 @@
       </div>
     </section>
   </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="anhalteweg.html"><b>Anhalteweg: Reaktionsweg und Bremsweg</b><span>Anhalteweg aus Reaktionsweg und Bremsweg</span></a></li>
+      <li><a href="wurf.html"><b>Waagerechter und schräger Wurf</b><span>Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit beim waagerechten und schrägen Wurf, auf Erde, Mond, Mars …</span></a></li>
+      <li><a href="kraefte.html"><b>Kräfte</b><span>Kräfte zusammensetzen und zerlegen</span></a></li>
+      <li><a href="../elektro/kondensator.html"><b>Kondensatoren</b><span>Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -191,6 +202,10 @@
           gleichungen: [{ name: 'Stoß', v: ['v', 'm1', 'v1', 'm2', 'v2'], f: function (q) { return [q.v * (q.m1 + q.m2), q.m1 * q.v1 + q.m2 * q.v2]; },
             loese: { v: function (q) { return (q.m1 * q.v1 + q.m2 * q.v2) / (q.m1 + q.m2); }, v1: function (q) { return ((q.m1 + q.m2) * q.v - q.m2 * q.v2) / q.m1; }, v2: function (q) { return ((q.m1 + q.m2) * q.v - q.m1 * q.v1) / q.m2; }, m1: function (q) { return q.m2 * (q.v2 - q.v) / (q.v - q.v1); }, m2: function (q) { return q.m1 * (q.v1 - q.v) / (q.v - q.v2); } },
             weg: function (k, q) { return k === 'v' ? "v' = \\frac{m_1 v_1 + m_2 v_2}{m_1 + m_2} = \\frac{" + tz(q.m1, 2) + ' \\cdot ' + tz(q.v1, 2) + ' + ' + tz(q.m2, 2) + ' \\cdot ' + tz(q.v2, 2) + '}{' + tz(q.m1, 2) + ' + ' + tz(q.m2, 2) + '}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'v1' ? "v_1 = \\frac{(m_1 + m_2) v' - m_2 v_2}{m_1} = " + E(tz(q.v1, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'v2' ? "v_2 = \\frac{(m_1 + m_2) v' - m_1 v_1}{m_2} = " + E(tz(q.v2, 3) + '\\,\\tfrac{\\text{m}}{\\text{s}}') : k === 'm1' ? "m_1 = m_2 \\frac{v_2 - v'}{v' - v_1} = " + E(tz(q.m1, 2) + '\\,\\text{kg}') : "m_2 = m_1 \\frac{v_1 - v'}{v' - v_2} = " + E(tz(q.m2, 2) + '\\,\\text{kg}'); } }] }
+      ],
+      weiter: [
+        { pfad: 'anhalteweg.html', titel: 'Anhalteweg bei der Geschwindigkeit von Körper 1', text: function (r, e) { return 'übernimmt v = ' + zz(Math.abs(e.v1) * 3.6, 0) + ' km/h'; },
+          werte: function (r, e) { const v = Math.abs(e.v1) * 3.6; return v >= 1 && v <= 400 ? { v: v } : null; } }
       ],
       sammlung: [
         ['Impuls', 'p = m \\cdot v', 'Richtung wie die Geschwindigkeit'],

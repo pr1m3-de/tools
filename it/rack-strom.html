@@ -49,6 +49,17 @@
       </div>
     </section>
   </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="serverraum-klima.html"><b>Serverraum-Klima</b><span>Kühllast, Luftvolumenstrom zwischen Kalt- und Warmgang, Klimageräte mit Redundanz, PUE und Zeit bis zur Überhitzung …</span></a></li>
+      <li><a href="usv.html"><b>USV auslegen</b><span>USV für Server und Netzwerk: Scheinleistung mit Reserve, Baugröße, Überbrückungszeit mit Peukert und Alterung, …</span></a></li>
+      <li><a href="backup.html"><b>Backup-Planer</b><span>Speicherbedarf mit Voll-, inkrementeller oder differenzieller Sicherung, Dauer von Sicherung und Wiederherstellung, …</span></a></li>
+      <li><a href="dateisysteme.html"><b>Dateisysteme und Speicher: Blöcke, Fragmentierung, HDD und SSD</b><span>Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -145,6 +156,10 @@
             weg: function (k, q) { return k === 'V' ? '\\dot V = \\frac{P}{0{,}34\\, \\Delta\\vartheta} = \\frac{' + tz(q.P, 0) + '}{0{,}34 \\cdot ' + tz(q.dT, 0) + '} = ' + E(u(q.V, 0, 'm³/h')) : ''; } }
         ]
       },
+      weiter: [
+        { pfad: 'serverraum-klima.html', titel: 'Kühlung für den Serverraum auslegen', text: function (r) { return 'übernimmt ' + R.zahl(r.P / 1000, 2) + ' kW je Rack'; },
+          werte: function (r) { return r.P > 0 && r.P <= 100000 ? { racks: 1, kwRack: r.P / 1000 } : null; } }
+      ],
       sammlung: [
         ['Strom einphasig', 'I = \\frac{P}{U \\cdot \\cos\\varphi}', 'U = 230 V'],
         ['Strom bei Drehstrom', 'I = \\frac{P}{\\sqrt{3} \\cdot U \\cdot \\cos\\varphi}', 'U = 400 V, gleichmäßig verteilte Last'],

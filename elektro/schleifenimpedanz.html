@@ -38,6 +38,17 @@
   <div id="seitenkopf" data-wurzel="../"></div>
 
   <main class="seite" data-rechner data-merken></main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="netzsysteme.html"><b>Netzsysteme TN, TT und IT: Fehlerstromweg und Abschaltung</b><span>Körperschluss im TN-S-, TN-C-S-, TN-C-, TT- und IT-System</span></a></li>
+      <li><a href="spannungsfall.html"><b>Spannungsfall und Leitungsverluste</b><span>Spannungsfall auf Leitungen für Gleich-, Wechsel- und Drehstrom</span></a></li>
+      <li><a href="messung-anleitung.html"><b>Elektrische Messungen Schritt für Schritt</b><span>Anlagen nach DIN VDE 0100-600 und Geräte nach DIN VDE 0701/0702 Schritt für Schritt mit Simulation</span></a></li>
+      <li><a href="koerperstrom.html"><b>Strom durch den Körper</b><span>Was passiert beim Stromschlag: Körperimpedanz nach IEC 60479-1 für Haut und Stromweg, Körperstrom, Herzstromfaktor, …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -80,6 +91,10 @@
       ],
       beispiel: BEISPIEL,
       rechne: rechne, ergebnis: ergebnis, weg: weg,
+      weiter: [
+        { pfad: 'netzsysteme.html', titel: 'Fehlerstromweg und Abschaltung im Netzsystem', text: function (r, e) { return 'übernimmt Z_S = ' + R.zahl(r.ZS, 3) + ' Ω, U₀, Schutzorgan und RCD'; },
+          werte: function (r, e) { const o = { netz: e.netz === 'tt' ? 'tt' : 'tncs', U0: e.U0, Zs: r.ZS, In: Number(e.In), rcd: e.rcd === 'ohne' ? '0' : String(Math.round(Number(e.rcd) * 1000)) }; if (e.organ === 'B' || e.organ === 'C' || e.organ === 'D') o.ch = e.organ.toLowerCase(); return o; } }
+      ],
       sammlung: [
         ['Schleifenimpedanz am Leitungsende', 'Z_\\text{S} = \\sqrt{(R_\\text{V} + 2 R_\\text{L})^2 + (X_\\text{V} + 2 X_\\text{L})^2} \\approx Z_\\text{V} + 2 \\cdot \\frac{\\rho_\\theta \\cdot l}{A}', 'Hin- und Rückleiter (L und PE gleicher Querschnitt); Leitungsreaktanz 0,08 mΩ/m'],
         ['Widerstand bei Leitertemperatur', '\\rho_\\theta = \\rho_{20} \\cdot (1 + \\alpha \\cdot (\\theta - 20\\,{}^\\circ\\text{C}))', 'Kupfer ρ₂₀ = 0,0178, α = 0,00393; Aluminium 0,0286 und 0,00403 Ω·mm²/m'],

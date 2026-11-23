@@ -94,7 +94,7 @@ function seiteLesen(rel) {
     const k = norm(t) + '|' + art; if (gesehen.has(k) || !/[a-zäöü]{3}/i.test(t)) return; gesehen.add(k);
     teile.push([t, art, ziel || '']);
   };
-  const ohneSkript = s.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<!-- seo -->[\s\S]*?<!-- \/seo -->/, ' ').replace(/<noscript>[\s\S]*?<\/noscript>/g, ' ');
+  const ohneSkript = s.replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<style[\s\S]*?<\/style>/g, ' ').replace(/<!-- seo -->[\s\S]*?<!-- \/seo -->/, ' ').replace(/<!-- verwandt -->[\s\S]*?<!-- \/verwandt -->/, ' ').replace(/<noscript>[\s\S]*?<\/noscript>/g, ' ');
   const haupt = (/<main[\s\S]*?<\/main>/.exec(ohneSkript) || [ohneSkript])[0];
   // Überschriften mit Anker
   const reH = /<h([2-4])([^>]*)>([\s\S]*?)<\/h\1>/g; let m;
