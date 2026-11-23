@@ -107,7 +107,9 @@
     const urteilEl = knoten('span', 'urteil'); urteilEl.setAttribute('aria-live', 'polite');
     kz.append(hErg, urteilEl); tErg.append(kz);
     const melEl = knoten('div', 'meldungen'), kachEl = knoten('div', 'kacheln'), nwEl = knoten('ul', 'nachweise'), zusEl = knoten('div', 'zusatz');
-    tErg.append(melEl, kachEl, nwEl, zusEl);
+    const uebEl = knoten('div', 'uebernommen'); uebEl.hidden = true; uebEl.setAttribute('role', 'status');
+    const weiterEl = knoten('div', 'weiter-links'); weiterEl.hidden = true;
+    tErg.append(uebEl, melEl, kachEl, nwEl, zusEl, weiterEl);
     haupt.append(tErg);
     (K.loeser ? (Array.isArray(K.loeser) ? K.loeser : [K.loeser]) : []).forEach(function (L) { loeserBauen(L, haupt, id); });
     // weitere Abschnitte der Seite (z. B. eine zweite Simulation): { titel, bauen: function (tafel, h2) {…} }
@@ -332,6 +334,7 @@
         r = K.rechne(e);
         K.ergebnis(r, e, H);
         (K.weg ? K.weg(r, e) : []).forEach(function (s) { if (s) wegEl.append(schritt(s[0], s[1])); });
+        weiterZeigen();
       } catch (x) {
         r = null;
         melEl.innerHTML = ''; kachEl.innerHTML = ''; nwEl.innerHTML = ''; zusEl.innerHTML = '';
@@ -340,6 +343,51 @@
       }
       if (cv) zeichnen(letzteZeit);
       if (K.nachher) K.nachher(r, e);
+    }
+
+    // ---------- Ergebnis an andere Rechner weitergeben ----------
+    // K.weiter: [{ pfad, titel, werte(r, e) → { Feld: Wert } oder null, text(r, e) }]; Ziel liest #uebernahme=
+    function weiterZeigen() {
+      weiterEl.textContent = ''; weiterEl.hidden = true;
+      if (!K.weiter || !r || !window.Teilen || !Teilen.urlSofort) return;
+      const liste = [];
+      K.weiter.forEach(function (w) {
+        let o = null; try { o = w.werte(r, e); } catch (x) { o = null; }
+        if (!o) return;
+        const sauber = {}; let n = 0;
+        Object.keys(o).forEach(function (k) { const v = o[k]; if (typeof v === 'number' && isFinite(v)) { sauber[k] = Math.round(v * 1e6) / 1e6; n++; } else if (typeof v === 'string' && v.length < 40) { sauber[k] = v; n++; } });
+        if (!n) return;
+        const a = knoten('a', 'weiter-link'); a.href = Teilen.urlSofort(w.pfad, 'uebernahme', JSON.stringify({ von: K.titel, werte: sauber }));
+        a.append(knoten('b', '', '→ ' + w.titel));
+        let t = ''; try { t = w.text ? w.text(r, e) : ''; } catch (x) { t = ''; }
+        if (t) a.append(knoten('small', '', t));
+        liste.push(a);
+      });
+      if (!liste.length) return;
+      weiterEl.append(knoten('h3', '', 'Mit diesem Ergebnis weiterrechnen'));
+      liste.forEach(function (a) { weiterEl.append(a); });
+      weiterEl.hidden = false;
+    }
+    function uebernahmeLesen() {
+      if (!window.Teilen || !Teilen.lesen) return;
+      Teilen.lesen('uebernahme').then(function (o) {
+        if (!o || typeof o !== 'object' || !o.werte || typeof o.werte !== 'object' || Array.isArray(o.werte)) return;
+        const neu = {}, namen = [];
+        Object.keys(o.werte).slice(0, 40).forEach(function (k) {
+          const x = Object.prototype.hasOwnProperty.call(felder, k) ? felder[k] : null; if (!x) return;
+          const f = x.f, v = o.werte[k];
+          if (f.wahl) { const w = f.wahl.filter(function (q) { return String(q[0]) === String(v); })[0]; if (!w) return; neu[k] = wahlWert(String(w[0])); namen.push(f.name + ': ' + w[1]); }
+          else { const z = Number(v); if (!isFinite(z) || z < f.min || z > f.max) return; neu[k] = f.ganz ? Math.round(z) : z; const st = Math.abs(neu[k]) >= 100 ? 1 : Math.abs(neu[k]) >= 1 ? 2 : 4; namen.push(f.name + ' = ' + zahl(neu[k], st).replace(/(,\d*?)0+$/, '$1').replace(/,$/, '') + (f.e ? ' ' + f.e : '')); }
+        });
+        if (!namen.length) return;
+        setTimeout(function () {
+          setzeWerte(neu); rechnen();
+          Object.keys(neu).forEach(function (k) { felder[k].el.dispatchEvent(new Event('change', { bubbles: true })); });
+          uebEl.textContent = '';
+          uebEl.append(knoten('b', '', 'Übernommen' + (typeof o.von === 'string' && o.von ? ' aus „' + o.von.slice(0, 80) + '“' : '') + ': '), document.createTextNode(namen.join(', ') + '.'));
+          uebEl.hidden = false;
+        }, 60);
+      }).catch(function () { /* kaputter Link: nichts übernehmen */ });
     }
 
     // ---------- Zeichnung ----------
@@ -392,6 +440,7 @@
     groesse();
     rechnen();
     if (cv) { zeichnen(0); requestAnimationFrame(schleife); }
+    uebernahmeLesen();
     return { werte: function () { return e; }, neu: rechnen, setze: function (o) { setzeWerte(o); rechnen(); }, bildZusatz: zusatzBild, ansagen: function () { zeichnen(bildZeit); ansagen(); } };
   }
 

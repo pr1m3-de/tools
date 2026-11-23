@@ -155,6 +155,17 @@
       </div>
     </section>
   </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="motor.html"><b>Drehstrommotor und Anlauf</b><span>Drehstrommotor vom Typenschild zum Anschluss</span></a></li>
+      <li><a href="motorpruefstand.html"><b>Motorprüfstand: Asynchronmotor messen</b><span>Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor</span></a></li>
+      <li><a href="drehstrom.html"><b>Drehstrom: Stern, Dreieck und Unsymmetrie</b><span>Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung …</span></a></li>
+      <li><a href="grundgroessen.html"><b>Elektrische Grundgrößen und Leiterwiderstand</b><span>Elektrische Grundgrößen rechnen</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -281,6 +292,10 @@
             { name: 'Strangspannung', v: ['UL', 'U'], f: function (q) { return [q.UL, W3 * q.U]; }, loese: { UL: function (q) { return W3 * q.U; }, U: function (q) { return q.UL / W3; } },
               weg: function (k, q) { return k === 'U' ? 'U = \\frac{U_{12}}{\\sqrt{3}} = \\frac{' + tz(q.UL, 1) + '\\,\\text{V}}{\\sqrt{3}} = ' + E(tz(q.U, 1) + '\\,\\text{V}') : 'U_{12} = \\sqrt{3} \\cdot U = ' + E(tz(q.UL, 1) + '\\,\\text{V}'); } }
           ] }
+      ],
+      weiter: [
+        { pfad: 'motor.html', titel: 'Motor mit Anlauf, Absicherung und Kosten', text: function (r, e) { return 'übernimmt P = ' + R.zahl(e.pn, 2) + ' kW, U = ' + R.zahl(e.u, 0) + ' V, cos φ'; },
+          werte: function (r, e) { return { p: e.pn, u: e.u, cos: e.cos }; } }
       ],
       sammlung: [
         ['Synchrone Drehzahl', 'n_0 = \\frac{60 \\cdot f}{p}', 'f in Hz, n₀ in 1/min, p Polpaarzahl'],

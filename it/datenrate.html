@@ -38,6 +38,17 @@
   <div id="seitenkopf" data-wurzel="../"></div>
 
   <main class="seite" data-rechner data-merken></main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="dns-http-tls.html"><b>DNS, HTTP und TLS Schritt für Schritt</b><span>Was beim Aufruf einer Webseite passiert</span></a></li>
+      <li><a href="homelab.html"><b>Homelab-Planer</b><span>Heimnetz und Homelab planen: Geräte mit Ports, jedes Kabel über Patchfeld und Dose, Rack, VLANs und IP-Plan, …</span></a></li>
+      <li><a href="subnetz.html"><b>IP-Subnetzrechner</b><span>IPv4 und IPv6: Netzadresse, Broadcast, nutzbarer Bereich, Hosts, Maske und Wildcard aus Adresse und Präfix, …</span></a></li>
+      <li><a href="netzwerkkabel-poe.html"><b>Netzwerkkabel und PoE</b><span>Kanallänge je Kategorie und Datenrate, Spannung und Leistung am PoE-Endgerät, Verlust im Kabel, Erwärmung im Bündel …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -87,6 +98,10 @@
       ],
       beispiel: BEISPIEL,
       rechne: rechne, ergebnis: ergebnis, weg: weg,
+      weiter: [
+        { pfad: 'dns-http-tls.html', titel: 'Ladezeit einer Webseite mit dieser Leitung', text: function (r, e) { return 'übernimmt Umlaufzeit und Bandbreite'; },
+          werte: function (r, e) { const b = r.B / 1e6; return b >= 0.01 && b <= 100000 ? { rtt: e.rtt, bw: b } : null; } }
+      ],
       sammlung: [
         ['Übertragungszeit', 't = \\frac{D \\cdot 8}{B_\\text{eff}} + 1{,}5 \\cdot RTT', 'D in Byte, B in bit/s; 1,5 RTT für den Verbindungsaufbau'],
         ['Nutzrate', 'B_\\text{Netz} = B \\cdot \\frac{\\text{Nutzlast}}{\\text{Rahmen} + 20\\,\\text{Byte}}', 'Ethernet: Präambel 8 Byte und Rahmenlücke 12 Byte zusätzlich zum Rahmen'],

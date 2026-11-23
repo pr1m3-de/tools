@@ -58,6 +58,17 @@
       </div>
     </section>
   </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="schleifenimpedanz.html"><b>Schleifenimpedanz und Kurzschlussstrom</b><span>Abschaltbedingung nach DIN VDE 0100-410</span></a></li>
+      <li><a href="koerperstrom.html"><b>Strom durch den Körper</b><span>Was passiert beim Stromschlag: Körperimpedanz nach IEC 60479-1 für Haut und Stromweg, Körperstrom, Herzstromfaktor, …</span></a></li>
+      <li><a href="erdung.html"><b>Erdung und Potentialtrichter</b><span>Erdungsanlage berechnen: Ausbreitungswiderstand von Tiefen-, Band- und Fundamenterder je Bodenart, Bedingung im …</span></a></li>
+      <li><a href="messung-anleitung.html"><b>Elektrische Messungen Schritt für Schritt</b><span>Anlagen nach DIN VDE 0100-600 und Geräte nach DIN VDE 0701/0702 Schritt für Schritt mit Simulation</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -179,6 +190,10 @@
           gleichungen: [{ name: 'TT-Fehler', v: ['I', 'U0', 'RA', 'RB'], f: function (q) { return [q.I * (q.RA + q.RB), q.U0]; },
             loese: { I: function (q) { return q.U0 / (q.RA + q.RB); }, RA: function (q) { return q.U0 / q.I - q.RB; }, RB: function (q) { return q.U0 / q.I - q.RA; }, U0: function (q) { return q.I * (q.RA + q.RB); } },
             weg: function (k, q) { return k === 'I' ? 'I_F = \\frac{U_0}{R_A + R_B} = \\frac{' + tz(q.U0, 0) + '}{' + tz(q.RA, 2) + ' + ' + tz(q.RB, 2) + '}\\,\\text{A} = ' + E(tz(q.I, 2) + '\\,\\text{A}') : k === 'RA' ? 'R_A = \\frac{U_0}{I_F} - R_B = ' + E(tz(q.RA, 2) + '\\,\\Omega') : k === 'RB' ? 'R_B = \\frac{U_0}{I_F} - R_A = ' + E(tz(q.RB, 2) + '\\,\\Omega') : 'U_0 = I_F (R_A + R_B) = ' + E(tz(q.U0, 0) + '\\,\\text{V}'); } }] }
+      ],
+      weiter: [
+        { pfad: 'koerperstrom.html', titel: 'Strom durch den Körper bei dieser Berührungsspannung', text: function (r) { return 'übernimmt U = ' + zz(r.UB, 1) + ' V'; },
+          werte: function (r) { return r.UB >= 1 && r.UB <= 1000 ? { u: r.UB } : null; } }
       ],
       sammlung: [
         ['Abschaltbedingung TN', 'Z_S \\cdot I_a \\le U_0', 'DIN VDE 0100-410, 0,4 s in Endstromkreisen bis 32 A'],

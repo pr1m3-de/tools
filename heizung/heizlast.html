@@ -38,6 +38,17 @@
   <div id="seitenkopf" data-wurzel="../"></div>
 
   <main class="seite" data-rechner data-merken></main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="u-wert.html"><b>U-Wert und Schichtaufbau</b><span>U-Wert eines Bauteils aus beliebigen Schichten</span></a></li>
+      <li><a href="waermepumpe.html"><b>Wärmepumpe auslegen</b><span>Leistung mit Sperrzeiten und Warmwasser, Bivalenzpunkt, Heizstab-Anteil, Jahresarbeitszahl im Bin-Verfahren, …</span></a></li>
+      <li><a href="fussbodenheizung.html"><b>Fußbodenheizung</b><span>Nach DIN EN 1264: Wärmestromdichte aus Verlegeabstand und Belag, Grenze der Oberflächentemperatur, nötiger Vorlauf, …</span></a></li>
+      <li><a href="co2-lueftung.html"><b>Atemluft und CO₂ im Raum</b><span>CO₂ im Raum: Abgabe der Menschen nach Alter und Tätigkeit, Anstieg und Gleichgewicht, nötiger Außenluftvolumenstrom, …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -113,6 +124,10 @@
       rechne: rechne,
       ergebnis: ergebnis,
       weg: weg,
+      weiter: [
+        { pfad: 'waermepumpe.html', titel: 'Wärmepumpe für diese Heizlast auslegen', text: function (r) { return 'übernimmt Φ_HL = ' + R.zahl(r.P / 1000, 2) + ' kW'; },
+          werte: function (r) { return r.P > 0 ? { PHL: r.P / 1000 } : null; } }
+      ],
       sammlung: [
         ['Heizlast eines Raums', '\\Phi_\\text{HL} = \\Phi_\\text{T} + \\Phi_\\text{V} + \\Phi_\\text{RH}', 'Transmission, Lüftung, Aufheizen (DIN EN 12831-1, vereinfachtes Verfahren)'],
         ['Transmission', '\\Phi_\\text{T} = \\Big(\\sum A_i \\cdot (U_i + \\Delta U_\\text{WB}) \\cdot f_i\\Big) \\cdot (\\theta_\\text{int} - \\theta_\\text{e})', 'Fenster ohne Wärmebrückenzuschlag; f = 1 gegen außen, f_B für den Boden'],

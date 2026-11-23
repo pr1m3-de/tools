@@ -629,3 +629,12 @@ ol.weg li::before {
   body.druck-ohne-sammlung .formelsammlung, body.druck-ohne-sammlung details.formeln, body.druck-ohne-sammlung section:has(> .formelsammlung), body.druck-ohne-sammlung details:has(> .formelsammlung) { display: none !important; }
   body.druck-ohne-weg ol.weg, body.druck-ohne-weg section:has(> ol.weg), body.druck-ohne-weg #formelnAllgemein, body.druck-ohne-weg #formelnFlaechen { display: none !important; }
 }
+
+/* „Passt dazu“ am Seitenende (werkzeuge/verwandt-bauen.js) */
+.verwandt { max-width: 1200px; margin: 8px auto 24px; padding: 0 18px; box-sizing: border-box; }
+.verwandt h2 { font-size: 1.1rem; margin: 0 0 10px; }
+.verwandt ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); }
+.verwandt a { display: flex; flex-direction: column; gap: 3px; height: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); color: var(--text); text-decoration: none; }
+.verwandt a:hover, .verwandt a:focus-visible { border-color: var(--text); }
+.verwandt a span { font-size: .86rem; color: var(--leise); line-height: 1.35; }
+@media print { .verwandt { display: none !important; } }

@@ -49,6 +49,17 @@
       </div>
     </section>
   </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="drehfeldmaschinen.html"><b>Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</b><span>Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment …</span></a></li>
+      <li><a href="kompensation.html"><b>Blindleistungskompensation</b><span>Blindleistungskompensation mit Schaltplänen</span></a></li>
+      <li><a href="motorpruefstand.html"><b>Motorprüfstand: Asynchronmotor messen</b><span>Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor</span></a></li>
+      <li><a href="drehstrom.html"><b>Drehstrom: Stern, Dreieck und Unsymmetrie</b><span>Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 
@@ -149,6 +160,10 @@
             weg: function (k, q) { return k === 'M' ? 'M = 9549 \\cdot \\frac{P_\\text{N}}{n} = 9549 \\cdot \\frac{' + tz(q.P, 2) + '}{' + tz(q.n, 0) + '} = ' + E(u(q.M, 1, 'N m')) : ''; } }
         ]
       },
+      weiter: [
+        { pfad: 'kompensation.html', titel: 'Blindleistung des Motors kompensieren', text: function (r, e) { return 'übernimmt P = ' + R.zahl(r.Pel, 2) + ' kW, cos φ = ' + R.zahl(e.cos, 2) + ', U = ' + R.zahl(e.u, 0) + ' V'; },
+          werte: function (r, e) { return { netz: 3, u: e.u, quelle: 'direkt', p: r.Pel, c1: e.cos }; } }
+      ],
       sammlung: [
         ['Bemessungsstrom', 'I_\\text{N} = \\frac{P_\\text{N}}{\\sqrt{3}\\, U \\cos\\varphi\\, \\eta}', 'Faustregel bei 400 V: etwa 2 A je kW'],
         ['Drehfeld- und Läuferdrehzahl', 'n_\\text{s} = \\frac{60 f}{p} \\qquad n = n_\\text{s}\\,(1 - s)', 'p Polpaarzahl; Schlupf s bei Nennlast 2–5 %'],
