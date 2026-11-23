@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = 'a43263d94f';
+const STAND = 'd26dc9b50b';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -76,6 +76,8 @@ const DATEIEN = [
   "physik/aggregatzustaende.html",
   "physik/astronomie.html",
   "physik/radioaktivitaet.html",
+  "physik/perkolation.html",
+  "physik/chaos-feigenbaum.html",
   "mechanik/anhalteweg.html",
   "mechanik/wurf.html",
   "physik/waermeuebertragung.html",
@@ -231,8 +233,12 @@ const DATEIEN = [
   "aufgabenblaetter/mechanik/wurf/01-waagerechter-schraeger-wurf.md",
   "aufgabenblaetter/physik/aggregatzustaende/01-teilchenmodell-waerme.md",
   "aufgabenblaetter/physik/astronomie/01-erdjahr-kepler.md",
+  "aufgabenblaetter/physik/chaos-feigenbaum/01-logistische-gleichung.md",
+  "aufgabenblaetter/physik/chaos-feigenbaum/02-schmetterlingseffekt.md",
   "aufgabenblaetter/physik/druck-auftrieb/01-hydraulik-schweredruck-auftrieb.md",
   "aufgabenblaetter/physik/optik/01-reflexion-brechung.md",
+  "aufgabenblaetter/physik/perkolation/01-waldbrand-und-schwelle.md",
+  "aufgabenblaetter/physik/perkolation/02-theorie-bethe-fraktal.md",
   "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",
   "aufgabenblaetter/physik/schwingungen-wellen/01-pendel-wellen-doppler.md",
   "aufgabenblaetter/physik/waermeuebertragung/01-leitung-konvektion-strahlung.md",

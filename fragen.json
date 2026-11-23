@@ -354,5 +354,25 @@
     ["Was wird vom Bruttolohn abgezogen?", "Steuern und Sozialversicherungsbeiträge", ["nur die Mehrwertsteuer", "nur die Miete", "gar nichts"], "Lohnsteuer, ggf. Kirchensteuer und Soli sowie Renten-, Kranken-, Pflege- und Arbeitslosenversicherung."],
     ["Wer zahlt die Sozialversicherung?", "Arbeitnehmer und Arbeitgeber etwa je zur Hälfte", ["nur der Arbeitnehmer", "nur der Staat", "nur der Arbeitgeber"], "Ausnahmen gibt es z. B. bei der Pflegeversicherung."],
     ["Was beeinflusst die Steuerklasse?", "die Höhe der monatlich einbehaltenen Lohnsteuer", ["die Rentenhöhe direkt", "den Bruttolohn", "die Mehrwertsteuer"], "Die tatsächliche Steuer ergibt sich erst mit der Jahressteuer."]
+  ],
+  "physik/perkolation.html": [
+    ["Was beschreibt die Perkolationsschwelle p_c?", "die Besetzungsdichte, ab der erstmals ein durchgehender Cluster von Rand zu Rand entsteht", ["die Dichte, bei der alle Plätze besetzt sind", "die Hälfte der maximalen Dichte", "die Geschwindigkeit, mit der sich ein Feuer ausbreitet"], "Unter p_c sind alle Cluster endlich, darüber gibt es im unendlichen Gitter einen unendlichen Cluster."],
+    ["Wo liegt die Schwelle für Plätze im Quadratgitter mit 4 Nachbarn?", "bei etwa 0,593", ["genau bei 0,5", "bei etwa 0,25", "genau bei 1"], "p_c ≈ 0,5927 ist nur aus Simulationen bekannt; 0,5 gilt für das Dreiecksgitter."],
+    ["Wie ändert sich die Schwelle, wenn das Feuer auch über die Ecken springen kann (8 statt 4 Nachbarn)?", "Sie sinkt (auf etwa 0,41).", ["Sie steigt.", "Sie bleibt gleich.", "Sie wird null."], "Mehr Nachbarn bedeuten mehr mögliche Wege, also reicht eine geringere Dichte."],
+    ["Bei welcher Baumdichte brennt ein Waldbrand im Modell am längsten?", "nahe der Perkolationsschwelle", ["bei sehr hoher Dichte", "bei sehr niedriger Dichte", "immer gleich lang"], "An der Schwelle ist der durchgehende Cluster ein verschlungenes Fraktal mit sehr langen Wegen."],
+    ["Was passiert mit der Durchbruchkurve, wenn das Gitter größer wird?", "Sie wird steiler und nähert sich einer Stufe bei p_c.", ["Sie wird flacher.", "Sie verschiebt sich zu p = 1.", "Sie ändert sich nicht."], "Die Breite des Übergangs schrumpft wie L^(−1/ν)."],
+    ["Wie groß ist die Schwelle im Bethe-Gitter mit z Nachbarn?", "1/(z − 1)", ["1/z", "z − 1", "1/2 für jedes z"], "Jeder Platz hat z − 1 neue Äste; im Mittel muss mindestens einer besetzt sein."],
+    ["Was bedeutet „Universalität“ der kritischen Exponenten?", "Sie hängen nur von der Raumdimension ab, nicht vom Gittertyp.", ["Sie sind in allen Dimensionen gleich.", "Sie gelten nur für das Quadratgitter.", "Sie sind immer ganze Zahlen."], "Quadrat-, Dreiecks- und Wabengitter haben verschiedene Schwellen, aber dieselben Exponenten."],
+    ["Welche fraktale Dimension hat der Cluster an der Schwelle in zwei Dimensionen?", "91/48 ≈ 1,90", ["genau 2", "genau 1", "1/2"], "Die Masse wächst wie L^1,896 – langsamer als die Fläche L²."]
+  ],
+  "physik/chaos-feigenbaum.html": [
+    ["Wie groß ist die Feigenbaum-Konstante δ?", "4,6692…", ["2,5029…", "3,5699…", "2,7183…"], "2,5029 ist α, 3,5699 der Häufungspunkt r∞, 2,7183 die Eulersche Zahl."],
+    ["Was gibt die Feigenbaum-Konstante δ an?", "um welchen Faktor die Abstände zwischen aufeinanderfolgenden Periodenverdopplungen kleiner werden", ["wie oft sich die Periode verdoppelt", "ab welchem r das Chaos beginnt", "wie schnell Fehler im Chaos wachsen"], "(r_n − r_(n−1)) / (r_(n+1) − r_n) → δ."],
+    ["Gegen welchen Wert läuft die logistische Gleichung für r = 2,5?", "x* = 1 − 1/r = 0,6", ["0", "0,5", "Sie springt zwischen zwei Werten."], "Für 1 < r < 3 ist der Fixpunkt 1 − 1/r stabil."],
+    ["Bei welchem r beginnt die erste Periodenverdopplung?", "r = 3", ["r = 1", "r = 3,57", "r = 4"], "Dort wird die Steigung am Fixpunkt 2 − r gleich −1."],
+    ["Was zeigt ein positiver Ljapunow-Exponent?", "Chaos: kleine Abweichungen wachsen exponentiell.", ["einen stabilen Fixpunkt", "eine Periode 2", "dass die Population ausstirbt"], "Δ_n ≈ Δ_0 · e^(λn) wächst nur für λ > 0."],
+    ["Warum ist die Feigenbaum-Konstante „universell“?", "Sie ergibt sich bei allen Systemen mit einem einfachen, quadratischen Höcker, auch im Experiment.", ["Sie gilt nur für die logistische Gleichung.", "Sie ist eine gerundete Messgröße ohne Bedeutung.", "Sie hängt vom Startwert ab."], "Gemessen z. B. bei Konvektion, Schwingkreisen und tropfenden Wasserhähnen."],
+    ["Ist deterministisches Chaos dasselbe wie Zufall?", "Nein, jeder Schritt ist festgelegt; nur kleinste Startfehler wachsen stark.", ["Ja, die Werte sind rein zufällig.", "Ja, aber nur bei r = 4.", "Nein, Chaos ist immer periodisch."], "Mit exakt gleichem Startwert kommt immer exakt dieselbe Folge heraus."],
+    ["Was findet man bei r ≈ 3,83 mitten im Chaos?", "ein Fenster mit Periode 3", ["einen stabilen Fixpunkt", "das Aussterben der Population", "die erste Verdopplung"], "Ab 1 + √8 ≈ 3,8284 herrscht kurz wieder Ordnung, danach folgt erneut eine Verdopplungskaskade."]
   ]
 }

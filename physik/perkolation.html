@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perkolation: Waldbrand, Cluster und Perkolationsschwelle – Formeln &amp; Rechner</title>
+  <meta name="description" content="Ab welcher Baumdichte brennt ein Wald ganz ab? Waldbrand-Simulation auf vier Gittern, Cluster in Farbe, Durchbruchkurve, Perkolationsschwellen, kritische Exponenten und fraktale Cluster – mit Rechner und Lernaufgaben.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/perkolation.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Perkolation: Waldbrand, Cluster und Perkolationsschwelle">
+  <meta property="og:description" content="Ab welcher Baumdichte brennt ein Wald ganz ab? Waldbrand-Simulation auf vier Gittern, Cluster in Farbe, Durchbruchkurve, Perkolationsschwellen, kritische Exponenten und fraktale Cluster – mit Rechner und Lernaufgaben.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/perkolation.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Perkolation: Waldbrand, Cluster und Perkolationsschwelle">
+  <meta name="twitter:description" content="Ab welcher Baumdichte brennt ein Wald ganz ab? Waldbrand-Simulation auf vier Gittern, Cluster in Farbe, Durchbruchkurve, Perkolationsschwellen, kritische Exponenten und fraktale Cluster – mit Rechner und Lernaufgaben.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/perkolation.html#seite","name":"Perkolation: Waldbrand, Cluster und Perkolationsschwelle","url":"https://tools.pr1m3.de/physik/perkolation.html","inLanguage":"de","description":"Ab welcher Baumdichte brennt ein Wald ganz ab? Waldbrand-Simulation auf vier Gittern, Cluster in Farbe, Durchbruchkurve, Perkolationsschwellen, kritische Exponenten und fraktale Cluster – mit Rechner und Lernaufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/perkolation.html#pfad"},"dateModified":"2026-11-23"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/perkolation.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Perkolation: Waldbrand, Cluster und Perkolationsschwelle","item":"https://tools.pr1m3.de/physik/perkolation.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/perkolation.html#fragen","mainEntity":[{"@type":"Question","name":"Wie dicht muss ein Wald sein, damit ein Feuer durchbrennt?","acceptedAnswer":{"@type":"Answer","text":"Im einfachen Gittermodell mit vier Nachbarn je Baum muss die Baumdichte über etwa 59,3 % liegen. Kann das Feuer auch über die Ecken springen (acht Nachbarn), reichen schon rund 40,7 %. Wind, Funkenflug und Trockenheit vergrößern die Reichweite und senken die Schwelle."}},{"@type":"Question","name":"Warum ist die Schwelle im Quadratgitter keine runde Zahl?","acceptedAnswer":{"@type":"Answer","text":"Für Plätze im Quadratgitter gibt es keine bekannte Formel; der Wert 0,592746… ist nur aus sehr großen Simulationen bekannt. Exakte Werte gibt es für einige Fälle mit besonderer Symmetrie, z. B. Dreiecksgitter (1/2), Kanten im Quadratgitter (1/2) und im Bienenwabengitter (1 − 2 sin 10°)."}},{"@type":"Question","name":"Was hat Perkolation mit Herdenimmunität zu tun?","acceptedAnswer":{"@type":"Answer","text":"Ansteckung verbreitet sich wie Feuer von Mensch zu Mensch. Sind genug Menschen immun, zerfällt das Netz der Ansteckbaren in kleine Inseln, und ein Ausbruch bleibt lokal. Die nötige Impfquote ist eine Perkolationsschwelle – im einfachsten Modell 1 − 1/R₀."}},{"@type":"Question","name":"Warum brennt es an der Schwelle am längsten?","acceptedAnswer":{"@type":"Answer","text":"Unter der Schwelle sind die Cluster klein und schnell abgebrannt, weit darüber läuft das Feuer fast gerade durch. An der Schwelle ist der durchgehende Cluster ein dünnes, verschlungenes Fraktal; der kürzeste Weg durch ihn ist viel länger als die Breite des Waldes."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/perkolation.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <link rel="stylesheet" href="../assets/baukasten.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Perkolationstheorie kurz erklärt</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Was ist Perkolation?</h3><p>Jeder Platz eines Gitters ist mit der Wahrscheinlichkeit p besetzt (Baum, leitendes Korn, Pore), sonst leer. Benachbarte besetzte Plätze bilden zusammenhängende Gruppen, die Cluster. Die Frage der Perkolationstheorie: Gibt es einen Cluster, der von einem Rand zum gegenüberliegenden reicht? Das Wort kommt vom lateinischen percolare, durchsickern – wie Wasser durch Kaffeepulver.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Perkolationsschwelle p<sub>c</sub></h3><p>Unterhalb einer kritischen Dichte p<sub>c</sub> sind alle Cluster endlich, oberhalb gibt es (im unendlich großen Gitter) mit Sicherheit einen unendlichen Cluster. Der Übergang ist scharf: ein Phasenübergang wie beim Gefrieren. Für Plätze im Quadratgitter liegt die Schwelle bei p<sub>c</sub> ≈ 0,5927, im Dreiecksgitter genau bei 0,5.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Waldbrandmodell</h3><p>Bäume stehen zufällig mit der Dichte p, ein Feuer springt nur auf direkt benachbarte Bäume über. Liegt p deutlich unter der Schwelle, erlischt der Brand nach wenigen Bäumen. Darüber frisst er sich durch den ganzen Wald. Genau an der Schwelle brennt es am längsten – das Feuer findet gerade noch einen verschlungenen Weg.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Kritisches Verhalten</h3><p>Nahe p<sub>c</sub> folgen viele Größen Potenzgesetzen: Korrelationslänge ξ ∝ |p − p<sub>c</sub>|<sup>−ν</sup>, mittlere Clustergröße S ∝ |p − p<sub>c</sub>|<sup>−γ</sup>, Anteil im unendlichen Cluster P<sub>∞</sub> ∝ (p − p<sub>c</sub>)<sup>β</sup>. Die Exponenten hängen nur von der Dimension ab, nicht vom Gitter: Das nennt man Universalität.</p></article>
+        <article class="wissen-karte" style="--farbe:#7A5195"><h3>Fraktale Cluster</h3><p>Der Cluster an der Schwelle ist ein Fraktal: Seine Masse wächst mit der Größe L nicht wie L², sondern wie L<sup>D</sup> mit D = 91/48 ≈ 1,896. Er hat Löcher in allen Größen und sieht in jedem Maßstab gleich zerklüftet aus.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Endliche Gitter</h3><p>In einem endlichen Wald ist der Übergang verschmiert: Auch etwas unter p<sub>c</sub> brennt er manchmal durch, etwas darüber manchmal nicht. Die Breite des Übergangs schrumpft wie L<sup>−1/ν</sup> = L<sup>−3/4</sup>. Je größer das Gitter, desto steiler die Kurve in der Ansicht „Durchbruch“.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Wo es vorkommt</h3><p>Ausbreitung von Waldbränden und Epidemien (Impfquote für Herdenschutz), Wasser in porösem Gestein und Kaffee, Leitfähigkeit von Kunststoffen mit Ruß- oder Metallfüllung, Ausfallsicherheit von Strom- und Datennetzen, Gelieren von Polymeren (Eierkochen, Pudding), Magnetismus verdünnter Ferromagnete.</p></article>
+        <article class="wissen-karte" style="--farbe:#A16207"><h3>Plätze und Kanten</h3><p>Bei der Platzperkolation (site) sind Gitterplätze besetzt oder leer, bei der Kantenperkolation (bond) sind alle Plätze da, aber die Verbindungen zufällig offen oder gesperrt. Kantenperkolation hat eine kleinere Schwelle, im Quadratgitter genau 1/2. Die Simulation hier zeigt Platzperkolation.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Gitter</th><th>Nachbarn z</th><th class="zahl">Schwelle Plätze</th><th class="zahl">Schwelle Kanten</th></tr></thead><tbody id="schwellen"></tbody></table></div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Kritischer Exponent</th><th>beschreibt</th><th class="zahl">2 Dimensionen</th><th class="zahl">3 Dimensionen</th><th class="zahl">Bethe-Gitter</th></tr></thead><tbody id="exponenten"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie dicht muss ein Wald sein, damit ein Feuer durchbrennt?</summary><p>Im einfachen Gittermodell mit vier Nachbarn je Baum muss die Baumdichte über etwa 59,3 % liegen. Kann das Feuer auch über die Ecken springen (acht Nachbarn), reichen schon rund 40,7 %. Wind, Funkenflug und Trockenheit vergrößern die Reichweite und senken die Schwelle.</p></details>
+        <details><summary>Warum ist die Schwelle im Quadratgitter keine runde Zahl?</summary><p>Für Plätze im Quadratgitter gibt es keine bekannte Formel; der Wert 0,592746… ist nur aus sehr großen Simulationen bekannt. Exakte Werte gibt es für einige Fälle mit besonderer Symmetrie, z. B. Dreiecksgitter (1/2), Kanten im Quadratgitter (1/2) und im Bienenwabengitter (1 − 2 sin 10°).</p></details>
+        <details><summary>Was hat Perkolation mit Herdenimmunität zu tun?</summary><p>Ansteckung verbreitet sich wie Feuer von Mensch zu Mensch. Sind genug Menschen immun, zerfällt das Netz der Ansteckbaren in kleine Inseln, und ein Ausbruch bleibt lokal. Die nötige Impfquote ist eine Perkolationsschwelle – im einfachsten Modell 1 − 1/R₀.</p></details>
+        <details><summary>Warum brennt es an der Schwelle am längsten?</summary><p>Unter der Schwelle sind die Cluster klein und schnell abgebrannt, weit darüber läuft das Feuer fast gerade durch. An der Schwelle ist der durchgehende Cluster ein dünnes, verschlungenes Fraktal; der kürzeste Weg durch ihn ist viel länger als die Breite des Waldes.</p></details>
+      </div>
+    </section>
+  </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="chaos-feigenbaum.html"><b>Chaos und Feigenbaum-Konstante</b><span>Logistische Gleichung zum Ausprobieren</span></a></li>
+      <li><a href="../brandschutz/brandsimulation.html"><b>Brandsimulation</b><span>Raumbrand mit Rauchschicht und Flashover, Gebäudebrand mit Flucht und Feuerwehr, Waldbrand mit Wind und Funkenflug, …</span></a></li>
+      <li><a href="radioaktivitaet.html"><b>Radioaktivität und Kernspaltung</b><span>Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, …</span></a></li>
+      <li><a href="../it/dateisysteme.html"><b>Dateisysteme und Speicher: Blöcke, Fragmentierung, HDD und SSD</b><span>Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script src="../assets/baukasten.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const BK = Baukasten, R = BK.R, tz = BK.tz, E = BK.E, F = BK.F, zz = BK.zz, rd = BK.rd, PI2 = BK.PI2, W2 = BK.W2, GRAD = BK.GRAD, BLAU = BK.BLAU, ROT = BK.ROT, GRUEN = BK.GRUEN, ORANGE = BK.ORANGE, LILA = BK.LILA, GRAU = BK.GRAU, GELB = BK.GELB, KUPFER = BK.KUPFER, TUERKIS = BK.TUERKIS, T = BK.T, TW = BK.TW, TWU = BK.TWU, pfeil = BK.pfeil, kreis = BK.kreis, strecke = BK.strecke, zug = BK.zug, uhr = BK.uhr, diagramm = BK.diagramm, schritt = BK.schritt, teilung = BK.teilung, stellen = BK.stellen, runde = BK.runde, ansichten = BK.ansichten, zufall = BK.zufall, bildCanvas = BK.bildCanvas, zeiger = BK.zeiger;
+    // [Name, Schwelle für Plätze, Nachbarn]
+    const GITTER = {
+      quadrat: ['Quadratgitter (4 Nachbarn)', 0.592746, 4],
+      dreieck: ['Dreiecksgitter (6 Nachbarn)', 0.5, 6],
+      waben: ['Bienenwabengitter (3 Nachbarn)', 0.697043, 3],
+      moore: ['Quadratgitter mit Diagonalen (8 Nachbarn)', 0.407254, 8]
+    };
+    const NU = 4 / 3, D_FRAKTAL = 91 / 48;
+    let ansicht = 'brand', takt = uhr();
+
+    // ---------- Gitter und Simulation ----------
+    function nachbarn(g, i, L, o) {
+      const x = i % L, y = (i - x) / L; let n = 0;
+      if (x > 0) o[n++] = i - 1;
+      if (x < L - 1) o[n++] = i + 1;
+      if (g === 'waben') { if ((x + y) % 2 === 0) { if (y < L - 1) o[n++] = i + L; } else if (y > 0) o[n++] = i - L; return n; }
+      if (y > 0) o[n++] = i - L;
+      if (y < L - 1) o[n++] = i + L;
+      if (g === 'dreieck') { if (x < L - 1 && y > 0) o[n++] = i - L + 1; if (x > 0 && y < L - 1) o[n++] = i + L - 1; }
+      else if (g === 'moore') { if (x > 0 && y > 0) o[n++] = i - L - 1; if (x < L - 1 && y > 0) o[n++] = i - L + 1; if (x > 0 && y < L - 1) o[n++] = i + L - 1; if (x < L - 1 && y < L - 1) o[n++] = i + L + 1; }
+      return n;
+    }
+    function wald(L, p, saat) {
+      const z = zufall(saat), w = new Uint8Array(L * L);
+      for (let i = 0; i < w.length; i++) w[i] = z() < p ? 1 : 0;
+      return w;
+    }
+    // Feuer von der linken Kante: Breitensuche, jede Runde ein Schritt
+    function abbrennen(w, L, g) {
+      const tiefe = new Int32Array(L * L).fill(-1), q = new Int32Array(L * L), o = [0, 0, 0, 0, 0, 0, 0, 0];
+      let kopf = 0, ende = 0, baeume = 0, max = 0, durch = false;
+      for (let i = 0; i < w.length; i++) if (w[i]) baeume++;
+      for (let y = 0; y < L; y++) { const i = y * L; if (w[i]) { tiefe[i] = 0; q[ende++] = i; } }
+      while (kopf < ende) {
+        const i = q[kopf++], n = nachbarn(g, i, L, o);
+        if (i % L === L - 1) durch = true;
+        for (let k = 0; k < n; k++) { const j = o[k]; if (w[j] && tiefe[j] < 0) { tiefe[j] = tiefe[i] + 1; if (tiefe[j] > max) max = tiefe[j]; q[ende++] = j; } }
+      }
+      return { verbrannt: ende, baeume: baeume, schritte: ende ? max + 1 : 0, durch: durch };
+    }
+    // Cluster mit Union-Find
+    function cluster(w, L, g) {
+      const N = L * L, el = new Int32Array(N), o = [0, 0, 0, 0, 0, 0, 0, 0];
+      for (let i = 0; i < N; i++) el[i] = i;
+      const wurzel = function (i) { while (el[i] !== i) { el[i] = el[el[i]]; i = el[i]; } return i; };
+      for (let i = 0; i < N; i++) {
+        if (!w[i]) continue;
+        const n = nachbarn(g, i, L, o);
+        for (let k = 0; k < n; k++) { const j = o[k]; if (j > i && w[j]) { const a = wurzel(i), b = wurzel(j); if (a !== b) el[a] = b; } }
+      }
+      const groesse = new Int32Array(N), links = {}, spann = {};
+      let anzahl = 0, groesster = 0, gw = -1;
+      for (let i = 0; i < N; i++) if (w[i]) { const r = wurzel(i); el[i] = r; if (!groesse[r]) anzahl++; groesse[r]++; if (groesse[r] > groesster) { groesster = groesse[r]; gw = r; } }
+      for (let y = 0; y < L; y++) { if (w[y * L]) links[el[y * L]] = 1; }
+      for (let y = 0; y < L; y++) { const i = y * L + L - 1; if (w[i] && links[el[i]]) spann[el[i]] = 1; }
+      return { el: el, groesse: groesse, anzahl: anzahl, groesster: groesster, gw: gw, spann: spann };
+    }
+    // Messreihe: Durchbrennwahrscheinlichkeit und verbrannter Anteil über p
+    const REIHEN = {};
+    function messreihe(L, g) {
+      const schl = L + g; if (REIHEN[schl]) return REIHEN[schl];
+      const laeufe = Math.max(4, Math.min(40, Math.floor(4e6 / (51 * L * L)))), aus = [];
+      for (let k = 0; k <= 50; k++) {
+        const p = k / 50; let d = 0, v = 0;
+        for (let j = 0; j < laeufe; j++) { const b = abbrennen(wald(L, p, 7919 * (j + 1) + k * 131 + L), L, g); if (b.durch) d++; v += b.baeume ? b.verbrannt / b.baeume : 0; }
+        aus.push([p, d / laeufe, v / laeufe]);
+      }
+      REIHEN[schl] = { punkte: aus, laeufe: laeufe };
+      return REIHEN[schl];
+    }
+    function aufReihe(reihe, p, s) { const k = Math.max(0, Math.min(49, Math.floor(p * 50))), a = reihe[k], b = reihe[k + 1], t = (p - a[0]) * 50; return a[s] + (b[s] - a[s]) * t; }
+
+    // ---------- Farben ----------
+    function dunkel() { const t = document.documentElement.getAttribute('data-thema'); return t ? t === 'dunkel' : !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+    function hexRgb(h) { return [parseInt(h.slice(1, 3), 16), parseInt(h.slice(3, 5), 16), parseInt(h.slice(5, 7), 16)]; }
+    const PAL = ['#2B7BB9', '#2E8B57', '#7A5195', '#1F9E89', '#A16207', '#6E6FA6', '#0E7C86', '#C2255C', '#5C940D', '#9C36B5', '#1971C2', '#E67700'].map(hexRgb);
+
+    // gemeinsamer Zustand der Bilder
+    const SIM = { s: null, bild: null, ctx: null, img: null, geom: null, wahl: -1, cl: null, clSchl: '' };
+    function rechne(e) {
+      const G = GITTER[e.gitter] || GITTER.quadrat, g = GITTER[e.gitter] ? e.gitter : 'quadrat', L = Math.round(e.L), p = e.p / 100, r = { G: G, g: g, L: L, p: p, saat: e.saat };
+      r.pc = G[1]; r.abst = p - r.pc; r.verh = p / r.pc;
+      r.N = p * L * L;
+      r.xi = Math.abs(r.abst) > 1e-9 ? Math.pow(Math.abs(r.abst), -NU) : Infinity;
+      r.w = wald(L, p, e.saat);
+      r.b = abbrennen(r.w, L, g);
+      r.c = cluster(r.w, L, g);
+      r.reihe = messreihe(L, g);
+      r.pDurch = aufReihe(r.reihe.punkte, p, 1);
+      r.mVerbr = aufReihe(r.reihe.punkte, p, 2);
+      r.Mfrak = Math.pow(L, D_FRAKTAL);
+      r.breite = Math.pow(L, -1 / NU);
+      return r;
+    }
+    function pz(v, n) { return zz(v * 100, n === undefined ? 1 : n) + ' %'; }
+
+    const seite = R.seite({
+      titel: 'Perkolation: Waldbrand und Perkolationsschwelle',
+      einleitung: 'Ab welcher Baumdichte brennt ein Wald ganz ab? Die Perkolationstheorie beschreibt, wann zufällig verteilte Punkte einen zusammenhängenden Weg von Rand zu Rand bilden. Der Rechner simuliert einen Wald, zählt die Cluster und misst, wie oft das Feuer durchkommt.',
+      hilfe: 'Beispiel: Quadratgitter, 100 × 100 Felder, Baumdichte 60 % – knapp über der Schwelle.',
+      gruppen: [
+        { titel: 'Wald', farbe: GRUEN, felder: [
+          { k: 'gitter', name: 'Gitter (wohin das Feuer springt)', wahl: Object.keys(GITTER).map(function (k) { return [k, GITTER[k][0]]; }) },
+          { k: 'p', tex: 'p', name: 'Baumdichte (Besetzungswahrscheinlichkeit)', e: '%', min: 0, max: 100 },
+          { k: 'L', tex: 'L', name: 'Seitenlänge des Waldes', e: 'Felder', min: 10, max: 250, n: 0 },
+          { k: 'saat', name: 'Zufallszahl für den Wald (anderer Wert, anderer Wald)', e: '', min: 1, max: 999999, n: 0 }
+        ] }
+      ],
+      beispiel: { gitter: 'quadrat', p: 60, L: 100, saat: 1 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (Math.abs(r.abst) < 0.03) H.meldung('Nahe an der Schwelle: Ob das Feuer durchkommt, hängt hier stark vom einzelnen Wald ab. Probiere andere Zufallszahlen.');
+        if (r.xi > r.L && isFinite(r.xi)) H.meldung('Die Korrelationslänge (≈ ' + zz(r.xi, 0) + ' Felder) ist größer als der Wald. Der Wald ist zu klein, um zu unterscheiden, ob p über oder unter der Schwelle liegt.');
+        H.urteil(r.b.durch, r.b.durch ? 'Feuer brennt durch' : 'Feuer erlischt');
+        H.kacheln([
+          [zz(r.pc, 4), 'Perkolationsschwelle pc (' + r.G[0].replace(/ \(.*/, '') + ')', ROT],
+          [(r.abst >= 0 ? '+' : '−') + zz(Math.abs(r.abst) * 100, 1), r.abst >= 0 ? 'Prozentpunkte über der Schwelle' : 'Prozentpunkte unter der Schwelle', r.abst >= 0 ? ORANGE : BLAU],
+          [pz(r.b.baeume ? r.b.verbrannt / r.b.baeume : 0), 'der Bäume verbrannt (dieser Wald)', ORANGE],
+          [zz(r.b.schritte, 0), 'Brenndauer in Schritten', GRAU],
+          [pz(r.pDurch, 0), 'brennt durch (Mittel aus ' + r.reihe.laeufe + ' Wäldern dieser Größe)', ROT],
+          [zz(r.c.anzahl, 0), 'Cluster, größter mit ' + zz(r.c.groesster, 0) + ' Bäumen', LILA],
+          [isFinite(r.xi) ? '≈ ' + zz(Math.min(r.xi, 1e6), r.xi < 10 ? 1 : 0) : '∞', 'Korrelationslänge ξ in Feldern (Größenordnung)', BLAU]
+        ]);
+        H.tabelle('Dieser Wald', ['Größe', 'Wert'], [
+          ['Felder', zz(r.L * r.L, 0)], ['Bäume', zz(r.b.baeume, 0) + ' (erwartet ' + zz(r.N, 0) + ')'], ['davon verbrannt', zz(r.b.verbrannt, 0)],
+          ['durchgehender Cluster (links → rechts)', Object.keys(r.c.spann).length ? 'ja' : 'nein'], ['größter Cluster', zz(r.c.groesster, 0) + ' Bäume = ' + pz(r.b.baeume ? r.c.groesster / r.b.baeume : 0) + ' aller Bäume'],
+          ['mittlerer verbrannter Anteil bei dieser Dichte', pz(r.mVerbr)], ['Breite des Übergangs ~ L^(−3/4)', '± ' + zz(r.breite * 100, 1) + ' Prozentpunkte']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Erwartete Zahl der Bäume', 'N = p \\cdot L^2 = ' + tz(r.p, 3) + ' \\cdot ' + tz(r.L, 0) + '^2 = ' + E(tz(r.N, 0))],
+          ['Vergleich mit der Schwelle', '\\frac{p}{p_\\text{c}} = \\frac{' + tz(r.p, 3) + '}{' + tz(r.pc, 4) + '} = ' + E(tz(r.verh, 3)) + (r.verh >= 1 ? ' \\geq 1' : ' < 1')],
+          ['Korrelationslänge (Größenordnung)', '\\xi \\approx |p - p_\\text{c}|^{-\\nu} = |' + tz(r.abst, 4) + '|^{-4/3} = ' + E(isFinite(r.xi) ? tz(Math.min(r.xi, 1e6), 1) : '\\infty')],
+          ['Masse eines Clusters an der Schwelle', 'M \\approx L^{D} = ' + tz(r.L, 0) + '^{91/48} = ' + E(tz(r.Mfrak, 0))]
+        ];
+      },
+      loeser: [
+        { titel: 'Bäume im Wald', hilfe: 'p als Anteil (0,6 = 60 %), L in Feldern.',
+          felder: [{ k: 'N', tex: 'N', name: 'Zahl der Bäume', e: '', min: 1, max: 1e8 }, { k: 'p', tex: 'p', name: 'Baumdichte als Anteil', e: '', min: 0.01, max: 1 }, { k: 'L', tex: 'L', name: 'Seitenlänge', e: 'Felder', min: 2, max: 10000 }],
+          beispiel: { p: 0.6, L: 100 },
+          gleichungen: [{ name: 'Besetzung', v: ['N', 'p', 'L'], f: function (q) { return [q.N, q.p * q.L * q.L]; },
+            loese: { N: function (q) { return q.p * q.L * q.L; }, p: function (q) { return q.N / (q.L * q.L); }, L: function (q) { return Math.sqrt(q.N / q.p); } },
+            weg: function (k, q) {
+              if (k === 'N') return 'N = p \\cdot L^2 = ' + tz(q.p, 3) + ' \\cdot ' + tz(q.L, 0) + '^2 = ' + E(tz(q.N, 0));
+              if (k === 'p') return 'p = \\frac{N}{L^2} = \\frac{' + tz(q.N, 0) + '}{' + tz(q.L, 0) + '^2} = ' + E(tz(q.p, 3));
+              return 'L = \\sqrt{\\frac{N}{p}} = \\sqrt{\\frac{' + tz(q.N, 0) + '}{' + tz(q.p, 3) + '}} = ' + E(tz(q.L, 1));
+            } }] },
+        { titel: 'Schwelle im Bethe-Gitter', hilfe: 'Baumartiges Gitter ohne Schleifen, jeder Platz hat z Nachbarn.',
+          felder: [{ k: 'pc', tex: 'p_\\text{c}', name: 'Perkolationsschwelle', e: '', min: 0.01, max: 1 }, { k: 'z', tex: 'z', name: 'Zahl der Nachbarn', e: '', min: 2, max: 101, n: 0 }],
+          beispiel: { z: 4 },
+          gleichungen: [{ name: 'Bethe-Schwelle', v: ['pc', 'z'], f: function (q) { return [q.pc * (q.z - 1), 1]; },
+            loese: { pc: function (q) { return 1 / (q.z - 1); }, z: function (q) { return 1 + 1 / q.pc; } },
+            weg: function (k, q) { return k === 'pc' ? 'p_\\text{c} = \\frac{1}{z - 1} = \\frac{1}{' + tz(q.z, 0) + ' - 1} = ' + E(tz(q.pc, 4)) : 'z = 1 + \\frac{1}{p_\\text{c}} = 1 + \\frac{1}{' + tz(q.pc, 4) + '} = ' + E(tz(q.z, 2)); } }] },
+        { titel: 'Clustergröße im Bethe-Gitter', hilfe: 'S: mittlere Zahl der Plätze im Cluster eines besetzten Platzes, gilt für p < pc. Mit z = 2 ist es die Kette.',
+          felder: [{ k: 'S', tex: 'S', name: 'mittlere Clustergröße', e: '', min: 1, max: 1e6 }, { k: 'p', tex: 'p', name: 'Besetzung als Anteil', e: '', min: 0.01, max: 0.99 }, { k: 'z', tex: 'z', name: 'Zahl der Nachbarn', e: '', min: 2, max: 12, n: 0 }],
+          beispiel: { p: 0.4, z: 3 },
+          gleichungen: [{ name: 'Clustergröße', v: ['S', 'p', 'z'], f: function (q) { return [q.S * (1 - (q.z - 1) * q.p), 1 + q.p]; },
+            loese: { S: function (q) { const n = 1 - (q.z - 1) * q.p; return n > 0 ? (1 + q.p) / n : NaN; }, p: function (q) { return (q.S - 1) / (1 + q.S * (q.z - 1)); }, z: function (q) { return 1 + (q.S - 1 - q.p) / (q.S * q.p); } },
+            weg: function (k, q) {
+              if (k === 'S') return 'S = \\frac{1 + p}{1 - (z-1)\\,p} = \\frac{1 + ' + tz(q.p, 3) + '}{1 - ' + tz(q.z - 1, 0) + ' \\cdot ' + tz(q.p, 3) + '} = ' + E(tz(q.S, 2));
+              if (k === 'p') return 'p = \\frac{S - 1}{1 + S\\,(z-1)} = \\frac{' + tz(q.S, 2) + ' - 1}{1 + ' + tz(q.S, 2) + ' \\cdot ' + tz(q.z - 1, 0) + '} = ' + E(tz(q.p, 4));
+              return 'z = 1 + \\frac{S - 1 - p}{S \\cdot p} = 1 + \\frac{' + tz(q.S, 2) + ' - 1 - ' + tz(q.p, 3) + '}{' + tz(q.S, 2) + ' \\cdot ' + tz(q.p, 3) + '} = ' + E(tz(q.z, 2));
+            } }] },
+        { titel: 'Korrelationslänge', hilfe: 'Δ = |p − pc|, ξ in Gitterabständen (Vorfaktor 1, 2 Dimensionen, ν = 4/3).',
+          felder: [{ k: 'xi', tex: '\\xi', name: 'Korrelationslänge', e: 'Felder', min: 1, max: 1e8 }, { k: 'd', tex: '\\Delta', name: 'Abstand zur Schwelle', e: '', min: 0.0001, max: 0.5 }],
+          beispiel: { d: 0.02 },
+          gleichungen: [{ name: 'Korrelationslänge', v: ['xi', 'd'], f: function (q) { return [q.xi, Math.pow(q.d, -NU)]; },
+            loese: { xi: function (q) { return Math.pow(q.d, -NU); }, d: function (q) { return Math.pow(q.xi, -1 / NU); } },
+            weg: function (k, q) { return k === 'xi' ? '\\xi = \\Delta^{-4/3} = ' + tz(q.d, 4) + '^{-4/3} = ' + E(tz(q.xi, 1)) : '\\Delta = \\xi^{-3/4} = ' + tz(q.xi, 1) + '^{-3/4} = ' + E(tz(q.d, 4)); } }] },
+        { titel: 'Fraktaler Cluster', hilfe: 'Masse M (Zahl der Plätze) des größten Clusters an der Schwelle in einem Fenster der Größe L, D = 91/48.',
+          felder: [{ k: 'M', tex: 'M', name: 'Masse des Clusters', e: 'Plätze', min: 1, max: 1e12 }, { k: 'L', tex: 'L', name: 'Fenstergröße', e: 'Felder', min: 2, max: 1e6 }],
+          beispiel: { L: 100 },
+          gleichungen: [{ name: 'Fraktale Dimension', v: ['M', 'L'], f: function (q) { return [q.M, Math.pow(q.L, D_FRAKTAL)]; },
+            loese: { M: function (q) { return Math.pow(q.L, D_FRAKTAL); }, L: function (q) { return Math.pow(q.M, 1 / D_FRAKTAL); } },
+            weg: function (k, q) { return k === 'M' ? 'M = L^{D} = ' + tz(q.L, 0) + '^{1{,}896} = ' + E(tz(q.M, 0)) : 'L = M^{1/D} = ' + tz(q.M, 0) + '^{1/1{,}896} = ' + E(tz(q.L, 1)); } }] }
+      ],
+      sammlung: [
+        ['Erwartete Zahl besetzter Plätze', 'N = p \\cdot L^2', 'p Besetzungswahrscheinlichkeit, L Seitenlänge in Feldern'],
+        ['Schwelle Quadratgitter (Plätze)', 'p_\\text{c} \\approx 0{,}5927', 'nur aus Simulationen bekannt'],
+        ['Schwelle Dreiecksgitter (Plätze) und Quadratgitter (Kanten)', 'p_\\text{c} = \\tfrac{1}{2}', 'exakt'],
+        ['Schwelle Bethe-Gitter', 'p_\\text{c} = \\frac{1}{z - 1}', 'z Zahl der Nachbarn; für die Kette (z = 2) ist pc = 1'],
+        ['Mittlere Clustergröße im Bethe-Gitter', 'S = \\frac{1 + p}{1 - (z-1)\\,p}', 'für p < pc; wächst an der Schwelle über alle Grenzen'],
+        ['Korrelationslänge der Kette', '\\xi = -\\frac{1}{\\ln p}', 'eindimensional'],
+        ['Anteil im unendlichen Cluster', 'P_\\infty \\propto (p - p_\\text{c})^{\\beta}', 'β = 5/36 in 2D'],
+        ['Korrelationslänge', '\\xi \\propto |p - p_\\text{c}|^{-\\nu}', 'ν = 4/3 in 2D'],
+        ['Mittlere Clustergröße', 'S \\propto |p - p_\\text{c}|^{-\\gamma}', 'γ = 43/18 in 2D'],
+        ['Fraktale Dimension', 'M \\propto L^{D}, \\quad D = \\tfrac{91}{48} \\approx 1{,}896', 'Cluster an der Schwelle in 2D'],
+        ['Endliche Gitter', '\\Delta p \\propto L^{-1/\\nu}', 'Breite des verschmierten Übergangs']
+      ],
+      quellen: 'Schwellen nach den Standardwerken der Perkolationstheorie (Stauffer und Aharony) und neueren Simulationen, gerundet. Die Messreihe ist eine Monte-Carlo-Simulation mit wenigen Wäldern und schwankt deshalb etwas.',
+      bild: { titel: 'Simulation', label: 'Waldbrand auf einem zufälligen Gitter, Cluster und Durchbruchkurve', animiert: true,
+        hoehe: function (B) { return B < 600 ? Math.round(B + 170) : 460; },
+        hinweis: function (r) {
+          if (ansicht === 'brand') return 'Das Feuer startet am linken Rand. Antippen eines Baums zündet ihn an. Nach dem Brand wächst ein neuer, zufälliger Wald gleicher Dichte.';
+          if (ansicht === 'cluster') return 'Jede Farbe ein Cluster. Rot: Cluster, der von links nach rechts reicht. Antippen hebt einen Cluster hervor.';
+          return 'Anteil der Wälder (' + r.L + ' × ' + r.L + ', je ' + r.reihe.laeufe + ' Stück), die durchbrennen. Gestrichelt: kleinerer Wald – die Kurve wird mit wachsender Größe steiler.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); ({ brand: brand, cluster: clusterBild, kurve: kurve })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    function leinwand(L) {
+      if (!SIM.bild || SIM.bild.width !== L) { SIM.bild = document.createElement('canvas'); SIM.bild.width = L; SIM.bild.height = L; SIM.ctx = SIM.bild.getContext('2d'); SIM.img = SIM.ctx.createImageData(L, L); }
+      return SIM.img;
+    }
+    function gitterZeichnen(cx, x, y, g, L) {
+      SIM.ctx.putImageData(SIM.img, 0, 0);
+      cx.save(); cx.imageSmoothingEnabled = false; cx.drawImage(SIM.bild, x, y, g, g); cx.restore();
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x - 0.5, y - 0.5, g + 1, g + 1);
+      SIM.geom = { x: x, y: y, g: g, L: L };
+    }
+    function feldAusGeom(px, py) { const G = SIM.geom; if (!G) return -1; const fx = Math.floor((px - G.x) / G.g * G.L), fy = Math.floor((py - G.y) / G.g * G.L); return fx >= 0 && fy >= 0 && fx < G.L && fy < G.L ? fy * G.L + fx : -1; }
+    function aufteilung(B, H) {
+      const klein = B < 600, g = klein ? Math.min(B - 16, H - 170) : Math.min(H - 30, Math.round(B * 0.5));
+      return { klein: klein, g: g, x: klein ? Math.round((B - g) / 2) : 10, y: klein ? 8 : 15 };
+    }
+
+    // ---------- Waldbrand ----------
+    function neuerBrand(r, saat) {
+      const L = r.L, w = saat === undefined ? r.w : wald(L, r.p, saat), z = new Uint8Array(w), brennt = [];
+      for (let y = 0; y < L; y++) { const i = y * L; if (z[i]) { z[i] = 2; brennt.push(i); } }
+      let baeume = 0; for (let i = 0; i < w.length; i++) if (w[i]) baeume++;
+      return { L: L, g: r.g, w: w, z: z, brennt: brennt, schritt: 0, acc: 0, ende: 0, verlauf: [[0, brennt.length]], verbrannt: 0, baeume: baeume, runde: 0, basis: '' };
+    }
+    function brandSchritt(S) {
+      const o = [0, 0, 0, 0, 0, 0, 0, 0], neu = [];
+      S.brennt.forEach(function (i) {
+        const n = nachbarn(S.g, i, S.L, o);
+        for (let k = 0; k < n; k++) { const j = o[k]; if (S.z[j] === 1) { S.z[j] = 2; neu.push(j); } }
+        S.z[i] = 3; S.verbrannt++;
+      });
+      S.brennt = neu; S.schritt++; S.verlauf.push([S.schritt, neu.length]);
+    }
+    function brand(cx, B, H, dt, r) {
+      const basis = r.L + '|' + r.g + '|' + r.p + '|' + r.saat;
+      if (!SIM.s || SIM.s.basis !== basis) { SIM.s = neuerBrand(r); SIM.s.basis = basis; }
+      const S = SIM.s, A = aufteilung(B, H), L = S.L;
+      if (S.brennt.length) {
+        S.acc += dt * Math.max(6, Math.min(60, L / 3));
+        let n = 0; while (S.acc >= 1 && S.brennt.length && n < 20) { brandSchritt(S); S.acc -= 1; n++; }
+      } else {
+        S.ende += dt;
+        if (S.ende > 2.5) { SIM.s = neuerBrand(r, Math.floor(Math.random() * 1e6) + 1); SIM.s.basis = basis; SIM.s.runde = S.runde + 1; return; }
+      }
+      const img = leinwand(L), d = img.data, dk = dunkel(), baum = dk ? [55, 178, 77] : [47, 158, 68], asche = dk ? [92, 95, 102] : [73, 80, 87], fl = Math.random();
+      for (let i = 0; i < L * L; i++) {
+        const z = S.z[i], o = i * 4;
+        if (z === 0) { d[o + 3] = 0; continue; }
+        const c = z === 1 ? baum : z === 3 ? asche : ((i * 7 + Math.floor(fl * 5)) % 3 === 0 ? [255, 212, 59] : [247, 103, 7]);
+        d[o] = c[0]; d[o + 1] = c[1]; d[o + 2] = c[2]; d[o + 3] = 255;
+      }
+      gitterZeichnen(cx, A.x, A.y, A.g, L);
+      const anteil = S.baeume ? S.verbrannt / S.baeume : 0, fertig = !S.brennt.length;
+      const zeile = 'Schritt ' + S.schritt + ' · brennt ' + S.brennt.length + ' · verbrannt ' + pz(anteil) + (S.runde ? ' · Wald ' + (S.runde + 1) : '');
+      if (A.klein) {
+        T(cx, zeile, 8, A.y + A.g + 16, 'left', 11, true, fertig ? GRAU : ORANGE);
+        diagramm(cx, 8, A.y + A.g + 26, B - 16, H - A.g - A.y - 32, [{ name: 'brennende Bäume', farbe: ORANGE, punkte: S.verlauf }], { titel: 'Brandverlauf', xl: 'Schritt', xr: [0, Math.max(20, S.schritt)], yr: [0, Math.max(5, rdHoch(S.verlauf))] });
+      } else {
+        const px = A.x + A.g + 20, pw = B - px - 10;
+        TW(cx, zeile, px, 22, pw, 12, true, fertig ? GRAU : ORANGE);
+        diagramm(cx, px, 40, pw, H - 120, [{ name: 'brennende Bäume', farbe: ORANGE, punkte: S.verlauf }], { titel: 'Brandverlauf', xl: 'Schritt', xr: [0, Math.max(20, S.schritt)], yr: [0, Math.max(5, rdHoch(S.verlauf))] });
+        TW(cx, 'Dichte ' + pz(r.p) + ', Schwelle ' + pz(r.pc, 2) + '. ' + (fertig ? (S.verbrannt && S.z.some(function (v, i) { return v === 3 && i % L === L - 1; }) ? 'Das Feuer hat den rechten Rand erreicht.' : 'Das Feuer ist erloschen, ohne durchzukommen.') : 'Es brennt …'), px, H - 64, pw, 12, false);
+      }
+    }
+    function rdHoch(v) { let m = 0; v.forEach(function (q) { if (q[1] > m) m = q[1]; }); const s = schritt(m, 4); return Math.ceil(m / s) * s; }
+
+    // ---------- Cluster ----------
+    function clusterBild(cx, B, H, dt, r) {
+      const A = aufteilung(B, H), L = r.L, c = r.c, dk = dunkel(), schl = L + r.g + r.p + r.saat + dk + SIM.wahl;
+      const img = leinwand(L);
+      if (SIM.clSchl !== schl || SIM.cl !== c) {
+        const d = img.data, rot = [224, 49, 49], gelb = [250, 176, 5];
+        for (let i = 0; i < L * L; i++) {
+          const o = i * 4; if (!r.w[i]) { d[o + 3] = 0; continue; }
+          const w = c.el[i], col = c.spann[w] ? rot : w === SIM.wahl ? gelb : PAL[(w * 2654435761 >>> 0) % PAL.length], hell = c.spann[w] || w === SIM.wahl ? 255 : c.groesse[w] < 3 ? 120 : 200;
+          d[o] = col[0]; d[o + 1] = col[1]; d[o + 2] = col[2]; d[o + 3] = hell;
+        }
+        SIM.clSchl = schl; SIM.cl = c;
+      }
+      gitterZeichnen(cx, A.x, A.y, A.g, L);
+      // Verteilung der Clustergrößen (log-log)
+      const zaehl = {}; for (let i = 0; i < L * L; i++) if (r.w[i] && c.el[i] === i) { const k = Math.floor(Math.log2(c.groesse[i])); zaehl[k] = (zaehl[k] || 0) + 1; }
+      const pkt = Object.keys(zaehl).map(Number).sort(function (a, b) { return a - b; }).map(function (k) { return [k * Math.LN2 / Math.LN10, Math.log10(zaehl[k] / Math.pow(2, k))]; });
+      const span = Object.keys(c.spann).length;
+      const text = c.anzahl + ' Cluster · größter ' + c.groesster + ' Bäume' + (span ? ' · durchgehend' : ' · keiner reicht durch') + (SIM.wahl >= 0 && c.groesse[SIM.wahl] ? ' · gewählt ' + c.groesse[SIM.wahl] : '');
+      const ymin = pkt.length ? Math.floor(Math.min.apply(null, pkt.map(function (q) { return q[1]; }))) : -4;
+      const o = { titel: 'Clustergrößen (log-log)', xl: 'lg Größe', xr: [0, Math.max(1, Math.ceil(Math.log10(L * L)))], yr: [Math.min(-1, ymin), Math.max(1, Math.ceil(Math.log10(L * L / 2)))] };
+      const reihen = [{ name: 'Anzahl je Größe', farbe: LILA, punkte: pkt }];
+      if (A.klein) { TW(cx, text, 8, A.y + A.g + 16, B - 16, 11, true, span ? ROT : GRAU); diagramm(cx, 8, A.y + A.g + 30, B - 16, H - A.g - A.y - 36, reihen, o); }
+      else { const px = A.x + A.g + 20, pw = B - px - 10; TW(cx, text, px, 22, pw, 12, true, span ? ROT : GRAU); diagramm(cx, px, 50, pw, H - 130, reihen, o); TW(cx, 'An der Schwelle liegen die Punkte auf einer Geraden: Die Größen folgen einem Potenzgesetz (Steigung ≈ −2,05).', px, H - 66, pw, 11, false, GRAU); }
+      void dt;
+    }
+
+    // ---------- Durchbruchkurve ----------
+    function kurve(cx, B, H, dt, r) {
+      const Lk = Math.max(10, Math.round(r.L / 4)), klein = messreihe(Lk, r.g).punkte, gross = r.reihe.punkte;
+      const reihen = [
+        { name: 'brennt durch, L = ' + r.L, farbe: ROT, punkte: gross.map(function (q) { return [q[0] * 100, q[1] * 100]; }), punkt: [r.p * 100, r.pDurch * 100] },
+        { name: 'brennt durch, L = ' + Lk, farbe: ROT, punkte: klein.map(function (q) { return [q[0] * 100, q[1] * 100]; }), breite: 1.5, strich: [5, 4] },
+        { name: 'verbrannter Anteil', farbe: ORANGE, punkte: gross.map(function (q) { return [q[0] * 100, q[2] * 100]; }), breite: 1.5 },
+        { name: 'unendlicher Wald', farbe: GRAU, punkte: [[0, 0], [r.pc * 100, 0], [r.pc * 100, 100], [100, 100]], breite: 1, strich: [2, 3] }
+      ];
+      const g = diagramm(cx, 8, 8, B - 16, H - 16, reihen, { titel: 'Durchbruch über der Baumdichte (%)', xl: 'Baumdichte p in %', xr: [0, 100], yr: [0, 100] });
+      strecke(cx, g.X(r.pc * 100), g.y0, g.X(r.pc * 100), g.y1, BLAU, 1.5, [4, 3]);
+      T(cx, 'pc = ' + zz(r.pc * 100, 1) + ' %', g.X(r.pc * 100) + 4, g.y1 - 8, 'left', 10, true, BLAU);
+      void dt;
+    }
+
+    ansicht = (ansichten(seite, [['brand', 'Waldbrand'], ['cluster', 'Cluster'], ['kurve', 'Durchbruch']], 'brand', function (a) { ansicht = a; SIM.wahl = -1; }))();
+
+    const cv = bildCanvas();
+    if (cv) cv.addEventListener('pointerdown', function (ev) {
+      const p = zeiger(cv, ev), i = feldAusGeom(p[0], p[1]); if (i < 0) return;
+      if (ansicht === 'brand' && SIM.s && SIM.s.z[i] === 1) { SIM.s.z[i] = 2; SIM.s.brennt.push(i); SIM.s.ende = 0; }
+      else if (ansicht === 'cluster') { const c = SIM.cl; SIM.wahl = c && c.groesse[c.el[i]] ? c.el[i] : -1; SIM.clSchl = ''; }
+    });
+
+    // Tabellen
+    const SCHW = [['Quadratgitter', '4', '0,592746', '1/2'], ['Quadratgitter mit Diagonalen', '8', '0,407254', '≈ 0,2504'], ['Dreiecksgitter', '6', '1/2', '2 sin 10° ≈ 0,347296'], ['Bienenwabengitter', '3', '0,697043', '1 − 2 sin 10° ≈ 0,652704'],
+      ['einfach kubisch (3D)', '6', '0,311608', '0,248812'], ['kubisch raumzentriert (3D)', '8', '0,245962', '0,180287'], ['kubisch flächenzentriert (3D)', '12', '0,199236', '0,120164'], ['Bethe-Gitter', 'z', '1/(z − 1)', '1/(z − 1)'], ['Kette (1D)', '2', '1', '1']];
+    const EXP = [['β', 'Anteil im unendlichen Cluster P∞', '5/36 ≈ 0,139', '≈ 0,418', '1'], ['γ', 'mittlere Clustergröße S', '43/18 ≈ 2,389', '≈ 1,793', '1'], ['ν', 'Korrelationslänge ξ', '4/3 ≈ 1,333', '≈ 0,876', '1/2'], ['τ', 'Clusterzahl n(s) ∝ s^(−τ)', '187/91 ≈ 2,055', '≈ 2,189', '5/2'], ['D', 'fraktale Dimension', '91/48 ≈ 1,896', '≈ 2,523', '4']];
+    function fuelle(id, zeilen, zahl) { const tb = document.getElementById(id); zeilen.forEach(function (z) { const tr = document.createElement('tr'); z.forEach(function (x, i) { const td = document.createElement('td'); if (zahl.indexOf(i) >= 0) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr); }); }
+    fuelle('schwellen', SCHW, [2, 3]); fuelle('exponenten', EXP, [2, 3, 4]);
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

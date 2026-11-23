@@ -24,7 +24,8 @@ const PAARE = [
   ['mechanik/energie-impuls.html', 'mechanik/anhalteweg.html'], ['mechanik/energie-impuls.html', 'mechanik/wurf.html'],
   ['physik/schwingungen-wellen.html', 'it/audioformate.html'], ['physik/optik.html', 'it/bildformate.html'],
   ['elektro/halbleiter.html', 'elektro/transistor-opv.html'], ['elektro/transistor-opv.html', 'steuerung/digitaltechnik.html'],
-  ['it/rack-strom.html', 'it/serverraum-klima.html'], ['it/rack-strom.html', 'it/usv.html']
+  ['it/rack-strom.html', 'it/serverraum-klima.html'], ['it/rack-strom.html', 'it/usv.html'],
+  ['physik/perkolation.html', 'physik/chaos-feigenbaum.html'], ['physik/perkolation.html', 'brandschutz/brandsimulation.html'], ['physik/perkolation.html', 'physik/radioaktivitaet.html'], ['physik/chaos-feigenbaum.html', 'physik/schwingungen-wellen.html']
 ];
 
 const start = fs.readFileSync(path.join(WURZEL, 'index.html'), 'utf8');
