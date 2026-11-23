@@ -1038,8 +1038,8 @@
     $('neuerBereich').addEventListener('click', function () { P.bereiche.push({ id: neueId('b'), name: 'Meldebereich ' + (P.bereiche.length + 1) }); einstellungenAufbauen(); aenderung(); });
     $('neueGruppe').addEventListener('click', function () { const n = Math.max.apply(null, P.gruppen.map(function (g) { return g.nr; }).concat([0])) + 1; P.gruppen.push({ id: neueId('g'), nr: n, name: 'Meldergruppe ' + n, art: 'auto', linie: P.linien[0].id }); einstellungenAufbauen(); aenderung(); });
     $('neueLinie').addEventListener('click', function () { P.linien.push({ id: neueId('l'), name: 'Ring ' + (P.linien.length + 1), art: 'ring', trenner: 'jeder', abschnitt: 32, max: 128, querschnitt: 0.8 }); einstellungenAufbauen(); aenderung(); });
-    $('auto').addEventListener('click', function () { if (!window.confirm('Alle Melder neu nach DIN VDE 0833-2 verteilen? Eigene Positionen gehen verloren.')) return; verteilen(P); aenderung(); status('Melder neu verteilt.'); });
-    $('beispiel').addEventListener('click', function () { if (!window.confirm('Beispiel laden? Die aktuelle Planung wird ersetzt.')) return; P = beispiel(); verteilen(P); P.brand = { raum: 'r3', x: 4.5, y: 3.5 }; zuruecksetzen(); einstellungenAufbauen(); aenderung(); });
+    $('auto').addEventListener('click', function () { Nachfrage('Alle Melder neu nach DIN VDE 0833-2 verteilen? Eigene Positionen gehen verloren.', function () { verteilen(P); aenderung(); status('Melder neu verteilt.'); }); });
+    $('beispiel').addEventListener('click', function () { Nachfrage('Beispiel laden? Die aktuelle Planung wird ersetzt.', function () { P = beispiel(); verteilen(P); P.brand = { raum: 'r3', x: 4.5, y: 3.5 }; zuruecksetzen(); einstellungenAufbauen(); aenderung(); }); });
     function status(t) { $('status').textContent = t; }
 
     // ---------- Teilen (gemeinsames Muster aus basis.js) ----------

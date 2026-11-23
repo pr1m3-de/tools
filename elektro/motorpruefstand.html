@@ -492,7 +492,7 @@
       const p = {}; ['n', 'U', 'I', 'phi', 'cos', 'M', 'S', 'Pel', 'Pm', 'eta'].forEach(function (k) { p[k] = Math.round(AKT[k] * 1000) / 1000; }); p.sch = einst().sch;
       PUNKTE.push(p); PUNKTE.sort(function (a, b) { return a.n - b.n; }); speichern(); tabelle(); meld('Messpunkt bei ' + zs(p.n, 0) + ' 1/min gespeichert.', 'gut');
     });
-    $('leeren').addEventListener('click', function () { if (PUNKTE.length && !window.confirm('Alle Messpunkte löschen?')) return; PUNKTE = []; speichern(); tabelle(); });
+    $('leeren').addEventListener('click', function () { Nachfrage('Alle Messpunkte löschen?', function () { PUNKTE = []; speichern(); tabelle(); }, !(PUNKTE.length)); });
     $('csv').addEventListener('click', function () {
       const zeilen = [['n_1/min', 'U_V', 'I_A', 'phi_Grad', 'cos_phi', 'M_Nm', 'S_VA', 'Pel_W', 'Pmech_W', 'eta_Prozent', 'Schaltung']];
       (ZST.modus === 'auto' && ZST.aufzeichnung.length ? ZST.aufzeichnung.map(function (p) { const o = Object.assign({}, p); o.sch = einst().sch; return o; }) : PUNKTE).forEach(function (p) { zeilen.push([p.n, p.U, p.I, p.phi, p.cos, p.M, p.S, p.Pel, p.Pm, p.eta].map(function (v) { return String(Math.round(v * 1000) / 1000).replace('.', ','); }).concat([p.sch === 'stern' ? 'Stern' : 'Dreieck'])); });

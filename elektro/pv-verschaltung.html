@@ -461,7 +461,7 @@
     }
     $('neueFlaeche').addEventListener('click', function () { P.flaechen.push({ id: neueId('f'), art: 'string', name: 'Fläche ' + (P.flaechen.length + 1), neigung: 30, azimut: 0, spalten: 6, reihen: 2, hoch: true, aus: [], abstand: 15 }); einstellungenAufbauen(); aenderung(true); });
     $('neuerWR').addEventListener('click', function () { const v = kopie(P.wr[P.wr.length - 1]); v.id = neueId('w'); v.name = 'WR ' + (P.wr.length + 1); P.wr.push(v); einstellungenAufbauen(); aenderung(true); });
-    $('beispiel').addEventListener('click', function () { if (!window.confirm('Beispiel laden? Die aktuelle Planung wird ersetzt.')) return; P = beispiel(); autoVerstringen(true); einstellungenAufbauen(); nummerAufbauen(); etikettSteuerungAufbauen(); aenderung(true); });
+    $('beispiel').addEventListener('click', function () { Nachfrage('Beispiel laden? Die aktuelle Planung wird ersetzt.', function () { P = beispiel(); autoVerstringen(true); einstellungenAufbauen(); nummerAufbauen(); etikettSteuerungAufbauen(); aenderung(true); }); });
     $('teilen').addEventListener('click', function () {
       Teilen.url('plan', P).then(function (url) {
         Teilen.kopieren(url, function (t) { $('teilenMeldung').textContent = t; setTimeout(function () { $('teilenMeldung').textContent = ''; }, 5000); });
@@ -708,8 +708,9 @@
       if (!still) { status((P.strings.length || !P.mikro.length ? 'Automatisch verstringt: ' + P.strings.length + ' Strings' + (nMin <= nMax ? ', zulässig ' + nMin + ' bis ' + nMax + ' Module je String' : ' – kein zulässiges Fenster, Grenzen prüfen') + (rest ? '; ' + rest + ' Module bleiben frei (gleich lange Strings).' : '.') : 'Automatisch belegt.') + mt); aenderung(); }
     }
     $('auto').addEventListener('click', function () {
-      if ((P.strings.some(function (s) { return s.module.length; }) || P.mikro.length) && !window.confirm('Alle Strings und Mikro-WR neu belegen? Namen bleiben in der Reihenfolge erhalten.')) return;
-      autoVerstringen(false);
+      Nachfrage('Alle Strings und Mikro-WR neu belegen? Namen bleiben in der Reihenfolge erhalten.', function () {
+        autoVerstringen(false);
+      }, !((P.strings.some(function (s) { return s.module.length; }) || P.mikro.length)));
     });
 
     function stringsWahlAufbauen() {

@@ -332,7 +332,7 @@
         const f = document.createElement('span'); f.className = 'faktor'; f.textContent = g.faktor + ' ' + KATALOG[g.faktor][0];
         const sv = document.createElement('span'), sn = document.createElement('span'); sv.className = 'stufe'; sn.className = 'stufe';
         const weg = document.createElement('button'); weg.type = 'button'; weg.className = 'weg-k'; weg.textContent = '✕'; weg.setAttribute('aria-label', 'Gefährdung ' + (gi + 1) + ' entfernen');
-        weg.addEventListener('click', function () { if (!window.confirm('Gefährdung „' + g.text + '“ entfernen?')) return; P.gef = P.gef.filter(function (x) { return x !== g; }); neu(true); });
+        weg.addEventListener('click', function () { Nachfrage('Gefährdung „' + g.text + '“ entfernen?', function () { P.gef = P.gef.filter(function (x) { return x !== g; }); neu(true); }); });
         const rechts = document.createElement('span'); rechts.style.cssText = 'display:flex;gap:8px;align-items:center;flex-wrap:wrap';
         rechts.append(document.createTextNode('vorher '), sv, document.createTextNode(' nachher '), sn, weg);
         kopf.append(h, rechts); k.append(kopf, f);
@@ -500,8 +500,8 @@
       neu(true);
       const k = $('liste').lastElementChild; if (k && k.scrollIntoView) k.scrollIntoView({ behavior: 'smooth', block: 'center' });
     });
-    $('beispiel').addEventListener('click', function () { if (!window.confirm('Beispiel laden? Die aktuelle Beurteilung wird ersetzt.')) return; P = beispiel(); kopfAufbauen(); neu(true); });
-    $('leeren').addEventListener('click', function () { if (!window.confirm('Neue, leere Beurteilung beginnen? Die aktuelle wird ersetzt.')) return; const d = heute(0); P = { kopf: { betrieb: P.kopf.betrieb, bereich: '', taetigkeit: '', ersteller: P.kopf.ersteller, beteiligte: '', datum: d, naechste: plusMonate(d, 12), anlass: 'erstmalig' }, gef: [], unterschrift: { verantwortlich: '', sifa: '', betriebsrat: '' } }; kopfAufbauen(); neu(true); });
+    $('beispiel').addEventListener('click', function () { Nachfrage('Beispiel laden? Die aktuelle Beurteilung wird ersetzt.', function () { P = beispiel(); kopfAufbauen(); neu(true); }); });
+    $('leeren').addEventListener('click', function () { Nachfrage('Neue, leere Beurteilung beginnen? Die aktuelle wird ersetzt.', function () { const d = heute(0); P = { kopf: { betrieb: P.kopf.betrieb, bereich: '', taetigkeit: '', ersteller: P.kopf.ersteller, beteiligte: '', datum: d, naechste: plusMonate(d, 12), anlass: 'erstmalig' }, gef: [], unterschrift: { verantwortlich: '', sifa: '', betriebsrat: '' } }; kopfAufbauen(); neu(true); }); });
     $('teilen').addEventListener('click', function () { Teilen.url('plan', P).then(function (url) { Teilen.kopieren(url, function (t) { $('teilenMeldung').textContent = t; setTimeout(function () { $('teilenMeldung').textContent = ''; }, 5000); }); }); });
     Teilen.druckLink(function () { return Teilen.url('plan', P); });
     const vorherKnopf = Teilen.knopf($('teilen').parentNode, SPEICHER, function (roh) {
