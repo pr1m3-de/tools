@@ -352,6 +352,24 @@
    "beschreibung": "Achsneigung und Jahreszeiten, Mittagshöhe der Sonne und Polartag, Abstand Erde–Sonne, die drei Keplerschen Gesetze mit Umlaufzeiten, Perihel und Aphel, Bahngeschwindigkeit."
   },
   {
+   "datei": "aufgabenblaetter/physik/chaos-feigenbaum/01-logistische-gleichung.md",
+   "thema": "physik/chaos-feigenbaum.html",
+   "titel": "Chaos – logistische Gleichung, Fixpunkt und Periodenverdopplung",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Logistische Gleichung von Hand iterieren, Fixpunkt und Stabilität, Spinnwebdiagramm deuten, Verdopplungen im Feigenbaumdiagramm und Abschätzung mit der Feigenbaum-Konstante."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/chaos-feigenbaum/02-schmetterlingseffekt.md",
+   "thema": "physik/chaos-feigenbaum.html",
+   "titel": "Chaos – Feigenbaum-Konstante, Ljapunow-Exponent und Schmetterlingseffekt",
+   "stufe": "schwer",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Feigenbaum-Verhältnisse aus der Tabelle berechnen, Ljapunow-Exponent am Fixpunkt, Fehlerwachstum im Chaos und Grenzen der Wettervorhersage."
+  },
+  {
    "datei": "aufgabenblaetter/physik/druck-auftrieb/01-hydraulik-schweredruck-auftrieb.md",
    "thema": "physik/druck-auftrieb.html",
    "titel": "Druck und Auftrieb",
@@ -368,6 +386,24 @@
    "aufgaben": 4,
    "loesungen": 4,
    "beschreibung": "Reflexionsgesetz und Spiegelbild, diffuse Reflexion, Brechungsgesetz mit Brechzahlen, Lichtgeschwindigkeit im Stoff, Grenzwinkel, Totalreflexion im Lichtwellenleiter."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/perkolation/01-waldbrand-und-schwelle.md",
+   "thema": "physik/perkolation.html",
+   "titel": "Perkolation – Waldbrand und Perkolationsschwelle",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Begriffe der Perkolation, Bäume und Dichte berechnen, Waldbrand-Simulation auswerten, Schwellen verschiedener Gitter vergleichen, Brandschneisen."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/perkolation/02-theorie-bethe-fraktal.md",
+   "thema": "physik/perkolation.html",
+   "titel": "Perkolation – Bethe-Gitter, kritische Exponenten und Fraktale",
+   "stufe": "schwer",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Schwelle und Clustergröße im Bethe-Gitter herleiten, Kette, Korrelationslänge und endliche Gitter, fraktale Dimension des Clusters an der Schwelle."
   },
   {
    "datei": "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",

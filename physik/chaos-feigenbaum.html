@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chaos und Feigenbaum-Konstante: logistische Gleichung, Bifurkation, Schmetterlingseffekt – Formeln &amp; Rechner</title>
+  <meta name="description" content="Logistische Gleichung zum Ausprobieren: Fixpunkte, Periodenverdopplung und Chaos im Feigenbaumdiagramm mit Zoom, Spinnwebdiagramm, Schmetterlingseffekt und Ljapunow-Exponent, die Feigenbaum-Konstanten δ und α – mit Rechner und Lernaufgaben.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/chaos-feigenbaum.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Chaos und Feigenbaum-Konstante: logistische Gleichung, Bifurkation, Schmetterlingseffekt">
+  <meta property="og:description" content="Logistische Gleichung zum Ausprobieren: Fixpunkte, Periodenverdopplung und Chaos im Feigenbaumdiagramm mit Zoom, Spinnwebdiagramm, Schmetterlingseffekt und Ljapunow-Exponent, die Feigenbaum-Konstanten δ und α – mit Rechner und Lernaufgaben.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/chaos-feigenbaum.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Chaos und Feigenbaum-Konstante: logistische Gleichung, Bifurkation, Schmetterlingseffekt">
+  <meta name="twitter:description" content="Logistische Gleichung zum Ausprobieren: Fixpunkte, Periodenverdopplung und Chaos im Feigenbaumdiagramm mit Zoom, Spinnwebdiagramm, Schmetterlingseffekt und Ljapunow-Exponent, die Feigenbaum-Konstanten δ und α – mit Rechner und Lernaufgaben.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/chaos-feigenbaum.html#seite","name":"Chaos und Feigenbaum-Konstante: logistische Gleichung, Bifurkation, Schmetterlingseffekt","url":"https://tools.pr1m3.de/physik/chaos-feigenbaum.html","inLanguage":"de","description":"Logistische Gleichung zum Ausprobieren: Fixpunkte, Periodenverdopplung und Chaos im Feigenbaumdiagramm mit Zoom, Spinnwebdiagramm, Schmetterlingseffekt und Ljapunow-Exponent, die Feigenbaum-Konstanten δ und α – mit Rechner und Lernaufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/chaos-feigenbaum.html#pfad"},"dateModified":"2026-11-23"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/chaos-feigenbaum.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Chaos und Feigenbaum-Konstante: logistische Gleichung, Bifurkation, Schmetterlingseffekt","item":"https://tools.pr1m3.de/physik/chaos-feigenbaum.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/chaos-feigenbaum.html#fragen","mainEntity":[{"@type":"Question","name":"Wie lautet die Feigenbaum-Konstante?","acceptedAnswer":{"@type":"Answer","text":"δ = 4,669201609102990… Sie gibt an, um welchen Faktor die Abstände zwischen aufeinanderfolgenden Periodenverdopplungen kleiner werden. Die zweite Feigenbaum-Konstante α = 2,502907875095892… beschreibt die Verkleinerung der Gabeln in x-Richtung."}},{"@type":"Question","name":"Warum heißt sie „Chaos-Zahl“?","acceptedAnswer":{"@type":"Answer","text":"Sie bestimmt, wie schnell ein System über immer mehr Verdopplungen ins Chaos läuft. Weil sie bei ganz verschiedenen Systemen gleich ist, ist sie eine Naturkonstante des Übergangs ins Chaos."}},{"@type":"Question","name":"Ist Chaos dasselbe wie Zufall?","acceptedAnswer":{"@type":"Answer","text":"Nein. Ein chaotisches System folgt festen Regeln; mit exakt gleichem Startwert kommt immer dasselbe heraus. Es reagiert nur extrem empfindlich auf kleinste Änderungen, sodass Vorhersagen nach einiger Zeit unmöglich werden."}},{"@type":"Question","name":"Was ist ein Ljapunow-Exponent?","acceptedAnswer":{"@type":"Answer","text":"Die mittlere Wachstumsrate kleiner Abweichungen je Schritt. Negativ: Abweichungen schrumpfen, das System ist geordnet. Null: an einem Übergang. Positiv: Abweichungen wachsen exponentiell, es herrscht Chaos."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/chaos-feigenbaum.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <link rel="stylesheet" href="../assets/baukasten.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Ordnung, Periodenverdopplung und Chaos</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Logistische Gleichung</h3><p>x<sub>n+1</sub> = r · x<sub>n</sub> · (1 − x<sub>n</sub>) beschreibt eine Population mit Wachstumsrate r und begrenzten Ressourcen: x ist der Anteil an der höchstmöglichen Größe. Eine einzige, völlig vorhersehbare Rechenvorschrift – und trotzdem zeigt sie je nach r Gleichgewicht, Schwingungen oder Chaos.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Fixpunkt und Stabilität</h3><p>Für 1 &lt; r &lt; 3 pendelt sich x auf den Fixpunkt x* = 1 − 1/r ein, egal wo man startet. Stabil ist ein Fixpunkt, wenn die Steigung dort betragsmäßig kleiner als 1 ist: |f′(x*)| = |2 − r| &lt; 1. Bei r = 3 wird sie −1, und der Fixpunkt kippt.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Periodenverdopplung</h3><p>Ab r = 3 springt x zwischen zwei Werten hin und her (Periode 2), ab r = 1 + √6 ≈ 3,4495 zwischen vier, dann acht, sechzehn … Die Verdopplungen kommen immer schneller und häufen sich bei r<sub>∞</sub> ≈ 3,5699. Dahinter beginnt das Chaos.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Feigenbaum-Konstante δ</h3><p>Der Abstand zwischen zwei Verdopplungen schrumpft jedes Mal um denselben Faktor: δ = 4,669201609… Mitchell Feigenbaum fand 1975, dass diese Zahl bei allen Abbildungen mit einem einfachen Höcker herauskommt – sie ist so universell wie π. Die zweite Konstante α = 2,502907875… gibt an, wie stark sich die Gabeln in x-Richtung verkleinern.</p></article>
+        <article class="wissen-karte" style="--farbe:#7A5195"><h3>Schmetterlingseffekt</h3><p>Im Chaos wachsen winzige Unterschiede im Startwert exponentiell: Δ<sub>n</sub> ≈ Δ<sub>0</sub> · e<sup>λn</sup>. λ ist der Ljapunow-Exponent; ist er positiv, ist das System chaotisch. Edward Lorenz entdeckte das 1963 beim Wetter – deshalb lässt sich Wetter nur gut eine Woche vorhersagen, auch mit perfektem Modell.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Ordnung im Chaos</h3><p>Mitten im Chaos gibt es Fenster mit Ordnung, das größte mit Periode 3 ab r = 1 + √8 ≈ 3,8284. Darin wiederholt sich die ganze Kaskade im Kleinen: Das Feigenbaumdiagramm ist selbstähnlich. Zoome in der Ansicht „Feigenbaum“ hinein, indem du den Ausschnitt verkleinerst.</p></article>
+        <article class="wissen-karte" style="--farbe:#A16207"><h3>Universalität im Experiment</h3><p>Dieselbe Kaskade mit demselben δ wurde in Flüssigkeiten bei Wärmekonvektion, in elektronischen Schwingkreisen mit Dioden, bei Lasern und beim tropfenden Wasserhahn gemessen. Die Details des Systems sind egal, nur die Form des Höckers zählt.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Deterministisches Chaos</h3><p>Chaos heißt hier nicht Zufall: Jeder Schritt ist genau festgelegt. Unvorhersagbar wird es nur, weil man den Startwert nie unendlich genau kennt und jeder Fehler sich verstärkt. Bei r = 4 verdoppelt er sich im Mittel bei jedem Schritt (λ = ln 2): nach 50 Schritten ist jede Rechnergenauigkeit verbraucht.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Verdopplung</th><th>Periode</th><th class="zahl">r<sub>k</sub></th><th class="zahl">Abstand r<sub>k</sub> − r<sub>k−1</sub></th><th class="zahl">Verhältnis δ<sub>k</sub></th></tr></thead><tbody id="kaskade"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie lautet die Feigenbaum-Konstante?</summary><p>δ = 4,669201609102990… Sie gibt an, um welchen Faktor die Abstände zwischen aufeinanderfolgenden Periodenverdopplungen kleiner werden. Die zweite Feigenbaum-Konstante α = 2,502907875095892… beschreibt die Verkleinerung der Gabeln in x-Richtung.</p></details>
+        <details><summary>Warum heißt sie „Chaos-Zahl“?</summary><p>Sie bestimmt, wie schnell ein System über immer mehr Verdopplungen ins Chaos läuft. Weil sie bei ganz verschiedenen Systemen gleich ist, ist sie eine Naturkonstante des Übergangs ins Chaos.</p></details>
+        <details><summary>Ist Chaos dasselbe wie Zufall?</summary><p>Nein. Ein chaotisches System folgt festen Regeln; mit exakt gleichem Startwert kommt immer dasselbe heraus. Es reagiert nur extrem empfindlich auf kleinste Änderungen, sodass Vorhersagen nach einiger Zeit unmöglich werden.</p></details>
+        <details><summary>Was ist ein Ljapunow-Exponent?</summary><p>Die mittlere Wachstumsrate kleiner Abweichungen je Schritt. Negativ: Abweichungen schrumpfen, das System ist geordnet. Null: an einem Übergang. Positiv: Abweichungen wachsen exponentiell, es herrscht Chaos.</p></details>
+      </div>
+    </section>
+  </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="perkolation.html"><b>Perkolation: Waldbrand und Perkolationsschwelle</b><span>Ab welcher Baumdichte brennt ein Wald ganz ab? Waldbrand-Simulation auf vier Gittern, Cluster in Farbe, …</span></a></li>
+      <li><a href="schwingungen-wellen.html"><b>Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler</b><span>Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script src="../assets/baukasten.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const BK = Baukasten, R = BK.R, tz = BK.tz, E = BK.E, F = BK.F, zz = BK.zz, rd = BK.rd, PI2 = BK.PI2, W2 = BK.W2, GRAD = BK.GRAD, BLAU = BK.BLAU, ROT = BK.ROT, GRUEN = BK.GRUEN, ORANGE = BK.ORANGE, LILA = BK.LILA, GRAU = BK.GRAU, GELB = BK.GELB, KUPFER = BK.KUPFER, TUERKIS = BK.TUERKIS, T = BK.T, TW = BK.TW, TWU = BK.TWU, pfeil = BK.pfeil, kreis = BK.kreis, strecke = BK.strecke, zug = BK.zug, uhr = BK.uhr, diagramm = BK.diagramm, schritt = BK.schritt, teilung = BK.teilung, stellen = BK.stellen, runde = BK.runde, ansichten = BK.ansichten, zufall = BK.zufall, bildCanvas = BK.bildCanvas, zeiger = BK.zeiger;
+    const DELTA = 4.669201609102990, ALPHA = 2.502907875095892, R_INF = 3.569945671870944;
+    const KASKADE = [3, 3.449489742783178, 3.544090359551922, 3.564407266095432, 3.568759419544826, 3.569691609801396, 3.569891259378, 3.569934018374];
+    let ansicht = 'baum', takt = uhr();
+    const SIM = { k: 0, acc: 0, halt: 0, schl: '', baum: null, baumSchl: '', lj: null, ljSchl: '', geom: null };
+
+    function f(r, x) { return r * x * (1 - x); }
+    function wiss(v) { if (!(v > 0)) return '0'; if (v >= 1e-3) return zz(v, 4); const ex = Math.floor(Math.log10(v)), m = v / Math.pow(10, ex), z = '⁰¹²³⁴⁵⁶⁷⁸⁹'; return zz(m, 2) + ' · 10⁻' + String(-ex).replace(/\d/g, function (d) { return z[+d]; }); }
+    function analyse(r, x0) {
+      let x = x0;
+      for (let i = 0; i < 4000; i++) x = f(r, x);
+      const start = x, pts = [];
+      for (let i = 0; i < 256; i++) { x = f(r, x); pts.push(x); }
+      let periode = 0;
+      for (let k = 1; k <= 64 && !periode; k++) { let ok = true; for (let i = 0; i + k < pts.length; i++) if (Math.abs(pts[i + k] - pts[i]) > 1e-7) { ok = false; break; } if (ok) periode = k; }
+      let s = 0; x = start;
+      for (let i = 0; i < 5000; i++) { s += Math.log(Math.max(Math.abs(r * (1 - 2 * x)), 1e-300)); x = f(r, x); }
+      const att = periode ? pts.slice(0, periode).sort(function (a, b) { return a - b; }) : pts.slice(0, 120);
+      return { periode: periode, lam: Math.max(-50, s / 5000), att: att };
+    }
+
+    function rechne(e) {
+      const r = { r: e.r, x0: e.x0 };
+      r.x1 = f(e.r, e.x0);
+      r.an = analyse(e.r, e.x0);
+      r.xs = e.r > 1 ? 1 - 1 / e.r : 0;
+      r.stg = e.r > 1 ? 2 - e.r : e.r;
+      r.stabil = Math.abs(r.stg) < 1;
+      const n = Math.round(e.n), a = [e.x0], b = [Math.min(1, e.x0 + e.eps)];
+      for (let i = 0; i < n; i++) { a.push(f(e.r, a[i])); b.push(f(e.r, b[i])); }
+      r.a = a; r.b = b; r.n = n;
+      r.dEnde = Math.abs(a[n] - b[n]);
+      r.bruch = -1; for (let i = 0; i <= n; i++) if (Math.abs(a[i] - b[i]) > 0.1) { r.bruch = i; break; }
+      r.horizont = r.an.lam > 0.001 ? Math.log(0.1 / e.eps) / r.an.lam : Infinity;
+      if (r.r < 1) r.art = 'stirbt aus (x → 0)';
+      else if (r.an.periode === 1) r.art = 'Fixpunkt';
+      else if (r.an.periode) r.art = 'Periode ' + r.an.periode;
+      else if (r.an.lam > 0.001) r.art = 'Chaos';
+      else r.art = 'Übergang (sehr langsame Annäherung)';
+      // Abschätzung von r∞ aus zwei Verdopplungen
+      r.rinfSchaetz = KASKADE[2] + (KASKADE[2] - KASKADE[1]) / (DELTA - 1);
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'Chaos und Feigenbaum-Konstante',
+      einleitung: 'Die logistische Gleichung ist eine einfache Rechenvorschrift – und zeigt trotzdem den ganzen Weg von Ordnung über Periodenverdopplung ins Chaos. Der Rechner bestimmt Fixpunkt, Periode, Ljapunow-Exponent und wie schnell zwei fast gleiche Startwerte auseinanderlaufen.',
+      hilfe: 'Beispiel: r = 3,5 (Periode 4), Startwert 0,2, zweiter Startwert eine Millionstel daneben, 60 Schritte.',
+      gruppen: [
+        { titel: 'Logistische Gleichung', farbe: BLAU, felder: [
+          { k: 'r', tex: 'r', name: 'Wachstumsrate', e: '', min: 0, max: 4 },
+          { k: 'x0', tex: 'x_0', name: 'Startwert', e: '', min: 0.001, max: 0.999 },
+          { k: 'n', tex: 'n', name: 'Zahl der Schritte', e: '', min: 1, max: 500, n: 0 }
+        ] },
+        { titel: 'Schmetterlingseffekt', farbe: LILA, felder: [
+          { k: 'eps', tex: '\\Delta_0', name: 'Abweichung des zweiten Startwerts', e: '', min: 1e-15, max: 0.1 }
+        ] },
+        { titel: 'Ausschnitt Feigenbaumdiagramm', farbe: GRAU, felder: [
+          { k: 'rmin', tex: 'r_\\text{min}', name: 'von r', e: '', min: 0, max: 3.999 },
+          { k: 'rmax', tex: 'r_\\text{max}', name: 'bis r', e: '', min: 0.001, max: 4 }
+        ] }
+      ],
+      beispiel: { r: 3.5, x0: 0.2, n: 60, eps: 1e-6, rmin: 2.5, rmax: 4 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (e.rmin >= e.rmax) H.meldung('Der Ausschnitt ist leer: „von r“ muss kleiner als „bis r“ sein. Das Diagramm zeigt 2,5 bis 4.', true);
+        if (r.r > R_INF && r.an.periode > 1) H.meldung('Periodenfenster: Mitten im chaotischen Bereich herrscht wieder Ordnung (Periode ' + r.an.periode + ').' + (r.an.periode === 3 ? ' Nach dem Satz von Li und Yorke folgt aus Periode 3, dass es irgendwo auch jede andere Periode gibt – „Periode drei impliziert Chaos“.' : ''));
+        if (r.an.lam > 0.001 && r.bruch < 0) H.meldung('In ' + r.n + ' Schritten sind die beiden Folgen noch nicht auseinandergelaufen. Mehr Schritte zeigen den Schmetterlingseffekt.');
+        H.urteil(r.an.lam > 0.001 ? false : true, r.art);
+        H.kacheln([
+          [r.art, 'Langzeitverhalten', r.an.lam > 0.001 ? ROT : GRUEN],
+          [r.an.lam <= -49 ? '−∞' : zz(r.an.lam, 3), r.an.lam <= -49 ? 'Ljapunow-Exponent λ (superstabil)' : 'Ljapunow-Exponent λ', r.an.lam > 0.001 ? ROT : BLAU],
+          [r.r > 1 ? zz(r.xs, 4) : '0', 'Fixpunkt x* (' + (r.stabil ? 'stabil' : 'instabil') + ')', GRUEN],
+          [zz(r.x1, 4), 'erster Schritt x₁', GRAU],
+          [wiss(r.dEnde), 'Abstand der Folgen nach ' + r.n + ' Schritten', LILA],
+          [r.bruch >= 0 ? 'Schritt ' + r.bruch : isFinite(r.horizont) ? '≈ ' + zz(r.horizont, 0) : 'nie', r.bruch >= 0 ? 'Folgen weichen um mehr als 0,1 ab' : 'Vorhersagehorizont (Abweichung 0,1)', ORANGE]
+        ]);
+        if (r.an.periode && r.an.periode <= 16) H.tabelle('Werte auf dem Attraktor', ['Nr.', 'x'], r.an.att.map(function (x, i) { return [String(i + 1), zz(x, 6)]; }), { zahl: [0, 1] });
+        const zeilen = []; for (let i = 0; i <= Math.min(r.n, 30); i++) zeilen.push([String(i), zz(r.a[i], 5), zz(r.b[i], 5), wiss(Math.abs(r.a[i] - r.b[i]))]);
+        H.tabelle('Folge' + (r.n > 30 ? ' (die ersten 30 Schritte)' : ''), ['n', 'xₙ', 'x̃ₙ', 'Abstand'], zeilen, { zahl: [0, 1, 2, 3] });
+      },
+      weg: function (r, e) {
+        const w = [
+          ['Erster Schritt', 'x_1 = r \\cdot x_0 \\cdot (1 - x_0) = ' + tz(e.r, 3) + ' \\cdot ' + tz(e.x0, 3) + ' \\cdot (1 - ' + tz(e.x0, 3) + ') = ' + E(tz(r.x1, 4))]
+        ];
+        if (e.r > 1) {
+          w.push(['Fixpunkt', 'x^* = 1 - \\frac{1}{r} = 1 - \\frac{1}{' + tz(e.r, 3) + '} = ' + E(tz(r.xs, 4))]);
+          w.push(['Steigung am Fixpunkt', "f'(x^*) = r\\,(1 - 2x^*) = 2 - r = " + E(tz(r.stg, 3)) + (r.stabil ? ' \\Rightarrow |f\'| < 1\\text{: stabil}' : ' \\Rightarrow |f\'| \\geq 1\\text{: instabil}')]);
+        }
+        w.push(['Ljapunow-Exponent', '\\lambda = \\frac{1}{N} \\sum_{i=1}^{N} \\ln\\left| r\\,(1 - 2x_i) \\right| \\approx ' + E(tz(r.an.lam, 3))]);
+        if (r.an.lam > 0.001) w.push(['Vorhersagehorizont', 'n \\approx \\frac{\\ln(0{,}1 / \\Delta_0)}{\\lambda} = \\frac{\\ln(0{,}1 / ' + tz(e.eps * 1e6, 3) + '\\cdot 10^{-6})}{' + tz(r.an.lam, 3) + '} = ' + E(tz(r.horizont, 1))]);
+        return w;
+      },
+      loeser: [
+        { titel: 'Ein Schritt der logistischen Gleichung', hilfe: 'x zwischen 0 und 1. Beim Rückwärtsrechnen gibt es zwei Startwerte; gesucht ist der kleinere (x₀ ≤ 0,5).',
+          felder: [{ k: 'x1', tex: 'x_1', name: 'nächster Wert', e: '', min: 0.001, max: 1 }, { k: 'r', tex: 'r', name: 'Wachstumsrate', e: '', min: 0.1, max: 4 }, { k: 'x0', tex: 'x_0', name: 'Startwert', e: '', min: 0.001, max: 0.5 }],
+          beispiel: { r: 3.2, x0: 0.2 },
+          gleichungen: [{ name: 'Logistische Gleichung', v: ['x1', 'r', 'x0'], f: function (q) { return [q.x1, q.r * q.x0 * (1 - q.x0)]; },
+            loese: { x1: function (q) { return q.r * q.x0 * (1 - q.x0); }, r: function (q) { return q.x1 / (q.x0 * (1 - q.x0)); }, x0: function (q) { const d = 1 - 4 * q.x1 / q.r; return d >= 0 ? (1 - Math.sqrt(d)) / 2 : NaN; } },
+            weg: function (k, q) {
+              if (k === 'x1') return 'x_1 = r \\cdot x_0 \\cdot (1 - x_0) = ' + tz(q.r, 3) + ' \\cdot ' + tz(q.x0, 3) + ' \\cdot ' + tz(1 - q.x0, 3) + ' = ' + E(tz(q.x1, 4));
+              if (k === 'r') return 'r = \\frac{x_1}{x_0\\,(1 - x_0)} = \\frac{' + tz(q.x1, 4) + '}{' + tz(q.x0, 3) + ' \\cdot ' + tz(1 - q.x0, 3) + '} = ' + E(tz(q.r, 3));
+              return 'x_0 = \\frac{1 - \\sqrt{1 - 4x_1/r}}{2} = \\frac{1 - \\sqrt{1 - 4 \\cdot ' + tz(q.x1, 4) + '/' + tz(q.r, 3) + '}}{2} = ' + E(tz(q.x0, 4));
+            } }] },
+        { titel: 'Fixpunkt', hilfe: 'Gleichgewicht x* = f(x*), stabil für 1 < r < 3.',
+          felder: [{ k: 'xs', tex: 'x^*', name: 'Fixpunkt', e: '', min: 0.001, max: 0.75 }, { k: 'r', tex: 'r', name: 'Wachstumsrate', e: '', min: 1.001, max: 4 }],
+          beispiel: { r: 2.5 },
+          gleichungen: [{ name: 'Fixpunkt', v: ['xs', 'r'], f: function (q) { return [q.xs, 1 - 1 / q.r]; },
+            loese: { xs: function (q) { return 1 - 1 / q.r; }, r: function (q) { return 1 / (1 - q.xs); } },
+            weg: function (k, q) { return k === 'xs' ? 'x^* = 1 - \\frac{1}{r} = 1 - \\frac{1}{' + tz(q.r, 3) + '} = ' + E(tz(q.xs, 4)) : 'r = \\frac{1}{1 - x^*} = \\frac{1}{1 - ' + tz(q.xs, 4) + '} = ' + E(tz(q.r, 3)); } }] },
+        { titel: 'Häufungspunkt abschätzen', hilfe: 'Aus zwei aufeinanderfolgenden Verdopplungen rₙ₋₁ und rₙ den Grenzwert r∞ schätzen (δ = 4,6692).',
+          felder: [{ k: 'rinf', tex: 'r_\\infty', name: 'Häufungspunkt', e: '', min: 3.5, max: 3.6 }, { k: 'rn', tex: 'r_n', name: 'letzte Verdopplung', e: '', min: 3.4, max: 3.6 }, { k: 'rv', tex: 'r_{n-1}', name: 'vorletzte Verdopplung', e: '', min: 2.9, max: 3.6 }],
+          beispiel: { rv: 3.4495, rn: 3.5441 },
+          gleichungen: [{ name: 'Feigenbaum-Abschätzung', v: ['rinf', 'rn', 'rv'], f: function (q) { return [q.rinf, q.rn + (q.rn - q.rv) / (DELTA - 1)]; },
+            loese: { rinf: function (q) { return q.rn > q.rv ? q.rn + (q.rn - q.rv) / (DELTA - 1) : NaN; }, rn: function (q) { const v = (q.rinf * (DELTA - 1) + q.rv) / DELTA; return v > q.rv && v < q.rinf ? v : NaN; }, rv: function (q) { const v = q.rn - (q.rinf - q.rn) * (DELTA - 1); return q.rinf > q.rn && v < q.rn ? v : NaN; } },
+            weg: function (k, q) {
+              if (k === 'rinf') return 'r_\\infty \\approx r_n + \\frac{r_n - r_{n-1}}{\\delta - 1} = ' + tz(q.rn, 4) + ' + \\frac{' + tz(q.rn, 4) + ' - ' + tz(q.rv, 4) + '}{3{,}6692} = ' + E(tz(q.rinf, 4));
+              if (k === 'rn') return 'r_n = \\frac{r_\\infty\\,(\\delta - 1) + r_{n-1}}{\\delta} = \\frac{' + tz(q.rinf, 4) + ' \\cdot 3{,}6692 + ' + tz(q.rv, 4) + '}{4{,}6692} = ' + E(tz(q.rn, 4));
+              return 'r_{n-1} = r_n - (r_\\infty - r_n)(\\delta - 1) = ' + tz(q.rn, 4) + ' - (' + tz(q.rinf, 4) + ' - ' + tz(q.rn, 4) + ') \\cdot 3{,}6692 = ' + E(tz(q.rv, 4));
+            } }] },
+        { titel: 'Abstände der Verdopplungen', hilfe: 'Jeder Abstand ist um den Faktor δ = 4,6692 kleiner als der vorige; m Verdopplungen weiter.',
+          felder: [{ k: 'dm', tex: '\\Delta r_m', name: 'späterer Abstand', e: '', min: 1e-9, max: 1 }, { k: 'd0', tex: '\\Delta r_0', name: 'erster Abstand', e: '', min: 1e-6, max: 1 }, { k: 'm', tex: 'm', name: 'Zahl der Verdopplungen dazwischen', e: '', min: 1, max: 12, n: 0 }],
+          beispiel: { d0: 0.4495, m: 2 },
+          gleichungen: [{ name: 'Feigenbaum-Verhältnis', v: ['dm', 'd0', 'm'], f: function (q) { return [q.dm, q.d0 / Math.pow(DELTA, q.m)]; },
+            loese: { dm: function (q) { return q.d0 / Math.pow(DELTA, q.m); }, d0: function (q) { return q.dm * Math.pow(DELTA, q.m); }, m: function (q) { return Math.log(q.d0 / q.dm) / Math.log(DELTA); } },
+            weg: function (k, q) {
+              if (k === 'dm') return '\\Delta r_m = \\frac{\\Delta r_0}{\\delta^m} = \\frac{' + tz(q.d0, 4) + '}{4{,}6692^{' + tz(q.m, 0) + '}} = ' + E(tz(q.dm, 6));
+              if (k === 'd0') return '\\Delta r_0 = \\Delta r_m \\cdot \\delta^m = ' + tz(q.dm, 6) + ' \\cdot 4{,}6692^{' + tz(q.m, 0) + '} = ' + E(tz(q.d0, 4));
+              return 'm = \\frac{\\ln(\\Delta r_0 / \\Delta r_m)}{\\ln \\delta} = \\frac{\\ln(' + tz(q.d0, 4) + ' / ' + tz(q.dm, 6) + ')}{\\ln 4{,}6692} = ' + E(tz(q.m, 2));
+            } }] },
+        { titel: 'Schmetterlingseffekt', hilfe: 'Eine kleine Abweichung Δ₀ wächst im Mittel auf Δₙ = Δ₀ · e^(λn).',
+          felder: [{ k: 'D', tex: '\\Delta_n', name: 'Abweichung nach n Schritten', e: '', min: 1e-15, max: 1 }, { k: 'eps', tex: '\\Delta_0', name: 'Abweichung am Anfang', e: '', min: 1e-15, max: 0.1 }, { k: 'lam', tex: '\\lambda', name: 'Ljapunow-Exponent', e: '', min: 0.01, max: 2 }, { k: 'n', tex: 'n', name: 'Zahl der Schritte', e: '', min: 1, max: 1000 }],
+          beispiel: { eps: 1e-6, lam: 0.5, n: 20 },
+          gleichungen: [{ name: 'Fehlerwachstum', v: ['D', 'eps', 'lam', 'n'], f: function (q) { return [q.D, q.eps * Math.exp(q.lam * q.n)]; },
+            loese: { D: function (q) { return q.eps * Math.exp(q.lam * q.n); }, eps: function (q) { return q.D / Math.exp(q.lam * q.n); }, lam: function (q) { return Math.log(q.D / q.eps) / q.n; }, n: function (q) { return Math.log(q.D / q.eps) / q.lam; } },
+            weg: function (k, q) {
+              if (k === 'D') return '\\Delta_n = \\Delta_0 \\cdot e^{\\lambda n} = ' + tz(q.eps * 1e6, 3) + '\\cdot 10^{-6} \\cdot e^{' + tz(q.lam, 3) + ' \\cdot ' + tz(q.n, 0) + '} = ' + E(tz(q.D, 5));
+              if (k === 'eps') return '\\Delta_0 = \\Delta_n \\cdot e^{-\\lambda n} = ' + tz(q.D, 5) + ' \\cdot e^{-' + tz(q.lam, 3) + ' \\cdot ' + tz(q.n, 0) + '} = ' + E(tz(q.eps * 1e6, 3) + '\\cdot 10^{-6}');
+              if (k === 'lam') return '\\lambda = \\frac{\\ln(\\Delta_n / \\Delta_0)}{n} = ' + E(tz(q.lam, 3));
+              return 'n = \\frac{\\ln(\\Delta_n / \\Delta_0)}{\\lambda} = \\frac{\\ln(' + tz(q.D, 5) + ' / ' + tz(q.eps * 1e6, 3) + '\\cdot 10^{-6})}{' + tz(q.lam, 3) + '} = ' + E(tz(q.n, 1));
+            } }] }
+      ],
+      sammlung: [
+        ['Logistische Gleichung', 'x_{n+1} = r \\cdot x_n \\cdot (1 - x_n)', '0 ≤ x ≤ 1, 0 ≤ r ≤ 4'],
+        ['Fixpunkte', 'x^* = 0 \\quad\\text{und}\\quad x^* = 1 - \\frac{1}{r}', 'Lösungen von f(x*) = x*'],
+        ['Ableitung', "f'(x) = r\\,(1 - 2x)", ''],
+        ['Stabilität eines Fixpunkts', "|f'(x^*)| < 1", 'für x* = 1 − 1/r: |2 − r| < 1, also 1 < r < 3'],
+        ['Erste Verdopplungen', 'r_1 = 3, \\quad r_2 = 1 + \\sqrt{6} \\approx 3{,}4495', ''],
+        ['Feigenbaum-Konstante δ', '\\delta = \\lim_{n\\to\\infty} \\frac{r_n - r_{n-1}}{r_{n+1} - r_n} = 4{,}6692\\ldots', 'universell für Abbildungen mit quadratischem Höcker'],
+        ['Feigenbaum-Konstante α', '\\alpha = 2{,}5029\\ldots', 'Verkleinerung der Gabeln in x-Richtung'],
+        ['Häufungspunkt', 'r_\\infty \\approx r_n + \\frac{r_n - r_{n-1}}{\\delta - 1} \\approx 3{,}5699', 'Beginn des Chaos'],
+        ['Ljapunow-Exponent', '\\lambda = \\lim_{N\\to\\infty} \\frac{1}{N} \\sum_{i=1}^{N} \\ln|f\'(x_i)|', 'λ > 0: Chaos'],
+        ['Fehlerwachstum', '\\Delta_n \\approx \\Delta_0 \\cdot e^{\\lambda n}', 'Schmetterlingseffekt'],
+        ['Periode-3-Fenster', 'r = 1 + \\sqrt{8} \\approx 3{,}8284', ''],
+        ['Voll entwickeltes Chaos', 'r = 4: \\quad \\lambda = \\ln 2', 'Fehler verdoppelt sich im Mittel je Schritt']
+      ],
+      quellen: 'Werte der Verdopplungen und Konstanten nach Feigenbaum (1978) und neueren Berechnungen, gerundet. Periode und Ljapunow-Exponent werden numerisch nach 4 000 Einschwingschritten bestimmt.',
+      bild: { titel: 'Animation', label: 'Feigenbaumdiagramm, Spinnwebdiagramm, Zeitreihe und Ljapunow-Exponent der logistischen Gleichung', animiert: true,
+        hoehe: function (B) { return B < 600 ? Math.round(Math.min(620, B + 180)) : 460; },
+        hinweis: function (r, e) {
+          if (ansicht === 'baum') return 'Für jedes r die Werte, die x nach dem Einschwingen annimmt. Rot: das gewählte r = ' + zz(e.r, 4) + '. Antippen oder Ziehen wählt r; der Ausschnitt lässt sich oben einstellen.';
+          if (ansicht === 'spinne') return 'Senkrecht zur Parabel (nächster Wert), waagerecht zur Diagonale (wird neuer Startwert). Landet die Treppe in einem Punkt, ist das der Fixpunkt.';
+          if (ansicht === 'zeit') return 'Blau: Start ' + zz(e.x0, 3) + ', violett: ein winziges Stück daneben. Unten der Abstand logarithmisch; im Chaos wächst er auf einer Geraden mit Steigung λ.';
+          return 'Ljapunow-Exponent über r: negativ heißt geordnet, positiv chaotisch. Die Spitzen nach unten sind besonders stabile Zyklen.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); ({ baum: baum, spinne: spinne, zeit: zeit, ljap: ljap })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    function dunkel() { const t = document.documentElement.getAttribute('data-thema'); return t ? t === 'dunkel' : !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches); }
+    function bereich(e) { return e.rmin < e.rmax ? [e.rmin, e.rmax] : [2.5, 4]; }
+
+    // ---------- Feigenbaumdiagramm ----------
+    function baum(cx, B, H, dt, r, e) {
+      const rb = bereich(e), x0 = 40, x1 = B - 10, y0 = 24, y1 = H - 28, W = Math.max(1, Math.round(x1 - x0)), Hh = Math.max(1, Math.round(y1 - y0)), dk = dunkel();
+      const schl = W + '|' + Hh + '|' + rb + '|' + dk;
+      if (SIM.baumSchl !== schl) {
+        const cv = document.createElement('canvas'); cv.width = W; cv.height = Hh;
+        const k = cv.getContext('2d'), img = k.createImageData(W, Hh), d = img.data, zaehl = new Float32Array(W * Hh), farbe = dk ? [180, 200, 230] : [30, 60, 110];
+        for (let px = 0; px < W; px++) {
+          const rr = rb[0] + (px + 0.5) / W * (rb[1] - rb[0]); let x = 0.5;
+          for (let i = 0; i < 600; i++) x = f(rr, x);
+          for (let i = 0; i < 400; i++) { x = f(rr, x); const py = Math.floor((1 - x) * Hh); if (py >= 0 && py < Hh) zaehl[py * W + px] += 1; }
+        }
+        for (let i = 0; i < W * Hh; i++) { if (!zaehl[i]) continue; const o = i * 4; d[o] = farbe[0]; d[o + 1] = farbe[1]; d[o + 2] = farbe[2]; d[o + 3] = Math.min(255, 70 + zaehl[i] * 40); }
+        k.putImageData(img, 0, 0); SIM.baum = cv; SIM.baumSchl = schl;
+      }
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x0, y0, x1 - x0, y1 - y0);
+      cx.drawImage(SIM.baum, x0, y0, x1 - x0, y1 - y0);
+      cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+      const X = function (v) { return x0 + (v - rb[0]) / (rb[1] - rb[0]) * (x1 - x0); }, Y = function (v) { return y1 - v * (y1 - y0); };
+      const sp = schritt(rb[1] - rb[0], Math.max(2, Math.min(6, Math.floor((x1 - x0) / 80))));
+      teilung(rb, sp).forEach(function (v) { T(cx, zz(v, stellen(sp)), X(v), y1 + 12, 'center', 9, false, GRAU); });
+      [0, 0.25, 0.5, 0.75, 1].forEach(function (v) { T(cx, zz(v, 2), x0 - 4, Y(v), 'right', 9, false, GRAU); });
+      T(cx, 'r', x1, y1 + 24, 'right', 10, true, GRAU); T(cx, 'x', x0 - 4, y0 - 10, 'right', 10, true, GRAU);
+      // Marken der Verdopplungen
+      let letzt = -1e9;
+      [[KASKADE[0], 'r₁'], [KASKADE[1], 'r₂'], [KASKADE[2], 'r₃'], [KASKADE[3], 'r₄'], [R_INF, 'r∞'], [1 + Math.sqrt(8), 'Periode 3']].forEach(function (m) {
+        if (m[0] < rb[0] || m[0] > rb[1]) return;
+        const x = X(m[0]); strecke(cx, x, y0, x, y0 + 6, ORANGE, 1.5);
+        if (x - letzt < 22 && m[1] !== 'r∞') return;
+        if (m[1] === 'r∞' && x - letzt < 22) T(cx, m[1], x + 2, y0 - 8, 'left', 9, true, ORANGE); else T(cx, m[1], x, y0 - 8, 'center', 9, true, ORANGE);
+        letzt = x;
+      });
+      if (e.r >= rb[0] && e.r <= rb[1]) {
+        const x = X(e.r); strecke(cx, x, y0, x, y1, ROT, 1.5, [4, 3]);
+        r.an.att.forEach(function (v) { kreis(cx, x, Y(v), r.an.periode ? 3.5 : 1.8, ROT); });
+      }
+      T(cx, 'r = ' + zz(e.r, 4) + ' · ' + r.art, x0 + 6, y0 + 14, 'left', 11, true, ROT);
+      SIM.geom = { x0: x0, x1: x1, y0: y0, y1: y1, rb: rb };
+      void dt;
+    }
+
+    // ---------- Spinnwebdiagramm ----------
+    function spinne(cx, B, H, dt, r, e) {
+      const klein = B < 600, g = klein ? Math.min(B - 50, H - 220) : Math.min(H - 50, B * 0.5), x0 = klein ? (B - g) / 2 + 10 : 40, y0 = 14, X = function (v) { return x0 + v * g; }, Y = function (v) { return y0 + (1 - v) * g; };
+      const schl = e.r + '|' + e.x0 + '|' + e.n; if (SIM.schl !== schl) { SIM.schl = schl; SIM.k = 0; SIM.acc = 0; SIM.halt = 0; }
+      const max = Math.min(e.n, 80);
+      if (SIM.k < max) { SIM.acc += dt * 4; while (SIM.acc >= 1 && SIM.k < max) { SIM.k++; SIM.acc -= 1; } } else { SIM.halt += dt; if (SIM.halt > 2.5) { SIM.k = 0; SIM.halt = 0; } }
+      cx.fillStyle = F('--flaeche'); cx.fillRect(X(0), Y(1), g, g); cx.strokeStyle = F('--linie'); cx.strokeRect(X(0), Y(1), g, g);
+      [0, 0.5, 1].forEach(function (v) { T(cx, zz(v, 1), X(v), Y(0) + 12, 'center', 9, false, GRAU); T(cx, zz(v, 1), X(0) - 4, Y(v), 'right', 9, false, GRAU); });
+      T(cx, 'xₙ', X(1), Y(0) + 24, 'right', 10, true, GRAU); T(cx, 'xₙ₊₁', X(0) + 4, Y(1) + 10, 'left', 10, true, GRAU);
+      strecke(cx, X(0), Y(0), X(1), Y(1), GRAU, 1, [4, 3]);
+      const par = []; for (let i = 0; i <= 80; i++) { const x = i / 80; par.push([X(x), Y(f(e.r, x))]); } zug(cx, par, BLAU, 2);
+      if (e.r > 1) kreis(cx, X(r.xs), Y(r.xs), 4, r.stabil ? GRUEN : 'rgba(0,0,0,0)', GRUEN, 1.5);
+      const tr = [[X(e.x0), Y(0)]]; let x = e.x0;
+      for (let i = 0; i < SIM.k; i++) { const y = f(e.r, x); tr.push([X(x), Y(y)]); tr.push([X(y), Y(y)]); x = y; }
+      zug(cx, tr, ROT, 1.3);
+      kreis(cx, X(x), Y(x), 3.5, ROT);
+      const unten = 'Schritt ' + SIM.k + ': x = ' + zz(x, 4) + (e.r > 1 ? ' · Fixpunkt ' + zz(r.xs, 3) + (r.stabil ? ' (stabil)' : ' (instabil)') : '');
+      const pkt = r.a.slice(0, SIM.k + 1).map(function (v, i) { return [i, v]; });
+      if (klein) { TW(cx, unten, 8, Y(0) + 40, B - 16, 11, true, ROT); diagramm(cx, 8, Y(0) + 52, B - 16, H - Y(0) - 58, [{ name: 'xₙ', farbe: BLAU, punkte: pkt, punkt: pkt[pkt.length - 1] }], { titel: 'Zeitreihe', xl: 'n', xr: [0, Math.max(10, max)], yr: [0, 1] }); }
+      else {
+        TW(cx, unten, X(1) + 24, 30, B - X(1) - 34, 12, true, ROT);
+        diagramm(cx, X(1) + 20, 60, B - X(1) - 30, H - 90, [{ name: 'xₙ', farbe: BLAU, punkte: pkt, punkt: pkt[pkt.length - 1] }], { titel: 'Zeitreihe', xl: 'n', xr: [0, Math.max(10, max)], yr: [0, 1] });
+      }
+    }
+
+    // ---------- Zeitreihe und Schmetterlingseffekt ----------
+    function zeit(cx, B, H, dt, r, e) {
+      const schl = 'z' + e.r + '|' + e.x0 + '|' + e.n + '|' + e.eps; if (SIM.schl !== schl) { SIM.schl = schl; SIM.k = 0; SIM.acc = 0; SIM.halt = 0; }
+      if (SIM.k < r.n) { SIM.acc += dt * Math.max(8, r.n / 6); while (SIM.acc >= 1 && SIM.k < r.n) { SIM.k++; SIM.acc -= 1; } } else { SIM.halt += dt; if (SIM.halt > 3) { SIM.k = 0; SIM.halt = 0; } }
+      const a = r.a.slice(0, SIM.k + 1).map(function (v, i) { return [i, v]; }), b = r.b.slice(0, SIM.k + 1).map(function (v, i) { return [i, v]; });
+      const h1 = Math.round((H - 16) * 0.55);
+      diagramm(cx, 8, 8, B - 16, h1, [{ name: 'xₙ', farbe: BLAU, punkte: a, punkt: a[a.length - 1] }, { name: 'x̃ₙ (Start + ' + (e.eps < 1e-3 ? zz(e.eps * 1e6, 3) + '·10⁻⁶' : zz(e.eps, 4)) + ')', farbe: LILA, punkte: b, breite: 1.5, strich: [5, 3] }], { titel: 'Zeitreihe', xl: 'n', xr: [0, Math.max(10, r.n)], yr: [0, 1] });
+      const lg = r.a.slice(0, SIM.k + 1).map(function (v, i) { return [i, Math.log10(Math.max(1e-16, Math.abs(v - r.b[i])))]; });
+      const reihen = [{ name: 'lg Abstand', farbe: LILA, punkte: lg, punkt: lg[lg.length - 1] }];
+      if (r.an.lam > 0.001) reihen.push({ name: 'Δ₀ · e^(λn)', farbe: GRAU, punkte: [[0, Math.log10(e.eps)], [r.n, Math.log10(e.eps) + r.an.lam * r.n / Math.LN10]], breite: 1, strich: [4, 3] });
+      diagramm(cx, 8, h1 + 16, B - 16, H - h1 - 24, reihen, { titel: 'Abstand der beiden Folgen (Zehnerlogarithmus)', xl: 'n', xr: [0, Math.max(10, r.n)], yr: [-16, 0] });
+      void dt;
+    }
+
+    // ---------- Ljapunow-Exponent über r ----------
+    function ljap(cx, B, H, dt, r, e) {
+      const rb = bereich(e), n = Math.max(100, Math.min(600, Math.round(B))), schl = n + '|' + rb;
+      if (SIM.ljSchl !== schl) {
+        SIM.lj = [];
+        for (let i = 0; i <= n; i++) { const rr = rb[0] + i / n * (rb[1] - rb[0]); let x = 0.5, s = 0; for (let j = 0; j < 400; j++) x = f(rr, x); for (let j = 0; j < 600; j++) { s += Math.log(Math.max(Math.abs(rr * (1 - 2 * x)), 1e-300)); x = f(rr, x); } SIM.lj.push([rr, Math.max(-3, s / 600)]); }
+        SIM.ljSchl = schl;
+      }
+      const g = diagramm(cx, 8, 8, B - 16, H - 16, [{ name: 'Ljapunow-Exponent λ(r)', farbe: LILA, punkte: SIM.lj, breite: 1.3 }, { name: 'gewählt', farbe: ROT, punkte: [], punkt: e.r >= rb[0] && e.r <= rb[1] ? [e.r, Math.max(-3, r.an.lam)] : null }], { titel: 'Ljapunow-Exponent', xl: 'r', xr: rb, yr: [-3, 1] });
+      strecke(cx, g.x0, g.Y(0), g.x1, g.Y(0), F('--text'), 1);
+      T(cx, 'λ > 0: Chaos', g.x0 + 6, g.Y(0.6), 'left', 10, true, ROT); T(cx, 'λ < 0: Ordnung', g.x0 + 6, g.Y(-2.6), 'left', 10, true, GRUEN);
+      if (e.r >= rb[0] && e.r <= rb[1]) strecke(cx, g.X(e.r), g.y0, g.X(e.r), g.y1, ROT, 1, [4, 3]);
+      SIM.geom = { x0: g.x0, x1: g.x1, y0: g.y0, y1: g.y1, rb: rb };
+      void dt;
+    }
+
+    ansicht = (ansichten(seite, [['baum', 'Feigenbaum'], ['spinne', 'Spinnweb'], ['zeit', 'Zeitreihe'], ['ljap', 'Ljapunow']], 'baum', function (a) { ansicht = a; SIM.schl = ''; SIM.geom = null; }))();
+
+    // r durch Antippen oder Ziehen wählen
+    const cv = bildCanvas(); let zieht = false;
+    function waehle(ev) {
+      const G = SIM.geom; if (!G || (ansicht !== 'baum' && ansicht !== 'ljap')) return false;
+      const p = zeiger(cv, ev); if (p[0] < G.x0 || p[0] > G.x1 || p[1] < G.y0 || p[1] > G.y1) return false;
+      const rr = G.rb[0] + (p[0] - G.x0) / (G.x1 - G.x0) * (G.rb[1] - G.rb[0]);
+      seite.setze({ r: Math.round(Math.max(0, Math.min(4, rr)) * 1e4) / 1e4 }); return true;
+    }
+    if (cv) {
+      cv.addEventListener('pointerdown', function (ev) { if (waehle(ev)) { zieht = true; try { cv.setPointerCapture(ev.pointerId); } catch (x) { /* egal */ } } });
+      cv.addEventListener('pointermove', function (ev) { if (zieht) waehle(ev); });
+      ['pointerup', 'pointercancel'].forEach(function (n) { cv.addEventListener(n, function () { zieht = false; }); });
+    }
+
+    // Kaskade
+    const tb = document.getElementById('kaskade');
+    KASKADE.forEach(function (rk, i) {
+      const tr = document.createElement('tr'), ab = i ? rk - KASKADE[i - 1] : NaN, ver = i > 1 ? (KASKADE[i - 1] - KASKADE[i - 2]) / ab : NaN;
+      [String(i + 1), Math.pow(2, i) + ' → ' + Math.pow(2, i + 1), zz(rk, 9), i ? zz(ab, 9) : '–', i > 1 ? zz(ver, 4) : '–'].forEach(function (x, j) { const td = document.createElement('td'); if (j > 1) td.className = 'zahl'; td.textContent = x; tr.append(td); });
+      tb.append(tr);
+    });
+    const trE = document.createElement('tr'); ['Häufungspunkt', '∞', zz(R_INF, 9), '→ 0', 'δ = ' + zz(DELTA, 6)].forEach(function (x, j) { const td = document.createElement('td'); if (j > 1) td.className = 'zahl'; td.textContent = x; trE.append(td); }); tb.append(trE);
+    void ALPHA;
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>
