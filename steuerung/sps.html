@@ -86,6 +86,7 @@
     .schritte li { counter-increment: s; position: relative; padding: 8px 10px 8px 44px; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche2); font-size: .93rem; line-height: 1.45; }
     .schritte li::before { content: counter(s); position: absolute; left: 10px; top: 8px; width: 24px; height: 24px; border-radius: 50%; background: #0E7C86; color: #fff; font-weight: 700; display: flex; align-items: center; justify-content: center; font-size: .85rem; }
     .warnungen { margin: 4px 0 8px; padding-left: 18px; font-size: .86rem; color: #B35C00; max-height: 160px; overflow: auto; }
+    .warnungen .zuordnung { color: var(--leise); list-style: '→ '; }
     .warnungen .zeile-link { border: 0; background: none; color: inherit; font: inherit; font-weight: 700; text-decoration: underline; cursor: pointer; padding: 0; }
     .io-feld button.force { width: auto; min-width: 40px; min-height: 30px; margin-top: 4px; font-size: .78rem; font-family: var(--technik); }
     .io-feld button.force.an { background: #F59F00; color: #fff; border-color: #F59F00; }
@@ -160,7 +161,7 @@
         </div>
         <div>
           <h3 class="zwischen">Symboltabelle</h3>
-          <p class="hilfe">Namen statt Adressen: Im Programm geht beides, z. B. <code>Start</code>, <code>%IX0.0</code> oder <code>E0.0</code>. Eigene Namen auch mit <code>Name AT %IX0.0 : BOOL;</code>. Öffner liefern im Ruhezustand 1.</p>
+          <p class="hilfe">Namen statt Adressen: Im Programm geht beides, z. B. <code>Start</code>, <code>%IX0.0</code> oder <code>E0.0</code>. Eigene Namen auch mit <code>Name AT %IX0.0 : BOOL;</code> oder in <code>VAR_INPUT</code>/<code>VAR_OUTPUT</code> – dann legt der Simulator sie selbst auf freie Ein- und Ausgänge und übernimmt die Namen in die Symboltabelle. Öffner liefern im Ruhezustand 1.</p>
           <div class="rahmen"><table class="sps-tab"><thead><tr><th>Adresse</th><th>Name</th><th>Bedienung</th></tr></thead><tbody id="symbole"></tbody></table></div>
         </div>
       </div>
@@ -271,7 +272,7 @@
         <thead><tr><th>Bereich</th><th>Möglich</th></tr></thead>
         <tbody>
           <tr><td>Bausteine</td><td>Anweisungen direkt, <code>PROGRAM … END_PROGRAM</code> (mehrere laufen nacheinander), eigene <code>FUNCTION_BLOCK</code> mit VAR_INPUT, VAR_OUTPUT, VAR_IN_OUT, VAR, VAR_TEMP, eigene <code>FUNCTION</code> mit Rückgabewert; auch Organisationsbausteine mit BEGIN</td></tr>
-          <tr><td>Variablen</td><td><code>VAR</code>, <code>VAR_GLOBAL</code>, <code>VAR CONSTANT</code>, RETAIN/PERSISTENT (ohne Wirkung), Startwerte, <code>AT %IX0.0</code>, Felder <code>ARRAY[0..9] OF INT</code> mit Startwerten <code>[1, 2, 3(0)]</code></td></tr>
+          <tr><td>Variablen</td><td><code>VAR</code>, <code>VAR_GLOBAL</code>, <code>VAR_INPUT</code>/<code>VAR_OUTPUT</code> im Programm (werden automatisch an Ein- und Ausgänge gelegt: gleicher Name oder nächste freie Adresse; „Öffner“/„Schließer“ im Kommentar stellt den Kontakt ein), <code>VAR CONSTANT</code>, RETAIN/PERSISTENT (ohne Wirkung), Startwerte, <code>AT %IX0.0</code>, Felder <code>ARRAY[0..9] OF INT</code> mit Startwerten <code>[1, 2, 3(0)]</code></td></tr>
           <tr><td>Datentypen</td><td>BOOL, SINT, INT, DINT, LINT, USINT, UINT, UDINT, BYTE, WORD, DWORD, REAL, LREAL, TIME, STRING; Ganzzahlen laufen wie in einer echten Steuerung über (32 767 + 1 = −32 768)</td></tr>
           <tr><td>Anweisungen</td><td>:=, S=, R=, IF/ELSIF/ELSE, CASE mit Bereichen und Konstanten, FOR, WHILE, REPEAT, EXIT, CONTINUE, RETURN; Bitzugriff <code>Wort.3</code></td></tr>
           <tr><td>Ausdrücke</td><td>NOT, AND (&amp;), OR, XOR, = &lt;&gt; &lt; &gt; &lt;= &gt;=, + − * / MOD **, Zahlen auch 16#FF, 2#1010, INT#5, Zeiten T#1m30s, T#250ms</td></tr>
@@ -508,7 +509,7 @@
       while (!ist('ende')) {
         const x = jetzt();
         if (ist('sw', 'VAR_GLOBAL')) { erg.global = erg.global.concat(varBlock().dekl); continue; }
-        if (ist('sw', 'VAR') || ist('sw', 'VAR_TEMP') || ist('sw', 'VAR_STAT')) { hauptDekl = hauptDekl.concat(varBlock().dekl); continue; }
+        if (ist('sw', 'VAR') || ist('sw', 'VAR_TEMP') || ist('sw', 'VAR_STAT') || ist('sw', 'VAR_INPUT') || ist('sw', 'VAR_OUTPUT')) { hauptDekl = hauptDekl.concat(varBlock().dekl); continue; }
         if (ist('sw', 'TYPE') || ist('sw', 'STRUCT')) throw new Fehler('Eigene Datentypen (TYPE/STRUCT) kann der Simulator nicht. Einzelne Variablen oder ARRAY verwenden.', x.z);
         if (nimm('sw', 'FUNCTION_BLOCK')) { erg.pous.push(pou('fb', 'END_FUNCTION_BLOCK', x.z)); continue; }
         if (nimm('sw', 'FUNCTION')) { erg.pous.push(pou('fn', 'END_FUNCTION', x.z)); continue; }
@@ -744,7 +745,37 @@
     }
     const adrTyp = function (a) { const k = a[2]; return { n: k === 'X' ? 'BOOL' : k === 'B' ? 'BYTE' : k === 'W' ? 'INT' : 'DINT' }; };
     const ADR_HILFE = 'Adressen hier: Eingänge %IX0.0–%IX1.7 (E0.0–E1.7), %IB0–%IB1, Analog %IW0–%IW3; Ausgänge %QX0.0–%QX1.7 (A0.0–A1.7), %QB0–%QB1, Analog %QW0–%QW1; Merker %MX0.0–%MX63.7, %MB0–%MB63, %MW0–%MW127, %MD0–%MD63';
-    let WARN = [];
+    let WARN = [], ZUORD = [];
+    // VAR_INPUT / VAR_OUTPUT eines Programms ohne AT: an Ein- und Ausgänge der Anlage binden.
+    // Zuerst nach Namen (bStart → „Start“, auch ohne Typ-Vorsilbe), sonst der Reihe nach an freie Adressen.
+    function zuordnen(prgs, ast, symbole, code) {
+      ZUORD = [];
+      const belegt = {}, woerter = {};
+      String(code).replace(/\(\*[\s\S]*?\*\)|\/\/[^\n]*|\/\*[\s\S]*?\*\//g, ' ').replace(/[%A-Za-z_][A-Za-z0-9_.]*/g, function (w) { woerter[w.toLowerCase()] = 1; return w; });
+      ast.global.concat.apply(ast.global, prgs.map(function (u) { return u.dekl; })).forEach(function (d) { if (d.at) belegt[d.at] = 1; });
+      // Adressen, die das Programm schon direkt oder über den Symbolnamen benutzt, bleiben frei
+      const ioNamen = {}; prgs.forEach(function (u) { u.dekl.forEach(function (d) { if ((d.klasse === 'VAR_INPUT' || d.klasse === 'VAR_OUTPUT') && !d.at) ioNamen[d.name.toLowerCase()] = 1; }); });
+      Object.keys(symbole).forEach(function (a) { const n = symbole[a].name.toLowerCase(); if (woerter[a.toLowerCase()] || (woerter[n] && !ioNamen[n])) belegt[a] = 1; });
+      const kern = function (n) { return n.replace(/^(b|x|i|n|r|w|f|di|ui|ud|li|s|t)(?=[A-Z0-9])/, '').toLowerCase(); };
+      const reihe = function (vorsilbe) { return Object.keys(symbole).filter(function (a) { return a.indexOf(vorsilbe) === 0; }).sort(function (x, y) { const nx = x.slice(vorsilbe.length).split('.'), ny = y.slice(vorsilbe.length).split('.'); return (+nx[0] - +ny[0]) || ((+nx[1] || 0) - (+ny[1] || 0)); }); };
+      prgs.forEach(function (u) {
+        u.dekl.forEach(function (d) {
+          if ((d.klasse !== 'VAR_INPUT' && d.klasse !== 'VAR_OUTPUT') || d.at || d.typ.k === 'arr' || d.typ.k === 'fb') return;
+          const ein = d.klasse === 'VAR_INPUT', b = art(d.typ) === 'b', ganzOderReal = art(d.typ) === 'i' || art(d.typ) === 'r';
+          if (!b && !ganzOderReal) return;
+          const vorsilbe = (ein ? '%I' : '%Q') + (b ? 'X' : 'W'), liste = reihe(vorsilbe).filter(function (a) { return !belegt[a]; });
+          let a = liste.filter(function (x) { const n = symbole[x].name.toLowerCase(); return n === d.name.toLowerCase() || n === kern(d.name); })[0];
+          const perName = !!a;
+          if (!a) a = liste[0];
+          if (!a) { WARN.push([d.z, (ein ? 'Kein freier Eingang' : 'Kein freier Ausgang') + ' für „' + d.name + '“ – bleibt eine interne Variable (oder mit AT %… selbst zuordnen)']); return; }
+          belegt[a] = 1; d.at = a; d.auto = true;
+          if (d.init) { WARN.push([d.z, 'Startwert bei „' + d.name + '“ wird ignoriert – der Wert kommt von ' + a]); d.init = null; }
+          ZUORD.push([d.z, d.name, a, symbole[a].name, perName]);
+          const zeile = String(code).split('\n')[d.z - 1] || '', oeffner = /öffner|oeffner|\bNC\b/i.test(zeile), schliesser = /schließer|schliesser|\bNO\b/i.test(zeile);
+          if (ein && b && symbole[a].kontakt && ((oeffner && symbole[a].kontakt === 'S') || (schliesser && !oeffner && symbole[a].kontakt === 'O'))) WARN.push([d.z, '„' + d.name + '“ ist laut Kommentar ein ' + (oeffner ? 'Öffner' : 'Schließer') + ', ' + a + ' ist aber als ' + (oeffner ? 'Schließer' : 'Öffner') + ' angeschlossen – in der Symboltabelle umstellen']);
+        });
+      });
+    }
     function uebersetzen(code, symbole) {
       const ast = parsen(code);
       WARN = [];
@@ -801,6 +832,7 @@
         u.par = u.dekl.filter(function (d) { return d.klasse === 'VAR_INPUT' || d.klasse === 'VAR_IN_OUT'; }).map(function (d) { return d.name.toLowerCase(); });
         u.dekl.forEach(function (d) { if (d.typ.k === 'fb') throw new Fehler('In einer FUNCTION sind keine Bausteininstanzen erlaubt (sie hat kein Gedächtnis) – FUNCTION_BLOCK verwenden', d.z); });
       });
+      zuordnen(prgs, ast, symbole, code);
       prgs.forEach(function (u) { u.scope = scopeVon(u); });
 
       // Ausdrücke und Anweisungen prüfen
@@ -1582,10 +1614,25 @@
     window.addEventListener('pagehide', function () { clearTimeout(uhr); speichernJetzt(); });
 
     function meldung(t, schlecht) { $('meldung').textContent = t; $('meldung').className = 'meldung-sps ' + (schlecht ? 'schlecht' : 'gut'); }
+    // Zugeordnete VAR_INPUT/VAR_OUTPUT in die Symboltabelle übernehmen: Name der Variable, Öffner/Schließer aus dem Kommentar
+    function zuordnungUebernehmen() {
+      let geaendert = false;
+      const zeilen = $('code').value.split('\n');
+      ZUORD.forEach(function (z) {
+        const s = SYMBOLE[z[2]]; if (!s) return;
+        const frei = !Object.keys(SYMBOLE).some(function (a) { return a !== z[2] && SYMBOLE[a].name.toLowerCase() === z[1].toLowerCase(); });
+        if (s.name !== z[1] && frei && NAME_OK(z[1]) && !s.fest) { s.name = z[1]; geaendert = true; }
+        const zeile = zeilen[z[0] - 1] || '', oe = /öffner|oeffner|\bNC\b/i.test(zeile), sl = !oe && /schließer|schliesser|\bNO\b/i.test(zeile);
+        if (z[2][1] === 'I' && !s.fest && (s.art === 'taster' || s.art === 'schalter') && (oe || sl) && s.kontakt !== (oe ? 'O' : 'S')) { s.kontakt = oe ? 'O' : 'S'; geaendert = true; }
+      });
+      if (geaendert) { ioAufbauen(); symboleAufbauen(); speichernJetzt(); }
+      return geaendert;
+    }
     function warnungenZeigen() {
       const z = $('warnungen'); z.innerHTML = '';
       WARN.slice(0, 30).forEach(function (w) { const li = kn('li'); const b = kn('button', 'zeile-link', 'Zeile ' + w[0]); b.type = 'button'; b.addEventListener('click', function () { markiereZeile(w[0]); }); li.append(b, document.createTextNode(': ' + w[1])); z.append(li); });
-      z.hidden = !WARN.length;
+      ZUORD.slice(0, 40).forEach(function (w) { const li = kn('li', 'zuordnung'); const b = kn('button', 'zeile-link', 'Zeile ' + w[0]); b.type = 'button'; b.addEventListener('click', function () { markiereZeile(w[0]); }); li.append(b, document.createTextNode(': „' + w[1] + '“ liegt auf ' + w[2] + (w[4] ? ' (gleicher Name in der Symboltabelle)' : ' (nächste freie Adresse' + (w[5] ? ', Name in die Symboltabelle übernommen' : ', Symbol „' + w[3] + '“') + ')'))); z.append(li); });
+      z.hidden = !WARN.length && !ZUORD.length;
     }
     function leds() {
       $('ledRun').className = 'led' + (RUN ? ' gruen' : ''); $('ledStop').className = 'led' + (RUN ? '' : ' gelb'); $('ledSf').className = 'led' + (FEHLER ? ' rot' : '');
@@ -1602,13 +1649,15 @@
     }
     function uebersetzenKnopf(still) {
       try {
-        const p = laden($('code').value);
+        let p = laden($('code').value);
+        const erst = ZUORD.slice();
+        if (zuordnungUebernehmen()) { p = laden($('code').value); ZUORD = erst.map(function (z) { return z.concat([true]); }); }
         FEHLER = false; warnungenZeigen();
         const n = Object.keys(p.fb).length, f = Object.keys(p.fn).length;
         if (!still) meldung('Übersetzt: ' + p.prgs.length + ' Programm' + (p.prgs.length > 1 ? 'e' : '') + (n ? ', ' + n + ' Funktionsbaustein' + (n > 1 ? 'e' : '') : '') + (f ? ', ' + f + ' Funktion' + (f > 1 ? 'en' : '') : '') + ', ' + WARN.length + ' Warnung' + (WARN.length === 1 ? '' : 'en') + '. ' + (RUN ? 'Läuft.' : 'Mit „RUN“ starten.'));
         leds(); beobachten(); return true;
       } catch (e) {
-        WARN = []; warnungenZeigen();
+        WARN = []; ZUORD = []; warnungenZeigen();
         if (e instanceof Fehler) { meldung('Fehler in Zeile ' + e.zeile + ': ' + e.text, true); markiereZeile(e.zeile); }
         else if (e instanceof Laufzeitfehler) meldung(e.text, true);
         else meldung('Interner Fehler beim Übersetzen.', true);
