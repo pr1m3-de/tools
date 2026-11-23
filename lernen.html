@@ -526,7 +526,7 @@
       if (!isFinite(v)) return '–';
       if (v === 0) return '0';
       const st = stellen || 4, a = Math.abs(v), mag = Math.floor(Math.log10(a));
-      let dez = Math.max(0, st - 1 - mag); if (dez > 6) dez = 6;
+      let dez = Math.max(0, st - 1 - mag); if (dez > 12) dez = 12;
       let s = (Math.round(v * Math.pow(10, dez)) / Math.pow(10, dez)).toFixed(dez);
       if (s.indexOf('.') >= 0) s = s.replace(/0+$/, '').replace(/\.$/, '');
       const teile = s.split('.'); teile[0] = teile[0].replace(/\B(?=(\d{3})+(?!\d))/g, ' ');

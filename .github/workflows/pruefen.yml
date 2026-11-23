@@ -1,0 +1,33 @@
+# Automatische Prüfung bei jedem Pull Request und nach jedem Merge auf main.
+# Prüft JavaScript (ES2015), Daten und Verweise, alle Seiten im Browser und die Lernaufgaben.
+# Lokal: siehe Kopf von werkzeuge/pruefen/alles.js
+name: Prüfen
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pruefen-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pruefen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Prüfwerkzeuge laden (nur für die Prüfung, nicht für die Seiten)
+        run: |
+          npm install --no-save --no-package-lock playwright@1 acorn@8
+          npx playwright install --with-deps chromium
+      - name: Prüfen
+        run: node werkzeuge/pruefen/alles.js
