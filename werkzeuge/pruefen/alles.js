@@ -153,7 +153,7 @@ async function lernenPruefen(browser, basis) {
       if (/(^|[^A-Za-z])(NaN|Infinity|undefined)([^A-Za-z]|$)/.test(text)) melde('Lernen', 'NaN o. ä. in Aufgabe: ' + text.split('\n')[0]);
       await l.click('#aufgabe button:has-text("Lösung zeigen")');
       const erg = await l.locator('#aufgabe .loesung .hinweis-klein').innerText();
-      const m = /Ergebnis: ([\u2212-]?\d+(?:[\u00a0\u202f ]\d{3})*(?:,\d+)?(?:e[-+]?\d+)?)/.exec(erg), wert = m ? m[1].replace(/[\u00a0\u202f ]/g, '').replace('\u2212', '-') : '';
+      const m = /Ergebnis: ([\u2212-]?\d+(?:[\u00a0\u202f ]\d{3})*(?:,\d+)?(?:e[-+]?\d+)?(?: \u00b7 10[\u207b\u2070\u00b9\u00b2\u00b3\u2074-\u2079]+)?)/.exec(erg), wert = m ? m[1].replace(/[\u00a0\u202f ]/g, '').replace('\u2212', '-') : '';
       await l.fill('#aufgabe input', wert);
       await l.click('#aufgabe button:has-text("Prüfen")');
       const k = await l.locator('#aufgabe .rueck').first().getAttribute('class');

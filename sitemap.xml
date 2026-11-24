@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tools.pr1m3.de/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/arbeitsschutz/bildschirmarbeit.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://tools.pr1m3.de/arbeitsschutz/gefahrstoffe-luft.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://tools.pr1m3.de/arbeitsschutz/heben-tragen.html</loc><lastmod>2026-11-10</lastmod></url>
@@ -114,7 +114,7 @@
   <url><loc>https://tools.pr1m3.de/sanitaer/regenwasser.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://tools.pr1m3.de/sanitaer/trinkwasser-rohrnetz.html</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://tools.pr1m3.de/sanitaer/trinkwasserschutz.html</loc><lastmod>2026-11-04</lastmod></url>
-  <url><loc>https://tools.pr1m3.de/physik/optik.html</loc><lastmod>2026-11-21</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/physik/optik.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/aggregatzustaende.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/astronomie.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/radioaktivitaet.html</loc><lastmod>2026-11-23</lastmod></url>
@@ -127,7 +127,7 @@
   <url><loc>https://tools.pr1m3.de/it/kompression.html</loc><lastmod>2026-11-21</lastmod></url>
   <url><loc>https://tools.pr1m3.de/mechanik/energie-impuls.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/druck-auftrieb.html</loc><lastmod>2026-11-23</lastmod></url>
-  <url><loc>https://tools.pr1m3.de/physik/schwingungen-wellen.html</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/physik/schwingungen-wellen.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/waermeuebertragung.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/netzsysteme.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/transistor-opv.html</loc><lastmod>2026-11-22</lastmod></url>
@@ -137,4 +137,8 @@
   <url><loc>https://tools.pr1m3.de/it/pruefsummen.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/perkolation.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/chaos-feigenbaum.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/physik/photoeffekt.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/physik/atom-spektrum.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/physik/welle-teilchen.html</loc><lastmod>2026-11-24</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/physik/schroedinger.html</loc><lastmod>2026-11-24</lastmod></url>
 </urlset>

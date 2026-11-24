@@ -374,5 +374,45 @@
     ["Warum ist die Feigenbaum-Konstante „universell“?", "Sie ergibt sich bei allen Systemen mit einem einfachen, quadratischen Höcker, auch im Experiment.", ["Sie gilt nur für die logistische Gleichung.", "Sie ist eine gerundete Messgröße ohne Bedeutung.", "Sie hängt vom Startwert ab."], "Gemessen z. B. bei Konvektion, Schwingkreisen und tropfenden Wasserhähnen."],
     ["Ist deterministisches Chaos dasselbe wie Zufall?", "Nein, jeder Schritt ist festgelegt; nur kleinste Startfehler wachsen stark.", ["Ja, die Werte sind rein zufällig.", "Ja, aber nur bei r = 4.", "Nein, Chaos ist immer periodisch."], "Mit exakt gleichem Startwert kommt immer exakt dieselbe Folge heraus."],
     ["Was findet man bei r ≈ 3,83 mitten im Chaos?", "ein Fenster mit Periode 3", ["einen stabilen Fixpunkt", "das Aussterben der Population", "die erste Verdopplung"], "Ab 1 + √8 ≈ 3,8284 herrscht kurz wieder Ordnung, danach folgt erneut eine Verdopplungskaskade."]
+  ],
+  "physik/photoeffekt.html": [
+    ["Wovon hängt die größte Bewegungsenergie der Photoelektronen ab?", "von der Frequenz des Lichts und dem Metall", ["von der Helligkeit des Lichts", "von der Bestrahlungsdauer", "von der Größe der Kathode"], "E_kin = h f − W_A; die Helligkeit ändert nur die Anzahl der Elektronen."],
+    ["Was passiert, wenn man rotes Licht, das keine Elektronen auslöst, viel heller macht?", "Es werden weiterhin keine Elektronen ausgelöst.", ["Nach einiger Zeit kommen Elektronen.", "Es kommen sofort sehr schnelle Elektronen.", "Die Austrittsarbeit sinkt."], "Jedes Elektron nimmt nur ein Photon auf; liegt h f unter W_A, reicht es nie."],
+    ["Welche Energie hat ein Photon mit 620 nm Wellenlänge?", "etwa 2,0 eV", ["etwa 0,5 eV", "etwa 6,2 eV", "etwa 20 eV"], "E = 1 240 eV·nm / 620 nm = 2,0 eV."],
+    ["Was misst man mit der Gegenfeldmethode?", "die größte Bewegungsenergie der Elektronen über die Spannung, bei der der Strom null wird", ["die Lichtgeschwindigkeit", "die Masse der Elektronen", "die Anzahl der Photonen"], "e · U₀ = E_kin,max."],
+    ["Welche Steigung hat die Gerade U₀(f)?", "h/e, für alle Metalle gleich", ["die Austrittsarbeit", "c/λ", "für jedes Metall anders"], "Die Metalle unterscheiden sich nur im Achsenabschnitt (Austrittsarbeit)."],
+    ["Was bewirkt eine höhere Lichtleistung bei gleicher Farbe?", "mehr Photoelektronen, also einen größeren Strom", ["schnellere Elektronen", "eine kleinere Grenzwellenlänge", "eine höhere Austrittsarbeit"], "Die Zahl der Photonen pro Sekunde steigt, ihre Energie nicht."],
+    ["Welches Metall hat die größte Grenzwellenlänge?", "das mit der kleinsten Austrittsarbeit, z. B. Cäsium", ["Platin", "Zink", "alle gleich"], "λ_G = hc/W_A; Cäsium (2,14 eV) reagiert noch auf Rot bis 579 nm."],
+    ["Wofür erhielt Einstein den Nobelpreis?", "für die Erklärung des Photoeffekts", ["für die Relativitätstheorie", "für E = mc²", "für die Entdeckung des Elektrons"], "Nobelpreis für Physik 1921."]
+  ],
+  "physik/atom-spektrum.html": [
+    ["Warum zeigt Wasserstoff ein Linienspektrum?", "Das Elektron kann nur feste Energiestufen einnehmen; Photonen entsprechen den Differenzen.", ["Wasserstoff ist durchsichtig.", "Das Prisma ist fehlerhaft.", "Wasserstoff leuchtet nur rot."], "h f = E_o − E_u: nur bestimmte Frequenzen."],
+    ["Welche Energie hat das Elektron im Wasserstoff auf Schale n = 2?", "−3,4 eV", ["−13,6 eV", "−6,8 eV", "+3,4 eV"], "E = −13,6 eV / 2²."],
+    ["Welche Serie liegt im sichtbaren Bereich?", "die Balmer-Serie (Sprünge auf n = 2)", ["die Lyman-Serie", "die Paschen-Serie", "keine"], "Lyman ist ultraviolett, Paschen infrarot."],
+    ["Was bedeutet das Minuszeichen in E_n = −13,6 eV / n²?", "Das Elektron ist gebunden; zum Befreien muss man Energie zuführen.", ["Das Elektron hat negative Masse.", "Die Energie ist imaginär.", "Das Atom strahlt ständig."], "Null ist die Energie des freien, ruhenden Elektrons."],
+    ["Wie entstehen die dunklen Linien im Sonnenspektrum?", "Kühlere Gase der Sonnenatmosphäre absorbieren genau die Wellenlängen ihrer Übergänge.", ["Die Sonne strahlt dort nicht.", "Staub im Weltall verschluckt sie.", "Durch den Doppler-Effekt."], "Absorptionslinien liegen an denselben Stellen wie Emissionslinien."],
+    ["Wie hängt der Bahnradius im Bohrschen Modell von n ab?", "r ∝ n²", ["r ∝ n", "r ∝ 1/n", "r ist für alle n gleich"], "r_n = 0,0529 nm · n²."],
+    ["Welche Ionisierungsenergie hat Wasserstoff im Grundzustand?", "13,6 eV", ["3,4 eV", "1,0 eV", "27,2 eV"], "Sprung von n = 1 nach n = ∞."],
+    ["Wo versagt das Bohrsche Atommodell?", "bei Atomen mit mehreren Elektronen und bei der Form der Orbitale", ["schon bei Wasserstoff", "bei der Rydberg-Formel", "es ist überall exakt"], "Erst die Quantenmechanik erklärt Mehrelektronenatome."]
+  ],
+  "physik/welle-teilchen.html": [
+    ["Was gibt die de-Broglie-Wellenlänge an?", "die Wellenlänge, die zu einem Teilchen mit Impuls p gehört: λ = h/p", ["die Größe des Teilchens", "den Abstand zweier Teilchen", "die Wellenlänge des Lichts, das das Teilchen aussendet"], "Je größer der Impuls, desto kürzer die Wellenlänge."],
+    ["Was beobachtet man, wenn Elektronen einzeln durch einen Doppelspalt fliegen?", "Einzelne Treffpunkte, die sich nach vielen Elektronen zu Interferenzstreifen ordnen", ["zwei helle Streifen hinter den Spalten", "eine gleichmäßige Fläche", "gar nichts"], "Jedes Elektron wird als Teilchen nachgewiesen, die Verteilung folgt der Welle."],
+    ["Was geschieht mit dem Interferenzmuster, wenn man misst, durch welchen Spalt das Elektron fliegt?", "Es verschwindet.", ["Es wird schärfer.", "Es verschiebt sich.", "Nichts."], "Weginformation und Interferenz schließen sich aus."],
+    ["Was besagt die Heisenbergsche Unschärferelation?", "Ort und Impuls lassen sich nicht gleichzeitig beliebig genau festlegen: Δx · Δp ≥ ħ/2.", ["Messgeräte sind immer ungenau.", "Man kann den Ort nie messen.", "Energie ist nicht erhalten."], "Sie folgt aus der Wellennatur, nicht aus schlechten Geräten."],
+    ["Warum interferieren Tennisbälle nicht sichtbar?", "Ihre Wellenlänge ist winzig (≈ 10⁻³⁴ m) und Wechselwirkungen zerstören die Kohärenz.", ["Sie sind zu langsam.", "Sie haben keine Wellenlänge.", "Sie sind elektrisch neutral."], "λ = h/(m v) wird für große Massen unmessbar klein."],
+    ["Welche Wellenlänge haben Elektronen nach 100 V Beschleunigung?", "etwa 0,12 nm", ["etwa 500 nm", "etwa 1 mm", "etwa 10⁻¹⁵ m"], "λ ≈ 1,226 nm / √100."],
+    ["Warum lösen Elektronenmikroskope feiner auf als Lichtmikroskope?", "Die Wellenlänge der Elektronen ist viel kürzer als die von Licht.", ["Elektronen sind kleiner als Photonen.", "Elektronen sind schneller.", "Weil sie im Vakuum arbeiten."], "Die Auflösung ist durch die Wellenlänge begrenzt."],
+    ["Ein Teilchen wird in einen kleineren Bereich eingesperrt. Was folgt?", "Seine Impulsunschärfe und damit seine mittlere Bewegungsenergie steigen.", ["Es kommt zur Ruhe.", "Seine Masse steigt.", "Nichts ändert sich."], "Δp ≥ ħ/(2Δx); daher die Nullpunktsenergie."]
+  ],
+  "physik/schroedinger.html": [
+    ["Warum hat ein Teilchen im Kasten nur bestimmte Energien?", "Seine Wellenfunktion muss an den Wänden null sein; nur ganze halbe Wellenlängen passen hinein.", ["Weil die Wände Energie abziehen.", "Weil es zu schnell ist.", "Das gilt nur für Photonen."], "L = n λ/2 legt Wellenlänge und Energie fest."],
+    ["Wie ändert sich die Energie im Kasten, wenn man ihn halb so breit macht?", "Sie wird viermal so groß.", ["Sie halbiert sich.", "Sie verdoppelt sich.", "Sie bleibt gleich."], "E_n ∝ 1/L²."],
+    ["Was ist die Nullpunktsenergie?", "die kleinste Energie (n = 1), die nie null ist", ["die Energie bei 0 °C", "die Energie außerhalb des Kastens", "die Ruheenergie mc²"], "Ein eingesperrtes Quantenteilchen ruht nie."],
+    ["Wie viele Knoten hat die Wellenfunktion im Zustand n = 3 im Inneren?", "2", ["3", "0", "6"], "Im Zustand n gibt es n − 1 innere Knoten."],
+    ["Was gibt |ψ|² an?", "die Aufenthaltswahrscheinlichkeitsdichte", ["die Energie", "die Ladung", "die Geschwindigkeit"], "Bornsche Deutung."],
+    ["Wie hängt die Tunnelwahrscheinlichkeit von der Breite der Barriere ab?", "Sie fällt exponentiell mit der Breite.", ["Sie fällt linear.", "Sie steigt mit der Breite.", "Sie hängt nicht davon ab."], "T ≈ e^(−2κa)."],
+    ["Warum tunneln Protonen viel schlechter als Elektronen durch dieselbe Barriere?", "Wegen ihrer größeren Masse ist κ größer, die Welle fällt schneller ab.", ["Weil sie positiv geladen sind.", "Weil sie kleiner sind.", "Sie tunneln besser."], "κ ∝ √m."],
+    ["Welches Gerät nutzt den Tunneleffekt, um Atome abzubilden?", "das Rastertunnelmikroskop", ["das Lichtmikroskop", "das Teleskop", "der Geigerzähler"], "Der Tunnelstrom ändert sich extrem stark mit dem Abstand."]
   ]
 }

@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = '56d6bf14a0';
+const STAND = '320148e0c0';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -78,6 +78,10 @@ const DATEIEN = [
   "physik/radioaktivitaet.html",
   "physik/perkolation.html",
   "physik/chaos-feigenbaum.html",
+  "physik/photoeffekt.html",
+  "physik/atom-spektrum.html",
+  "physik/welle-teilchen.html",
+  "physik/schroedinger.html",
   "mechanik/anhalteweg.html",
   "mechanik/wurf.html",
   "physik/waermeuebertragung.html",
@@ -233,15 +237,23 @@ const DATEIEN = [
   "aufgabenblaetter/mechanik/wurf/01-waagerechter-schraeger-wurf.md",
   "aufgabenblaetter/physik/aggregatzustaende/01-teilchenmodell-waerme.md",
   "aufgabenblaetter/physik/astronomie/01-erdjahr-kepler.md",
+  "aufgabenblaetter/physik/atom-spektrum/01-energiestufen-wasserstoff.md",
+  "aufgabenblaetter/physik/atom-spektrum/02-rydberg-ionen.md",
   "aufgabenblaetter/physik/chaos-feigenbaum/01-logistische-gleichung.md",
   "aufgabenblaetter/physik/chaos-feigenbaum/02-schmetterlingseffekt.md",
   "aufgabenblaetter/physik/druck-auftrieb/01-hydraulik-schweredruck-auftrieb.md",
   "aufgabenblaetter/physik/optik/01-reflexion-brechung.md",
   "aufgabenblaetter/physik/perkolation/01-waldbrand-und-schwelle.md",
   "aufgabenblaetter/physik/perkolation/02-theorie-bethe-fraktal.md",
+  "aufgabenblaetter/physik/photoeffekt/01-photonen-photoeffekt.md",
+  "aufgabenblaetter/physik/photoeffekt/02-millikan-planck.md",
   "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",
+  "aufgabenblaetter/physik/schroedinger/01-teilchen-im-kasten.md",
+  "aufgabenblaetter/physik/schroedinger/02-farbstoffe-tunneln.md",
   "aufgabenblaetter/physik/schwingungen-wellen/01-pendel-wellen-doppler.md",
   "aufgabenblaetter/physik/waermeuebertragung/01-leitung-konvektion-strahlung.md",
+  "aufgabenblaetter/physik/welle-teilchen/01-materiewellen-unschaerfe.md",
+  "aufgabenblaetter/physik/welle-teilchen/02-interferenz-abschaetzungen.md",
   "aufgabenblaetter/steuerung/digitaltechnik/01-gatter-flipflop-zaehler.md",
   "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",
   "aufgabenblaetter/steuerung/sps/01-sps-grundlagen.md",

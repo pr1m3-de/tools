@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photoeffekt und Photonen: Austrittsarbeit, Gegenspannung, Planck-Konstante – Formeln &amp; Rechner</title>
+  <meta name="description" content="Photoeffekt berechnen: Photonenenergie, Austrittsarbeit, Bewegungsenergie der Elektronen, Gegenspannung, Grenzwellenlänge und Photostrom – mit animierter Photozelle, Kennlinie, Millikan-Gerade und Lernaufgaben.">
+  <!-- seo -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="canonical" href="https://tools.pr1m3.de/physik/photoeffekt.html">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Formeln &amp; Rechner">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:title" content="Photoeffekt und Photonen: Austrittsarbeit, Gegenspannung, Planck-Konstante">
+  <meta property="og:description" content="Photoeffekt berechnen: Photonenenergie, Austrittsarbeit, Bewegungsenergie der Elektronen, Gegenspannung, Grenzwellenlänge und Photostrom – mit animierter Photozelle, Kennlinie, Millikan-Gerade und Lernaufgaben.">
+  <meta property="og:url" content="https://tools.pr1m3.de/physik/photoeffekt.html">
+  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <meta property="og:image:alt" content="Formeln &amp; Rechner">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Photoeffekt und Photonen: Austrittsarbeit, Gegenspannung, Planck-Konstante">
+  <meta name="twitter:description" content="Photoeffekt berechnen: Photonenenergie, Austrittsarbeit, Bewegungsenergie der Elektronen, Gegenspannung, Grenzwellenlänge und Photostrom – mit animierter Photozelle, Kennlinie, Millikan-Gerade und Lernaufgaben.">
+  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/physik/photoeffekt.html#seite","name":"Photoeffekt und Photonen: Austrittsarbeit, Gegenspannung, Planck-Konstante","url":"https://tools.pr1m3.de/physik/photoeffekt.html","inLanguage":"de","description":"Photoeffekt berechnen: Photonenenergie, Austrittsarbeit, Bewegungsenergie der Elektronen, Gegenspannung, Grenzwellenlänge und Photostrom – mit animierter Photozelle, Kennlinie, Millikan-Gerade und Lernaufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/physik/photoeffekt.html#pfad"},"dateModified":"2026-11-24"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/physik/photoeffekt.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Photoeffekt und Photonen: Austrittsarbeit, Gegenspannung, Planck-Konstante","item":"https://tools.pr1m3.de/physik/photoeffekt.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/physik/photoeffekt.html#fragen","mainEntity":[{"@type":"Question","name":"Warum löst rotes Licht keine Elektronen aus Zink?","acceptedAnswer":{"@type":"Answer","text":"Ein rotes Photon (700 nm) hat nur 1,8 eV. Zink braucht 4,3 eV, also Licht unter 286 nm (ultraviolett). Mehr rote Photonen helfen nicht, weil jedes Elektron nur ein Photon aufnimmt."}},{"@type":"Question","name":"Was ist die Planck-Konstante?","acceptedAnswer":{"@type":"Answer","text":"h = 6,626 · 10⁻³⁴ Js verbindet Frequenz und Energie eines Photons: E = h · f. Seit 2019 ist ihr Wert exakt festgelegt und definiert das Kilogramm."}},{"@type":"Question","name":"Wie viel Energie hat ein Photon grünen Lichts?","acceptedAnswer":{"@type":"Answer","text":"Bei 532 nm sind es 2,33 eV oder 3,73 · 10⁻¹⁹ J."}},{"@type":"Question","name":"Warum hängt der Strom von der Helligkeit ab, die Energie aber nicht?","acceptedAnswer":{"@type":"Answer","text":"Die Helligkeit bestimmt die Zahl der Photonen, die Farbe die Energie jedes einzelnen. Mehr Photonen lösen mehr Elektronen aus, jedes bekommt aber höchstens h · f − W_A."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/physik/photoeffekt.html#seite"}}]}</script>
+  <!-- /seo -->
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <link rel="stylesheet" href="../assets/baukasten.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Licht besteht aus Photonen</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#7A5195"><h3>Der Versuch</h3><p>Fällt Licht auf eine Metallplatte, können Elektronen austreten (Hallwachs 1887, Lenard 1902). Überraschend: Ob Elektronen kommen, hängt nur von der Farbe ab, nicht von der Helligkeit. Rotes Licht löst aus Zink nie Elektronen aus, schwaches ultraviolettes sofort.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Was die Wellentheorie nicht erklärt</h3><p>Als Welle müsste helleres Licht den Elektronen mehr Energie geben, und bei schwachem Licht müsste es dauern, bis genug Energie gesammelt ist. Beides stimmt nicht: Die Energie der Elektronen hängt nur von der Frequenz ab, und sie kommen sofort.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Einsteins Photonen</h3><p>Einstein erklärte 1905: Licht besteht aus Energieportionen, den Photonen, mit E = h · f. Ein Photon gibt seine ganze Energie an ein Elektron ab. Ein Teil davon, die Austrittsarbeit W<sub>A</sub>, wird zum Verlassen des Metalls gebraucht, der Rest bleibt als Bewegungsenergie. Dafür bekam er 1921 den Nobelpreis.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Gegenfeldmethode</h3><p>Legt man zwischen Kathode und Anode eine bremsende Spannung, erreichen nur noch schnelle Elektronen die Anode. Bei U₀ = E<sub>kin,max</sub>/e wird der Strom null. Trägt man U₀ über der Frequenz auf, erhält man eine Gerade mit der Steigung h/e – so maß Millikan 1916 die Planck-Konstante.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Helligkeit und Strom</h3><p>Mehr Licht bedeutet mehr Photonen pro Sekunde, also mehr Elektronen und einen größeren Strom – aber keine schnelleren Elektronen. Ein 1-mW-Laserpointer schickt rund 3 · 10¹⁵ Photonen pro Sekunde.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Das Elektronvolt</h3><p>Energien einzelner Teilchen sind winzig. Man misst sie in Elektronvolt: die Energie, die ein Elektron beim Durchlaufen von 1 V gewinnt, 1 eV = 1,602 · 10⁻¹⁹ J. Praktisch: E [eV] = 1 240 / λ [nm]. Sichtbares Licht hat 1,6 bis 3,3 eV.</p></article>
+        <article class="wissen-karte" style="--farbe:#A16207"><h3>Anwendungen</h3><p>Photozellen und Photomultiplier zählen einzelne Photonen, Bildsensoren in Kameras nutzen den inneren Photoeffekt im Halbleiter, Solarzellen ebenso. Nachtsichtgeräte verstärken die ausgelösten Elektronen.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Welle und Teilchen</h3><p>Interferenz zeigt, dass Licht eine Welle ist; der Photoeffekt zeigt Teilchen. Beides stimmt: Die Welle gibt an, wo ein Photon wahrscheinlich ankommt, die Energie kommt immer in ganzen Portionen h · f.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Metall</th><th class="zahl">Austrittsarbeit</th><th class="zahl">Grenzwellenlänge</th><th>Bereich</th></tr></thead><tbody id="metall-tabelle"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum löst rotes Licht keine Elektronen aus Zink?</summary><p>Ein rotes Photon (700 nm) hat nur 1,8 eV. Zink braucht 4,3 eV, also Licht unter 286 nm (ultraviolett). Mehr rote Photonen helfen nicht, weil jedes Elektron nur ein Photon aufnimmt.</p></details>
+        <details><summary>Was ist die Planck-Konstante?</summary><p>h = 6,626 · 10⁻³⁴ Js verbindet Frequenz und Energie eines Photons: E = h · f. Seit 2019 ist ihr Wert exakt festgelegt und definiert das Kilogramm.</p></details>
+        <details><summary>Wie viel Energie hat ein Photon grünen Lichts?</summary><p>Bei 532 nm sind es 2,33 eV oder 3,73 · 10⁻¹⁹ J.</p></details>
+        <details><summary>Warum hängt der Strom von der Helligkeit ab, die Energie aber nicht?</summary><p>Die Helligkeit bestimmt die Zahl der Photonen, die Farbe die Energie jedes einzelnen. Mehr Photonen lösen mehr Elektronen aus, jedes bekommt aber höchstens h · f − W_A.</p></details>
+      </div>
+    </section>
+  </main>
+  <!-- verwandt -->
+  <nav class="verwandt" aria-labelledby="h-verwandt">
+    <h2 id="h-verwandt">Passt dazu</h2>
+    <ul>
+      <li><a href="atom-spektrum.html"><b>Atom und Spektrallinien</b><span>Bohrsches Atommodell und Spektrallinien berechnen</span></a></li>
+      <li><a href="optik.html"><b>Optik: Reflexion, Streuung und Brechung</b><span>Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit …</span></a></li>
+      <li><a href="schroedinger.html"><b>Schrödinger-Gleichung: Teilchen im Kasten und Tunneleffekt</b><span>Quantenmechanik zum Ausrechnen: Energiestufen und Wellenfunktionen im Potentialtopf, Nullpunktsenergie, Photon beim …</span></a></li>
+      <li><a href="welle-teilchen.html"><b>Welle-Teilchen-Dualismus und Unschärferelation</b><span>Materiewellen berechnen: de-Broglie-Wellenlänge von Elektronen, Neutronen und Molekülen, Streifenabstand am …</span></a></li>
+    </ul>
+  </nav>
+  <!-- /verwandt -->
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script src="../assets/baukasten.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const BK = Baukasten, R = BK.R, tz = BK.tz, E = BK.E, F = BK.F, zz = BK.zz, rd = BK.rd, PI2 = BK.PI2, W2 = BK.W2, GRAD = BK.GRAD, BLAU = BK.BLAU, ROT = BK.ROT, GRUEN = BK.GRUEN, ORANGE = BK.ORANGE, LILA = BK.LILA, GRAU = BK.GRAU, GELB = BK.GELB, KUPFER = BK.KUPFER, TUERKIS = BK.TUERKIS, T = BK.T, TW = BK.TW, TWU = BK.TWU, pfeil = BK.pfeil, kreis = BK.kreis, strecke = BK.strecke, zug = BK.zug, uhr = BK.uhr, diagramm = BK.diagramm, schritt = BK.schritt, teilung = BK.teilung, stellen = BK.stellen, runde = BK.runde, ansichten = BK.ansichten, zufall = BK.zufall, bildCanvas = BK.bildCanvas, zeiger = BK.zeiger;
+    // wissenschaftliche Schreibweise für Text (wz) und TeX (wt), s gültige Stellen
+    function hoch(n) { const z = '⁰¹²³⁴⁵⁶⁷⁸⁹'; return String(n).replace('-', '⁻').replace(/\d/g, function (d) { return z[+d]; }); }
+    function zerlege(v, s) { const a = Math.abs(v); let ex = Math.floor(Math.log10(a)), m = v / Math.pow(10, ex); if (Math.abs(Number(m.toFixed(s - 1))) >= 10) { ex++; m = v / Math.pow(10, ex); } return [m, ex]; }
+    function wz(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '–'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return zz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return zz(q[0], s - 1) + ' · 10' + hoch(q[1]); }
+    function wt(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '\\infty'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return tz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return tz(q[0], s - 1) + ' \\cdot 10^{' + q[1] + '}'; }
+    // sichtbare Farbe einer Wellenlänge in nm (Näherung nach Bruton); außerhalb: Ersatzfarben
+    function wlFarbe(l) {
+      if (l < 380) return '#8a5cf6'; if (l > 780) return '#a33a3a';
+      let r = 0, g = 0, b = 0;
+      if (l < 440) { r = (440 - l) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = (510 - l) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = (645 - l) / 65; } else r = 1;
+      const f = l < 420 ? 0.3 + 0.7 * (l - 380) / 40 : l > 700 ? 0.3 + 0.7 * (780 - l) / 80 : 1, k = function (v) { return Math.round(255 * Math.pow(v * f, 0.8)); };
+      return 'rgb(' + k(r) + ',' + k(g) + ',' + k(b) + ')';
+    }
+    const H_P = 6.62607015e-34, C0 = 299792458, EL = 1.602176634e-19, ME = 9.1093837e-31, HC = 1239.84198;
+    // Austrittsarbeit in eV (gerundete Lehrbuchwerte)
+    const METALLE = { caesium: ['Cäsium', 2.14], kalium: ['Kalium', 2.30], natrium: ['Natrium', 2.36], barium: ['Barium', 2.52], calcium: ['Calcium', 2.87], zink: ['Zink', 4.33], kupfer: ['Kupfer', 4.65], silber: ['Silber', 4.73], platin: ['Platin', 5.65] };
+    let ansicht = 'versuch', takt = uhr();
+    const SIM = { t: 0, teilchen: [], photonen: [], neu: 0, zaehler: 0, zurueck: 0 };
+
+    function farbeVon(l) { return wlFarbe(l); }
+    function bereichVon(l) { return l < 10 ? 'Röntgen' : l < 380 ? 'Ultraviolett' : l <= 780 ? 'sichtbar' : l < 1e6 ? 'Infrarot' : 'Mikrowellen'; }
+    function rechne(e) {
+      const r = {}; r.f = C0 / (e.lam * 1e-9); r.Eph = HC / e.lam; r.EphJ = r.Eph * EL; r.p = H_P / (e.lam * 1e-9);
+      r.Ek = r.Eph - e.W; r.geht = r.Ek > 0; r.U0 = Math.max(0, r.Ek); r.v = r.geht ? Math.sqrt(2 * r.Ek * EL / ME) : 0;
+      r.lg = HC / e.W; r.fg = e.W * EL / H_P;
+      r.N = e.P * 1e-3 / r.EphJ; r.Isat = r.geht ? e.eta / 100 * r.N * EL : 0;
+      r.I = r.geht ? (e.U <= 0 ? r.Isat : e.U >= r.U0 ? 0 : r.Isat * (1 - e.U / r.U0)) : 0;
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'Photoeffekt und Photonen',
+      einleitung: 'Licht löst aus einer Metallplatte Elektronen aus – aber nur, wenn seine Frequenz hoch genug ist, ganz egal wie hell es ist. Einstein erklärte das 1905 mit Lichtteilchen, den Photonen. Der Rechner zeigt Photonenenergie, Austrittsarbeit, Gegenspannung und Photostrom.',
+      hilfe: 'Beispiel: Kalium-Kathode, blaues Licht mit 400 nm und 1 mW, 5 % der Photonen lösen ein Elektron aus, Gegenspannung 0,5 V.',
+      gruppen: [
+        { titel: 'Licht', farbe: LILA, felder: [
+          { k: 'lam', tex: '\\lambda', name: 'Wellenlänge', e: 'nm', min: 1, max: 100000 },
+          { k: 'P', tex: 'P', name: 'Lichtleistung auf der Kathode', e: 'mW', min: 1e-9, max: 1e6 }
+        ] },
+        { titel: 'Photozelle', farbe: BLAU, felder: [
+          { k: 'metall', name: 'Kathodenmetall', wahl: [['eigen', 'eigener Wert']].concat(Object.keys(METALLE).map(function (k) { return [k, METALLE[k][0] + ' (' + zz(METALLE[k][1], 2) + ' eV)']; })), bei: function (e, w, setze) { if (METALLE[w]) setze({ W: METALLE[w][1] }); } },
+          { k: 'W', tex: 'W_\\text{A}', name: 'Austrittsarbeit', e: 'eV', min: 0.1, max: 20 },
+          { k: 'eta', tex: '\\eta', name: 'Quantenausbeute (Elektronen je Photon)', e: '%', min: 0, max: 100 },
+          { k: 'U', tex: 'U', name: 'Gegenspannung', e: 'V', min: -10, max: 20 }
+        ] }
+      ],
+      beispiel: { lam: 400, P: 1, metall: 'kalium', W: 2.30, eta: 5, U: 0.5 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (!r.geht) H.meldung('Die Photonenenergie (' + zz(r.Eph, 2) + ' eV) reicht nicht für die Austrittsarbeit (' + zz(e.W, 2) + ' eV). Es werden keine Elektronen frei – auch nicht bei noch so hellem Licht. Nötig sind Wellenlängen unter ' + zz(r.lg, 0) + ' nm.', true);
+        else if (e.U >= r.U0) H.meldung('Die Gegenspannung ist größer als die Grenzspannung ' + zz(r.U0, 2) + ' V: Kein Elektron erreicht die Anode, der Strom ist null.');
+        H.urteil(r.geht, r.geht ? 'Elektronen werden frei' : 'kein Photoeffekt');
+        H.kacheln([
+          [zz(r.Eph, 3) + ' eV', 'Energie eines Photons (' + wz(r.EphJ, 3) + ' J)', LILA],
+          [wz(r.f, 3) + ' Hz', 'Frequenz (' + bereichVon(e.lam) + ')', LILA],
+          [r.geht ? zz(r.Ek, 3) + ' eV' : '0 eV', 'größte Bewegungsenergie der Elektronen', BLAU],
+          [r.geht ? zz(r.v / 1000, 0) + ' km/s' : '–', 'größte Geschwindigkeit der Elektronen', BLAU],
+          [zz(r.U0, 3) + ' V', 'Grenz-Gegenspannung (Strom wird null)', ROT],
+          [zz(r.lg, 0) + ' nm', 'Grenzwellenlänge (' + bereichVon(r.lg) + ')', ORANGE],
+          [wz(r.N, 3) + ' /s', 'Photonen pro Sekunde', GRUEN],
+          [wz(r.I * 1e6, 3) + ' µA', 'Photostrom bei ' + zz(e.U, 2) + ' V (Sättigung ' + wz(r.Isat * 1e6, 3) + ' µA)', GRUEN]
+        ]);
+        H.tabelle('Weitere Werte', ['Größe', 'Wert'], [['Grenzfrequenz', wz(r.fg, 4) + ' Hz'], ['Impuls eines Photons', wz(r.p, 3) + ' kg · m/s'], ['Energie in Joule je Photon', wz(r.EphJ, 4) + ' J'], ['Lichtfarbe', bereichVon(e.lam)]], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Frequenz', 'f = \\frac{c}{\\lambda} = \\frac{2{,}998 \\cdot 10^8\\,\\tfrac{\\text{m}}{\\text{s}}}{' + tz(e.lam, 1) + ' \\cdot 10^{-9}\\,\\text{m}} = ' + E(wt(r.f, 4) + '\\,\\text{Hz}')],
+          ['Photonenenergie', 'E = h f = 6{,}626 \\cdot 10^{-34}\\,\\text{Js} \\cdot ' + wt(r.f, 4) + '\\,\\text{Hz} = ' + wt(r.EphJ, 4) + '\\,\\text{J} = ' + E(tz(r.Eph, 3) + '\\,\\text{eV}')],
+          ['Einsteinsche Gleichung', 'E_\\text{kin} = h f - W_\\text{A} = ' + tz(r.Eph, 3) + '\\,\\text{eV} - ' + tz(e.W, 2) + '\\,\\text{eV} = ' + (r.geht ? E(tz(r.Ek, 3) + '\\,\\text{eV}') : '\\htmlClass{fehlertext}{' + tz(r.Ek, 3) + '\\,\\text{eV} < 0}')],
+          ['Grenz-Gegenspannung', 'U_0 = \\frac{E_\\text{kin}}{e} = ' + E(tz(r.U0, 3) + '\\,\\text{V}')],
+          ['Grenzwellenlänge', '\\lambda_\\text{G} = \\frac{h c}{W_\\text{A}} = \\frac{1240\\,\\text{eV nm}}{' + tz(e.W, 2) + '\\,\\text{eV}} = ' + E(tz(r.lg, 0) + '\\,\\text{nm}')],
+          ['Photonen pro Sekunde', 'N = \\frac{P}{E} = \\frac{' + wt(e.P * 1e-3, 3) + '\\,\\text{W}}{' + wt(r.EphJ, 4) + '\\,\\text{J}} = ' + E(wt(r.N, 3) + '\\,\\tfrac{1}{\\text{s}}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Photonenenergie', hilfe: 'E in eV, λ in nm: E = 1 240 eV·nm / λ.',
+          felder: [{ k: 'E', tex: 'E', name: 'Photonenenergie', e: 'eV', min: 1e-6, max: 1e7 }, { k: 'lam', tex: '\\lambda', name: 'Wellenlänge', e: 'nm', min: 1e-4, max: 1e9 }],
+          beispiel: { lam: 532 },
+          gleichungen: [{ name: 'E = hc/λ', v: ['E', 'lam'], f: function (q) { return [q.E * q.lam, HC]; },
+            loese: { E: function (q) { return HC / q.lam; }, lam: function (q) { return HC / q.E; } },
+            weg: function (k, q) { return k === 'E' ? 'E = \\frac{h c}{\\lambda} = \\frac{1240\\,\\text{eV nm}}{' + tz(q.lam, 1) + '\\,\\text{nm}} = ' + E(tz(q.E, 3) + '\\,\\text{eV}') : '\\lambda = \\frac{h c}{E} = \\frac{1240\\,\\text{eV nm}}{' + tz(q.E, 3) + '\\,\\text{eV}} = ' + E(tz(q.lam, 1) + '\\,\\text{nm}'); } }] },
+        { titel: 'Photonenenergie aus der Frequenz', hilfe: 'f in 10¹⁴ Hz, E in eV.',
+          felder: [{ k: 'E', tex: 'E', name: 'Photonenenergie', e: 'eV', min: 1e-6, max: 1e4 }, { k: 'f', tex: 'f', name: 'Frequenz', e: '· 10¹⁴ Hz', min: 1e-6, max: 1e5 }],
+          beispiel: { f: 5.45 },
+          gleichungen: [{ name: 'E = h · f', v: ['E', 'f'], f: function (q) { return [q.E * EL, H_P * q.f * 1e14]; },
+            loese: { E: function (q) { return H_P * q.f * 1e14 / EL; }, f: function (q) { return q.E * EL / H_P / 1e14; } },
+            weg: function (k, q) { return k === 'E' ? 'E = h f = 6{,}626 \\cdot 10^{-34} \\cdot ' + wt(q.f * 1e14) + '\\,\\text{J} = ' + E(tz(q.E, 3) + '\\,\\text{eV}') : 'f = \\frac{E}{h} = \\frac{' + tz(q.E, 3) + ' \\cdot 1{,}602 \\cdot 10^{-19}\\,\\text{J}}{6{,}626 \\cdot 10^{-34}\\,\\text{Js}} = ' + E(wt(q.f * 1e14) + '\\,\\text{Hz}'); } }] },
+        { titel: 'Einsteinsche Gleichung', hilfe: 'Energien in eV, λ in nm.',
+          felder: [{ k: 'Ek', tex: 'E_\\text{kin}', name: 'Bewegungsenergie der Elektronen', e: 'eV', min: 0.001, max: 1000 }, { k: 'lam', tex: '\\lambda', name: 'Wellenlänge', e: 'nm', min: 1, max: 1240 }, { k: 'W', tex: 'W_\\text{A}', name: 'Austrittsarbeit', e: 'eV', min: 0.5, max: 10 }],
+          beispiel: { lam: 400, W: 2.3 },
+          gleichungen: [{ name: 'E_kin = hc/λ − W', v: ['Ek', 'lam', 'W'], f: function (q) { return [q.Ek + q.W, HC / q.lam]; },
+            loese: { Ek: function (q) { const v = HC / q.lam - q.W; return v > 0 ? v : NaN; }, lam: function (q) { return HC / (q.Ek + q.W); }, W: function (q) { const v = HC / q.lam - q.Ek; return v > 0 ? v : NaN; } },
+            weg: function (k, q) {
+              if (k === 'Ek') return 'E_\\text{kin} = \\frac{h c}{\\lambda} - W_\\text{A} = \\frac{1240}{' + tz(q.lam, 1) + '}\\,\\text{eV} - ' + tz(q.W, 2) + '\\,\\text{eV} = ' + E(tz(q.Ek, 3) + '\\,\\text{eV}');
+              if (k === 'lam') return '\\lambda = \\frac{h c}{E_\\text{kin} + W_\\text{A}} = \\frac{1240\\,\\text{eV nm}}{' + tz(q.Ek + q.W, 3) + '\\,\\text{eV}} = ' + E(tz(q.lam, 1) + '\\,\\text{nm}');
+              return 'W_\\text{A} = \\frac{h c}{\\lambda} - E_\\text{kin} = ' + tz(HC / q.lam, 3) + ' - ' + tz(q.Ek, 3) + ' = ' + E(tz(q.W, 3) + '\\,\\text{eV}');
+            } }] },
+        { titel: 'Grenzwellenlänge', felder: [{ k: 'lg', tex: '\\lambda_\\text{G}', name: 'Grenzwellenlänge', e: 'nm', min: 10, max: 1e5 }, { k: 'W', tex: 'W_\\text{A}', name: 'Austrittsarbeit', e: 'eV', min: 0.01, max: 100 }],
+          beispiel: { W: 4.33 },
+          gleichungen: [{ name: 'λ_G = hc/W', v: ['lg', 'W'], f: function (q) { return [q.lg * q.W, HC]; },
+            loese: { lg: function (q) { return HC / q.W; }, W: function (q) { return HC / q.lg; } },
+            weg: function (k, q) { return k === 'lg' ? '\\lambda_\\text{G} = \\frac{h c}{W_\\text{A}} = \\frac{1240\\,\\text{eV nm}}{' + tz(q.W, 2) + '\\,\\text{eV}} = ' + E(tz(q.lg, 0) + '\\,\\text{nm}') : 'W_\\text{A} = \\frac{h c}{\\lambda_\\text{G}} = ' + E(tz(q.W, 3) + '\\,\\text{eV}'); } }] },
+        { titel: 'Photonenzahl', hilfe: 'Leistung in mW, λ in nm.',
+          felder: [{ k: 'N', tex: 'N', name: 'Photonen pro Sekunde', e: '1/s', min: 1, max: 1e30 }, { k: 'P', tex: 'P', name: 'Lichtleistung', e: 'mW', min: 1e-9, max: 1e9 }, { k: 'lam', tex: '\\lambda', name: 'Wellenlänge', e: 'nm', min: 1, max: 1e6 }],
+          beispiel: { P: 1, lam: 650 },
+          gleichungen: [{ name: 'N = P λ / (hc)', v: ['N', 'P', 'lam'], f: function (q) { return [q.N * H_P * C0, q.P * 1e-3 * q.lam * 1e-9]; },
+            loese: { N: function (q) { return q.P * 1e-3 * q.lam * 1e-9 / (H_P * C0); }, P: function (q) { return q.N * H_P * C0 / (q.lam * 1e-9) * 1e3; }, lam: function (q) { return q.N * H_P * C0 / (q.P * 1e-3) * 1e9; } },
+            weg: function (k, q) {
+              if (k === 'N') return 'N = \\frac{P \\lambda}{h c} = \\frac{' + wt(q.P * 1e-3) + ' \\cdot ' + wt(q.lam * 1e-9) + '}{6{,}626 \\cdot 10^{-34} \\cdot 2{,}998 \\cdot 10^8}\\,\\tfrac{1}{\\text{s}} = ' + E(wt(q.N) + '\\,\\tfrac{1}{\\text{s}}');
+              if (k === 'P') return 'P = \\frac{N h c}{\\lambda} = ' + E(wt(q.P) + '\\,\\text{mW}');
+              return '\\lambda = \\frac{N h c}{P} = ' + E(tz(q.lam, 1) + '\\,\\text{nm}');
+            } }] }
+      ],
+      sammlung: [
+        ['Photonenenergie', 'E = h \\cdot f = \\frac{h c}{\\lambda}', 'h = 6,626 · 10⁻³⁴ Js'],
+        ['Praktische Form', 'E\\,[\\text{eV}] = \\frac{1240}{\\lambda\\,[\\text{nm}]}', 'hc = 1 240 eV · nm'],
+        ['Einsteinsche Gleichung', 'E_\\text{kin,max} = h f - W_\\text{A}', ''],
+        ['Grenzfrequenz', 'f_\\text{G} = \\frac{W_\\text{A}}{h}', 'darunter kein Photoeffekt'],
+        ['Gegenfeldmethode', 'e \\cdot U_0 = E_\\text{kin,max} = h f - W_\\text{A}', 'Steigung der Geraden U₀(f) ist h/e'],
+        ['Photonenimpuls', 'p = \\frac{h}{\\lambda} = \\frac{E}{c}', ''],
+        ['Photonenzahl', 'N = \\frac{P}{h f}', 'je Sekunde'],
+        ['Photostrom', 'I = \\eta \\cdot N \\cdot e', 'η Quantenausbeute'],
+        ['Elektronvolt', '1\\,\\text{eV} = 1{,}602 \\cdot 10^{-19}\\,\\text{J}', '']
+      ],
+      quellen: 'Austrittsarbeiten gerundet; sie hängen von Oberfläche und Kristallrichtung ab. Kennlinie vereinfacht: Bewegungsenergien gleich verteilt zwischen 0 und dem Höchstwert.',
+      bild: { titel: 'Animation', label: 'Photozelle mit Photonen und Elektronen, Strom-Spannungs-Kennlinie und Millikan-Gerade', animiert: true,
+        hoehe: function (B) { return B < 600 ? Math.round(B + 40) : 440; },
+        hinweis: function (r) {
+          if (ansicht === 'versuch') return 'Photonen (Wellenzüge) treffen die Kathode. Reicht ihre Energie, fliegen Elektronen heraus – höchstens mit ' + (r.geht ? zz(r.Ek, 2) + ' eV' : '0 eV') + '. Die Gegenspannung bremst sie; zu langsame kehren um.';
+          if (ansicht === 'kennlinie') return 'Photostrom über der Gegenspannung. Bei U₀ = E_kin/e wird er null. Mehr Licht hebt nur die Sättigung, nicht U₀.';
+          return 'Grenz-Gegenspannung über der Frequenz für verschiedene Metalle: parallele Geraden mit der Steigung h/e. Achsenabschnitt: Austrittsarbeit. So bestimmte Millikan 1916 die Planck-Konstante.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); ({ versuch: versuchBild, kennlinie: kennlinieBild, millikan: millikanBild })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    // ---------- Versuch ----------
+    function versuchBild(cx, B, H, dt, r, e) {
+      SIM.t += dt; const kx = B * 0.55, ax = B - 30, y0 = H * 0.2, y1 = H * 0.8, my = (y0 + y1) / 2, farbe = farbeVon(e.lam);
+      cx.fillStyle = F('--flaeche'); cx.fillRect(0, 0, B, H);
+      // Lampe
+      kreis(cx, 30, 40, 16, farbe, F('--text'), 1.5); T(cx, zz(e.lam, 0) + ' nm', 30, 70, 'center', 10, true, F('--text'));
+      // Kathode und Anode
+      cx.fillStyle = GRAU; cx.fillRect(kx - 6, y0, 8, y1 - y0); cx.fillStyle = F('--text'); cx.fillRect(ax, y0, 6, y1 - y0);
+      T(cx, 'Kathode (' + (METALLE[e.metall] ? METALLE[e.metall][0] : 'Metall') + ')', kx - 2, y1 + 16, 'center', 10, true, GRAU); T(cx, 'Anode', ax + 3, y1 + 16, 'center', 10, true, F('--text'));
+      T(cx, 'Gegenspannung ' + zz(e.U, 2) + ' V', (kx + ax) / 2, y0 - 10, 'center', 10, true, ROT);
+      // Photonen erzeugen (Rate nach Leistung, gedämpft)
+      SIM.neu += dt * Math.min(25, 4 + Math.log10(1 + e.P) * 6);
+      while (SIM.neu >= 1) { SIM.neu -= 1; const zy = y0 + Math.random() * (y1 - y0); SIM.photonen.push({ x: 40, y: 40, zx: kx - 6, zy: zy, s: 0 }); }
+      SIM.photonen = SIM.photonen.filter(function (p) {
+        p.s += dt * 1.6; const x = p.x + (p.zx - p.x) * p.s, y = p.y + (p.zy - p.y) * p.s, w = Math.atan2(p.zy - p.y, p.zx - p.x);
+        // Wellenzug
+        const pk = []; for (let i = 0; i <= 14; i++) { const d = -i * 1.6, a = 3 * Math.sin(i * 1.6 * 2 * Math.PI / Math.max(4, e.lam / 60)); pk.push([x + d * Math.cos(w) - a * Math.sin(w), y + d * Math.sin(w) + a * Math.cos(w)]); }
+        zug(cx, pk, farbe, 1.6);
+        if (p.s >= 1) { if (r.geht && Math.random() < Math.max(0.15, e.eta / 100 * 4)) { const ek = r.Ek * Math.random(); SIM.teilchen.push({ x: kx + 2, y: p.zy, v: Math.sqrt(ek / Math.max(r.Ek, 1e-9)) * 160, ek: ek, a: 0 }); } return false; }
+        return true;
+      });
+      // Elektronen: Bremsung durch Gegenspannung (vereinfacht, Energiebilanz)
+      const weg = ax - kx - 2;
+      SIM.teilchen = SIM.teilchen.filter(function (q) {
+        const brems = e.U > 0 ? e.U / Math.max(r.Ek, 1e-9) * 160 * 160 / (2 * weg) : -Math.min(5, -e.U) * 160 * 30 / weg;
+        q.v -= brems * dt; q.x += q.v * dt; q.a += dt;
+        kreis(cx, q.x, q.y, 3.5, BLAU);
+        if (q.x >= ax) { SIM.zaehler++; return false; }
+        if (q.x < kx || q.a > 6) { SIM.zurueck++; return false; }
+        return true;
+      });
+      if (SIM.teilchen.length > 300) SIM.teilchen.splice(0, SIM.teilchen.length - 300);
+      T(cx, 'an der Anode: ' + SIM.zaehler + ' · umgekehrt: ' + SIM.zurueck, 10, H - 12, 'left', 11, true, F('--text'));
+      T(cx, r.geht ? 'E(Photon) = ' + zz(r.Eph, 2) + ' eV > W_A = ' + zz(e.W, 2) + ' eV' : 'E(Photon) = ' + zz(r.Eph, 2) + ' eV < W_A = ' + zz(e.W, 2) + ' eV: keine Elektronen', B - 10, 20, 'right', 11, true, r.geht ? GRUEN : ROT);
+    }
+    // ---------- Kennlinie ----------
+    function kennlinieBild(cx, B, H, dt, r, e) {
+      const umax = Math.max(1, r.U0 * 1.4, e.U * 1.2), pk = [];
+      for (let i = 0; i <= 200; i++) { const u = -2 + (umax + 2) * i / 200, I = !r.geht ? 0 : u <= 0 ? r.Isat : u >= r.U0 ? 0 : r.Isat * (1 - u / r.U0); pk.push([u, I * 1e6]); }
+      const doppelt = pk.map(function (q) { return [q[0], q[1] * 2]; });
+      const ym = Math.max(1e-9, r.Isat * 1e6 * 2.2);
+      const g = diagramm(cx, 8, 8, B - 16, H - 16, [{ name: 'Photostrom', farbe: BLAU, punkte: pk, punkt: [e.U, r.I * 1e6] }, { name: 'doppelte Lichtleistung', farbe: GRAU, punkte: doppelt, breite: 1, strich: [4, 3] }], { titel: 'Kennlinie der Photozelle (Strom in µA)', xl: 'Gegenspannung in V', xr: [-2, umax], yr: [0, ym] });
+      if (r.geht) { strecke(cx, g.X(r.U0), g.Y(0), g.X(r.U0), g.Y(ym * 0.6), ROT, 1, [3, 3]); T(cx, 'U₀ = ' + zz(r.U0, 2) + ' V', g.X(r.U0) - 4, g.Y(ym * 0.6), 'right', 10, true, ROT); }
+      void dt;
+    }
+    // ---------- Millikan ----------
+    function millikanBild(cx, B, H, dt, r, e) {
+      const fmax = 15, reihen = [], farben = [ROT, ORANGE, GRUEN, BLAU, LILA];
+      ['caesium', 'natrium', 'zink', 'platin'].forEach(function (k, i) { const W = METALLE[k][1], f0 = W * EL / H_P / 1e14; reihen.push({ name: METALLE[k][0], farbe: farben[i], breite: 1.3, punkte: [[f0, 0], [fmax, H_P * fmax * 1e14 / EL - W]] }); });
+      const f = r.f / 1e14, W = e.W, f0 = W * EL / H_P / 1e14;
+      reihen.push({ name: 'gewählt (' + zz(W, 2) + ' eV)', farbe: F('--text'), breite: 2.5, punkte: f0 < fmax ? [[f0, 0], [fmax, H_P * fmax * 1e14 / EL - W]] : [], punkt: f <= fmax && r.geht ? [f, r.U0] : null });
+      const g = diagramm(cx, 8, 8, B - 16, H - 16, reihen, { titel: 'Grenz-Gegenspannung U₀ in V über der Frequenz', xl: 'f in 10¹⁴ Hz', xr: [0, fmax], yr: [0, 5] });
+      for (let l = 380; l <= 780; l += 10) { const fx = C0 / (l * 1e-9) / 1e14; cx.fillStyle = farbeVon(l); cx.globalAlpha = 0.35; cx.fillRect(g.X(fx) - 1, g.Y(0) - 6, 3, 6); }
+      cx.globalAlpha = 1;
+      T(cx, 'Steigung h/e = 4,14 · 10⁻¹⁵ V/Hz', g.X(0.3), g.Y(4.6), 'left', 10, true, F('--text'));
+      void dt;
+    }
+
+    ansicht = (ansichten(seite, [['versuch', 'Versuch'], ['kennlinie', 'Kennlinie'], ['millikan', 'Millikan-Gerade']], 'versuch', function (a) { ansicht = a; SIM.teilchen = []; SIM.photonen = []; SIM.zaehler = 0; SIM.zurueck = 0; }))();
+    const TABELLEN = [['metall-tabelle', Object.keys(METALLE).map(function (k) { const M = METALLE[k], lg = HC / M[1]; return [M[0], zz(M[1], 2) + ' eV', zz(lg, 0) + ' nm', bereichVon(lg)]; }), [1, 2]]];
+
+    function tabelleFuellen(id, zeilen, zahl) { const tb = document.getElementById(id); if (!tb) return; zeilen.forEach(function (z) { const tr = document.createElement('tr'); z.forEach(function (x, i) { const td = document.createElement('td'); if (zahl.indexOf(i) >= 0) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr); }); }
+    (typeof TABELLEN !== 'undefined' ? TABELLEN : []).forEach(function (t) { tabelleFuellen(t[0], t[1], t[2]); });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

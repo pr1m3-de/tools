@@ -352,6 +352,24 @@
    "beschreibung": "Achsneigung und Jahreszeiten, Mittagshöhe der Sonne und Polartag, Abstand Erde–Sonne, die drei Keplerschen Gesetze mit Umlaufzeiten, Perihel und Aphel, Bahngeschwindigkeit."
   },
   {
+   "datei": "aufgabenblaetter/physik/atom-spektrum/01-energiestufen-wasserstoff.md",
+   "thema": "physik/atom-spektrum.html",
+   "titel": "Atom – Energiestufen und Spektrallinien des Wasserstoffs",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Energiestufen nach Bohr, Wellenlängen von Hα, Hβ und Lyman-α, Ionisierungsenergie und Seriengrenze, welche Photonen und Elektronenstöße ein Wasserstoffatom anregen können."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/atom-spektrum/02-rydberg-ionen.md",
+   "thema": "physik/atom-spektrum.html",
+   "titel": "Atom – Rydberg-Formel, Ionen mit einem Elektron, Bohrsche Bahnen",
+   "stufe": "schwer",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Paschen-Linie und Balmer-Grenze mit der Rydberg-Formel, Linien des Helium-Ions, Bahnradius und Geschwindigkeit im Bohrschen Modell, Zahl der Linien aus einem angeregten Zustand."
+  },
+  {
    "datei": "aufgabenblaetter/physik/chaos-feigenbaum/01-logistische-gleichung.md",
    "thema": "physik/chaos-feigenbaum.html",
    "titel": "Chaos – logistische Gleichung, Fixpunkt und Periodenverdopplung",
@@ -406,6 +424,24 @@
    "beschreibung": "Schwelle und Clustergröße im Bethe-Gitter herleiten, Kette, Korrelationslänge und endliche Gitter, fraktale Dimension des Clusters an der Schwelle."
   },
   {
+   "datei": "aufgabenblaetter/physik/photoeffekt/01-photonen-photoeffekt.md",
+   "thema": "physik/photoeffekt.html",
+   "titel": "Photoeffekt – Photonenenergie, Austrittsarbeit, Grenzwellenlänge",
+   "stufe": "mittel",
+   "aufgaben": 3,
+   "loesungen": 3,
+   "beschreibung": "Energie und Frequenz von Photonen, Einsteinsche Gleichung für eine Kalium-Kathode, Elektronengeschwindigkeit und Gegenspannung, Grenzwellenlänge, Photonenzahl eines Laserpointers."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/photoeffekt/02-millikan-planck.md",
+   "thema": "physik/photoeffekt.html",
+   "titel": "Photoeffekt – Planck-Konstante aus Messwerten, Photostrom, Strahlungsdruck",
+   "stufe": "schwer",
+   "aufgaben": 3,
+   "loesungen": 3,
+   "beschreibung": "Planck-Konstante und Austrittsarbeit aus einer Messreihe mit Quecksilberlinien bestimmen, Photostrom aus Lichtleistung und Quantenausbeute, Impuls von Photonen und Strahlungsdruck."
+  },
+  {
    "datei": "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",
    "thema": "physik/radioaktivitaet.html",
    "titel": "Radioaktivität – Strahlung, Zerfall und Kernspaltung",
@@ -413,6 +449,24 @@
    "aufgaben": 4,
    "loesungen": 4,
    "beschreibung": "Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung, Zerfallsgleichungen, Zerfallsgesetz und Halbwertszeit, Aktivität und Kernzahl, Kettenreaktion."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/schroedinger/01-teilchen-im-kasten.md",
+   "thema": "physik/schroedinger.html",
+   "titel": "Schrödinger – Teilchen im Kasten",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Energiestufen eines Elektrons im Potentialtopf, Einfluss der Kastenbreite, Photon beim Übergang, Wellenfunktionen, Knoten und Aufenthaltswahrscheinlichkeit, klassischer Grenzfall."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/schroedinger/02-farbstoffe-tunneln.md",
+   "thema": "physik/schroedinger.html",
+   "titel": "Schrödinger – Farbstoffe, Tunneleffekt und Rastertunnelmikroskop",
+   "stufe": "schwer",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Farbe eines Farbstoffmoleküls im Kastenmodell, Tunnelwahrscheinlichkeit genau und genähert, Empfindlichkeit des Rastertunnelmikroskops, warum Protonen kaum tunneln."
   },
   {
    "datei": "aufgabenblaetter/physik/schwingungen-wellen/01-pendel-wellen-doppler.md",
@@ -431,6 +485,24 @@
    "aufgaben": 4,
    "loesungen": 4,
    "beschreibung": "Wärmeleitung durch Ziegel und Dämmung, U-Wert einer Außenwand, Konvektion am Heizkörper, Wärmestrahlung des Menschen und Wiensches Verschiebungsgesetz."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/welle-teilchen/01-materiewellen-unschaerfe.md",
+   "thema": "physik/welle-teilchen.html",
+   "titel": "Welle-Teilchen – de-Broglie-Wellenlänge, Doppelspalt und Unschärfe",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "de-Broglie-Wellenlänge von Elektron, Neutron und Tennisball, Elektronen nach Beschleunigung, Streifenabstand am Doppelspalt, Ort-Impuls-Unschärfe für Elektron und Staubkorn."
+  },
+  {
+   "datei": "aufgabenblaetter/physik/welle-teilchen/02-interferenz-abschaetzungen.md",
+   "thema": "physik/welle-teilchen.html",
+   "titel": "Welle-Teilchen – Molekülinterferenz, Elektronenbeugung, Abschätzungen mit der Unschärfe",
+   "stufe": "schwer",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Interferenz von Fullerenen, Davisson-Germer-Versuch am Nickelkristall, Energieabschätzungen für Atome und Kerne mit der Unschärferelation, natürliche Linienbreite aus der Energie-Zeit-Unschärfe."
   },
   {
    "datei": "aufgabenblaetter/steuerung/digitaltechnik/01-gatter-flipflop-zaehler.md",
