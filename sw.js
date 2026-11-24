@@ -5,7 +5,7 @@
  * Bilder, Schriften, Skripte: sofort aus dem Speicher, im Hintergrund aufgefrischt.
  * Neue Seite? Unten in DATEIEN eintragen und STAND ändern.
  */
-const STAND = '56d6bf14a0';
+const STAND = '343922a8e3';
 const SPEICHER = 'rechner-' + STAND;
 const DATEIEN = [
   "./",
@@ -78,6 +78,10 @@ const DATEIEN = [
   "physik/radioaktivitaet.html",
   "physik/perkolation.html",
   "physik/chaos-feigenbaum.html",
+  "physik/gravitation-raumfahrt.html",
+  "physik/sterne-strahlung.html",
+  "physik/relativitaet.html",
+  "physik/kosmologie.html",
   "mechanik/anhalteweg.html",
   "mechanik/wurf.html",
   "physik/waermeuebertragung.html",
@@ -236,11 +240,19 @@ const DATEIEN = [
   "aufgabenblaetter/physik/chaos-feigenbaum/01-logistische-gleichung.md",
   "aufgabenblaetter/physik/chaos-feigenbaum/02-schmetterlingseffekt.md",
   "aufgabenblaetter/physik/druck-auftrieb/01-hydraulik-schweredruck-auftrieb.md",
+  "aufgabenblaetter/physik/gravitation-raumfahrt/01-gravitation-satelliten.md",
+  "aufgabenblaetter/physik/gravitation-raumfahrt/02-hohmann-raketen.md",
+  "aufgabenblaetter/physik/kosmologie/01-hubble-rotverschiebung.md",
+  "aufgabenblaetter/physik/kosmologie/02-expansion-weltmodelle.md",
   "aufgabenblaetter/physik/optik/01-reflexion-brechung.md",
   "aufgabenblaetter/physik/perkolation/01-waldbrand-und-schwelle.md",
   "aufgabenblaetter/physik/perkolation/02-theorie-bethe-fraktal.md",
   "aufgabenblaetter/physik/radioaktivitaet/01-strahlung-zerfall-spaltung.md",
+  "aufgabenblaetter/physik/relativitaet/01-zeitdilatation-myonen.md",
+  "aufgabenblaetter/physik/relativitaet/02-schwarze-loecher-gps.md",
   "aufgabenblaetter/physik/schwingungen-wellen/01-pendel-wellen-doppler.md",
+  "aufgabenblaetter/physik/sterne-strahlung/01-strahlung-entfernung.md",
+  "aufgabenblaetter/physik/sterne-strahlung/02-sterne-planeten.md",
   "aufgabenblaetter/physik/waermeuebertragung/01-leitung-konvektion-strahlung.md",
   "aufgabenblaetter/steuerung/digitaltechnik/01-gatter-flipflop-zaehler.md",
   "aufgabenblaetter/steuerung/kleinsteuerung/01-funktionsplan.md",

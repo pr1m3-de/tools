@@ -374,5 +374,45 @@
     ["Warum ist die Feigenbaum-Konstante „universell“?", "Sie ergibt sich bei allen Systemen mit einem einfachen, quadratischen Höcker, auch im Experiment.", ["Sie gilt nur für die logistische Gleichung.", "Sie ist eine gerundete Messgröße ohne Bedeutung.", "Sie hängt vom Startwert ab."], "Gemessen z. B. bei Konvektion, Schwingkreisen und tropfenden Wasserhähnen."],
     ["Ist deterministisches Chaos dasselbe wie Zufall?", "Nein, jeder Schritt ist festgelegt; nur kleinste Startfehler wachsen stark.", ["Ja, die Werte sind rein zufällig.", "Ja, aber nur bei r = 4.", "Nein, Chaos ist immer periodisch."], "Mit exakt gleichem Startwert kommt immer exakt dieselbe Folge heraus."],
     ["Was findet man bei r ≈ 3,83 mitten im Chaos?", "ein Fenster mit Periode 3", ["einen stabilen Fixpunkt", "das Aussterben der Population", "die erste Verdopplung"], "Ab 1 + √8 ≈ 3,8284 herrscht kurz wieder Ordnung, danach folgt erneut eine Verdopplungskaskade."]
+  ],
+  "physik/gravitation-raumfahrt.html": [
+    ["Wie ändert sich die Gravitationskraft, wenn sich der Abstand der Mittelpunkte verdoppelt?", "Sie sinkt auf ein Viertel.", ["Sie halbiert sich.", "Sie bleibt gleich.", "Sie sinkt auf ein Achtel."], "F ∝ 1/r²: doppelter Abstand, (1/2)² = 1/4."],
+    ["Warum sind Astronauten in der Raumstation schwerelos?", "Station und Besatzung fallen gemeinsam frei um die Erde.", ["In 400 km Höhe gibt es keine Schwerkraft mehr.", "Die Luft fehlt.", "Die Fliehkraft der Erdrotation hebt die Schwerkraft auf."], "In 400 km Höhe wirken noch etwa 89 % der Schwerkraft vom Boden."],
+    ["Wie hängen Fluchtgeschwindigkeit und Kreisbahngeschwindigkeit zusammen?", "v_F = √2 · v_Kreis", ["v_F = 2 · v_Kreis", "v_F = v_Kreis", "v_F = v_Kreis²"], "Für die Erde: 7,9 km/s · √2 = 11,2 km/s."],
+    ["In welcher Höhe liegt die geostationäre Bahn der Erde?", "etwa 35 800 km", ["etwa 400 km", "etwa 20 200 km", "etwa 384 000 km"], "Dort dauert ein Umlauf genau einen Sterntag; 400 km ist die Raumstation, 20 200 km GPS, 384 000 km der Mond."],
+    ["Wie läuft ein Hohmann-Übergang in eine höhere Kreisbahn ab?", "zwei Schübe in Flugrichtung: einer für die Übergangsellipse, einer am höchsten Punkt", ["ein langer Dauerschub senkrecht nach oben", "ein Schub gegen die Flugrichtung", "drei Schübe quer zur Bahn"], "Er ist der energiesparendste Weg zwischen zwei Kreisbahnen."],
+    ["Wie verändert sich die Umlaufzeit mit dem Bahnradius?", "T² ∝ r³ (drittes Keplersches Gesetz)", ["T ∝ r", "T ∝ 1/r", "T ist überall gleich"], "Höhere Bahnen sind langsamer und länger: Raumstation 92 min, Mond 27,3 Tage."],
+    ["Ein Satellit bremst kurz ab. Was passiert langfristig?", "Er sinkt auf eine tiefere Bahn und wird dort schneller.", ["Er bleibt auf der Bahn, nur langsamer.", "Er fällt senkrecht herunter.", "Er steigt auf eine höhere Bahn."], "Auf tieferen Kreisbahnen ist v = √(GM/r) größer."],
+    ["Was beschreibt die Raketengleichung Δv = v_aus · ln(m₀/m₁)?", "den Geschwindigkeitsgewinn aus Ausströmgeschwindigkeit und Massenverhältnis", ["die Fluchtgeschwindigkeit", "die Umlaufzeit", "den Luftwiderstand"], "Weil der Logarithmus langsam wächst, braucht man sehr viel Treibstoff."]
+  ],
+  "physik/sterne-strahlung.html": [
+    ["Was besagt das Wiensche Verschiebungsgesetz?", "Je heißer ein Körper, desto kürzer die Wellenlänge seines Strahlungsmaximums.", ["Je heißer, desto länger die Wellenlänge des Maximums.", "Die abgestrahlte Leistung wächst mit T⁴.", "Alle Sterne haben ihr Maximum im Grünen."], "λ_max · T = 2,898 mm·K."],
+    ["Um welchen Faktor steigt die Strahlung je Fläche, wenn sich die Temperatur verdoppelt?", "16", ["2", "4", "8"], "Stefan-Boltzmann: P ∝ T⁴, 2⁴ = 16."],
+    ["Ein Stern ist 3 000 K heiß und trotzdem 100 000-mal so leuchtkräftig wie die Sonne. Wie ist das möglich?", "Er ist ein Überriese mit riesiger Oberfläche.", ["Er ist sehr nah.", "Er ist ein Weißer Zwerg.", "Das ist unmöglich."], "L = 4πR²σT⁴: ein großer Radius gleicht die niedrige Temperatur aus."],
+    ["Was bedeutet ein Helligkeitsunterschied von 5 Magnituden?", "Faktor 100 im Strahlungsfluss", ["Faktor 5", "Faktor 10", "Faktor 2,512"], "1 Magnitude entspricht dem Faktor 2,512; 2,512⁵ = 100."],
+    ["Ein Stern hat die Parallaxe 0,1″. Wie weit ist er entfernt?", "10 Parsec", ["0,1 Parsec", "1 Parsec", "100 Parsec"], "d = 1/p."],
+    ["Welche Sterne leben am längsten?", "massearme Rote Zwerge", ["massereiche blaue Sterne", "Überriesen", "alle gleich lang"], "t ∝ M⁻²·⁵: Massereiche verbrauchen ihren Brennstoff viel schneller."],
+    ["Was liegt auf der Hauptreihe des Hertzsprung-Russell-Diagramms?", "Sterne, die im Kern Wasserstoff zu Helium verschmelzen", ["nur Rote Riesen", "Weiße Zwerge", "Planeten"], "Etwa 90 % aller Sterne, auch die Sonne, sind Hauptreihensterne."],
+    ["Welche Spektralklasse hat die Sonne?", "G", ["O", "A", "M"], "G2 V mit 5 772 K; Merkspruch der Reihe: O B A F G K M."]
+  ],
+  "physik/relativitaet.html": [
+    ["Was besagt die Zeitdilatation?", "Eine bewegte Uhr geht – vom ruhenden Beobachter gemessen – langsamer.", ["Eine bewegte Uhr geht schneller.", "Alle Uhren gehen gleich schnell.", "Uhren bleiben bei hoher Geschwindigkeit stehen."], "Δt = γ · Δt₀ mit γ ≥ 1."],
+    ["Wie groß ist der Lorentzfaktor bei 80 % der Lichtgeschwindigkeit?", "1,667", ["1,25", "0,6", "5"], "γ = 1/√(1 − 0,64) = 1/0,6."],
+    ["Warum erreichen Myonen aus der Höhenstrahlung den Erdboden?", "Ihre Lebensdauer ist für uns durch die Zeitdilatation verlängert.", ["Sie sind schneller als Licht.", "Sie zerfallen gar nicht.", "Die Erdatmosphäre beschleunigt sie."], "Aus ihrer Sicht ist der Weg durch die Längenkontraktion verkürzt – beides passt zusammen."],
+    ["Zwei Raumschiffe fliegen mit je 90 % von c aufeinander zu. Wie schnell nähern sie sich, gemessen von einem Schiff?", "mit etwa 99,4 % von c", ["mit 180 % von c", "mit 90 % von c", "mit genau c"], "u = (0,9 + 0,9)/(1 + 0,81) = 0,994."],
+    ["Wie groß ist der Schwarzschildradius der Sonne?", "etwa 3 km", ["etwa 3 mm", "etwa 700 000 km", "etwa 3 000 km"], "r_S = 2GM/c² = 2,95 km."],
+    ["Warum gehen GPS-Uhren auf der Bahn insgesamt vor?", "Das schwächere Schwerefeld lässt sie schneller gehen, mehr als die Bewegung sie bremst.", ["Wegen der Luftreibung.", "Weil sie sich schneller als Licht bewegen.", "Sie gehen nach, nicht vor."], "+45 µs (Gravitation) − 7 µs (Bewegung) ≈ +38 µs pro Tag."],
+    ["Was sagt E = mc² aus?", "Masse und Energie sind gleichwertig; Masse ist eine Form von Energie.", ["Energie ist immer Bewegungsenergie.", "Masse wächst mit dem Quadrat der Geschwindigkeit.", "Licht hat Masse m = E·c²."], "1 g Masse entspricht 9 · 10¹³ J."],
+    ["Warum ist der reisende Zwilling bei der Rückkehr jünger?", "Er wechselt bei der Umkehr das Bezugssystem; sein Weg durch die Raumzeit hat weniger Eigenzeit.", ["Weil im Weltall weniger Zeit vergeht.", "Es ist ein echter Widerspruch.", "Weil er weniger isst."], "Die Situation ist nicht symmetrisch: Nur er wird beschleunigt."]
+  ],
+  "physik/kosmologie.html": [
+    ["Was besagt das Hubble-Lemaître-Gesetz?", "Die Fluchtgeschwindigkeit einer Galaxie wächst proportional mit ihrer Entfernung.", ["Alle Galaxien fliehen gleich schnell.", "Nahe Galaxien fliehen schneller.", "Galaxien bewegen sich auf uns zu."], "v = H₀ · d."],
+    ["Was bedeutet eine Rotverschiebung von z = 2?", "Das Universum war beim Aussenden des Lichts ein Drittel so groß wie heute.", ["Die Galaxie flieht mit doppelter Lichtgeschwindigkeit.", "Das Licht ist doppelt so alt wie das Universum.", "Die Wellenlänge ist halbiert."], "1 + z = 1/a: a = 1/3."],
+    ["Wie alt ist das Universum ungefähr?", "13,8 Milliarden Jahre", ["4,6 Milliarden Jahre", "100 Milliarden Jahre", "6 000 Jahre"], "4,6 Milliarden Jahre ist das Alter der Sonne."],
+    ["Was ist die kosmische Hintergrundstrahlung?", "das abgekühlte Leuchten des Universums 380 000 Jahre nach dem Urknall", ["das Licht der ersten Sterne", "Strahlung der Sonne", "Rauschen irdischer Sender"], "Heute 2,725 K, um den Faktor 1 100 gedehnt."],
+    ["Wo ist das Zentrum der Expansion?", "Es gibt keins; jeder Beobachter sieht alle anderen Galaxien fliehen.", ["in der Milchstraße", "im Coma-Haufen", "dort, wo der Urknall explodierte"], "Der Raum selbst dehnt sich überall gleich."],
+    ["Was zeigen die Beobachtungen von Supernovae seit 1998?", "Die Expansion beschleunigt sich.", ["Die Expansion hat aufgehört.", "Das Universum schrumpft.", "Die Expansion bremst immer stärker."], "Ursache ist die Dunkle Energie."],
+    ["Wie groß ist etwa der Anteil der gewöhnlichen (sichtbaren) Materie am Energieinhalt des Universums?", "etwa 5 %", ["etwa 31 %", "etwa 69 %", "etwa 95 %"], "31 % ist die gesamte Materie, davon 85 % Dunkle Materie; 69 % Dunkle Energie."],
+    ["Warum können sich ferne Galaxien schneller als Licht von uns entfernen?", "Der Raum zwischen ihnen dehnt sich; sie bewegen sich nicht schneller als Licht durch den Raum.", ["Das ist ein Messfehler.", "Licht ist im All langsamer.", "Galaxien haben keine Masse."], "Die Relativitätstheorie begrenzt nur Bewegung durch den Raum."]
   ]
 }

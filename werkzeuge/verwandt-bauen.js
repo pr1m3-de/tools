@@ -25,7 +25,8 @@ const PAARE = [
   ['physik/schwingungen-wellen.html', 'it/audioformate.html'], ['physik/optik.html', 'it/bildformate.html'],
   ['elektro/halbleiter.html', 'elektro/transistor-opv.html'], ['elektro/transistor-opv.html', 'steuerung/digitaltechnik.html'],
   ['it/rack-strom.html', 'it/serverraum-klima.html'], ['it/rack-strom.html', 'it/usv.html'],
-  ['physik/perkolation.html', 'physik/chaos-feigenbaum.html'], ['physik/perkolation.html', 'brandschutz/brandsimulation.html'], ['physik/perkolation.html', 'physik/radioaktivitaet.html'], ['physik/chaos-feigenbaum.html', 'physik/schwingungen-wellen.html']
+  ['physik/perkolation.html', 'physik/chaos-feigenbaum.html'], ['physik/perkolation.html', 'brandschutz/brandsimulation.html'], ['physik/perkolation.html', 'physik/radioaktivitaet.html'], ['physik/chaos-feigenbaum.html', 'physik/schwingungen-wellen.html'],
+  ['physik/gravitation-raumfahrt.html', 'physik/astronomie.html'], ['physik/gravitation-raumfahrt.html', 'physik/relativitaet.html'], ['physik/sterne-strahlung.html', 'physik/kosmologie.html'], ['physik/sterne-strahlung.html', 'physik/waermeuebertragung.html'], ['physik/relativitaet.html', 'physik/kosmologie.html'], ['physik/kosmologie.html', 'physik/astronomie.html']
 ];
 
 const start = fs.readFileSync(path.join(WURZEL, 'index.html'), 'utf8');
