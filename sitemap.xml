@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://tools.pr1m3.de/</loc><lastmod>2026-11-22</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/arbeitsschutz/bildschirmarbeit.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://tools.pr1m3.de/arbeitsschutz/gefahrstoffe-luft.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://tools.pr1m3.de/arbeitsschutz/heben-tragen.html</loc><lastmod>2026-11-10</lastmod></url>
@@ -21,7 +21,7 @@
   <url><loc>https://tools.pr1m3.de/dach/schornsteinverwahrung.html</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://tools.pr1m3.de/dach/sparren-lattung.html</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://tools.pr1m3.de/dach/wind-schneelast.html</loc><lastmod>2026-11-11</lastmod></url>
-  <url><loc>https://tools.pr1m3.de/elektro/batteriespeicher.html</loc><lastmod>2026-11-11</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/elektro/batteriespeicher.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/beleuchtung.html</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/blitzschutz.html</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/drehstrom.html</loc><lastmod>2026-11-19</lastmod></url>
@@ -35,7 +35,7 @@
   <url><loc>https://tools.pr1m3.de/gebaeudeautomation/smart-home.html</loc><lastmod>2026-11-20</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/einbruchmeldeanlage.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/erdung.html</loc><lastmod>2026-11-11</lastmod></url>
-  <url><loc>https://tools.pr1m3.de/elektro/kondensator.html</loc><lastmod>2026-11-18</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/elektro/kondensator.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/grundgroessen.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/kleintransformatoren.html</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/koerperstrom.html</loc><lastmod>2026-11-10</lastmod></url>
@@ -45,7 +45,7 @@
   <url><loc>https://tools.pr1m3.de/elektro/motor.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/ohmsches-gesetz.html</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/pv-dach.html</loc><lastmod>2026-11-04</lastmod></url>
-  <url><loc>https://tools.pr1m3.de/elektro/pv-notstrom.html</loc><lastmod>2026-11-04</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/elektro/pv-notstrom.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/pv-string.html</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/pv-verschaltung.html</loc><lastmod>2026-11-04</lastmod></url>
   <url><loc>https://tools.pr1m3.de/elektro/pv-verschattung.html</loc><lastmod>2026-11-04</lastmod></url>
@@ -94,7 +94,7 @@
   <url><loc>https://tools.pr1m3.de/it/raid.html</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://tools.pr1m3.de/it/serverraum-klima.html</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://tools.pr1m3.de/it/subnetz.html</loc><lastmod>2026-11-06</lastmod></url>
-  <url><loc>https://tools.pr1m3.de/it/usv.html</loc><lastmod>2026-11-06</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/it/usv.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/it/verfuegbarkeit.html</loc><lastmod>2026-11-11</lastmod></url>
   <url><loc>https://tools.pr1m3.de/it/verschluesselung.html</loc><lastmod>2026-11-06</lastmod></url>
   <url><loc>https://tools.pr1m3.de/it/wlan.html</loc><lastmod>2026-11-06</lastmod></url>
@@ -137,4 +137,5 @@
   <url><loc>https://tools.pr1m3.de/it/pruefsummen.html</loc><lastmod>2026-11-22</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/perkolation.html</loc><lastmod>2026-11-23</lastmod></url>
   <url><loc>https://tools.pr1m3.de/physik/chaos-feigenbaum.html</loc><lastmod>2026-11-23</lastmod></url>
+  <url><loc>https://tools.pr1m3.de/elektro/akku-laden-entladen.html</loc><lastmod>2026-11-24</lastmod></url>
 </urlset>

@@ -37,6 +37,24 @@
    "beschreibung": "Brandentstehung, Brandursachen, Rauch aus PVC, die drei Schutzziele, die vier Säulen des Brandschutzes, Feuerwiderstandsklassen, Abschottungen und Funktionserhalt."
   },
   {
+   "datei": "aufgabenblaetter/elektro/akku-laden-entladen/01-laden-entladen-grundlagen.md",
+   "thema": "elektro/akku-laden-entladen.html",
+   "titel": "Akku – Laden, Entladen, C-Rate und Innenwiderstand",
+   "stufe": "mittel",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "C-Rate, Ladezeit und Energie berechnen, Ladeverfahren CC/CV erklären, Klemmenspannung und Wärme am Innenwiderstand, Ladezeit mit Ladungswirkungsgrad."
+  },
+  {
+   "datei": "aufgabenblaetter/elektro/akku-laden-entladen/02-peukert-zeitkonstante-temperatur.md",
+   "thema": "elektro/akku-laden-entladen.html",
+   "titel": "Akku – Peukert, Zeitkonstante τ und Temperatur",
+   "stufe": "schwer",
+   "aufgaben": 4,
+   "loesungen": 4,
+   "beschreibung": "Kapazität bei hohem Strom nach Peukert, Lastsprung mit Ersatzschaltbild und Zeitkonstante τ bis 5τ, abklingender Strom in der Konstantspannungsphase, Temperaturkorrektur der Ladespannung."
+  },
+  {
    "datei": "aufgabenblaetter/elektro/drehfeldmaschinen/01-drehfeld-polpaare-klemmbrett.md",
    "thema": "elektro/drehfeldmaschinen.html",
    "titel": "Drehfeldmaschinen – Drehfeld, Polpaare und Klemmbrett",
