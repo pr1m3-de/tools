@@ -1,0 +1,15 @@
+{
+  "nr": 1000,
+  "titel": "Kondensatoren",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Kondensator", "Kapazität", "Ladung", "Energie", "Reihenschaltung", "Parallelschaltung", "RC-Glied", "Zeitkonstante", "Laden", "Entladen", "Blindwiderstand", "Plattenkondensator", "Elko", "Aufdruck", "Kondensator-Code", "104"],
+  "text": "Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und entladen mit Zeitkonstante, Entladezeit auf 60 V, kapazitiver Blindwiderstand, Plattenkondensator und Aufdruck-Codes wie 104 oder 4n7 – mit Animation.",
+  "tex": "\\tau = R \\cdot C",
+  "projektmappe": {"nr": 760, "name": "Kondensatoren", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Nach welcher Zeit ist ein Kondensator über einen Widerstand praktisch voll geladen?", "nach etwa 5 τ", ["nach 1 τ", "sofort", "nie"], "τ = R · C; nach 5 τ sind über 99 % erreicht."],
+    ["Wie verhält sich ein Kondensator bei Gleichspannung nach dem Aufladen?", "Er sperrt, es fließt kein Strom mehr.", ["Er leitet wie ein Draht.", "Er erzeugt Wechselstrom.", "Er entlädt sich sofort."], "Nur während der Spannungsänderung fließt Strom."],
+    ["Was ergibt die Parallelschaltung zweier Kondensatoren?", "Die Kapazitäten addieren sich.", ["Die Kehrwerte addieren sich.", "Die kleinere Kapazität gilt.", "Die Kapazität halbiert sich."], "Größere Plattenfläche, mehr Kapazität."]
+  ]
+}

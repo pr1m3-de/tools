@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Prüfsummen und Fehlerkorrektur: Parität, Hamming-Code und CRC – Formeln &amp; Rechner</title>
   <meta name="description" content="Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die Wahrscheinlichkeit fehlerfreier Pakete bei einer Bitfehlerrate.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/it/pruefsummen.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Prüfsummen und Fehlerkorrektur: Parität, Hamming-Code und CRC">
-  <meta property="og:description" content="Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die Wahrscheinlichkeit fehlerfreier Pakete bei einer Bitfehlerrate.">
-  <meta property="og:url" content="https://tools.pr1m3.de/it/pruefsummen.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Prüfsummen und Fehlerkorrektur: Parität, Hamming-Code und CRC">
-  <meta name="twitter:description" content="Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die Wahrscheinlichkeit fehlerfreier Pakete bei einer Bitfehlerrate.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/pruefsummen.html#seite","name":"Prüfsummen und Fehlerkorrektur: Parität, Hamming-Code und CRC","url":"https://tools.pr1m3.de/it/pruefsummen.html","inLanguage":"de","description":"Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die Wahrscheinlichkeit fehlerfreier Pakete bei einer Bitfehlerrate.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/pruefsummen.html#pfad"},"dateModified":"2026-11-22"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/pruefsummen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Prüfsummen und Fehlerkorrektur: Parität, Hamming-Code und CRC","item":"https://tools.pr1m3.de/it/pruefsummen.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/pruefsummen.html#fragen","mainEntity":[{"@type":"Question","name":"Wie viele Prüfbits braucht ein Hamming-Code?","acceptedAnswer":{"@type":"Answer","text":"Für k Datenbits braucht man r Prüfbits mit 2ʳ ≥ k + r + 1. Für 4 Datenbits reichen 3, für 64 Bit (ECC-Speicher) 7 – plus ein Gesamtparitätsbit, um Doppelfehler zu erkennen, also 72 Bit insgesamt."}},{"@type":"Question","name":"Was bedeutet eine Bitfehlerrate von 10⁻⁹?","acceptedAnswer":{"@type":"Answer","text":"Im Mittel ist eines von einer Milliarde Bits falsch. Bei 1 Gbit/s ist das etwa ein Bitfehler pro Sekunde – deshalb braucht jedes Netzwerk Prüfsummen."}},{"@type":"Question","name":"Warum heißt es Coderate?","acceptedAnswer":{"@type":"Answer","text":"Die Coderate R = k/n gibt an, welcher Anteil der übertragenen Bits Nutzdaten sind. Hamming(7,4) hat R = 4/7 ≈ 0,57, ein Paritätsbit an einem Byte 8/9 ≈ 0,89."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/pruefsummen.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -58,17 +40,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="kompression.html"><b>Datenkompression: Entropie, Huffman, LZ77, ZIP</b><span>Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und …</span></a></li>
-      <li><a href="zahlensysteme.html"><b>Zahlensysteme und Bits</b><span>Binär, Oktal, Dezimal, Hex und jede Basis bis 36, Zweierkomplement mit Überlauf und Bitoperationen, Gleitkomma nach …</span></a></li>
-      <li><a href="../steuerung/digitaltechnik.html"><b>Digitaltechnik: Gatter, Flipflops, Zähler, Addierer</b><span>Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als …</span></a></li>
-      <li><a href="../steuerung/kleinsteuerung.html"><b>Kleinsteuerung (Logikmodul): Funktionsplan</b><span>Kleinsteuerungen (Logikmodule) verstehen und programmieren</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

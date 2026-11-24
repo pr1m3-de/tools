@@ -1,0 +1,10 @@
+{
+  "nr": 430,
+  "titel": "Paketreise durchs Netz",
+  "gruppe": "Netzwerk",
+  "bereich": "IT und Netzwerk",
+  "themen": ["DNS", "TCP", "TLS", "NAT", "OSI"],
+  "text": "Webseitenaufruf Schritt für Schritt mit Simulation: DNS, ARP, TCP- und TLS-Handshake, Kapselung, NAT, Router im Internet und Antwort – mit Kopfdaten und Zeit bis zum ersten Byte.",
+  "tex": "t_\\text{TTFB} = t_\\text{DNS} + RTT_\\text{TCP} + RTT_\\text{TLS} + RTT_\\text{HTTP}",
+  "projektmappe": {"nr": 1140, "name": "Paketreise durchs Netz", "farbe": "#3B5BDB"}
+}

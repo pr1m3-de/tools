@@ -1,0 +1,14 @@
+{
+  "nr": 180,
+  "titel": "Ausdehnungsgefäß und Sicherheitsventil",
+  "bereich": "Heizungstechnik",
+  "themen": ["MAG", "Vordruck", "Fülldruck", "Sicherheitsventil", "Ausdehnung"],
+  "text": "Membran-Ausdehnungsgefäß nach DIN EN 12828 und VDI 4708: Vordruck, Fülldruck, Enddruck, Nenninhalt und Normgröße, Sicherheitsventil und Ausdehnungsleitung.",
+  "tex": "V_\\text{N} = (V_\\text{e} + V_\\text{V}) \\cdot \\frac{p_\\text{e} + 1}{p_\\text{e} - p_0}",
+  "projektmappe": {"nr": 340, "name": "Ausdehnungsgefäß und Sicherheitsventil", "farbe": "#C2410C"},
+  "fragen": [
+    ["Wozu dient das Ausdehnungsgefäß?", "Es nimmt das Wasser auf, das sich beim Erwärmen ausdehnt.", ["Es erwärmt das Wasser.", "Es entlüftet die Heizkörper.", "Es misst die Vorlauftemperatur."], "Ohne würde der Druck stark steigen."],
+    ["Was schützt die Anlage, wenn der Druck trotzdem zu hoch wird?", "das Sicherheitsventil", ["der Thermostat", "das Rückschlagventil", "der Schmutzfänger"], "Es öffnet beim Ansprechdruck, z. B. 3 bar."],
+    ["Was muss beim Vordruck des Gefäßes beachtet werden?", "Er muss zur statischen Höhe der Anlage passen.", ["Er muss immer 0 bar sein.", "Er muss höher als der Ansprechdruck des Sicherheitsventils sein.", "Er hat keine Bedeutung."], "Typisch statische Höhe + 0,2 bar."]
+  ]
+}

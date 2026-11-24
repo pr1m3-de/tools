@@ -16,18 +16,21 @@ const vm = require('vm');
 const WURZEL = path.join(__dirname, '..');
 const ANZAHL = 4;
 // Seiten, die fachlich zusammengehören (gelten in beide Richtungen, Reihenfolge = Vorrang)
-const PAARE = [
-  ['elektro/schleifenimpedanz.html', 'elektro/netzsysteme.html'], ['elektro/schleifenimpedanz.html', 'elektro/spannungsfall.html'], ['elektro/schleifenimpedanz.html', 'elektro/messung-anleitung.html'], ['elektro/schleifenimpedanz.html', 'elektro/koerperstrom.html'], ['elektro/netzsysteme.html', 'elektro/koerperstrom.html'], ['elektro/netzsysteme.html', 'elektro/erdung.html'],
-  ['heizung/u-wert.html', 'physik/waermeuebertragung.html'], ['heizung/heizlast.html', 'heizung/waermepumpe.html'], ['heizung/heizlast.html', 'heizung/fussbodenheizung.html'], ['heizung/u-wert.html', 'heizung/heizlast.html'],
-  ['elektro/motor.html', 'elektro/drehfeldmaschinen.html'], ['elektro/motor.html', 'elektro/kompensation.html'], ['elektro/wechselstrom.html', 'elektro/kompensation.html'],
-  ['it/datenrate.html', 'it/dns-http-tls.html'], ['it/kompression.html', 'it/pruefsummen.html'], ['it/dateisysteme.html', 'it/raid.html'], ['it/dateisysteme.html', 'it/backup.html'],
-  ['mechanik/energie-impuls.html', 'mechanik/anhalteweg.html'], ['mechanik/energie-impuls.html', 'mechanik/wurf.html'],
-  ['physik/schwingungen-wellen.html', 'it/audioformate.html'], ['physik/optik.html', 'it/bildformate.html'],
-  ['elektro/halbleiter.html', 'elektro/transistor-opv.html'], ['elektro/transistor-opv.html', 'steuerung/digitaltechnik.html'],
-  ['it/rack-strom.html', 'it/serverraum-klima.html'], ['it/rack-strom.html', 'it/usv.html'],
-  ['physik/perkolation.html', 'physik/chaos-feigenbaum.html'], ['physik/perkolation.html', 'brandschutz/brandsimulation.html'], ['physik/perkolation.html', 'physik/radioaktivitaet.html'], ['physik/chaos-feigenbaum.html', 'physik/schwingungen-wellen.html'],
-  ['physik/gravitation-raumfahrt.html', 'physik/astronomie.html'], ['physik/gravitation-raumfahrt.html', 'physik/relativitaet.html'], ['physik/sterne-strahlung.html', 'physik/kosmologie.html'], ['physik/sterne-strahlung.html', 'physik/waermeuebertragung.html'], ['physik/relativitaet.html', 'physik/kosmologie.html'], ['physik/kosmologie.html', 'physik/astronomie.html']
-];
+const PAARE = [];
+// Feste Paare stehen in daten/seiten/**/*.json im Feld „verwandt“
+(function () {
+  const ordner = path.join(WURZEL, 'daten', 'seiten');
+  (function lauf(o) {
+    if (!fs.existsSync(o)) return;
+    fs.readdirSync(o, { withFileTypes: true }).sort(function (x, y) { return x.name < y.name ? -1 : 1; }).forEach(function (e) {
+      const p = path.join(o, e.name);
+      if (e.isDirectory()) return lauf(p);
+      if (!e.name.endsWith('.json')) return;
+      const pfad = path.relative(ordner, p).split(path.sep).join('/').replace(/\.json$/, '.html'), d = JSON.parse(fs.readFileSync(p, 'utf8'));
+      (d.verwandt || []).forEach(function (z) { PAARE.push([pfad, z]); });
+    });
+  })(ordner);
+})();
 
 const start = fs.readFileSync(path.join(WURZEL, 'index.html'), 'utf8');
 const a = start.indexOf('const eintraege = ['), b = start.indexOf('\n    ];', a);

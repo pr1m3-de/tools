@@ -1,0 +1,15 @@
+{
+  "nr": 1240,
+  "titel": "Audioformate: MP3, AAC, Opus, FLAC im Vergleich",
+  "gruppe": "Dateiformate",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Audioformat", "Audio", "MP3", "AAC", "HE-AAC", "Opus", "Vorbis", "FLAC", "WAV", "PCM", "Bitrate", "kbit/s", "Abtastrate", "Bittiefe", "Psychoakustik", "Maskierung", "Aliasing", "Nyquist", "ABX", "Hörtest", "Musik", "Dateigröße", "verlustfrei", "verlustbehaftet"],
+  "text": "MP3, AAC, Opus, Vorbis, FLAC und WAV bei verschiedenen Bitraten: Dateigröße, Grenzfrequenz, Klang und Speicherbedarf. Hörlabor mit Spektrogramm, Differenzsignal und ABX-Blindtest, dazu Maskierung, Abtastung und Aliasing als Animation.",
+  "tex": "R = f_\\text{A} \\cdot n \\cdot k",
+  "projektmappe": {"nr": 610, "name": "Audioformate", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Welche Abtastrate braucht man mindestens, um Töne bis 20 kHz aufzunehmen?", "über 40 kHz", ["20 kHz", "10 kHz", "1 kHz"], "Abtasttheorem: mehr als das Doppelte der höchsten Frequenz."],
+    ["Was nutzt MP3 zum Sparen aus?", "Maskierung: leise Töne neben lauten werden nicht gehört und weggelassen", ["Es entfernt die Stille am Anfang.", "Es macht alles leiser.", "Es senkt die Abtastrate auf 8 kHz."], "Psychoakustisches Modell."],
+    ["Welches Format ist verlustfrei?", "FLAC", ["MP3", "AAC", "Opus"], "FLAC packt wie ZIP, nur besser für Audio."]
+  ]
+}

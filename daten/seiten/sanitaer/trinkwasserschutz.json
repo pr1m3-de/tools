@@ -1,0 +1,14 @@
+{
+  "nr": 100,
+  "titel": "Trinkwasserschutz",
+  "bereich": "Sanitärtechnik",
+  "themen": ["Legionellen", "Zirkulation", "Stagnation", "3-Liter-Regel", "Thermische Desinfektion", "DIN EN 1717"],
+  "text": "Wann sich Legionellen vermehren und wann sie absterben, eine Warmwasseranlage drei Wochen im Zeitraffer, die 3-Liter-Regel mit Wartezeit am Hahn und der Schutz vor Rückfließen.",
+  "tex": "D(T) = D_{60} \\cdot 10^{(60\\,{}^\\circ\\text{C} - T)/z}",
+  "projektmappe": {"nr": 280, "name": "Trinkwasserschutz", "farbe": "#0E6B6A"},
+  "fragen": [
+    ["Warum muss warmes Trinkwasser im Speicher mindestens 60 °C haben?", "zum Schutz vor Legionellen", ["damit es schneller fließt", "weil sonst Kalk ausfällt", "damit die Heizung effizienter ist"], "Legionellen vermehren sich besonders zwischen 25 und 45 °C."],
+    ["Was verhindert ein Rückflussverhinderer?", "dass Wasser aus einer Anlage zurück ins Trinkwassernetz fließt", ["dass der Druck zu hoch wird", "dass Wasser gefriert", "dass Luft in die Leitung kommt"], "Schutz nach DIN EN 1717."],
+    ["Warum ist Stagnation in Trinkwasserleitungen problematisch?", "Stehendes Wasser begünstigt Keimwachstum.", ["Weil das Wasser dann zu kalt wird.", "Weil der Druck steigt.", "Weil die Leitung schneller rostet als bei Durchfluss, sonst nichts."], "Regel: nach spätestens 72 Stunden spülen."]
+  ]
+}

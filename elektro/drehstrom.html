@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Drehstrom: Stern, Dreieck und Unsymmetrie – Formeln &amp; Rechner</title>
   <meta name="description" content="Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/elektro/drehstrom.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Drehstrom: Stern, Dreieck und Unsymmetrie">
-  <meta property="og:description" content="Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.">
-  <meta property="og:url" content="https://tools.pr1m3.de/elektro/drehstrom.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Drehstrom: Stern, Dreieck und Unsymmetrie">
-  <meta name="twitter:description" content="Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/drehstrom.html#seite","name":"Drehstrom: Stern, Dreieck und Unsymmetrie","url":"https://tools.pr1m3.de/elektro/drehstrom.html","inLanguage":"de","description":"Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/drehstrom.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/drehstrom.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Drehstrom: Stern, Dreieck und Unsymmetrie","item":"https://tools.pr1m3.de/elektro/drehstrom.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/drehstrom.html#fragen","mainEntity":[{"@type":"Question","name":"Warum hat Drehstrom 400 V und 230 V?","acceptedAnswer":{"@type":"Answer","text":"230 V liegen zwischen einem Außenleiter und dem Neutralleiter. Zwischen zwei Außenleitern addieren sich zwei um 120° verschobene Spannungen geometrisch: 230 V · √3 = 400 V."}},{"@type":"Question","name":"Warum führt der Neutralleiter bei gleicher Last keinen Strom?","acceptedAnswer":{"@type":"Answer","text":"Drei gleich große, um 120° verschobene Ströme ergeben zu jedem Zeitpunkt zusammen null. Im Zeigerdiagramm schließen sie sich zu einem Dreieck. Erst bei ungleicher Last bleibt ein Rest, der über den Neutralleiter fließt."}},{"@type":"Question","name":"Wie groß wird der Neutralleiterstrom höchstens?","acceptedAnswer":{"@type":"Answer","text":"Bei ohmscher Last nie größer als der größte Außenleiterstrom – etwa wenn nur ein Außenleiter belastet ist. Oberschwingungen von Netzteilen und LED-Treibern (vor allem die dritte) addieren sich im Neutralleiter aber, dort kann er sogar größer als die Außenleiterströme werden."}},{"@type":"Question","name":"Was passiert bei einer Neutralleiterunterbrechung?","acceptedAnswer":{"@type":"Answer","text":"Die Verbraucher an verschiedenen Außenleitern liegen über den Sternpunkt in Reihe an 400 V. Wer den größten Widerstand hat – das kleinste Gerät –, bekommt die meiste Spannung. Ein 100-W-Gerät neben einem 2-kW-Gerät erhält rund 380 V und kann in Brand geraten."}},{"@type":"Question","name":"Rechnet man die Drehstromleistung mit √3 oder mit 3?","acceptedAnswer":{"@type":"Answer","text":"Beides geht: P = √3 · U · I · cos φ mit Leiterspannung (400 V) und Leiterstrom, oder P = 3 · UStr · IStr · cos φ mit den Werten eines Strangs. Bei unsymmetrischer Last addiert man die drei Strangleistungen."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/drehstrom.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -105,17 +87,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="transformator.html"><b>Transformator</b><span>Idealer Transformator in jede Richtung gerechnet, Eisen- und Kupferverluste mit bester Auslastung, …</span></a></li>
-      <li><a href="drehfeldmaschinen.html"><b>Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</b><span>Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment …</span></a></li>
-      <li><a href="motor.html"><b>Drehstrommotor und Anlauf</b><span>Drehstrommotor vom Typenschild zum Anschluss</span></a></li>
-      <li><a href="grundgroessen.html"><b>Elektrische Grundgrößen und Leiterwiderstand</b><span>Elektrische Grundgrößen rechnen</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

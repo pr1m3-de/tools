@@ -1,0 +1,15 @@
+{
+  "nr": 1120,
+  "titel": "Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Drehfeld", "Drehfeldmaschine", "Asynchronmaschine", "Synchronmaschine", "Käfigläufer", "Schleifringläufer", "Polrad", "Polpaarzahl", "synchrone Drehzahl", "Schlupf", "Klemmbrett", "Stern", "Dreieck", "Drehrichtung", "Rechtslauf", "Kippmoment", "Generatorbetrieb", "Lastwinkel", "Typenschild", "DIN EN 60034"],
+  "text": "Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment und Wirkungsgrad vom Typenschild, Stern und Dreieck am Klemmbrett, Drehrichtung, Kennlinie der Asynchronmaschine mit Motor-, Generator- und Bremsbetrieb und die Synchronmaschine mit Lastwinkel – mit Animationen zum Ausprobieren.",
+  "tex": "n_0 = \\frac{60 \\cdot f}{p}",
+  "projektmappe": {"nr": 580, "name": "Drehfeldmaschinen", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Wie dreht man die Drehrichtung eines Drehstrommotors um?", "zwei Außenleiter tauschen", ["Neutralleiter und Schutzleiter tauschen", "die Frequenz verdoppeln", "den Kondensator entfernen"], "Dann läuft das Drehfeld andersherum."],
+    ["Was unterscheidet die Synchronmaschine von der Asynchronmaschine?", "Ihr Läufer dreht genau mit dem Drehfeld.", ["Sie hat keinen Ständer.", "Sie läuft nur mit Gleichstrom.", "Sie hat immer Schlupf."], "Der Läufer ist erregt oder hat Dauermagnete."],
+    ["Was beschreibt der Schlupf?", "den relativen Unterschied zwischen Drehfeld- und Läuferdrehzahl", ["den Wirkungsgrad", "die Erwärmung der Wicklung", "den Leistungsfaktor"], "s = (n₀ − n) / n₀."]
+  ]
+}

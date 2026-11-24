@@ -1,0 +1,16 @@
+{
+  "nr": 440,
+  "titel": "Datenrate und Übertragungszeit",
+  "gruppe": "Netzwerk",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Bandbreite", "Latenz", "TCP-Fenster", "MB/MiB"],
+  "text": "Echte Übertragungszeit aus Datenmenge, Bandbreite, Overhead, Latenz, TCP-Fenster und Paketverlust – mit Engpass und Bandbreite-Verzögerungs-Produkt.",
+  "tex": "t = \\frac{D \\cdot 8}{B_\\text{eff}}",
+  "projektmappe": {"nr": 1150, "name": "Datenrate und Übertragungszeit", "farbe": "#3B5BDB"},
+  "verwandt": ["it/dns-http-tls.html"],
+  "fragen": [
+    ["Wie viele Megabyte pro Sekunde sind 100 Mbit/s höchstens?", "12,5 MB/s", ["100 MB/s", "800 MB/s", "1 MB/s"], "1 Byte = 8 Bit."],
+    ["Warum wird ein Download bei großer Umlaufzeit langsamer, obwohl die Leitung schnell ist?", "Das TCP-Fenster begrenzt, wie viel Daten unterwegs sein dürfen.", ["Weil Licht in Glasfaser langsamer wird.", "Weil der Server weniger Strom hat.", "Weil der Router komprimiert."], "Durchsatz ≤ Fenster / RTT."],
+    ["Was ist der Unterschied zwischen GB und GiB?", "GB = 10⁹ Byte, GiB = 2³⁰ Byte", ["Es gibt keinen.", "GiB ist kleiner als GB.", "GB ist für Netze, GiB für Strom."], "1 GiB ≈ 1,074 GB."]
+  ]
+}

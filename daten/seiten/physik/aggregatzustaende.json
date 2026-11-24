@@ -1,0 +1,14 @@
+{
+  "nr": 1160,
+  "titel": "Aggregatzustände und Wärme",
+  "bereich": "Physik",
+  "themen": ["Aggregatzustand", "Teilchenmodell", "fest", "flüssig", "gasförmig", "Schmelzen", "Erstarren", "Verdampfen", "Kondensieren", "Schmelzwärme", "Verdampfungswärme", "spezifische Wärmekapazität", "Erwärmungskurve", "Wärmemenge", "Siedepunkt", "Schmelzpunkt"],
+  "text": "Teilchenmodell der Aggregatzustände in Bewegung und Erwärmungskurve: Wärme zum Erwärmen, Schmelzen und Verdampfen von Wasser, Aluminium und Blei, Heizdauer und Anteil der Umwandlungswärme – mit Abschnitten Schritt für Schritt.",
+  "tex": "Q = c \\cdot m \\cdot \\Delta\\vartheta",
+  "projektmappe": {"nr": 680, "name": "Aggregatzustände und Wärme", "farbe": "#C2255C"},
+  "fragen": [
+    ["Warum steigt die Temperatur von schmelzendem Eis nicht, obwohl Wärme zugeführt wird?", "Die Wärme wird zum Aufbrechen der Bindungen gebraucht (Schmelzwärme).", ["Weil Eis Wärme reflektiert.", "Weil das Thermometer falsch misst.", "Weil Wasser keine Wärme aufnimmt."], "Erst wenn alles geschmolzen ist, steigt die Temperatur weiter."],
+    ["Wie heißt der direkte Übergang von fest zu gasförmig?", "Sublimation", ["Kondensation", "Erstarren", "Verdunsten"], "Zum Beispiel Trockeneis."],
+    ["Warum siedet Wasser auf hohen Bergen schon unter 100 °C?", "Der Luftdruck ist niedriger.", ["Die Luft ist kälter.", "Das Wasser ist reiner.", "Die Sonne steht näher."], "Siedepunkt hängt vom Druck ab."]
+  ]
+}

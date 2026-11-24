@@ -1,0 +1,20 @@
+{
+  "nr": 1175,
+  "titel": "Gravitation und Raumfahrt",
+  "bereich": "Physik",
+  "themen": ["Astronomie", "Gravitation", "Gravitationsgesetz", "Newton", "Raumfahrt", "Satellit", "Umlaufbahn", "Kreisbahn", "Fluchtgeschwindigkeit", "kosmische Geschwindigkeit", "geostationär", "Hohmann-Übergang", "Kepler", "Umlaufzeit", "Raketengleichung", "Schwerelosigkeit", "Planeten"],
+  "text": "Gravitationsgesetz und Raumfahrt zum Ausrechnen: Bahngeschwindigkeit, Umlaufzeit, Fluchtgeschwindigkeit, geostationäre Bahn und Hohmann-Übergang für Erde, Mond, Planeten und Sonne – mit Newtons Kanonenkugel, Bahnanimation und Lernaufgaben.",
+  "tex": "v = \\sqrt{\\frac{G M}{r}}",
+  "projektmappe": {"nr": 725, "name": "Gravitation und Raumfahrt", "farbe": "#C2255C"},
+  "verwandt": ["physik/astronomie.html", "physik/relativitaet.html"],
+  "fragen": [
+    ["Wie ändert sich die Gravitationskraft, wenn sich der Abstand der Mittelpunkte verdoppelt?", "Sie sinkt auf ein Viertel.", ["Sie halbiert sich.", "Sie bleibt gleich.", "Sie sinkt auf ein Achtel."], "F ∝ 1/r²: doppelter Abstand, (1/2)² = 1/4."],
+    ["Warum sind Astronauten in der Raumstation schwerelos?", "Station und Besatzung fallen gemeinsam frei um die Erde.", ["In 400 km Höhe gibt es keine Schwerkraft mehr.", "Die Luft fehlt.", "Die Fliehkraft der Erdrotation hebt die Schwerkraft auf."], "In 400 km Höhe wirken noch etwa 89 % der Schwerkraft vom Boden."],
+    ["Wie hängen Fluchtgeschwindigkeit und Kreisbahngeschwindigkeit zusammen?", "v_F = √2 · v_Kreis", ["v_F = 2 · v_Kreis", "v_F = v_Kreis", "v_F = v_Kreis²"], "Für die Erde: 7,9 km/s · √2 = 11,2 km/s."],
+    ["In welcher Höhe liegt die geostationäre Bahn der Erde?", "etwa 35 800 km", ["etwa 400 km", "etwa 20 200 km", "etwa 384 000 km"], "Dort dauert ein Umlauf genau einen Sterntag; 400 km ist die Raumstation, 20 200 km GPS, 384 000 km der Mond."],
+    ["Wie läuft ein Hohmann-Übergang in eine höhere Kreisbahn ab?", "zwei Schübe in Flugrichtung: einer für die Übergangsellipse, einer am höchsten Punkt", ["ein langer Dauerschub senkrecht nach oben", "ein Schub gegen die Flugrichtung", "drei Schübe quer zur Bahn"], "Er ist der energiesparendste Weg zwischen zwei Kreisbahnen."],
+    ["Wie verändert sich die Umlaufzeit mit dem Bahnradius?", "T² ∝ r³ (drittes Keplersches Gesetz)", ["T ∝ r", "T ∝ 1/r", "T ist überall gleich"], "Höhere Bahnen sind langsamer und länger: Raumstation 92 min, Mond 27,3 Tage."],
+    ["Ein Satellit bremst kurz ab. Was passiert langfristig?", "Er sinkt auf eine tiefere Bahn und wird dort schneller.", ["Er bleibt auf der Bahn, nur langsamer.", "Er fällt senkrecht herunter.", "Er steigt auf eine höhere Bahn."], "Auf tieferen Kreisbahnen ist v = √(GM/r) größer."],
+    ["Was beschreibt die Raketengleichung Δv = v_aus · ln(m₀/m₁)?", "den Geschwindigkeitsgewinn aus Ausströmgeschwindigkeit und Massenverhältnis", ["die Fluchtgeschwindigkeit", "die Umlaufzeit", "den Luftwiderstand"], "Weil der Logarithmus langsam wächst, braucht man sehr viel Treibstoff."]
+  ]
+}

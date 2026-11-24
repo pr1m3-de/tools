@@ -1,0 +1,15 @@
+{
+  "nr": 1210,
+  "titel": "Anhalteweg: Reaktionsweg und Bremsweg",
+  "bereich": "Mechanik",
+  "auchIn": ["Physik"],
+  "themen": ["Anhalteweg", "Reaktionsweg", "Bremsweg", "Reaktionszeit", "Bremsverzögerung", "Haftreibung", "Faustformel", "Gefahrbremsung", "Aufprallgeschwindigkeit", "Fahrbahn", "Glatteis", "Verkehr"],
+  "text": "Anhalteweg aus Reaktionsweg und Bremsweg: physikalisch und mit den Faustformeln der Fahrschule, mit Fahrbahnzustand, Steigung und Aufprallgeschwindigkeit an einem Hindernis – als Animation und im Vergleich verschiedener Geschwindigkeiten.",
+  "tex": "s_\\text{B} = \\frac{v^2}{2a}",
+  "projektmappe": {"nr": 650, "name": "Anhalteweg", "farbe": "#6E6FA6"},
+  "fragen": [
+    ["Wie ändert sich der Bremsweg bei doppelter Geschwindigkeit?", "Er vervierfacht sich.", ["Er verdoppelt sich.", "Er bleibt gleich.", "Er halbiert sich."], "s_B = v² / (2a)."],
+    ["Was ist der Reaktionsweg?", "die Strecke, die man bis zum Beginn des Bremsens ungebremst fährt", ["der ganze Anhalteweg", "die Strecke während des Bremsens", "der Abstand zum Vordermann"], "s_R = v · t_R, mit etwa 1 s Reaktionszeit."],
+    ["Wie wirkt nasse Fahrbahn auf den Bremsweg?", "Er wird länger, weil die mögliche Bremsverzögerung sinkt.", ["Er wird kürzer.", "Er bleibt gleich.", "Nur der Reaktionsweg ändert sich."], "Kleinere Haftreibung, kleinere Verzögerung."]
+  ]
+}

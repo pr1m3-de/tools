@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Projektmappe – Formeln &amp; Rechner</title>
   <meta name="description" content="Alle gemerkten Eingaben der Rechner als Projekt sammeln: Bauvorhaben benennen, Projekte speichern und wechseln, als Datei sichern oder weitergeben, Übersicht mit Links drucken.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/projektmappe.html">
-  <meta name="robots" content="noindex, follow">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Projektmappe">
-  <meta property="og:description" content="Alle gemerkten Eingaben der Rechner als Projekt sammeln: Bauvorhaben benennen, Projekte speichern und wechseln, als Datei sichern oder weitergeben, Übersicht mit Links drucken.">
-  <meta property="og:url" content="https://tools.pr1m3.de/projektmappe.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Projektmappe">
-  <meta name="twitter:description" content="Alle gemerkten Eingaben der Rechner als Projekt sammeln: Bauvorhaben benennen, Projekte speichern und wechseln, als Datei sichern oder weitergeben, Übersicht mit Links drucken.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/projektmappe.html#seite","name":"Projektmappe","url":"https://tools.pr1m3.de/projektmappe.html","inLanguage":"de","description":"Alle gemerkten Eingaben der Rechner als Projekt sammeln: Bauvorhaben benennen, Projekte speichern und wechseln, als Datei sichern oder weitergeben, Übersicht mit Links drucken.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/projektmappe.html#pfad"},"dateModified":"2026-11-23"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/projektmappe.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Projektmappe","item":"https://tools.pr1m3.de/projektmappe.html"}]}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="manifest.webmanifest">
@@ -114,17 +96,6 @@
       <p class="leer" id="keineProjekte">Noch keine Projekte gespeichert.</p>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="protokolle/elektro.html"><b>Elektro-Prüfprotokoll</b><span>Anlagen nach DIN VDE 0100-600 und 0105-100 mit Grenzwertprüfung je Stromkreis, Geräte nach DIN EN 50699 und 50678 …</span></a></li>
-      <li><a href="protokolle/gefaehrdungsbeurteilung.html"><b>Gefährdungsbeurteilung</b><span>Gefährdungsbeurteilung nach § 5 ArbSchG</span></a></li>
-      <li><a href="protokolle/it-sicherheit.html"><b>IT-Sicherheitsprotokoll</b><span>Prüfprotokoll für Sicherheitsaudits eigener Server und Dienste</span></a></li>
-      <li><a href="mechanik/schrauben-duebel.html"><b>Schrauben und Dübel</b><span>Schrauben und Dübel berechnen: Vorspannkraft und Anziehdrehmoment aus Gewinde, Festigkeitsklasse und Reibung, …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel=""></div>
 
@@ -134,82 +105,7 @@
     const bewegungAus = false;   // keine Animation auf dieser Seite
     // Seiten der Sammlung: Pfad, Titel, Farbe des Bereichs
     const SEITEN = [
-      ['elektro/ohmsches-gesetz.html', 'Ohmsches Gesetz und Kirchhoff', '#2B7BB9'], ['elektro/transformator.html', 'Transformator', '#2B7BB9'],
-      ['elektro/leitungsdimensionierung.html', 'Leitungsdimensionierung', '#2B7BB9'], ['elektro/selektivitaet.html', 'Selektivität', '#2B7BB9'],
-      ['elektro/schleifenimpedanz.html', 'Schleifenimpedanz und Kurzschlussstrom', '#2B7BB9'], ['elektro/blitzschutz.html', 'Blitzschutz', '#2B7BB9'],
-      ['elektro/beleuchtung.html', 'Beleuchtung planen', '#2B7BB9'], ['elektro/warmwasser.html', 'Warmwasser-Rechner', '#2B7BB9'],
-      ['steuerung/sps.html', 'SPS-Simulator', '#0E7C86', 'sps-1'], ['steuerung/kleinsteuerung.html', 'Kleinsteuerung', '#0E7C86', 'kleinsteuerung-1'],
-      ['gebaeudeautomation/knx-planung.html', 'KNX-Planung', '#9333EA'], ['gebaeudeautomation/knx-simulator.html', 'KNX-Simulator', '#9333EA', 'knx-simulator-1'], ['gebaeudeautomation/smart-home.html', 'Smart Home', '#9333EA', 'automation-2'],
-      ['elektro/pv-notstrom.html', 'PV und Notstrom', '#2B7BB9'], ['elektro/pv-dach.html', 'PV-Dachplaner', '#2B7BB9', 'pv-dachplaner-2'], ['elektro/pv-verschaltung.html', 'PV-Verschaltung', '#2B7BB9', 'pv-verschaltung-1'],
-      ['elektro/pv-string.html', 'PV-Strings auslegen', '#2B7BB9'], ['elektro/pv-verschattung.html', 'PV-Verschattung', '#2B7BB9'],
-      ['elektro/wallbox.html', 'Wallbox und Lastmanagement', '#2B7BB9'], ['elektro/koerperstrom.html', 'Strom durch den Körper', '#2B7BB9'], ['mechanik/kraefte.html', 'Kräfte', '#6E6FA6'], ['mechanik/sport-bewegung.html', 'Sport und Bewegung', '#6E6FA6'], ['mechanik/energieumsatz.html', 'Energieumsatz des Körpers', '#6E6FA6'], ['arbeitsschutz/heben-tragen.html', 'Heben und Tragen', '#2F9E44'], ['arbeitsschutz/laerm-vibration.html', 'Lärm und Vibration', '#2F9E44'], ['arbeitsschutz/klima-hitze.html', 'Klima und Hitze am Arbeitsplatz', '#2F9E44'],
-      ['sanitaer/abwasser.html', 'Abwasser bemessen', '#0E6B6A'], ['sanitaer/trinkwasserschutz.html', 'Trinkwasserschutz', '#0E6B6A'],
-      ['sanitaer/trinkwasser-rohrnetz.html', 'Trinkwasser-Rohrnetz', '#0E6B6A'], ['sanitaer/gasleitung.html', 'Gasleitung bemessen', '#0E6B6A', 'gasleitung-1'],
-      ['heizung/heizlast.html', 'Heizlast und Heizkörper', '#C2410C'], ['heizung/hydraulischer-abgleich.html', 'Hydraulischer Abgleich', '#C2410C'], ['heizung/heizkreis.html', 'Heizkreis und Heizkörper', '#C2410C'],
-      ['heizung/ausdehnungsgefaess.html', 'Ausdehnungsgefäß und Sicherheitsventil', '#C2410C'], ['heizung/fussbodenheizung.html', 'Fußbodenheizung', '#C2410C'],
-      ['heizung/waermepumpe.html', 'Wärmepumpe auslegen', '#C2410C'], ['heizung/co2-lueftung.html', 'Atemluft und CO₂ im Raum', '#C2410C'], ['brandschutz/brandsimulation.html', 'Brandsimulation', '#E4572E'], ['brandschutz/brandmeldeanlage.html', 'Brandmeldeanlage', '#E4572E', 'brandmeldeanlage-1'],
-      ['dach/gaubenwange.html', 'Gaubenwange bekleiden', '#A0785A', 'gaubenwange-1'], ['dach/dachrinne.html', 'Dachrinne und Fallrohr', '#A0785A'],
-      ['dach/kehle-grat.html', 'Kehle und Grat', '#A0785A'], ['dach/schornsteinverwahrung.html', 'Schornsteinverwahrung', '#A0785A'],
-      ['dach/schneefang.html', 'Schneefang', '#A0785A'], ['dach/sparren-lattung.html', 'Sparren und Lattung', '#A0785A'], ['dach/absturz.html', 'Absturz und Auffangen', '#A0785A'],
-      ['protokolle/elektro.html', 'Elektro-Prüfprotokoll', '#6B7785'], ['protokolle/it-sicherheit.html', 'IT-Sicherheitsprotokoll', '#6B7785'], ['protokolle/gefaehrdungsbeurteilung.html', 'Gefährdungsbeurteilung', '#6B7785', 'gefaehrdungsbeurteilung-1'],
-      ['it/homelab.html', 'Homelab-Planer', '#3B5BDB', 'homelab-1'], ['it/homelab-server.html', 'Homelab-Server planen', '#3B5BDB', 'homelab-server-1'],
-      ['arbeitsschutz/leiter-geruest.html', 'Leiter und Gerüst', '#2F9E44'],
-      ['arbeitsschutz/gefahrstoffe-luft.html', 'Gefahrstoffe in der Luft', '#2F9E44'],
-      ['arbeitsschutz/bildschirmarbeit.html', 'Sehen und Bildschirmarbeit', '#2F9E44'],
-      ['arbeitsschutz/uv-sonne.html', 'UV und Sonne bei Arbeit im Freien', '#2F9E44'],
-      ['elektro/spannungsfall.html', 'Spannungsfall und Leitungsverluste', '#2B7BB9'],
-      ['elektro/motor.html', 'Drehstrommotor und Anlauf', '#2B7BB9'], ['elektro/drehfeldmaschinen.html', 'Drehfeldmaschinen', '#2B7BB9'], ['elektro/motorpruefstand.html', 'Motorprüfstand', '#2B7BB9', 'motorpruefstand-1'], ['elektro/halbleiter.html', 'Halbleiter, Diode und Gleichrichter', '#2B7BB9'], ['it/audioformate.html', 'Audioformate', '#3B5BDB'], ['it/bildformate.html', 'Bildformate', '#3B5BDB'], ['it/videoformate.html', 'Videoformate', '#3B5BDB'], ['it/kompression.html', 'Datenkompression', '#3B5BDB'], ['mechanik/anhalteweg.html', 'Anhalteweg', '#6E6FA6'], ['mechanik/wurf.html', 'Waagerechter und schräger Wurf', '#6E6FA6'], ['physik/optik.html', 'Optik', '#C2255C'], ['physik/aggregatzustaende.html', 'Aggregatzustände und Wärme', '#C2255C'], ['physik/astronomie.html', 'Astronomie', '#C2255C'], ['physik/radioaktivitaet.html', 'Radioaktivität', '#C2255C'], ['physik/perkolation.html', 'Perkolation', '#C2255C'], ['physik/chaos-feigenbaum.html', 'Chaos und Feigenbaum', '#C2255C'], ['physik/gravitation-raumfahrt.html', 'Gravitation und Raumfahrt', '#C2255C'], ['physik/sterne-strahlung.html', 'Sterne und Strahlung', '#C2255C'], ['physik/relativitaet.html', 'Relativitätstheorie und Schwarze Löcher', '#C2255C'], ['physik/kosmologie.html', 'Kosmologie', '#C2255C'],
-      ['elektro/erdung.html', 'Erdung und Potentialtrichter', '#2B7BB9'],
-      ['elektro/batteriespeicher.html', 'Batteriespeicher auslegen', '#2B7BB9'],
-      ['elektro/kondensator.html', 'Kondensatoren', '#2B7BB9'],
-      ['elektro/kleintransformatoren.html', 'Kleintransformatoren und Messwandler', '#2B7BB9'],
-      ['elektro/einbruchmeldeanlage.html', 'Einbruchmeldeanlage', '#2B7BB9'],
-      ['elektro/grundgroessen.html', 'Elektrische Grundgrößen', '#2B7BB9'], ['elektro/wechselstrom.html', 'Wechselstrom und RLC', '#2B7BB9'],
-      ['elektro/drehstrom.html', 'Drehstrom', '#2B7BB9'],
-      ['brandschutz/elektrischer-brandschutz.html', 'Brandschutz in der Elektroinstallation', '#E4572E'],
-      ['heizung/feuchte-schimmel.html', 'Feuchte, Taupunkt und Schimmel', '#C2410C'],
-      ['heizung/u-wert.html', 'U-Wert und Schichtaufbau', '#C2410C'],
-      ['heizung/wohnungslueftung.html', 'Wohnungslüftung', '#C2410C'],
-      ['sanitaer/regenwasser.html', 'Regenwassernutzung und Versickerung', '#0E6B6A'],
-      ['brandschutz/fluchtwege.html', 'Flucht- und Rettungswege', '#E4572E'],
-      ['brandschutz/feuerloescher.html', 'Feuerlöscher und Löschwasser', '#E4572E'],
-      ['dach/wind-schneelast.html', 'Wind- und Schneelast', '#A0785A'],
-      ['mechanik/flaschenzug-anschlagmittel.html', 'Hebel, Flaschenzug und Anschlagmittel', '#6E6FA6'],
-      ['mechanik/schrauben-duebel.html', 'Schrauben und Dübel', '#6E6FA6'],
-      ['it/verfuegbarkeit.html', 'Verfügbarkeit und Ausfallzeit', '#3B5BDB'],
-      ['elektro/kompensation.html', 'Blindleistungskompensation', '#2B7BB9'],
-      ['it/rack-strom.html', 'Strom- und Kühlkosten im Rack', '#3B5BDB'],
-      ['geld/stundensatz.html', 'Stundensatz im Handwerk', '#A16207'],
-      ['geld/angebot.html', 'Angebotskalkulation', '#A16207'],
-      ['geld/mehrwertsteuer-skonto.html', 'Brutto, Netto, Skonto und Rabatt', '#A16207'],
-      ['geld/aufmass-abrechnung.html', 'Aufmaß und Abrechnung', '#A16207'],
-      ['geld/maschinenstundensatz.html', 'Maschinenstundensatz und Abschreibung', '#A16207'],
-      ['geld/fahrzeugkosten.html', 'Fahrzeugkosten je Kilometer', '#A16207'],
-      ['geld/amortisation.html', 'Amortisation und Kapitalwert', '#A16207'],
-      ['geld/kredit.html', 'Kredit und Tilgung', '#A16207'],
-      ['geld/energiekosten.html', 'Energiekosten im Vergleich', '#A16207'],
-      ['geld/stromkosten.html', 'Stromkosten von Geräten', '#A16207'],
-      ['geld/leasing-kauf.html', 'Leasing, Kredit oder Barkauf', '#A16207'],
-      ['geld/brutto-netto.html', 'Brutto-Netto-Lohn', '#A16207'],
-      ['geld/zinseszins-sparplan.html', 'Zinseszins und Sparplan', '#A16207'],
-      ['geld/inflation.html', 'Inflation und Kaufkraft', '#A16207'],
-      ['geld/ueberstunden-urlaub.html', 'Überstunden, Zuschläge und Urlaub', '#A16207'],
-      ['elektro/messung-anleitung.html', 'Elektrische Messungen Schritt für Schritt', '#2B7BB9'],
-      ['heizung/abgasmessung.html', 'Abgasmessung Schritt für Schritt', '#C2410C'],
-      ['mechanik/gangschaltung.html', 'Gangschaltung: Simulator und Rechner', '#6E6FA6'],
-      ['it/subnetz.html', 'IP-Subnetzrechner', '#3B5BDB'],
-      ['it/paketreise.html', 'Paketreise durchs Netz', '#3B5BDB'],
-      ['it/datenrate.html', 'Datenrate und Übertragungszeit', '#3B5BDB'],
-      ['it/netzwerkkabel-poe.html', 'Netzwerkkabel und PoE', '#3B5BDB'],
-      ['it/wlan.html', 'WLAN planen', '#3B5BDB'],
-      ['it/usv.html', 'USV auslegen', '#3B5BDB'],
-      ['it/raid.html', 'RAID- und Speicherrechner', '#3B5BDB'],
-      ['it/serverraum-klima.html', 'Serverraum-Klima', '#3B5BDB'],
-      ['it/backup.html', 'Backup-Planer', '#3B5BDB'],
-      ['it/passwort.html', 'Passwort- und Schlüsselstärke', '#3B5BDB'],
-      ['it/verschluesselung.html', 'Verschlüsselung Schritt für Schritt', '#3B5BDB'],
-      ['it/zahlensysteme.html', 'Zahlensysteme und Bits', '#3B5BDB'],
-      ['heizung/waermepumpe-simulation.html', 'Wärmepumpe: Funktionssimulation', '#C2410C']
+      // wird von werkzeuge/bauen.js aus daten/seiten/**/*.json gefüllt (Feld „projektmappe“)
     ];
     const PROJEKTE = 'projektmappe-1', ANGABEN = 'pdf-angaben', NOTIZ = 'projektmappe-notiz';
     const basis = location.pathname.replace(/[^\/]*$/, '');           // Ordner dieser Seite = Wurzel der Sammlung

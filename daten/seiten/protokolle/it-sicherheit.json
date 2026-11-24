@@ -1,0 +1,11 @@
+{
+  "nr": 340,
+  "titel": "IT-Sicherheitsprotokoll",
+  "gruppe": "Sicherheit",
+  "bereich": "IT und Netzwerk",
+  "auchIn": ["Werkzeuge"],
+  "themen": ["IT-Sicherheit", "Audit", "Port-Scan", "CVSS", "Grundschutz", "Maßnahmenplan"],
+  "text": "Prüfprotokoll für Sicherheitsaudits eigener Server und Dienste: Checkliste nach IT-Grundschutz mit Prüfbefehlen zu jedem Punkt, Import von Scan-Ausgaben, Header-Analyse, CVSS-3.1-Rechner, Findings, Maßnahmenplan mit Fristen, Unterschrift und PDF.",
+  "tex": "\\text{Risiko} = P \\cdot S",
+  "projektmappe": {"nr": 480, "name": "IT-Sicherheitsprotokoll", "farbe": "#6B7785"}
+}

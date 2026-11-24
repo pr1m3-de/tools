@@ -1,0 +1,14 @@
+{
+  "nr": 1300,
+  "titel": "Druck und Auftrieb: Hydraulik, Schweredruck, Archimedes",
+  "bereich": "Physik",
+  "auchIn": ["Mechanik"],
+  "themen": ["Druck", "hydraulische Presse", "Hydraulik", "Kolben", "Kraftübersetzung", "Schweredruck", "Wassertiefe", "Luftdruck", "Auftrieb", "Archimedes", "Dichte", "Schwimmen", "Sinken", "Schweben"],
+  "text": "Hydraulische Presse mit Kraft- und Wegübersetzung, Schweredruck in Wasser, Öl und anderen Flüssigkeiten, Auftrieb nach Archimedes: schwimmt, schwebt oder sinkt ein Körper? Mit Animationen und Lernaufgaben.",
+  "tex": "F_A = \\rho_\\text{Fl} \\cdot g \\cdot V",
+  "fragen": [
+    ["Wie viel Druck kommt im Wasser etwa je 10 m Tiefe hinzu?", "etwa 1 bar", ["etwa 0,1 bar", "etwa 10 bar", "nichts"], "p = ρ g h = 1000 · 9,81 · 10 Pa ≈ 0,98 bar."],
+    ["Was besagt das Prinzip des Archimedes?", "Der Auftrieb ist so groß wie das Gewicht der verdrängten Flüssigkeit.", ["Der Auftrieb ist so groß wie das Gewicht des Körpers.", "Schwere Körper haben keinen Auftrieb.", "Der Auftrieb hängt von der Tiefe ab."], "F_A = ρ_Fl · g · V."],
+    ["Was gilt bei der hydraulischen Presse?", "Was an Kraft gewonnen wird, geht an Weg verloren.", ["Sie spart Arbeit.", "Kraft und Weg werden beide größer.", "Der Druck ist am großen Kolben größer."], "Gleicher Druck überall, Arbeit bleibt gleich."]
+  ]
+}

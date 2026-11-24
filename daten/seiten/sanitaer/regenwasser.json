@@ -1,0 +1,10 @@
+{
+  "nr": 760,
+  "titel": "Regenwassernutzung und Versickerung",
+  "bereich": "Sanitärtechnik",
+  "auchIn": ["Dach und Klempnerei"],
+  "themen": ["Regenwasser", "Zisterne", "Speichergröße", "Versickerung", "Rigole", "Mulde", "DIN 1989", "DWA-A 138", "Regenspende", "Deckungsgrad"],
+  "text": "Zisterne und Versickerung berechnen: Regenertrag vom Dach, Bedarf für WC, Waschmaschine und Garten, Speichergröße nach DIN 1989, Deckungsgrad aus einer Tagesbilanz, Ersparnis und Rigole oder Mulde nach DWA-A 138 – mit Simulation übers Jahr.",
+  "tex": "E = A \\cdot h_\\text{N} \\cdot e \\cdot \\eta",
+  "projektmappe": {"nr": 860, "name": "Regenwassernutzung und Versickerung", "farbe": "#0E6B6A"}
+}

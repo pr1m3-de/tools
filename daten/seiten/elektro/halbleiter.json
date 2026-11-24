@@ -1,0 +1,17 @@
+{
+  "nr": 1230,
+  "titel": "Halbleiter, Diode und Gleichrichter",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "auchIn": ["Physik"],
+  "themen": ["Halbleiter", "Elektronenleitung", "Metall", "Strommodell", "Eigenleitung", "Dotierung", "n-Leiter", "p-Leiter", "pn-Übergang", "Sperrschicht", "Diode", "Diodenkennlinie", "Brückengleichrichter", "Graetzschaltung", "Ladekondensator", "Brummspannung", "Solarzelle", "MPP"],
+  "text": "Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.",
+  "tex": "\\Delta U = \\frac{I}{2 \\cdot f \\cdot C}",
+  "projektmappe": {"nr": 600, "name": "Halbleiter, Diode und Gleichrichter", "farbe": "#2B7BB9"},
+  "verwandt": ["elektro/transistor-opv.html"],
+  "fragen": [
+    ["In welche Richtung leitet eine Diode?", "von der Anode zur Kathode, ab etwa 0,7 V bei Silizium", ["von der Kathode zur Anode", "in beide Richtungen gleich", "gar nicht"], "In Sperrrichtung fließt nur ein winziger Sperrstrom."],
+    ["Wozu dient der Ladekondensator hinter einem Gleichrichter?", "Er glättet die pulsierende Gleichspannung.", ["Er erhöht die Frequenz.", "Er schützt vor Kurzschluss.", "Er macht aus Gleichstrom Wechselstrom."], "Er puffert zwischen den Spitzen."],
+    ["Was ist eine Z-Diode?", "eine Diode, die in Sperrrichtung bei einer festen Spannung durchbricht und so stabilisiert", ["eine Leuchtdiode", "eine besonders schnelle Gleichrichterdiode", "ein Kondensator"], "Typisch für einfache Spannungsstabilisierung."]
+  ]
+}

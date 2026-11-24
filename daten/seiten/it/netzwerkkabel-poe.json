@@ -1,0 +1,10 @@
+{
+  "nr": 450,
+  "titel": "Netzwerkkabel und PoE",
+  "gruppe": "Netzwerk",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Cat 6A", "PoE", "Kabellänge", "Bündel"],
+  "text": "Kanallänge je Kategorie und Datenrate, Spannung und Leistung am PoE-Endgerät, Verlust im Kabel, Erwärmung im Bündel und PoE-Budget des Switches.",
+  "tex": "P_\\text{V} = I^2 \\cdot R_\\text{Schleife}",
+  "projektmappe": {"nr": 1160, "name": "Netzwerkkabel und PoE", "farbe": "#3B5BDB"}
+}

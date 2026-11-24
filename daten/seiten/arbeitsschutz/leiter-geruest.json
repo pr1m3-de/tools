@@ -1,0 +1,15 @@
+{
+  "nr": 640,
+  "titel": "Leiter und Gerüst",
+  "bereich": "Arbeitsschutz",
+  "auchIn": ["Dach und Klempnerei"],
+  "themen": ["Leiter", "Anstellwinkel", "Reibung", "Standsicherheit", "Gerüst", "Lastklasse", "Fahrgerüst", "TRBS 2121", "Seitenschutz", "Kippen"],
+  "text": "Leiter und Gerüst sicher aufstellen: Anstellwinkel, Anlegehöhe, nötige Reibung am Fuß je Standhöhe, Last im Gerüstfeld nach Lastklasse und Kippsicherheit fahrbarer Gerüste – mit Simulation des Aufstiegs.",
+  "tex": "\\mu = \\frac{m\\,s + m_\\text{L} L/2}{(m + m_\\text{L})\\, L \\tan\\alpha}",
+  "projektmappe": {"nr": 520, "name": "Leiter und Gerüst", "farbe": "#2F9E44"},
+  "fragen": [
+    ["In welchem Winkel sollte eine Anlegeleiter stehen?", "etwa 65 bis 75°", ["etwa 45°", "senkrecht 90°", "etwa 30°"], "Faustregel: Abstand am Fuß etwa ein Viertel der Länge."],
+    ["Wie weit muss eine Anlegeleiter als Aufstieg über die Austrittsstelle hinausragen?", "mindestens 1 m", ["gar nicht", "10 cm", "3 m"], "Damit man sicher übersteigen kann."],
+    ["Ab welcher Absturzhöhe ist auf Baustellen in der Regel eine Absturzsicherung nötig?", "ab 2 m", ["ab 5 m", "ab 50 cm", "erst ab 10 m"], "Nach DGUV und ASR A2.1, an Wasser und Bauteilen, in die man einsinken kann, schon früher."]
+  ]
+}

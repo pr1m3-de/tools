@@ -1,0 +1,11 @@
+{
+  "nr": 900,
+  "titel": "Amortisation und Kapitalwert",
+  "gruppe": "Investition und Energie",
+  "bereich": "Geld und Kalkulation",
+  "auchIn": ["Elektrotechnik", "Heizungstechnik"],
+  "themen": ["Amortisation", "Kapitalwert", "Wirtschaftlichkeit", "interner Zinsfuß", "Photovoltaik", "Wärmepumpe", "Dämmung", "Rendite", "Investition", "Annuität"],
+  "text": "Amortisation und Kapitalwert einer Investition berechnen – für Photovoltaik, Wärmepumpe, Dämmung oder Maschine: Einsparung mit Preissteigerung, laufende Kosten, Förderung und Ersatzteile, statische und dynamische Amortisation, interner Zinsfuß und Verlauf.",
+  "tex": "C_0 = -I_0 + \\sum_{t=1}^{n} \\frac{c_t}{(1+i)^t}",
+  "projektmappe": {"nr": 1010, "name": "Amortisation und Kapitalwert", "farbe": "#A16207"}
+}

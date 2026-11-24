@@ -1,0 +1,20 @@
+{
+  "nr": 1190,
+  "titel": "Kosmologie: Hubble-Gesetz und Expansion des Universums",
+  "bereich": "Physik",
+  "themen": ["Astronomie", "Kosmologie", "Universum", "Urknall", "Hubble", "Hubble-Konstante", "Hubble-Gesetz", "Rotverschiebung", "Expansion", "Weltalter", "Dunkle Energie", "Dunkle Materie", "Hintergrundstrahlung", "Friedmann", "Skalenfaktor", "Galaxien"],
+  "text": "Kosmologie zum Ausrechnen: Hubble-Gesetz, Rotverschiebung, Weltalter, Rückschauzeit, Entfernungen und Hintergrundstrahlung aus Hubble-Konstante und Dunkler Energie – mit expandierendem Gitter, Hubble-Diagramm, Skalenfaktor und Lernaufgaben.",
+  "tex": "v = H_0 \\cdot d",
+  "projektmappe": {"nr": 740, "name": "Kosmologie", "farbe": "#C2255C"},
+  "verwandt": ["physik/astronomie.html"],
+  "fragen": [
+    ["Was besagt das Hubble-Lemaître-Gesetz?", "Die Fluchtgeschwindigkeit einer Galaxie wächst proportional mit ihrer Entfernung.", ["Alle Galaxien fliehen gleich schnell.", "Nahe Galaxien fliehen schneller.", "Galaxien bewegen sich auf uns zu."], "v = H₀ · d."],
+    ["Was bedeutet eine Rotverschiebung von z = 2?", "Das Universum war beim Aussenden des Lichts ein Drittel so groß wie heute.", ["Die Galaxie flieht mit doppelter Lichtgeschwindigkeit.", "Das Licht ist doppelt so alt wie das Universum.", "Die Wellenlänge ist halbiert."], "1 + z = 1/a: a = 1/3."],
+    ["Wie alt ist das Universum ungefähr?", "13,8 Milliarden Jahre", ["4,6 Milliarden Jahre", "100 Milliarden Jahre", "6 000 Jahre"], "4,6 Milliarden Jahre ist das Alter der Sonne."],
+    ["Was ist die kosmische Hintergrundstrahlung?", "das abgekühlte Leuchten des Universums 380 000 Jahre nach dem Urknall", ["das Licht der ersten Sterne", "Strahlung der Sonne", "Rauschen irdischer Sender"], "Heute 2,725 K, um den Faktor 1 100 gedehnt."],
+    ["Wo ist das Zentrum der Expansion?", "Es gibt keins; jeder Beobachter sieht alle anderen Galaxien fliehen.", ["in der Milchstraße", "im Coma-Haufen", "dort, wo der Urknall explodierte"], "Der Raum selbst dehnt sich überall gleich."],
+    ["Was zeigen die Beobachtungen von Supernovae seit 1998?", "Die Expansion beschleunigt sich.", ["Die Expansion hat aufgehört.", "Das Universum schrumpft.", "Die Expansion bremst immer stärker."], "Ursache ist die Dunkle Energie."],
+    ["Wie groß ist etwa der Anteil der gewöhnlichen (sichtbaren) Materie am Energieinhalt des Universums?", "etwa 5 %", ["etwa 31 %", "etwa 69 %", "etwa 95 %"], "31 % ist die gesamte Materie, davon 85 % Dunkle Materie; 69 % Dunkle Energie."],
+    ["Warum können sich ferne Galaxien schneller als Licht von uns entfernen?", "Der Raum zwischen ihnen dehnt sich; sie bewegen sich nicht schneller als Licht durch den Raum.", ["Das ist ein Messfehler.", "Licht ist im All langsamer.", "Galaxien haben keine Masse."], "Die Relativitätstheorie begrenzt nur Bewegung durch den Raum."]
+  ]
+}

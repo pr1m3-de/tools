@@ -1,0 +1,10 @@
+{
+  "nr": 650,
+  "titel": "Gefahrstoffe in der Luft",
+  "gruppe": "Raum und Umgebung",
+  "bereich": "Arbeitsschutz",
+  "themen": ["Gefahrstoffe", "Arbeitsplatzgrenzwert", "AGW", "Lösemittel", "Staub", "ppm", "mg/m³", "Lüftung", "TRGS 900", "Explosionsgrenze"],
+  "text": "Lösemitteldampf und Staub in der Atemluft: Konzentration aus Menge, Raum und Lüftung, Vergleich mit dem Arbeitsplatzgrenzwert, nötige Frischluft, Umrechnung ppm in mg/m³ und Abstand zur Explosionsgrenze – mit Simulation.",
+  "tex": "C_\\infty = k\\,\\frac{\\dot m}{\\dot V}",
+  "projektmappe": {"nr": 530, "name": "Gefahrstoffe in der Luft", "farbe": "#2F9E44"}
+}

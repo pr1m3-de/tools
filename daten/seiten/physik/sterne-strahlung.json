@@ -1,0 +1,20 @@
+{
+  "nr": 1180,
+  "titel": "Sterne und Strahlung",
+  "bereich": "Physik",
+  "themen": ["Astronomie", "Sterne", "Stern", "Schwarzer Körper", "Planck", "Wien", "Wiensches Verschiebungsgesetz", "Stefan-Boltzmann", "Leuchtkraft", "Helligkeit", "Magnitude", "Parallaxe", "Parsec", "Lichtjahr", "Hertzsprung-Russell-Diagramm", "Spektralklasse", "Hauptreihe", "lebensfreundliche Zone"],
+  "text": "Sterne berechnen: Farbe und Strahlungsmaximum (Wien), Leuchtkraft (Stefan-Boltzmann), Helligkeit und Entfernungsmodul, Parallaxe, Lebensdauer und lebensfreundliche Zone – mit Planck-Spektrum, Hertzsprung-Russell-Diagramm und Lernaufgaben.",
+  "tex": "\\lambda_\\text{max} \\cdot T = b",
+  "projektmappe": {"nr": 730, "name": "Sterne und Strahlung", "farbe": "#C2255C"},
+  "verwandt": ["physik/kosmologie.html", "physik/waermeuebertragung.html"],
+  "fragen": [
+    ["Was besagt das Wiensche Verschiebungsgesetz?", "Je heißer ein Körper, desto kürzer die Wellenlänge seines Strahlungsmaximums.", ["Je heißer, desto länger die Wellenlänge des Maximums.", "Die abgestrahlte Leistung wächst mit T⁴.", "Alle Sterne haben ihr Maximum im Grünen."], "λ_max · T = 2,898 mm·K."],
+    ["Um welchen Faktor steigt die Strahlung je Fläche, wenn sich die Temperatur verdoppelt?", "16", ["2", "4", "8"], "Stefan-Boltzmann: P ∝ T⁴, 2⁴ = 16."],
+    ["Ein Stern ist 3 000 K heiß und trotzdem 100 000-mal so leuchtkräftig wie die Sonne. Wie ist das möglich?", "Er ist ein Überriese mit riesiger Oberfläche.", ["Er ist sehr nah.", "Er ist ein Weißer Zwerg.", "Das ist unmöglich."], "L = 4πR²σT⁴: ein großer Radius gleicht die niedrige Temperatur aus."],
+    ["Was bedeutet ein Helligkeitsunterschied von 5 Magnituden?", "Faktor 100 im Strahlungsfluss", ["Faktor 5", "Faktor 10", "Faktor 2,512"], "1 Magnitude entspricht dem Faktor 2,512; 2,512⁵ = 100."],
+    ["Ein Stern hat die Parallaxe 0,1″. Wie weit ist er entfernt?", "10 Parsec", ["0,1 Parsec", "1 Parsec", "100 Parsec"], "d = 1/p."],
+    ["Welche Sterne leben am längsten?", "massearme Rote Zwerge", ["massereiche blaue Sterne", "Überriesen", "alle gleich lang"], "t ∝ M⁻²·⁵: Massereiche verbrauchen ihren Brennstoff viel schneller."],
+    ["Was liegt auf der Hauptreihe des Hertzsprung-Russell-Diagramms?", "Sterne, die im Kern Wasserstoff zu Helium verschmelzen", ["nur Rote Riesen", "Weiße Zwerge", "Planeten"], "Etwa 90 % aller Sterne, auch die Sonne, sind Hauptreihensterne."],
+    ["Welche Spektralklasse hat die Sonne?", "G", ["O", "A", "M"], "G2 V mit 5 772 K; Merkspruch der Reihe: O B A F G K M."]
+  ]
+}

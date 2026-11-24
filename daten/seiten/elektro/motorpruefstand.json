@@ -1,0 +1,10 @@
+{
+  "nr": 1130,
+  "titel": "Motorprüfstand: Asynchronmotor messen",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Motorprüfstand", "Prüfstand", "Asynchronmotor", "Kennlinie", "Hochlauf", "Drehmoment", "Wirkungsgrad", "Leistungsfaktor", "Phasenwinkel", "Scheinleistung", "Wirkleistung", "mechanische Leistung", "Generatorbetrieb", "Typenschild", "Toleranz", "Erwärmung", "Motorschutz", "Messung", "Versuch"],
+  "text": "Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor: Typenschild auswerten, sicher anschließen, Stern oder Dreieck am Klemmbrett, Arbeitspunkte von Hand anfahren und Kennlinien im Hochlauf aufnehmen – Drehmoment, Strom, Phasenwinkel, Leistungen und Wirkungsgrad, Generatorbetrieb, Strombegrenzung und Erwärmung, mit Messtabelle und CSV.",
+  "tex": "\\eta = \\frac{P_\\text{mech}}{\\sqrt{3}\\, U I \\cos\\varphi}",
+  "projektmappe": {"nr": 590, "name": "Motorprüfstand", "farbe": "#2B7BB9", "speicher": "motorpruefstand-1"}
+}

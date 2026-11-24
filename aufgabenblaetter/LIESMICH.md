@@ -6,9 +6,7 @@ Jedes Thema der Lernseite kann eigene Aufgabenblätter haben. Sie stehen als Mar
 
 1. Datei im Ordner des Themas anlegen. Der Ordner entspricht dem Pfad der Rechnerseite ohne `.html`:
    `aufgabenblaetter/elektro/ohmsches-gesetz/02-gemischte-schaltung.md` gehört zu `elektro/ohmsches-gesetz.html`.
-2. Im Hauptordner `node werkzeuge/blaetter-bauen.js` ausführen. Das schreibt `aufgabenblaetter/liste.json`, trägt die Blätter in `sw.js` ein (offline) und baut die Stichwortsuche (`suchindex.json`) neu.
-
-Ohne Node: Eintrag in `liste.json` von Hand ergänzen (`datei`, `thema`, `titel`). Online erscheint das Blatt dann sofort, offline erst nach dem nächsten Lauf des Werkzeugs.
+2. Im Hauptordner `node werkzeuge/bauen.js` ausführen und in `_site/` ansehen. Die Liste der Blätter (`liste.json`), die Offline-Liste und die Stichwortsuche entstehen dabei automatisch – nur die `.md`-Datei einchecken.
 
 ## Aufbau einer Datei
 

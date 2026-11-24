@@ -1,0 +1,15 @@
+{
+  "nr": 480,
+  "titel": "RAID- und Speicherrechner",
+  "gruppe": "Betrieb",
+  "bereich": "IT und Netzwerk",
+  "themen": ["RAID", "Speicher", "Rebuild", "Ausfall", "NAS", "Mischbestückung", "Hybrid-RAID", "ZFS", "RAIDZ", "btrfs", "Paritätsplatten", "Pool"],
+  "text": "RAID 0 bis 60 und eigene Konfigurationen mit gemischten Platten, mehreren Pools und NAS (Hybrid-RAID, ZFS, btrfs, Paritätsplatten-Array): nutzbare Kapazität, ungenutzter Platz, erlaubte Ausfälle, Leistung, Rebuild-Zeit, Lesefehler beim Wiederaufbau und Datenverlust im Jahr – mit Simulation.",
+  "tex": "C = (n - p) \\cdot c",
+  "projektmappe": {"nr": 1190, "name": "RAID- und Speicherrechner", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Welches RAID spiegelt die Daten auf zwei Platten?", "RAID 1", ["RAID 0", "RAID 5", "RAID 10 auf einer Platte"], "Nutzbar ist die Kapazität einer Platte."],
+    ["Wie viele Platten dürfen bei RAID 5 gleichzeitig ausfallen?", "eine", ["keine", "zwei", "alle bis auf eine"], "RAID 6 verkraftet zwei."],
+    ["Warum ersetzt RAID keine Datensicherung?", "Versehentliches Löschen, Schadsoftware und Brand treffen alle Platten gleichzeitig.", ["Weil RAID langsamer ist.", "Weil RAID nur mit SSDs geht.", "Weil RAID die Daten komprimiert."], "RAID schützt nur vor Plattenausfall."]
+  ]
+}

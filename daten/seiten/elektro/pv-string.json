@@ -1,0 +1,15 @@
+{
+  "nr": 300,
+  "titel": "PV-Strings auslegen",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "themen": ["Photovoltaik", "String", "MPP", "Wechselrichter", "Leerlaufspannung", "Strangsicherung"],
+  "text": "Module je String und Strings je MPP-Tracker: Leerlaufspannung bei Kälte, MPP-Bereich, Kurzschlussstrom, Strangsicherung, DC/AC-Verhältnis und DC-Verlust.",
+  "tex": "n \\cdot U_\\text{OC}(T_\\text{min}) \\le U_\\text{DC,max}",
+  "projektmappe": {"nr": 170, "name": "PV-Strings auslegen", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Warum ist die Leerlaufspannung im Winter am höchsten?", "Die Modulspannung steigt bei Kälte.", ["Weil die Sonne tiefer steht.", "Weil der Wechselrichter dann mehr Strom braucht.", "Weil Schnee reflektiert."], "Negativer Temperaturkoeffizient der Spannung."],
+    ["Was darf die String-Leerlaufspannung nicht überschreiten?", "die höchste Eingangsspannung des Wechselrichters", ["die Netzspannung 230 V", "den Kurzschlussstrom", "die Spannung des Hausakkus"], "Sonst kann der Wechselrichter zerstört werden."],
+    ["Was passiert bei Reihenschaltung von Modulen?", "Die Spannungen addieren sich, der Strom bleibt gleich.", ["Die Ströme addieren sich.", "Spannung und Strom halbieren sich.", "Nur die Leistung des schwächsten Moduls zählt nicht."], "Bei Parallelschaltung addieren sich die Ströme."]
+  ]
+}

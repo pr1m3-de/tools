@@ -1,0 +1,16 @@
+{
+  "nr": 740,
+  "titel": "U-Wert und Schichtaufbau",
+  "bereich": "Heizungstechnik",
+  "auchIn": ["Dach und Klempnerei"],
+  "themen": ["U-Wert", "Wärmedurchgang", "Dämmung", "Schichtaufbau", "Wärmeleitfähigkeit", "Glaser", "Tauwasser", "GEG", "Dämmstärke", "DIN EN ISO 6946"],
+  "text": "U-Wert eines Bauteils aus beliebigen Schichten: Temperaturverlauf, Oberflächentemperatur, Tauwasserprüfung nach Glaser, Wärmeverlust und Kosten je Quadratmeter, nötige Dämmstärke für einen Ziel-U-Wert – mit Simulation des Wärmestroms.",
+  "tex": "U = \\frac{1}{R_\\text{si} + \\sum \\frac{d}{\\lambda} + R_\\text{se}}",
+  "projektmappe": {"nr": 840, "name": "U-Wert und Schichtaufbau", "farbe": "#C2410C"},
+  "verwandt": ["physik/waermeuebertragung.html", "heizung/heizlast.html"],
+  "fragen": [
+    ["Was bedeutet ein kleiner U-Wert?", "Das Bauteil dämmt gut, es geht wenig Wärme verloren.", ["Das Bauteil dämmt schlecht.", "Das Bauteil ist besonders dünn.", "Das Bauteil speichert viel Wärme."], "U in W/(m²·K)."],
+    ["Wie berechnet man den U-Wert eines mehrschichtigen Bauteils?", "Kehrwert der Summe aller Wärmedurchlasswiderstände plus Übergänge", ["Summe aller λ-Werte", "Mittelwert der Schichtdicken", "größter λ-Wert geteilt durch die Dicke"], "U = 1 / (R_si + Σ d/λ + R_se)."],
+    ["Wofür braucht man eine Dampfbremse auf der warmen Seite?", "Damit kein Wasserdampf in die Dämmung gelangt und dort kondensiert", ["Damit die Wand schneller trocknet", "Als Schallschutz", "Damit die Dämmung brennbar wird"], "Tauwasser in der Konstruktion führt zu Schimmel und Schäden."]
+  ]
+}

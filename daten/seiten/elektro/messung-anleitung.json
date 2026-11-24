@@ -1,0 +1,10 @@
+{
+  "nr": 390,
+  "titel": "Elektrische Messungen Schritt für Schritt",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Prüfung", "VDE 0100-600", "VDE 0701/0702", "Geräteprüfung", "Isolation", "RCD"],
+  "text": "Anlagen nach DIN VDE 0100-600 und Geräte nach DIN VDE 0701/0702 Schritt für Schritt mit Simulation: Schutzleiter, Isolation, Schleifenimpedanz, RCD, Drehfeld, Schutzleiter- und Berührungsstrom – wo die Messspitzen hingehören, Grenzwerte und typische Fehler.",
+  "tex": "Z_\\text{S} \\le \\frac{2}{3} \\cdot \\frac{U_0}{I_\\text{a}}",
+  "projektmappe": {"nr": 1100, "name": "Elektrische Messungen Schritt für Schritt", "farbe": "#2B7BB9"}
+}

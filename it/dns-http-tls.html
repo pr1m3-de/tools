@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>DNS, HTTP und TLS Schritt für Schritt: Was beim Aufruf einer Webseite passiert – Formeln &amp; Rechner</title>
   <meta name="description" content="Was beim Aufruf einer Webseite passiert: DNS-Auflösung über Root, TLD und Nameserver, TCP-Handschlag, TLS 1.2 und 1.3, HTTP/2 und HTTP/3 als Ablaufdiagramm – mit Ladezeit-Rechner aus Umlaufzeit, Protokoll und Bandbreite.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/it/dns-http-tls.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="DNS, HTTP und TLS Schritt für Schritt: Was beim Aufruf einer Webseite passiert">
-  <meta property="og:description" content="Was beim Aufruf einer Webseite passiert: DNS-Auflösung über Root, TLD und Nameserver, TCP-Handschlag, TLS 1.2 und 1.3, HTTP/2 und HTTP/3 als Ablaufdiagramm – mit Ladezeit-Rechner aus Umlaufzeit, Protokoll und Bandbreite.">
-  <meta property="og:url" content="https://tools.pr1m3.de/it/dns-http-tls.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="DNS, HTTP und TLS Schritt für Schritt: Was beim Aufruf einer Webseite passiert">
-  <meta name="twitter:description" content="Was beim Aufruf einer Webseite passiert: DNS-Auflösung über Root, TLD und Nameserver, TCP-Handschlag, TLS 1.2 und 1.3, HTTP/2 und HTTP/3 als Ablaufdiagramm – mit Ladezeit-Rechner aus Umlaufzeit, Protokoll und Bandbreite.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/dns-http-tls.html#seite","name":"DNS, HTTP und TLS Schritt für Schritt: Was beim Aufruf einer Webseite passiert","url":"https://tools.pr1m3.de/it/dns-http-tls.html","inLanguage":"de","description":"Was beim Aufruf einer Webseite passiert: DNS-Auflösung über Root, TLD und Nameserver, TCP-Handschlag, TLS 1.2 und 1.3, HTTP/2 und HTTP/3 als Ablaufdiagramm – mit Ladezeit-Rechner aus Umlaufzeit, Protokoll und Bandbreite.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/dns-http-tls.html#pfad"},"dateModified":"2026-11-22"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/dns-http-tls.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"DNS, HTTP und TLS Schritt für Schritt: Was beim Aufruf einer Webseite passiert","item":"https://tools.pr1m3.de/it/dns-http-tls.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/dns-http-tls.html#fragen","mainEntity":[{"@type":"Question","name":"Warum ist die Umlaufzeit oft wichtiger als die Bandbreite?","acceptedAnswer":{"@type":"Answer","text":"Bis zum ersten Byte sind mehrere Umläufe nötig (DNS, TCP, TLS, Anfrage). Bei 100 ms Umlaufzeit sind das schnell 400 ms, egal wie schnell der Anschluss ist. Erst für große Dateien zählt die Bandbreite."}},{"@type":"Question","name":"Wie schnell kann ein Signal überhaupt sein?","acceptedAnswer":{"@type":"Answer","text":"Licht läuft in der Glasfaser mit etwa 200 000 km/s. Für 1000 km hin und zurück vergehen damit mindestens 10 ms. Router, Umwege und Warteschlangen kommen dazu."}},{"@type":"Question","name":"Was bedeutet die TTL bei DNS?","acceptedAnswer":{"@type":"Answer","text":"Time to live: So viele Sekunden darf eine Antwort zwischengespeichert werden. Eine lange TTL spart Anfragen, verzögert aber Änderungen, etwa beim Umzug auf einen anderen Server."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/dns-http-tls.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -58,17 +40,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="datenrate.html"><b>Datenrate und Übertragungszeit</b><span>Echte Übertragungszeit aus Datenmenge, Bandbreite, Overhead, Latenz, TCP-Fenster und Paketverlust</span></a></li>
-      <li><a href="paketreise.html"><b>Paketreise durchs Netz</b><span>Webseitenaufruf Schritt für Schritt mit Simulation</span></a></li>
-      <li><a href="homelab.html"><b>Homelab-Planer</b><span>Heimnetz und Homelab planen: Geräte mit Ports, jedes Kabel über Patchfeld und Dose, Rack, VLANs und IP-Plan, …</span></a></li>
-      <li><a href="subnetz.html"><b>IP-Subnetzrechner</b><span>IPv4 und IPv6: Netzadresse, Broadcast, nutzbarer Bereich, Hosts, Maske und Wildcard aus Adresse und Präfix, …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

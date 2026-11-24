@@ -1,0 +1,20 @@
+{
+  "nr": 1185,
+  "titel": "Relativitätstheorie und Schwarze Löcher",
+  "bereich": "Physik",
+  "themen": ["Astronomie", "Relativitätstheorie", "Einstein", "Zeitdilatation", "Längenkontraktion", "Lorentzfaktor", "Lichtgeschwindigkeit", "E = mc²", "Zwillingsparadoxon", "Raumzeit", "Schwarzes Loch", "Schwarzschildradius", "Ereignishorizont", "GPS", "Myon", "Gravitation"],
+  "text": "Relativität zum Ausrechnen: Lorentzfaktor, Zeitdilatation, Längenkontraktion, E = mc², Zwillingsparadoxon, Schwarzschildradius, Zeit am Schwarzen Loch und GPS-Korrektur – mit Lichtuhr, Raum-Zeit-Diagramm und Lernaufgaben.",
+  "tex": "\\gamma = \\frac{1}{\\sqrt{1 - v^2/c^2}}",
+  "projektmappe": {"nr": 735, "name": "Relativitätstheorie und Schwarze Löcher", "farbe": "#C2255C"},
+  "verwandt": ["physik/kosmologie.html"],
+  "fragen": [
+    ["Was besagt die Zeitdilatation?", "Eine bewegte Uhr geht – vom ruhenden Beobachter gemessen – langsamer.", ["Eine bewegte Uhr geht schneller.", "Alle Uhren gehen gleich schnell.", "Uhren bleiben bei hoher Geschwindigkeit stehen."], "Δt = γ · Δt₀ mit γ ≥ 1."],
+    ["Wie groß ist der Lorentzfaktor bei 80 % der Lichtgeschwindigkeit?", "1,667", ["1,25", "0,6", "5"], "γ = 1/√(1 − 0,64) = 1/0,6."],
+    ["Warum erreichen Myonen aus der Höhenstrahlung den Erdboden?", "Ihre Lebensdauer ist für uns durch die Zeitdilatation verlängert.", ["Sie sind schneller als Licht.", "Sie zerfallen gar nicht.", "Die Erdatmosphäre beschleunigt sie."], "Aus ihrer Sicht ist der Weg durch die Längenkontraktion verkürzt – beides passt zusammen."],
+    ["Zwei Raumschiffe fliegen mit je 90 % von c aufeinander zu. Wie schnell nähern sie sich, gemessen von einem Schiff?", "mit etwa 99,4 % von c", ["mit 180 % von c", "mit 90 % von c", "mit genau c"], "u = (0,9 + 0,9)/(1 + 0,81) = 0,994."],
+    ["Wie groß ist der Schwarzschildradius der Sonne?", "etwa 3 km", ["etwa 3 mm", "etwa 700 000 km", "etwa 3 000 km"], "r_S = 2GM/c² = 2,95 km."],
+    ["Warum gehen GPS-Uhren auf der Bahn insgesamt vor?", "Das schwächere Schwerefeld lässt sie schneller gehen, mehr als die Bewegung sie bremst.", ["Wegen der Luftreibung.", "Weil sie sich schneller als Licht bewegen.", "Sie gehen nach, nicht vor."], "+45 µs (Gravitation) − 7 µs (Bewegung) ≈ +38 µs pro Tag."],
+    ["Was sagt E = mc² aus?", "Masse und Energie sind gleichwertig; Masse ist eine Form von Energie.", ["Energie ist immer Bewegungsenergie.", "Masse wächst mit dem Quadrat der Geschwindigkeit.", "Licht hat Masse m = E·c²."], "1 g Masse entspricht 9 · 10¹³ J."],
+    ["Warum ist der reisende Zwilling bei der Rückkehr jünger?", "Er wechselt bei der Umkehr das Bezugssystem; sein Weg durch die Raumzeit hat weniger Eigenzeit.", ["Weil im Weltall weniger Zeit vergeht.", "Es ist ein echter Widerspruch.", "Weil er weniger isst."], "Die Situation ist nicht symmetrisch: Nur er wird beschleunigt."]
+  ]
+}

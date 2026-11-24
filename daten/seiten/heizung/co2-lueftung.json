@@ -1,0 +1,16 @@
+{
+  "nr": 620,
+  "titel": "Atemluft und CO₂ im Raum",
+  "gruppe": "Lüftung",
+  "bereich": "Heizungstechnik",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["CO₂", "Lüftung", "Raumluft", "ppm", "Stoßlüften", "Luftwechsel", "CO₂-Ampel", "Klassenraum", "ASR A3.6", "DIN EN 16798"],
+  "text": "CO₂ im Raum: Abgabe der Menschen nach Alter und Tätigkeit, Anstieg und Gleichgewicht, nötiger Außenluftvolumenstrom, Fensterlüftung mit Lüftungstakt, Leitwerte 1 000 und 2 000 ppm, Wärmeverlust durchs Lüften – mit Simulation.",
+  "tex": "C_\\infty = C_\\text{a} + \\frac{n_\\text{P}\\, G}{\\dot V}",
+  "projektmappe": {"nr": 370, "name": "Atemluft und CO₂ im Raum", "farbe": "#C2410C"},
+  "fragen": [
+    ["Ab welchem CO₂-Gehalt gilt Raumluft als bedenklich (Richtwert)?", "über 2000 ppm", ["über 400 ppm", "über 100 ppm", "über 50 000 ppm"], "Unter 1000 ppm gilt als unbedenklich (Umweltbundesamt)."],
+    ["Was ist ein typischer CO₂-Gehalt der Außenluft?", "etwa 420 ppm", ["etwa 4000 ppm", "etwa 42 ppm", "etwa 4 %"], "Der Wert steigt seit Jahrzehnten."],
+    ["Was beschreibt die Luftwechselrate?", "wie oft je Stunde die Raumluft ausgetauscht wird", ["die Temperatur der Zuluft", "den CO₂-Gehalt der Abluft", "die Feuchte im Raum"], "n = Volumenstrom / Raumvolumen."]
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "nr": 250,
+  "titel": "Beleuchtung planen",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Beleuchtung", "Lux", "Raumindex", "Leuchten", "Gleichmäßigkeit"],
+  "text": "Innenbeleuchtung nach DIN EN 12464-1: Raumindex, Anzahl und Raster der Leuchten, Wartungswert, Gleichmäßigkeit mit Falschfarbenbild und Leistungsdichte.",
+  "tex": "n = \\frac{\\bar E_\\text{m} \\cdot A}{\\Phi \\cdot \\eta_\\text{R} \\cdot MF}",
+  "projektmappe": {"nr": 70, "name": "Beleuchtung planen", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Was gibt die Beleuchtungsstärke an?", "den Lichtstrom je Fläche in Lux", ["die Leistung der Lampe in Watt", "die Lichtfarbe in Kelvin", "die Lebensdauer"], "1 lx = 1 lm/m²."],
+    ["Was beschreibt die Lichtausbeute?", "Lichtstrom je elektrischer Leistung (lm/W)", ["die Helligkeit in Lux", "den Farbwiedergabeindex", "den Abstrahlwinkel"], "LED-Leuchten erreichen über 100 lm/W."],
+    ["Welche Farbtemperatur hat warmweißes Licht etwa?", "2700 bis 3000 K", ["6500 K", "10 000 K", "1000 K"], "Je niedriger die Kelvinzahl, desto wärmer der Eindruck."]
+  ]
+}

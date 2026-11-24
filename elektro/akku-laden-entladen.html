@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Akku: Lade- und Entladeverhalten – Ladekurve, Entladekurve, C-Rate – Formeln &amp; Rechner</title>
+  <meta name="description" content="Akku laden und entladen simulieren: Ladekurve mit Konstantstrom und Konstantspannung (CC/CV, IUoU, −ΔU), Ladezeit, Entladekurven je C-Rate, Innenwiderstand, Peukert, Kälte und Alterung für Lithium-Ionen, LFP, Blei und NiMH.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <link rel="stylesheet" href="../assets/baukasten.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Wie sich Akkus beim Laden und Entladen verhalten</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Laden mit CC/CV</h3><p>Lithium-Akkus werden zuerst mit konstantem Strom (CC) geladen, bis die Ladeschlussspannung erreicht ist (NMC 4,20 V, LFP 3,65 V je Zelle). Dann hält das Ladegerät die Spannung konstant (CV), und der Strom sinkt von selbst. Bei etwa 1/20 des Nennstroms (C/20) ist der Akku voll. In der CC-Phase kommen je nach Strom 60–85 % der Ladung hinein, der Rest dauert unverhältnismäßig lange.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Bleiakku: IUoU</h3><p>Hauptladung mit konstantem Strom (I), dann Konstantspannung 2,40 V je Zelle (U, Absorption), bis der Strom klein wird, danach Erhaltungsladung mit 2,27 V (Uo, Float). Die Ladespannung muss bei Kälte steigen und bei Wärme sinken (etwa −3 mV je Kelvin und Zelle), sonst wird der Akku nicht voll oder gast.</p></article>
+        <article class="wissen-karte" style="--farbe:#A16207"><h3>NiMH: Konstantstrom und −ΔU</h3><p>NiMH-Zellen werden mit konstantem Strom geladen. Ist die Zelle voll, wird die Energie zu Wärme, die Spannung steigt nicht mehr und fällt sogar leicht (−ΔU) – daran erkennt das Ladegerät das Ende. Weil ein Teil der Ladung verloren geht, braucht man etwa das 1,2- bis 1,4-Fache der Kapazität (Ladefaktor).</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Entladekurve</h3><p>Beim Entladen fällt die Spannung erst schnell, dann lange flach (Plateau) und am Ende steil ab. Bei LFP ist das Plateau so flach, dass man den Ladezustand kaum an der Spannung ablesen kann – Akkusysteme zählen deshalb die Ladung (Coulomb-Zählung). Unter der Entladeschlussspannung droht Tiefentladung.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>C-Rate und Innenwiderstand</h3><p>Die C-Rate gibt den Strom im Verhältnis zur Kapazität an: 1C entlädt einen 3-Ah-Akku mit 3 A in einer Stunde, 0,5C mit 1,5 A in zwei Stunden. Am Innenwiderstand fällt die Spannung um I · R<sub>i</sub>; beim Entladen ist die Klemmenspannung kleiner, beim Laden größer als die Ruhespannung. Je höher der Strom, desto früher erreicht man die Grenzen – und desto mehr Wärme I² · R<sub>i</sub> entsteht.</p></article>
+        <article class="wissen-karte" style="--farbe:#7A5195"><h3>Peukert-Effekt</h3><p>Bei hohem Strom liefert ein Akku weniger Kapazität als bei kleinem. Beim Bleiakku ist das stark: Nach Peukert gilt t = H · (C / (I · H))<sup>k</sup> mit k ≈ 1,1–1,3. Die Kapazität ist deshalb immer mit einer Entladezeit angegeben (C20: in 20 Stunden). Lithium-Akkus haben k ≈ 1,02–1,05.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Temperatur</h3><p>Bei Kälte steigt der Innenwiderstand stark, die nutzbare Kapazität sinkt (bei −20 °C oft nur noch 50–70 %). Lithium-Akkus dürfen unter 0 °C nicht geladen werden: Es scheidet sich metallisches Lithium ab (Lithium-Plating), das die Zelle dauerhaft schädigt und gefährlich machen kann. Über etwa 45 °C altern alle Akkus deutlich schneller.</p></article>
+        <article class="wissen-karte" style="--farbe:#1F9E89"><h3>Zeitkonstante τ und 5τ</h3><p>Ein Akku verhält sich wie ein Innenwiderstand R<sub>0</sub> in Reihe mit einem RC-Glied (R<sub>1</sub> parallel C<sub>1</sub>). Schaltet man eine Last ein, fällt die Spannung sofort um I · R<sub>0</sub> und dann langsam um weitere I · R<sub>1</sub> – nach der Zeitkonstante τ = R<sub>1</sub> · C<sub>1</sub> sind 63 % davon erreicht, nach 5τ 99,3 %: Der Vorgang gilt als abgeschlossen. Ebenso erholt sich die Spannung nach dem Abschalten. Auch der Strom in der Konstantspannungsphase klingt ungefähr mit e<sup>−t/τ</sup> ab. Wie beim Kondensator gilt: 1τ 63 %, 2τ 86 %, 3τ 95 %, 4τ 98 %, 5τ 99 %.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Lebensdauer schonen</h3><p>Lithium-Akkus altern am langsamsten zwischen etwa 20 % und 80 %, bei mäßigem Strom und Zimmertemperatur. Voll geladen und warm gelagert verlieren sie am schnellsten Kapazität. Bleiakkus dagegen wollen immer voll geladen sein; tief entladen stehen gelassen sulfatieren sie. Der Gesundheitszustand (SoH) gibt die verbliebene Kapazität an, der Innenwiderstand steigt mit dem Alter.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Zellchemie</th><th class="zahl">Nennspannung</th><th class="zahl">Ladeschluss</th><th class="zahl">Entladeschluss</th><th>Ladeverfahren</th><th class="zahl">Energiedichte</th><th class="zahl">Vollzyklen</th><th class="zahl">Selbstentladung</th><th>Laden erlaubt</th></tr></thead><tbody id="chemie-tabelle"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum lädt das Handy die letzten 20 % so langsam?</summary><p>Ab etwa 80 % ist die Ladeschlussspannung erreicht. Das Ladegerät wechselt in die Konstantspannungsphase, und der Strom sinkt nach und nach. Würde es mit vollem Strom weiterladen, stiege die Zellspannung über die zulässige Grenze.</p></details>
+        <details><summary>Wie berechnet man die Ladezeit eines Akkus?</summary><p>Grob: Ladezeit = Kapazität × zu ladender Anteil ÷ (Ladestrom × Ladewirkungsgrad). Ein 3-Ah-Akku braucht bei 1,5 A also etwa 2 Stunden. Die Konstantspannungsphase kommt bei Lithium-Akkus noch dazu, oft 20–60 Minuten. Der Rechner simuliert beides.</p></details>
+        <details><summary>Was bedeutet 1C, 0,5C oder 2C?</summary><p>Die C-Rate ist der Strom geteilt durch die Kapazität. 1C bedeutet: Der Akku wäre in einer Stunde leer bzw. voll, 2C in einer halben Stunde, 0,2C in fünf Stunden.</p></details>
+        <details><summary>Warum hat ein Akku bei hohem Strom weniger Kapazität?</summary><p>Am Innenwiderstand fällt mehr Spannung ab, sodass die Entladeschlussspannung früher erreicht wird, obwohl noch Ladung in der Zelle ist. Dazu kommen langsame chemische Vorgänge (Diffusion), die bei großem Strom nicht nachkommen. Beim Bleiakku beschreibt das die Peukert-Gleichung.</p></details>
+        <details><summary>Darf man einen Lithium-Akku im Winter laden?</summary><p>Nur wenn die Zellen selbst über 0 °C warm sind, besser über 10 °C. Gute Akkusysteme sperren das Laden bei Kälte oder heizen erst. Entladen ist auch bei Kälte erlaubt, liefert dann aber weniger Kapazität.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script src="../assets/baukasten.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const BK = Baukasten, R = BK.R, tz = BK.tz, E = BK.E, F = BK.F, zz = BK.zz, rd = BK.rd, PI2 = BK.PI2, W2 = BK.W2, GRAD = BK.GRAD, BLAU = BK.BLAU, ROT = BK.ROT, GRUEN = BK.GRUEN, ORANGE = BK.ORANGE, LILA = BK.LILA, GRAU = BK.GRAU, GELB = BK.GELB, KUPFER = BK.KUPFER, TUERKIS = BK.TUERKIS, T = BK.T, TW = BK.TW, TWU = BK.TWU, pfeil = BK.pfeil, kreis = BK.kreis, strecke = BK.strecke, zug = BK.zug, uhr = BK.uhr, diagramm = BK.diagramm, schritt = BK.schritt, teilung = BK.teilung, stellen = BK.stellen, runde = BK.runde, ansichten = BK.ansichten, zufall = BK.zufall, bildCanvas = BK.bildCanvas, zeiger = BK.zeiger;
+    // Werte je Zelle; riC: Innenwiderstand mal Kapazität (Ω · Ah), eta: Ladungswirkungsgrad, peuk: Peukert-Exponent
+    const CHEMIE = {
+      nmc: { name: 'Lithium-Ionen (NMC/NCA)', kurz: 'Li-Ionen', un: 3.6, laden: 4.2, ende: 3.0, cv: true, abbruch: 0.05, riC: 0.08, eta: 0.995, peuk: 1.03, kalt: 0.008, tmin: 0, tmax: 45, cLaden: 1, cEnt: 3,
+        ocv: [[0, 3.0], [5, 3.35], [10, 3.46], [20, 3.56], [30, 3.62], [40, 3.67], [50, 3.72], [60, 3.79], [70, 3.87], [80, 3.95], [90, 4.06], [100, 4.19]],
+        tabelle: ['3,6–3,7 V', '4,20 V', '3,0 V', 'CC/CV', '150–250 Wh/kg', '500–1 500', '2–3 %/Monat', '0 bis 45 °C'] },
+      lfp: { name: 'Lithium-Eisenphosphat (LFP)', kurz: 'LFP', un: 3.2, laden: 3.65, ende: 2.5, cv: true, abbruch: 0.05, riC: 0.06, eta: 0.995, peuk: 1.02, kalt: 0.008, tmin: 0, tmax: 45, cLaden: 1, cEnt: 3,
+        ocv: [[0, 2.5], [2, 2.9], [5, 3.1], [10, 3.2], [20, 3.24], [35, 3.27], [50, 3.29], [65, 3.3], [80, 3.32], [90, 3.33], [95, 3.35], [98, 3.4], [100, 3.6]],
+        tabelle: ['3,2 V', '3,65 V', '2,5 V', 'CC/CV', '90–160 Wh/kg', '2 000–6 000', '2–3 %/Monat', '0 bis 45 °C'] },
+      blei: { name: 'Blei-Säure (AGM/Gel)', kurz: 'Blei', un: 2.0, laden: 2.4, float: 2.27, ende: 1.75, cv: true, abbruch: 0.02, riC: 0.07, eta: 0.88, peuk: 1.2, kalt: 0.01, ueber: 0.35, tmin: -20, tmax: 50, cLaden: 0.3, cEnt: 1,
+        ocv: [[0, 1.94], [10, 1.97], [25, 2.0], [50, 2.05], [75, 2.09], [90, 2.11], [100, 2.13]],
+        tabelle: ['2,0 V', '2,40 V (Float 2,27 V)', '1,75 V', 'IUoU', '30–40 Wh/kg', '300–800 (50 % entladen)', '1–5 %/Monat', '−20 bis 50 °C'] },
+      nimh: { name: 'Nickel-Metallhydrid (NiMH)', kurz: 'NiMH', un: 1.2, laden: 1.5, ende: 1.0, cv: false, abbruch: 0, riC: 0.06, eta: 0.8, peuk: 1.05, kalt: 0.01, tmin: 0, tmax: 45, cLaden: 1, cEnt: 2,
+        ocv: [[0, 1.0], [5, 1.12], [10, 1.18], [30, 1.23], [60, 1.26], [90, 1.31], [100, 1.38]],
+        tabelle: ['1,2 V', '−ΔU (≈ 1,45–1,5 V)', '1,0 V', 'Konstantstrom, −ΔU', '60–120 Wh/kg', '500–1 000', '1–30 %/Monat', '0 bis 45 °C'] }
+    };
+    const VORLAGEN = {
+      zelle: ['Rundzelle 18650 (Li-Ionen, 3 Ah)', { chemie: 'nmc', C: 3, s: 1, Ic: 1.5, Id: 3 }],
+      ebike: ['E-Bike-Akku 36 V, 14 Ah (10 Zellen in Reihe)', { chemie: 'nmc', C: 14, s: 10, Ic: 4, Id: 10 }],
+      speicher: ['Solarspeicher 51,2 V, 100 Ah (LFP, 16 Zellen)', { chemie: 'lfp', C: 100, s: 16, Ic: 50, Id: 50 }],
+      auto: ['Starterbatterie 12 V, 60 Ah (Blei, 6 Zellen)', { chemie: 'blei', C: 60, s: 6, Ic: 6, Id: 3 }],
+      aa: ['Mignon-Akku AA (NiMH, 2 Ah)', { chemie: 'nimh', C: 2, s: 1, Ic: 0.5, Id: 0.4 }]
+    };
+    let ansicht = 'akku', takt = uhr();
+    const SPIEL = { t: 0, schl: '' };
+
+    function ocv(K, soc) {
+      const t = K.ocv, s = Math.max(0, Math.min(100, soc));
+      for (let i = 1; i < t.length; i++) if (s <= t[i][0]) { const a = t[i - 1], b = t[i]; return a[1] + (b[1] - a[1]) * (s - a[0]) / (b[0] - a[0]); }
+      return t[t.length - 1][1];
+    }
+    // Kenngrößen bei Temperatur und Alterung
+    function kenn(e) {
+      const K = CHEMIE[e.chemie] || CHEMIE.nmc, soh = e.soh / 100, T = e.T;
+      const kap = T < 25 ? Math.max(0.3, 1 - K.kalt * (25 - T)) : 1;
+      const rT = Math.max(0.6, Math.min(8, Math.exp(0.03 * (25 - T))));
+      const Ri = K.riC / e.C * rT * (1 + 1.5 * (1 - soh));
+      const uLaden = K === CHEMIE.blei ? K.laden - 0.003 * (T - 25) : K.laden;
+      return { K: K, Ceff: e.C * soh * kap, kap: kap, rT: rT, Ri: Ri, R: 3 * Ri, uLaden: uLaden, uFloat: K.float ? K.float - 0.003 * (T - 25) : 0 };
+    }
+    // Laden: Konstantstrom, dann Konstantspannung (Li, Blei) oder −ΔU (NiMH)
+    function laden(P, e) {
+      const K = P.K, s = e.s, Ic = e.Ic, ziel = Math.max(e.soc0, e.ziel), pts = [];
+      let soc = e.soc0, t = 0, ah = 0, wh = 0, phase = 'CC', tCC = 0, socCC = soc, n = 0, I = Ic, U = 0;
+      const dt = P.Ceff / Ic / 1500;
+      let ende = '';
+      while (n < 40000) {
+        const gas = K.ueber && soc > 60 ? K.ueber * Math.pow((soc - 60) / 40, 1.5) : 0;
+        if (phase === 'CC') { I = Ic; U = ocv(K, soc) + gas + I * P.R; if (K.cv && U >= P.uLaden) { phase = 'CV'; tCC = t; socCC = soc; } }
+        if (phase === 'CV') { I = Math.min(Ic, (P.uLaden - ocv(K, soc) - gas) / P.R); U = P.uLaden; if (I <= K.abbruch * e.C || I <= 0) { ende = K.float ? 'Strom unter ' + zz(K.abbruch * 100, 0) + ' % von C → Erhaltungsladung lädt den Rest nach' : 'Strom unter C/20'; break; } }
+        if (!K.cv) { U = ocv(K, soc) + I * P.R + (soc > 92 ? 0.1 * Math.min(1, (soc - 92) / 6) - (soc > 98 ? 0.15 * (soc - 98) / 2 : 0) : 0); }
+        if (soc >= ziel - 1e-9) { ende = ziel < 100 ? 'Ladeziel ' + zz(ziel, 0) + ' % erreicht' : (K.cv ? 'voll' : '−ΔU erkannt'); break; }
+        if (n % 10 === 0) pts.push([t, U * s, I, soc, phase]);
+        soc = Math.min(100, soc + I * K.eta * dt / P.Ceff * 100); ah += I * dt; wh += U * s * I * dt; t += dt; n++;
+      }
+      if (phase === 'CC') { tCC = t; socCC = soc; }
+      pts.push([t, U * s, I, soc, phase]);
+      return { pts: pts, t: t, tCC: tCC, socCC: socCC, ah: ah, wh: wh, soc: soc, ende: ende || 'Zeitgrenze', phase: phase, uMax: U };
+    }
+    // Entladen mit konstantem Strom bis zur Entladeschlussspannung
+    function entladen(P, e, Id, start) {
+      const K = P.K, s = e.s, pts = [], In = e.C / 20, f = Math.min(1.05, Math.pow(In / Id, K.peuk - 1)), Cp = P.Ceff * f;
+      let soc = start, t = 0, ah = 0, wh = 0, n = 0, U = ocv(K, soc) - Id * P.R;
+      const dt = Cp / Id / 1500;
+      while (n < 20000 && soc > 0) {
+        U = ocv(K, soc) - Id * P.R;
+        if (U < K.ende) break;
+        if (n % 8 === 0) pts.push([t, U * s, ah, soc]);
+        soc -= Id * dt / Cp * 100; ah += Id * dt; wh += U * s * Id * dt; t += dt; n++;
+      }
+      pts.push([t, Math.max(U, K.ende) * s, ah, Math.max(0, soc)]);
+      return { pts: pts, t: t, ah: ah, wh: wh, soc: Math.max(0, soc), uMittel: ah > 0 ? wh / ah : ocv(K, start) * s, peukert: f, sofort: n === 0 };
+    }
+
+    function rechne(e) {
+      const P = kenn(e), K = P.K, r = { P: P, K: K, s: e.s };
+      r.Un = K.un * e.s; r.Wn = r.Un * e.C;
+      r.cL = e.Ic / e.C; r.cE = e.Id / e.C;
+      r.L = laden(P, e);
+      r.start = Math.max(e.soc0, e.ziel);
+      r.E = entladen(P, e, e.Id, r.start);
+      r.dUL = e.Ic * P.R * e.s; r.dUE = e.Id * P.R * e.s;
+      r.PvL = e.Ic * e.Ic * P.R * e.s; r.PvE = e.Id * e.Id * P.R * e.s;
+      r.grob = e.C * (r.start - e.soc0) / 100 / (e.Ic * K.eta);
+      // Ersatzschaltbild: R0 = Ri, R1 = 2 Ri, C1 = τ / R1
+      r.R0 = P.Ri * e.s; r.R1 = 2 * P.Ri * e.s; r.C1 = e.tau / r.R1;
+      r.dU0 = e.Id * r.R0; r.dU1 = e.Id * r.R1;
+      r.tauCV = NaN; r.cvTaus = NaN;
+      if (K.cv && r.L.tCC < r.L.t) {
+        const grenze = e.Ic * Math.exp(-1);
+        for (let i = 0; i < r.L.pts.length; i++) { const q = r.L.pts[i]; if (q[4] === 'CV' && q[2] <= grenze) { r.tauCV = q[0] - r.L.tCC; break; } }
+        if (isFinite(r.tauCV) && r.tauCV > 0) r.cvTaus = (r.L.t - r.L.tCC) / r.tauCV;
+      }
+      r.kurven = [0.05, 0.2, 0.5, 1, 2].map(function (c) { return { c: c, E: entladen(P, e, Math.max(1e-6, c * e.C), 100) }; });
+      return r;
+    }
+    function hm(h) { if (!isFinite(h)) return '–'; const min = Math.round(h * 60); return min < 60 ? min + ' min' : Math.floor(min / 60) + ' h ' + (min % 60 < 10 ? '0' : '') + (min % 60) + ' min'; }
+    function cz(c) { return zz(c, c < 1 ? 2 : 1) + ' C'; }
+
+    const seite = R.seite({
+      titel: 'Akku: Lade- und Entladeverhalten',
+      einleitung: 'Wie lange dauert das Laden, warum werden die letzten Prozent langsamer, und wie viel Kapazität bleibt bei hohem Strom oder Kälte? Der Rechner simuliert Laden (CC/CV, IUoU oder −ΔU) und Entladen für Lithium-Ionen, LFP, Blei und NiMH mit Innenwiderstand, Temperatur und Alterung.',
+      hilfe: 'Beispiel: Rundzelle 18650 mit 3 Ah, Laden mit 1,5 A (0,5C) von 10 % auf 100 %, Entladen mit 3 A (1C) bei 20 °C.',
+      gruppen: [
+        { titel: 'Akku', farbe: BLAU, felder: [
+          { k: 'vorlage', name: 'Vorlage', wahl: [['eigen', 'eigene Werte']].concat(Object.keys(VORLAGEN).map(function (k) { return [k, VORLAGEN[k][0]]; })), bei: function (e, w, setze) { if (VORLAGEN[w]) setze(VORLAGEN[w][1]); } },
+          { k: 'chemie', name: 'Zellchemie', wahl: Object.keys(CHEMIE).map(function (k) { return [k, CHEMIE[k].name]; }) },
+          { k: 'C', tex: 'C', name: 'Nennkapazität', e: 'Ah', min: 0.05, max: 2000 },
+          { k: 's', tex: 's', name: 'Zellen in Reihe', e: '', min: 1, max: 200, n: 0 },
+          { k: 'T', tex: '\\vartheta', name: 'Temperatur der Zellen', e: '°C', min: -30, max: 60 },
+          { k: 'soh', tex: '\\text{SoH}', name: 'Gesundheitszustand (Restkapazität)', e: '%', min: 40, max: 100 },
+          { k: 'tau', tex: '\\tau', name: 'Zeitkonstante der Polarisation (RC-Glied)', e: 's', min: 0.1, max: 36000, hilfe: 'Typisch 10–100 s für die schnelle Polarisation; Diffusion dauert Minuten bis Stunden.' }
+        ] },
+        { titel: 'Laden', farbe: GRUEN, felder: [
+          { k: 'Ic', tex: 'I_\\text{L}', name: 'Ladestrom', e: 'A', min: 0.001, max: 5000 },
+          { k: 'soc0', tex: '\\text{SoC}_0', name: 'Ladezustand am Anfang', e: '%', min: 0, max: 99 },
+          { k: 'ziel', tex: '\\text{SoC}_\\text{Ziel}', name: 'Laden bis', e: '%', min: 1, max: 100 }
+        ] },
+        { titel: 'Entladen (ab Ladeziel)', farbe: ROT, felder: [
+          { k: 'Id', tex: 'I_\\text{E}', name: 'Entladestrom', e: 'A', min: 0.001, max: 10000 }
+        ] }
+      ],
+      beispiel: { vorlage: 'zelle', chemie: 'nmc', C: 3, s: 1, T: 20, soh: 100, tau: 30, Ic: 1.5, soc0: 10, ziel: 100, Id: 3 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        const K = r.K, li = K === CHEMIE.nmc || K === CHEMIE.lfp;
+        if (li && e.T < K.tmin) H.meldung('Lithium-Akkus unter 0 °C nicht laden: Es scheidet sich metallisches Lithium ab (Lithium-Plating). Das schädigt die Zelle dauerhaft und kann zu inneren Kurzschlüssen führen.', true);
+        else if (e.T > K.tmax) H.meldung('Über ' + K.tmax + ' °C nicht laden: Die Zelle altert sehr schnell, bei Lithium-Akkus steigt die Brandgefahr.', true);
+        if (r.cL > K.cLaden) H.meldung('Ladestrom ' + cz(r.cL) + ' liegt über dem üblichen Höchstwert für ' + K.kurz + ' (' + cz(K.cLaden) + '). Nur mit Zellen, die dafür freigegeben sind.', true);
+        if (r.cE > K.cEnt) H.meldung('Entladestrom ' + cz(r.cE) + ' liegt über dem üblichen Höchstwert für ' + K.kurz + ' (' + cz(K.cEnt) + '). Zellen werden heiß; Datenblatt prüfen.', true);
+        if (r.E.sofort) H.meldung('Schon beim Einschalten des Entladestroms fällt die Spannung unter die Entladeschlussspannung (' + zz(K.ende * e.s, 2) + ' V). Der Strom ist für diesen Akku und diese Temperatur zu groß.', true);
+        if (li && e.ziel > 90) H.meldung('Tipp: Laden nur bis 80 % spart bei Lithium-Akkus viel Ladezeit (die Konstantspannungsphase entfällt fast) und verlängert die Lebensdauer.');
+        if (K === CHEMIE.blei && e.ziel < 100) H.meldung('Bleiakkus immer ganz voll laden: Teilgeladen sulfatieren sie und verlieren Kapazität.');
+        if (e.T < 10) H.meldung('Bei ' + zz(e.T, 0) + ' °C hat der Akku nur etwa ' + zz(r.P.kap * 100, 0) + ' % seiner Kapazität, der Innenwiderstand ist ' + zz(r.P.rT, 1) + '-mal so groß wie bei 25 °C.');
+        H.urteil(!(li && e.T < K.tmin) && r.cL <= K.cLaden && !r.E.sofort, hm(r.L.t) + ' laden');
+        H.kacheln([
+          [hm(r.L.t), 'Ladezeit von ' + zz(e.soc0, 0) + ' % auf ' + zz(r.L.soc, 0) + ' %', GRUEN],
+          [K.cv ? hm(r.L.tCC) + ' + ' + hm(r.L.t - r.L.tCC) : hm(r.L.t), K.cv ? 'Konstantstrom bis ' + zz(r.L.socCC, 0) + ' %, dann Konstantspannung' : 'nur Konstantstrom (Ende bei −ΔU)', BLAU],
+          [zz(r.L.wh, r.L.wh < 100 ? 1 : 0) + ' Wh', 'Energie hineingeladen (' + zz(r.L.ah, 2) + ' Ah)', GRUEN],
+          [hm(r.E.t), 'Entladezeit bei ' + zz(e.Id, 2) + ' A (' + cz(r.cE) + ')', ROT],
+          [zz(r.E.ah, 2) + ' Ah', 'entnommen = ' + zz(r.E.ah / e.C * 100, 0) + ' % der Nennkapazität', ORANGE],
+          [zz(r.E.wh, r.E.wh < 100 ? 1 : 0) + ' Wh', 'Energie entnommen, mittlere Spannung ' + zz(r.E.uMittel, 2) + ' V', ORANGE],
+          [zz(r.dUE, r.dUE < 1 ? 3 : 2) + ' V', 'Spannungseinbruch beim Entladen (I · R)', LILA],
+          [zz(r.PvE, r.PvE < 1 ? 3 : 1) + ' W', 'Wärme im Akku beim Entladen', ROT],
+          [zz(5 * e.tau, 5 * e.tau < 10 ? 1 : 0) + ' s', '5τ: Spannung nach Lastwechsel zu 99,3 % eingeschwungen', TUERKIS],
+          [isFinite(r.tauCV) ? hm(r.tauCV / 1) : '–', isFinite(r.tauCV) ? 'τ der Konstantspannungsphase (Strom auf 37 %), Phase dauert ≈ ' + zz(r.cvTaus, 1) + 'τ' : 'keine Konstantspannungsphase', TUERKIS]
+        ]);
+        H.tabelle('Kennwerte', e.s > 1 ? ['Größe', 'Akku', 'je Zelle'] : ['Größe', 'Wert'], [
+          ['Nennspannung', zz(r.Un, 1) + ' V', zz(K.un, 2) + ' V'],
+          ['Nennenergie', zz(r.Wn, 1) + ' Wh', zz(K.un * e.C, 1) + ' Wh'],
+          ['Ladeschlussspannung', zz(r.P.uLaden * e.s, 2) + ' V', zz(r.P.uLaden, 3) + ' V' + (K === CHEMIE.blei ? ' (temperaturkorrigiert)' : '')],
+          K.float ? ['Erhaltungsladespannung', zz(r.P.uFloat * e.s, 2) + ' V', zz(r.P.uFloat, 3) + ' V'] : null,
+          ['Entladeschlussspannung', zz(K.ende * e.s, 2) + ' V', zz(K.ende, 2) + ' V'],
+          ['Innenwiderstand (Gleichstrom)', zz(r.P.Ri * e.s * 1000, 1) + ' mΩ', zz(r.P.Ri * 1000, 2) + ' mΩ'],
+          ['wirksamer Widerstand mit Polarisation', zz(r.P.R * e.s * 1000, 1) + ' mΩ', zz(r.P.R * 1000, 2) + ' mΩ'],
+          ['nutzbare Kapazität (Temperatur, Alter)', zz(r.P.Ceff, 2) + ' Ah', ''],
+          ['Ladestrom / Entladestrom', cz(r.cL) + ' / ' + cz(r.cE), ''],
+          ['Ladungswirkungsgrad', zz(K.eta * 100, 1) + ' %', ''],
+          ['Ersatzschaltbild R₀ / R₁', zz(r.R0 * 1000, 1) + ' mΩ / ' + zz(r.R1 * 1000, 1) + ' mΩ', ''],
+          ['Polarisationskapazität C₁ = τ / R₁', zz(r.C1, r.C1 < 100 ? 1 : 0) + ' F', ''],
+          ['Ladeende', r.L.ende, '']
+        ].filter(Boolean).map(function (z) { return e.s > 1 ? z : z.slice(0, 2); }), { zahl: [1, 2] });
+        H.tabelle('Entladen mit verschiedenen Strömen (ab 100 %)', ['Strom', 'Zeit', 'Kapazität', 'Energie'], r.kurven.map(function (k) {
+          return [cz(k.c) + ' = ' + zz(k.c * e.C, 2) + ' A', hm(k.E.t), zz(k.E.ah, 2) + ' Ah = ' + zz(k.E.ah / e.C * 100, 0) + ' %', zz(k.E.wh, 1) + ' Wh'];
+        }), { zahl: [1, 2, 3] });
+      },
+      weg: function (r, e) {
+        return [
+          ['C-Rate', 'c = \\frac{I}{C} = \\frac{' + tz(e.Ic, 2) + '\\,\\text{A}}{' + tz(e.C, 2) + '\\,\\text{Ah}} = ' + E(tz(r.cL, 2) + '\\,\\text{C}') + '\\ \\text{(Laden)}, \\quad \\frac{' + tz(e.Id, 2) + '}{' + tz(e.C, 2) + '} = ' + E(tz(r.cE, 2) + '\\,\\text{C}')],
+          ['Ladezeit grob (ohne CV-Phase)', 't \\approx \\frac{C \\cdot \\Delta\\text{SoC}}{I \\cdot \\eta} = \\frac{' + tz(e.C, 2) + ' \\cdot ' + tz((r.start - e.soc0) / 100, 2) + '}{' + tz(e.Ic, 2) + ' \\cdot ' + tz(r.K.eta, 3) + '} = ' + E(tz(r.grob, 2) + '\\,\\text{h}')],
+          ['Spannungseinbruch', '\\Delta U = s \\cdot I \\cdot R = ' + tz(e.s, 0) + ' \\cdot ' + tz(e.Id, 2) + '\\,\\text{A} \\cdot ' + tz(r.P.R * 1000, 2) + '\\,\\text{m}\\Omega = ' + E(tz(r.dUE, 3) + '\\,\\text{V}')],
+          ['Wärme im Akku', 'P = s \\cdot I^2 \\cdot R = ' + tz(e.s, 0) + ' \\cdot (' + tz(e.Id, 2) + '\\,\\text{A})^2 \\cdot ' + tz(r.P.R * 1000, 2) + '\\,\\text{m}\\Omega = ' + E(tz(r.PvE, 3) + '\\,\\text{W}')],
+          ['Peukert-Faktor', 'f = \\left(\\frac{C/20}{I}\\right)^{k-1} = \\left(\\frac{' + tz(e.C / 20, 3) + '}{' + tz(e.Id, 2) + '}\\right)^{' + tz(r.K.peuk - 1, 2) + '} = ' + E(tz(r.E.peukert, 3))],
+          ['Zeitkonstante und Ersatzkapazität', '\\tau = R_1 \\cdot C_1 \\Rightarrow C_1 = \\frac{\\tau}{R_1} = \\frac{' + tz(e.tau, 1) + '\\,\\text{s}}{' + tz(r.R1 * 1000, 2) + '\\,\\text{m}\\Omega} = ' + E(tz(r.C1, 1) + '\\,\\text{F}')],
+          ['Spannung nach Lasteinschaltung', 'U(t) = U_0 - I R_0 - I R_1 \\left(1 - e^{-t/\\tau}\\right), \\quad t = 5\\tau = ' + tz(5 * e.tau, 1) + '\\,\\text{s}: \\; ' + E(tz(99.3, 1) + '\\,\\%') + '\\text{ von } I R_1 = ' + tz(r.dU1, 3) + '\\,\\text{V}'],
+          ['Entnommene Energie', 'W = \\bar U \\cdot Q = ' + tz(r.E.uMittel, 2) + '\\,\\text{V} \\cdot ' + tz(r.E.ah, 3) + '\\,\\text{Ah} = ' + E(tz(r.E.wh, 2) + '\\,\\text{Wh}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Ladung, Strom und Zeit', hilfe: 'Ideal, ohne Verluste und ohne Konstantspannungsphase.',
+          felder: [{ k: 'Q', tex: 'Q', name: 'Ladung (Kapazität)', e: 'Ah', min: 0.01, max: 10000 }, { k: 'I', tex: 'I', name: 'Strom', e: 'A', min: 0.001, max: 10000 }, { k: 't', tex: 't', name: 'Zeit', e: 'h', min: 0.01, max: 1000 }],
+          beispiel: { Q: 3, I: 1.5 },
+          gleichungen: [{ name: 'Q = I · t', v: ['Q', 'I', 't'], f: function (q) { return [q.Q, q.I * q.t]; },
+            loese: { Q: function (q) { return q.I * q.t; }, I: function (q) { return q.Q / q.t; }, t: function (q) { return q.Q / q.I; } },
+            weg: function (k, q) {
+              if (k === 'Q') return 'Q = I \\cdot t = ' + tz(q.I, 3) + '\\,\\text{A} \\cdot ' + tz(q.t, 2) + '\\,\\text{h} = ' + E(tz(q.Q, 3) + '\\,\\text{Ah}');
+              if (k === 'I') return 'I = \\frac{Q}{t} = \\frac{' + tz(q.Q, 3) + '\\,\\text{Ah}}{' + tz(q.t, 2) + '\\,\\text{h}} = ' + E(tz(q.I, 3) + '\\,\\text{A}');
+              return 't = \\frac{Q}{I} = \\frac{' + tz(q.Q, 3) + '\\,\\text{Ah}}{' + tz(q.I, 3) + '\\,\\text{A}} = ' + E(tz(q.t, 2) + '\\,\\text{h}');
+            } }] },
+        { titel: 'C-Rate', hilfe: 'c in 1/h: 1C entlädt in einer Stunde.',
+          felder: [{ k: 'I', tex: 'I', name: 'Strom', e: 'A', min: 0.001, max: 10000 }, { k: 'c', tex: 'c', name: 'C-Rate', e: 'C', min: 0.01, max: 20 }, { k: 'C', tex: 'C', name: 'Kapazität', e: 'Ah', min: 0.01, max: 10000 }],
+          beispiel: { c: 0.5, C: 14 },
+          gleichungen: [{ name: 'C-Rate', v: ['I', 'c', 'C'], f: function (q) { return [q.I, q.c * q.C]; },
+            loese: { I: function (q) { return q.c * q.C; }, c: function (q) { return q.I / q.C; }, C: function (q) { return q.I / q.c; } },
+            weg: function (k, q) {
+              if (k === 'I') return 'I = c \\cdot C = ' + tz(q.c, 2) + '\\,\\text{C} \\cdot ' + tz(q.C, 2) + '\\,\\text{Ah} = ' + E(tz(q.I, 3) + '\\,\\text{A}');
+              if (k === 'c') return 'c = \\frac{I}{C} = \\frac{' + tz(q.I, 3) + '\\,\\text{A}}{' + tz(q.C, 2) + '\\,\\text{Ah}} = ' + E(tz(q.c, 3) + '\\,\\text{C}');
+              return 'C = \\frac{I}{c} = \\frac{' + tz(q.I, 3) + '\\,\\text{A}}{' + tz(q.c, 2) + '\\,\\text{C}} = ' + E(tz(q.C, 2) + '\\,\\text{Ah}');
+            } }] },
+        { titel: 'Energie eines Akkus', felder: [{ k: 'W', tex: 'W', name: 'Energie', e: 'Wh', min: 0.01, max: 1e7 }, { k: 'U', tex: 'U_\\text{N}', name: 'Nennspannung', e: 'V', min: 1, max: 1000 }, { k: 'C', tex: 'C', name: 'Kapazität', e: 'Ah', min: 0.01, max: 10000 }],
+          beispiel: { U: 36, C: 14 },
+          gleichungen: [{ name: 'W = U · C', v: ['W', 'U', 'C'], f: function (q) { return [q.W, q.U * q.C]; },
+            loese: { W: function (q) { return q.U * q.C; }, U: function (q) { return q.W / q.C; }, C: function (q) { return q.W / q.U; } },
+            weg: function (k, q) {
+              if (k === 'W') return 'W = U_\\text{N} \\cdot C = ' + tz(q.U, 2) + '\\,\\text{V} \\cdot ' + tz(q.C, 2) + '\\,\\text{Ah} = ' + E(tz(q.W, 1) + '\\,\\text{Wh}');
+              if (k === 'U') return 'U_\\text{N} = \\frac{W}{C} = \\frac{' + tz(q.W, 1) + '\\,\\text{Wh}}{' + tz(q.C, 2) + '\\,\\text{Ah}} = ' + E(tz(q.U, 2) + '\\,\\text{V}');
+              return 'C = \\frac{W}{U_\\text{N}} = \\frac{' + tz(q.W, 1) + '\\,\\text{Wh}}{' + tz(q.U, 2) + '\\,\\text{V}} = ' + E(tz(q.C, 2) + '\\,\\text{Ah}');
+            } }] },
+        { titel: 'Klemmenspannung beim Entladen', hilfe: 'Ruhespannung minus Spannungsfall am Innenwiderstand.',
+          felder: [{ k: 'U', tex: 'U_\\text{K}', name: 'Klemmenspannung', e: 'V', min: 0.1, max: 1000 }, { k: 'U0', tex: 'U_0', name: 'Ruhespannung', e: 'V', min: 0.5, max: 1000 }, { k: 'I', tex: 'I', name: 'Entladestrom', e: 'A', min: 0.001, max: 10000 }, { k: 'R', tex: 'R_\\text{i}', name: 'Innenwiderstand', e: 'Ω', min: 0.0001, max: 10 }],
+          beispiel: { U0: 12.6, I: 100, R: 0.01 },
+          gleichungen: [{ name: 'U = U₀ − I · Rᵢ', v: ['U', 'U0', 'I', 'R'], f: function (q) { return [q.U, q.U0 - q.I * q.R]; },
+            loese: { U: function (q) { return q.U0 - q.I * q.R; }, U0: function (q) { return q.U + q.I * q.R; }, I: function (q) { return (q.U0 - q.U) / q.R; }, R: function (q) { return (q.U0 - q.U) / q.I; } },
+            weg: function (k, q) {
+              if (k === 'U') return 'U_\\text{K} = U_0 - I \\cdot R_\\text{i} = ' + tz(q.U0, 2) + ' - ' + tz(q.I, 2) + ' \\cdot ' + tz(q.R, 4) + ' = ' + E(tz(q.U, 3) + '\\,\\text{V}');
+              if (k === 'U0') return 'U_0 = U_\\text{K} + I \\cdot R_\\text{i} = ' + tz(q.U, 3) + ' + ' + tz(q.I, 2) + ' \\cdot ' + tz(q.R, 4) + ' = ' + E(tz(q.U0, 3) + '\\,\\text{V}');
+              if (k === 'I') return 'I = \\frac{U_0 - U_\\text{K}}{R_\\text{i}} = \\frac{' + tz(q.U0, 3) + ' - ' + tz(q.U, 3) + '}{' + tz(q.R, 4) + '} = ' + E(tz(q.I, 2) + '\\,\\text{A}');
+              return 'R_\\text{i} = \\frac{U_0 - U_\\text{K}}{I} = \\frac{' + tz(q.U0, 3) + ' - ' + tz(q.U, 3) + '}{' + tz(q.I, 2) + '} = ' + E(tz(q.R, 4) + '\\,\\Omega');
+            } }] },
+        { titel: 'Wärme im Akku', felder: [{ k: 'P', tex: 'P', name: 'Verlustleistung', e: 'W', min: 0.0001, max: 1e5 }, { k: 'I', tex: 'I', name: 'Strom', e: 'A', min: 0.001, max: 10000 }, { k: 'R', tex: 'R_\\text{i}', name: 'Innenwiderstand', e: 'Ω', min: 0.0001, max: 10 }],
+          beispiel: { I: 10, R: 0.05 },
+          gleichungen: [{ name: 'P = I² · Rᵢ', v: ['P', 'I', 'R'], f: function (q) { return [q.P, q.I * q.I * q.R]; },
+            loese: { P: function (q) { return q.I * q.I * q.R; }, I: function (q) { return Math.sqrt(q.P / q.R); }, R: function (q) { return q.P / (q.I * q.I); } },
+            weg: function (k, q) {
+              if (k === 'P') return 'P = I^2 \\cdot R_\\text{i} = (' + tz(q.I, 2) + '\\,\\text{A})^2 \\cdot ' + tz(q.R, 4) + '\\,\\Omega = ' + E(tz(q.P, 3) + '\\,\\text{W}');
+              if (k === 'I') return 'I = \\sqrt{\\frac{P}{R_\\text{i}}} = \\sqrt{\\frac{' + tz(q.P, 3) + '}{' + tz(q.R, 4) + '}} = ' + E(tz(q.I, 2) + '\\,\\text{A}');
+              return 'R_\\text{i} = \\frac{P}{I^2} = \\frac{' + tz(q.P, 3) + '}{' + tz(q.I, 2) + '^2} = ' + E(tz(q.R, 4) + '\\,\\Omega');
+            } }] },
+        { titel: 'Ladezeit mit Ladewirkungsgrad', hilfe: 'η: Ladungswirkungsgrad (Li ≈ 0,99, Blei ≈ 0,85–0,9, NiMH ≈ 0,7–0,8).',
+          felder: [{ k: 't', tex: 't', name: 'Ladezeit', e: 'h', min: 0.01, max: 1000 }, { k: 'C', tex: 'C', name: 'zu ladende Kapazität', e: 'Ah', min: 0.01, max: 10000 }, { k: 'I', tex: 'I', name: 'Ladestrom', e: 'A', min: 0.001, max: 10000 }, { k: 'eta', tex: '\\eta', name: 'Ladungswirkungsgrad', e: '', min: 0.5, max: 1 }],
+          beispiel: { C: 2, I: 0.2, eta: 0.75 },
+          gleichungen: [{ name: 'Ladezeit', v: ['t', 'C', 'I', 'eta'], f: function (q) { return [q.t * q.I * q.eta, q.C]; },
+            loese: { t: function (q) { return q.C / (q.I * q.eta); }, C: function (q) { return q.t * q.I * q.eta; }, I: function (q) { return q.C / (q.t * q.eta); }, eta: function (q) { return q.C / (q.t * q.I); } },
+            weg: function (k, q) {
+              if (k === 't') return 't = \\frac{C}{I \\cdot \\eta} = \\frac{' + tz(q.C, 3) + '}{' + tz(q.I, 3) + ' \\cdot ' + tz(q.eta, 2) + '} = ' + E(tz(q.t, 2) + '\\,\\text{h}');
+              if (k === 'C') return 'C = t \\cdot I \\cdot \\eta = ' + tz(q.t, 2) + ' \\cdot ' + tz(q.I, 3) + ' \\cdot ' + tz(q.eta, 2) + ' = ' + E(tz(q.C, 3) + '\\,\\text{Ah}');
+              if (k === 'I') return 'I = \\frac{C}{t \\cdot \\eta} = \\frac{' + tz(q.C, 3) + '}{' + tz(q.t, 2) + ' \\cdot ' + tz(q.eta, 2) + '} = ' + E(tz(q.I, 3) + '\\,\\text{A}');
+              return '\\eta = \\frac{C}{t \\cdot I} = \\frac{' + tz(q.C, 3) + '}{' + tz(q.t, 2) + ' \\cdot ' + tz(q.I, 3) + '} = ' + E(tz(q.eta, 3));
+            } }] },
+        { titel: 'Zeitkonstante: Anteil nach t', hilfe: 'Wie weit ist ein Ausgleichsvorgang nach der Zeit t? Nach 5τ sind 99,3 % erreicht.',
+          felder: [{ k: 'a', tex: 'a', name: 'erreichter Anteil', e: '%', min: 0.1, max: 99.99 }, { k: 't', tex: 't', name: 'Zeit', e: 's', min: 0.001, max: 1e6 }, { k: 'tau', tex: '\\tau', name: 'Zeitkonstante', e: 's', min: 0.001, max: 1e6 }],
+          beispiel: { t: 60, tau: 30 },
+          gleichungen: [{ name: 'Ausgleichsvorgang', v: ['a', 't', 'tau'], f: function (q) { return [q.a / 100, 1 - Math.exp(-q.t / q.tau)]; },
+            loese: { a: function (q) { return 100 * (1 - Math.exp(-q.t / q.tau)); }, t: function (q) { return q.a < 100 ? -q.tau * Math.log(1 - q.a / 100) : NaN; }, tau: function (q) { return q.a < 100 ? -q.t / Math.log(1 - q.a / 100) : NaN; } },
+            weg: function (k, q) {
+              if (k === 'a') return 'a = 1 - e^{-t/\\tau} = 1 - e^{-' + tz(q.t, 2) + '/' + tz(q.tau, 2) + '} = ' + E(tz(q.a, 1) + '\\,\\%');
+              if (k === 't') return 't = -\\tau \\cdot \\ln(1 - a) = -' + tz(q.tau, 2) + '\\,\\text{s} \\cdot \\ln(1 - ' + tz(q.a / 100, 4) + ') = ' + E(tz(q.t, 2) + '\\,\\text{s}');
+              return '\\tau = \\frac{-t}{\\ln(1 - a)} = \\frac{-' + tz(q.t, 2) + '\\,\\text{s}}{\\ln(1 - ' + tz(q.a / 100, 4) + ')} = ' + E(tz(q.tau, 2) + '\\,\\text{s}');
+            } }] },
+        { titel: 'Zeitkonstante des RC-Glieds', hilfe: 'Polarisation im Ersatzschaltbild: R₁ parallel C₁.',
+          felder: [{ k: 'tau', tex: '\\tau', name: 'Zeitkonstante', e: 's', min: 0.001, max: 1e6 }, { k: 'R', tex: 'R_1', name: 'Widerstand', e: 'Ω', min: 0.00001, max: 1e6 }, { k: 'C', tex: 'C_1', name: 'Kapazität', e: 'F', min: 1e-9, max: 1e7 }],
+          beispiel: { R: 0.02, C: 1500 },
+          gleichungen: [{ name: 'τ = R · C', v: ['tau', 'R', 'C'], f: function (q) { return [q.tau, q.R * q.C]; },
+            loese: { tau: function (q) { return q.R * q.C; }, R: function (q) { return q.tau / q.C; }, C: function (q) { return q.tau / q.R; } },
+            weg: function (k, q) {
+              if (k === 'tau') return '\\tau = R_1 \\cdot C_1 = ' + tz(q.R, 4) + '\\,\\Omega \\cdot ' + tz(q.C, 1) + '\\,\\text{F} = ' + E(tz(q.tau, 2) + '\\,\\text{s}');
+              if (k === 'R') return 'R_1 = \\frac{\\tau}{C_1} = \\frac{' + tz(q.tau, 2) + '}{' + tz(q.C, 1) + '} = ' + E(tz(q.R, 5) + '\\,\\Omega');
+              return 'C_1 = \\frac{\\tau}{R_1} = \\frac{' + tz(q.tau, 2) + '}{' + tz(q.R, 4) + '} = ' + E(tz(q.C, 1) + '\\,\\text{F}');
+            } }] },
+        { titel: 'Abklingender Strom in der Konstantspannungsphase', hilfe: 'Näherung I(t) = I₀ · e^(−t/τ).',
+          felder: [{ k: 'I', tex: 'I', name: 'Strom nach der Zeit t', e: 'A', min: 0.0001, max: 10000 }, { k: 'I0', tex: 'I_0', name: 'Strom am Anfang der Phase', e: 'A', min: 0.001, max: 10000 }, { k: 't', tex: 't', name: 'Zeit', e: 'min', min: 0.01, max: 10000 }, { k: 'tau', tex: '\\tau', name: 'Zeitkonstante', e: 'min', min: 0.01, max: 10000 }],
+          beispiel: { I0: 3, t: 45, tau: 15 },
+          gleichungen: [{ name: 'I = I₀ · e^(−t/τ)', v: ['I', 'I0', 't', 'tau'], f: function (q) { return [q.I, q.I0 * Math.exp(-q.t / q.tau)]; },
+            loese: { I: function (q) { return q.I0 * Math.exp(-q.t / q.tau); }, I0: function (q) { return q.I * Math.exp(q.t / q.tau); }, t: function (q) { return q.I < q.I0 ? q.tau * Math.log(q.I0 / q.I) : NaN; }, tau: function (q) { return q.I < q.I0 ? q.t / Math.log(q.I0 / q.I) : NaN; } },
+            weg: function (k, q) {
+              if (k === 'I') return 'I = I_0 \\cdot e^{-t/\\tau} = ' + tz(q.I0, 3) + ' \\cdot e^{-' + tz(q.t, 1) + '/' + tz(q.tau, 1) + '} = ' + E(tz(q.I, 4) + '\\,\\text{A}');
+              if (k === 'I0') return 'I_0 = I \\cdot e^{t/\\tau} = ' + tz(q.I, 4) + ' \\cdot e^{' + tz(q.t, 1) + '/' + tz(q.tau, 1) + '} = ' + E(tz(q.I0, 3) + '\\,\\text{A}');
+              if (k === 't') return 't = \\tau \\cdot \\ln\\frac{I_0}{I} = ' + tz(q.tau, 1) + ' \\cdot \\ln\\frac{' + tz(q.I0, 3) + '}{' + tz(q.I, 4) + '} = ' + E(tz(q.t, 1) + '\\,\\text{min}');
+              return '\\tau = \\frac{t}{\\ln(I_0 / I)} = \\frac{' + tz(q.t, 1) + '}{\\ln(' + tz(q.I0, 3) + ' / ' + tz(q.I, 4) + ')} = ' + E(tz(q.tau, 1) + '\\,\\text{min}');
+            } }] },
+        { titel: 'Peukert-Gleichung', hilfe: 'H: Nennentladezeit (z. B. 20 h bei C20), k: Peukert-Exponent (Blei 1,1–1,3).',
+          felder: [{ k: 't', tex: 't', name: 'Entladezeit', e: 'h', min: 0.01, max: 1000 }, { k: 'H', tex: 'H', name: 'Nennentladezeit', e: 'h', min: 1, max: 100 }, { k: 'C', tex: 'C', name: 'Nennkapazität', e: 'Ah', min: 0.1, max: 10000 }, { k: 'I', tex: 'I', name: 'Entladestrom', e: 'A', min: 0.001, max: 10000 }, { k: 'k', tex: 'k', name: 'Peukert-Exponent', e: '', min: 1, max: 1.6 }],
+          beispiel: { H: 20, C: 100, I: 20, k: 1.2 },
+          gleichungen: [{ name: 'Peukert', v: ['t', 'H', 'C', 'I', 'k'], f: function (q) { return [q.t, q.H * Math.pow(q.C / (q.I * q.H), q.k)]; },
+            loese: { t: function (q) { return q.H * Math.pow(q.C / (q.I * q.H), q.k); }, I: function (q) { return q.C / q.H * Math.pow(q.H / q.t, 1 / q.k); }, C: function (q) { return q.I * q.H * Math.pow(q.t / q.H, 1 / q.k); }, k: function (q) { const a = Math.log(q.C / (q.I * q.H)); return Math.abs(a) > 1e-9 ? Math.log(q.t / q.H) / a : NaN; } },
+            weg: function (k, q) {
+              if (k === 't') return 't = H \\cdot \\left(\\frac{C}{I \\cdot H}\\right)^k = ' + tz(q.H, 0) + ' \\cdot \\left(\\frac{' + tz(q.C, 1) + '}{' + tz(q.I, 2) + ' \\cdot ' + tz(q.H, 0) + '}\\right)^{' + tz(q.k, 2) + '} = ' + E(tz(q.t, 2) + '\\,\\text{h}');
+              if (k === 'I') return 'I = \\frac{C}{H} \\cdot \\left(\\frac{H}{t}\\right)^{1/k} = \\frac{' + tz(q.C, 1) + '}{' + tz(q.H, 0) + '} \\cdot \\left(\\frac{' + tz(q.H, 0) + '}{' + tz(q.t, 2) + '}\\right)^{1/' + tz(q.k, 2) + '} = ' + E(tz(q.I, 2) + '\\,\\text{A}');
+              if (k === 'C') return 'C = I \\cdot H \\cdot \\left(\\frac{t}{H}\\right)^{1/k} = ' + tz(q.I, 2) + ' \\cdot ' + tz(q.H, 0) + ' \\cdot \\left(\\frac{' + tz(q.t, 2) + '}{' + tz(q.H, 0) + '}\\right)^{1/' + tz(q.k, 2) + '} = ' + E(tz(q.C, 1) + '\\,\\text{Ah}');
+              return 'k = \\frac{\\ln(t/H)}{\\ln\\left(\\frac{C}{I \\cdot H}\\right)} = \\frac{\\ln(' + tz(q.t, 2) + '/' + tz(q.H, 0) + ')}{\\ln(' + tz(q.C, 1) + '/(' + tz(q.I, 2) + ' \\cdot ' + tz(q.H, 0) + '))} = ' + E(tz(q.k, 3));
+            } }] }
+      ],
+      sammlung: [
+        ['Ladung', 'Q = I \\cdot t', 'Q in Ah, I in A, t in h'],
+        ['C-Rate', 'c = \\frac{I}{C}', '1C: voll oder leer in einer Stunde'],
+        ['Energie', 'W = U_\\text{N} \\cdot C', 'Wh aus Nennspannung und Kapazität'],
+        ['Reihen- und Parallelschaltung', 'U = s \\cdot U_\\text{Zelle}, \\quad C = p \\cdot C_\\text{Zelle}', 's Zellen in Reihe, p parallel'],
+        ['Klemmenspannung beim Entladen', 'U_\\text{K} = U_0 - I \\cdot R_\\text{i}', 'U₀ Ruhespannung'],
+        ['Klemmenspannung beim Laden', 'U_\\text{K} = U_0 + I \\cdot R_\\text{i}', ''],
+        ['Verlustwärme', 'P = I^2 \\cdot R_\\text{i}', ''],
+        ['Ladezeit', 't \\approx \\frac{C \\cdot \\Delta\\text{SoC}}{I \\cdot \\eta}', 'ohne Konstantspannungsphase'],
+        ['Peukert-Gleichung', 't = H \\cdot \\left(\\frac{C}{I \\cdot H}\\right)^{k}', 'Blei k ≈ 1,1–1,3; Li k ≈ 1,02–1,05'],
+        ['Ladezustand', '\\text{SoC} = \\frac{Q_\\text{drin}}{C} \\cdot 100\\,\\%', 'Entladetiefe DoD = 100 % − SoC'],
+        ['Temperaturkorrektur Blei', 'U_\\text{L}(\\vartheta) = U_\\text{L,25} - 3\\,\\tfrac{\\text{mV}}{\\text{K}} \\cdot (\\vartheta - 25\\,{}^\\circ\\text{C})', 'je Zelle'],
+        ['Zeitkonstante', '\\tau = R_1 \\cdot C_1', 'RC-Glied der Polarisation im Ersatzschaltbild'],
+        ['Spannung nach Lasteinschaltung', 'U(t) = U_0 - I R_0 - I R_1 \\left(1 - e^{-t/\\tau}\\right)', 'Sprung um I · R₀, dann exponentiell'],
+        ['Ausgleichsvorgang', 'a = 1 - e^{-t/\\tau}: \\; 1\\tau \\to 63{,}2\\,\\%, \\; 3\\tau \\to 95{,}0\\,\\%, \\; 5\\tau \\to 99{,}3\\,\\%', 'nach 5τ gilt der Vorgang als abgeschlossen'],
+        ['Abklingender Strom (CV-Phase)', 'I(t) \\approx I_0 \\cdot e^{-t/\\tau}', 'Näherung'],
+        ['Energiewirkungsgrad', '\\eta_W = \\frac{W_\\text{ent}}{W_\\text{lad}}', 'Li ≈ 95 %, Blei ≈ 75–85 %, NiMH ≈ 65–75 %']
+      ],
+      quellen: 'Kennwerte typischer Zellen nach Datenblättern und IEC 61960, IEC 61056, IEC 61951-2 (gerundet). Das Modell rechnet mit Ruhespannungskurve, Innenwiderstand mit Polarisation (dreifacher Gleichstrom-Innenwiderstand), Ladungswirkungsgrad, Peukert-Faktor, Temperatur und Alterung – es ersetzt nicht das Datenblatt der Zelle.',
+      bild: { titel: 'Animation', label: 'Akku beim Laden und Entladen mit Ladekurve, Entladekurven und Ruhespannung', animiert: true,
+        hoehe: function (B) { return B < 600 ? Math.round(Math.min(620, B + 160)) : 460; },
+        hinweis: function (r) {
+          if (ansicht === 'akku') return 'Zeitraffer: Laden bis zum Ladeziel, dann Entladen bis zur Entladeschlussspannung. Pfeile zeigen die Stromrichtung.';
+          if (ansicht === 'laden') return r.K.cv ? 'Grün: Konstantstrom, die Spannung steigt. Blau: Konstantspannung, der Strom fällt.' : 'NiMH: Konstantstrom bis zum Spannungsmaximum; der leichte Abfall (−ΔU) beendet das Laden.';
+          if (ansicht === 'entladen') return 'Spannung über der entnommenen Ladung bei verschiedenen C-Raten. Je höher der Strom, desto tiefer die Kurve und desto früher das Ende.';
+          if (ansicht === 'tau') return 'Oben: Last ein bei 0, aus bei 5τ. Die Spannung springt um I · R₀ und läuft dann exponentiell weiter; nach 5τ ist der Vorgang zu 99,3 % abgeschlossen. Unten: Strom der Konstantspannungsphase gegen die ideale e-Funktion.';
+          return 'Ruhespannung je Zelle über dem Ladezustand. Das flache LFP-Plateau macht die Ladezustandsanzeige über die Spannung schwierig.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); ({ akku: akkuBild, laden: ladeBild, entladen: entladeBild, tau: tauBild, ocv: ocvBild })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    // ---------- Akku im Zeitraffer ----------
+    function zustandBei(r, f) {
+      // f in [0, 2): 0–1 Laden, 1–2 Entladen
+      if (f < 1) { const p = r.L.pts, i = Math.min(p.length - 1, Math.floor(f * (p.length - 1))), q = p[i]; return { laden: true, t: q[0], U: q[1], I: q[2], soc: q[3], phase: q[4] }; }
+      const p = r.E.pts, i = Math.min(p.length - 1, Math.floor((f - 1) * (p.length - 1))), q = p[i]; return { laden: false, t: q[0], U: q[1], I: 0, soc: q[3], phase: 'Entladen' };
+    }
+    function akkuBild(cx, B, H, dt, r, e) {
+      const schl = JSON.stringify([e.chemie, e.C, e.s, e.T, e.soh, e.Ic, e.soc0, e.ziel, e.Id]);
+      if (SPIEL.schl !== schl) { SPIEL.schl = schl; SPIEL.t = 0; }
+      SPIEL.t = (SPIEL.t + dt / 6) % 2.25;
+      const f = Math.min(SPIEL.t, 1.999), z = SPIEL.t > 2 ? zustandBei(r, 1.999) : zustandBei(r, f);
+      const klein = B < 600, bw = klein ? Math.min(120, B * 0.3) : 140, bh = klein ? Math.min(220, H * 0.42) : H - 120, bx = klein ? B / 2 - bw / 2 : 60, by = 40;
+      // Gehäuse
+      cx.fillStyle = F('--flaeche'); cx.strokeStyle = F('--text'); cx.lineWidth = 3;
+      cx.fillRect(bx + bw * 0.35, by - 12, bw * 0.3, 12); cx.strokeRect(bx + bw * 0.35, by - 12, bw * 0.3, 12);
+      cx.fillRect(bx, by, bw, bh); cx.strokeRect(bx, by, bw, bh);
+      const soc = Math.max(0, Math.min(100, z.soc)), fh = (bh - 10) * soc / 100, farbe = soc > 50 ? GRUEN : soc > 20 ? ORANGE : ROT;
+      cx.fillStyle = farbe; cx.globalAlpha = 0.85; cx.fillRect(bx + 5, by + bh - 5 - fh, bw - 10, fh); cx.globalAlpha = 1;
+      for (let k = 1; k < 5; k++) strecke(cx, bx + 5, by + bh * k / 5, bx + 14, by + bh * k / 5, F('--text'), 1);
+      T(cx, zz(soc, 0) + ' %', bx + bw / 2, by + bh / 2, 'center', 18, true, F('--text'));
+      // Stromrichtung
+      const ax = bx + bw + 18, n = 4, ph = (Date.now() / 600) % 1;
+      for (let k = 0; k < n; k++) {
+        const y = z.laden ? by + bh * ((k + ph) / n) : by + bh * (1 - (k + ph) / n);
+        pfeil(cx, ax, y - (z.laden ? 8 : -8), ax, y + (z.laden ? 8 : -8), z.laden ? GRUEN : ROT, 2);
+      }
+      const phase = z.laden ? (z.phase === 'CC' ? 'Laden: Konstantstrom' : z.phase === 'CV' ? (r.K.float ? 'Laden: Konstantspannung (Absorption)' : 'Laden: Konstantspannung') : 'Laden') : SPIEL.t > 2 ? 'Entladeschluss erreicht' : 'Entladen';
+      const zeilen = [[phase, z.laden ? GRUEN : ROT], ['U = ' + zz(z.U, 2) + ' V', F('--text')], ['I = ' + zz(z.laden ? z.I : e.Id, 2) + ' A (' + cz((z.laden ? z.I : e.Id) / e.C) + ')', F('--text')], ['t = ' + hm(z.t), GRAU]];
+      const tx = klein ? 10 : bx + bw + 50;
+      zeilen.forEach(function (q, i) { if (klein) T(cx, q[0], B / 2, by + bh + 22 + i * 16, 'center', i ? 12 : 13, !i, q[1]); else T(cx, q[0], tx, by + 20 + i * 20, 'left', i ? 13 : 14, !i, q[1]); });
+      // Spannungsverlauf
+      const gx = klein ? 8 : tx, gy = klein ? by + bh + 92 : by + 110, gw = B - gx - 8, gh = H - gy - 8;
+      if (gh > 80) {
+        const lp = r.L.pts.map(function (q) { return [q[0] / Math.max(1e-9, r.L.t), q[1]]; }), ep = r.E.pts.map(function (q) { return [1 + q[0] / Math.max(1e-9, r.E.t), q[1]]; });
+        const alle = lp.concat(ep).map(function (q) { return q[1]; }), lo = Math.min.apply(null, alle), hi = Math.max.apply(null, alle), pad = Math.max(0.02, (hi - lo) * 0.1);
+        diagramm(cx, gx, gy, gw, gh, [{ name: 'Laden', farbe: GRUEN, punkte: lp }, { name: 'Entladen', farbe: ROT, punkte: ep, punkt: [Math.min(f, 1.999), z.U] }], { titel: 'Klemmenspannung in V (Zeit je Abschnitt gestaucht)', xl: '', xr: [0, 2], yr: [lo - pad, hi + pad] });
+      }
+    }
+    // ---------- Ladekurve ----------
+    function ladeBild(cx, B, H, dt, r, e) {
+      const p = r.L.pts, th = r.L.t || 1, h1 = Math.round((H - 16) * 0.5);
+      SPIEL.t = (SPIEL.t + dt / 6) % 1.2; const k = Math.min(p.length - 1, Math.floor(Math.min(1, SPIEL.t) * (p.length - 1))), q = p[k];
+      const us = p.map(function (x) { return x[1]; }), lo = Math.min.apply(null, us), hi = Math.max.apply(null, us), pad = Math.max(0.02, (hi - lo) * 0.15);
+      const cc = p.filter(function (x) { return x[4] === 'CC'; }).map(function (x) { return [x[0], x[1]]; }), cv = p.filter(function (x) { return x[4] === 'CV'; }).map(function (x) { return [x[0], x[1]]; });
+      const g = diagramm(cx, 8, 8, B - 16, h1, [{ name: 'Spannung (Konstantstrom)', farbe: GRUEN, punkte: cc }, { name: 'Spannung (Konstantspannung)', farbe: BLAU, punkte: cv }, { name: '', farbe: F('--text'), punkte: [], punkt: [q[0], q[1]] }], { titel: 'Ladespannung in V', xl: 't in h', xr: [0, th], yr: [lo - pad, hi + pad] });
+      if (r.K.cv) { strecke(cx, g.x0, g.Y(r.P.uLaden * e.s), g.x1, g.Y(r.P.uLaden * e.s), GRAU, 1, [4, 3]); T(cx, 'Ladeschluss ' + zz(r.P.uLaden * e.s, 2) + ' V', g.x1 - 4, g.Y(r.P.uLaden * e.s) + 10, 'right', 9, false, GRAU); }
+      if (r.K.cv && r.L.tCC < th) strecke(cx, g.X(r.L.tCC), g.y0, g.X(r.L.tCC), g.y1, GRAU, 1, [3, 3]);
+      const g2 = diagramm(cx, 8, h1 + 16, B - 16, H - h1 - 24, [{ name: 'Ladezustand in %', farbe: ORANGE, punkte: p.map(function (x) { return [x[0], x[3]]; }), punkt: [q[0], q[3]] }, { name: 'Strom in % von ' + zz(e.Ic, 2) + ' A', farbe: LILA, punkte: p.map(function (x) { return [x[0], x[2] / e.Ic * 100]; }), punkt: [q[0], q[2] / e.Ic * 100] }], { titel: 'Ladezustand und Strom', xl: 't in h', xr: [0, th], yr: [0, 105] });
+      if (r.K.cv && r.L.tCC < th) { strecke(cx, g2.X(r.L.tCC), g2.y0, g2.X(r.L.tCC), g2.y1, GRAU, 1, [3, 3]); T(cx, 'CC → CV', g2.X(r.L.tCC) + 4, g2.y1 + 12, 'left', 9, true, GRAU); }
+    }
+    // ---------- Entladekurven ----------
+    function entladeBild(cx, B, H, dt, r, e) {
+      const farben = [GRUEN, BLAU, LILA, ORANGE, ROT], reihen = [];
+      let hi = 0, lo = 1e9, xmax = 0;
+      r.kurven.forEach(function (k) { k.E.pts.forEach(function (q) { hi = Math.max(hi, q[1]); lo = Math.min(lo, q[1]); xmax = Math.max(xmax, q[2]); }); });
+      r.E.pts.forEach(function (q) { hi = Math.max(hi, q[1]); lo = Math.min(lo, q[1]); });
+      SPIEL.t = (SPIEL.t + dt / 6) % 1.2; const p = r.E.pts, k = Math.min(p.length - 1, Math.floor(Math.min(1, SPIEL.t) * (p.length - 1)));
+      r.kurven.forEach(function (kv, i) { reihen.push({ name: cz(kv.c), farbe: farben[i], punkte: kv.E.pts.map(function (q) { return [q[2], q[1]]; }), breite: 1.5 }); });
+      reihen.push({ name: 'gewählt ' + cz(r.cE), farbe: F('--text'), punkte: p.map(function (q) { return [q[2], q[1]]; }), breite: 2.5, punkt: p.length ? [p[k][2], p[k][1]] : null });
+      const pad = Math.max(0.02, (hi - lo) * 0.1), g = diagramm(cx, 8, 8, B - 16, H - 16, reihen, { titel: 'Entladekurven bei ' + zz(e.T, 0) + ' °C', xl: 'entnommen in Ah', xr: [0, Math.max(e.C, xmax) * 1.02], yr: [lo - pad, hi + pad] });
+      const ue = r.K.ende * e.s; strecke(cx, g.x0, g.Y(ue), g.x1, g.Y(ue), ROT, 1, [4, 3]); T(cx, 'Entladeschluss ' + zz(ue, 2) + ' V', g.x0 + 4, g.Y(ue) - 6, 'left', 9, true, ROT);
+      strecke(cx, g.X(e.C), g.y0, g.X(e.C), g.y1, GRAU, 1, [2, 3]); T(cx, 'Nennkapazität', g.X(e.C) - 4, g.y0 + 10, 'right', 9, false, GRAU);
+    }
+    // ---------- Zeitkonstante: Lastsprung und Erholung ----------
+    function tauBild(cx, B, H, dt, r, e) {
+      const tau = e.tau, U0 = ocv(r.K, 50) * e.s, I = e.Id, h1 = Math.round((H - 16) * (isFinite(r.tauCV) ? 0.58 : 1) - (isFinite(r.tauCV) ? 0 : 0));
+      SPIEL.t = (SPIEL.t + dt / 8) % 1.15; const tz0 = Math.min(1, SPIEL.t) * 10;
+      const U = function (x) { if (x < 0) return U0; if (x <= 5) return U0 - I * r.R0 - I * r.R1 * (1 - Math.exp(-x)); const u5 = I * r.R1 * (1 - Math.exp(-5)); return U0 - u5 * Math.exp(-(x - 5)); };
+      const pk = []; for (let x = -0.5; x <= 10.001; x += 0.05) pk.push([x, U(x)]);
+      const lo = U0 - I * (r.R0 + r.R1), pad = Math.max(1e-4, (U0 - lo) * 0.25);
+      const g = diagramm(cx, 8, 8, B - 16, h1, [{ name: 'Klemmenspannung (Last ' + zz(I, 2) + ' A ein bei 0, aus bei 5τ)', farbe: TUERKIS, punkte: pk.filter(function (q) { return q[0] <= tz0; }), punkt: [tz0, U(tz0)] }], { titel: 'Lastsprung bei 50 % Ladezustand, Zeit in τ = ' + zz(tau, 1) + ' s', xl: 't / τ', xr: [-0.5, 10], yr: [lo - pad, U0 + pad] });
+      [1, 2, 3, 4, 5].forEach(function (k) {
+        const x = g.X(k); strecke(cx, x, g.y0, x, g.y1, GRAU, 1, [2, 3]);
+        if (k <= tz0) T(cx, k + 'τ ' + zz((1 - Math.exp(-k)) * 100, 1) + ' %', x + 2, g.Y(U(k)) + (k % 2 ? 12 : -8), 'left', 9, true, TUERKIS);
+      });
+      strecke(cx, g.X(0), g.Y(U0), g.X(0), g.Y(U0 - I * r.R0), ROT, 2); T(cx, 'I · R₀ sofort', g.X(0) + 4, g.Y(U0 - I * r.R0 / 2), 'left', 9, true, ROT);
+      if (tz0 > 5) T(cx, 'Erholung: I · R₀ sofort zurück, Rest mit τ', g.X(5) + 4, g.Y(U0) + 10, 'left', 9, true, GRUEN);
+      if (isFinite(r.tauCV)) {
+        const p = r.L.pts.filter(function (q) { return q[4] === 'CV'; }), t0 = r.L.tCC, tc = r.tauCV;
+        const ist = p.map(function (q) { return [(q[0] - t0) / tc, q[2] / e.Ic * 100]; }), xm = Math.max(5, ist.length ? ist[ist.length - 1][0] : 5);
+        const ideal = []; for (let x = 0; x <= xm; x += xm / 100) ideal.push([x, 100 * Math.exp(-x)]);
+        const g2 = diagramm(cx, 8, h1 + 16, B - 16, H - h1 - 24, [{ name: 'Strom in der CV-Phase (% von ' + zz(e.Ic, 2) + ' A)', farbe: BLAU, punkte: ist }, { name: '100 % · e^(−t/τ)', farbe: GRAU, punkte: ideal, breite: 1, strich: [4, 3] }], { titel: 'Konstantspannungsphase, τ = ' + hm(tc), xl: 't / τ', xr: [0, xm], yr: [0, 105] });
+        strecke(cx, g2.X(1), g2.Y(0), g2.X(1), g2.Y(36.8), GRAU, 1, [2, 3]); T(cx, '37 %', g2.X(1) + 3, g2.Y(36.8) - 6, 'left', 9, true, GRAU);
+      }
+    }
+    // ---------- Ruhespannung ----------
+    function ocvBild(cx, B, H, dt, r, e) {
+      const farben = { nmc: BLAU, lfp: GRUEN, blei: GRAU, nimh: ORANGE }, reihen = [];
+      Object.keys(CHEMIE).forEach(function (k) { const K = CHEMIE[k], pk = []; for (let s = 0; s <= 100; s += 1) pk.push([s, ocv(K, s)]); reihen.push({ name: K.kurz, farbe: farben[k], punkte: pk, breite: K === r.K ? 3 : 1.5, punkt: K === r.K ? [Math.max(0, Math.min(100, e.ziel)), ocv(K, e.ziel)] : null }); });
+      diagramm(cx, 8, 8, B - 16, H - 16, reihen, { titel: 'Ruhespannung je Zelle in V', xl: 'Ladezustand in %', xr: [0, 100], yr: [0.8, 4.4] });
+      void dt;
+    }
+
+    ansicht = (ansichten(seite, [['akku', 'Akku'], ['laden', 'Ladekurve'], ['entladen', 'Entladekurven'], ['tau', 'Zeitkonstante τ'], ['ocv', 'Ruhespannung']], 'akku', function (a) { ansicht = a; SPIEL.t = 0; }))();
+
+    const tb = document.getElementById('chemie-tabelle');
+    Object.keys(CHEMIE).forEach(function (k) { const tr = document.createElement('tr'); [CHEMIE[k].name].concat(CHEMIE[k].tabelle).forEach(function (x, i) { const td = document.createElement('td'); if ([1, 2, 3, 5, 6, 7].indexOf(i) >= 0) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr); });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

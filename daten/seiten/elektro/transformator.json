@@ -1,0 +1,15 @@
+{
+  "nr": 40,
+  "titel": "Transformator",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Übersetzung", "Hauptgleichung", "Wirkungsgrad", "Kurzschlussspannung", "Spannungsfall", "Schaltgruppen", "Drehstrom"],
+  "text": "Idealer Transformator in jede Richtung gerechnet, Eisen- und Kupferverluste mit bester Auslastung, Kurzschlussversuch und Kapp-Dreieck, Drehstrom mit Schaltgruppe und Kennzahl.",
+  "tex": "\\ddot{u} = \\frac{U_1}{U_2} = \\frac{N_1}{N_2} = \\frac{I_2}{I_1}",
+  "projektmappe": {"nr": 20, "name": "Transformator", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Wie verhalten sich Spannungen und Windungszahlen beim idealen Transformator?", "U₁ / U₂ = N₁ / N₂", ["U₁ / U₂ = N₂ / N₁", "U₁ · U₂ = N₁ · N₂", "U₁ = U₂ immer"], "Die Ströme verhalten sich umgekehrt."],
+    ["Warum funktioniert ein Transformator nicht mit Gleichstrom?", "Nur ein sich änderndes Magnetfeld induziert eine Spannung.", ["Gleichstrom ist zu schwach.", "Der Kern schmilzt.", "Gleichstrom hat keine Frequenz von 50 Hz, aber 60 Hz."], "Induktionsgesetz: U ~ dΦ/dt."],
+    ["Was zeigt die relative Kurzschlussspannung u_k?", "wie stark die Spannung bei Belastung einbricht und wie groß der Kurzschlussstrom wird", ["die Leerlaufverluste", "die Farbe der Wicklung", "die Isolationsklasse"], "I_k ≈ I_n / u_k."]
+  ]
+}

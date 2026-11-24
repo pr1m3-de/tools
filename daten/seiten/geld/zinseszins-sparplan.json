@@ -1,0 +1,15 @@
+{
+  "nr": 960,
+  "titel": "Zinseszins und Sparplan",
+  "gruppe": "Lohn und Privat",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Zinseszins", "Sparplan", "Rendite", "Endkapital", "Sparrate", "ETF", "Abgeltungsteuer", "Verdopplungszeit", "Altersvorsorge", "72er-Regel"],
+  "text": "Zinseszins und Sparplan berechnen: Startkapital und Monatsrate, Endkapital, Einzahlungen und Zinsen, Wirkung von Kosten, Abgeltungsteuer und Inflation, Verdopplungszeit und Vergleich verschiedener Zinssätze – mit Löser für Rate, Zins, Laufzeit und Ziel.",
+  "tex": "K_n = K_0\\, q^N + r \\cdot \\frac{q^N - 1}{q - 1}",
+  "projektmappe": {"nr": 1070, "name": "Zinseszins und Sparplan", "farbe": "#A16207"},
+  "fragen": [
+    ["Was ist der Zinseszins?", "Zinsen werden mitverzinst.", ["Zinsen auf geliehenes Geld", "eine Gebühr der Bank", "der doppelte Zinssatz"], "Das Kapital wächst exponentiell."],
+    ["Wie lange braucht Geld bei 7 % Zinsen ungefähr, um sich zu verdoppeln?", "etwa 10 Jahre", ["etwa 7 Jahre", "etwa 20 Jahre", "etwa 3 Jahre"], "72er-Regel: 72 / 7 ≈ 10."],
+    ["Was senkt die reale Rendite?", "Inflation", ["ein höherer Zinssatz", "eine längere Laufzeit", "Zinseszins"], "Real ≈ Nominalzins − Inflation."]
+  ]
+}
