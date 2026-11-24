@@ -1,0 +1,16 @@
+{
+  "nr": 690,
+  "titel": "Drehstrommotor und Anlauf",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Drehstrommotor", "Asynchronmotor", "Nennstrom", "Stern-Dreieck", "Anlaufstrom", "Schlupf", "Drehmoment", "Motorschutz", "Blindleistung", "Kompensation"],
+  "text": "Drehstrommotor vom Typenschild zum Anschluss: Nennstrom, Drehzahl und Drehmoment, Anlaufstrom bei Direktanlauf, Stern-Dreieck, Sanftanlauf und Frequenzumrichter, Motorschutz und Blindstromkompensation – mit Simulation von Drehfeld und Hochlauf.",
+  "tex": "I_\\text{N} = \\frac{P_\\text{N}}{\\sqrt{3}\\, U \\cos\\varphi\\, \\eta}",
+  "projektmappe": {"nr": 570, "name": "Drehstrommotor und Anlauf", "farbe": "#2B7BB9"},
+  "verwandt": ["elektro/drehfeldmaschinen.html", "elektro/kompensation.html"],
+  "fragen": [
+    ["Warum läuft ein Asynchronmotor nie genau mit synchroner Drehzahl?", "Ohne Schlupf würde im Läufer keine Spannung induziert und kein Drehmoment entstehen.", ["Weil die Lager bremsen.", "Weil die Netzfrequenz schwankt.", "Weil der Läufer zu schwer ist."], "Schlupf typischerweise 2 bis 6 %."],
+    ["Wofür dient der Stern-Dreieck-Anlauf?", "Der Anlaufstrom sinkt auf etwa ein Drittel.", ["Der Motor läuft rückwärts.", "Die Leistung verdoppelt sich.", "Der Motor braucht keinen Schutzleiter."], "Im Stern liegt nur 1/√3 der Spannung an den Wicklungen."],
+    ["Wie groß ist die synchrone Drehzahl eines 4-poligen Motors bei 50 Hz?", "1500 1/min", ["3000 1/min", "1000 1/min", "750 1/min"], "n₀ = 60 · f / p = 60 · 50 / 2."]
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "nr": 700,
+  "titel": "Erdung und Potentialtrichter",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Erdung", "Erder", "Erdungswiderstand", "Tiefenerder", "Fundamenterder", "Schrittspannung", "Potentialtrichter", "TT-System", "Erderspannung", "DIN 18014"],
+  "text": "Erdungsanlage berechnen: Ausbreitungswiderstand von Tiefen-, Band- und Fundamenterder je Bodenart, Bedingung im TT-System, Erderspannung im Fehlerfall, Potentialtrichter und Schrittspannung – mit Simulation des Stromflusses im Erdreich.",
+  "tex": "R_\\text{A} = \\frac{\\rho}{2\\pi l} \\ln\\frac{4 l}{d}",
+  "projektmappe": {"nr": 730, "name": "Erdung und Potentialtrichter", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Was ist ein Potentialtrichter?", "der Spannungsverlauf im Boden um einen stromdurchflossenen Erder", ["ein Trichter für Erdkabel", "ein Messgerät für Erdwiderstand", "eine Bauform des Blitzableiters"], "Daraus ergibt sich die Schrittspannung."],
+    ["Wovon hängt der Ausbreitungswiderstand eines Erders stark ab?", "vom spezifischen Bodenwiderstand und der Erderlänge", ["von der Farbe des Erders", "von der Netzfrequenz", "vom Leiterquerschnitt im Haus"], "Feuchter Lehm ist besser als trockener Sand."],
+    ["Was verbindet der Hauptpotentialausgleich?", "Schutzleiter, Erder und leitfähige Rohre und Teile im Gebäude", ["nur die Außenleiter", "Neutralleiter und Außenleiter", "Antennenkabel mit dem Telefon"], "Damit zwischen ihnen keine gefährliche Spannung entsteht."]
+  ]
+}

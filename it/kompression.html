@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP – Formeln &amp; Rechner</title>
   <meta name="description" content="Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/it/kompression.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP">
-  <meta property="og:description" content="Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.">
-  <meta property="og:url" content="https://tools.pr1m3.de/it/kompression.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP">
-  <meta name="twitter:description" content="Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/kompression.html#seite","name":"Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP","url":"https://tools.pr1m3.de/it/kompression.html","inLanguage":"de","description":"Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/kompression.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/kompression.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Datenkompression verstehen: Entropie, Huffman, LZ77, ZIP","item":"https://tools.pr1m3.de/it/kompression.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/kompression.html#fragen","mainEntity":[{"@type":"Question","name":"Warum wird ein ZIP mit Fotos kaum kleiner?","acceptedAnswer":{"@type":"Answer","text":"JPEG, MP3, MP4 und andere verlustbehaftete Formate sind bereits stark komprimiert; ihre Daten wirken fast zufällig. Für Deflate bleibt kaum Redundanz übrig. Bei Text, Tabellen, Quellcode und unkomprimierten Bildern spart ZIP dagegen oft 60 bis 90 %."}},{"@type":"Question","name":"Kann man jede Datei verlustfrei kleiner machen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Es gibt mehr mögliche Dateien der Länge n als kürzere Dateien. Ein verlustfreies Verfahren, das manche Dateien verkleinert, muss andere vergrößern (Schubfachprinzip). Gute Verfahren verkleinern die typischen und vergrößern die untypischen nur minimal."}},{"@type":"Question","name":"Ist mehrfaches Zippen besser?","acceptedAnswer":{"@type":"Answer","text":"Nein. Nach dem ersten Durchgang sind die Daten nahezu entropieoptimal, ein zweiter Durchgang fügt nur Verwaltungsdaten hinzu."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/kompression.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -93,17 +75,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="pruefsummen.html"><b>Prüfsummen und Fehlerkorrektur: Parität, Hamming, CRC</b><span>Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die …</span></a></li>
-      <li><a href="audioformate.html"><b>Audioformate: MP3, AAC, Opus, FLAC im Vergleich</b><span>MP3, AAC, Opus, Vorbis, FLAC und WAV bei verschiedenen Bitraten</span></a></li>
-      <li><a href="bildformate.html"><b>Bildformate: JPEG, PNG, WebP, AVIF, GIF im Vergleich</b><span>JPEG, PNG, WebP, AVIF, GIF und SVG im Vergleich</span></a></li>
-      <li><a href="videoformate.html"><b>Videoformate: H.264, H.265, VP9, AV1 im Vergleich</b><span>H.264, H.265, VP9 und AV1: Datenrate, Dateigröße und Datenvolumen für jede Auflösung und Bildrate. Videolabor mit …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

@@ -1,0 +1,14 @@
+{
+  "nr": 80,
+  "titel": "Kräfte",
+  "bereich": "Mechanik",
+  "themen": ["Kräfte", "Kräfteparallelogramm", "Zerlegung", "Resultierende", "Schiefe Ebene"],
+  "text": "Kräfte zusammensetzen und zerlegen: auf einer Wirkungslinie, rechtwinklig, unter beliebigem Winkel mit dem Kräfteparallelogramm und auf der schiefen Ebene, mit Rechenweg.",
+  "tex": "F_\\text{R} = \\sqrt{F_1^2 + F_2^2 + 2 F_1 F_2 \\cos\\alpha}",
+  "projektmappe": {"nr": 210, "name": "Kräfte", "farbe": "#6E6FA6"},
+  "fragen": [
+    ["Was ist die Gewichtskraft eines Körpers mit 10 kg auf der Erde?", "etwa 98 N", ["10 N", "1 N", "980 N"], "F_G = m · g = 10 kg · 9,81 m/s²."],
+    ["Was besagt das Wechselwirkungsprinzip?", "Kraft und Gegenkraft sind gleich groß und entgegengesetzt.", ["Ein Körper bleibt in Ruhe, wenn keine Kraft wirkt.", "Kraft ist Masse mal Beschleunigung.", "Kräfte addieren sich nie."], "Drittes Newtonsches Gesetz."],
+    ["Wie addiert man zwei Kräfte, die im rechten Winkel wirken?", "mit dem Satz des Pythagoras", ["einfach addieren", "subtrahieren", "multiplizieren"], "F = √(F₁² + F₂²)."]
+  ]
+}

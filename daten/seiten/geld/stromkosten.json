@@ -1,0 +1,11 @@
+{
+  "nr": 930,
+  "titel": "Stromkosten von Geräten",
+  "gruppe": "Investition und Energie",
+  "bereich": "Geld und Kalkulation",
+  "auchIn": ["Elektrotechnik"],
+  "themen": ["Stromkosten", "Stromverbrauch", "Standby", "Kilowattstunde", "Geräte", "Energielabel", "Dauerleistung", "Strompreis", "Stromsparen", "Neugerät"],
+  "text": "Stromkosten von Geräten berechnen: Leistung, Laufzeit und Standby je Gerät, Verbrauch in kWh, Kosten und CO₂ im Jahr, größte Verbraucher, Preis eines Watts Dauerleistung und Amortisation eines sparsamen Neugeräts – mit Löser für Leistung, Zeit und Kosten.",
+  "tex": "K = P \\cdot t \\cdot k",
+  "projektmappe": {"nr": 1040, "name": "Stromkosten von Geräten", "farbe": "#A16207"}
+}

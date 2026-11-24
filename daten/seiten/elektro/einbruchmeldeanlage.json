@@ -1,0 +1,10 @@
+{
+  "nr": 1020,
+  "titel": "Einbruchmeldeanlage",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Einbruchmeldeanlage", "EMA", "Gefahrenmeldeanlage", "GMA", "Meldelinie", "Ruhestromprinzip", "Abschlusswiderstand", "Brückenschaltung", "Sabotagelinie", "Glasbruchmelder", "Bewegungsmelder", "VdS", "DIN EN 50131"],
+  "text": "Einbruchmeldeanlage verstehen und berechnen: Meldelinie im Ruhestromprinzip mit Abschlusswiderstand, Spannungsteiler und Brückenschaltung, Alarm, Sabotage und Kurzschluss simulieren, Notstrom-Akku, Überwachungsbereiche, Melder, Grade und VdS-Klassen.",
+  "tex": "R_1 \\cdot R_4 = R_2 \\cdot R_3",
+  "projektmappe": {"nr": 780, "name": "Einbruchmeldeanlage", "farbe": "#2B7BB9"}
+}

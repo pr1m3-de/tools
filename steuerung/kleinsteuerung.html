@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kleinsteuerung (Logikmodul): Funktionsplan-Simulator – Formeln &amp; Rechner</title>
   <meta name="description" content="Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/steuerung/kleinsteuerung.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Kleinsteuerung (Logikmodul): Funktionsplan-Simulator">
-  <meta property="og:description" content="Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.">
-  <meta property="og:url" content="https://tools.pr1m3.de/steuerung/kleinsteuerung.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Kleinsteuerung (Logikmodul): Funktionsplan-Simulator">
-  <meta name="twitter:description" content="Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#seite","name":"Kleinsteuerung (Logikmodul): Funktionsplan-Simulator","url":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html","inLanguage":"de","description":"Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Kleinsteuerung (Logikmodul): Funktionsplan-Simulator","item":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#fragen","mainEntity":[{"@type":"Question","name":"Kleinsteuerung oder Zeitrelais?","acceptedAnswer":{"@type":"Answer","text":"Für eine einzige Funktion reicht ein Zeitrelais oder Stromstoßschalter. Sobald mehrere Funktionen verknüpft werden (Treppenlicht plus Zentral-Aus plus Schaltuhr), ist eine Kleinsteuerung günstiger, braucht weniger Platz und lässt sich ändern, ohne neu zu verdrahten."}},{"@type":"Question","name":"Warum zählen offene UND-Eingänge als 1?","acceptedAnswer":{"@type":"Answer","text":"Damit ein UND-Block mit nur zwei belegten Eingängen funktioniert. Beim ODER zählen offene Eingänge als 0. So stört ein unbelegter Eingang die Verknüpfung nicht."}},{"@type":"Question","name":"Was bedeutet der Kreis am Eingang?","acceptedAnswer":{"@type":"Answer","text":"Negation: Das Signal wird vor dem Block umgekehrt. So braucht man für einen Öffner-Endschalter oder „nicht gleichzeitig“ keinen eigenen NICHT-Block."}},{"@type":"Question","name":"Kann ich Blöcke rückkoppeln?","acceptedAnswer":{"@type":"Answer","text":"Ja. Ein Block darf den Ausgang eines späteren Blocks oder eines Ausgangs Q lesen; er bekommt dann den Wert aus dem vorigen Zyklus – genau wie in einer echten Steuerung."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/steuerung/kleinsteuerung.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -160,16 +142,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="digitaltechnik.html"><b>Digitaltechnik: Gatter, Flipflops, Zähler, Addierer</b><span>Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als …</span></a></li>
-      <li><a href="sps.html"><b>SPS-Simulator: Strukturierter Text und Zyklus</b><span>SPS verstehen und programmieren</span></a></li>
-      <li><a href="../it/pruefsummen.html"><b>Prüfsummen und Fehlerkorrektur: Parität, Hamming, CRC</b><span>Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

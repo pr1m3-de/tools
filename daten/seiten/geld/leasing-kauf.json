@@ -1,0 +1,10 @@
+{
+  "nr": 940,
+  "titel": "Leasing, Kredit oder Barkauf",
+  "gruppe": "Investition und Energie",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Leasing", "Kauf", "Finanzierung", "Barwert", "Leasingfaktor", "Restwert", "Leasingrate", "Sonderzahlung", "Firmenwagen", "Vergleich"],
+  "text": "Leasing, Kredit oder Barkauf vergleichen: Summe aller Zahlungen und Barwert für Fahrzeug oder Maschine, Zins im Leasingangebot, Leasingfaktor, Kreditrate und der Restwert, bei dem sich das Ergebnis dreht – mit Verlauf der Zahlungen über die Laufzeit.",
+  "tex": "B_\\text{L} = A + R \\cdot \\frac{1 - (1+i)^{-N}}{i}",
+  "projektmappe": {"nr": 1050, "name": "Leasing, Kredit oder Barkauf", "farbe": "#A16207"}
+}

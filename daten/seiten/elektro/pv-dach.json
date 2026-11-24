@@ -1,0 +1,10 @@
+{
+  "nr": 60,
+  "titel": "PV-Dachplaner",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "themen": ["Photovoltaik", "Modulfeld", "Hindernisse", "Gaube", "Dachknick", "Sparren", "Schienen", "Schneelast"],
+  "text": "Dach mit Knick, Gauben und mehreren Seiten zeichnen, Fenster, Schornstein und Co. mit Sicherheitsabstand setzen, Module verschieben oder automatisch verlegen. Konflikte werden rot, Haken, Lasten und Ertrag mit Formeln.",
+  "tex": "n_\\text{S} = \\left\\lfloor \\frac{b_\\text{N} + f}{m_x + f} \\right\\rfloor",
+  "projektmappe": {"nr": 150, "name": "PV-Dachplaner", "farbe": "#2B7BB9", "speicher": "pv-dachplaner-2"}
+}

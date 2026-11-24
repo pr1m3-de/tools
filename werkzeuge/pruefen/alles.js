@@ -1,13 +1,15 @@
 #!/usr/bin/env node
 /*
  * Automatische Prüfung der Sammlung – läuft bei jedem Pull Request (.github/workflows/pruefen.yml)
- * und lässt sich lokal starten:
+ * und lässt sich lokal starten (baut vorher mit werkzeuge/bauen.js nach _site/ und prüft dort):
  *   npm install --no-save playwright acorn && npx playwright install chromium
  *   node werkzeuge/pruefen/alles.js            (alles)
  *   node werkzeuge/pruefen/alles.js schnell    (ohne Browser: JavaScript, JSON, Verweise)
  * Die Seiten selbst brauchen keine Pakete; playwright und acorn werden nur für diese Prüfung geladen.
  *
  * Prüft:
+ *  0. Quellen: keine gebauten Inhalte im Repository (SEO-Blöcke, „Passt dazu“, Listen, gebaute Dateien),
+ *     damit sich Pull Requests nie gegenseitig Konflikte erzeugen; dann Bau nach _site/
  *  1. JavaScript aller Seiten und assets/*.js ist gültiges ES2015 (acorn)
  *  2. fragen.json, suchindex.json, manifest gültig; Seiten der Startseite in sitemap.xml und sw.js
  *  3. jede Seite bei 380 und 1280 px: keine JS- oder Konsolenfehler, kein seitlicher Überlauf,
@@ -28,11 +30,44 @@ const schnell = process.argv.indexOf('schnell') >= 0;
 const fehler = [];
 const melde = function (bereich, text) { fehler.push(bereich + ': ' + text); console.log('  ✗ ' + bereich + ': ' + text); };
 
+// 0. Im Quellordner: Regeln für die Quellen prüfen, bauen und die Prüfung im gebauten Ordner starten
+if (path.basename(WURZEL) !== '_site') {
+  console.log('0. Quellen');
+  const { execFileSync, spawnSync } = require('child_process');
+  let gitDateien = [];
+  try { gitDateien = execFileSync('git', ['ls-files'], { cwd: WURZEL }).toString().trim().split('\n'); } catch (e) { /* ohne Git */ }
+  const GEBAUT = ['fragen.json', 'suchindex.json', 'sitemap.xml', 'robots.txt', 'aufgabenblaetter/liste.json'];
+  GEBAUT.forEach(function (f) { if (gitDateien.indexOf(f) >= 0) melde('Quellen', f + ' ist gebaut und gehört nicht ins Repository (git rm --cached ' + f + ')'); });
+  const lies = function (f) { return fs.readFileSync(path.join(WURZEL, f), 'utf8'); };
+  const leer = function (datei, start, ende, erlaubt) {
+    const s = lies(datei), a = s.indexOf(start), b = s.indexOf(ende, a);
+    if (a < 0 || b < 0) { melde('Quellen', datei + ': „' + start.trim() + '“ fehlt'); return; }
+    const innen = s.slice(a + start.length, b).trim();
+    if (innen && !erlaubt.test(innen)) melde('Quellen', datei + ': „' + start.trim() + '“ muss leer bleiben, die Einträge gehören nach daten/seiten/ (werkzeuge/bauen.js füllt sie)');
+  };
+  leer('index.html', 'const eintraege = [', '\n    ];', /^\/\/[^\n]*$/);
+  leer('index.html', '<!-- linkliste -->', '<!-- /linkliste -->', /^$/);
+  leer('projektmappe.html', 'const SEITEN = [', '\n    ];', /^\/\/[^\n]*$/);
+  leer('sw.js', 'const DATEIEN = [', '\n];', /^"\.\/"$/);
+  if (!/const STAND = 'quelle';/.test(lies('sw.js'))) melde('Quellen', "sw.js: STAND muss 'quelle' bleiben (werkzeuge/bauen.js setzt ihn)");
+  if (/const PAARE = \[\s*\[/.test(lies('werkzeuge/verwandt-bauen.js'))) melde('Quellen', 'werkzeuge/verwandt-bauen.js: feste Paare gehören in daten/seiten/ (Feld „verwandt“)');
+  seitenListe().forEach(function (p) {
+    const s = lies(p);
+    if (/<!-- seo -->/.test(s)) melde('Quellen', p + ': SEO-Block gehört nicht in die Quelle (werkzeuge/bauen.js erzeugt ihn)');
+    if (/<!-- verwandt -->/.test(s)) melde('Quellen', p + ': „Passt dazu“ gehört nicht in die Quelle (werkzeuge/bauen.js erzeugt ihn)');
+  });
+  const bau = spawnSync(process.execPath, [path.join(WURZEL, 'werkzeuge', 'bauen.js')], { cwd: WURZEL, stdio: 'inherit' });
+  if (bau.status !== 0) melde('Quellen', 'werkzeuge/bauen.js ist fehlgeschlagen');
+  if (fehler.length) { console.log('\n' + fehler.length + ' Probleme gefunden.'); process.exit(1); }
+  const lauf = spawnSync(process.execPath, [path.join(WURZEL, '_site', 'werkzeuge', 'pruefen', 'alles.js')].concat(process.argv.slice(2)), { cwd: path.join(WURZEL, '_site'), stdio: 'inherit', env: process.env });
+  process.exit(lauf.status === null ? 1 : lauf.status);
+}
+
 function seitenListe() {
   const liste = [];
   (function lauf(ordner, rel) {
     fs.readdirSync(ordner, { withFileTypes: true }).forEach(function (e) {
-      if (e.name.startsWith('.') || ['node_modules', 'werkzeuge', 'aufgabenblaetter'].indexOf(e.name) >= 0) return;
+      if (e.name.startsWith('.') || ['node_modules', 'werkzeuge', 'aufgabenblaetter', 'daten', '_site'].indexOf(e.name) >= 0) return;
       const r = rel ? rel + '/' + e.name : e.name;
       if (e.isDirectory()) lauf(path.join(ordner, e.name), r);
       else if (e.name.endsWith('.html')) liste.push(r);

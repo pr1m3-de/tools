@@ -1,0 +1,51 @@
+# Baut die Seite nach jedem Merge auf main (werkzeuge/bauen.js) und veröffentlicht _site/ auf GitHub Pages.
+# Voraussetzung (einmalig): Einstellungen → Pages → „Build and deployment“ → Source: „GitHub Actions“.
+# Gebaute Dateien (Startseiten-Liste, SEO, Suchindex, Offline-Liste …) stehen dadurch nie im Repository.
+name: Veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # ganzer Verlauf: Änderungsdatum jeder Seite für Suchmaschinen
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Bauen
+        run: node werkzeuge/bauen.js
+      - name: Kurz prüfen (JavaScript, Daten, Verweise)
+        run: |
+          npm install --no-save --no-package-lock acorn@8
+          node werkzeuge/pruefen/alles.js schnell
+      - name: Nur ausliefern, was die Seite braucht
+        run: rm -rf _site/werkzeuge _site/daten
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  veroeffentlichen:
+    needs: bauen
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

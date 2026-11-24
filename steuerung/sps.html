@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler – Formeln &amp; Rechner</title>
   <meta name="description" content="SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, Signale, Öffner und Schließer, Adressen, Datentypen und die Sprachen nach IEC 61131-3 – mit realistischem SPS-Simulator: Strukturierter Text mit eigenen Funktionsbausteinen, Funktionen, Feldern, globalen Variablen und AT-Adressen, Timer, Zähler, Watchdog, Forcen und Anlagenmodellen vom Motor bis zum Mischbehälter.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/steuerung/sps.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler">
-  <meta property="og:description" content="SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, Signale, Öffner und Schließer, Adressen, Datentypen und die Sprachen nach IEC 61131-3 – mit realistischem SPS-Simulator: Strukturierter Text mit eigenen Funktionsbausteinen, Funktionen, Feldern, globalen Variablen und AT-Adressen, Timer, Zähler, Watchdog, Forcen und Anlagenmodellen vom Motor bis zum Mischbehälter.">
-  <meta property="og:url" content="https://tools.pr1m3.de/steuerung/sps.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler">
-  <meta name="twitter:description" content="SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, Signale, Öffner und Schließer, Adressen, Datentypen und die Sprachen nach IEC 61131-3 – mit realistischem SPS-Simulator: Strukturierter Text mit eigenen Funktionsbausteinen, Funktionen, Feldern, globalen Variablen und AT-Adressen, Timer, Zähler, Watchdog, Forcen und Anlagenmodellen vom Motor bis zum Mischbehälter.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/steuerung/sps.html#seite","name":"SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler","url":"https://tools.pr1m3.de/steuerung/sps.html","inLanguage":"de","description":"SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, Signale, Öffner und Schließer, Adressen, Datentypen und die Sprachen nach IEC 61131-3 – mit realistischem SPS-Simulator: Strukturierter Text mit eigenen Funktionsbausteinen, Funktionen, Feldern, globalen Variablen und AT-Adressen, Timer, Zähler, Watchdog, Forcen und Anlagenmodellen vom Motor bis zum Mischbehälter.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/steuerung/sps.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/steuerung/sps.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"SPS-Simulator: Strukturierter Text, Zyklus, Timer und Zähler","item":"https://tools.pr1m3.de/steuerung/sps.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/steuerung/sps.html#fragen","mainEntity":[{"@type":"Question","name":"Warum schaltet mein Ausgang nicht, obwohl die Zeile stimmt?","acceptedAnswer":{"@type":"Answer","text":"Wahrscheinlich wird derselbe Ausgang weiter unten im Programm noch einmal beschrieben. In der SPS gewinnt die letzte Zuweisung im Zyklus. Jeden Ausgang nur an einer Stelle zuweisen – oder mit Merkern arbeiten."}},{"@type":"Question","name":"Warum ist der Stopp-Taster ein Öffner?","acceptedAnswer":{"@type":"Answer","text":"Damit ein Drahtbruch oder ein abgefallener Stecker wie „Stopp“ wirkt. Mit einem Schließer würde die Maschine bei Drahtbruch nicht mehr abschaltbar sein. Im Programm wird deshalb mit „AND Stopp“ (nicht „AND NOT Stopp“) verknüpft."}},{"@type":"Question","name":"Was ist der Unterschied zwischen SPS und Kleinsteuerung?","acceptedAnswer":{"@type":"Answer","text":"Kleinsteuerungen (Logikmodule) haben wenige feste Ein- und Ausgänge, eingebaute Funktionen und werden meist grafisch mit Funktionsbausteinen programmiert – ideal für Treppenlicht, Tore, Pumpen. Eine SPS ist modular erweiterbar, schneller, kommuniziert über Feldbusse und wird in allen Sprachen der IEC 61131-3 programmiert."}},{"@type":"Question","name":"Was ist eine Schrittkette?","acceptedAnswer":{"@type":"Answer","text":"Ein Ablauf, der in Schritte zerlegt ist. Immer ist genau ein Schritt aktiv; eine Übergangsbedingung (z. B. „Endschalter erreicht“ oder „Zeit abgelaufen“) schaltet zum nächsten. In ST baut man sie mit einer Schrittvariable und CASE – siehe Beispiel „Ampel“."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/steuerung/sps.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -297,15 +279,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="kleinsteuerung.html"><b>Kleinsteuerung (Logikmodul): Funktionsplan</b><span>Kleinsteuerungen (Logikmodule) verstehen und programmieren</span></a></li>
-      <li><a href="digitaltechnik.html"><b>Digitaltechnik: Gatter, Flipflops, Zähler, Addierer</b><span>Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

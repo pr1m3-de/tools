@@ -1,0 +1,15 @@
+{
+  "nr": 1350,
+  "titel": "Dateisysteme und Speicher: Blöcke, Fragmentierung, HDD und SSD",
+  "gruppe": "Betrieb",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Dateisystem", "FAT32", "exFAT", "NTFS", "ext4", "Btrfs", "ZFS", "Blockgröße", "Cluster", "Verschnitt", "Fragmentierung", "Defragmentieren", "HDD", "Festplatte", "SSD", "NVMe", "IOPS", "Zugriffszeit", "GiB", "Kopierzeit"],
+  "text": "Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.",
+  "tex": "n = \\left\\lceil \\frac{s}{b} \\right\\rceil",
+  "verwandt": ["it/raid.html", "it/backup.html"],
+  "fragen": [
+    ["Warum belegt eine 1-Byte-Datei auf der Platte trotzdem 4 KiB?", "Jede Datei belegt ganze Blöcke.", ["Weil der Dateiname so groß ist.", "Weil die Platte komprimiert.", "Weil FAT32 das so will, bei anderen ist es 1 Byte."], "Der Rest ist Verschnitt."],
+    ["Wie groß darf eine Datei auf FAT32 höchstens sein?", "4 GiB minus 1 Byte", ["2 TiB", "unbegrenzt", "32 GB"], "Für größere Dateien exFAT oder NTFS."],
+    ["Warum soll man SSDs nicht defragmentieren?", "Es bringt keinen Vorteil und kostet Schreibzyklen.", ["Weil sie dann schneller werden.", "Weil es verboten ist.", "Weil SSDs keine Dateien haben."], "Jeder Block ist gleich schnell erreichbar."]
+  ]
+}

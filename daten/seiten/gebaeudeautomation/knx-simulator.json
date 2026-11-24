@@ -1,0 +1,9 @@
+{
+  "nr": 1080,
+  "titel": "KNX-Simulator: Programmieren und Fehlersuche",
+  "bereich": "Gebäudeautomation",
+  "themen": ["KNX", "Simulator", "Gruppenadresse", "Kommunikationsobjekt", "Flags", "Telegramm", "Busmonitor", "Gruppenmonitor", "Programmiertaste", "physikalische Adresse programmieren", "Applikation laden", "Datenpunkttyp", "DPT", "Fehlersuche", "Taster", "Schaltaktor", "Dimmaktor", "Jalousieaktor", "Präsenzmelder", "Raumtemperaturregler"],
+  "text": "KNX zum Ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, Flags setzen, physikalische Adressen und Applikationen programmieren und Telegramme im Busmonitor Byte für Byte lesen – mit Fehlersuch-Aufgaben.",
+  "tex": "\\text{CS} = \\overline{b_0 \\oplus b_1 \\oplus \\dots}",
+  "projektmappe": {"nr": 120, "name": "KNX-Simulator", "farbe": "#9333EA", "speicher": "knx-simulator-1"}
+}

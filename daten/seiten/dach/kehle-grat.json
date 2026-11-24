@@ -1,0 +1,9 @@
+{
+  "nr": 260,
+  "titel": "Kehle und Grat",
+  "bereich": "Dach und Klempnerei",
+  "themen": ["Kehle", "Grat", "Schifter", "Abgratung", "Kehlblech", "Walmdach"],
+  "text": "Grat und Kehle bei gleicher oder ungleicher Neigung: Neigung, Lage im Grundriss, wahre Länge, Flächenwinkel für das Kehlblech, Abgratung und Schifter mit Schmiegen.",
+  "tex": "\\tan\\beta = \\frac{\\tan\\alpha_1 \\tan\\alpha_2}{\\sqrt{\\tan^2\\alpha_1 + \\tan^2\\alpha_2}}",
+  "projektmappe": {"nr": 420, "name": "Kehle und Grat", "farbe": "#A0785A"}
+}

@@ -1,5 +1,6 @@
 # Automatische Prüfung bei jedem Pull Request und nach jedem Merge auf main.
-# Prüft JavaScript (ES2015), Daten und Verweise, alle Seiten im Browser und die Lernaufgaben.
+# Prüft die Quellen (keine gebauten Inhalte), baut nach _site/ und prüft dort JavaScript (ES2015),
+# Daten und Verweise, alle Seiten im Browser und die Lernaufgaben.
 # Lokal: siehe Kopf von werkzeuge/pruefen/alles.js
 name: Prüfen
 

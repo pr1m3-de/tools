@@ -1,0 +1,11 @@
+{
+  "nr": 670,
+  "titel": "UV und Sonne bei Arbeit im Freien",
+  "gruppe": "Raum und Umgebung",
+  "bereich": "Arbeitsschutz",
+  "auchIn": ["Dach und Klempnerei"],
+  "themen": ["UV-Index", "Sonnenbrand", "Eigenschutzzeit", "Hauttyp", "Lichtschutzfaktor", "Sonnenstand", "Schattenregel", "Hautkrebs", "BK 5103", "Arbeiten im Freien"],
+  "text": "UV-Schutz bei Arbeit im Freien: UV-Index aus Sonnenstand, Wolken, Höhe und Untergrund, Eigenschutzzeit nach Hauttyp, Wirkung des Lichtschutzfaktors, UV-Dosis über den Arbeitstag und Schattenregel – mit Simulation des Tageslaufs.",
+  "tex": "t = \\frac{\\text{MED}}{\\text{UVI} \\cdot 0{,}025\\,\\text{W/m}^2}",
+  "projektmappe": {"nr": 550, "name": "UV und Sonne bei Arbeit im Freien", "farbe": "#2F9E44"}
+}

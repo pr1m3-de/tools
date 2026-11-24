@@ -1,0 +1,15 @@
+{
+  "nr": 1220,
+  "titel": "Waagerechter und schräger Wurf",
+  "bereich": "Mechanik",
+  "auchIn": ["Physik"],
+  "themen": ["Wurf", "waagerechter Wurf", "schräger Wurf", "Wurfparabel", "Wurfweite", "Flugzeit", "freier Fall", "Fallzeit", "Fallbeschleunigung", "Unabhängigkeitsprinzip", "Abwurfwinkel"],
+  "text": "Wurfbahn, Flugzeit, Wurfweite und Aufprallgeschwindigkeit beim waagerechten und schrägen Wurf, auf Erde, Mond, Mars und Jupiter – mit Teilbewegungen in der Animation, Fallen und Werfen im Vergleich und dem besten Abwurfwinkel.",
+  "tex": "x = v_0 \\cdot \\sqrt{\\frac{2h}{g}}",
+  "projektmappe": {"nr": 660, "name": "Waagerechter und schräger Wurf", "farbe": "#6E6FA6"},
+  "fragen": [
+    ["Bei welchem Abwurfwinkel fliegt ein Körper ohne Luftwiderstand am weitesten (gleiche Höhe)?", "45°", ["30°", "60°", "90°"], "w = v² · sin(2α) / g ist bei 2α = 90° am größten."],
+    ["Was passiert mit der waagerechten Geschwindigkeit beim Wurf ohne Luftwiderstand?", "Sie bleibt gleich.", ["Sie nimmt gleichmäßig zu.", "Sie nimmt gleichmäßig ab.", "Sie wird am höchsten Punkt null."], "Nur senkrecht wirkt die Fallbeschleunigung."],
+    ["Welche Form hat die Flugbahn?", "eine Parabel", ["ein Kreis", "eine Gerade", "eine Spirale"], "Gleichförmig waagerecht, gleichmäßig beschleunigt senkrecht."]
+  ]
+}

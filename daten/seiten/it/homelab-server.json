@@ -1,0 +1,10 @@
+{
+  "nr": 560,
+  "titel": "Homelab-Server planen",
+  "gruppe": "Betrieb",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Homelab", "Server", "VM", "Container", "ZFS", "RAIDZ", "RAM", "vCPU", "N+1", "Hypervisor"],
+  "text": "VMs und Container auf Server verteilen: RAM mit Hypervisor und ZFS-Cache, vCPU-Überbuchung, ZFS-Pool mit Spiegel oder RAIDZ, Snapshots, Ausfall eines Servers, Strom und Kosten – mit Vorlagen und ZFS-Rechner.",
+  "tex": "K = v\\,(n - p)\\,C",
+  "projektmappe": {"nr": 510, "name": "Homelab-Server planen", "farbe": "#3B5BDB", "speicher": "homelab-server-1"}
+}

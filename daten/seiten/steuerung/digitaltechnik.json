@@ -1,0 +1,14 @@
+{
+  "nr": 1330,
+  "titel": "Digitaltechnik: Gatter, Flipflops, Zähler, Addierer",
+  "bereich": "Steuerungstechnik",
+  "auchIn": ["Elektrotechnik", "IT und Netzwerk"],
+  "themen": ["Digitaltechnik", "Logikgatter", "UND", "ODER", "NICHT", "NAND", "NOR", "XOR", "Wahrheitstabelle", "Flipflop", "RS-Flipflop", "D-Flipflop", "T-Flipflop", "Taktflanke", "Zähler", "Frequenzteiler", "Binärzahl", "Addierer", "Volladdierer", "Übertrag"],
+  "text": "Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.",
+  "tex": "f_a = \\frac{f_e}{2^n}",
+  "fragen": [
+    ["Welches Gatter gibt nur 1 aus, wenn beide Eingänge 1 sind?", "UND", ["ODER", "XOR", "NOR"], "Schaltzeichen &."],
+    ["Was macht ein D-Flipflop bei der steigenden Taktflanke?", "Es übernimmt den Wert am Eingang D.", ["Es kippt immer um.", "Es wird gelöscht.", "Es zählt bis 10."], "Zwischen den Flanken bleibt Q gespeichert."],
+    ["Wie viele Flipflop-Stufen braucht man, um 32 768 Hz auf 1 Hz zu teilen?", "15", ["16", "32", "8"], "32 768 = 2¹⁵."]
+  ]
+}

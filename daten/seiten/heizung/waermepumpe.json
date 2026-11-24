@@ -1,0 +1,14 @@
+{
+  "nr": 200,
+  "titel": "Wärmepumpe auslegen",
+  "bereich": "Heizungstechnik",
+  "themen": ["Wärmepumpe", "JAZ", "Bivalenzpunkt", "Sperrzeit", "Puffer", "COP"],
+  "text": "Leistung mit Sperrzeiten und Warmwasser, Bivalenzpunkt, Heizstab-Anteil, Jahresarbeitszahl im Bin-Verfahren, Strombedarf, Kosten und Pufferspeicher.",
+  "tex": "\\beta = \\frac{Q_\\text{H} + Q_\\text{WW}}{W_\\text{el}}",
+  "projektmappe": {"nr": 360, "name": "Wärmepumpe auslegen", "farbe": "#C2410C"},
+  "fragen": [
+    ["Was beschreibt die Jahresarbeitszahl?", "Verhältnis der abgegebenen Wärme zum eingesetzten Strom über ein Jahr", ["die Leistung bei −7 °C", "die Lebensdauer in Jahren", "den Kältemittelverlust"], "Eine JAZ von 4 heißt: aus 1 kWh Strom werden 4 kWh Wärme."],
+    ["Warum ist eine niedrige Vorlauftemperatur für Wärmepumpen günstig?", "Je kleiner der Temperaturhub, desto höher die Effizienz.", ["Weil das Wasser dann schneller fließt.", "Weil Heizkörper sonst platzen.", "Weil die Wärmepumpe sonst einfriert."], "Fußbodenheizung passt deshalb gut."],
+    ["Was ist der Bivalenzpunkt?", "die Außentemperatur, ab der ein zweiter Wärmeerzeuger zuheizen muss", ["der Gefrierpunkt des Kältemittels", "der Punkt, an dem die Pumpe abschaltet", "der höchste Wirkungsgrad"], "Darunter reicht die Wärmepumpe allein nicht."]
+  ]
+}

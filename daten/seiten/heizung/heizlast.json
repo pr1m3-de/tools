@@ -1,0 +1,15 @@
+{
+  "nr": 150,
+  "titel": "Heizlast und Heizkörper",
+  "bereich": "Heizungstechnik",
+  "themen": ["Heizlast", "U-Wert", "Lüftung", "Heizkörper", "Normleistung", "Raum"],
+  "text": "Raumweise Heizlast nach DIN EN 12831-1 im vereinfachten Verfahren, nötige Normleistung der Heizkörper bei deinen Systemtemperaturen und Volumenstrom je Raum.",
+  "tex": "\\Phi_\\text{HL} = \\Phi_\\text{T} + \\Phi_\\text{V}",
+  "projektmappe": {"nr": 310, "name": "Heizlast und Heizkörper", "farbe": "#C2410C"},
+  "verwandt": ["heizung/waermepumpe.html", "heizung/fussbodenheizung.html"],
+  "fragen": [
+    ["Woraus setzt sich die Heizlast eines Raums zusammen?", "Transmissions- und Lüftungswärmeverlust, ggf. Aufheizzuschlag", ["nur aus der Raumgröße", "aus der Heizkörpergröße", "aus dem Gaspreis"], "Nach DIN EN 12831."],
+    ["Mit welcher Außentemperatur rechnet man die Heizlast?", "mit der Norm-Außentemperatur des Orts", ["mit dem Jahresmittel", "immer mit 0 °C", "mit der Temperatur am Tag der Berechnung"], "Zum Beispiel −12 °C in vielen Teilen Deutschlands."],
+    ["Was passiert bei einer zu groß ausgelegten Wärmepumpe?", "Sie taktet häufig und arbeitet unwirtschaftlich.", ["Sie spart mehr Strom.", "Sie wird leiser.", "Sie braucht kein Warmwasser."], "Deshalb ist eine genaue Heizlast wichtig."]
+  ]
+}

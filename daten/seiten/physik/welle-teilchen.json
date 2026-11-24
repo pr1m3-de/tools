@@ -1,0 +1,20 @@
+{
+  "nr": 1215,
+  "titel": "Welle-Teilchen-Dualismus und Unschärferelation",
+  "bereich": "Physik",
+  "themen": ["Quantenphysik", "Welle-Teilchen-Dualismus", "de Broglie", "Materiewelle", "Doppelspalt", "Interferenz", "Elektronenbeugung", "Unschärferelation", "Heisenberg", "Wellenpaket", "Wahrscheinlichkeit", "Elektronenmikroskop"],
+  "text": "Materiewellen berechnen: de-Broglie-Wellenlänge von Elektronen, Neutronen und Molekülen, Streifenabstand am Doppelspalt und Heisenbergsche Unschärferelation – mit Doppelspalt Teilchen für Teilchen, Wellenpaket und Lernaufgaben.",
+  "tex": "\\lambda = \\frac{h}{p}",
+  "projektmappe": {"nr": 735, "name": "Welle-Teilchen-Dualismus und Unschärferelation", "farbe": "#C2255C"},
+  "verwandt": ["physik/schroedinger.html", "physik/schwingungen-wellen.html"],
+  "fragen": [
+    ["Was gibt die de-Broglie-Wellenlänge an?", "die Wellenlänge, die zu einem Teilchen mit Impuls p gehört: λ = h/p", ["die Größe des Teilchens", "den Abstand zweier Teilchen", "die Wellenlänge des Lichts, das das Teilchen aussendet"], "Je größer der Impuls, desto kürzer die Wellenlänge."],
+    ["Was beobachtet man, wenn Elektronen einzeln durch einen Doppelspalt fliegen?", "Einzelne Treffpunkte, die sich nach vielen Elektronen zu Interferenzstreifen ordnen", ["zwei helle Streifen hinter den Spalten", "eine gleichmäßige Fläche", "gar nichts"], "Jedes Elektron wird als Teilchen nachgewiesen, die Verteilung folgt der Welle."],
+    ["Was geschieht mit dem Interferenzmuster, wenn man misst, durch welchen Spalt das Elektron fliegt?", "Es verschwindet.", ["Es wird schärfer.", "Es verschiebt sich.", "Nichts."], "Weginformation und Interferenz schließen sich aus."],
+    ["Was besagt die Heisenbergsche Unschärferelation?", "Ort und Impuls lassen sich nicht gleichzeitig beliebig genau festlegen: Δx · Δp ≥ ħ/2.", ["Messgeräte sind immer ungenau.", "Man kann den Ort nie messen.", "Energie ist nicht erhalten."], "Sie folgt aus der Wellennatur, nicht aus schlechten Geräten."],
+    ["Warum interferieren Tennisbälle nicht sichtbar?", "Ihre Wellenlänge ist winzig (≈ 10⁻³⁴ m) und Wechselwirkungen zerstören die Kohärenz.", ["Sie sind zu langsam.", "Sie haben keine Wellenlänge.", "Sie sind elektrisch neutral."], "λ = h/(m v) wird für große Massen unmessbar klein."],
+    ["Welche Wellenlänge haben Elektronen nach 100 V Beschleunigung?", "etwa 0,12 nm", ["etwa 500 nm", "etwa 1 mm", "etwa 10⁻¹⁵ m"], "λ ≈ 1,226 nm / √100."],
+    ["Warum lösen Elektronenmikroskope feiner auf als Lichtmikroskope?", "Die Wellenlänge der Elektronen ist viel kürzer als die von Licht.", ["Elektronen sind kleiner als Photonen.", "Elektronen sind schneller.", "Weil sie im Vakuum arbeiten."], "Die Auflösung ist durch die Wellenlänge begrenzt."],
+    ["Ein Teilchen wird in einen kleineren Bereich eingesperrt. Was folgt?", "Seine Impulsunschärfe und damit seine mittlere Bewegungsenergie steigen.", ["Es kommt zur Ruhe.", "Seine Masse steigt.", "Nichts ändert sich."], "Δp ≥ ħ/(2Δx); daher die Nullpunktsenergie."]
+  ]
+}

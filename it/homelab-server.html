@@ -5,25 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Homelab-Server planen: VMs, Container, RAM, CPU und ZFS – Formeln &amp; Rechner</title>
   <meta name="description" content="Homelab-Server planen: VMs und Container verteilen, RAM mit Hypervisor und ZFS-Cache, vCPU-Überbuchung, ZFS-Pool mit Spiegel oder RAIDZ, Snapshots, N+1-Ausfall, Strom und Kosten.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/it/homelab-server.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Homelab-Server planen: VMs, Container, RAM, CPU und ZFS">
-  <meta property="og:description" content="Homelab-Server planen: VMs und Container verteilen, RAM mit Hypervisor und ZFS-Cache, vCPU-Überbuchung, ZFS-Pool mit Spiegel oder RAIDZ, Snapshots, N+1-Ausfall, Strom und Kosten.">
-  <meta property="og:url" content="https://tools.pr1m3.de/it/homelab-server.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Homelab-Server planen: VMs, Container, RAM, CPU und ZFS">
-  <meta name="twitter:description" content="Homelab-Server planen: VMs und Container verteilen, RAM mit Hypervisor und ZFS-Cache, vCPU-Überbuchung, ZFS-Pool mit Spiegel oder RAIDZ, Snapshots, N+1-Ausfall, Strom und Kosten.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta name="keywords" content="Homelab Server planen, VM Planer, Proxmox Ressourcen, ZFS Rechner, RAIDZ Kapazität, vCPU Überbuchung, RAM für ZFS ARC, N+1 Cluster, Homelab Stromkosten">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/homelab-server.html#seite","name":"Homelab-Server planen: VMs, Container, RAM, CPU und ZFS","url":"https://tools.pr1m3.de/it/homelab-server.html","inLanguage":"de","description":"Homelab-Server planen: VMs und Container verteilen, RAM mit Hypervisor und ZFS-Cache, vCPU-Überbuchung, ZFS-Pool mit Spiegel oder RAIDZ, Snapshots, N+1-Ausfall, Strom und Kosten.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/homelab-server.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/homelab-server.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Homelab-Server planen: VMs, Container, RAM, CPU und ZFS","item":"https://tools.pr1m3.de/it/homelab-server.html"}]},{"@type":"WebApplication","@id":"https://tools.pr1m3.de/it/homelab-server.html#anwendung","name":"Homelab-Server planen: VMs, Container, RAM, CPU und ZFS","url":"https://tools.pr1m3.de/it/homelab-server.html","description":"Homelab-Server planen: VMs und Container verteilen, RAM mit Hypervisor und ZFS-Cache, vCPU-Überbuchung, ZFS-Pool mit Spiegel oder RAIDZ, Snapshots, N+1-Ausfall, Strom und Kosten.","inLanguage":"de","applicationCategory":"DesignApplication","operatingSystem":"Alle mit aktuellem Webbrowser","browserRequirements":"JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://tools.pr1m3.de/#herausgeber"},"mainEntityOfPage":{"@id":"https://tools.pr1m3.de/it/homelab-server.html#seite"},"featureList":["Dienste aus Vorlagen als VM oder Container","Automatische Verteilung auf Server nach RAM, CPU und Speicher","ZFS-Pool mit Spiegel und RAIDZ: Nutzkapazität, IOPS, Wiederaufbau","Prüfung bei Ausfall eines Servers (N+1)","Strom und Kosten pro Jahr","ZFS-Kapazitätsrechner in jede Richtung"],"keywords":"Homelab Server planen, VM Planer, Proxmox Ressourcen, ZFS Rechner, RAIDZ Kapazität, vCPU Überbuchung, RAM für ZFS ARC, N+1 Cluster, Homelab Stromkosten","image":"https://tools.pr1m3.de/assets/symbol-512.png"},{"@type":"Organization","@id":"https://tools.pr1m3.de/#herausgeber","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/","logo":"https://tools.pr1m3.de/assets/symbol-512.png"},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/homelab-server.html#fragen","mainEntity":[{"@type":"Question","name":"Wie viele vCPUs kann ich vergeben?","acceptedAnswer":{"@type":"Answer","text":"Mehr als der Server Threads hat – die meisten Dienste im Heimnetz schlafen fast immer. Eine Überbuchung von 3:1 bis 5:1 ist üblich. Entscheidend ist die durchschnittliche Last: Sie sollte unter etwa 70 % bleiben. Eine einzelne VM darf aber nie mehr vCPUs bekommen, als der Server Threads hat."}},{"@type":"Question","name":"Wie viel Arbeitsspeicher braucht ZFS?","acceptedAnswer":{"@type":"Answer","text":"ZFS nutzt freien Arbeitsspeicher als Lesecache (ARC). Die alte Faustregel „1 GB je TB“ gilt nur für Deduplizierung. Für ein Homelab reichen meist 2 bis 8 GB; neue Installationen begrenzen den Cache oft auf 10 % des Arbeitsspeichers. Arbeitsspeicher lässt sich anders als Prozessorzeit nicht sinnvoll überbuchen."}},{"@type":"Question","name":"Spiegel oder RAIDZ?","acceptedAnswer":{"@type":"Answer","text":"Spiegel sind schnell, einfach zu erweitern und bauen sich schnell wieder auf – ideal für VMs. RAIDZ2 bietet mehr Platz je Platte und verkraftet zwei Ausfälle – ideal für große Datenablagen mit Festplatten. RAIDZ1 mit großen Festplatten ist riskant, weil beim langen Wiederaufbau eine zweite Platte ausfallen kann."}},{"@type":"Question","name":"Ersetzt RAID ein Backup?","acceptedAnswer":{"@type":"Answer","text":"Nein. RAID und ZFS schützen vor Plattenausfall, nicht vor Löschen, Verschlüsselungstrojanern, Brand oder Fehlern der Software. Snapshots helfen gegen versehentliches Löschen, ein Backup auf ein anderes Gerät und außer Haus bleibt nötig (3-2-1-Regel)."}},{"@type":"Question","name":"Was bedeutet N+1?","acceptedAnswer":{"@type":"Answer","text":"Die übrigen Server können die wichtigen Dienste übernehmen, wenn einer ausfällt oder gewartet wird. Dafür muss auf ihnen genug Arbeitsspeicher und Platz frei sein, und die Daten müssen repliziert oder auf gemeinsamem Speicher liegen."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/homelab-server.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -220,17 +201,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="raid.html"><b>RAID- und Speicherrechner</b><span>RAID 0 bis 60 und eigene Konfigurationen mit gemischten Platten, mehreren Pools und NAS (Hybrid-RAID, ZFS, btrfs, …</span></a></li>
-      <li><a href="dateisysteme.html"><b>Dateisysteme und Speicher: Blöcke, Fragmentierung, HDD und SSD</b><span>Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit …</span></a></li>
-      <li><a href="backup.html"><b>Backup-Planer</b><span>Speicherbedarf mit Voll-, inkrementeller oder differenzieller Sicherung, Dauer von Sicherung und Wiederherstellung, …</span></a></li>
-      <li><a href="serverraum-klima.html"><b>Serverraum-Klima</b><span>Kühllast, Luftvolumenstrom zwischen Kalt- und Warmgang, Klimageräte mit Redundanz, PUE und Zeit bis zur Überhitzung …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

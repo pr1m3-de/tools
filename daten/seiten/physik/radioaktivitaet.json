@@ -1,0 +1,14 @@
+{
+  "nr": 1180,
+  "titel": "Radioaktivität und Kernspaltung",
+  "bereich": "Physik",
+  "themen": ["Radioaktivität", "Kernstrahlung", "Alphastrahlung", "Betastrahlung", "Gammastrahlung", "Abschirmung", "Halbwertszeit", "Zerfallsgesetz", "Aktivität", "Becquerel", "Zerfallskonstante", "Nuklid", "Kernspaltung", "Kettenreaktion", "Uran", "Steuerstab"],
+  "text": "Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, Kettenreaktion bei der Kernspaltung. Rechner für Restaktivität, Kernzahl und Zerfälle bekannter Nuklide.",
+  "tex": "N = N_0 \\cdot \\left(\\tfrac{1}{2}\\right)^{t/T_{1/2}}",
+  "projektmappe": {"nr": 700, "name": "Radioaktivität", "farbe": "#C2255C"},
+  "fragen": [
+    ["Was ist die Halbwertszeit?", "die Zeit, nach der die Hälfte der Kerne zerfallen ist", ["die Hälfte der Lebensdauer eines Kerns", "die Zeit bis zum vollständigen Zerfall", "die Zeit, in der die Strahlung doppelt so stark wird"], "Danach ist noch die Hälfte übrig, nach zwei Halbwertszeiten ein Viertel."],
+    ["Welche Strahlung wird schon von einem Blatt Papier abgeschirmt?", "Alphastrahlung", ["Gammastrahlung", "Röntgenstrahlung", "Neutronenstrahlung"], "Beta: einige mm Aluminium, Gamma: dickes Blei."],
+    ["Was hält eine Kettenreaktion im Kernreaktor kontrolliert?", "Steuerstäbe, die Neutronen einfangen", ["Kühlwasser allein", "hoher Druck", "Magnetfelder"], "Ziel: genau ein Neutron je Spaltung löst die nächste aus."]
+  ]
+}

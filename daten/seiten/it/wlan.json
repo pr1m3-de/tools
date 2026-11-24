@@ -1,0 +1,15 @@
+{
+  "nr": 460,
+  "titel": "WLAN planen",
+  "gruppe": "Netzwerk",
+  "bereich": "IT und Netzwerk",
+  "themen": ["WLAN", "dBm", "Reichweite", "Kanäle"],
+  "text": "Empfangspegel aus Sendeleistung, Antennen, Freiraumdämpfung und Wänden, Reichweite, Datenrate nach Wi-Fi 6 und Kanalplanung für 2,4, 5 und 6 GHz.",
+  "tex": "FSPL = 20 \\log d + 20 \\log f - 27{,}55",
+  "projektmappe": {"nr": 1170, "name": "WLAN planen", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Warum ist 5 GHz oft schneller, aber mit geringerer Reichweite als 2,4 GHz?", "mehr Bandbreite, aber stärkere Dämpfung durch Wände", ["weil 5 GHz leiser ist", "weil 2,4 GHz verschlüsselt ist", "weil 5 GHz nur draußen funktioniert"], "Höhere Frequenzen werden stärker gedämpft."],
+    ["Welche Kanäle überlappen im 2,4-GHz-Band nicht?", "1, 6 und 11", ["1, 2 und 3", "alle", "keine"], "In Europa werden auch 1, 5, 9, 13 genutzt."],
+    ["Was hilft gegen schlechtes WLAN in einem großen Haus?", "mehrere Zugangspunkte, möglichst per Kabel verbunden", ["den Router in den Keller stellen", "die Sendeleistung des Handys erhöhen", "das Passwort verlängern"], "Repeater halbieren oft den Durchsatz."]
+  ]
+}

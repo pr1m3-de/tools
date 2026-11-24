@@ -1,0 +1,15 @@
+{
+  "nr": 1260,
+  "titel": "Videoformate: H.264, H.265, VP9, AV1 im Vergleich",
+  "gruppe": "Dateiformate",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Videoformat", "Video", "Codec", "H.264", "AVC", "H.265", "HEVC", "VP9", "AV1", "VVC", "MPEG-2", "Container", "MP4", "MKV", "Bitrate", "GOP", "I-Bild", "P-Bild", "B-Bild", "Bewegungsschätzung", "Auflösung", "4K", "Bildrate", "Streaming", "Datenvolumen"],
+  "text": "H.264, H.265, VP9 und AV1: Datenrate, Dateigröße und Datenvolumen für jede Auflösung und Bildrate. Videolabor mit echter Bewegungsschätzung, I- und P-Bildern und Paketverlust, dazu Bildgruppen, Auflösungen und Farbunterabtastung als Animation.",
+  "tex": "R_0 = B \\cdot H \\cdot f \\cdot b \\cdot s",
+  "projektmappe": {"nr": 630, "name": "Videoformate", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Was ist ein I-Frame?", "ein vollständig gespeichertes Bild, unabhängig von anderen", ["ein Bild, das nur Änderungen enthält", "ein leeres Bild", "ein Tonsignal"], "P- und B-Frames speichern nur Unterschiede."],
+    ["Was bedeutet Chroma-Unterabtastung 4:2:0?", "Farbe wird mit halber Auflösung in beiden Richtungen gespeichert.", ["Nur Schwarz-Weiß", "Doppelte Farbauflösung", "Vier Bilder pro Sekunde"], "Das Auge sieht Helligkeit schärfer als Farbe."],
+    ["Warum sind neuere Codecs wie AV1 kleiner bei gleicher Qualität?", "Sie nutzen aufwendigere Vorhersage und Transformationen.", ["Sie haben weniger Pixel.", "Sie lassen den Ton weg.", "Sie speichern nur jedes zweite Bild."], "Dafür brauchen sie mehr Rechenleistung."]
+  ]
+}

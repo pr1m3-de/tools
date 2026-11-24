@@ -1,0 +1,20 @@
+{
+  "nr": 1190,
+  "titel": "Perkolation: Waldbrand und Perkolationsschwelle",
+  "bereich": "Physik",
+  "themen": ["Perkolation", "Perkolationstheorie", "Perkolationsschwelle", "kritische Dichte", "Waldbrand", "Waldbrandmodell", "Cluster", "Phasenübergang", "kritische Exponenten", "Korrelationslänge", "Fraktal", "fraktale Dimension", "Bethe-Gitter", "Monte-Carlo", "Zufall", "Herdenimmunität", "Universalität", "Selbstähnlichkeit"],
+  "text": "Ab welcher Baumdichte brennt ein Wald ganz ab? Waldbrand-Simulation auf vier Gittern, Cluster in Farbe, Durchbruchkurve, Perkolationsschwellen, kritische Exponenten und fraktale Cluster – mit Rechner und Lernaufgaben.",
+  "tex": "p_\\text{c} \\approx 0{,}5927",
+  "projektmappe": {"nr": 710, "name": "Perkolation", "farbe": "#C2255C"},
+  "verwandt": ["physik/chaos-feigenbaum.html", "brandschutz/brandsimulation.html", "physik/radioaktivitaet.html"],
+  "fragen": [
+    ["Was beschreibt die Perkolationsschwelle p_c?", "die Besetzungsdichte, ab der erstmals ein durchgehender Cluster von Rand zu Rand entsteht", ["die Dichte, bei der alle Plätze besetzt sind", "die Hälfte der maximalen Dichte", "die Geschwindigkeit, mit der sich ein Feuer ausbreitet"], "Unter p_c sind alle Cluster endlich, darüber gibt es im unendlichen Gitter einen unendlichen Cluster."],
+    ["Wo liegt die Schwelle für Plätze im Quadratgitter mit 4 Nachbarn?", "bei etwa 0,593", ["genau bei 0,5", "bei etwa 0,25", "genau bei 1"], "p_c ≈ 0,5927 ist nur aus Simulationen bekannt; 0,5 gilt für das Dreiecksgitter."],
+    ["Wie ändert sich die Schwelle, wenn das Feuer auch über die Ecken springen kann (8 statt 4 Nachbarn)?", "Sie sinkt (auf etwa 0,41).", ["Sie steigt.", "Sie bleibt gleich.", "Sie wird null."], "Mehr Nachbarn bedeuten mehr mögliche Wege, also reicht eine geringere Dichte."],
+    ["Bei welcher Baumdichte brennt ein Waldbrand im Modell am längsten?", "nahe der Perkolationsschwelle", ["bei sehr hoher Dichte", "bei sehr niedriger Dichte", "immer gleich lang"], "An der Schwelle ist der durchgehende Cluster ein verschlungenes Fraktal mit sehr langen Wegen."],
+    ["Was passiert mit der Durchbruchkurve, wenn das Gitter größer wird?", "Sie wird steiler und nähert sich einer Stufe bei p_c.", ["Sie wird flacher.", "Sie verschiebt sich zu p = 1.", "Sie ändert sich nicht."], "Die Breite des Übergangs schrumpft wie L^(−1/ν)."],
+    ["Wie groß ist die Schwelle im Bethe-Gitter mit z Nachbarn?", "1/(z − 1)", ["1/z", "z − 1", "1/2 für jedes z"], "Jeder Platz hat z − 1 neue Äste; im Mittel muss mindestens einer besetzt sein."],
+    ["Was bedeutet „Universalität“ der kritischen Exponenten?", "Sie hängen nur von der Raumdimension ab, nicht vom Gittertyp.", ["Sie sind in allen Dimensionen gleich.", "Sie gelten nur für das Quadratgitter.", "Sie sind immer ganze Zahlen."], "Quadrat-, Dreiecks- und Wabengitter haben verschiedene Schwellen, aber dieselben Exponenten."],
+    ["Welche fraktale Dimension hat der Cluster an der Schwelle in zwei Dimensionen?", "91/48 ≈ 1,90", ["genau 2", "genau 1", "1/2"], "Die Masse wächst wie L^1,896 – langsamer als die Fläche L²."]
+  ]
+}

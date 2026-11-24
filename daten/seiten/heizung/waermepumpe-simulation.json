@@ -1,0 +1,9 @@
+{
+  "nr": 540,
+  "titel": "Wärmepumpe: Funktionssimulation",
+  "bereich": "Heizungstechnik",
+  "themen": ["Wärmepumpe", "Kältekreis", "log p,h-Diagramm", "COP", "Abtauen", "Kältemittel", "R290", "Überhitzung", "Unterkühlung", "Störung"],
+  "text": "Kältekreis in Bewegung: Verdampfen, Verdichten, Verflüssigen, Entspannen mit echten Kältemitteldaten, Drücke und Temperaturen an jedem Messpunkt, log p,h-Diagramm, Vereisung und Abtauung, Kühlen über das Vier-Wege-Ventil, typische Störungen und COP-Rechner.",
+  "tex": "\\varepsilon = \\frac{h_2 - h_3}{h_2 - h_1}",
+  "projektmappe": {"nr": 1250, "name": "Wärmepumpe: Funktionssimulation", "farbe": "#C2410C"}
+}

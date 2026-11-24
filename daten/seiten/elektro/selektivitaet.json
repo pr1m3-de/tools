@@ -1,0 +1,10 @@
+{
+  "nr": 70,
+  "titel": "Selektivität",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Schutzorgane", "Selektivität", "Kennlinien", "Kurzschluss", "RCD"],
+  "text": "Sicherungen gG und aM, LS-Schalter B bis Z, SLS und Leistungsschalter hintereinander: Kennlinien, Selektivitätsgrenze je Paar, Kurzschlussströme, Schaltvermögen, Abschaltbedingung und RCD-Staffelung.",
+  "tex": "I_\\text{s}: \\; t_\\text{max,nach} < t_\\text{min,vor}",
+  "projektmappe": {"nr": 40, "name": "Selektivität", "farbe": "#2B7BB9"}
+}

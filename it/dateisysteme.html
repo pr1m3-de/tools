@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD – Formeln &amp; Rechner</title>
   <meta name="description" content="Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/it/dateisysteme.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD">
-  <meta property="og:description" content="Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.">
-  <meta property="og:url" content="https://tools.pr1m3.de/it/dateisysteme.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD">
-  <meta name="twitter:description" content="Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/dateisysteme.html#seite","name":"Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD","url":"https://tools.pr1m3.de/it/dateisysteme.html","inLanguage":"de","description":"Belegter Platz und Verschnitt je nach Blockgröße, Grenzen von FAT32, exFAT, NTFS, ext4, Btrfs und ZFS, Kopierzeit auf Festplatte, SSD und USB-Stick, GB und GiB – mit Animationen zu Blöcken, Fragmentierung und Zugriff.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/dateisysteme.html#pfad"},"dateModified":"2026-11-22"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/dateisysteme.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Dateisysteme und Speicher: Blockgröße, Fragmentierung, HDD und SSD","item":"https://tools.pr1m3.de/it/dateisysteme.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/dateisysteme.html#fragen","mainEntity":[{"@type":"Question","name":"Warum lässt sich eine 5-GB-Datei nicht auf einen USB-Stick kopieren, obwohl Platz frei ist?","acceptedAnswer":{"@type":"Answer","text":"Der Stick ist vermutlich mit FAT32 formatiert. Dort darf eine einzelne Datei höchstens 4 GiB minus 1 Byte groß sein. Mit exFAT oder NTFS formatieren (vorher sichern!)."}},{"@type":"Question","name":"Sollte man eine SSD defragmentieren?","acceptedAnswer":{"@type":"Answer","text":"Nein. Es bringt keinen Geschwindigkeitsvorteil und kostet Schreibzyklen. Betriebssysteme schicken stattdessen TRIM-Befehle, damit die SSD gelöschte Blöcke intern aufräumen kann."}},{"@type":"Question","name":"Warum dauert das Kopieren vieler kleiner Dateien so lange?","acceptedAnswer":{"@type":"Answer","text":"Für jede Datei müssen Verzeichnis, Metadaten und Daten an verschiedenen Stellen gelesen und geschrieben werden. Die Zahl der Zugriffe pro Sekunde (IOPS) begrenzt dann, nicht die Übertragungsrate. Eine ZIP-Datei mit denselben Inhalten kopiert sich viel schneller."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/dateisysteme.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -58,17 +40,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="raid.html"><b>RAID- und Speicherrechner</b><span>RAID 0 bis 60 und eigene Konfigurationen mit gemischten Platten, mehreren Pools und NAS (Hybrid-RAID, ZFS, btrfs, …</span></a></li>
-      <li><a href="backup.html"><b>Backup-Planer</b><span>Speicherbedarf mit Voll-, inkrementeller oder differenzieller Sicherung, Dauer von Sicherung und Wiederherstellung, …</span></a></li>
-      <li><a href="homelab-server.html"><b>Homelab-Server planen</b><span>VMs und Container auf Server verteilen</span></a></li>
-      <li><a href="serverraum-klima.html"><b>Serverraum-Klima</b><span>Kühllast, Luftvolumenstrom zwischen Kalt- und Warmgang, Klimageräte mit Redundanz, PUE und Zeit bis zur Überhitzung …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

@@ -1,0 +1,15 @@
+{
+  "nr": 770,
+  "titel": "Flucht- und Rettungswege",
+  "bereich": "Brandschutz",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["Fluchtweg", "Rettungsweg", "Notausgang", "ASR A2.3", "Fluchtweglänge", "Fluchtwegbreite", "Räumungszeit", "Evakuierung", "Türbreite", "zweiter Fluchtweg"],
+  "text": "Fluchtwege nach ASR A2.3 prüfen: zulässige Länge, Mindestbreite nach Personenzahl, zweiter Fluchtweg, Durchsatz von Tür, Flur und Treppe, Stau und Räumungszeit – mit Simulation der Menschen auf dem Weg zum Ausgang.",
+  "tex": "t = t_\\text{R} + \\max\\left(\\frac{L}{v},\\; \\frac{N}{f\\, b}\\right)",
+  "projektmappe": {"nr": 870, "name": "Flucht- und Rettungswege", "farbe": "#E4572E"},
+  "fragen": [
+    ["Welche Farbe haben Rettungszeichen?", "Grün", ["Rot", "Gelb", "Blau"], "Rot steht für Brandschutzeinrichtungen wie Feuerlöscher."],
+    ["Wohin müssen Türen im Verlauf von Fluchtwegen in der Regel aufschlagen?", "in Fluchtrichtung", ["gegen die Fluchtrichtung", "egal", "nach oben"], "So lassen sie sich im Gedränge öffnen."],
+    ["Was gibt die Fluchtweglänge an?", "die höchstens zulässige Strecke bis zu einem sicheren Bereich oder Ausgang", ["die Breite des Flurs", "die Zahl der Notausgänge", "die Höhe der Notbeleuchtung"], "Nach ASR A2.3 meist bis 35 m."]
+  ]
+}

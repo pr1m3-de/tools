@@ -1,0 +1,11 @@
+{
+  "nr": 980,
+  "titel": "Überstunden, Zuschläge und Urlaub",
+  "gruppe": "Lohn und Privat",
+  "bereich": "Geld und Kalkulation",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["Überstunden", "Zuschläge", "Nachtarbeit", "Sonntagsarbeit", "Urlaubsanspruch", "Teilzeit", "Stundenlohn", "Urlaubsabgeltung", "Arbeitszeitgesetz", "Mindesturlaub"],
+  "text": "Überstunden, Zuschläge und Urlaub berechnen: Stundenlohn aus dem Monatslohn, Vergütung mit Zuschlag, steuerfreie Zuschläge für Nacht, Sonntag und Feiertag, anteiliger Urlaub bei Ein- oder Austritt, Mindesturlaub in Teilzeit, Urlaubsentgelt und Abgeltung.",
+  "tex": "l = \\frac{3 \\cdot M}{13 \\cdot w} \\qquad U_\\text{m} = U \\cdot \\frac{m}{12}",
+  "projektmappe": {"nr": 1090, "name": "Überstunden, Zuschläge und Urlaub", "farbe": "#A16207"}
+}

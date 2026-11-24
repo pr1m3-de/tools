@@ -1,0 +1,15 @@
+{
+  "nr": 680,
+  "titel": "Spannungsfall und Leitungsverluste",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Spannungsfall", "Leitungslänge", "Querschnitt", "Kupfer", "Aluminium", "Verlustleistung", "Drehstrom", "Gleichstrom", "3 %", "DIN VDE 0100-520"],
+  "text": "Spannungsfall auf Leitungen für Gleich-, Wechsel- und Drehstrom: Kupfer oder Aluminium, Leitertemperatur und Leistungsfaktor, kleinster Querschnitt, größte Länge, Verlustleistung und Kosten im Jahr – mit Simulation des Spannungsverlaufs.",
+  "tex": "\\Delta U = \\frac{2\\, l\\, I \\cos\\varphi}{\\kappa\\, A}",
+  "projektmappe": {"nr": 560, "name": "Spannungsfall und Leitungsverluste", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Wie groß darf der Spannungsfall zwischen Zähler und Verbraucher nach DIN 18015 höchstens sein?", "3 %", ["10 %", "0,5 %", "25 %"], "Empfehlung für Wohngebäude; für Motoren und lange Leitungen gelten teils eigene Werte."],
+    ["Was hilft am meisten gegen zu großen Spannungsfall?", "größerer Querschnitt", ["höherer Leitungsschutzschalter", "kürzere Abschaltzeit", "ein RCD"], "ΔU ist umgekehrt proportional zum Querschnitt."],
+    ["Warum rechnet man bei Wechselstrom mit 2 · l?", "Der Strom fließt hin und zurück.", ["Wegen der Frequenz von 50 Hz.", "Weil der Effektivwert doppelt so groß ist.", "Weil die Leitung zwei Adern Schutzleiter hat."], "Bei Drehstrom mit symmetrischer Last gilt dagegen √3 · l."]
+  ]
+}

@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Wechselstrom und RLC-Schaltungen – Formeln &amp; Rechner</title>
   <meta name="description" content="Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/elektro/wechselstrom.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Wechselstrom und RLC-Schaltungen">
-  <meta property="og:description" content="Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.">
-  <meta property="og:url" content="https://tools.pr1m3.de/elektro/wechselstrom.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Wechselstrom und RLC-Schaltungen">
-  <meta name="twitter:description" content="Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#seite","name":"Wechselstrom und RLC-Schaltungen","url":"https://tools.pr1m3.de/elektro/wechselstrom.html","inLanguage":"de","description":"Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#pfad"},"dateModified":"2026-11-19"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Wechselstrom und RLC-Schaltungen","item":"https://tools.pr1m3.de/elektro/wechselstrom.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#fragen","mainEntity":[{"@type":"Question","name":"Warum hat die Steckdose 230 V, wenn der Scheitelwert 325 V beträgt?","acceptedAnswer":{"@type":"Answer","text":"230 V ist der Effektivwert: Eine Glühlampe an 230 V Wechselspannung leuchtet genauso hell wie an 230 V Gleichspannung. Bei Sinusform ist der Scheitelwert √2-mal so groß, also rund 325 V. Isolierungen und Bauteile müssen für den Scheitelwert ausgelegt sein."}},{"@type":"Question","name":"Warum addiert man Wechselspannungen nicht einfach?","acceptedAnswer":{"@type":"Answer","text":"Weil sie zeitlich verschoben sind. An Spule und Kondensator erreicht die Spannung ihren Höchstwert zu einem anderen Zeitpunkt als am Widerstand. In einer RL-Reihenschaltung mit 30 V am Widerstand und 40 V an der Spule liegt die Gesamtspannung deshalb nicht bei 70 V, sondern bei √(30² + 40²) = 50 V."}},{"@type":"Question","name":"Was passiert bei Resonanz in einer Reihenschaltung?","acceptedAnswer":{"@type":"Answer","text":"Die Blindwiderstände von Spule und Kondensator heben sich auf, nur noch der Wirkwiderstand begrenzt den Strom. An Spule und Kondensator können dabei Spannungen entstehen, die ein Vielfaches der Quellenspannung betragen – um die Güte Q. Das kann Bauteile zerstören."}},{"@type":"Question","name":"Was ist die Grenzfrequenz eines RC-Glieds?","acceptedAnswer":{"@type":"Answer","text":"Die Frequenz, bei der der Blindwiderstand des Kondensators gleich dem Wirkwiderstand ist: fg = 1/(2π·R·C). Dort liefert der Tiefpass noch 70,7 % der Eingangsspannung. Darüber fällt die Ausgangsspannung je Verzehnfachung der Frequenz auf ein Zehntel (−20 dB je Dekade)."}},{"@type":"Question","name":"Was bedeutet ein negativer Phasenwinkel?","acceptedAnswer":{"@type":"Answer","text":"Auf dieser Seite gilt: φ ist der Winkel, um den die Spannung dem Strom vorauseilt. Positiv heißt induktiv (Strom eilt nach), negativ kapazitiv (Strom eilt vor). Der cos φ ist in beiden Fällen positiv; man ergänzt deshalb „induktiv“ oder „kapazitiv“."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/wechselstrom.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -128,17 +110,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="kompensation.html"><b>Blindleistungskompensation</b><span>Blindleistungskompensation mit Schaltplänen</span></a></li>
-      <li><a href="kondensator.html"><b>Kondensatoren</b><span>Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und …</span></a></li>
-      <li><a href="ohmsches-gesetz.html"><b>Ohmsches Gesetz und Kirchhoff</b><span>Spannung, Strom und Widerstand in jede Richtung rechnen, Reihen- und Parallelschaltung mit fließenden Ladungen, …</span></a></li>
-      <li><a href="drehfeldmaschinen.html"><b>Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</b><span>Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

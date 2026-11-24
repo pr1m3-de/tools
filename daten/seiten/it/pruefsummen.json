@@ -1,0 +1,14 @@
+{
+  "nr": 1370,
+  "titel": "Prüfsummen und Fehlerkorrektur: Parität, Hamming, CRC",
+  "gruppe": "Grundlagen",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Prüfsumme", "Parität", "Paritätsbit", "Hamming-Code", "Fehlerkorrektur", "ECC", "Syndrom", "CRC", "zyklische Redundanzprüfung", "Generatorpolynom", "XOR", "Bitfehlerrate", "Coderate", "Übertragungsfehler"],
+  "text": "Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die Wahrscheinlichkeit fehlerfreier Pakete bei einer Bitfehlerrate.",
+  "tex": "P = (1 - p)^n",
+  "fragen": [
+    ["Was kann ein einzelnes Paritätsbit?", "einen Einzelbitfehler erkennen, aber nicht korrigieren", ["jeden Fehler korrigieren", "zwei Fehler korrigieren", "Daten verschlüsseln"], "Zwei gekippte Bits bleiben unbemerkt."],
+    ["Was kann der Hamming(7,4)-Code?", "einen Bitfehler finden und korrigieren", ["nur erkennen, dass ein Fehler da ist", "beliebig viele Fehler korrigieren", "Daten komprimieren"], "Das Syndrom zeigt die Stelle."],
+    ["Welche Rechenoperation steckt in der CRC-Division?", "XOR statt Subtraktion", ["Multiplikation", "Quadratwurzel", "Mittelwert"], "Polynomdivision über GF(2)."]
+  ]
+}

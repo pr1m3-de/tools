@@ -1,0 +1,9 @@
+{
+  "nr": 400,
+  "titel": "Abgasmessung Schritt für Schritt",
+  "bereich": "Heizungstechnik",
+  "themen": ["Schornstein", "Zug", "Abgasverlust", "CO", "1. BImSchV"],
+  "text": "Schornsteinzug, Abgasverlust, CO-Messung, Ringspalt und Rußzahl Schritt für Schritt mit Simulation: Förderdruck aus Höhe und Temperaturen, Siegert-Formel, Grenzwerte nach 1. BImSchV und KÜO, typische Messfehler.",
+  "tex": "q_\\text{A} = (t_\\text{A} - t_\\text{L}) \\left(\\frac{A_2}{21 - O_2} + B\\right)",
+  "projektmappe": {"nr": 1110, "name": "Abgasmessung Schritt für Schritt", "farbe": "#C2410C"}
+}

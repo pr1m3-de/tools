@@ -1,0 +1,20 @@
+{
+  "nr": 1210,
+  "titel": "Atom und Spektrallinien",
+  "bereich": "Physik",
+  "themen": ["Quantenphysik", "Atom", "Atommodell", "Bohr", "Bohrsches Atommodell", "Spektrallinien", "Spektrum", "Wasserstoff", "Balmer", "Lyman", "Paschen", "Rydberg", "Energieniveau", "Emission", "Absorption", "Ionisierungsenergie"],
+  "text": "Bohrsches Atommodell und Spektrallinien berechnen: Energiestufen, Wellenlänge beim Übergang, Lyman-, Balmer- und Paschen-Serie, Bahnradius und Ionisierungsenergie – mit springendem Elektron, Energieniveaus, Linienspektrum und Lernaufgaben.",
+  "tex": "E_n = -\\frac{13{,}6\\,\\text{eV}}{n^2}",
+  "projektmappe": {"nr": 730, "name": "Atom und Spektrallinien", "farbe": "#C2255C"},
+  "verwandt": ["physik/welle-teilchen.html"],
+  "fragen": [
+    ["Warum zeigt Wasserstoff ein Linienspektrum?", "Das Elektron kann nur feste Energiestufen einnehmen; Photonen entsprechen den Differenzen.", ["Wasserstoff ist durchsichtig.", "Das Prisma ist fehlerhaft.", "Wasserstoff leuchtet nur rot."], "h f = E_o − E_u: nur bestimmte Frequenzen."],
+    ["Welche Energie hat das Elektron im Wasserstoff auf Schale n = 2?", "−3,4 eV", ["−13,6 eV", "−6,8 eV", "+3,4 eV"], "E = −13,6 eV / 2²."],
+    ["Welche Serie liegt im sichtbaren Bereich?", "die Balmer-Serie (Sprünge auf n = 2)", ["die Lyman-Serie", "die Paschen-Serie", "keine"], "Lyman ist ultraviolett, Paschen infrarot."],
+    ["Was bedeutet das Minuszeichen in E_n = −13,6 eV / n²?", "Das Elektron ist gebunden; zum Befreien muss man Energie zuführen.", ["Das Elektron hat negative Masse.", "Die Energie ist imaginär.", "Das Atom strahlt ständig."], "Null ist die Energie des freien, ruhenden Elektrons."],
+    ["Wie entstehen die dunklen Linien im Sonnenspektrum?", "Kühlere Gase der Sonnenatmosphäre absorbieren genau die Wellenlängen ihrer Übergänge.", ["Die Sonne strahlt dort nicht.", "Staub im Weltall verschluckt sie.", "Durch den Doppler-Effekt."], "Absorptionslinien liegen an denselben Stellen wie Emissionslinien."],
+    ["Wie hängt der Bahnradius im Bohrschen Modell von n ab?", "r ∝ n²", ["r ∝ n", "r ∝ 1/n", "r ist für alle n gleich"], "r_n = 0,0529 nm · n²."],
+    ["Welche Ionisierungsenergie hat Wasserstoff im Grundzustand?", "13,6 eV", ["3,4 eV", "1,0 eV", "27,2 eV"], "Sprung von n = 1 nach n = ∞."],
+    ["Wo versagt das Bohrsche Atommodell?", "bei Atomen mit mehreren Elektronen und bei der Form der Orbitale", ["schon bei Wasserstoff", "bei der Rydberg-Formel", "es ist überall exakt"], "Erst die Quantenmechanik erklärt Mehrelektronenatome."]
+  ]
+}

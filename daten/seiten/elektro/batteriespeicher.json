@@ -1,0 +1,15 @@
+{
+  "nr": 710,
+  "titel": "Batteriespeicher auslegen",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "themen": ["Batteriespeicher", "Stromspeicher", "Speichergröße Hausverbrauch", "Stromverbrauch", "Stromspiegel", "Autarkie", "Eigenverbrauch", "Photovoltaik", "Vollzyklen", "Amortisation", "kWh", "Speichergröße", "Einspeisevergütung"],
+  "text": "Batteriespeicher zur Photovoltaik auslegen: passende Größe für den Hausverbrauch, auch geschätzt nach Personen, stundengenaue Jahresrechnung mit Eigenverbrauch, Autarkie und Vollzyklen, Ersparnis, Kosten je gespeicherter Kilowattstunde und Amortisation – mit Simulation eines Sommer- und Wintertags.",
+  "tex": "a = \\frac{W_\\text{direkt} + W_\\text{Speicher}}{W_\\text{Verbrauch}}",
+  "projektmappe": {"nr": 740, "name": "Batteriespeicher auslegen", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Was bedeutet Eigenverbrauchsquote?", "Anteil des Solarstroms, der selbst verbraucht wird", ["Anteil des Verbrauchs, der aus dem Netz kommt", "Wirkungsgrad des Wechselrichters", "Ladezustand des Speichers"], "Der Autarkiegrad ist dagegen der Anteil des Verbrauchs, den die Anlage deckt."],
+    ["Warum lohnt ein sehr großer Speicher oft nicht?", "Im Winter wird er kaum voll, er macht nur wenige Vollzyklen.", ["Weil er zu wenig Spannung hat.", "Weil große Speicher verboten sind.", "Weil er den Netzstrom teurer macht."], "Die Kosten je gespeicherter kWh steigen."],
+    ["Was ist ein Vollzyklus?", "einmal die nutzbare Kapazität ganz geladen und entladen", ["ein Tag Betrieb", "ein Jahr Betrieb", "ein Ladevorgang bis 50 %"], "Zwei halbe Ladungen ergeben einen Vollzyklus."]
+  ]
+}

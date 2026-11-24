@@ -1,0 +1,16 @@
+{
+  "nr": 580,
+  "titel": "Heben und Tragen",
+  "gruppe": "Körperliche Belastung",
+  "bereich": "Arbeitsschutz",
+  "auchIn": ["Mechanik"],
+  "themen": ["Heben", "Tragen", "Bandscheibe", "L5/S1", "Rückenstrecker", "Dortmunder Richtwerte", "NIOSH", "Leitmerkmalmethode", "LMM-HHT", "Lastenhandhabung"],
+  "text": "Bandscheibenbelastung beim Heben: Moment an L5/S1, Zug der Rückenstrecker, Druck- und Scherkraft, Vergleich mit Dortmunder Richtwerten und NIOSH, höchste Last je Haltung und Leitmerkmalmethode – mit Simulation des Hebevorgangs.",
+  "tex": "F_\\text{D} = \\frac{M}{d} + m g \\cos\\alpha",
+  "projektmappe": {"nr": 240, "name": "Heben und Tragen", "farbe": "#2F9E44"},
+  "fragen": [
+    ["Wie hebt man eine Last rückenschonend?", "aus den Knien, Rücken gerade, Last nah am Körper", ["mit rundem Rücken und gestreckten Beinen", "ruckartig mit Schwung", "mit ausgestreckten Armen"], "So bleibt die Belastung der Bandscheiben klein."],
+    ["Warum ist Drehen des Oberkörpers mit Last ungünstig?", "Es belastet die Wirbelsäule zusätzlich durch Verdrehung.", ["Weil man dabei schneller ermüdet, sonst nichts.", "Weil die Last dann schwerer wird.", "Es ist unbedenklich."], "Besser mit den Füßen umsetzen."],
+    ["Mit welchem Verfahren beurteilt man Heben und Tragen?", "mit der Leitmerkmalmethode", ["mit der Abgasmessung", "mit der Schleifenmessung", "mit dem Blower-Door-Test"], "Nach BAuA – Punkte aus Gewicht, Häufigkeit, Haltung und Bedingungen."]
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "nr": 750,
+  "titel": "Wohnungslüftung",
+  "gruppe": "Lüftung",
+  "bereich": "Heizungstechnik",
+  "themen": ["Lüftungskonzept", "DIN 1946-6", "Luftwechsel", "Feuchteschutz", "Infiltration", "n50", "Wärmerückgewinnung", "Volumenstrom", "Abluft", "Lüftungsanlage"],
+  "text": "Lüftungskonzept nach DIN 1946-6: Außenluftvolumenstrom für Feuchteschutz, reduzierte, Nenn- und Intensivlüftung, Infiltration aus n50, Prüfung der lüftungstechnischen Maßnahme, Rohrdurchmesser, Wärmeverlust und Wärmerückgewinnung – mit Simulation.",
+  "tex": "q_\\text{v} = -0{,}001A^2 + 1{,}15A + 20",
+  "projektmappe": {"nr": 850, "name": "Wohnungslüftung", "farbe": "#C2410C"}
+}

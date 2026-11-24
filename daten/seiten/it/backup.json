@@ -1,0 +1,15 @@
+{
+  "nr": 500,
+  "titel": "Backup-Planer",
+  "gruppe": "Betrieb",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Datensicherung", "RPO", "RTO", "3-2-1"],
+  "text": "Speicherbedarf mit Voll-, inkrementeller oder differenzieller Sicherung, Dauer von Sicherung und Wiederherstellung, RPO und Prüfung nach 3-2-1-1-0.",
+  "tex": "S = \\frac{1}{k} \\sum S_\\text{Tag}",
+  "projektmappe": {"nr": 1210, "name": "Backup-Planer", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Was besagt die 3-2-1-Regel?", "3 Kopien, auf 2 verschiedenen Medien, 1 davon außer Haus", ["3 Backups pro Tag, 2 pro Woche, 1 pro Monat", "3 Festplatten im RAID 2 mit 1 Ersatz", "3 Jahre aufbewahren"], "Schützt vor Defekt, Brand und Diebstahl."],
+    ["Was sichert eine inkrementelle Sicherung?", "nur die Änderungen seit der letzten Sicherung", ["immer alles", "nur die Änderungen seit der letzten Vollsicherung", "nur das Betriebssystem"], "Die differenzielle Sicherung bezieht sich auf die letzte Vollsicherung."],
+    ["Warum muss man Rücksicherungen testen?", "Erst dann weiß man, dass die Sicherung wirklich brauchbar ist.", ["Weil Backups sonst verfallen.", "Weil es gesetzlich verboten ist, nicht zu testen.", "Damit die Festplatte nicht einrostet."], "Ein ungetestetes Backup ist eine Hoffnung."]
+  ]
+}

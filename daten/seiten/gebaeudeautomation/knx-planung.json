@@ -1,0 +1,14 @@
+{
+  "nr": 1070,
+  "titel": "KNX-Planung: Topologie, Adressen und Simulator",
+  "bereich": "Gebäudeautomation",
+  "themen": ["KNX", "KNX TP", "TP-64", "TP-256", "KNX PL", "KNX RF", "KNX IP", "KNX IoT", "Linie", "Bereich", "Linienkoppler", "Linienverstärker", "Spannungsversorgung", "physikalische Adresse", "Gruppenadresse", "dreistufige Gruppenadresse", "zweistufige Gruppenadresse", "Busankoppler", "Anwendungsmodul", "Systemkomponenten", "Flags", "Programmierung", "Filtertabelle", "Buslast", "Routingzähler", "IP-Router", "Bereichskoppler", "Gruppenadressplan", "CSV"],
+  "text": "KNX planen, simulieren und verstehen: Planungsrechner für Linien, Bereiche, Koppler und Spannungsversorgung, Topologie-Simulator mit Filtertabellen, Telegrammweg und Buslast, Gruppenadress-Planer mit CSV-Export, Adress-Werkstatt mit allen 16 Bit, Kommunikationsarten TP, PL, RF, IP und IoT, Gerätearten und Programmierung.",
+  "tex": "GA = 2048 \\cdot H + 256 \\cdot M + U",
+  "projektmappe": {"nr": 110, "name": "KNX-Planung", "farbe": "#9333EA"},
+  "fragen": [
+    ["Was ist eine KNX-Gruppenadresse?", "die Adresse, über die Sensoren und Aktoren miteinander kommunizieren", ["die Seriennummer eines Geräts", "die IP-Adresse des Routers", "die Adresse der Spannungsversorgung"], "Zum Beispiel 1/2/3 für „Licht Küche schalten“."],
+    ["Wofür steht die physikalische Adresse 1.1.5?", "Bereich 1, Linie 1, Teilnehmer 5", ["Gruppe 1, Gebäude 1, Raum 5", "Version 1.1.5 der Software", "Spannung 115 V"], "Sie beschreibt den Ort in der Topologie."],
+    ["Wie viele Teilnehmer darf eine KNX-Linie ohne Linienverstärker etwa haben?", "64", ["8", "1000", "unbegrenzt"], "Begrenzt durch die Spannungsversorgung und die Buslast."]
+  ]
+}

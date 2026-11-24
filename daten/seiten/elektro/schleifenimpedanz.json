@@ -1,0 +1,16 @@
+{
+  "nr": 220,
+  "titel": "Schleifenimpedanz und Kurzschlussstrom",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Schleifenimpedanz", "Kurzschlussstrom", "Abschaltbedingung", "LS-Schalter", "Messung"],
+  "text": "Abschaltbedingung nach DIN VDE 0100-410: Schleifenimpedanz, kleinster Kurzschlussstrom, Abschaltstrom, größte Leitungslänge und Grenzwert für die Messung.",
+  "tex": "Z_\\text{S} \\cdot I_\\text{a} \\le U_0",
+  "projektmappe": {"nr": 50, "name": "Schleifenimpedanz und Kurzschlussstrom", "farbe": "#2B7BB9"},
+  "verwandt": ["elektro/netzsysteme.html", "elektro/spannungsfall.html", "elektro/messung-anleitung.html", "elektro/koerperstrom.html"],
+  "fragen": [
+    ["Warum muss die Schleifenimpedanz klein genug sein?", "Damit der Kurzschlussstrom groß genug ist, um die Sicherung rechtzeitig auszulösen.", ["Damit die Leitung nicht zu warm wird.", "Damit der Spannungsfall klein bleibt.", "Damit der RCD nicht auslöst."], "Abschaltbedingung Z_S · I_a ≤ U₀ nach DIN VDE 0100-410."],
+    ["Ab welchem Vielfachen des Bemessungsstroms löst ein B-Automat sofort aus?", "5-fach", ["2-fach", "10-fach", "20-fach"], "B: 3 bis 5 × I_n, C: 5 bis 10 × I_n, D: 10 bis 20 × I_n."],
+    ["Warum vergleicht man Messwerte meist mit 2/3 des Grenzwerts?", "Weil die Leitung im Betrieb warm wird und der Widerstand dann höher ist.", ["Weil Messgeräte immer zu hoch messen.", "Weil die Netzspannung nachts höher ist.", "Weil es die Farbe der Leitung verlangt."], "Kalt gemessen ist der Widerstand kleiner als bei Betriebstemperatur."]
+  ]
+}

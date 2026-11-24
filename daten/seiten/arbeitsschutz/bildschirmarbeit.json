@@ -1,0 +1,11 @@
+{
+  "nr": 660,
+  "titel": "Sehen und Bildschirmarbeit",
+  "gruppe": "Raum und Umgebung",
+  "bereich": "Arbeitsschutz",
+  "auchIn": ["IT und Netzwerk"],
+  "themen": ["Bildschirmarbeit", "Sehabstand", "Zeichenhöhe", "Sehwinkel", "ppi", "Ergonomie", "Tischhöhe", "Monitor", "Beleuchtung", "ASR A3.4"],
+  "text": "Bildschirmarbeitsplatz einrichten: Sehabstand und Zeichengröße als Sehwinkel, Pixeldichte und Auflösung des Auges, Schriftgröße, Höhe von Tisch, Stuhl und Monitor nach Körpergröße, Beleuchtungsstärke – mit Simulation.",
+  "tex": "\\alpha = 2 \\arctan\\frac{h}{2 d}",
+  "projektmappe": {"nr": 540, "name": "Sehen und Bildschirmarbeit", "farbe": "#2F9E44"}
+}

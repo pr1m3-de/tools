@@ -1,0 +1,9 @@
+{
+  "nr": 130,
+  "titel": "Gaubenwange bekleiden",
+  "bereich": "Dach und Klempnerei",
+  "themen": ["Gaube", "Stehfalz", "Scharen", "Zuschnitt", "Winkel", "Blech", "Spiegeln", "PDF"],
+  "text": "Gaubenoberkante, vordere Höhe, Scharbreite und Dachneigung eingeben: oberer Winkel, alle Scharen mit Zuschnittlängen, Versatz und Schrägmaß, Zeichnung für links und rechts, als PDF oder E-Mail für die Werkstatt.",
+  "tex": "\\gamma = \\arcsin\\frac{H \\cdot \\cos\\alpha}{L_\\text{o}}",
+  "projektmappe": {"nr": 400, "name": "Gaubenwange bekleiden", "farbe": "#A0785A", "speicher": "gaubenwange-1"}
+}

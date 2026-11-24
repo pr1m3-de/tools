@@ -1,0 +1,9 @@
+{
+  "nr": 170,
+  "titel": "Heizkreis und Heizkörper dimensionieren",
+  "bereich": "Heizungstechnik",
+  "themen": ["Heizkreis", "Heizkörper", "Plattenheizkörper", "Typ 22", "Badheizkörper", "Konvektor", "Heizkörperexponent", "Übertemperatur", "Massenstrom", "Rohrdimensionierung", "Druckverlust", "Pumpe", "Vorlauftemperatur", "Wärmepumpe"],
+  "text": "Heizkreis mit verschiedenen Heizkörpern dimensionieren: Leistung von Platten-, Röhren-, Glieder-, Bad- und Konvektorheizkörpern bei deinen Systemtemperaturen, nötige Baulänge und Vorlauftemperatur, Massenstrom, Rohrweite, Druckverlust und Pumpe.",
+  "tex": "\\dot Q = \\dot m \\cdot c \\cdot \\Delta\\vartheta",
+  "projektmappe": {"nr": 330, "name": "Heizkreis und Heizkörper", "farbe": "#C2410C"}
+}
