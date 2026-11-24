@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atom und Spektrallinien: Bohrsches Modell, Wasserstoffspektrum, Rydberg-Formel – Formeln &amp; Rechner</title>
+  <meta name="description" content="Bohrsches Atommodell und Spektrallinien berechnen: Energiestufen, Wellenlänge beim Übergang, Lyman-, Balmer- und Paschen-Serie, Bahnradius und Ionisierungsenergie – mit springendem Elektron, Energieniveaus, Linienspektrum und Lernaufgaben.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <link rel="stylesheet" href="../assets/baukasten.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Warum Atome nur bestimmte Farben aussenden</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Linienspektren</h3><p>Zerlegt man das Licht eines leuchtenden Gases mit einem Prisma, sieht man kein Regenbogenband, sondern einzelne farbige Linien – für jedes Element andere, wie ein Fingerabdruck. So wurde Helium 1868 zuerst im Sonnenspektrum entdeckt, bevor man es auf der Erde fand.</p></article>
+        <article class="wissen-karte" style="--farbe:#7A5195"><h3>Bohrsches Atommodell</h3><p>Niels Bohr postulierte 1913: Das Elektron kreist nur auf erlaubten Bahnen, auf denen es nicht strahlt (Drehimpuls m v r = n ħ). Beim Sprung von einer höheren auf eine tiefere Bahn sendet es ein Photon mit genau der Energiedifferenz aus: h f = E<sub>o</sub> − E<sub>u</sub>.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Energiestufen</h3><p>Für Wasserstoff gilt E<sub>n</sub> = −13,6 eV / n². Das Minus bedeutet: Das Elektron ist gebunden. Im Grundzustand (n = 1) braucht man 13,6 eV, um es zu befreien (Ionisierung). Nach oben rücken die Stufen immer enger zusammen.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Spektralserien</h3><p>Alle Sprünge auf dieselbe untere Schale bilden eine Serie: Lyman (n = 1, ultraviolett), Balmer (n = 2, sichtbar: rot 656 nm, türkis 486 nm, blau 434 nm, violett 410 nm), Paschen (n = 3, infrarot). Balmer fand 1885 die Formel – lange bevor jemand sie erklären konnte.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Emission und Absorption</h3><p>Ein Atom kann ein Photon nur aufnehmen, wenn dessen Energie genau einem Sprung nach oben entspricht. Weißes Licht durch kaltes Gas zeigt deshalb dunkle Linien an denselben Stellen, an denen das heiße Gas leuchtet. Die dunklen Fraunhofer-Linien im Sonnenspektrum verraten die Zusammensetzung der Sonne.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Franck-Hertz-Versuch</h3><p>1914 schossen Franck und Hertz Elektronen durch Quecksilberdampf. Der Strom sank immer genau dann, wenn die Elektronen 4,9 eV erreicht hatten: Die Atome nehmen Energie nur in festen Portionen auf. Das bestätigte die Energiestufen unabhängig vom Licht.</p></article>
+        <article class="wissen-karte" style="--farbe:#A16207"><h3>Grenzen des Modells</h3><p>Bohrs Modell erklärt Wasserstoff und Ionen mit einem Elektron sehr gut, versagt aber schon bei Helium. Die Quantenmechanik ersetzt die Bahnen durch Orbitale: Aufenthaltswahrscheinlichkeiten. Die Energiestufen bleiben – sie folgen dort aus der Schrödinger-Gleichung.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Anwendungen</h3><p>Natriumdampflampen (gelb 589 nm), Neonröhren, Laser, Atomuhren (Cäsium-Übergang bei 9,19 GHz definiert die Sekunde) und die Spektralanalyse in Chemie und Astronomie beruhen auf festen Energiestufen.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Serie</th><th>Übergang</th><th class="zahl">längste Linie</th><th class="zahl">Seriengrenze</th><th>Bereich</th><th>entdeckt</th></tr></thead><tbody id="serien-tabelle"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum leuchtet Wasserstoff rot?</summary><p>Die hellste sichtbare Linie ist Hα bei 656 nm (Sprung von n = 3 auf n = 2). Daher erscheinen Wasserstoffnebel im All rötlich.</p></details>
+        <details><summary>Wie viel Energie braucht man, um Wasserstoff zu ionisieren?</summary><p>13,6 eV aus dem Grundzustand. Das entspricht Licht mit höchstens 91,2 nm Wellenlänge (fernes Ultraviolett).</p></details>
+        <details><summary>Was ist die Rydberg-Konstante?</summary><p>R_H = 1,097 · 10⁷ m⁻¹. Mit ihr gibt die Rydberg-Formel 1/λ = R_H (1/n_u² − 1/n_o²) alle Wellenlängen des Wasserstoffspektrums.</p></details>
+        <details><summary>Kreisen Elektronen wirklich auf Bahnen?</summary><p>Nein. Das Bohrsche Modell ist ein Bild, das die Energien richtig liefert. In der Quantenmechanik hat das Elektron keine Bahn, sondern eine Wellenfunktion; man kann nur Aufenthaltswahrscheinlichkeiten angeben.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script src="../assets/baukasten.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const BK = Baukasten, R = BK.R, tz = BK.tz, E = BK.E, F = BK.F, zz = BK.zz, rd = BK.rd, PI2 = BK.PI2, W2 = BK.W2, GRAD = BK.GRAD, BLAU = BK.BLAU, ROT = BK.ROT, GRUEN = BK.GRUEN, ORANGE = BK.ORANGE, LILA = BK.LILA, GRAU = BK.GRAU, GELB = BK.GELB, KUPFER = BK.KUPFER, TUERKIS = BK.TUERKIS, T = BK.T, TW = BK.TW, TWU = BK.TWU, pfeil = BK.pfeil, kreis = BK.kreis, strecke = BK.strecke, zug = BK.zug, uhr = BK.uhr, diagramm = BK.diagramm, schritt = BK.schritt, teilung = BK.teilung, stellen = BK.stellen, runde = BK.runde, ansichten = BK.ansichten, zufall = BK.zufall, bildCanvas = BK.bildCanvas, zeiger = BK.zeiger;
+    // wissenschaftliche Schreibweise für Text (wz) und TeX (wt), s gültige Stellen
+    function hoch(n) { const z = '⁰¹²³⁴⁵⁶⁷⁸⁹'; return String(n).replace('-', '⁻').replace(/\d/g, function (d) { return z[+d]; }); }
+    function zerlege(v, s) { const a = Math.abs(v); let ex = Math.floor(Math.log10(a)), m = v / Math.pow(10, ex); if (Math.abs(Number(m.toFixed(s - 1))) >= 10) { ex++; m = v / Math.pow(10, ex); } return [m, ex]; }
+    function wz(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '–'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return zz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return zz(q[0], s - 1) + ' · 10' + hoch(q[1]); }
+    function wt(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '\\infty'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return tz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return tz(q[0], s - 1) + ' \\cdot 10^{' + q[1] + '}'; }
+    // sichtbare Farbe einer Wellenlänge in nm (Näherung nach Bruton); außerhalb: Ersatzfarben
+    function wlFarbe(l) {
+      if (l < 380) return '#8a5cf6'; if (l > 780) return '#a33a3a';
+      let r = 0, g = 0, b = 0;
+      if (l < 440) { r = (440 - l) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = (510 - l) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = (645 - l) / 65; } else r = 1;
+      const f = l < 420 ? 0.3 + 0.7 * (l - 380) / 40 : l > 700 ? 0.3 + 0.7 * (780 - l) / 80 : 1, k = function (v) { return Math.round(255 * Math.pow(v * f, 0.8)); };
+      return 'rgb(' + k(r) + ',' + k(g) + ',' + k(b) + ')';
+    }
+    const RY = 13.605693, HC = 1239.84198, A0 = 0.0529177, ALPHA = 1 / 137.036, C0 = 299792458, RH = 1.0967758e7;
+    const SERIEN = { 1: 'Lyman', 2: 'Balmer', 3: 'Paschen', 4: 'Brackett', 5: 'Pfund', 6: 'Humphreys' };
+    let ansicht = 'modell', takt = uhr();
+    const SIM = { t: 0 };
+
+    function En(Z, n) { return -RY * Z * Z / (n * n); }
+    function farbeVon(l) { return wlFarbe(l); }
+    function bereichVon(l) { return l < 10 ? 'Röntgen' : l < 380 ? 'Ultraviolett' : l <= 780 ? 'sichtbar' : 'Infrarot'; }
+    function rechne(e) {
+      const Z = Math.round(e.Z), no = Math.round(e.no), nu = Math.round(e.nu), r = { Z: Z, no: no, nu: nu };
+      r.ok = no > nu;
+      r.Eo = En(Z, no); r.Eu = En(Z, nu); r.dE = r.Eo - r.Eu; r.lam = r.ok ? HC / r.dE : NaN; r.f = r.ok ? C0 / (r.lam * 1e-9) : NaN;
+      r.serie = SERIEN[nu] || ('n = ' + nu); r.grenze = HC / (RY * Z * Z / (nu * nu));
+      r.rn = A0 * no * no / Z; r.ru = A0 * nu * nu / Z; r.vn = ALPHA * C0 * Z / no; r.ion = -r.Eo; r.ion1 = RY * Z * Z;
+      r.umlauf = 2 * Math.PI * r.rn * 1e-9 / r.vn;
+      r.linien = [];
+      for (let a = 1; a <= 6; a++) for (let b = a + 1; b <= 12; b++) { const l = HC / (En(Z, b) - En(Z, a)); r.linien.push([a, b, l]); }
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'Atom und Spektrallinien',
+      einleitung: 'Warum leuchtet Wasserstoff nur in ganz bestimmten Farben? Nach dem Bohrschen Atommodell darf das Elektron nur auf festen Energiestufen sein; springt es hinunter, sendet es ein Photon mit genau der Energiedifferenz aus. Der Rechner gibt Energien, Wellenlängen und Spektralserien.',
+      hilfe: 'Beispiel: Wasserstoff, Sprung von n = 3 nach n = 2 – die rote Hα-Linie der Balmer-Serie.',
+      gruppen: [
+        { titel: 'Atom', farbe: BLAU, felder: [
+          { k: 'Z', tex: 'Z', name: 'Kernladungszahl (1 = Wasserstoff, 2 = He⁺, 3 = Li²⁺)', e: '', min: 1, max: 20, n: 0 }
+        ] },
+        { titel: 'Übergang', farbe: LILA, felder: [
+          { k: 'no', tex: 'n_\\text{o}', name: 'obere Schale (Start)', e: '', min: 2, max: 30, n: 0 },
+          { k: 'nu', tex: 'n_\\text{u}', name: 'untere Schale (Ziel)', e: '', min: 1, max: 29, n: 0 }
+        ] }
+      ],
+      beispiel: { Z: 1, no: 3, nu: 2 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (!r.ok) { H.meldung('Die obere Schale muss größer sein als die untere. Für Absorption geht der Sprung nach oben, die Energie ist dieselbe.', true); return; }
+        if (r.Z > 1) H.meldung('Für Z > 1 gilt das Modell nur für Ionen mit einem einzigen Elektron (He⁺, Li²⁺ …). Bei mehreren Elektronen schirmen sie sich gegenseitig ab.');
+        H.kacheln([
+          [zz(r.lam, 1) + ' nm', 'Wellenlänge (' + bereichVon(r.lam) + ')', LILA],
+          [zz(r.dE, 3) + ' eV', 'Energie des Photons', LILA],
+          [r.serie + '-Serie', 'Sprung von n = ' + r.no + ' nach n = ' + r.nu, BLAU],
+          [zz(r.Eo, 3) + ' eV', 'Energie auf Schale ' + r.no + ' (Schale ' + r.nu + ': ' + zz(r.Eu, 3) + ' eV)', BLAU],
+          [zz(r.grenze, 1) + ' nm', 'Seriengrenze (Sprung aus dem Unendlichen)', ORANGE],
+          [zz(r.ion1, 2) + ' eV', 'Ionisierungsenergie aus dem Grundzustand', ROT],
+          [zz(r.rn, 4) + ' nm', 'Bahnradius auf Schale ' + r.no, GRUEN],
+          [zz(r.vn / 1000, 0) + ' km/s', 'Bahngeschwindigkeit auf Schale ' + r.no + ' (' + zz(r.vn / C0 * 100, 2) + ' % von c)', GRUEN]
+        ]);
+        const zeilen = r.linien.filter(function (q) { return q[0] === r.nu; }).slice(0, 6).map(function (q) { return [r.serie + ' ' + q[1] + ' → ' + q[0], zz(q[2], 1) + ' nm', zz(HC / q[2], 3) + ' eV', bereichVon(q[2])]; });
+        H.tabelle('Linien der ' + r.serie + '-Serie', ['Übergang', 'λ', 'E', 'Bereich'], zeilen, { zahl: [1, 2] });
+      },
+      weg: function (r, e) {
+        if (!r.ok) return [];
+        return [
+          ['Energie der Schalen', 'E_n = -13{,}6\\,\\text{eV} \\cdot \\frac{Z^2}{n^2}: \\quad E_' + r.no + ' = ' + tz(r.Eo, 3) + '\\,\\text{eV}, \\; E_' + r.nu + ' = ' + tz(r.Eu, 3) + '\\,\\text{eV}'],
+          ['Photonenenergie', '\\Delta E = E_' + r.no + ' - E_' + r.nu + ' = ' + E(tz(r.dE, 3) + '\\,\\text{eV}')],
+          ['Wellenlänge', '\\lambda = \\frac{h c}{\\Delta E} = \\frac{1240\\,\\text{eV nm}}{' + tz(r.dE, 3) + '\\,\\text{eV}} = ' + E(tz(r.lam, 1) + '\\,\\text{nm}')],
+          ['Rydberg-Formel', '\\frac{1}{\\lambda} = R_\\text{H} Z^2 \\left(\\frac{1}{' + r.nu + '^2} - \\frac{1}{' + r.no + '^2}\\right) = ' + wt(1 / (r.lam * 1e-9), 4) + '\\,\\text{m}^{-1}'],
+          ['Bahnradius', 'r_n = a_0 \\frac{n^2}{Z} = 0{,}0529\\,\\text{nm} \\cdot \\frac{' + r.no + '^2}{' + r.Z + '} = ' + E(tz(r.rn, 4) + '\\,\\text{nm}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Energie der Schale (Wasserstoff)', felder: [{ k: 'E', tex: 'E_n', name: 'Energie', e: 'eV', min: -14, max: -0.001 }, { k: 'n', tex: 'n', name: 'Hauptquantenzahl', e: '', min: 1, max: 100, n: 0 }],
+          beispiel: { n: 3 },
+          gleichungen: [{ name: 'E = −13,6 eV / n²', v: ['E', 'n'], f: function (q) { return [q.E * q.n * q.n, -RY]; },
+            loese: { E: function (q) { return -RY / (q.n * q.n); }, n: function (q) { return Math.sqrt(-RY / q.E); } },
+            weg: function (k, q) { return k === 'E' ? 'E_n = -\\frac{13{,}6\\,\\text{eV}}{n^2} = -\\frac{13{,}6}{' + tz(q.n, 0) + '^2}\\,\\text{eV} = ' + E(tz(q.E, 3) + '\\,\\text{eV}') : 'n = \\sqrt{\\frac{-13{,}6\\,\\text{eV}}{E_n}} = \\sqrt{\\frac{-13{,}6}{' + tz(q.E, 3) + '}} = ' + E(tz(q.n, 2)); } }] },
+        { titel: 'Rydberg-Formel (Wasserstoff)', hilfe: 'n₁ untere, n₂ obere Schale; λ in nm.',
+          felder: [{ k: 'lam', tex: '\\lambda', name: 'Wellenlänge', e: 'nm', min: 50, max: 1e6 }, { k: 'n1', tex: 'n_1', name: 'untere Schale', e: '', min: 1, max: 10, n: 0 }, { k: 'n2', tex: 'n_2', name: 'obere Schale', e: '', min: 2, max: 30, n: 0 }],
+          beispiel: { n1: 2, n2: 4 },
+          gleichungen: [{ name: '1/λ = R (1/n₁² − 1/n₂²)', v: ['lam', 'n1', 'n2'], f: function (q) { return [1 / (q.lam * 1e-9), RH * (1 / (q.n1 * q.n1) - 1 / (q.n2 * q.n2))]; },
+            loese: { lam: function (q) { const d = 1 / (q.n1 * q.n1) - 1 / (q.n2 * q.n2); return d > 0 ? 1e9 / (RH * d) : NaN; }, n2: function (q) { const d = 1 / (q.n1 * q.n1) - 1 / (RH * q.lam * 1e-9); return d > 0 ? 1 / Math.sqrt(d) : NaN; }, n1: function (q) { const d = 1 / (RH * q.lam * 1e-9) + 1 / (q.n2 * q.n2); return 1 / Math.sqrt(d); } },
+            weg: function (k, q) {
+              if (k === 'lam') return '\\frac{1}{\\lambda} = 1{,}097 \\cdot 10^7\\,\\text{m}^{-1} \\cdot \\left(\\frac{1}{' + tz(q.n1, 0) + '^2} - \\frac{1}{' + tz(q.n2, 0) + '^2}\\right) \\Rightarrow \\lambda = ' + E(tz(q.lam, 1) + '\\,\\text{nm}');
+              if (k === 'n2') return 'n_2 = \\left(\\frac{1}{n_1^2} - \\frac{1}{R \\lambda}\\right)^{-1/2} = ' + E(tz(q.n2, 2));
+              return 'n_1 = \\left(\\frac{1}{R \\lambda} + \\frac{1}{n_2^2}\\right)^{-1/2} = ' + E(tz(q.n1, 2));
+            } }] },
+        { titel: 'Bohrscher Radius', hilfe: 'r = a₀ · n² / Z mit a₀ = 0,0529 nm.',
+          felder: [{ k: 'r', tex: 'r_n', name: 'Bahnradius', e: 'nm', min: 1e-4, max: 1e4 }, { k: 'n', tex: 'n', name: 'Hauptquantenzahl', e: '', min: 1, max: 400, n: 0 }, { k: 'Z', tex: 'Z', name: 'Kernladungszahl', e: '', min: 1, max: 100, n: 0 }],
+          beispiel: { n: 2, Z: 1 },
+          gleichungen: [{ name: 'r = a₀ n² / Z', v: ['r', 'n', 'Z'], f: function (q) { return [q.r * q.Z, A0 * q.n * q.n]; },
+            loese: { r: function (q) { return A0 * q.n * q.n / q.Z; }, n: function (q) { return Math.sqrt(q.r * q.Z / A0); }, Z: function (q) { return A0 * q.n * q.n / q.r; } },
+            weg: function (k, q) { if (k === 'r') return 'r_n = a_0 \\frac{n^2}{Z} = 0{,}0529\\,\\text{nm} \\cdot \\frac{' + tz(q.n, 0) + '^2}{' + tz(q.Z, 0) + '} = ' + E(tz(q.r, 4) + '\\,\\text{nm}'); if (k === 'n') return 'n = \\sqrt{\\frac{r Z}{a_0}} = ' + E(tz(q.n, 2)); return 'Z = \\frac{a_0 n^2}{r} = ' + E(tz(q.Z, 2)); } }] },
+        { titel: 'Photon aus einem Übergang', hilfe: 'Energien der Schalen in eV, λ in nm.',
+          felder: [{ k: 'lam', tex: '\\lambda', name: 'Wellenlänge', e: 'nm', min: 1, max: 1e7 }, { k: 'Eo', tex: 'E_\\text{o}', name: 'Energie oben', e: 'eV', min: -1000, max: 0 }, { k: 'Eu', tex: 'E_\\text{u}', name: 'Energie unten', e: 'eV', min: -1000, max: 0 }],
+          beispiel: { Eo: -1.51, Eu: -3.4 },
+          gleichungen: [{ name: 'λ = hc / (E_o − E_u)', v: ['lam', 'Eo', 'Eu'], f: function (q) { return [q.lam * (q.Eo - q.Eu), HC]; },
+            loese: { lam: function (q) { return q.Eo > q.Eu ? HC / (q.Eo - q.Eu) : NaN; }, Eo: function (q) { return q.Eu + HC / q.lam; }, Eu: function (q) { return q.Eo - HC / q.lam; } },
+            weg: function (k, q) { if (k === 'lam') return '\\lambda = \\frac{h c}{E_\\text{o} - E_\\text{u}} = \\frac{1240\\,\\text{eV nm}}{' + tz(q.Eo, 2) + ' - (' + tz(q.Eu, 2) + ')\\,\\text{eV}} = ' + E(tz(q.lam, 1) + '\\,\\text{nm}'); return (k === 'Eo' ? 'E_\\text{o} = E_\\text{u} + \\frac{hc}{\\lambda}' : 'E_\\text{u} = E_\\text{o} - \\frac{hc}{\\lambda}') + ' = ' + E(tz(q[k], 3) + '\\,\\text{eV}'); } }] }
+      ],
+      sammlung: [
+        ['Energiestufen (Bohr)', 'E_n = -13{,}6\\,\\text{eV} \\cdot \\frac{Z^2}{n^2}', 'n = 1, 2, 3 …'],
+        ['Photon beim Übergang', 'h f = E_\\text{o} - E_\\text{u}', 'Emission nach unten, Absorption nach oben'],
+        ['Rydberg-Formel', '\\frac{1}{\\lambda} = R_\\text{H} Z^2 \\left(\\frac{1}{n_\\text{u}^2} - \\frac{1}{n_\\text{o}^2}\\right)', 'R_H = 1,097 · 10⁷ m⁻¹'],
+        ['Bahnradius', 'r_n = a_0 \\frac{n^2}{Z}, \\quad a_0 = 0{,}0529\\,\\text{nm}', 'Bohrscher Radius'],
+        ['Drehimpulsbedingung', 'm v r = n \\hbar', 'Bohrsches Postulat'],
+        ['Bahngeschwindigkeit', 'v_n = \\alpha c \\frac{Z}{n}, \\quad \\alpha \\approx \\tfrac{1}{137}', 'Feinstrukturkonstante'],
+        ['Ionisierungsenergie', 'E_\\text{ion} = 13{,}6\\,\\text{eV} \\cdot \\frac{Z^2}{n^2}', 'Wasserstoff aus n = 1: 13,6 eV'],
+        ['Seriengrenze', '\\lambda_\\infty = \\frac{n_\\text{u}^2}{R_\\text{H} Z^2}', 'Balmer: 364,6 nm']
+      ],
+      quellen: 'Werte nach dem Bohrschen Modell ohne Feinstruktur und Kernmitbewegung (Abweichung von den gemessenen Linien unter 0,1 %).',
+      bild: { titel: 'Animation', label: 'Bohrsches Atommodell, Energieniveaus, Linienspektrum und Absorption', animiert: true,
+        hoehe: function (B) { return B < 600 ? Math.round(B + 40) : 460; },
+        hinweis: function (r) {
+          if (ansicht === 'modell') return 'Bohrsches Modell (Radien maßstäblich ∝ n²): Das Elektron springt von Schale ' + r.no + ' auf ' + r.nu + ' und sendet ein Photon mit ' + (r.ok ? zz(r.lam, 0) + ' nm' : '–') + ' aus.';
+          if (ansicht === 'niveaus') return 'Energieniveaus: Jeder Pfeil ist eine Linie. Lyman-Sprünge enden auf n = 1 (UV), Balmer auf n = 2 (sichtbar), Paschen auf n = 3 (Infrarot). Oben häufen sich die Stufen bis 0 eV.';
+          if (ansicht === 'spektrum') return 'Linienspektrum (logarithmische Skala). Hervorgehoben: der gewählte Übergang. Nur die Balmer-Linien liegen im Sichtbaren.';
+          return 'Oben: Emissionsspektrum (helle Linien eines leuchtenden Gases). Unten: Absorptionsspektrum (dunkle Linien, wenn weißes Licht durch kaltes Gas fällt) – an denselben Stellen.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); if (!r.ok) { T(cx, 'Obere Schale muss größer sein als die untere.', B / 2, H / 2, 'center', 12, true, ROT); return; } ({ modell: modellBild, niveaus: niveauBild, spektrum: spektrumBild, absorption: absorptionBild })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    // ---------- Bohr-Modell ----------
+    function modellBild(cx, B, H, dt, r, e) {
+      SIM.t += dt; const mx = B / 2, my = H / 2 + 10, nmax = Math.max(r.no, 3), s = (Math.min(B, H) / 2 - 24) / (nmax * nmax);
+      for (let n = 1; n <= nmax; n++) { kreis(cx, mx, my, n * n * s, 'rgba(0,0,0,0)', n === r.no || n === r.nu ? F('--text') : F('--linie'), n === r.no || n === r.nu ? 1.5 : 1); T(cx, 'n=' + n, mx + n * n * s * 0.707 + 3, my - n * n * s * 0.707 - 3, 'left', 9, false, GRAU); }
+      kreis(cx, mx, my, 6, ROT); T(cx, r.Z > 1 ? '+' + r.Z : '+', mx, my + 1, 'center', 9, true, '#fff');
+      const per = 3.2, ph = (SIM.t % per) / per, w = SIM.t * 2.2;
+      let rad, txt;
+      if (ph < 0.45) { rad = r.no * r.no * s; txt = 'Elektron auf Schale ' + r.no; }
+      else if (ph < 0.55) { const f = (ph - 0.45) / 0.1; rad = (r.no * r.no + (r.nu * r.nu - r.no * r.no) * f) * s; txt = 'Sprung ' + r.no + ' → ' + r.nu; }
+      else { rad = r.nu * r.nu * s; txt = 'Schale ' + r.nu + ', Photon ' + zz(r.lam, 0) + ' nm (' + bereichVon(r.lam) + ')'; }
+      const ex = mx + rad * Math.cos(w), ey = my + rad * Math.sin(w);
+      kreis(cx, ex, ey, 5, BLAU);
+      if (ph >= 0.5) {
+        const f = (ph - 0.5) / 0.5, sx = mx + r.nu * r.nu * s, d = 30 + f * (B - sx), farbe = farbeVon(r.lam), pk = [], wl = Math.max(4, Math.min(30, r.lam / 25));
+        for (let i = 0; i <= 60; i++) { const x = sx + d - i * 1.2; if (x < sx) break; pk.push([x, my - 40 - 8 * Math.sin((x - sx - d) / wl * 2 * Math.PI)]); }
+        zug(cx, pk, farbe, 2);
+      }
+      T(cx, txt, 10, 18, 'left', 12, true, F('--text'));
+      T(cx, 'ΔE = ' + zz(r.dE, 3) + ' eV', 10, H - 10, 'left', 11, true, LILA);
+    }
+    // ---------- Energieniveaus ----------
+    function niveauBild(cx, B, H, dt, r, e) {
+      const x0 = 60, x1 = B - 12, y0 = 20, y1 = H - 20, Emin = En(r.Z, 1) * 1.04, Y = function (E) { return y0 + (E / Emin) * (y1 - y0); };
+      for (let n = 1; n <= 8; n++) { const y = Y(En(r.Z, n)); strecke(cx, x0, y, x1, y, n === r.no || n === r.nu ? F('--text') : F('--linie'), n === r.no || n === r.nu ? 2 : 1); if (n <= 4) T(cx, 'n=' + n + '  ' + zz(En(r.Z, n), 2) + ' eV', x0 - 4, y, 'right', 9, false, GRAU); }
+      strecke(cx, x0, Y(0), x1, Y(0), ROT, 1, [4, 3]); T(cx, '0 eV (frei)', x1, Y(0) - 6, 'right', 9, true, ROT);
+      const sp = (x1 - x0) / 4;
+      [1, 2, 3].forEach(function (nu, i) {
+        T(cx, SERIEN[nu], x0 + sp * (i + 0.55), Y(En(r.Z, nu)) + 14, 'center', 10, true, GRAU);
+        for (let no = nu + 1; no <= 7; no++) { const x = x0 + sp * i + 10 + (no - nu) * Math.min(14, sp / 7), l = HC / (En(r.Z, no) - En(r.Z, nu)), sel = nu === r.nu && no === r.no; pfeil(cx, x, Y(En(r.Z, no)), x, Y(En(r.Z, nu)), sel ? farbeVon(l) : l >= 380 && l <= 780 ? farbeVon(l) : GRAU, sel ? 3 : 1); }
+      });
+      if (r.nu > 3 || r.no > 7) { const x = x0 + sp * 3.4, y1a = Y(r.Eo), y2 = Y(r.Eu); pfeil(cx, x, y1a, x, y2, farbeVon(r.lam), 3); }
+      T(cx, 'gewählt: ' + r.no + ' → ' + r.nu + ', ' + zz(r.lam, 1) + ' nm', x1, y1 - 4, 'right', 11, true, LILA);
+      void dt;
+    }
+    // ---------- Linienspektrum ----------
+    function spektrumBild(cx, B, H, dt, r, e) {
+      const lmin = Math.max(5, r.linien.reduce(function (m, q) { return Math.min(m, q[2]); }, 1e9) * 0.85), lmax = Math.min(1e5, Math.max(2000, r.lam * 1.3)), x0 = 16, x1 = B - 16, X = function (l) { return x0 + Math.log(l / lmin) / Math.log(lmax / lmin) * (x1 - x0); };
+      const y0 = 40, h = Math.max(60, (H - 150) * 0.5);
+      for (let px = x0; px < x1; px++) { const l = lmin * Math.pow(lmax / lmin, (px - x0) / (x1 - x0)); cx.fillStyle = l >= 380 && l <= 780 ? farbeVon(l) : '#202226'; cx.globalAlpha = l >= 380 && l <= 780 ? 0.25 : 1; cx.fillRect(px, y0, 1, h); }
+      cx.globalAlpha = 1;
+      const farben = { 1: LILA, 2: BLAU, 3: ROT, 4: ORANGE, 5: GRUEN, 6: GRAU };
+      r.linien.forEach(function (q) { if (q[2] < lmin || q[2] > lmax) return; const x = X(q[2]), sel = q[0] === r.nu && q[1] === r.no; strecke(cx, x, y0, x, y0 + h, sel ? '#ffffff' : q[2] >= 380 && q[2] <= 780 ? farbeVon(q[2]) : farben[q[0]], sel ? 3 : 1.2); });
+      [1, 2, 3, 4].forEach(function (nu) { const g = HC / (RY * r.Z * r.Z / (nu * nu)), l2 = HC / (En(r.Z, nu + 1) - En(r.Z, nu)); if (l2 < lmin || g > lmax) return; T(cx, SERIEN[nu], (X(Math.max(lmin, g)) + X(Math.min(lmax, l2))) / 2, y0 - 8, 'center', 10, true, farben[nu]); });
+      [10, 30, 100, 300, 1000, 3000, 10000, 30000].forEach(function (l) { if (l >= lmin && l <= lmax) T(cx, l >= 1000 ? zz(l / 1000, 0) + ' µm' : l + ' nm', X(l), y0 + h + 14, 'center', 9, false, GRAU); });
+      // sichtbarer Ausschnitt linear
+      const y2 = y0 + h + 50, h2 = Math.max(40, H - y2 - 46), Xs = function (l) { return x0 + (l - 380) / 400 * (x1 - x0); };
+      T(cx, 'sichtbarer Bereich vergrößert', x0, y2 - 8, 'left', 10, true, F('--text'));
+      cx.fillStyle = '#000'; cx.fillRect(x0, y2, x1 - x0, h2);
+      r.linien.forEach(function (q) { if (q[2] < 380 || q[2] > 780) return; const sel = q[0] === r.nu && q[1] === r.no; strecke(cx, Xs(q[2]), y2, Xs(q[2]), y2 + h2, farbeVon(q[2]), sel ? 4 : 2.5); if (q[1] - q[0] <= 3) T(cx, zz(q[2], 0), Xs(q[2]), y2 + h2 + 12, 'center', 9, sel, sel ? F('--text') : GRAU); });
+      T(cx, 'Wasserstoff' + (r.Z > 1 ? '-ähnlich, Z = ' + r.Z : '') + ' – gewählte Linie: ' + zz(r.lam, 1) + ' nm', x0, H - 8, 'left', 11, true, F('--text'));
+      void dt;
+    }
+    // ---------- Emission und Absorption ----------
+    function absorptionBild(cx, B, H, dt, r, e) {
+      const x0 = 16, x1 = B - 16, X = function (l) { return x0 + (l - 380) / 400 * (x1 - x0); }, h = Math.min(70, (H - 100) / 2);
+      const sichtbar = r.linien.filter(function (q) { return q[2] >= 380 && q[2] <= 780; });
+      T(cx, 'Emission: leuchtendes Gas', x0, 22, 'left', 11, true, F('--text'));
+      cx.fillStyle = '#000'; cx.fillRect(x0, 32, x1 - x0, h);
+      sichtbar.forEach(function (q) { strecke(cx, X(q[2]), 32, X(q[2]), 32 + h, farbeVon(q[2]), 3); });
+      const y2 = 32 + h + 46;
+      T(cx, 'Absorption: weißes Licht durch kaltes Gas', x0, y2 - 10, 'left', 11, true, F('--text'));
+      for (let px = x0; px < x1; px++) { const l = 380 + (px - x0) / (x1 - x0) * 400; cx.fillStyle = farbeVon(l); cx.fillRect(px, y2, 1, h); }
+      sichtbar.forEach(function (q) { strecke(cx, X(q[2]), y2, X(q[2]), y2 + h, '#000', 3); });
+      [400, 500, 600, 700].forEach(function (l) { T(cx, l + ' nm', X(l), y2 + h + 14, 'center', 9, false, GRAU); });
+      TW(cx, sichtbar.length ? 'Sichtbare Linien: ' + sichtbar.map(function (q) { return q[1] + '→' + q[0] + ' ' + zz(q[2], 0) + ' nm'; }).join(', ') : 'Für dieses Ion liegen keine Linien im Sichtbaren.', x0, y2 + h + 34, x1 - x0, 10, false, GRAU);
+      void dt;
+    }
+
+    ansicht = (ansichten(seite, [['modell', 'Atommodell'], ['niveaus', 'Energieniveaus'], ['spektrum', 'Spektrum'], ['absorption', 'Emission/Absorption']], 'modell', function (a) { ansicht = a; SIM.t = 0; }))();
+    const TABELLEN = [['serien-tabelle', [1, 2, 3, 4, 5].map(function (nu) { const erste = HC / (En(1, nu + 1) - En(1, nu)), g = HC / (RY / (nu * nu)); return [SERIEN[nu], 'n → ' + nu, zz(erste, 1) + ' nm', zz(g, 1) + ' nm', bereichVon((erste + g) / 2), { 1: 'Lyman 1906', 2: 'Balmer 1885', 3: 'Paschen 1908', 4: 'Brackett 1922', 5: 'Pfund 1924' }[nu]]; }), [2, 3]]];
+
+    function tabelleFuellen(id, zeilen, zahl) { const tb = document.getElementById(id); if (!tb) return; zeilen.forEach(function (z) { const tr = document.createElement('tr'); z.forEach(function (x, i) { const td = document.createElement('td'); if (zahl.indexOf(i) >= 0) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr); }); }
+    (typeof TABELLEN !== 'undefined' ? TABELLEN : []).forEach(function (t) { tabelleFuellen(t[0], t[1], t[2]); });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

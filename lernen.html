@@ -508,6 +508,13 @@
       if (!isFinite(v)) return '–';
       if (v === 0) return '0';
       const st = stellen || 4, a = Math.abs(v), mag = Math.floor(Math.log10(a));
+      if (a >= 1e9 || a < 1e-4) {
+        // sehr große und sehr kleine Werte in Zehnerpotenzen: 6,674 · 10⁻¹¹
+        let ex = mag, m = rundeSig(v / Math.pow(10, ex), st);
+        if (Math.abs(m) >= 10) { ex++; m = rundeSig(v / Math.pow(10, ex), st); }
+        const hoch = String(ex).replace('-', '⁻').replace(/\d/g, function (d) { return '⁰¹²³⁴⁵⁶⁷⁸⁹'[+d]; });
+        return zahl(m, st) + ' · 10' + hoch;
+      }
       let dez = Math.max(0, st - 1 - mag); if (dez > 12) dez = 12;
       let s = (Math.round(v * Math.pow(10, dez)) / Math.pow(10, dez)).toFixed(dez);
       if (s.indexOf('.') >= 0) s = s.replace(/0+$/, '').replace(/\.$/, '');
@@ -518,6 +525,10 @@
     const parse = function (t) {
       let s = String(t).trim().replace(/[\s  ]/g, '').replace(/−/g, '-');
       if (!s) return NaN;
+      // Zehnerpotenzen: 6,67·10^-11, 6,67*10⁻¹¹, 6,67x10-11
+      s = s.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁻⁺]/g, function (c) { return { '⁻': '-', '⁺': '+' }[c] || String('⁰¹²³⁴⁵⁶⁷⁸⁹'.indexOf(c)); });
+      const zp = /^([-+]?[\d.,]+)(?:[·*x×⋅])10\^?([-+]?\d+)$/i.exec(s);
+      if (zp) s = zp[1] + 'e' + zp[2];
       if (s.indexOf(',') >= 0) s = s.replace(/\./g, '').replace(',', '.');
       if (!/^[-+]?\d*\.?\d+(e[-+]?\d+)?$/i.test(s)) return NaN;
       return parseFloat(s);

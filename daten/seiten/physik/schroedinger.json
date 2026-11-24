@@ -1,0 +1,20 @@
+{
+  "nr": 1220,
+  "titel": "Schrödinger-Gleichung: Teilchen im Kasten und Tunneleffekt",
+  "bereich": "Physik",
+  "themen": ["Quantenphysik", "Schrödinger-Gleichung", "Wellenfunktion", "Potentialtopf", "Teilchen im Kasten", "Nullpunktsenergie", "Energiestufen", "Tunneleffekt", "Tunneln", "Barriere", "Überlagerung", "Quantenpunkt", "Rastertunnelmikroskop"],
+  "text": "Quantenmechanik zum Ausrechnen: Energiestufen und Wellenfunktionen im Potentialtopf, Nullpunktsenergie, Photon beim Übergang und Tunnelwahrscheinlichkeit durch eine Barriere – mit schwingenden Wellenfunktionen, Überlagerung, Tunnel-Animation und Lernaufgaben.",
+  "tex": "E_n = \\frac{n^2 h^2}{8 m L^2}",
+  "projektmappe": {"nr": 740, "name": "Schrödinger-Gleichung", "farbe": "#C2255C"},
+  "verwandt": ["physik/radioaktivitaet.html"],
+  "fragen": [
+    ["Warum hat ein Teilchen im Kasten nur bestimmte Energien?", "Seine Wellenfunktion muss an den Wänden null sein; nur ganze halbe Wellenlängen passen hinein.", ["Weil die Wände Energie abziehen.", "Weil es zu schnell ist.", "Das gilt nur für Photonen."], "L = n λ/2 legt Wellenlänge und Energie fest."],
+    ["Wie ändert sich die Energie im Kasten, wenn man ihn halb so breit macht?", "Sie wird viermal so groß.", ["Sie halbiert sich.", "Sie verdoppelt sich.", "Sie bleibt gleich."], "E_n ∝ 1/L²."],
+    ["Was ist die Nullpunktsenergie?", "die kleinste Energie (n = 1), die nie null ist", ["die Energie bei 0 °C", "die Energie außerhalb des Kastens", "die Ruheenergie mc²"], "Ein eingesperrtes Quantenteilchen ruht nie."],
+    ["Wie viele Knoten hat die Wellenfunktion im Zustand n = 3 im Inneren?", "2", ["3", "0", "6"], "Im Zustand n gibt es n − 1 innere Knoten."],
+    ["Was gibt |ψ|² an?", "die Aufenthaltswahrscheinlichkeitsdichte", ["die Energie", "die Ladung", "die Geschwindigkeit"], "Bornsche Deutung."],
+    ["Wie hängt die Tunnelwahrscheinlichkeit von der Breite der Barriere ab?", "Sie fällt exponentiell mit der Breite.", ["Sie fällt linear.", "Sie steigt mit der Breite.", "Sie hängt nicht davon ab."], "T ≈ e^(−2κa)."],
+    ["Warum tunneln Protonen viel schlechter als Elektronen durch dieselbe Barriere?", "Wegen ihrer größeren Masse ist κ größer, die Welle fällt schneller ab.", ["Weil sie positiv geladen sind.", "Weil sie kleiner sind.", "Sie tunneln besser."], "κ ∝ √m."],
+    ["Welches Gerät nutzt den Tunneleffekt, um Atome abzubilden?", "das Rastertunnelmikroskop", ["das Lichtmikroskop", "das Teleskop", "der Geigerzähler"], "Der Tunnelstrom ändert sich extrem stark mit dem Abstand."]
+  ]
+}

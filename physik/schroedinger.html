@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schrödinger-Gleichung: Teilchen im Kasten, Wellenfunktion und Tunneleffekt – Formeln &amp; Rechner</title>
+  <meta name="description" content="Quantenmechanik zum Ausrechnen: Energiestufen und Wellenfunktionen im Potentialtopf, Nullpunktsenergie, Photon beim Übergang und Tunnelwahrscheinlichkeit durch eine Barriere – mit schwingenden Wellenfunktionen, Überlagerung, Tunnel-Animation und Lernaufgaben.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <link rel="stylesheet" href="../assets/baukasten.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Die Schrödinger-Gleichung in zwei Grundaufgaben</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Die Schrödinger-Gleichung</h3><p>Erwin Schrödinger stellte 1926 die Gleichung auf, die die Wellenfunktion ψ eines Quantenteilchens bestimmt. Sie verbindet die Krümmung der Welle mit der Bewegungsenergie: Wo das Teilchen viel Bewegungsenergie hat, ist die Welle kurz und stark gekrümmt. Gebundene Teilchen haben nur Lösungen für bestimmte Energien.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Teilchen im Kasten</h3><p>Ist ein Teilchen zwischen zwei undurchdringlichen Wänden eingesperrt, muss ψ an den Wänden null sein – wie eine Gitarrensaite. Es passen nur ganze Vielfache der halben Wellenlänge hinein, deshalb sind nur die Energien E<sub>n</sub> = n²h²/(8mL²) erlaubt.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Nullpunktsenergie</h3><p>Selbst im niedrigsten Zustand (n = 1) hat das Teilchen Energie – es kann nie ganz ruhen. Das folgt auch aus der Unschärferelation: Eingesperrt hat es eine Impulsunschärfe. Deshalb gefriert Helium bei Normaldruck selbst am absoluten Nullpunkt nicht.</p></article>
+        <article class="wissen-karte" style="--farbe:#7A5195"><h3>Aufenthaltswahrscheinlichkeit</h3><p>|ψ|² gibt an, wo man das Teilchen wahrscheinlich findet. Im Grundzustand meist in der Mitte, im Zustand n gibt es n − 1 Knoten, an denen man es nie findet. Für große n wird die Verteilung gleichmäßig – der klassische Grenzfall.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Tunneleffekt</h3><p>Trifft ein Teilchen auf eine Barriere, die höher ist als seine Energie, fällt ψ darin exponentiell ab, ist aber nicht null. Ist die Barriere dünn genug, kommt hinten noch eine Welle heraus: Das Teilchen tunnelt mit der Wahrscheinlichkeit T ≈ e<sup>−2κa</sup>.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Farbstoffe</h3><p>Lange Moleküle mit abwechselnden Einfach- und Doppelbindungen sind für ihre Elektronen ein eindimensionaler Kasten von 1–2 nm Länge. Der Sprung vom höchsten besetzten zum niedrigsten freien Zustand liegt im Sichtbaren – deshalb sind Karotin und viele Farbstoffe farbig.</p></article>
+        <article class="wissen-karte" style="--farbe:#A16207"><h3>Quantenpunkte</h3><p>Halbleiterkristalle von wenigen Nanometern sperren Elektronen in alle Richtungen ein. Ihre Leuchtfarbe hängt nur von der Größe ab: kleinere Punkte leuchten blauer. Sie werden in Bildschirmen genutzt (Nobelpreis Chemie 2023).</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Stationär und doch bewegt</h3><p>Ein einzelner Energiezustand ändert sich zeitlich nur in der Phase; |ψ|² bleibt gleich. Erst eine Überlagerung zweier Zustände bewegt sich: Die Aufenthaltswahrscheinlichkeit schwingt mit (E₂ − E₁)/h hin und her.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Anwendung des Tunneleffekts</th><th>Wie es funktioniert</th></tr></thead><tbody id="tunnel-tabelle"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum darf ein Teilchen im Kasten nur bestimmte Energien haben?</summary><p>Seine Welle muss an beiden Wänden null sein. Das klappt nur, wenn ganze Vielfache der halben Wellenlänge in den Kasten passen. Jede erlaubte Wellenlänge gehört zu genau einer Energie.</p></details>
+        <details><summary>Was ist die Nullpunktsenergie?</summary><p>Die kleinste mögliche Energie eines eingesperrten Quantenteilchens (n = 1). Sie ist nie null – das Teilchen ist immer in Bewegung.</p></details>
+        <details><summary>Wie wahrscheinlich ist Tunneln?</summary><p>Es hängt exponentiell von Breite und Höhe der Barriere und von der Masse ab. Ein Elektron durch 0,5 nm mit 3 eV fehlender Energie: etwa 1,4 · 10⁻⁴. Doppelt so breit: nur noch etwa 2 · 10⁻⁸.</p></details>
+        <details><summary>Wo nutzt man den Tunneleffekt?</summary><p>Im Rastertunnelmikroskop, in Flash-Speichern, in Tunneldioden. In der Natur ermöglicht er den Alphazerfall und die Kernfusion in der Sonne.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script src="../assets/baukasten.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const BK = Baukasten, R = BK.R, tz = BK.tz, E = BK.E, F = BK.F, zz = BK.zz, rd = BK.rd, PI2 = BK.PI2, W2 = BK.W2, GRAD = BK.GRAD, BLAU = BK.BLAU, ROT = BK.ROT, GRUEN = BK.GRUEN, ORANGE = BK.ORANGE, LILA = BK.LILA, GRAU = BK.GRAU, GELB = BK.GELB, KUPFER = BK.KUPFER, TUERKIS = BK.TUERKIS, T = BK.T, TW = BK.TW, TWU = BK.TWU, pfeil = BK.pfeil, kreis = BK.kreis, strecke = BK.strecke, zug = BK.zug, uhr = BK.uhr, diagramm = BK.diagramm, schritt = BK.schritt, teilung = BK.teilung, stellen = BK.stellen, runde = BK.runde, ansichten = BK.ansichten, zufall = BK.zufall, bildCanvas = BK.bildCanvas, zeiger = BK.zeiger;
+    // wissenschaftliche Schreibweise für Text (wz) und TeX (wt), s gültige Stellen
+    function hoch(n) { const z = '⁰¹²³⁴⁵⁶⁷⁸⁹'; return String(n).replace('-', '⁻').replace(/\d/g, function (d) { return z[+d]; }); }
+    function zerlege(v, s) { const a = Math.abs(v); let ex = Math.floor(Math.log10(a)), m = v / Math.pow(10, ex); if (Math.abs(Number(m.toFixed(s - 1))) >= 10) { ex++; m = v / Math.pow(10, ex); } return [m, ex]; }
+    function wz(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '–'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return zz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return zz(q[0], s - 1) + ' · 10' + hoch(q[1]); }
+    function wt(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '\\infty'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return tz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return tz(q[0], s - 1) + ' \\cdot 10^{' + q[1] + '}'; }
+    // sichtbare Farbe einer Wellenlänge in nm (Näherung nach Bruton); außerhalb: Ersatzfarben
+    function wlFarbe(l) {
+      if (l < 380) return '#8a5cf6'; if (l > 780) return '#a33a3a';
+      let r = 0, g = 0, b = 0;
+      if (l < 440) { r = (440 - l) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = (510 - l) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = (645 - l) / 65; } else r = 1;
+      const f = l < 420 ? 0.3 + 0.7 * (l - 380) / 40 : l > 700 ? 0.3 + 0.7 * (780 - l) / 80 : 1, k = function (v) { return Math.round(255 * Math.pow(v * f, 0.8)); };
+      return 'rgb(' + k(r) + ',' + k(g) + ',' + k(b) + ')';
+    }
+    const H_P = 6.62607015e-34, HQ = 1.054571817e-34, EL = 1.602176634e-19, HC = 1239.84198, ME = 9.1093837e-31;
+    const TEILCHEN = { elektron: ['Elektron', ME], proton: ['Proton', 1.67262192e-27], alpha: ['Alphateilchen', 6.6446573e-27], myon: ['Myon', 1.8835316e-28] };
+    let ansicht = 'kasten', takt = uhr();
+    const SIM = { t: 0 };
+
+    function EnKasten(m, L, n) { return n * n * H_P * H_P / (8 * m * L * L) / EL; } // eV, L in m
+    function transmission(m, V0, E, a) {
+      // Rechteckbarriere, Energien in eV, a in m
+      if (E <= 0) return 0;
+      const V = V0 * EL, Ej = E * EL;
+      if (Math.abs(E - V0) < 1e-9) { const k = Math.sqrt(2 * m * Ej) / HQ; void k; return 1 / (1 + m * V * a * a / (2 * HQ * HQ)); }
+      if (E < V0) { const kap = Math.sqrt(2 * m * (V - Ej)) / HQ, sh = Math.sinh(Math.min(350, kap * a)); return 1 / (1 + V0 * V0 * sh * sh / (4 * E * (V0 - E))); }
+      const k2 = Math.sqrt(2 * m * (Ej - V)) / HQ, sn = Math.sin(k2 * a); return 1 / (1 + V0 * V0 * sn * sn / (4 * E * (E - V0)));
+    }
+    function rechne(e) {
+      const T0 = TEILCHEN[e.teilchen] || TEILCHEN.elektron, m = T0[1], L = e.L * 1e-9, n = Math.round(e.n), r = { m: m, name: T0[0], n: n };
+      r.E1 = EnKasten(m, L, 1); r.En = EnKasten(m, L, n); r.En1 = EnKasten(m, L, n + 1); r.dE = r.En1 - r.En;
+      r.lamUeber = n > 1 ? HC / (r.En - EnKasten(m, L, n - 1)) : NaN; r.lamAuf = HC / r.dE;
+      r.knoten = n - 1; r.lamWelle = 2 * e.L / n;
+      // Wahrscheinlichkeit im mittleren Drittel: ∫ 2/L sin²(nπx/L) dx von L/3 bis 2L/3
+      r.mitte = 1 / 3 - (Math.sin(4 * Math.PI * n / 3) - Math.sin(2 * Math.PI * n / 3)) / (2 * Math.PI * n);
+      const a = e.a * 1e-9; r.T = transmission(m, e.V0, e.E, a);
+      r.kappa = e.E < e.V0 ? Math.sqrt(2 * m * (e.V0 - e.E) * EL) / HQ : 0; r.Tnaeh = e.E < e.V0 ? Math.exp(-2 * r.kappa * a) : NaN;
+      r.eindring = r.kappa > 0 ? 1 / r.kappa : Infinity;
+      r.klassisch = e.E >= e.V0;
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'Schrödinger-Gleichung: Teilchen im Kasten und Tunneleffekt',
+      einleitung: 'Eingesperrt in einen Kasten darf ein Quantenteilchen nur bestimmte Energien haben – und es kann nie ganz ruhen. Trifft es auf eine Wand, die es klassisch nie überwinden könnte, tunnelt es manchmal hindurch. Der Rechner löst beide Grundaufgaben der Schrödinger-Gleichung.',
+      hilfe: 'Beispiel: Elektron in einem 1 nm breiten Kasten, Zustand n = 2; Tunneln durch eine 0,5 nm breite und 5 eV hohe Barriere mit 2 eV Energie.',
+      gruppen: [
+        { titel: 'Teilchen', farbe: BLAU, felder: [
+          { k: 'teilchen', name: 'Teilchen', wahl: Object.keys(TEILCHEN).map(function (k) { return [k, TEILCHEN[k][0]]; }) }
+        ] },
+        { titel: 'Kasten (unendlich hoher Potentialtopf)', farbe: GRUEN, felder: [
+          { k: 'L', tex: 'L', name: 'Breite des Kastens', e: 'nm', min: 1e-6, max: 1e6 },
+          { k: 'n', tex: 'n', name: 'Quantenzahl', e: '', min: 1, max: 50, n: 0 }
+        ] },
+        { titel: 'Barriere (Tunneleffekt)', farbe: ROT, felder: [
+          { k: 'V0', tex: 'V_0', name: 'Höhe der Barriere', e: 'eV', min: 0.001, max: 1e8 },
+          { k: 'a', tex: 'a', name: 'Breite der Barriere', e: 'nm', min: 1e-6, max: 100 },
+          { k: 'E', tex: 'E', name: 'Energie des Teilchens', e: 'eV', min: 0.0001, max: 1e8 }
+        ] }
+      ],
+      beispiel: { teilchen: 'elektron', L: 1, n: 2, V0: 5, a: 0.5, E: 2 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (r.klassisch) H.meldung('Die Energie liegt über der Barriere: Klassisch käme jedes Teilchen durch, quantenmechanisch wird trotzdem ein Teil reflektiert (T = ' + zz(r.T * 100, 2) + ' %).');
+        if (r.T < 1e-30 && !r.klassisch) H.meldung('Praktisch kein Tunneln: Die Barriere ist zu breit oder zu hoch für dieses Teilchen. Die Wahrscheinlichkeit fällt exponentiell mit Breite und √(Masse).');
+        H.kacheln([
+          [wz(r.E1, 4) + ' eV', 'Nullpunktsenergie (n = 1) – das Teilchen ruht nie', GRUEN],
+          [wz(r.En, 4) + ' eV', 'Energie im Zustand n = ' + r.n, GRUEN],
+          [wz(r.dE, 4) + ' eV', 'Abstand zur nächsten Stufe n = ' + (r.n + 1), GRUEN],
+          [r.lamAuf < 1e6 ? wz(r.lamAuf, 4) + ' nm' : wz(r.lamAuf / 1e6, 4) + ' mm', 'Wellenlänge des Photons für den Sprung ' + r.n + ' → ' + (r.n + 1), LILA],
+          [zz(r.mitte * 100, 1) + ' %', 'Aufenthaltswahrscheinlichkeit im mittleren Drittel (klassisch 33,3 %)', BLAU],
+          [r.T < 1e-4 ? wz(r.T, 3) : zz(r.T * 100, 3) + ' %', 'Tunnelwahrscheinlichkeit durch die Barriere', ROT],
+          [isFinite(r.eindring) ? wz(r.eindring * 1e9, 3) + ' nm' : '–', 'Eindringtiefe 1/κ in die Barriere', ROT],
+          [r.knoten + '', 'Knoten der Wellenfunktion im Inneren', GRAU]
+        ]);
+        const z = []; for (let k = 1; k <= 6; k++) z.push([String(k), wz(EnKasten(r.m, e.L * 1e-9, k), 4) + ' eV', (k - 1) + '', zz(2 * e.L / k, 3) + ' nm']);
+        H.tabelle('Energiestufen im Kasten', ['n', 'Energie', 'Knoten', 'Wellenlänge'], z, { zahl: [0, 1, 2, 3] });
+        const zt = [0.1, 0.2, 0.5, 1, 2].map(function (a) { return [zz(a, 1) + ' nm', wz(transmission(r.m, e.V0, e.E, a * 1e-9), 3)]; });
+        H.tabelle('Tunnelwahrscheinlichkeit bei anderen Breiten', ['Breite', 'T'], zt, { zahl: [1] });
+      },
+      weg: function (r, e) {
+        const w = [
+          ['Energiestufen', 'E_n = \\frac{n^2 h^2}{8 m L^2} = \\frac{' + r.n + '^2 \\cdot (6{,}626 \\cdot 10^{-34})^2}{8 \\cdot ' + wt(r.m, 4) + ' \\cdot (' + wt(e.L * 1e-9, 3) + ')^2}\\,\\text{J} = ' + E(wt(r.En, 4) + '\\,\\text{eV}')],
+          ['Wellenlänge im Kasten', '\\lambda_n = \\frac{2L}{n} = ' + E(tz(r.lamWelle, 3) + '\\,\\text{nm}')],
+          ['Photon für den Sprung', '\\lambda = \\frac{hc}{E_{' + (r.n + 1) + '} - E_' + r.n + '} = \\frac{1240\\,\\text{eV nm}}{' + wt(r.dE, 4) + '\\,\\text{eV}} = ' + E(wt(r.lamAuf, 4) + '\\,\\text{nm}')]
+        ];
+        if (!r.klassisch) {
+          w.push(['Abklingkonstante', '\\kappa = \\frac{\\sqrt{2 m (V_0 - E)}}{\\hbar} = ' + E(wt(r.kappa * 1e-9, 4) + '\\,\\text{nm}^{-1}')]);
+          w.push(['Tunnelwahrscheinlichkeit (genau)', 'T = \\left(1 + \\frac{V_0^2 \\sinh^2(\\kappa a)}{4 E (V_0 - E)}\\right)^{-1} = ' + E(wt(r.T, 4))]);
+          w.push(['Näherung für dicke Barrieren', 'T \\approx e^{-2\\kappa a} = e^{-' + tz(2 * r.kappa * e.a * 1e-9, 3) + '} = ' + wt(r.Tnaeh, 4)]);
+        }
+        return w;
+      },
+      loeser: [
+        { titel: 'Elektron im Kasten', hilfe: 'Für Elektronen: E [eV] = 0,376 · n² / L² (L in nm).',
+          felder: [{ k: 'E', tex: 'E_n', name: 'Energie', e: 'eV', min: 1e-9, max: 1e9 }, { k: 'n', tex: 'n', name: 'Quantenzahl', e: '', min: 1, max: 100, n: 0 }, { k: 'L', tex: 'L', name: 'Breite', e: 'nm', min: 1e-4, max: 1e5 }],
+          beispiel: { n: 1, L: 0.5 },
+          gleichungen: [{ name: 'E = n²h²/(8mL²)', v: ['E', 'n', 'L'], f: function (q) { return [q.E * q.L * q.L, EnKasten(ME, 1e-9, 1) * q.n * q.n]; },
+            loese: { E: function (q) { return EnKasten(ME, q.L * 1e-9, q.n); }, n: function (q) { return Math.sqrt(q.E / EnKasten(ME, q.L * 1e-9, 1)); }, L: function (q) { return Math.sqrt(EnKasten(ME, 1e-9, 1) * q.n * q.n / q.E); } },
+            weg: function (k, q) {
+              if (k === 'E') return 'E_n = \\frac{n^2 h^2}{8 m_e L^2} = 0{,}376\\,\\text{eV} \\cdot \\frac{' + tz(q.n, 0) + '^2}{' + tz(q.L, 3) + '^2} = ' + E(wt(q.E, 4) + '\\,\\text{eV}');
+              if (k === 'n') return 'n = L \\sqrt{\\frac{E}{0{,}376\\,\\text{eV nm}^2}} = ' + E(tz(q.n, 2));
+              return 'L = n \\sqrt{\\frac{0{,}376\\,\\text{eV nm}^2}{E}} = ' + E(wt(q.L, 4) + '\\,\\text{nm}');
+            } }] },
+        { titel: 'Photon aus dem Kasten (Elektron)', hilfe: 'Sprung von n₂ nach n₁ in einem Kasten der Breite L (Farbstoffmolekül-Modell).',
+          felder: [{ k: 'lam', tex: '\\lambda', name: 'Wellenlänge', e: 'nm', min: 1e-3, max: 1e9 }, { k: 'L', tex: 'L', name: 'Breite', e: 'nm', min: 0.01, max: 1e4 }, { k: 'n1', tex: 'n_1', name: 'untere Stufe', e: '', min: 1, max: 50, n: 0 }, { k: 'n2', tex: 'n_2', name: 'obere Stufe', e: '', min: 2, max: 51, n: 0 }],
+          beispiel: { L: 1.2, n1: 3, n2: 4 },
+          gleichungen: [{ name: 'λ = 8 m c L² / (h (n₂² − n₁²))', v: ['lam', 'L', 'n1', 'n2'], f: function (q) { return [q.lam * (q.n2 * q.n2 - q.n1 * q.n1) * EnKasten(ME, 1e-9, 1), HC * q.L * q.L]; },
+            loese: { lam: function (q) { const d = q.n2 * q.n2 - q.n1 * q.n1; return d > 0 ? HC * q.L * q.L / (d * EnKasten(ME, 1e-9, 1)) : NaN; }, L: function (q) { return Math.sqrt(q.lam * (q.n2 * q.n2 - q.n1 * q.n1) * EnKasten(ME, 1e-9, 1) / HC); }, n2: function (q) { return Math.sqrt(q.n1 * q.n1 + HC * q.L * q.L / (q.lam * EnKasten(ME, 1e-9, 1))); }, n1: function (q) { const v = q.n2 * q.n2 - HC * q.L * q.L / (q.lam * EnKasten(ME, 1e-9, 1)); return v > 0 ? Math.sqrt(v) : NaN; } },
+            weg: function (k, q) {
+              if (k === 'lam') return '\\lambda = \\frac{hc}{E_{n_2} - E_{n_1}} = \\frac{1240\\,\\text{eV nm} \\cdot ' + tz(q.L, 3) + '^2}{0{,}376\\,\\text{eV nm}^2 \\cdot (' + tz(q.n2, 0) + '^2 - ' + tz(q.n1, 0) + '^2)} = ' + E(tz(q.lam, 1) + '\\,\\text{nm}');
+              if (k === 'L') return 'L = \\sqrt{\\frac{\\lambda \\cdot 0{,}376\\,\\text{eV nm}^2 \\cdot (n_2^2 - n_1^2)}{1240\\,\\text{eV nm}}} = ' + E(tz(q.L, 3) + '\\,\\text{nm}');
+              return (k === 'n2' ? 'n_2' : 'n_1') + ' = ' + E(tz(q[k], 2));
+            } }] },
+        { titel: 'Tunneln (Näherung, Elektron)', hilfe: 'T ≈ e^(−2κa) mit κ [1/nm] = 5,123 · √(V₀ − E in eV).',
+          felder: [{ k: 'T', tex: 'T', name: 'Tunnelwahrscheinlichkeit', e: '', min: 1e-300, max: 1 }, { k: 'dV', tex: 'V_0 - E', name: 'fehlende Energie', e: 'eV', min: 1e-6, max: 1e4 }, { k: 'a', tex: 'a', name: 'Breite', e: 'nm', min: 1e-5, max: 100 }],
+          beispiel: { dV: 3, a: 0.5 },
+          gleichungen: [{ name: 'T = e^(−2κa)', v: ['T', 'dV', 'a'], f: function (q) { return [Math.log(q.T), -2 * 5.1231 * Math.sqrt(q.dV) * q.a]; },
+            loese: { T: function (q) { return Math.exp(-2 * 5.1231 * Math.sqrt(q.dV) * q.a); }, a: function (q) { return -Math.log(q.T) / (2 * 5.1231 * Math.sqrt(q.dV)); }, dV: function (q) { return Math.pow(-Math.log(q.T) / (2 * 5.1231 * q.a), 2); } },
+            weg: function (k, q) {
+              if (k === 'T') return 'T \\approx e^{-2 \\kappa a} = e^{-2 \\cdot 5{,}123 \\cdot \\sqrt{' + tz(q.dV, 3) + '} \\cdot ' + tz(q.a, 3) + '} = ' + E(wt(q.T, 4));
+              if (k === 'a') return 'a = \\frac{-\\ln T}{2 \\kappa} = \\frac{-\\ln(' + wt(q.T, 4) + ')}{2 \\cdot 5{,}123 \\cdot \\sqrt{' + tz(q.dV, 3) + '}}\\,\\text{nm} = ' + E(tz(q.a, 4) + '\\,\\text{nm}');
+              return 'V_0 - E = \\left(\\frac{-\\ln T}{2 \\cdot 5{,}123 \\cdot a}\\right)^2 = ' + E(tz(q.dV, 4) + '\\,\\text{eV}');
+            } }] },
+        { titel: 'Wellenlänge im Kasten', hilfe: 'Stehende Welle: n halbe Wellenlängen passen in den Kasten.',
+          felder: [{ k: 'lam', tex: '\\lambda_n', name: 'Wellenlänge', e: 'nm', min: 1e-5, max: 1e6 }, { k: 'L', tex: 'L', name: 'Breite', e: 'nm', min: 1e-5, max: 1e6 }, { k: 'n', tex: 'n', name: 'Quantenzahl', e: '', min: 1, max: 100, n: 0 }],
+          beispiel: { L: 2, n: 3 },
+          gleichungen: [{ name: 'L = n λ/2', v: ['lam', 'L', 'n'], f: function (q) { return [2 * q.L, q.n * q.lam]; },
+            loese: { lam: function (q) { return 2 * q.L / q.n; }, L: function (q) { return q.n * q.lam / 2; }, n: function (q) { return 2 * q.L / q.lam; } },
+            weg: function (k, q) { if (k === 'lam') return '\\lambda_n = \\frac{2L}{n} = \\frac{2 \\cdot ' + tz(q.L, 3) + '}{' + tz(q.n, 0) + '} = ' + E(tz(q.lam, 4) + '\\,\\text{nm}'); if (k === 'L') return 'L = \\frac{n \\lambda}{2} = ' + E(tz(q.L, 4) + '\\,\\text{nm}'); return 'n = \\frac{2L}{\\lambda} = ' + E(tz(q.n, 2)); } }] }
+      ],
+      sammlung: [
+        ['Zeitunabhängige Schrödinger-Gleichung', '-\\frac{\\hbar^2}{2m} \\frac{d^2\\psi}{dx^2} + V(x)\\,\\psi = E\\,\\psi', 'eindimensional'],
+        ['Wellenfunktion im Kasten', '\\psi_n(x) = \\sqrt{\\tfrac{2}{L}} \\sin\\left(\\frac{n \\pi x}{L}\\right)', '0 ≤ x ≤ L'],
+        ['Energiestufen im Kasten', 'E_n = \\frac{n^2 h^2}{8 m L^2}', 'n = 1, 2, 3 …'],
+        ['Elektron im Kasten', 'E_n \\approx 0{,}376\\,\\text{eV} \\cdot \\frac{n^2}{(L/\\text{nm})^2}', ''],
+        ['Stehende Welle', 'L = n \\cdot \\frac{\\lambda_n}{2}', ''],
+        ['Normierung', '\\int |\\psi|^2\\,dx = 1', 'Teilchen ist sicher irgendwo'],
+        ['Abklingkonstante in der Barriere', '\\kappa = \\frac{\\sqrt{2 m (V_0 - E)}}{\\hbar}', 'Elektron: 5,123 nm⁻¹ · √(ΔE/eV)'],
+        ['Tunnelwahrscheinlichkeit', 'T = \\left(1 + \\frac{V_0^2 \\sinh^2(\\kappa a)}{4 E (V_0 - E)}\\right)^{-1} \\approx e^{-2 \\kappa a}', 'Näherung für κa ≫ 1'],
+        ['Zeitabhängigkeit', '\\Psi(x,t) = \\psi(x)\\, e^{-i E t / \\hbar}', 'stationärer Zustand']
+      ],
+      quellen: 'Exakte Lösungen für den unendlich hohen Kasten und die Rechteckbarriere (Lehrbuchformeln).',
+      bild: { titel: 'Animation', label: 'Wellenfunktionen im Kasten, Überlagerung zweier Zustände und Tunneleffekt', animiert: true,
+        hoehe: function (B) { return B < 600 ? Math.round(B + 80) : 460; },
+        hinweis: function (r) {
+          if (ansicht === 'kasten') return 'Energiestufen mit Wellenfunktionen (blau, Realteil schwingt mit e^(−iEt/ħ)) und Aufenthaltswahrscheinlichkeit |ψ|² (orange, zeitlich konstant). Hervorgehoben: n = ' + r.n + '.';
+          if (ansicht === 'ueberlagerung') return 'Überlagerung von n = 1 und n = 2: Die Aufenthaltswahrscheinlichkeit schwappt hin und her – mit der Frequenz (E₂ − E₁)/h. So entsteht Bewegung in der Quantenmechanik.';
+          if (ansicht === 'tunnel') return 'Welle trifft auf die Barriere (grau). Im Inneren fällt sie exponentiell ab, dahinter läuft eine schwächere Welle weiter. Höhe der Welle rechts: √T.';
+          return 'Tunnelwahrscheinlichkeit über der Barrierenbreite, logarithmisch: eine Gerade, weil T exponentiell abnimmt. Gestrichelt: Näherung e^(−2κa).';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); ({ kasten: kastenBild, ueberlagerung: ueberBild, tunnel: tunnelBild, kurve: kurveBild })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    // ---------- Kasten ----------
+    function kastenBild(cx, B, H, dt, r, e) {
+      SIM.t += dt; const nmax = Math.max(4, Math.min(6, r.n + 1)), x0 = Math.min(110, Math.max(90, B * 0.2)), x1 = B - 20, y0 = 20, y1 = H - 20, Emax = nmax * nmax * 1.08, Y = function (E) { return y1 - E / Emax * (y1 - y0); }, X = function (u) { return x0 + u * (x1 - x0); };
+      cx.fillStyle = GRAU; cx.fillRect(x0 - 8, y0, 8, y1 - y0); cx.fillRect(x1, y0, 8, y1 - y0); strecke(cx, x0, y1, x1, y1, F('--text'), 2);
+      const amp = Math.min(22, (Y(1) - Y(4)) / 4);
+      for (let n = 1; n <= nmax; n++) {
+        const y = Y(n * n), sel = n === r.n, ph = SIM.t * n * n * 0.8, pk = [], pw = [];
+        strecke(cx, x0, y, x1, y, sel ? F('--text') : F('--linie'), sel ? 1.5 : 1, [3, 3]);
+        for (let i = 0; i <= 160; i++) { const u = i / 160, s = Math.sin(n * Math.PI * u); pk.push([X(u), y - amp * s * Math.cos(ph)]); pw.push([X(u), y - amp * s * s]); }
+        zug(cx, pw, ORANGE, sel ? 2.5 : 1.2); zug(cx, pk, BLAU, sel ? 2 : 1);
+        T(cx, 'n=' + n + (n === 1 || sel ? '  ' + wz(EnKasten(r.m, e.L * 1e-9, n), 3) + ' eV' : ''), x0 - 12, y, 'right', 9, sel, sel ? F('--text') : GRAU);
+      }
+      T(cx, 'Breite ' + zz(e.L, 3) + ' nm', (x0 + x1) / 2, y1 + 14, 'center', 10, true, GRAU);
+    }
+    // ---------- Überlagerung ----------
+    function ueberBild(cx, B, H, dt, r, e) {
+      SIM.t += dt; const w = SIM.t * 1.6, pk = [], pr = [];
+      for (let i = 0; i <= 200; i++) { const u = i / 200, a = Math.sin(Math.PI * u), b = Math.sin(2 * Math.PI * u); const p = 0.5 * (a * a + b * b + 2 * a * b * Math.cos(w * 3)); pk.push([u, p]); pr.push([u, 0.5 * (a * a + b * b)]); }
+      let mitte = 0; pk.forEach(function (q) { mitte += q[0] * q[1]; }); mitte /= pk.reduce(function (s, q) { return s + q[1]; }, 0);
+      const g = diagramm(cx, 8, 8, B - 16, H - 16, [{ name: '|ψ|² der Überlagerung', farbe: ORANGE, punkte: pk, breite: 2.5 }, { name: 'Mittel', farbe: GRAU, punkte: pr, breite: 1, strich: [4, 3] }], { titel: 'Zustand (ψ₁ + ψ₂)/√2', xl: 'x / L', xr: [0, 1], yr: [0, 2.1] });
+      kreis(cx, g.X(mitte), g.Y(0) - 8, 6, BLAU); T(cx, '⟨x⟩ = ' + zz(mitte, 2) + ' L', g.X(mitte), g.Y(0) - 20, 'center', 10, true, BLAU);
+      const per = H_P / ((EnKasten(r.m, e.L * 1e-9, 2) - EnKasten(r.m, e.L * 1e-9, 1)) * EL);
+      T(cx, 'echte Schwingungsdauer h/(E₂ − E₁) = ' + wz(per, 3) + ' s', g.X(0.02), g.Y(2.0), 'left', 10, true, F('--text'));
+    }
+    // ---------- Tunneln ----------
+    function tunnelBild(cx, B, H, dt, r, e) {
+      SIM.t += dt; const x0 = 10, x1 = B - 10, bx0 = B * 0.45, bx1 = bx0 + Math.max(10, Math.min(B * 0.3, e.a * B * 0.2)), mY = H * 0.6, vmax = Math.max(e.V0, e.E) * 1.3, Yv = function (v) { return mY - v / vmax * (mY - 40); };
+      cx.fillStyle = F('--linie'); cx.fillRect(bx0, Yv(e.V0), bx1 - bx0, mY - Yv(e.V0));
+      strecke(cx, x0, Yv(e.E), x1, Yv(e.E), GRUEN, 1, [4, 3]); T(cx, 'E = ' + zz(e.E, 3) + ' eV', x0, Yv(e.E) - 6, 'left', 10, true, GRUEN); T(cx, 'V₀ = ' + zz(e.V0, 3) + ' eV', bx0, Yv(e.V0) - 6, 'left', 10, true, GRAU);
+      const amp = 40, k = 0.12, w = SIM.t * 3, ka = r.kappa > 0 ? Math.min(6, r.kappa * e.a * 1e-9) / (bx1 - bx0) : 0, tA = Math.sqrt(Math.max(r.T, 0)), pk = [];
+      const yb = Yv(e.E);
+      for (let x = x0; x <= x1; x += 1.5) {
+        let y;
+        if (x < bx0) y = amp * (Math.cos(k * x - w) + Math.sqrt(1 - r.T) * Math.cos(-k * x - w + 2 * k * bx0) * 0.6) / 1.6;
+        else if (x <= bx1) { const s = r.klassisch ? 1 : Math.exp(-ka * (x - bx0)) * (1 - tA) + tA; y = amp * s * Math.cos(k * bx0 - w) * (r.klassisch ? Math.cos(k * (x - bx0)) : 1); }
+        else y = amp * tA * Math.cos(k * x - w);
+        pk.push([x, yb - y]);
+      }
+      zug(cx, pk, BLAU, 2);
+      T(cx, 'T = ' + (r.T < 1e-4 ? wz(r.T, 3) : zz(r.T * 100, 2) + ' %'), x1, H - 14, 'right', 12, true, ROT);
+      T(cx, 'Breite ' + zz(e.a, 3) + ' nm · ' + r.name, x0, H - 14, 'left', 11, true, F('--text'));
+    }
+    // ---------- T über Breite ----------
+    function kurveBild(cx, B, H, dt, r, e) {
+      const amax = Math.max(e.a * 2.5, 0.2), pk = [], pn = [];
+      for (let i = 1; i <= 200; i++) { const a = amax * i / 200, T = transmission(r.m, e.V0, e.E, a * 1e-9); pk.push([a, Math.log10(Math.max(1e-300, T))]); if (!r.klassisch) pn.push([a, Math.log10(Math.max(1e-300, Math.exp(-2 * r.kappa * a * 1e-9)))]); }
+      const ymin = Math.max(-60, Math.floor(Math.min.apply(null, pk.map(function (q) { return q[1]; })))), Tsel = Math.log10(Math.max(1e-300, r.T));
+      diagramm(cx, 8, 8, B - 16, H - 16, [{ name: 'lg T (genau)', farbe: ROT, punkte: pk, punkt: [e.a, Tsel] }, { name: 'lg e^(−2κa)', farbe: GRAU, punkte: pn, breite: 1, strich: [4, 3] }], { titel: 'Zehnerlogarithmus der Tunnelwahrscheinlichkeit', xl: 'Barrierenbreite in nm', xr: [0, amax], yr: [Math.min(-1, ymin), 0.2] });
+      void dt;
+    }
+
+    ansicht = (ansichten(seite, [['kasten', 'Kasten'], ['ueberlagerung', 'Überlagerung'], ['tunnel', 'Tunneln'], ['kurve', 'T über Breite']], 'kasten', function (a) { ansicht = a; SIM.t = 0; }))();
+    const TABELLEN = [['tunnel-tabelle', [['Rastertunnelmikroskop', 'Elektronen tunneln durch den Luftspalt (≈ 1 nm) zwischen Spitze und Probe; 0,1 nm mehr Abstand senkt den Strom auf etwa ein Zehntel.'], ['Alphazerfall', 'Alphateilchen tunneln aus dem Kern (Gamow 1928); die enormen Unterschiede der Halbwertszeiten folgen aus e^(−2κa).'], ['Kernfusion in der Sonne', 'Protonen tunneln durch die elektrische Abstoßung; ohne Tunneln wäre die Sonne zu kalt zum Leuchten.'], ['Flash-Speicher', 'Elektronen tunneln durch eine wenige Nanometer dünne Oxidschicht auf das Floating Gate und speichern so ein Bit.'], ['Tunneldiode', 'Bei hoch dotierten pn-Übergängen entsteht ein Bereich mit negativem differentiellem Widerstand.']], []]];
+
+    function tabelleFuellen(id, zeilen, zahl) { const tb = document.getElementById(id); if (!tb) return; zeilen.forEach(function (z) { const tr = document.createElement('tr'); z.forEach(function (x, i) { const td = document.createElement('td'); if (zahl.indexOf(i) >= 0) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr); }); }
+    (typeof TABELLEN !== 'undefined' ? TABELLEN : []).forEach(function (t) { tabelleFuellen(t[0], t[1], t[2]); });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

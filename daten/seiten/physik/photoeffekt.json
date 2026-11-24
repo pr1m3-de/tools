@@ -1,0 +1,20 @@
+{
+  "nr": 1205,
+  "titel": "Photoeffekt und Photonen",
+  "bereich": "Physik",
+  "themen": ["Quantenphysik", "Photoeffekt", "Photon", "Photonen", "Lichtquanten", "Einstein", "Planck", "Planck-Konstante", "Austrittsarbeit", "Gegenfeldmethode", "Grenzwellenlänge", "Grenzfrequenz", "Elektronvolt", "Millikan", "Photozelle"],
+  "text": "Photoeffekt berechnen: Photonenenergie, Austrittsarbeit, Bewegungsenergie der Elektronen, Gegenspannung, Grenzwellenlänge und Photostrom – mit animierter Photozelle, Kennlinie, Millikan-Gerade und Lernaufgaben.",
+  "tex": "E = h \\cdot f",
+  "projektmappe": {"nr": 725, "name": "Photoeffekt und Photonen", "farbe": "#C2255C"},
+  "verwandt": ["physik/atom-spektrum.html", "physik/optik.html"],
+  "fragen": [
+    ["Wovon hängt die größte Bewegungsenergie der Photoelektronen ab?", "von der Frequenz des Lichts und dem Metall", ["von der Helligkeit des Lichts", "von der Bestrahlungsdauer", "von der Größe der Kathode"], "E_kin = h f − W_A; die Helligkeit ändert nur die Anzahl der Elektronen."],
+    ["Was passiert, wenn man rotes Licht, das keine Elektronen auslöst, viel heller macht?", "Es werden weiterhin keine Elektronen ausgelöst.", ["Nach einiger Zeit kommen Elektronen.", "Es kommen sofort sehr schnelle Elektronen.", "Die Austrittsarbeit sinkt."], "Jedes Elektron nimmt nur ein Photon auf; liegt h f unter W_A, reicht es nie."],
+    ["Welche Energie hat ein Photon mit 620 nm Wellenlänge?", "etwa 2,0 eV", ["etwa 0,5 eV", "etwa 6,2 eV", "etwa 20 eV"], "E = 1 240 eV·nm / 620 nm = 2,0 eV."],
+    ["Was misst man mit der Gegenfeldmethode?", "die größte Bewegungsenergie der Elektronen über die Spannung, bei der der Strom null wird", ["die Lichtgeschwindigkeit", "die Masse der Elektronen", "die Anzahl der Photonen"], "e · U₀ = E_kin,max."],
+    ["Welche Steigung hat die Gerade U₀(f)?", "h/e, für alle Metalle gleich", ["die Austrittsarbeit", "c/λ", "für jedes Metall anders"], "Die Metalle unterscheiden sich nur im Achsenabschnitt (Austrittsarbeit)."],
+    ["Was bewirkt eine höhere Lichtleistung bei gleicher Farbe?", "mehr Photoelektronen, also einen größeren Strom", ["schnellere Elektronen", "eine kleinere Grenzwellenlänge", "eine höhere Austrittsarbeit"], "Die Zahl der Photonen pro Sekunde steigt, ihre Energie nicht."],
+    ["Welches Metall hat die größte Grenzwellenlänge?", "das mit der kleinsten Austrittsarbeit, z. B. Cäsium", ["Platin", "Zink", "alle gleich"], "λ_G = hc/W_A; Cäsium (2,14 eV) reagiert noch auf Rot bis 579 nm."],
+    ["Wofür erhielt Einstein den Nobelpreis?", "für die Erklärung des Photoeffekts", ["für die Relativitätstheorie", "für E = mc²", "für die Entdeckung des Elektrons"], "Nobelpreis für Physik 1921."]
+  ]
+}
