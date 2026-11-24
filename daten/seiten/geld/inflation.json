@@ -1,0 +1,10 @@
+{
+  "nr": 970,
+  "titel": "Inflation und Kaufkraft",
+  "gruppe": "Lohn und Privat",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Inflation", "Kaufkraft", "Teuerung", "Realzins", "Reallohn", "Preissteigerung", "Geldwert", "Verbraucherpreise", "Kaufkraftverlust", "Preisverdopplung"],
+  "text": "Inflation und Kaufkraft berechnen: Was ist ein Betrag in einigen Jahren noch wert, wie viel braucht man dann für dasselbe, wann verdoppeln sich die Preise? Mit Realzins des Guthabens, Reallohn, mittlerer Teuerung aus zwei Preisen und Löser in jede Richtung.",
+  "tex": "K_\\text{real} = \\frac{K}{(1 + i)^n}",
+  "projektmappe": {"nr": 1080, "name": "Inflation und Kaufkraft", "farbe": "#A16207"}
+}

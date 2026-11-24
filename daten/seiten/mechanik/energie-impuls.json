@@ -1,0 +1,15 @@
+{
+  "nr": 1290,
+  "titel": "Energie und Impuls: Stoß und Energieerhaltung",
+  "bereich": "Mechanik",
+  "auchIn": ["Physik"],
+  "themen": ["Energie", "Impuls", "Impulserhaltung", "Energieerhaltung", "Stoß", "elastischer Stoß", "unelastischer Stoß", "Stoßzahl", "Bewegungsenergie", "Lageenergie", "kinetische Energie", "potentielle Energie", "schiefe Ebene", "Reibungsarbeit", "Kugelstoßpendel"],
+  "text": "Gerader Stoß zweier Körper – elastisch, unelastisch oder dazwischen – mit Impuls- und Energiebilanz, Energieerhaltung auf der schiefen Ebene mit Reibung und ein Kugelstoßpendel als Animation.",
+  "tex": "m_1 v_1 + m_2 v_2 = m_1 v_1' + m_2 v_2'",
+  "verwandt": ["mechanik/anhalteweg.html", "mechanik/wurf.html"],
+  "fragen": [
+    ["Was bleibt bei jedem Stoß zweier Körper erhalten?", "der Gesamtimpuls", ["die Bewegungsenergie", "die Geschwindigkeit jedes Körpers", "die Form der Körper"], "Bewegungsenergie bleibt nur beim elastischen Stoß erhalten."],
+    ["Zwei gleich schwere Kugeln stoßen elastisch, eine ruht. Was passiert?", "Die stoßende bleibt stehen, die andere übernimmt ihre Geschwindigkeit.", ["Beide rollen mit halber Geschwindigkeit weiter.", "Beide bleiben stehen.", "Die stoßende prallt mit voller Geschwindigkeit zurück."], "So funktioniert das Kugelstoßpendel."],
+    ["Wie hängt die Geschwindigkeit nach einem Fall ohne Reibung von der Masse ab?", "gar nicht", ["doppelte Masse, doppelte Geschwindigkeit", "doppelte Masse, halbe Geschwindigkeit", "schwere Körper sind langsamer"], "m g h = ½ m v² – die Masse kürzt sich heraus."]
+  ]
+}

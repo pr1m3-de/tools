@@ -1,0 +1,15 @@
+{
+  "nr": 600,
+  "titel": "Lärm und Vibration",
+  "gruppe": "Körperliche Belastung",
+  "bereich": "Arbeitsschutz",
+  "themen": ["Lärm", "Tages-Lärmexpositionspegel", "Gehörschutz", "SNR", "Auslösewert", "Vibration", "A(8)", "Hand-Arm-Vibration", "Ganzkörper-Vibration", "LärmVibrationsArbSchV"],
+  "text": "Tages-Lärmexpositionspegel aus mehreren Tätigkeiten, Spitzenpegel, Gehörschutz mit SNR und Praxisabschlag, Hand-Arm- und Ganzkörper-Vibration A(8), zulässige Einsatzzeiten – mit Simulation eines Arbeitstags.",
+  "tex": "L_\\text{EX,8h} = 10 \\lg \\tfrac{1}{8} \\sum T_i \\, 10^{0{,}1 L_i}",
+  "projektmappe": {"nr": 250, "name": "Lärm und Vibration", "farbe": "#2F9E44"},
+  "fragen": [
+    ["Ab welchem Tages-Lärmexpositionspegel muss der Arbeitgeber Gehörschutz zur Verfügung stellen?", "80 dB(A)", ["50 dB(A)", "65 dB(A)", "100 dB(A)"], "Ab 85 dB(A) muss er getragen werden (LärmVibrationsArbSchV)."],
+    ["Was bedeutet eine Erhöhung des Pegels um 3 dB?", "Die Schallenergie verdoppelt sich.", ["Der Pegel verdoppelt sich.", "Nichts Messbares.", "Die Lautstärke halbiert sich."], "Deshalb halbiert sich die zulässige Dauer bei +3 dB."],
+    ["Wie addieren sich zwei gleich laute Maschinen mit je 80 dB?", "zu etwa 83 dB", ["zu 160 dB", "zu 80 dB", "zu 90 dB"], "Pegel addieren sich logarithmisch."]
+  ]
+}

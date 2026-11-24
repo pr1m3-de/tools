@@ -1,0 +1,15 @@
+{
+  "nr": 420,
+  "titel": "IP-Subnetzrechner",
+  "gruppe": "Netzwerk",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Subnetz", "CIDR", "IPv4", "IPv6", "VLSM"],
+  "text": "IPv4 und IPv6: Netzadresse, Broadcast, nutzbarer Bereich, Hosts, Maske und Wildcard aus Adresse und Präfix, Adresstyp, Netz in Subnetze aufteilen (VLSM) – mit Bit-Ansicht.",
+  "tex": "n = 2^{32-p} - 2",
+  "projektmappe": {"nr": 1130, "name": "IP-Subnetzrechner", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Wie viele nutzbare Hostadressen hat ein /24-Netz bei IPv4?", "254", ["256", "255", "24"], "Netzadresse und Broadcast fallen weg."],
+    ["Was ist die Subnetzmaske zu /26?", "255.255.255.192", ["255.255.255.0", "255.255.255.128", "255.255.255.224"], "26 Einsen: drei volle Bytes plus 11000000 = 192."],
+    ["Woran erkennt man, ob zwei Hosts im selben Netz liegen?", "IP-Adresse UND Maske ergeben dieselbe Netzadresse.", ["Die ersten drei Zahlen sind gleich.", "Sie haben denselben Hostnamen.", "Sie haben dasselbe Gateway, egal welche Maske."], "Bitweises UND mit der Subnetzmaske."]
+  ]
+}

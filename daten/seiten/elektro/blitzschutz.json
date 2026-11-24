@@ -1,0 +1,15 @@
+{
+  "nr": 240,
+  "titel": "Blitzschutz: Fangstange und Trennungsabstand",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Blitzschutz", "Blitzkugel", "Fangstange", "Trennungsabstand", "Erder"],
+  "text": "Äußerer Blitzschutz nach DIN EN 62305-3: Fangstange mit dem Blitzkugelverfahren, Durchhang, Ableitungen, Trennungsabstand und Erder.",
+  "tex": "s = \\frac{k_\\text{i} \\cdot k_\\text{c}}{k_\\text{m}} \\cdot l",
+  "projektmappe": {"nr": 60, "name": "Blitzschutz", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Was ist der Trennungsabstand?", "der Mindestabstand zwischen Blitzschutzanlage und Installation, damit kein Überschlag entsteht", ["der Abstand zwischen zwei Fangstangen", "der Abstand zum Nachbarhaus", "die Länge der Erdungsleitung"], "Berechnet nach DIN EN 62305-3."],
+    ["Was beschreibt das Blitzkugelverfahren?", "Wo eine gedachte Kugel das Gebäude berührt, kann ein Blitz einschlagen.", ["wie groß ein Kugelblitz ist", "die Form des Erders", "die Geschwindigkeit des Blitzes"], "Der Radius hängt von der Schutzklasse ab."],
+    ["Wozu dienen Überspannungsschutzgeräte (SPD)?", "Sie leiten Überspannungen gegen Erde ab und schützen Geräte.", ["Sie ersetzen den Blitzableiter.", "Sie messen die Netzspannung.", "Sie verhindern Kurzschlüsse."], "Typ 1 am Hausanschluss, Typ 2 im Verteiler, Typ 3 am Gerät."]
+  ]
+}

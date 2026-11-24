@@ -1,0 +1,10 @@
+{
+  "nr": 790,
+  "titel": "Wind- und Schneelast",
+  "bereich": "Dach und Klempnerei",
+  "auchIn": ["Mechanik"],
+  "themen": ["Schneelast", "Windlast", "Schneelastzone", "Windzone", "Windsog", "Böengeschwindigkeitsdruck", "Formbeiwert", "Sparren", "DIN EN 1991", "Sturmklammern"],
+  "text": "Schnee- und Windlast für ein Dach: Schneelast aus Zone und Geländehöhe, Formbeiwert nach Neigung, Böengeschwindigkeitsdruck, Sog und Druck in den Dachbereichen, Abhebesicherheit und Bemessungslast je Sparren – mit Simulation.",
+  "tex": "s = \\mu_1 \\cdot s_\\text{k} \\qquad w = c_\\text{pe} \\cdot q_\\text{p}",
+  "projektmappe": {"nr": 890, "name": "Wind- und Schneelast", "farbe": "#A0785A"}
+}

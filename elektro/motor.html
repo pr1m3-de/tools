@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Drehstrommotor und Anlauf – Formeln &amp; Rechner</title>
   <meta name="description" content="Drehstrommotor vom Typenschild zum Anschluss: Nennstrom, Drehzahl und Drehmoment, Anlaufstrom bei Direktanlauf, Stern-Dreieck, Sanftanlauf und Frequenzumrichter, Motorschutz und Blindstromkompensation – mit Simulation von Drehfeld und Hochlauf.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/elektro/motor.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Drehstrommotor und Anlauf">
-  <meta property="og:description" content="Drehstrommotor vom Typenschild zum Anschluss: Nennstrom, Drehzahl und Drehmoment, Anlaufstrom bei Direktanlauf, Stern-Dreieck, Sanftanlauf und Frequenzumrichter, Motorschutz und Blindstromkompensation – mit Simulation von Drehfeld und Hochlauf.">
-  <meta property="og:url" content="https://tools.pr1m3.de/elektro/motor.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Drehstrommotor und Anlauf">
-  <meta name="twitter:description" content="Drehstrommotor vom Typenschild zum Anschluss: Nennstrom, Drehzahl und Drehmoment, Anlaufstrom bei Direktanlauf, Stern-Dreieck, Sanftanlauf und Frequenzumrichter, Motorschutz und Blindstromkompensation – mit Simulation von Drehfeld und Hochlauf.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/motor.html#seite","name":"Drehstrommotor und Anlauf","url":"https://tools.pr1m3.de/elektro/motor.html","inLanguage":"de","description":"Drehstrommotor vom Typenschild zum Anschluss: Nennstrom, Drehzahl und Drehmoment, Anlaufstrom bei Direktanlauf, Stern-Dreieck, Sanftanlauf und Frequenzumrichter, Motorschutz und Blindstromkompensation – mit Simulation von Drehfeld und Hochlauf.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/motor.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/motor.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Drehstrommotor und Anlauf","item":"https://tools.pr1m3.de/elektro/motor.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/motor.html#fragen","mainEntity":[{"@type":"Question","name":"Wie berechnet man den Strom eines Drehstrommotors?","acceptedAnswer":{"@type":"Answer","text":"Wellenleistung geteilt durch Wurzel 3 mal Spannung mal cos φ mal Wirkungsgrad. Ein 7,5-kW-Motor an 400 V mit cos φ 0,84 und 89 % Wirkungsgrad nimmt etwa 14,5 A auf. Als Faustregel gelten 2 A je Kilowatt."}},{"@type":"Question","name":"Warum ist der Anlaufstrom so hoch?","acceptedAnswer":{"@type":"Answer","text":"Beim Einschalten steht der Läufer, der Motor wirkt wie ein kurzgeschlossener Transformator und zieht das 5- bis 8-Fache des Bemessungsstroms. Erst mit steigender Drehzahl fällt der Strom ab. Das belastet Netz, Sicherungen und die Wicklung."}},{"@type":"Question","name":"Was bewirkt die Stern-Dreieck-Schaltung?","acceptedAnswer":{"@type":"Answer","text":"Im Stern liegt an jeder Wicklung nur die Spannung geteilt durch Wurzel 3. Anlaufstrom und Drehmoment sinken dadurch auf ein Drittel. Nach dem Hochlauf wird auf Dreieck umgeschaltet. Das eignet sich nur für Antriebe, die leicht anlaufen."}},{"@type":"Question","name":"Auf welchen Wert stellt man den Motorschutz ein?","acceptedAnswer":{"@type":"Answer","text":"Auf den Bemessungsstrom vom Typenschild. Bei Stern-Dreieck-Schaltung sitzt das Überlastrelais meist im Strang und wird auf das 0,58-Fache eingestellt. Die Sicherung davor schützt nur bei Kurzschluss, nicht bei Überlast."}},{"@type":"Question","name":"Wozu dient die Blindstromkompensation?","acceptedAnswer":{"@type":"Answer","text":"Motoren brauchen Blindleistung für ihr Magnetfeld. Sie belastet die Leitungen, ohne Arbeit zu leisten, und Gewerbekunden zahlen ab einem cos φ unter etwa 0,9 dafür. Kondensatoren liefern die Blindleistung vor Ort und senken den Leitungsstrom."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/motor.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -49,17 +31,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="drehfeldmaschinen.html"><b>Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</b><span>Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment …</span></a></li>
-      <li><a href="kompensation.html"><b>Blindleistungskompensation</b><span>Blindleistungskompensation mit Schaltplänen</span></a></li>
-      <li><a href="motorpruefstand.html"><b>Motorprüfstand: Asynchronmotor messen</b><span>Virtueller Motorprüfstand für einen Drehstrom-Asynchronmotor</span></a></li>
-      <li><a href="drehstrom.html"><b>Drehstrom: Stern, Dreieck und Unsymmetrie</b><span>Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

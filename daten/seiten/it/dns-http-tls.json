@@ -1,0 +1,14 @@
+{
+  "nr": 1360,
+  "titel": "DNS, HTTP und TLS Schritt für Schritt",
+  "gruppe": "Netzwerk",
+  "bereich": "IT und Netzwerk",
+  "themen": ["DNS", "Namensauflösung", "Resolver", "Root-Server", "TTL", "TCP", "Handschlag", "TLS", "TLS 1.3", "HTTPS", "Zertifikat", "HTTP", "HTTP/2", "HTTP/3", "QUIC", "0-RTT", "Umlaufzeit", "RTT", "Latenz", "TTFB", "Ladezeit", "Slow Start"],
+  "text": "Was beim Aufruf einer Webseite passiert: DNS-Auflösung über Root, TLD und Nameserver, TCP-Handschlag, TLS 1.2 und 1.3, HTTP/2 und HTTP/3 als Ablaufdiagramm – mit Ladezeit-Rechner aus Umlaufzeit, Protokoll und Bandbreite.",
+  "tex": "t_\\text{TTFB} \\approx n \\cdot \\text{RTT} + t_S",
+  "fragen": [
+    ["Was macht DNS?", "Es übersetzt Namen wie www.beispiel.de in IP-Adressen.", ["Es verschlüsselt die Verbindung.", "Es komprimiert Webseiten.", "Es vergibt IP-Adressen im LAN."], "Das Vergeben übernimmt DHCP."],
+    ["Wie viele Umläufe braucht der Handschlag bei TLS 1.3 (ohne TCP)?", "einen", ["drei", "keinen, nie", "fünf"], "TLS 1.2 brauchte zwei."],
+    ["Was bedeutet die TTL eines DNS-Eintrags?", "wie lange die Antwort zwischengespeichert werden darf", ["wie viele Router ein Paket passieren darf", "wie lange die Domain registriert ist", "die Zeit bis zum ersten Byte"], "Time to live in Sekunden."]
+  ]
+}

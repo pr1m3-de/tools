@@ -1,0 +1,16 @@
+{
+  "nr": 990,
+  "titel": "Blindleistungskompensation",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "auchIn": ["Geld und Kalkulation"],
+  "themen": ["Kompensation", "Blindleistung", "Leistungsfaktor", "cos phi", "Kondensator", "kvar", "Verdrosselung", "Einzelkompensation", "Zentralkompensation", "Regelanlage"],
+  "text": "Blindleistungskompensation mit Schaltplänen: kvar vom cos φ zum Ziel, Einzel-, Gruppen- oder Zentralkompensation, Stern oder Dreieck, Drossel, Stufen und c/k-Wert der Regelanlage, Sicherung, Entladewiderstand, Tagesgang, Resonanzkurve und Kosten.",
+  "tex": "Q_\\text{C} = P\\,(\\tan\\varphi_1 - \\tan\\varphi_2)",
+  "projektmappe": {"nr": 930, "name": "Blindleistungskompensation", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Warum kompensiert man Blindleistung?", "Um Leitungen, Transformatoren und Blindstromkosten zu entlasten.", ["Um die Wirkleistung des Motors zu erhöhen.", "Um die Drehzahl zu erhöhen.", "Damit der RCD nicht auslöst."], "Der Strom sinkt, die Wirkleistung bleibt gleich."],
+    ["Womit kompensiert man induktive Lasten wie Motoren?", "mit Kondensatoren", ["mit Spulen", "mit Widerständen", "mit Dioden"], "Kapazitive Blindleistung hebt induktive auf."],
+    ["Was passiert, wenn man zu stark kompensiert (cos φ kapazitiv)?", "Es fließt wieder Blindstrom, und es kann Überspannung entstehen.", ["Der Motor läuft schneller.", "Die Leistung verdoppelt sich.", "Gar nichts."], "Deshalb wird meist auf cos φ ≈ 0,95 induktiv kompensiert."]
+  ]
+}

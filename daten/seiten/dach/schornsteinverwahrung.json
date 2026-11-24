@@ -1,0 +1,9 @@
+{
+  "nr": 270,
+  "titel": "Schornsteinverwahrung",
+  "bereich": "Dach und Klempnerei",
+  "themen": ["Schornstein", "Verwahrung", "Brustblech", "Nackenblech", "Zuschnitt", "Mündungshöhe"],
+  "text": "Schornsteineinfassung: Zuschnitte und Biegewinkel für Brust-, Seiten- und Nackenblech, Überhangstreifen, Blechbedarf, Gewicht und Mindesthöhe der Mündung.",
+  "tex": "\\gamma = 90^\\circ \\pm \\alpha",
+  "projektmappe": {"nr": 430, "name": "Schornsteinverwahrung", "farbe": "#A0785A"}
+}

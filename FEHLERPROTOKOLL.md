@@ -2,7 +2,7 @@
 
 Alle bisher gefundenen Fehler in der Sammlung und wie sie behoben wurden, aus den PRs #1 bis #65. Neueste Fehler stehen oben.
 
-**Neuer Fehler behoben?** Oben unter „Fehler“ einen Eintrag im selben Aufbau ergänzen: der Fehler als Überschrift, darunter Ursache, Behebung und PR.
+**Neuer Fehler behoben?** Nicht hier eintragen, sondern eine eigene Datei in [`fehlerprotokoll/`](fehlerprotokoll/) anlegen, z. B. `fehlerprotokoll/2026-11-24-akku-bereich.md`: der Fehler als Überschrift, darunter Ursache und Behebung. So ändern zwei Pull Requests nie dieselbe Datei. Diese Datei hier enthält die Fehler bis PR #77.
 
 ## Fehler
 

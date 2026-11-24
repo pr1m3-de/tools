@@ -1,0 +1,10 @@
+{
+  "nr": 350,
+  "titel": "PV-Verschaltung und Stromlaufplan",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "themen": ["Photovoltaik", "Stringplan", "Modulbelegung", "Wechselrichter", "MPP-Tracker", "Mikro-Wechselrichter", "Balkonkraftwerk", "Stromlaufplan", "Stückliste"],
+  "text": "Module auf mehreren Dachflächen anordnen, Strings von Modul zu Modul verlegen, mehrere Wechselrichter, Tracker und Mikro-Wechselrichter mit gemeinsamen Zuleitungen belegen und prüfen; daraus Stringplan, Stromlaufplan und Stückliste.",
+  "tex": "s \\cdot 1{,}25 \\cdot I_\\text{SC} \\le I_\\text{SC,max}",
+  "projektmappe": {"nr": 160, "name": "PV-Verschaltung", "farbe": "#2B7BB9", "speicher": "pv-verschaltung-1"}
+}

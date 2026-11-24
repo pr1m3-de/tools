@@ -1,0 +1,20 @@
+{
+  "nr": 1200,
+  "titel": "Chaos und Feigenbaum-Konstante",
+  "bereich": "Physik",
+  "themen": ["Chaos", "Chaostheorie", "Feigenbaum", "Feigenbaum-Konstante", "Feigenbaumdiagramm", "Bifurkation", "Periodenverdopplung", "logistische Gleichung", "Schmetterlingseffekt", "Ljapunow-Exponent", "Fixpunkt", "Attraktor", "Spinnwebdiagramm", "deterministisches Chaos", "Universalität", "Selbstähnlichkeit", "Fraktal", "Phasenübergang"],
+  "text": "Logistische Gleichung zum Ausprobieren: Fixpunkte, Periodenverdopplung und Chaos im Feigenbaumdiagramm mit Zoom, Spinnwebdiagramm, Schmetterlingseffekt und Ljapunow-Exponent, die Feigenbaum-Konstanten δ und α – mit Rechner und Lernaufgaben.",
+  "tex": "\\delta = 4{,}6692\\ldots",
+  "projektmappe": {"nr": 720, "name": "Chaos und Feigenbaum", "farbe": "#C2255C"},
+  "verwandt": ["physik/schwingungen-wellen.html"],
+  "fragen": [
+    ["Wie groß ist die Feigenbaum-Konstante δ?", "4,6692…", ["2,5029…", "3,5699…", "2,7183…"], "2,5029 ist α, 3,5699 der Häufungspunkt r∞, 2,7183 die Eulersche Zahl."],
+    ["Was gibt die Feigenbaum-Konstante δ an?", "um welchen Faktor die Abstände zwischen aufeinanderfolgenden Periodenverdopplungen kleiner werden", ["wie oft sich die Periode verdoppelt", "ab welchem r das Chaos beginnt", "wie schnell Fehler im Chaos wachsen"], "(r_n − r_(n−1)) / (r_(n+1) − r_n) → δ."],
+    ["Gegen welchen Wert läuft die logistische Gleichung für r = 2,5?", "x* = 1 − 1/r = 0,6", ["0", "0,5", "Sie springt zwischen zwei Werten."], "Für 1 < r < 3 ist der Fixpunkt 1 − 1/r stabil."],
+    ["Bei welchem r beginnt die erste Periodenverdopplung?", "r = 3", ["r = 1", "r = 3,57", "r = 4"], "Dort wird die Steigung am Fixpunkt 2 − r gleich −1."],
+    ["Was zeigt ein positiver Ljapunow-Exponent?", "Chaos: kleine Abweichungen wachsen exponentiell.", ["einen stabilen Fixpunkt", "eine Periode 2", "dass die Population ausstirbt"], "Δ_n ≈ Δ_0 · e^(λn) wächst nur für λ > 0."],
+    ["Warum ist die Feigenbaum-Konstante „universell“?", "Sie ergibt sich bei allen Systemen mit einem einfachen, quadratischen Höcker, auch im Experiment.", ["Sie gilt nur für die logistische Gleichung.", "Sie ist eine gerundete Messgröße ohne Bedeutung.", "Sie hängt vom Startwert ab."], "Gemessen z. B. bei Konvektion, Schwingkreisen und tropfenden Wasserhähnen."],
+    ["Ist deterministisches Chaos dasselbe wie Zufall?", "Nein, jeder Schritt ist festgelegt; nur kleinste Startfehler wachsen stark.", ["Ja, die Werte sind rein zufällig.", "Ja, aber nur bei r = 4.", "Nein, Chaos ist immer periodisch."], "Mit exakt gleichem Startwert kommt immer exakt dieselbe Folge heraus."],
+    ["Was findet man bei r ≈ 3,83 mitten im Chaos?", "ein Fenster mit Periode 3", ["einen stabilen Fixpunkt", "das Aussterben der Population", "die erste Verdopplung"], "Ab 1 + √8 ≈ 3,8284 herrscht kurz wieder Ordnung, danach folgt erneut eine Verdopplungskaskade."]
+  ]
+}

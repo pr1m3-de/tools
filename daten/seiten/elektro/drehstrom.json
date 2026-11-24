@@ -1,0 +1,15 @@
+{
+  "nr": 1060,
+  "titel": "Drehstrom: Stern, Dreieck und Unsymmetrie",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Drehstrom", "Sternschaltung", "Dreieckschaltung", "Verkettungsfaktor", "Strangspannung", "Leiterstrom", "Drehstromleistung", "unsymmetrische Last", "Neutralleiterstrom", "Neutralleiterunterbrechung", "Sternpunktverschiebung", "Phasenausfall"],
+  "text": "Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung mit Wurzel 3, unsymmetrische Last mit Neutralleiterstrom, Sternpunktverschiebung bei Neutralleiterunterbrechung und Außenleiterausfall – mit Schaltbild und Zeigerdiagramm.",
+  "tex": "P = \\sqrt{3} \\cdot U \\cdot I \\cdot \\cos\\varphi",
+  "projektmappe": {"nr": 810, "name": "Drehstrom", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Wie hängen Leiterspannung und Strangspannung in Sternschaltung zusammen?", "U = √3 · U_Str", ["U = U_Str", "U = 3 · U_Str", "U = U_Str / 2"], "230 V · √3 = 400 V."],
+    ["Was passiert bei unsymmetrischer Last, wenn der Neutralleiter unterbrochen ist?", "Die Strangspannungen verschieben sich, einzelne Geräte bekommen Überspannung.", ["Nichts, alles läuft weiter wie vorher.", "Alle Geräte schalten sofort ab.", "Der Strom im Außenleiter wird null."], "Der Sternpunkt verschiebt sich – gefährlich für Geräte."],
+    ["Wie groß ist der Strom im Neutralleiter bei symmetrischer Last?", "null", ["so groß wie ein Außenleiterstrom", "das Dreifache eines Außenleiterstroms", "√3 · I"], "Die drei um 120° versetzten Ströme heben sich auf."]
+  ]
+}

@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Halbleiter, Diode, Brückengleichrichter und Solarzelle – Formeln &amp; Rechner</title>
   <meta name="description" content="Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/elektro/halbleiter.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Halbleiter, Diode, Brückengleichrichter und Solarzelle">
-  <meta property="og:description" content="Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.">
-  <meta property="og:url" content="https://tools.pr1m3.de/elektro/halbleiter.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Halbleiter, Diode, Brückengleichrichter und Solarzelle">
-  <meta name="twitter:description" content="Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/halbleiter.html#seite","name":"Halbleiter, Diode, Brückengleichrichter und Solarzelle","url":"https://tools.pr1m3.de/elektro/halbleiter.html","inLanguage":"de","description":"Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit Ladekondensator und Brummspannung sowie die Solarzelle mit Kennlinie und MPP – als Animationen mit Rechner.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/halbleiter.html#pfad"},"dateModified":"2026-11-21"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/halbleiter.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Halbleiter, Diode, Brückengleichrichter und Solarzelle","item":"https://tools.pr1m3.de/elektro/halbleiter.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/halbleiter.html#fragen","mainEntity":[{"@type":"Question","name":"Warum ist die Gleichspannung nach dem Gleichrichter höher als die Wechselspannung?","acceptedAnswer":{"@type":"Answer","text":"Der Kondensator lädt sich auf den Scheitelwert auf, und der ist √2-mal so groß wie der Effektivwert – abzüglich der zwei Diodenspannungen. Aus 12 V Wechselspannung werden so ohne Last rund 15,6 V."}},{"@type":"Question","name":"Welche technische Stromrichtung gilt?","acceptedAnswer":{"@type":"Answer","text":"Die technische Stromrichtung geht außen vom Plus- zum Minuspol. Die Elektronen bewegen sich umgekehrt. Diodenpfeile und Schaltzeichen zeigen immer die technische Richtung."}},{"@type":"Question","name":"Wie groß muss der Ladekondensator sein?","acceptedAnswer":{"@type":"Answer","text":"Faustregel für den Brückengleichrichter: C = I / (2 · f · ΔU). Bei 0,5 A und 1 V erlaubter Brummspannung an 50 Hz sind das 5 000 µF."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/halbleiter.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -60,17 +42,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="transistor-opv.html"><b>Transistor und Operationsverstärker</b><span>NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit …</span></a></li>
-      <li><a href="drehfeldmaschinen.html"><b>Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</b><span>Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment …</span></a></li>
-      <li><a href="drehstrom.html"><b>Drehstrom: Stern, Dreieck und Unsymmetrie</b><span>Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung …</span></a></li>
-      <li><a href="motor.html"><b>Drehstrommotor und Anlauf</b><span>Drehstrommotor vom Typenschild zum Anschluss</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

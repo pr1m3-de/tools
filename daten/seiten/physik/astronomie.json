@@ -1,0 +1,14 @@
+{
+  "nr": 1170,
+  "titel": "Astronomie: Erdjahr und Keplersche Gesetze",
+  "bereich": "Physik",
+  "themen": ["Astronomie", "Erdjahr", "Jahreszeiten", "Erdachse", "Neigung", "Sonnenhöhe", "Mittagshöhe", "Tageslänge", "Deklination", "Polartag", "Kepler", "Keplersche Gesetze", "Ellipse", "Flächensatz", "Umlaufzeit", "Planeten", "Perihel", "Aphel"],
+  "text": "Warum es Jahreszeiten gibt: Erde mit geneigter Achse auf ihrer Bahn, Sonnenhöhe mittags und Tageslänge für jeden Ort und Tag. Dazu die drei Keplerschen Gesetze mit Planetenbahn, Flächensatz und Umlaufzeiten der Planeten.",
+  "tex": "T^2 = a^3",
+  "projektmappe": {"nr": 690, "name": "Astronomie", "farbe": "#C2255C"},
+  "fragen": [
+    ["Warum gibt es Jahreszeiten?", "Die Erdachse ist gegen die Umlaufbahn geneigt.", ["Die Erde ist im Sommer näher an der Sonne.", "Die Sonne wird im Sommer heißer.", "Der Mond verdeckt im Winter die Sonne."], "Etwa 23,4° Neigung, dadurch verschieden steiler Sonnenstand."],
+    ["Was besagt das zweite Keplersche Gesetz?", "Die Verbindungslinie Sonne–Planet überstreicht in gleichen Zeiten gleiche Flächen.", ["Alle Planeten sind gleich schnell.", "Die Bahnen sind Kreise.", "Die Sonne kreist um die Erde."], "Nahe der Sonne läuft ein Planet schneller."],
+    ["Wann ist die Erde der Sonne am nächsten?", "Anfang Januar", ["Ende Juni", "Ende März", "Ende September"], "Perihel – im Nordwinter."]
+  ]
+}

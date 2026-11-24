@@ -1,0 +1,10 @@
+{
+  "nr": 360,
+  "titel": "Sport und Bewegung",
+  "gruppe": "Sport und Bewegung",
+  "bereich": "Mechanik",
+  "themen": ["Calisthenics", "Front Lever", "Planche", "Liegestütz", "Klimmzug", "Kampfkunst", "Kung Fu", "Schlagkraft", "Fallschule"],
+  "text": "Calisthenics und Kampfkunst mit Physik: Drehmoment bei Front Lever, Back Lever und Planche je Stufe, Last auf den Händen bei Liegestütz, Klimmzug und Dip, Impuls und Kraft von Schlag und Tritt, Aufprallkraft beim Fallen und Abrollen.",
+  "tex": "M = g \\sum_i m_i \\, x_i",
+  "projektmappe": {"nr": 220, "name": "Sport und Bewegung", "farbe": "#6E6FA6"}
+}

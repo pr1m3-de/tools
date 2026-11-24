@@ -1,0 +1,10 @@
+{
+  "nr": 10,
+  "titel": "Warmwasser-Rechner",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "themen": ["Wärme", "Energie", "Wasserkosten", "Jahreskosten", "Wirkungsgrad"],
+  "text": "Kochendwassergerät, Boiler, Durchlauferhitzer und druckfester Speicher: Wärmemenge, Heizzeit, Leistung, Strom- und Wasserkosten bis aufs Jahr, in jede Richtung und mit Rechenweg.",
+  "tex": "Q = m_\\text{w} \\cdot c \\cdot \\Delta T",
+  "projektmappe": {"nr": 80, "name": "Warmwasser-Rechner", "farbe": "#2B7BB9"}
+}

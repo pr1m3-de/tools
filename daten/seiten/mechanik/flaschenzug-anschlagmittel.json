@@ -1,0 +1,15 @@
+{
+  "nr": 800,
+  "titel": "Hebel, Flaschenzug und Anschlagmittel",
+  "bereich": "Mechanik",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["Hebelgesetz", "Flaschenzug", "Anschlagmittel", "Rundschlinge", "Neigungswinkel", "Strangkraft", "Tragfähigkeit", "WLL", "Hebeband", "Lastfaktor"],
+  "text": "Hebel, Flaschenzug und Anschlagen berechnen: Hebelgesetz, Zugkraft und Seilweg mit Rollenverlusten, Kraft je Strang nach Neigungswinkel, tragende Stränge, Anschlagart und passende Rundschlinge nach Farbcode – mit Simulation.",
+  "tex": "F_\\text{S} = \\frac{G}{n \\cdot \\cos\\beta}",
+  "projektmappe": {"nr": 900, "name": "Hebel, Flaschenzug und Anschlagmittel", "farbe": "#6E6FA6"},
+  "fragen": [
+    ["Was gilt beim Flaschenzug mit 4 tragenden Seilen (ohne Reibung)?", "Kraft ein Viertel, Weg das Vierfache", ["Kraft und Weg gleich", "Kraft das Vierfache, Weg ein Viertel", "Kraft halb, Weg halb"], "Goldene Regel der Mechanik: Arbeit bleibt gleich."],
+    ["Was passiert mit der Kraft im Anschlagmittel, wenn der Neigungswinkel größer wird?", "Sie steigt.", ["Sie sinkt.", "Sie bleibt gleich.", "Sie wird null."], "Bei großem Spreizwinkel wird jeder Strang stärker belastet."],
+    ["Was besagt das Hebelgesetz?", "Kraft mal Kraftarm = Last mal Lastarm", ["Kraft plus Kraftarm = Last plus Lastarm", "Kraft und Last sind immer gleich", "Der längere Arm trägt mehr Last"], "Gleichgewicht der Drehmomente."]
+  ]
+}

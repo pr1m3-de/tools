@@ -1,0 +1,10 @@
+{
+  "nr": 820,
+  "titel": "Verfügbarkeit und Ausfallzeit",
+  "gruppe": "Betrieb",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Verfügbarkeit", "MTBF", "MTTR", "Ausfallzeit", "Redundanz", "SLA", "Hochverfügbarkeit", "Neunen", "Reihenschaltung", "Ausfallkosten"],
+  "text": "Verfügbarkeit einer Kette berechnen: MTBF und MTTR je Komponente, Reihen- und Parallelschaltung, Ausfallzeit je Jahr und Monat, Vergleich mit der zugesagten Verfügbarkeit, Kosten des Stillstands und schwächstes Glied – mit Zufallssimulation über zehn Jahre.",
+  "tex": "A = \\frac{MTBF}{MTBF + MTTR}",
+  "projektmappe": {"nr": 920, "name": "Verfügbarkeit und Ausfallzeit", "farbe": "#3B5BDB"}
+}

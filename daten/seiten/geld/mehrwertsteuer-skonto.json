@@ -1,0 +1,15 @@
+{
+  "nr": 860,
+  "titel": "Brutto, Netto, Skonto und Rabatt",
+  "gruppe": "Betrieb und Angebot",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Mehrwertsteuer", "Umsatzsteuer", "Brutto", "Netto", "Skonto", "Rabatt", "Marge", "Prozentrechnung", "19 Prozent", "Skontozins"],
+  "text": "Brutto und Netto umrechnen, Mehrwertsteuer mit 19 oder 7 % herausrechnen oder aufschlagen, Rabatt und Skonto abziehen: Zahlbetrag, enthaltene Steuer, Jahreszins des Skontos und Marge – mit Löser in jede Richtung und Zeitstrahl der Zahlungsfristen.",
+  "tex": "N = \\frac{B}{1 + u} \\qquad i = \\frac{s}{1 - s} \\cdot \\frac{360}{\\Delta t}",
+  "projektmappe": {"nr": 970, "name": "Brutto, Netto, Skonto und Rabatt", "farbe": "#A16207"},
+  "fragen": [
+    ["Wie berechnet man aus einem Bruttopreis mit 19 % den Nettopreis?", "Brutto geteilt durch 1,19", ["Brutto minus 19 %", "Brutto mal 0,81", "Brutto mal 1,19"], "119 € brutto sind 100 € netto."],
+    ["Was ist Skonto?", "ein Preisnachlass bei schneller Zahlung", ["ein Mengenrabatt", "eine Mahngebühr", "die Mehrwertsteuer"], "Zum Beispiel 2 % bei Zahlung innerhalb von 10 Tagen."],
+    ["Lohnt sich Skonto meist, auch mit einem Kontokorrentkredit?", "Ja, weil der Jahreszins des Skontos meist sehr hoch ist.", ["Nein, nie.", "Nur bei Beträgen unter 10 €.", "Nur im Dezember."], "2 % für 20 Tage früher entsprechen rund 36 % im Jahr."]
+  ]
+}

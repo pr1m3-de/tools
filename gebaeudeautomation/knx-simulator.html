@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>KNX-Simulator: programmieren, bedienen, Telegramme lesen – Formeln &amp; Rechner</title>
   <meta name="description" content="KNX im Browser ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, physikalische Adresse mit der Programmiertaste vergeben, Applikation laden, Taster, Präsenzmelder, Wetterstation und Raumtemperaturregler bedienen und jedes Telegramm im Busmonitor Byte für Byte lesen – mit Fehlersuche-Aufgaben.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="KNX-Simulator: programmieren, bedienen, Telegramme lesen">
-  <meta property="og:description" content="KNX im Browser ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, physikalische Adresse mit der Programmiertaste vergeben, Applikation laden, Taster, Präsenzmelder, Wetterstation und Raumtemperaturregler bedienen und jedes Telegramm im Busmonitor Byte für Byte lesen – mit Fehlersuche-Aufgaben.">
-  <meta property="og:url" content="https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="KNX-Simulator: programmieren, bedienen, Telegramme lesen">
-  <meta name="twitter:description" content="KNX im Browser ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, physikalische Adresse mit der Programmiertaste vergeben, Applikation laden, Taster, Präsenzmelder, Wetterstation und Raumtemperaturregler bedienen und jedes Telegramm im Busmonitor Byte für Byte lesen – mit Fehlersuche-Aufgaben.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#seite","name":"KNX-Simulator: programmieren, bedienen, Telegramme lesen","url":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html","inLanguage":"de","description":"KNX im Browser ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, physikalische Adresse mit der Programmiertaste vergeben, Applikation laden, Taster, Präsenzmelder, Wetterstation und Raumtemperaturregler bedienen und jedes Telegramm im Busmonitor Byte für Byte lesen – mit Fehlersuche-Aufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#pfad"},"dateModified":"2026-11-20"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"KNX-Simulator: programmieren, bedienen, Telegramme lesen","item":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#fragen","mainEntity":[{"@type":"Question","name":"Warum reagiert ein Aktor nicht, obwohl der Taster sendet?","acceptedAnswer":{"@type":"Answer","text":"Die häufigsten Ursachen: Sendet der Taster auf eine andere Gruppenadresse, als der Aktor kennt? Hat der Aktor seine Applikation bekommen – und nach der letzten Änderung erneut? Ist am Objekt das Flag K (und für empfangene Werte S) gesetzt? Hat der Aktor Busspannung? Im Busmonitor sieht man, ob und wohin das Telegramm wirklich geht."}},{"@type":"Question","name":"Warum muss der Taster die Rückmeldung des Aktors kennen?","acceptedAnswer":{"@type":"Answer","text":"Beim „Umschalten“ sendet der Taster das Gegenteil seines eigenen Objektwerts. Schaltet jemand das Licht über den Präsenzmelder ein, weiß der Taster davon nichts – er sendet dann noch einmal EIN und man muss zweimal drücken. Hört das Tasterobjekt auch auf die Status-Gruppenadresse des Aktors, bleibt es aktuell."}},{"@type":"Question","name":"Was ist die sendende Gruppenadresse?","acceptedAnswer":{"@type":"Answer","text":"Ein Objekt kann mit mehreren Gruppenadressen verknüpft sein. Gesendet wird immer nur an die erste (im Simulator fett), empfangen auf allen. So kann der Dimmaktor auf den Taster (1/0/1) und den Präsenzmelder (1/0/3) hören."}},{"@type":"Question","name":"Warum gibt es die Programmiertaste?","acceptedAnswer":{"@type":"Answer","text":"Neue Geräte haben alle die Adresse 15.15.255. Damit die Inbetriebnahme-Software weiß, welches Gerät eine Adresse bekommen soll, drückt man an genau diesem Gerät die Programmiertaste – die rote LED leuchtet, nur dieses Gerät nimmt die Adresse an."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/gebaeudeautomation/knx-simulator.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -235,15 +217,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="knx-planung.html"><b>KNX-Planung: Topologie, Adressen und Simulator</b><span>KNX planen, simulieren und verstehen</span></a></li>
-      <li><a href="smart-home.html"><b>Gebäudeautomation und Smart Home</b><span>Gebäudeautomation und Smart Home verstehen und selbst bauen</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

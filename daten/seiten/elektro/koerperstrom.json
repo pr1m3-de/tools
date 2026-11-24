@@ -1,0 +1,16 @@
+{
+  "nr": 570,
+  "titel": "Strom durch den Körper",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["Körperstrom", "Stromschlag", "Körperimpedanz", "IEC 60479", "Herzkammerflimmern", "Herzstromfaktor", "RCD 30 mA", "Berührungsspannung", "Schrittspannung", "50 V"],
+  "text": "Was passiert beim Stromschlag: Körperimpedanz nach IEC 60479-1 für Haut und Stromweg, Körperstrom, Herzstromfaktor, Einwirkdauer bis zur Abschaltung und Zeit-Strom-Bereiche AC-1 bis AC-4 – mit Simulation von Stromweg und Herz.",
+  "tex": "I_\\text{K} = \\frac{U}{Z_\\text{T} + R_\\text{St}}",
+  "projektmappe": {"nr": 200, "name": "Strom durch den Körper", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Ab welchem Körperstrom kann man eine umfasste Leitung bei 50 Hz meist nicht mehr loslassen?", "etwa 10 mA", ["etwa 0,5 mA", "etwa 1 A", "etwa 100 A"], "Loslassschwelle nach IEC 60479-1."],
+    ["Warum ist der Stromweg Hand–Hand oder Hand–Fuß so gefährlich?", "Er führt durch das Herz.", ["Er hat den kleinsten Widerstand des Körpers.", "Er erzeugt die höchste Spannung.", "Er ist besonders kurz."], "Herzkammerflimmern hängt von Stromstärke, Dauer und Weg ab."],
+    ["Warum schützt ein 30-mA-RCD auch bei direktem Berühren?", "Er schaltet schnell ab, bevor ein gefährlicher Strom lange genug fließt.", ["Er begrenzt den Strom auf 30 mA.", "Er senkt die Spannung auf 50 V.", "Er trennt nur den Neutralleiter."], "Er erkennt die Differenz zwischen Hin- und Rückstrom."]
+  ]
+}

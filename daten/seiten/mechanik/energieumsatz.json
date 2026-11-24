@@ -1,0 +1,11 @@
+{
+  "nr": 630,
+  "titel": "Energieumsatz des Körpers",
+  "gruppe": "Sport und Bewegung",
+  "bereich": "Mechanik",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["Energieumsatz", "Grundumsatz", "MET", "Leistung", "Watt", "Wirkungsgrad", "Radfahren", "Treppensteigen", "Sauerstoff", "Wärme"],
+  "text": "Der Mensch als Maschine: Grundumsatz, Leistung bei Arbeit und Sport in Watt und MET, Hubleistung beim Steigen, Tretleistung beim Radfahren, Wirkungsgrad der Muskeln, Wärme, Sauerstoff und CO₂ – mit Simulation des Energieflusses.",
+  "tex": "P = P_0 + \\frac{P_\\text{mech}}{\\eta}",
+  "projektmappe": {"nr": 230, "name": "Energieumsatz des Körpers", "farbe": "#6E6FA6"}
+}

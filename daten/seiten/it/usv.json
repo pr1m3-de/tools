@@ -1,0 +1,15 @@
+{
+  "nr": 470,
+  "titel": "USV auslegen",
+  "gruppe": "Betrieb",
+  "bereich": "IT und Netzwerk",
+  "themen": ["USV", "Akku", "Überbrückungszeit"],
+  "text": "USV für Server und Netzwerk: Scheinleistung mit Reserve, Baugröße, Überbrückungszeit mit Peukert und Alterung, Kapazität für die Wunschzeit – mit simuliertem Stromausfall.",
+  "tex": "t = H \\left(\\frac{C}{I H}\\right)^k",
+  "projektmappe": {"nr": 1180, "name": "USV auslegen", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Welche USV-Bauart versorgt die Last dauernd über den Wechselrichter?", "Online (VFI, Doppelwandler)", ["Offline (VFD)", "Line-Interactive (VI)", "gar keine"], "Keine Umschaltzeit, beste Netzentkopplung."],
+    ["Warum ist die Leistung in VA oft größer als in W angegeben?", "Scheinleistung enthält auch Blindleistung; W = VA · cos φ", ["Weil VA eine größere Einheit ist.", "Weil Akkus mehr Leistung haben.", "Es gibt keinen Unterschied."], "Beide Grenzen müssen eingehalten werden."],
+    ["Warum sinkt die Überbrückungszeit mit dem Alter der Akkus?", "Die nutzbare Kapazität nimmt ab.", ["Weil die Spannung steigt.", "Weil der Wechselrichter schneller wird.", "Gar nicht."], "Bleiakkus halten meist 3 bis 5 Jahre."]
+  ]
+}

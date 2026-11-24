@@ -1,0 +1,15 @@
+{
+  "nr": 1340,
+  "titel": "Netzsysteme TN, TT und IT: Fehlerstromweg und Abschaltung",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Netzsystem", "Netzform", "TN-S", "TN-C", "TN-C-S", "TT-System", "IT-System", "PEN", "Schutzleiter", "Körperschluss", "Fehlerstrom", "Berührungsspannung", "Abschaltbedingung", "Schleifenimpedanz", "RCD", "Fehlerstrom-Schutzschalter", "Leitungsschutzschalter", "Auslösekennlinie", "Erderwiderstand", "Isolationswächter", "VDE 0100-410"],
+  "text": "Körperschluss im TN-S-, TN-C-S-, TN-C-, TT- und IT-System: Fehlerstromweg als Animation, Berührungsspannung, Abschaltung durch Leitungsschutzschalter oder RCD, Abschaltbedingungen nach DIN VDE 0100-410 und Auslösekennlinien.",
+  "tex": "Z_S \\cdot I_a \\le U_0",
+  "verwandt": ["elektro/koerperstrom.html", "elektro/erdung.html"],
+  "fragen": [
+    ["Was bedeutet der erste Buchstabe T in TN-S?", "Der Sternpunkt des Transformators ist direkt geerdet.", ["Die Anlage hat einen Transformator.", "Es gibt drei Außenleiter.", "Die Gehäuse sind über einen eigenen Erder geerdet."], "T steht für terre (Erde), I für isoliert."],
+    ["Warum braucht praktisch jede TT-Anlage einen RCD?", "Der Fehlerstrom über das Erdreich ist meist zu klein für den Leitungsschutzschalter.", ["Weil es keinen Neutralleiter gibt.", "Weil TT-Netze mit Gleichstrom arbeiten.", "Weil der RCD die Leitung vor Überlast schützt."], "Bedingung R_A · I_Δn ≤ 50 V."],
+    ["Was passiert beim ersten Körperschluss im IT-System?", "Kaum Strom, die Anlage läuft weiter; ein Isolationswächter meldet den Fehler.", ["Die Sicherung löst sofort aus.", "Der RCD löst immer aus.", "Die Spannung steigt auf 400 V an allen Gehäusen."], "Deshalb ist das IT-System in Operationssälen üblich."]
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "nr": 1310,
+  "titel": "Wärmeübertragung: Leitung, Konvektion, Strahlung",
+  "bereich": "Physik",
+  "auchIn": ["Heizungstechnik"],
+  "themen": ["Wärmeübertragung", "Wärmeleitung", "Wärmeleitfähigkeit", "Lambda-Wert", "Konvektion", "Wärmeübergang", "Wärmestrahlung", "Stefan-Boltzmann", "Emissionsgrad", "Wiensches Gesetz", "Infrarot", "U-Wert", "Wärmestrom"],
+  "text": "Wärmestrom durch Leitung in einer Schicht, Konvektion an Oberflächen und Wärmestrahlung nach Stefan-Boltzmann, dazu Wärmedurchgang einer Wand mit Temperaturverlauf und das Strahlungsspektrum nach Wien.",
+  "tex": "\\Phi = \\frac{\\lambda \\cdot A \\cdot \\Delta\\vartheta}{d}",
+  "fragen": [
+    ["Welche Art der Wärmeübertragung funktioniert auch im luftleeren Raum?", "Wärmestrahlung", ["Wärmeleitung", "Konvektion", "keine"], "So kommt die Sonnenwärme zur Erde."],
+    ["Warum dämmen Dämmstoffe so gut?", "Sie schließen viel ruhende Luft ein, die Wärme schlecht leitet.", ["Sie reflektieren Schall.", "Sie sind besonders schwer.", "Sie erzeugen selbst Wärme."], "λ von ruhender Luft ≈ 0,026 W/(m·K)."],
+    ["Wie wächst die abgestrahlte Leistung mit der absoluten Temperatur?", "mit der vierten Potenz", ["linear", "quadratisch", "gar nicht"], "Stefan-Boltzmann: P = ε σ A T⁴."]
+  ]
+}

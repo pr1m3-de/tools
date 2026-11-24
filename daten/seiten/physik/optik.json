@@ -1,0 +1,15 @@
+{
+  "nr": 1150,
+  "titel": "Optik: Reflexion, Streuung und Brechung",
+  "bereich": "Physik",
+  "themen": ["Optik", "Licht", "Reflexion", "Reflexionsgesetz", "Spiegel", "Spiegelbild", "Streuung", "diffuse Reflexion", "Brechung", "Lichtbrechung", "Brechungsgesetz", "Snellius", "Brechzahl", "Totalreflexion", "Grenzwinkel", "Lichtwellenleiter", "Lichtgeschwindigkeit"],
+  "text": "Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit Brechzahlen, Grenzwinkel und Totalreflexion im Lichtwellenleiter – mit Animationen zum Ziehen und Rechner in jede Richtung.",
+  "tex": "n_1 \\cdot \\sin\\alpha = n_2 \\cdot \\sin\\beta",
+  "projektmappe": {"nr": 670, "name": "Optik", "farbe": "#C2255C"},
+  "verwandt": ["it/bildformate.html"],
+  "fragen": [
+    ["Was gilt beim Reflexionsgesetz?", "Einfallswinkel = Reflexionswinkel", ["Einfallswinkel = 90° − Reflexionswinkel", "Das Licht wird immer senkrecht zurückgeworfen.", "Der Winkel verdoppelt sich."], "Gemessen jeweils zum Lot."],
+    ["Wann tritt Totalreflexion auf?", "beim Übergang ins optisch dünnere Medium oberhalb des Grenzwinkels", ["bei jedem Übergang von Luft in Glas", "nur bei Spiegeln", "wenn das Licht senkrecht auftrifft"], "Darauf beruht der Lichtwellenleiter."],
+    ["Warum ist der Himmel blau?", "Kurzwelliges blaues Licht wird an den Luftmolekülen stärker gestreut.", ["Weil das Meer sich spiegelt.", "Weil die Sonne blau leuchtet.", "Weil Ozon blau ist."], "Rayleigh-Streuung ~ 1/λ⁴."]
+  ]
+}

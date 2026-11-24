@@ -1,0 +1,15 @@
+{
+  "nr": 1040,
+  "titel": "Elektrische Grundgrößen und Leiterwiderstand",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Ladung", "Stromdichte", "Leiterwiderstand", "spezifischer Widerstand", "Leitfähigkeit", "Leitwert", "Temperaturbeiwert", "Kaltleiter", "Leistung", "Arbeit", "Energiekosten", "Wirkungsgrad", "Vorsätze", "Driftgeschwindigkeit"],
+  "text": "Elektrische Grundgrößen rechnen: Ladung und Strom, Stromdichte, Leiterwiderstand aus Länge, Querschnitt und Material, Leitwert, Widerstand bei Erwärmung, Leistung, Arbeit, Energiekosten und Wirkungsgrad – mit Elektronen im Kristallgitter, Materialtabelle und Vorsätzen.",
+  "tex": "R = \\frac{l}{\\gamma \\cdot A}",
+  "projektmappe": {"nr": 790, "name": "Elektrische Grundgrößen", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Wie ändert sich der Widerstand einer Kupferleitung, wenn sie doppelt so lang ist?", "Er verdoppelt sich.", ["Er halbiert sich.", "Er bleibt gleich.", "Er vervierfacht sich."], "R = ρ · l / A: Der Widerstand wächst linear mit der Länge."],
+    ["Wie verhält sich der Widerstand von Kupfer bei steigender Temperatur?", "Er steigt.", ["Er sinkt.", "Er bleibt gleich.", "Er wird null."], "Metalle sind Kaltleiter: Je wärmer, desto stärker behindern die schwingenden Atome die Elektronen."],
+    ["Welche Einheit hat die elektrische Ladung?", "Coulomb (Amperesekunde)", ["Volt", "Watt", "Farad"], "Q = I · t, also 1 C = 1 A · 1 s."]
+  ]
+}

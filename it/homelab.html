@@ -5,25 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Homelab-Planer: Verkabelung, Rack, VLANs, PoE und USV – Formeln &amp; Rechner</title>
   <meta name="description" content="Homelab und Heimnetz planen: Geräte mit Ports, jedes Kabel über Patchfeld und Dose, Rack, VLANs und IP-Plan, PoE-Budget, Strom und USV – mit Prüfung, Topologie, Patchliste und Einkaufsliste.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/it/homelab.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Homelab-Planer: Verkabelung, Rack, VLANs, PoE und USV">
-  <meta property="og:description" content="Homelab und Heimnetz planen: Geräte mit Ports, jedes Kabel über Patchfeld und Dose, Rack, VLANs und IP-Plan, PoE-Budget, Strom und USV – mit Prüfung, Topologie, Patchliste und Einkaufsliste.">
-  <meta property="og:url" content="https://tools.pr1m3.de/it/homelab.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Homelab-Planer: Verkabelung, Rack, VLANs, PoE und USV">
-  <meta name="twitter:description" content="Homelab und Heimnetz planen: Geräte mit Ports, jedes Kabel über Patchfeld und Dose, Rack, VLANs und IP-Plan, PoE-Budget, Strom und USV – mit Prüfung, Topologie, Patchliste und Einkaufsliste.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta name="keywords" content="Homelab Planer, Heimnetz planen, Netzwerk Verkabelung planen, Patchliste, Rack planen, VLAN Plan, PoE Budget, USV berechnen, Switch Konfiguration, Netzwerkdose Patchfeld">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/it/homelab.html#seite","name":"Homelab-Planer: Verkabelung, Rack, VLANs, PoE und USV","url":"https://tools.pr1m3.de/it/homelab.html","inLanguage":"de","description":"Homelab und Heimnetz planen: Geräte mit Ports, jedes Kabel über Patchfeld und Dose, Rack, VLANs und IP-Plan, PoE-Budget, Strom und USV – mit Prüfung, Topologie, Patchliste und Einkaufsliste.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/it/homelab.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/it/homelab.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Homelab-Planer: Verkabelung, Rack, VLANs, PoE und USV","item":"https://tools.pr1m3.de/it/homelab.html"}]},{"@type":"WebApplication","@id":"https://tools.pr1m3.de/it/homelab.html#anwendung","name":"Homelab-Planer: Verkabelung, Rack, VLANs, PoE und USV","url":"https://tools.pr1m3.de/it/homelab.html","description":"Homelab und Heimnetz planen: Geräte mit Ports, jedes Kabel über Patchfeld und Dose, Rack, VLANs und IP-Plan, PoE-Budget, Strom und USV – mit Prüfung, Topologie, Patchliste und Einkaufsliste.","inLanguage":"de","applicationCategory":"DesignApplication","operatingSystem":"Alle mit aktuellem Webbrowser","browserRequirements":"JavaScript","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@id":"https://tools.pr1m3.de/#herausgeber"},"mainEntityOfPage":{"@id":"https://tools.pr1m3.de/it/homelab.html#seite"},"featureList":["Geräte mit Ports, PoE und Leistung","Kabel von Port zu Port über Patchfeld und Netzwerkdose","Prüfung von Länge, Geschwindigkeit, Steckern, PoE, Schleifen und Adressen","Topologie, Rack-Ansicht und Strombilanz","VLAN-Port-Konfiguration und IP-Plan","Patchliste als CSV und Einkaufsliste"],"keywords":"Homelab Planer, Heimnetz planen, Netzwerk Verkabelung planen, Patchliste, Rack planen, VLAN Plan, PoE Budget, USV berechnen, Switch Konfiguration, Netzwerkdose Patchfeld","image":"https://tools.pr1m3.de/assets/symbol-512.png"},{"@type":"Organization","@id":"https://tools.pr1m3.de/#herausgeber","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/","logo":"https://tools.pr1m3.de/assets/symbol-512.png"},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/it/homelab.html#fragen","mainEntity":[{"@type":"Question","name":"Wie lang darf ein Netzwerkkabel sein?","acceptedAnswer":{"@type":"Answer","text":"Ein Kupfer-Kanal von Gerät zu Gerät darf nach DIN EN 50173 höchstens 100 m lang sein, davon höchstens 90 m fest verlegtes Kabel und zusammen 10 m Patchkabel an beiden Enden. 10 Gbit/s schafft Cat 6 nur bis etwa 55 m, Cat 6A und besser die vollen 100 m."}},{"@type":"Question","name":"Welches Kabel für 2,5 und 10 Gbit/s?","acceptedAnswer":{"@type":"Answer","text":"2,5 und 5 Gbit/s (NBASE-T) laufen über Cat 5e und Cat 6 bis 100 m. Für 10 Gbit/s Kupfer ist Cat 6A die sichere Wahl; im Rack sind Direktanschlusskabel (DAC) oder Glasfaser mit SFP+-Modulen sparsamer und kühler."}},{"@type":"Question","name":"Wie viel PoE braucht ein Access Point?","acceptedAnswer":{"@type":"Answer","text":"Kleine Access Points kommen mit PoE nach 802.3af (bis 12,95 W am Gerät) aus, schnelle Wi-Fi-6/7-Modelle brauchen meist 802.3at (25,5 W) oder mehr. Der Switch hat ein Gesamtbudget – die Summe aller PoE-Geräte darf es nicht überschreiten."}},{"@type":"Question","name":"Wozu VLANs im Heimnetz?","acceptedAnswer":{"@type":"Answer","text":"VLANs trennen Netze auf denselben Kabeln: zum Beispiel Server, Heimgeräte, Gäste und das IoT getrennt, damit eine unsichere Kamera nicht auf den NAS kommt. Der Router regelt mit Firewall-Regeln, wer wohin darf. Switches müssen VLAN-fähig (managed) sein."}},{"@type":"Question","name":"Wie groß muss die USV sein?","acceptedAnswer":{"@type":"Answer","text":"Die Wirkleistung aller angeschlossenen Geräte muss unter der Watt-Angabe und die Scheinleistung unter der VA-Angabe der USV liegen, am besten mit 20 bis 30 % Reserve. Die Laufzeit hängt von der Akkuenergie und der Last ab: halbe Last ergibt meist mehr als die doppelte Laufzeit."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/it/homelab.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -237,17 +218,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="netzwerkkabel-poe.html"><b>Netzwerkkabel und PoE</b><span>Kanallänge je Kategorie und Datenrate, Spannung und Leistung am PoE-Endgerät, Verlust im Kabel, Erwärmung im Bündel …</span></a></li>
-      <li><a href="datenrate.html"><b>Datenrate und Übertragungszeit</b><span>Echte Übertragungszeit aus Datenmenge, Bandbreite, Overhead, Latenz, TCP-Fenster und Paketverlust</span></a></li>
-      <li><a href="dns-http-tls.html"><b>DNS, HTTP und TLS Schritt für Schritt</b><span>Was beim Aufruf einer Webseite passiert</span></a></li>
-      <li><a href="subnetz.html"><b>IP-Subnetzrechner</b><span>IPv4 und IPv6: Netzadresse, Broadcast, nutzbarer Bereich, Hosts, Maske und Wildcard aus Adresse und Präfix, …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

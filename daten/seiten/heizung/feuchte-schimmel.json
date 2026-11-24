@@ -1,0 +1,15 @@
+{
+  "nr": 730,
+  "titel": "Feuchte, Taupunkt und Schimmel",
+  "gruppe": "Lüftung",
+  "bereich": "Heizungstechnik",
+  "themen": ["Taupunkt", "Luftfeuchte", "Schimmel", "absolute Feuchte", "Oberflächentemperatur", "f_Rsi", "Wärmebrücke", "Lüften", "Tauwasser", "DIN 4108-2"],
+  "text": "Taupunkt und Schimmelgefahr berechnen: absolute Feuchte, Oberflächentemperatur der Wand aus dem U-Wert, 80-Prozent-Grenze, höchste Raumfeuchte, Feuchte nach dem Lüften und nötiger Luftwechsel gegen die Feuchtelast – mit Simulation.",
+  "tex": "\\varphi_\\text{si} = \\varphi_\\text{i}\\,\\frac{p_\\text{s}(\\vartheta_\\text{i})}{p_\\text{s}(\\vartheta_\\text{si})}",
+  "projektmappe": {"nr": 830, "name": "Feuchte, Taupunkt und Schimmel", "farbe": "#C2410C"},
+  "fragen": [
+    ["Was ist der Taupunkt?", "die Temperatur, bei der die Luft mit Wasserdampf gesättigt ist und Tauwasser ausfällt", ["die Temperatur, bei der Wasser gefriert", "die höchste Raumtemperatur", "die Temperatur der Heizung"], "Kalte Wandstellen unter dem Taupunkt werden nass."],
+    ["Warum hilft Stoßlüften im Winter gegen Feuchte?", "Kalte Außenluft enthält wenig Wasser; erwärmt nimmt sie Feuchte auf.", ["Weil die Wände dadurch wärmer werden.", "Weil feuchte Luft schwerer ist.", "Weil Kälte Schimmel abtötet."], "Kurz und kräftig lüften, dann die Wände nicht auskühlen."],
+    ["Ab welcher relativen Feuchte an der Oberfläche droht Schimmel etwa?", "ab etwa 80 % über mehrere Tage", ["ab 20 %", "ab 40 % kurzzeitig", "erst ab 100 % dauerhaft"], "Kriterium f_Rsi ≥ 0,7 nach DIN 4108-2."]
+  ]
+}

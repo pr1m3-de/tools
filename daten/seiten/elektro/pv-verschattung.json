@@ -1,0 +1,10 @@
+{
+  "nr": 310,
+  "titel": "PV-Verschattung",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "themen": ["Photovoltaik", "Verschattung", "Sonnenstand", "Reihenabstand", "Ertrag"],
+  "text": "Sonnenstand über das Jahr: Reihenabstand aufgeständerter Module, Schatten von Hindernissen je Monat und geschätzter Ertragsverlust.",
+  "tex": "d = L \\left(\\cos\\beta + \\frac{\\sin\\beta}{\\tan h}\\right)",
+  "projektmappe": {"nr": 180, "name": "PV-Verschattung", "farbe": "#2B7BB9"}
+}

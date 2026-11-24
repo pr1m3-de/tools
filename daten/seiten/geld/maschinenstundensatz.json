@@ -1,0 +1,10 @@
+{
+  "nr": 880,
+  "titel": "Maschinenstundensatz und Abschreibung",
+  "gruppe": "Betrieb und Angebot",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Maschinenstundensatz", "Abschreibung", "AfA", "kalkulatorische Zinsen", "Auslastung", "Mieten oder Kaufen", "degressive Abschreibung", "Fixkosten", "Nutzungsdauer", "Werkzeugkosten"],
+  "text": "Maschinenstundensatz berechnen: Abschreibung, kalkulatorische Zinsen, Versicherung, Wartung, Energie und Werkzeug je Laufstunde – mit Wirkung der Auslastung, Vergleich Kaufen oder Mieten und linearer und degressiver Abschreibung für die Steuer.",
+  "tex": "MS = \\frac{K_\\text{A} + K_\\text{Z} + K_\\text{V}}{h} + k_\\text{v}",
+  "projektmappe": {"nr": 990, "name": "Maschinenstundensatz und Abschreibung", "farbe": "#A16207"}
+}

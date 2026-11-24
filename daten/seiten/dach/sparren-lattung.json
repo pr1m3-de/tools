@@ -1,0 +1,9 @@
+{
+  "nr": 290,
+  "titel": "Sparren und Lattung",
+  "bereich": "Dach und Klempnerei",
+  "themen": ["Sparren", "Lattweite", "Dachlatten", "Dachziegel", "Materialliste"],
+  "text": "Satteldach aufmessen: Sparrenlänge und -anzahl, Lattweite aus der Decklänge, Latten und Ziegel, Lattenquerschnitt und Vordimensionierung der Sparrenhöhe.",
+  "tex": "LW = \\frac{l_\\text{S} - t_\\text{T} - t_\\text{F}}{n}",
+  "projektmappe": {"nr": 450, "name": "Sparren und Lattung", "farbe": "#A0785A"}
+}

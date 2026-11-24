@@ -55,7 +55,7 @@ const attr = function (t) { return String(t).replace(/&/g, '&amp;').replace(/"/g
 const html = function (t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
 const entities = function (t) { return t.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>'); };
 function datum(rel) {
-  try { const d = execSync('git log -1 --format=%cs -- "' + rel + '"', { cwd: WURZEL }).toString().trim(); if (d) return d; } catch (e) { /* ohne Git */ }
+  try { const d = execSync('git log -1 --format=%cs -- "' + rel + '"', { cwd: process.env.GIT_WURZEL || WURZEL, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim(); if (d) return d; } catch (e) { /* ohne Git */ }
   return new Date().toISOString().slice(0, 10);
 }
 

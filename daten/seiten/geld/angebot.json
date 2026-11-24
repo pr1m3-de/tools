@@ -1,0 +1,10 @@
+{
+  "nr": 850,
+  "titel": "Angebotskalkulation",
+  "gruppe": "Betrieb und Angebot",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Angebot", "Kalkulation", "Zuschlagskalkulation", "Einheitspreis", "Deckungsbeitrag", "Aufschlag", "Marge", "Nachlass", "Materialzuschlag", "Preisuntergrenze"],
+  "text": "Angebot kalkulieren: Positionen mit Lohn, Material, Geräten und Fremdleistungen, Zuschläge je Kostenart, Einheitspreise, Nachlass, Skonto und Umsatzsteuer – mit Deckungsbeitrag, Marge, Preisuntergrenze und der Wirkung eines Nachlasses auf den Gewinn.",
+  "tex": "EP = k \\cdot (1 + z) \\qquad DB = N - EK",
+  "projektmappe": {"nr": 960, "name": "Angebotskalkulation", "farbe": "#A16207"}
+}

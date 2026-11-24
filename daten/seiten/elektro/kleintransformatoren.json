@@ -1,0 +1,10 @@
+{
+  "nr": 1010,
+  "titel": "Kleintransformatoren und Messwandler",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Stromwandler", "Spannungswandler", "Messwandler", "Bürde", "Spartransformator", "Sicherheitstransformator", "Trenntransformator", "Klingeltransformator", "Steuertransformator", "Kopplungsfaktor", "DIN EN 61558"],
+  "text": "Strom- und Spannungswandler berechnen: Übersetzung, Bürde mit Messleitung, Auslastung und Durchfädeln; Spartransformator mit Bau- und Durchgangsleistung; Arten der Kleintransformatoren von Sicherheits- bis Klingeltransformator mit Normen und Merkmalen.",
+  "tex": "R_\\text{max} = \\frac{S_\\text{N}}{I_\\text{2N}^2}",
+  "projektmappe": {"nr": 770, "name": "Kleintransformatoren und Messwandler", "farbe": "#2B7BB9"}
+}

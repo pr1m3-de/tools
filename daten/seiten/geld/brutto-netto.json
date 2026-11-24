@@ -1,0 +1,15 @@
+{
+  "nr": 950,
+  "titel": "Brutto-Netto-Lohn",
+  "gruppe": "Lohn und Privat",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Brutto", "Netto", "Lohnsteuer", "Sozialabgaben", "Steuerklasse", "Krankenversicherung", "Gehalt", "Abzüge", "Lohnnebenkosten", "Grenzbelastung"],
+  "text": "Brutto-Netto-Rechner 2026 als Näherung: Lohnsteuer nach Tarif, Solidaritätszuschlag, Kirchensteuer und Beiträge zu Kranken-, Pflege-, Renten- und Arbeitslosenversicherung – mit Netto, Abgabenquote, Belastung der nächsten Lohnerhöhung und Arbeitgeberkosten.",
+  "tex": "N = B - ESt - SV",
+  "projektmappe": {"nr": 1060, "name": "Brutto-Netto-Lohn", "farbe": "#A16207"},
+  "fragen": [
+    ["Was wird vom Bruttolohn abgezogen?", "Steuern und Sozialversicherungsbeiträge", ["nur die Mehrwertsteuer", "nur die Miete", "gar nichts"], "Lohnsteuer, ggf. Kirchensteuer und Soli sowie Renten-, Kranken-, Pflege- und Arbeitslosenversicherung."],
+    ["Wer zahlt die Sozialversicherung?", "Arbeitnehmer und Arbeitgeber etwa je zur Hälfte", ["nur der Arbeitnehmer", "nur der Staat", "nur der Arbeitgeber"], "Ausnahmen gibt es z. B. bei der Pflegeversicherung."],
+    ["Was beeinflusst die Steuerklasse?", "die Höhe der monatlich einbehaltenen Lohnsteuer", ["die Rentenhöhe direkt", "den Bruttolohn", "die Mehrwertsteuer"], "Die tatsächliche Steuer ergibt sich erst mit der Jahressteuer."]
+  ]
+}

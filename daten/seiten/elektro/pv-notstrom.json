@@ -1,0 +1,10 @@
+{
+  "nr": 50,
+  "titel": "PV und Notstrom",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "themen": ["Photovoltaik", "Stromspeicher", "Notstrom", "Inselbetrieb", "Autarkie", "Strings"],
+  "text": "PV-Anlage mit Ertrag, Eigenverbrauch, Amortisation und Stringauslegung, dazu Speicher und Notstrom bis zum Inselbetrieb: welche Geräte bei Netzausfall je Phase laufen, mit Anlaufspitzen, Laufzeit und Schutzkonzept.",
+  "tex": "t_\\text{NS} = \\frac{W_\\text{NS}}{W_\\text{Tag}} \\cdot 24\\,\\text{h}",
+  "projektmappe": {"nr": 140, "name": "PV und Notstrom", "farbe": "#2B7BB9"}
+}

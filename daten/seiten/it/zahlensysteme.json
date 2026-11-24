@@ -1,0 +1,15 @@
+{
+  "nr": 530,
+  "titel": "Zahlensysteme und Bits",
+  "gruppe": "Grundlagen",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Binär", "Hexadezimal", "Zweierkomplement", "IEEE 754"],
+  "text": "Binär, Oktal, Dezimal, Hex und jede Basis bis 36, Zweierkomplement mit Überlauf und Bitoperationen, Gleitkomma nach IEEE 754 Bit für Bit.",
+  "tex": "z = \\sum d_i \\cdot b^i",
+  "projektmappe": {"nr": 1240, "name": "Zahlensysteme und Bits", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Wie lautet die Dezimalzahl 13 im Binärsystem?", "1101", ["1011", "1110", "0111"], "8 + 4 + 1 = 13."],
+    ["Was ist 0xFF dezimal?", "255", ["256", "15", "1515"], "15 · 16 + 15 = 255."],
+    ["Wie viele verschiedene Werte lassen sich mit 8 Bit darstellen?", "256", ["255", "8", "128"], "2⁸ = 256, von 0 bis 255."]
+  ]
+}

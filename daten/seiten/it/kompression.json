@@ -1,0 +1,16 @@
+{
+  "nr": 1270,
+  "titel": "Datenkompression: Entropie, Huffman, LZ77, ZIP",
+  "gruppe": "Dateiformate",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Kompression", "Datenkompression", "verlustfrei", "Entropie", "Informationsgehalt", "Huffman", "Huffman-Baum", "LZ77", "Lauflängencodierung", "RLE", "Deflate", "ZIP", "gzip", "7z", "Zstandard", "Brotli", "Kompressionsfaktor", "Redundanz"],
+  "text": "Warum lassen sich Texte stark und Fotos kaum komprimieren? Entropie, Informationsgehalt, Huffman-Codierung, LZ77 und Lauflängen – mit Labor für eigenen Text, Huffman-Baum und Vergleich der Archivformate ZIP, 7z, Zstandard und Brotli.",
+  "tex": "H = -\\sum_i p_i \\log_2 p_i",
+  "projektmappe": {"nr": 640, "name": "Datenkompression", "farbe": "#3B5BDB"},
+  "verwandt": ["it/pruefsummen.html"],
+  "fragen": [
+    ["Was unterscheidet verlustfreie von verlustbehafteter Kompression?", "Verlustfrei lässt sich das Original exakt wiederherstellen.", ["Verlustfrei ist immer kleiner.", "Verlustbehaftet ist immer schlechter.", "Es gibt keinen Unterschied."], "ZIP und PNG sind verlustfrei, JPEG und MP3 nicht."],
+    ["Warum lassen sich zufällige Daten kaum komprimieren?", "Sie enthalten keine Wiederholungen oder Muster.", ["Weil sie zu klein sind.", "Weil sie verschlüsselt sein müssen.", "Weil ZIP nur Text kann."], "Die Entropie ist schon maximal."],
+    ["Wie arbeitet der Huffman-Code?", "Häufige Zeichen bekommen kurze, seltene lange Codes.", ["Alle Zeichen bekommen 8 Bit.", "Er entfernt Leerzeichen.", "Er verschlüsselt mit einem Passwort."], "So sinkt die mittlere Codelänge."]
+  ]
+}
