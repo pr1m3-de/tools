@@ -1,0 +1,10 @@
+{
+  "nr": 1030,
+  "titel": "Brandschutz in der Elektroinstallation",
+  "bereich": "Brandschutz",
+  "auchIn": ["Elektrotechnik"],
+  "themen": ["Brandschutz", "Funktionserhalt", "E30", "E90", "MLAR", "Leitungsanlagen-Richtlinie", "Brandabschnitt", "Abschottung", "Feuerwiderstand", "Brandlast", "PVC", "Rauch", "Schutzziele"],
+  "text": "Brandschutz in der Elektroinstallation: Rauch, Salzsäure und Brandlast aus PVC-Leitungen berechnen, Funktionserhalt E30 oder E90 je Anlage, Feuerwiderstandsklassen alt und neu, Schutzziele, vier Säulen des Brandschutzes, Brandabschnitte und Abschottungen.",
+  "tex": "V_\\text{R} = m \\cdot 500\\,\\tfrac{\\text{m}^3}{\\text{kg}}",
+  "projektmappe": {"nr": 820, "name": "Brandschutz in der Elektroinstallation", "farbe": "#E4572E"}
+}

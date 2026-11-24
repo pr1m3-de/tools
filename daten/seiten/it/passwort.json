@@ -1,0 +1,15 @@
+{
+  "nr": 510,
+  "titel": "Passwort- und Schlüsselstärke",
+  "gruppe": "Sicherheit",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Passwort", "Entropie", "Brute Force"],
+  "text": "Entropie aus Länge und Zeichenvorrat oder Passphrase, Suchzeit für Online-Angriffe und gestohlene Hashes mit Grafikkarten, Vergleich mit Schlüssellängen.",
+  "tex": "H = L \\cdot \\log_2 N",
+  "projektmappe": {"nr": 1220, "name": "Passwort- und Schlüsselstärke", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Was macht ein Passwort am stärksten?", "Länge, zum Beispiel eine lange Passphrase aus zufälligen Wörtern", ["ein Sonderzeichen am Ende", "der Name des Haustiers mit Jahreszahl", "regelmäßiges Ändern um eine Ziffer"], "Jedes zusätzliche Zeichen vervielfacht die Möglichkeiten."],
+    ["Was schützt zusätzlich, wenn ein Passwort gestohlen wurde?", "Zwei-Faktor-Anmeldung", ["ein längerer Benutzername", "ein Bildschirmschoner", "eine Firewall am Router"], "Ohne den zweiten Faktor nützt das Passwort allein nichts."],
+    ["Warum soll man Passwörter nicht mehrfach verwenden?", "Ein Datenleck bei einem Dienst öffnet sonst alle anderen Konten.", ["Weil sie sonst ablaufen.", "Weil Server das verbieten.", "Weil sie dann kürzer werden."], "Ein Passwortmanager hilft."]
+  ]
+}

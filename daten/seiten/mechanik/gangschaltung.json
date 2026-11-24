@@ -1,0 +1,10 @@
+{
+  "nr": 410,
+  "titel": "Gangschaltung: Simulator und Rechner",
+  "gruppe": "Fahrzeuge und Antrieb",
+  "bereich": "Mechanik",
+  "themen": ["Übersetzung", "Fahrrad", "Getriebe", "Drehzahl", "Zugkraft"],
+  "text": "Gangschaltung von Fahrrad, Auto und Motorrad frei einstellen und fahren: Übersetzungen, Entfaltung, Geschwindigkeit je Gang, Gangsprünge, Schräglauf, Sägezahn- und Zugkraftdiagramm, Höchstgeschwindigkeit, 0–100 km/h.",
+  "tex": "v = \\frac{n \\cdot U}{i_\\text{G} \\cdot i_\\text{A}}",
+  "projektmappe": {"nr": 1120, "name": "Gangschaltung: Simulator und Rechner", "farbe": "#6E6FA6"}
+}

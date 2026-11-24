@@ -1,0 +1,15 @@
+{
+  "nr": 840,
+  "titel": "Stundensatz im Handwerk",
+  "gruppe": "Betrieb und Angebot",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Stundensatz", "Stundenverrechnungssatz", "Handwerk", "Lohnnebenkosten", "Gemeinkosten", "produktive Stunden", "Kalkulation", "Gewinn", "Auslastung", "Selbstkosten"],
+  "text": "Stundenverrechnungssatz im Handwerk berechnen: vom Bruttolohn über Lohnnebenkosten, Urlaub, Krankheit und nicht verrechenbare Zeit zu den Kosten je produktive Stunde, dazu Gemeinkosten, Gewinn und Umsatzsteuer – mit Wirkung der Auslastung.",
+  "tex": "S = \\frac{K_\\text{P} + G}{t_\\text{p}} \\cdot (1 + g)",
+  "projektmappe": {"nr": 950, "name": "Stundensatz im Handwerk", "farbe": "#A16207"},
+  "fragen": [
+    ["Warum ist der Stundensatz im Handwerk viel höher als der Stundenlohn?", "Er muss Lohnnebenkosten, unproduktive Zeit, Gemeinkosten und Gewinn decken.", ["Weil der Chef das Dreifache verdient.", "Weil die Mehrwertsteuer schon enthalten ist, sonst nichts.", "Weil Werkzeug kostenlos ist."], "Oft das Zwei- bis Dreifache des Bruttolohns."],
+    ["Was sind produktive Stunden?", "Stunden, die einem Kunden in Rechnung gestellt werden können", ["alle bezahlten Stunden", "Überstunden", "Urlaubstage"], "Fahrten, Büro und Ausfallzeiten sind nicht produktiv."],
+    ["Was gehört zu den Gemeinkosten?", "Miete, Versicherungen, Fahrzeuge und Verwaltung", ["Material für einen Auftrag", "der Lohn für eine Baustellenstunde", "die Mehrwertsteuer"], "Sie werden über Zuschläge verteilt."]
+  ]
+}

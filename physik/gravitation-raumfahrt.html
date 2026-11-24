@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gravitation und Raumfahrt: Umlaufbahn, Fluchtgeschwindigkeit, Hohmann-Übergang – Formeln &amp; Rechner</title>
+  <meta name="description" content="Gravitationsgesetz und Raumfahrt zum Ausrechnen: Bahngeschwindigkeit, Umlaufzeit, Fluchtgeschwindigkeit, geostationäre Bahn und Hohmann-Übergang für Erde, Mond, Planeten und Sonne – mit Newtons Kanonenkugel, Bahnanimation und Lernaufgaben.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <link rel="stylesheet" href="../assets/baukasten.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Gravitation, Umlaufbahnen und Raumfahrt</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Newtons Gravitationsgesetz</h3><p>Zwei Massen ziehen sich an mit F = G · m₁ · m₂ / r². Die Kraft wird mit dem Quadrat des Abstands schwächer: In doppelter Entfernung vom Erdmittelpunkt (6 371 km über dem Boden) wiegt man nur noch ein Viertel. G = 6,674 · 10⁻¹¹ m³/(kg · s²) wurde 1798 von Cavendish mit einer Drehwaage gemessen.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Warum Satelliten nicht herunterfallen</h3><p>Ein Satellit fällt ständig – aber er fliegt so schnell seitwärts, dass die Erde unter ihm „wegkrümmt“. Auf der Kreisbahn ist die Gravitation genau die nötige Zentripetalkraft: v = √(GM/r). Dicht über der Erde sind das 7,9 km/s, ein Umlauf dauert etwa 90 Minuten. Die Schwerelosigkeit an Bord ist freier Fall, keine fehlende Schwerkraft: In 400 km Höhe wirken noch 89 %.</p></article>
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Fluchtgeschwindigkeit</h3><p>Um ein Schwerefeld ganz zu verlassen, muss die Bewegungsenergie die Bindungsenergie GMm/r übertreffen: v<sub>F</sub> = √(2GM/r), das √2-Fache der Kreisbahngeschwindigkeit. Von der Erde aus sind es 11,2 km/s, vom Mond 2,4 km/s. Ist v<sub>F</sub> größer als die Lichtgeschwindigkeit, entsteht ein Schwarzes Loch.</p></article>
+        <article class="wissen-karte" style="--farbe:#7A5195"><h3>Geostationäre Bahn</h3><p>Ein Satellit, der genau so schnell umläuft, wie sich die Erde dreht (ein Sterntag, 23 h 56 min), steht über dem Äquator scheinbar still. Das gelingt nur in 35 786 km Höhe. Dort hängen Fernseh- und Wettersatelliten; Schüsseln müssen nicht nachgeführt werden.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Hohmann-Übergang</h3><p>Der sparsamste Weg zwischen zwei Kreisbahnen: Ein Schub Δv₁ macht aus der Kreisbahn eine Ellipse, deren höchster Punkt die Zielbahn berührt. Dort hebt ein zweiter Schub Δv₂ den tiefsten Punkt an, die Bahn wird wieder rund. Der Flug dauert eine halbe Ellipsenumlaufzeit – zum Mars etwa 8,5 Monate.</p></article>
+        <article class="wissen-karte" style="--farbe:#A16207"><h3>Energie in der Bahn</h3><p>Die potentielle Energie −GMm/r ist im Unendlichen null und wird zur Erde hin negativ. Auf einer Kreisbahn ist die Bewegungsenergie halb so groß wie der Betrag der potentiellen; die Gesamtenergie ist −GMm/(2r). Paradox: Bremst man, sinkt man auf eine tiefere Bahn – und wird schneller.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Newtons Kanonenkugel</h3><p>Newton dachte sich eine Kanone auf einem sehr hohen Berg. Je schneller die Kugel waagerecht fliegt, desto weiter kommt sie, bis sie bei der ersten kosmischen Geschwindigkeit nie mehr landet. Dazwischen und darüber entstehen Ellipsen, ab der Fluchtgeschwindigkeit Parabel und Hyperbel – die Kegelschnitte.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Raketengleichung</h3><p>Eine Rakete stößt Masse aus und wird dadurch schneller: Δv = v<sub>aus</sub> · ln(m₀/m₁). Für den Weg in eine niedrige Erdumlaufbahn braucht man rund 9,4 km/s (inklusive Verlusten durch Schwerkraft und Luft). Deshalb bestehen Raketen zu etwa 90 % aus Treibstoff und werden in Stufen gebaut.</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Himmelskörper</th><th class="zahl">Masse</th><th class="zahl">Radius</th><th class="zahl">Schwere am Boden</th><th class="zahl">Kreisbahn am Boden</th><th class="zahl">Fluchtgeschwindigkeit</th></tr></thead><tbody id="koerper-tabelle"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum sind Astronauten schwerelos, obwohl es Schwerkraft gibt?</summary><p>Die Raumstation und alles darin fallen gemeinsam um die Erde. Im freien Fall drückt nichts gegen den Boden, deshalb spürt man kein Gewicht. Die Schwerebeschleunigung in 400 km Höhe beträgt noch etwa 8,7 m/s².</p></details>
+        <details><summary>Wie schnell fliegt die Raumstation?</summary><p>Rund 7,66 km/s, also etwa 27 600 km/h. Für einen Umlauf braucht sie gut 92 Minuten; die Besatzung sieht täglich 15 bis 16 Sonnenaufgänge.</p></details>
+        <details><summary>Warum startet man Raketen nach Osten und nah am Äquator?</summary><p>Die Erde dreht sich nach Osten; am Äquator bewegt sich der Boden mit 465 m/s. Diese Geschwindigkeit bekommt die Rakete geschenkt, das spart Treibstoff.</p></details>
+        <details><summary>Wie hoch ist die geostationäre Bahn?</summary><p>35 786 km über dem Äquator, also 42 164 km vom Erdmittelpunkt. Dort beträgt die Umlaufzeit genau einen Sterntag (23 h 56 min 4 s).</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script src="../assets/baukasten.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const BK = Baukasten, R = BK.R, tz = BK.tz, E = BK.E, F = BK.F, zz = BK.zz, rd = BK.rd, PI2 = BK.PI2, W2 = BK.W2, GRAD = BK.GRAD, BLAU = BK.BLAU, ROT = BK.ROT, GRUEN = BK.GRUEN, ORANGE = BK.ORANGE, LILA = BK.LILA, GRAU = BK.GRAU, GELB = BK.GELB, KUPFER = BK.KUPFER, TUERKIS = BK.TUERKIS, T = BK.T, TW = BK.TW, TWU = BK.TWU, pfeil = BK.pfeil, kreis = BK.kreis, strecke = BK.strecke, zug = BK.zug, uhr = BK.uhr, diagramm = BK.diagramm, schritt = BK.schritt, teilung = BK.teilung, stellen = BK.stellen, runde = BK.runde, ansichten = BK.ansichten, zufall = BK.zufall, bildCanvas = BK.bildCanvas, zeiger = BK.zeiger;
+    // wissenschaftliche Schreibweise für Text (wz) und TeX (wt), s gültige Stellen
+    function hoch(n) { const z = '⁰¹²³⁴⁵⁶⁷⁸⁹'; return String(n).replace('-', '⁻').replace(/\d/g, function (d) { return z[+d]; }); }
+    function zerlege(v, s) { const a = Math.abs(v); let ex = Math.floor(Math.log10(a)), m = v / Math.pow(10, ex); if (Math.abs(Number(m.toFixed(s - 1))) >= 10) { ex++; m = v / Math.pow(10, ex); } return [m, ex]; }
+    function wz(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '–'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return zz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return zz(q[0], s - 1) + ' · 10' + hoch(q[1]); }
+    function wt(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '\\infty'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return tz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return tz(q[0], s - 1) + ' \\cdot 10^{' + q[1] + '}'; }
+    const G = 6.674e-11;
+    // [Name, Masse in 10²⁴ kg, Radius in km, siderische Rotation in h]
+    const KOERPER = {
+      erde: ['Erde', 5.972, 6371, 23.934], mond: ['Mond', 0.07342, 1737.4, 655.72], mars: ['Mars', 0.6417, 3389.5, 24.623],
+      venus: ['Venus', 4.867, 6051.8, 5832.5], jupiter: ['Jupiter', 1898.2, 69911, 9.925], sonne: ['Sonne', 1988500, 695700, 609.12]
+    };
+    let ansicht = 'bahn', takt = uhr();
+    const SIM = { t: 0, phi: 0, kanone: [], kSchl: '' };
+
+    function rechne(e) {
+      const mu = G * e.M * 1e24, R = e.R * 1e3, r1 = R + e.h * 1e3, r2 = R + e.h2 * 1e3, r = { mu: mu, R: R, r1: r1, r2: r2 };
+      r.g0 = mu / (R * R); r.g1 = mu / (r1 * r1);
+      r.vk = Math.sqrt(mu / r1); r.T = 2 * Math.PI * Math.sqrt(r1 * r1 * r1 / mu);
+      r.vf0 = Math.sqrt(2 * mu / R); r.vf1 = Math.sqrt(2 * mu / r1); r.vk0 = Math.sqrt(mu / R);
+      const a = (r1 + r2) / 2; r.a = a;
+      r.dv1 = Math.sqrt(mu / r1) * (Math.sqrt(2 * r2 / (r1 + r2)) - 1);
+      r.dv2 = Math.sqrt(mu / r2) * (1 - Math.sqrt(2 * r1 / (r1 + r2)));
+      r.dv = Math.abs(r.dv1) + Math.abs(r.dv2); r.tH = Math.PI * Math.sqrt(a * a * a / mu);
+      r.T2 = 2 * Math.PI * Math.sqrt(r2 * r2 * r2 / mu);
+      const Ts = e.tag * 3600; r.rgeo = Math.cbrt(mu * Ts * Ts / (4 * Math.PI * Math.PI)); r.hgeo = r.rgeo - R; r.vgeo = 2 * Math.PI * r.rgeo / Ts;
+      r.Ekin = 0.5 * e.m * r.vk * r.vk; r.Epot = -mu * e.m / r1; r.Eges = r.Ekin + r.Epot;
+      r.Ehoch = mu * e.m * (1 / R - 1 / (2 * r1));
+      r.F = mu * e.m / (r1 * r1);
+      r.v0 = e.v0 * 1e3;
+      return r;
+    }
+
+    const seite = R.seite({
+      titel: 'Gravitation und Raumfahrt',
+      einleitung: 'Wie schnell muss ein Satellit fliegen, wie lange dauert ein Umlauf, wo liegt die geostationäre Bahn, und wie viel Schub braucht der Wechsel in eine höhere Bahn? Der Rechner nutzt Newtons Gravitationsgesetz für Erde, Mond, Planeten und Sonne.',
+      hilfe: 'Beispiel: Raumstation in 420 km Höhe über der Erde, Wechsel in die geostationäre Bahn (35 786 km).',
+      gruppen: [
+        { titel: 'Zentralkörper', farbe: BLAU, felder: [
+          { k: 'koerper', name: 'Himmelskörper', wahl: [['eigen', 'eigene Werte']].concat(Object.keys(KOERPER).map(function (k) { return [k, KOERPER[k][0]]; })), bei: function (e, w, setze) { const K = KOERPER[w]; if (K) setze({ M: K[1], R: K[2], tag: K[3] }); } },
+          { k: 'M', tex: 'M', name: 'Masse', e: '· 10²⁴ kg', min: 1e-6, max: 1e8 },
+          { k: 'R', tex: 'R', name: 'Radius', e: 'km', min: 1, max: 2e6 },
+          { k: 'tag', tex: 'T_\\text{rot}', name: 'Rotationsdauer (siderisch)', e: 'h', min: 0.1, max: 1e5 }
+        ] },
+        { titel: 'Satellit', farbe: GRUEN, felder: [
+          { k: 'h', tex: 'h_1', name: 'Bahnhöhe über der Oberfläche', e: 'km', min: 0, max: 1e7 },
+          { k: 'h2', tex: 'h_2', name: 'Zielbahn (Hohmann-Übergang)', e: 'km', min: 0, max: 1e7 },
+          { k: 'm', tex: 'm', name: 'Masse des Satelliten', e: 'kg', min: 0.001, max: 1e9 }
+        ] },
+        { titel: 'Newtons Kanonenkugel', farbe: ORANGE, felder: [
+          { k: 'v0', tex: 'v_0', name: 'Abschussgeschwindigkeit waagerecht', e: 'km/s', min: 0, max: 100 }
+        ] }
+      ],
+      beispiel: { koerper: 'erde', M: 5.972, R: 6371, tag: 23.934, h: 420, h2: 35786, m: 420000, v0: 9 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        if (e.h < 100 && e.koerper === 'erde') H.meldung('Unter etwa 160 km bremst die Erdatmosphäre einen Satelliten in kurzer Zeit ab; die Rechnung gilt ohne Luft.');
+        if (r.v0 < r.vk0) H.meldung('Kanonenkugel: ' + zz(e.v0, 1) + ' km/s ist weniger als die erste kosmische Geschwindigkeit (' + zz(r.vk0 / 1000, 2) + ' km/s) – die Kugel fällt zurück.');
+        else if (r.v0 < r.vf0) H.meldung('Kanonenkugel: zwischen erster und zweiter kosmischer Geschwindigkeit – Ellipsenbahn um den Körper.');
+        else H.meldung('Kanonenkugel: schneller als die Fluchtgeschwindigkeit (' + zz(r.vf0 / 1000, 2) + ' km/s) – sie verlässt das Schwerefeld für immer.');
+        H.kacheln([
+          [zz(r.vk / 1000, 2) + ' km/s', 'Bahngeschwindigkeit in ' + zz(e.h, 0) + ' km Höhe', GRUEN],
+          [r.T < 86400 * 2 ? zz(r.T / 60, 1) + ' min' : zz(r.T / 86400, 2) + ' d', 'Umlaufzeit', GRUEN],
+          [zz(r.g1, 2) + ' m/s²', 'Schwerebeschleunigung in der Bahn (' + zz(r.g1 / r.g0 * 100, 0) + ' % von unten)', BLAU],
+          [zz(r.vf0 / 1000, 2) + ' km/s', 'Fluchtgeschwindigkeit an der Oberfläche', ROT],
+          [r.hgeo > 0 ? zz(r.hgeo / 1000, 0) + ' km' : 'keine', 'Höhe der synchronen (geostationären) Bahn', LILA],
+          [zz(r.dv / 1000, 3) + ' km/s', 'Δv für den Hohmann-Übergang (' + zz(Math.abs(r.dv1) / 1000, 3) + ' + ' + zz(Math.abs(r.dv2) / 1000, 3) + ')', ORANGE],
+          [r.tH < 86400 * 2 ? zz(r.tH / 3600, 2) + ' h' : zz(r.tH / 86400, 1) + ' d', 'Flugzeit auf der Übergangsellipse', ORANGE],
+          [wz(r.Ehoch / 3.6e6, 3) + ' kWh', 'Energie von der Oberfläche in die Bahn (ohne Verluste)', GRAU]
+        ]);
+        H.tabelle('Bahn und Energie', ['Größe', 'Wert'], [
+          ['Bahnradius r = R + h', zz(r.r1 / 1000, 0) + ' km'], ['Schwerebeschleunigung an der Oberfläche', zz(r.g0, 2) + ' m/s²'],
+          ['erste kosmische Geschwindigkeit (Kreisbahn am Boden)', zz(r.vk0 / 1000, 2) + ' km/s'], ['Fluchtgeschwindigkeit in Bahnhöhe', zz(r.vf1 / 1000, 2) + ' km/s'],
+          ['Gewichtskraft auf den Satelliten in der Bahn', wz(r.F, 3) + ' N'], ['kinetische Energie', wz(r.Ekin, 3) + ' J'], ['potentielle Energie (null im Unendlichen)', wz(r.Epot, 3) + ' J'], ['Gesamtenergie', wz(r.Eges, 3) + ' J'],
+          ['Zielbahn: Geschwindigkeit / Umlaufzeit', zz(Math.sqrt(r.mu / r.r2) / 1000, 2) + ' km/s / ' + (r.T2 < 172800 ? zz(r.T2 / 3600, 2) + ' h' : zz(r.T2 / 86400, 2) + ' d')],
+          ['Geschwindigkeit auf der synchronen Bahn', r.hgeo > 0 ? zz(r.vgeo / 1000, 2) + ' km/s' : '–']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Bahngeschwindigkeit (Gravitation = Zentripetalkraft)', 'v = \\sqrt{\\frac{G M}{r}} = \\sqrt{\\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(e.M * 1e24, 4) + '}{' + wt(r.r1, 4) + '\\,\\text{m}}} = ' + E(tz(r.vk, 0) + '\\,\\tfrac{\\text{m}}{\\text{s}}')],
+          ['Umlaufzeit', 'T = 2\\pi \\sqrt{\\frac{r^3}{G M}} = ' + E(tz(r.T / 60, 1) + '\\,\\text{min}')],
+          ['Fluchtgeschwindigkeit', 'v_\\text{F} = \\sqrt{\\frac{2 G M}{R}} = \\sqrt{2} \\cdot ' + tz(r.vk0, 0) + ' = ' + E(tz(r.vf0, 0) + '\\,\\tfrac{\\text{m}}{\\text{s}}')],
+          ['Synchrone Bahn', 'r = \\sqrt[3]{\\frac{G M T_\\text{rot}^2}{4\\pi^2}} = ' + tz(r.rgeo / 1000, 0) + '\\,\\text{km} \\Rightarrow h = ' + E(tz(r.hgeo / 1000, 0) + '\\,\\text{km}')],
+          ['Hohmann: erster Schub', '\\Delta v_1 = \\sqrt{\\frac{GM}{r_1}}\\left(\\sqrt{\\frac{2 r_2}{r_1 + r_2}} - 1\\right) = ' + E(tz(r.dv1, 0) + '\\,\\tfrac{\\text{m}}{\\text{s}}')],
+          ['Hohmann: zweiter Schub', '\\Delta v_2 = \\sqrt{\\frac{GM}{r_2}}\\left(1 - \\sqrt{\\frac{2 r_1}{r_1 + r_2}}\\right) = ' + E(tz(r.dv2, 0) + '\\,\\tfrac{\\text{m}}{\\text{s}}')],
+          ['Übergangszeit (halbe Ellipse)', 't = \\pi \\sqrt{\\frac{a^3}{GM}}, \\; a = \\frac{r_1 + r_2}{2} \\Rightarrow t = ' + E(tz(r.tH / 3600, 2) + '\\,\\text{h}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Gravitationsgesetz', hilfe: 'Massen in kg, Abstand in m. G = 6,674 · 10⁻¹¹ m³/(kg·s²).',
+          felder: [{ k: 'F', tex: 'F', name: 'Gravitationskraft', e: 'N', min: 1e-12, max: 1e30 }, { k: 'm1', tex: 'm_1', name: 'Masse 1', e: 'kg', min: 1e-3, max: 1e31 }, { k: 'm2', tex: 'm_2', name: 'Masse 2', e: 'kg', min: 1e-3, max: 1e31 }, { k: 'r', tex: 'r', name: 'Abstand der Mittelpunkte', e: 'm', min: 1e-3, max: 1e13 }],
+          beispiel: { m1: 5.972e24, m2: 80, r: 6.371e6 },
+          gleichungen: [{ name: 'F = G m₁ m₂ / r²', v: ['F', 'm1', 'm2', 'r'], f: function (q) { return [q.F * q.r * q.r, G * q.m1 * q.m2]; },
+            loese: { F: function (q) { return G * q.m1 * q.m2 / (q.r * q.r); }, m1: function (q) { return q.F * q.r * q.r / (G * q.m2); }, m2: function (q) { return q.F * q.r * q.r / (G * q.m1); }, r: function (q) { return Math.sqrt(G * q.m1 * q.m2 / q.F); } },
+            weg: function (k, q) {
+              if (k === 'F') return 'F = G \\frac{m_1 m_2}{r^2} = 6{,}674 \\cdot 10^{-11} \\cdot \\frac{' + wt(q.m1) + ' \\cdot ' + wt(q.m2) + '}{(' + wt(q.r) + ')^2} = ' + E(wt(q.F) + '\\,\\text{N}');
+              if (k === 'r') return 'r = \\sqrt{\\frac{G m_1 m_2}{F}} = ' + E(wt(q.r) + '\\,\\text{m}');
+              return (k === 'm1' ? 'm_1 = \\frac{F r^2}{G m_2}' : 'm_2 = \\frac{F r^2}{G m_1}') + ' = ' + E(wt(q[k]) + '\\,\\text{kg}');
+            } }] },
+        { titel: 'Kreisbahngeschwindigkeit', hilfe: 'M in 10²⁴ kg, r = Abstand vom Mittelpunkt in km, v in km/s.',
+          felder: [{ k: 'v', tex: 'v', name: 'Bahngeschwindigkeit', e: 'km/s', min: 0.001, max: 1000 }, { k: 'M', tex: 'M', name: 'Masse des Zentralkörpers', e: '· 10²⁴ kg', min: 1e-4, max: 1e7 }, { k: 'r', tex: 'r', name: 'Bahnradius', e: 'km', min: 1, max: 1e10 }],
+          beispiel: { M: 5.972, r: 6791 },
+          gleichungen: [{ name: 'v = √(GM/r)', v: ['v', 'M', 'r'], f: function (q) { return [q.v * q.v * 1e6 * q.r * 1e3, G * q.M * 1e24]; },
+            loese: { v: function (q) { return Math.sqrt(G * q.M * 1e24 / (q.r * 1e3)) / 1e3; }, M: function (q) { return q.v * q.v * 1e6 * q.r * 1e3 / G / 1e24; }, r: function (q) { return G * q.M * 1e24 / (q.v * q.v * 1e6) / 1e3; } },
+            weg: function (k, q) {
+              if (k === 'v') return 'v = \\sqrt{\\frac{G M}{r}} = \\sqrt{\\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}{' + wt(q.r * 1e3) + '}}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 3) + '\\,\\tfrac{\\text{km}}{\\text{s}}');
+              if (k === 'M') return 'M = \\frac{v^2 r}{G} = \\frac{(' + wt(q.v * 1e3) + ')^2 \\cdot ' + wt(q.r * 1e3) + '}{6{,}674 \\cdot 10^{-11}} = ' + E(wt(q.M * 1e24) + '\\,\\text{kg}');
+              return 'r = \\frac{G M}{v^2} = \\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}{(' + wt(q.v * 1e3) + ')^2} = ' + E(wt(q.r) + '\\,\\text{km}');
+            } }] },
+        { titel: 'Drittes Keplersches Gesetz', hilfe: 'M in 10²⁴ kg, große Halbachse a in km, Umlaufzeit T in Stunden.',
+          felder: [{ k: 'T', tex: 'T', name: 'Umlaufzeit', e: 'h', min: 0.01, max: 1e7 }, { k: 'a', tex: 'a', name: 'große Halbachse', e: 'km', min: 1, max: 1e10 }, { k: 'M', tex: 'M', name: 'Masse des Zentralkörpers', e: '· 10²⁴ kg', min: 1e-4, max: 1e7 }],
+          beispiel: { a: 42164, M: 5.972 },
+          gleichungen: [{ name: 'T² = 4π² a³ / (GM)', v: ['T', 'a', 'M'], f: function (q) { const T = q.T * 3600, a = q.a * 1e3; return [T * T * G * q.M * 1e24, 4 * Math.PI * Math.PI * a * a * a]; },
+            loese: { T: function (q) { const a = q.a * 1e3; return 2 * Math.PI * Math.sqrt(a * a * a / (G * q.M * 1e24)) / 3600; }, a: function (q) { const T = q.T * 3600; return Math.cbrt(G * q.M * 1e24 * T * T / (4 * Math.PI * Math.PI)) / 1e3; }, M: function (q) { const T = q.T * 3600, a = q.a * 1e3; return 4 * Math.PI * Math.PI * a * a * a / (G * T * T) / 1e24; } },
+            weg: function (k, q) {
+              if (k === 'T') return 'T = 2\\pi \\sqrt{\\frac{a^3}{G M}} = 2\\pi \\sqrt{\\frac{(' + wt(q.a * 1e3) + ')^3}{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}}\\,\\text{s} = ' + E(tz(q.T, 3) + '\\,\\text{h}');
+              if (k === 'a') return 'a = \\sqrt[3]{\\frac{G M T^2}{4\\pi^2}} = ' + E(tz(q.a, 0) + '\\,\\text{km}');
+              return 'M = \\frac{4\\pi^2 a^3}{G T^2} = ' + E(wt(q.M * 1e24) + '\\,\\text{kg}');
+            } }] },
+        { titel: 'Fluchtgeschwindigkeit', hilfe: 'M in 10²⁴ kg, R in km, v in km/s.',
+          felder: [{ k: 'v', tex: 'v_\\text{F}', name: 'Fluchtgeschwindigkeit', e: 'km/s', min: 0.001, max: 300000 }, { k: 'M', tex: 'M', name: 'Masse', e: '· 10²⁴ kg', min: 1e-4, max: 1e8 }, { k: 'R', tex: 'R', name: 'Radius', e: 'km', min: 0.001, max: 1e7 }],
+          beispiel: { M: 0.6417, R: 3389.5 },
+          gleichungen: [{ name: 'v = √(2GM/R)', v: ['v', 'M', 'R'], f: function (q) { return [q.v * q.v * 1e6 * q.R * 1e3, 2 * G * q.M * 1e24]; },
+            loese: { v: function (q) { return Math.sqrt(2 * G * q.M * 1e24 / (q.R * 1e3)) / 1e3; }, M: function (q) { return q.v * q.v * 1e6 * q.R * 1e3 / (2 * G) / 1e24; }, R: function (q) { return 2 * G * q.M * 1e24 / (q.v * q.v * 1e6) / 1e3; } },
+            weg: function (k, q) {
+              if (k === 'v') return 'v_\\text{F} = \\sqrt{\\frac{2 G M}{R}} = \\sqrt{\\frac{2 \\cdot 6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}{' + wt(q.R * 1e3) + '}}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 3) + '\\,\\tfrac{\\text{km}}{\\text{s}}');
+              if (k === 'M') return 'M = \\frac{v_\\text{F}^2 R}{2 G} = ' + E(wt(q.M * 1e24) + '\\,\\text{kg}');
+              return 'R = \\frac{2 G M}{v_\\text{F}^2} = ' + E(wt(q.R) + '\\,\\text{km}');
+            } }] },
+        { titel: 'Schwerebeschleunigung', hilfe: 'M in 10²⁴ kg, r in km.',
+          felder: [{ k: 'g', tex: 'g', name: 'Schwerebeschleunigung', e: 'm/s²', min: 1e-6, max: 1e8 }, { k: 'M', tex: 'M', name: 'Masse', e: '· 10²⁴ kg', min: 1e-4, max: 1e8 }, { k: 'r', tex: 'r', name: 'Abstand vom Mittelpunkt', e: 'km', min: 0.001, max: 1e10 }],
+          beispiel: { M: 0.07342, r: 1737.4 },
+          gleichungen: [{ name: 'g = GM/r²', v: ['g', 'M', 'r'], f: function (q) { return [q.g * q.r * q.r * 1e6, G * q.M * 1e24]; },
+            loese: { g: function (q) { return G * q.M * 1e24 / (q.r * q.r * 1e6); }, M: function (q) { return q.g * q.r * q.r * 1e6 / G / 1e24; }, r: function (q) { return Math.sqrt(G * q.M * 1e24 / q.g) / 1e3; } },
+            weg: function (k, q) {
+              if (k === 'g') return 'g = \\frac{G M}{r^2} = \\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}{(' + wt(q.r * 1e3) + ')^2} = ' + E(wt(q.g) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}');
+              if (k === 'M') return 'M = \\frac{g r^2}{G} = ' + E(wt(q.M * 1e24) + '\\,\\text{kg}');
+              return 'r = \\sqrt{\\frac{G M}{g}} = ' + E(wt(q.r) + '\\,\\text{km}');
+            } }] }
+      ],
+      sammlung: [
+        ['Gravitationsgesetz', 'F = G \\cdot \\frac{m_1 \\cdot m_2}{r^2}', 'G = 6,674 · 10⁻¹¹ m³/(kg · s²)'],
+        ['Schwerebeschleunigung', 'g = \\frac{G M}{r^2}', 'an der Erdoberfläche 9,81 m/s²'],
+        ['Kreisbahngeschwindigkeit', 'v = \\sqrt{\\frac{G M}{r}}', 'erste kosmische Geschwindigkeit für r = R'],
+        ['Fluchtgeschwindigkeit', 'v_\\text{F} = \\sqrt{\\frac{2 G M}{r}} = \\sqrt{2} \\cdot v_\\text{Kreis}', 'zweite kosmische Geschwindigkeit'],
+        ['Umlaufzeit (3. Keplersches Gesetz)', 'T = 2\\pi \\sqrt{\\frac{a^3}{G M}}', 'a große Halbachse'],
+        ['Synchrone Bahn', 'r = \\sqrt[3]{\\frac{G M T^2}{4\\pi^2}}', 'Erde: 42 164 km vom Mittelpunkt'],
+        ['Potentielle Energie', 'E_\\text{pot} = -\\frac{G M m}{r}', 'null im Unendlichen'],
+        ['Gesamtenergie auf der Kreisbahn', 'E = -\\frac{G M m}{2 r}', ''],
+        ['Vis-viva-Gleichung', 'v^2 = G M \\left(\\frac{2}{r} - \\frac{1}{a}\\right)', 'Geschwindigkeit auf einer Ellipse'],
+        ['Hohmann-Übergang', '\\Delta v_1 = \\sqrt{\\tfrac{GM}{r_1}}\\left(\\sqrt{\\tfrac{2 r_2}{r_1 + r_2}} - 1\\right), \\; \\Delta v_2 = \\sqrt{\\tfrac{GM}{r_2}}\\left(1 - \\sqrt{\\tfrac{2 r_1}{r_1 + r_2}}\\right)', ''],
+        ['Raketengleichung', '\\Delta v = v_\\text{aus} \\cdot \\ln\\frac{m_0}{m_1}', 'Ziolkowski']
+      ],
+      quellen: 'Massen, Radien und Rotationsdauern nach Datenblättern der Raumfahrtagenturen, gerundet. Rechnung ohne Luftwiderstand, Abplattung und Rotation der Startfläche.',
+      bild: { titel: 'Animation', label: 'Satellitenbahn mit Hohmann-Übergang, Newtons Kanonenkugel und Verlauf über der Höhe', animiert: true,
+        hoehe: function (B) { return B < 600 ? Math.round(B + 40) : 480; },
+        hinweis: function () {
+          if (ansicht === 'bahn') return 'Grün: Startbahn, blau: Zielbahn, orange: Übergangsellipse. Zwei kurze Schübe (Δv₁, Δv₂) bringen den Satelliten hinauf. Maßstab echt.';
+          if (ansicht === 'kanone') return 'Waagerechter Schuss von einem hohen Berg: zu langsam fällt die Kugel zurück, bei der ersten kosmischen Geschwindigkeit umkreist sie den Körper, ab der Fluchtgeschwindigkeit fliegt sie davon. Grau: andere Geschwindigkeiten zum Vergleich.';
+          return 'Schwerebeschleunigung, Bahngeschwindigkeit und Umlaufzeit über der Höhe. Rot: gewählte Bahnhöhe.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); ({ bahn: bahnBild, kanone: kanoneBild, verlauf: verlaufBild })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    function koerperZeichnen(cx, x, y, rad, e) {
+      const farbe = { erde: '#2B7BB9', mond: '#8A8F98', mars: '#C1440E', venus: '#D9A441', jupiter: '#C99B6A', sonne: '#F2A900' }[e.koerper] || '#6B7785';
+      cx.beginPath(); cx.arc(x, y, Math.max(2, rad), 0, 2 * Math.PI); cx.fillStyle = farbe; cx.fill();
+    }
+    // ---------- Hohmann ----------
+    function bahnBild(cx, B, H, dt, r, e) {
+      const mx = B / 2, my = H / 2, rmax = Math.max(r.r1, r.r2), s = (Math.min(B, H) / 2 - 24) / rmax;
+      koerperZeichnen(cx, mx, my, r.R * s, e);
+      kreis(cx, mx, my, r.r1 * s, 'rgba(0,0,0,0)', GRUEN, 1.5); kreis(cx, mx, my, r.r2 * s, 'rgba(0,0,0,0)', BLAU, 1.5);
+      const a = r.a, c = a - r.r1, b = Math.sqrt(r.r1 * r.r2), hoch = r.r2 >= r.r1;
+      cx.save(); cx.setLineDash([5, 4]); cx.strokeStyle = ORANGE; cx.lineWidth = 1.5; cx.beginPath();
+      cx.ellipse(mx + c * s, my, a * s, b * s, 0, 0, 2 * Math.PI); cx.stroke(); cx.restore();
+      // Ablauf: 0–1 Startbahn, 1–2 Übergang, 2–3 Zielbahn (je gestaucht)
+      SIM.t = (SIM.t + dt / 3) % 3.6;
+      let x, y, txt;
+      if (SIM.t < 1) { const w = Math.PI + SIM.t * 2 * Math.PI; x = mx + r.r1 * s * Math.cos(w); y = my + r.r1 * s * Math.sin(w); txt = SIM.t > 0.93 ? 'Schub Δv₁ = ' + zz(r.dv1, 0) + ' m/s' : 'Startbahn, ' + zz(r.vk / 1000, 2) + ' km/s'; }
+      else if (SIM.t < 2) {
+        const ex = Math.abs(r.r2 - r.r1) / (r.r1 + r.r2), M = (hoch ? 0 : Math.PI) + (SIM.t - 1) * Math.PI;
+        let E2 = M; for (let i = 0; i < 30; i++) E2 = E2 - (E2 - ex * Math.sin(E2) - M) / (1 - ex * Math.cos(E2));
+        const nu = 2 * Math.atan2(Math.sqrt(1 + ex) * Math.sin(E2 / 2), Math.sqrt(1 - ex) * Math.cos(E2 / 2)), rr = a * (1 - ex * Math.cos(E2)), w = hoch ? Math.PI + nu : nu;
+        x = mx + rr * s * Math.cos(w); y = my + rr * s * Math.sin(w);
+        txt = SIM.t > 1.93 ? 'Schub Δv₂ = ' + zz(r.dv2, 0) + ' m/s' : 'Übergangsellipse, ' + zz(r.tH / 3600, 2) + ' h';
+      } else { const tt = Math.min(SIM.t, 3) - 2, w = 2 * Math.PI * tt; x = mx + r.r2 * s * Math.cos(w); y = my + r.r2 * s * Math.sin(w); txt = 'Zielbahn, ' + zz(Math.sqrt(r.mu / r.r2) / 1000, 2) + ' km/s'; }
+      kreis(cx, x, y, 5, ROT);
+      T(cx, txt, 10, 18, 'left', 12, true, ROT);
+      T(cx, 'h₁ = ' + zz(e.h, 0) + ' km → h₂ = ' + zz(e.h2, 0) + ' km · Δv gesamt ' + zz(r.dv, 0) + ' m/s', 10, H - 10, 'left', 11, false, GRAU);
+    }
+    // ---------- Kanonenkugel ----------
+    function kegelschnitt(r0, v0, mu) {
+      const h = r0 * v0, eps = v0 * v0 / 2 - mu / r0, ex = Math.sqrt(Math.max(0, 1 + 2 * eps * h * h / (mu * mu))), p = h * h / mu, peri = v0 * v0 >= mu / r0;
+      return function (th) { const c = peri ? Math.cos(th) : -Math.cos(th); const n = 1 + ex * c; return n > 1e-6 ? p / n : Infinity; };
+    }
+    function kanoneBild(cx, B, H, dt, r, e) {
+      const mx = B / 2, my = H / 2 + 10, s = (Math.min(B, H) / 2 - 20) / (r.R * 2.2), r0 = r.R * 1.08;
+      koerperZeichnen(cx, mx, my, r.R * s, e);
+      strecke(cx, mx, my - r.R * s, mx, my - r0 * s, F('--text'), 3);
+      const vk = Math.sqrt(r.mu / r0), vf = Math.sqrt(2 * r.mu / r0);
+      [0.7, 0.85, 1, 1.2, 1.414, 1.6].forEach(function (f) { spur(cx, mx, my, s, r, r0, f * vk, GRAU, 1, false); });
+      const v = Math.max(0, r.v0 * r0 / r0);
+      const schl = v + '|' + r.mu + '|' + r.R; if (SIM.kSchl !== schl) { SIM.kSchl = schl; SIM.phi = 0; }
+      const bahn = spur(cx, mx, my, s, r, r0, v, ORANGE, 2.5, true);
+      if (bahn.length > 1) {
+        SIM.phi += dt * 0.35 * bahn.length; if (SIM.phi > bahn.length + 40) SIM.phi = 0;
+        const q = bahn[Math.min(bahn.length - 1, Math.floor(SIM.phi))]; kreis(cx, q[0], q[1], 5, ROT);
+      }
+      const art = v < vk * 0.999 ? 'fällt zurück' : v < vf ? (Math.abs(v - vk) < vk * 0.01 ? 'Kreisbahn' : 'Ellipse') : 'entkommt';
+      T(cx, 'v₀ = ' + zz(e.v0, 2) + ' km/s · ' + art, 10, 18, 'left', 12, true, ORANGE);
+      T(cx, 'Kreis ' + zz(vk / 1000, 2) + ' km/s, Flucht ' + zz(vf / 1000, 2) + ' km/s (vom Berg)', 10, 34, 'left', 10, false, GRAU);
+    }
+    function spur(cx, mx, my, s, r, r0, v, farbe, br, merken) {
+      const f = kegelschnitt(r0, Math.max(1, v), r.mu), pk = [];
+      for (let i = 0; i <= 720; i++) {
+        const th = i / 720 * 2 * Math.PI, rr = f(th);
+        if (!isFinite(rr) || rr * s > 3 * Math.max(cx.canvas.width, 1)) break;
+        const x = mx + rr * s * Math.sin(th), y = my - rr * s * Math.cos(th);
+        pk.push([x, y]); if (rr < r.R) break;
+      }
+      zug(cx, pk, farbe, br);
+      return merken ? pk : null;
+    }
+    // ---------- Verlauf über der Höhe ----------
+    function verlaufBild(cx, B, H, dt, r, e) {
+      const hmax = Math.max(e.h, e.h2, r.hgeo / 1000 || 0, e.R) * 1.15, n = 120, pg = [], pv = [], pt = [];
+      for (let i = 0; i <= n; i++) { const h = hmax * i / n, rr = r.R + h * 1e3; pg.push([h, r.mu / (rr * rr)]); pv.push([h, Math.sqrt(r.mu / rr) / 1000]); pt.push([h, 2 * Math.PI * Math.sqrt(rr * rr * rr / r.mu) / 3600]); }
+      const h1 = Math.round((H - 24) / 3);
+      [[pg, 'Schwerebeschleunigung in m/s²', BLAU, r.g1], [pv, 'Bahngeschwindigkeit in km/s', GRUEN, r.vk / 1000], [pt, 'Umlaufzeit in h', LILA, r.T / 3600]].forEach(function (d, i) {
+        const ymax = Math.max.apply(null, d[0].map(function (q) { return q[1]; }));
+        const g = diagramm(cx, 8, 8 + i * (h1 + 4), B - 16, h1, [{ name: d[1], farbe: d[2], punkte: d[0], punkt: [e.h, d[3]] }], { titel: '', xl: i === 2 ? 'Höhe in km' : '', xr: [0, hmax], yr: [0, ymax * 1.05] });
+        strecke(cx, g.X(e.h), g.y0, g.X(e.h), g.y1, ROT, 1, [3, 3]);
+        if (i === 2 && r.hgeo > 0 && r.hgeo / 1000 < hmax) { strecke(cx, g.X(r.hgeo / 1000), g.y0, g.X(r.hgeo / 1000), g.y1, ORANGE, 1, [2, 3]); T(cx, 'synchron', g.X(r.hgeo / 1000) - 3, g.Y(ymax * 0.9), 'right', 9, true, ORANGE); }
+      });
+      void dt;
+    }
+
+    ansicht = (ansichten(seite, [['bahn', 'Hohmann-Bahn'], ['kanone', 'Kanonenkugel'], ['verlauf', 'Verlauf']], 'bahn', function (a) { ansicht = a; SIM.t = 0; SIM.phi = 0; }))();
+    const TABELLEN = [['koerper-tabelle', Object.keys(KOERPER).map(function (k) { const K = KOERPER[k], mu = G * K[1] * 1e24, R0 = K[2] * 1e3; return [K[0], wz(K[1] * 1e24, 4) + ' kg', zz(K[2], 0) + ' km', zz(mu / (R0 * R0), 2) + ' m/s²', zz(Math.sqrt(mu / R0) / 1000, 2) + ' km/s', zz(Math.sqrt(2 * mu / R0) / 1000, 2) + ' km/s']; }), [1, 2, 3, 4, 5]]];
+
+    function tabelleFuellen(id, zeilen, zahl) { const tb = document.getElementById(id); if (!tb) return; zeilen.forEach(function (z) { const tr = document.createElement('tr'); z.forEach(function (x, i) { const td = document.createElement('td'); if (zahl.indexOf(i) >= 0) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr); }); }
+    (typeof TABELLEN !== 'undefined' ? TABELLEN : []).forEach(function (t) { tabelleFuellen(t[0], t[1], t[2]); });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

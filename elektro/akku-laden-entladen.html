@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Akku: Lade- und Entladeverhalten – Ladekurve, Entladekurve, C-Rate – Formeln &amp; Rechner</title>
   <meta name="description" content="Akku laden und entladen simulieren: Ladekurve mit Konstantstrom und Konstantspannung (CC/CV, IUoU, −ΔU), Ladezeit, Entladekurven je C-Rate, Innenwiderstand, Peukert, Kälte und Alterung für Lithium-Ionen, LFP, Blei und NiMH.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/elektro/akku-laden-entladen.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Akku: Lade- und Entladeverhalten – Ladekurve, Entladekurve, C-Rate">
-  <meta property="og:description" content="Akku laden und entladen simulieren: Ladekurve mit Konstantstrom und Konstantspannung (CC/CV, IUoU, −ΔU), Ladezeit, Entladekurven je C-Rate, Innenwiderstand, Peukert, Kälte und Alterung für Lithium-Ionen, LFP, Blei und NiMH.">
-  <meta property="og:url" content="https://tools.pr1m3.de/elektro/akku-laden-entladen.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Akku: Lade- und Entladeverhalten – Ladekurve, Entladekurve, C-Rate">
-  <meta name="twitter:description" content="Akku laden und entladen simulieren: Ladekurve mit Konstantstrom und Konstantspannung (CC/CV, IUoU, −ΔU), Ladezeit, Entladekurven je C-Rate, Innenwiderstand, Peukert, Kälte und Alterung für Lithium-Ionen, LFP, Blei und NiMH.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/akku-laden-entladen.html#seite","name":"Akku: Lade- und Entladeverhalten – Ladekurve, Entladekurve, C-Rate","url":"https://tools.pr1m3.de/elektro/akku-laden-entladen.html","inLanguage":"de","description":"Akku laden und entladen simulieren: Ladekurve mit Konstantstrom und Konstantspannung (CC/CV, IUoU, −ΔU), Ladezeit, Entladekurven je C-Rate, Innenwiderstand, Peukert, Kälte und Alterung für Lithium-Ionen, LFP, Blei und NiMH.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/akku-laden-entladen.html#pfad"},"dateModified":"2026-11-24"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/akku-laden-entladen.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Akku: Lade- und Entladeverhalten – Ladekurve, Entladekurve, C-Rate","item":"https://tools.pr1m3.de/elektro/akku-laden-entladen.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/akku-laden-entladen.html#fragen","mainEntity":[{"@type":"Question","name":"Warum lädt das Handy die letzten 20 % so langsam?","acceptedAnswer":{"@type":"Answer","text":"Ab etwa 80 % ist die Ladeschlussspannung erreicht. Das Ladegerät wechselt in die Konstantspannungsphase, und der Strom sinkt nach und nach. Würde es mit vollem Strom weiterladen, stiege die Zellspannung über die zulässige Grenze."}},{"@type":"Question","name":"Wie berechnet man die Ladezeit eines Akkus?","acceptedAnswer":{"@type":"Answer","text":"Grob: Ladezeit = Kapazität × zu ladender Anteil ÷ (Ladestrom × Ladewirkungsgrad). Ein 3-Ah-Akku braucht bei 1,5 A also etwa 2 Stunden. Die Konstantspannungsphase kommt bei Lithium-Akkus noch dazu, oft 20–60 Minuten. Der Rechner simuliert beides."}},{"@type":"Question","name":"Was bedeutet 1C, 0,5C oder 2C?","acceptedAnswer":{"@type":"Answer","text":"Die C-Rate ist der Strom geteilt durch die Kapazität. 1C bedeutet: Der Akku wäre in einer Stunde leer bzw. voll, 2C in einer halben Stunde, 0,2C in fünf Stunden."}},{"@type":"Question","name":"Warum hat ein Akku bei hohem Strom weniger Kapazität?","acceptedAnswer":{"@type":"Answer","text":"Am Innenwiderstand fällt mehr Spannung ab, sodass die Entladeschlussspannung früher erreicht wird, obwohl noch Ladung in der Zelle ist. Dazu kommen langsame chemische Vorgänge (Diffusion), die bei großem Strom nicht nachkommen. Beim Bleiakku beschreibt das die Peukert-Gleichung."}},{"@type":"Question","name":"Darf man einen Lithium-Akku im Winter laden?","acceptedAnswer":{"@type":"Answer","text":"Nur wenn die Zellen selbst über 0 °C warm sind, besser über 10 °C. Gute Akkusysteme sperren das Laden bei Kälte oder heizen erst. Entladen ist auch bei Kälte erlaubt, liefert dann aber weniger Kapazität."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/akku-laden-entladen.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -66,17 +48,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="../it/usv.html"><b>USV auslegen</b><span>USV für Server und Netzwerk: Scheinleistung mit Reserve, Baugröße, Überbrückungszeit mit Peukert und Alterung, …</span></a></li>
-      <li><a href="kondensator.html"><b>Kondensatoren</b><span>Kondensatoren berechnen: Ladung, Energie, Reihen- und Parallelschaltung mit Spannungsaufteilung, RC-Glied laden und …</span></a></li>
-      <li><a href="batteriespeicher.html"><b>Batteriespeicher auslegen</b><span>Batteriespeicher zur Photovoltaik auslegen</span></a></li>
-      <li><a href="pv-notstrom.html"><b>PV und Notstrom</b><span>PV-Anlage mit Ertrag, Eigenverbrauch, Amortisation und Stringauslegung, dazu Speicher und Notstrom bis zum Inselbetrieb</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

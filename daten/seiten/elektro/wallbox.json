@@ -1,0 +1,10 @@
+{
+  "nr": 230,
+  "titel": "Wallbox und Lastmanagement",
+  "gruppe": "Energie und Photovoltaik",
+  "bereich": "Elektrotechnik",
+  "themen": ["Wallbox", "Lastmanagement", "Hausanschluss", "Ladezeit", "§ 14a"],
+  "text": "Ladepunkte am Hausanschluss: freier Strom, Ladestrom mit oder ohne Lastmanagement, Zuleitung, Schutz, Anmeldung und Ladezeit.",
+  "tex": "I = \\min\\left(I_\\text{WB}, \\frac{I_\\text{verf}}{n}\\right)",
+  "projektmappe": {"nr": 190, "name": "Wallbox und Lastmanagement", "farbe": "#2B7BB9"}
+}

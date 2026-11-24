@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Blindleistungskompensation – Formeln &amp; Rechner</title>
   <meta name="description" content="Blindleistungskompensation mit Schaltplänen: kvar vom cos φ zum Ziel, Einzel-, Gruppen- oder Zentralkompensation, Stern oder Dreieck, Drossel, Stufen und c/k-Wert der Regelanlage, Sicherung, Entladewiderstand, Tagesgang, Resonanzkurve und Kosten.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/elektro/kompensation.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Blindleistungskompensation">
-  <meta property="og:description" content="Blindleistungskompensation mit Schaltplänen: kvar vom cos φ zum Ziel, Einzel-, Gruppen- oder Zentralkompensation, Stern oder Dreieck, Drossel, Stufen und c/k-Wert der Regelanlage, Sicherung, Entladewiderstand, Tagesgang, Resonanzkurve und Kosten.">
-  <meta property="og:url" content="https://tools.pr1m3.de/elektro/kompensation.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Blindleistungskompensation">
-  <meta name="twitter:description" content="Blindleistungskompensation mit Schaltplänen: kvar vom cos φ zum Ziel, Einzel-, Gruppen- oder Zentralkompensation, Stern oder Dreieck, Drossel, Stufen und c/k-Wert der Regelanlage, Sicherung, Entladewiderstand, Tagesgang, Resonanzkurve und Kosten.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/kompensation.html#seite","name":"Blindleistungskompensation","url":"https://tools.pr1m3.de/elektro/kompensation.html","inLanguage":"de","description":"Blindleistungskompensation mit Schaltplänen: kvar vom cos φ zum Ziel, Einzel-, Gruppen- oder Zentralkompensation, Stern oder Dreieck, Drossel, Stufen und c/k-Wert der Regelanlage, Sicherung, Entladewiderstand, Tagesgang, Resonanzkurve und Kosten.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/kompensation.html#pfad"},"dateModified":"2026-11-15"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/kompensation.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Blindleistungskompensation","item":"https://tools.pr1m3.de/elektro/kompensation.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/kompensation.html#fragen","mainEntity":[{"@type":"Question","name":"Wie berechnet man die nötige Kompensationsleistung?","acceptedAnswer":{"@type":"Answer","text":"Wirkleistung mal Differenz der Tangens-Werte: Q_C = P · (tan φ₁ − tan φ₂). Für 120 kW von cos φ = 0,75 auf 0,95 sind das 120 · (0,882 − 0,329) = 66 kvar. Die Tabelle auf der Seite zeigt den Faktor für übliche Werte."}},{"@type":"Question","name":"Ab welchem cos φ kostet Blindarbeit Geld?","acceptedAnswer":{"@type":"Answer","text":"Viele Netzbetreiber berechnen Blindarbeit, sobald sie die Hälfte der Wirkarbeit übersteigt – das entspricht einem Leistungsfaktor unter etwa 0,9. Die genaue Regel steht im Netznutzungsvertrag; Haushalte zahlen keine Blindarbeit."}},{"@type":"Question","name":"Wann muss eine Kompensationsanlage verdrosselt sein?","acceptedAnswer":{"@type":"Answer","text":"Sobald Oberschwingungen im Netz sind – durch Umrichter, Wechselrichter, LED-Treiber, Netzteile. Ohne Drossel bilden Kondensatoren und Transformator einen Schwingkreis, der bei einer Oberschwingung in Resonanz geraten kann. Die Drossel legt die Resonanz unter die 5. Oberschwingung, meist mit 7 % auf 189 Hz."}},{"@type":"Question","name":"Einzel-, Gruppen- oder Zentralkompensation – was ist besser?","acceptedAnswer":{"@type":"Answer","text":"Zentral an der Hauptverteilung ist je kvar am günstigsten und passt sich mit einer Regelanlage der Last an, entlastet aber nur Trafo und Hauptzuleitung. Einzelkompensation direkt am Verbraucher entlastet alle Leitungen und lohnt sich bei großen Motoren, die lange laufen. Gruppenkompensation an der Unterverteilung liegt dazwischen. In der Praxis werden große Dauerläufer oft einzeln und der Rest zentral kompensiert."}},{"@type":"Question","name":"Wie groß darf der Kondensator bei Einzelkompensation eines Motors sein?","acceptedAnswer":{"@type":"Answer","text":"Höchstens 90 % der Leerlaufblindleistung des Motors: Q_C ≤ 0,9 · √3 · U · I₀. Ist der Kondensator größer, erregt er den auslaufenden Motor nach dem Abschalten selbst – der Motor arbeitet als Generator, es entstehen gefährliche Überspannungen."}},{"@type":"Question","name":"Was ist der Unterschied zwischen Stern- und Dreieckschaltung der Kondensatoren?","acceptedAnswer":{"@type":"Answer","text":"Im Dreieck liegt jeder Kondensator an der vollen Außenleiterspannung von 400 V, im Stern nur an 230 V. Für dieselbe Blindleistung braucht der Stern deshalb die dreifache Kapazität. Kompensationskondensatoren werden fast immer im Dreieck geschaltet."}},{"@type":"Question","name":"Wie stellt man den c/k-Wert eines Blindleistungsreglers ein?","acceptedAnswer":{"@type":"Answer","text":"Der Ansprechwert c/k ist der Blindstrom auf der Sekundärseite des Stromwandlers, ab dem der Regler eine Stufe schaltet: etwa 0,65 · kleinste Stufe / (√3 · U · Wandlerübersetzung). Für eine 10-kvar-Stufe an 400 V mit Wandler 400/5 A sind das 0,65 · 10 000 / (692,8 · 80) ≈ 0,12 A. Zu klein eingestellt, pendelt der Regler; zu groß, regelt er zu grob."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/kompensation.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -51,17 +33,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="motor.html"><b>Drehstrommotor und Anlauf</b><span>Drehstrommotor vom Typenschild zum Anschluss</span></a></li>
-      <li><a href="wechselstrom.html"><b>Wechselstrom und RLC-Schaltungen</b><span>Wechselstrom verstehen und rechnen</span></a></li>
-      <li><a href="batteriespeicher.html"><b>Batteriespeicher auslegen</b><span>Batteriespeicher zur Photovoltaik auslegen</span></a></li>
-      <li><a href="pv-notstrom.html"><b>PV und Notstrom</b><span>PV-Anlage mit Ertrag, Eigenverbrauch, Amortisation und Stringauslegung, dazu Speicher und Notstrom bis zum Inselbetrieb</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

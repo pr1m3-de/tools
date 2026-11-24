@@ -1,0 +1,15 @@
+{
+  "nr": 30,
+  "titel": "Ohmsches Gesetz und Kirchhoff",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Ohmsches Gesetz", "Maschenregel", "Knotenregel", "Reihenschaltung", "Parallelschaltung", "Leistung"],
+  "text": "Spannung, Strom und Widerstand in jede Richtung rechnen, Reihen- und Parallelschaltung mit fließenden Ladungen, Maschenumlauf mit Potentialdiagramm und Knotenregel.",
+  "tex": "U = R \\cdot I",
+  "projektmappe": {"nr": 10, "name": "Ohmsches Gesetz und Kirchhoff", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Was passiert mit dem Strom, wenn sich bei gleicher Spannung der Widerstand verdoppelt?", "Er halbiert sich.", ["Er verdoppelt sich.", "Er bleibt gleich.", "Er vervierfacht sich."], "Nach I = U / R ist der Strom umgekehrt proportional zum Widerstand."],
+    ["Was besagt die Knotenregel (1. Kirchhoffsches Gesetz)?", "Die Summe der zufließenden Ströme ist gleich der Summe der abfließenden.", ["Die Summe aller Spannungen in einer Masche ist null.", "In einer Reihenschaltung ist die Spannung überall gleich.", "Der Strom teilt sich immer zu gleichen Teilen auf."], "In einem Knoten geht keine Ladung verloren."],
+    ["Wie groß ist der Ersatzwiderstand zweier gleicher Widerstände R in Parallelschaltung?", "R / 2", ["2 · R", "R", "R²"], "Bei Parallelschaltung addieren sich die Leitwerte: 1/R + 1/R = 2/R."]
+  ]
+}

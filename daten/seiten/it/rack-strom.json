@@ -1,0 +1,12 @@
+{
+  "nr": 830,
+  "titel": "Strom- und Kühlkosten im Rack",
+  "gruppe": "Betrieb",
+  "bereich": "IT und Netzwerk",
+  "auchIn": ["Elektrotechnik"],
+  "themen": ["Serverschrank", "Rack", "Stromkosten", "PDU", "PUE", "Abwärme", "Kühlluft", "Höheneinheiten", "Leistungsdichte", "BTU"],
+  "text": "Strom und Kühlung eines Serverschranks: Leistung aus der Geräteliste, Strom je Phase und Auslastung der Steckdosenleiste mit 80-Prozent-Regel, A/B-Versorgung, Jahresverbrauch mit PUE, Kosten, CO₂, Abwärme und Kühlluft – mit Simulation des Luftstroms.",
+  "tex": "K = P \\cdot 8760\\,\\text{h} \\cdot PUE \\cdot k",
+  "projektmappe": {"nr": 940, "name": "Strom- und Kühlkosten im Rack", "farbe": "#3B5BDB"},
+  "verwandt": ["it/serverraum-klima.html", "it/usv.html"]
+}

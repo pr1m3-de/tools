@@ -1,0 +1,10 @@
+{
+  "nr": 810,
+  "titel": "Schrauben und Dübel",
+  "bereich": "Mechanik",
+  "auchIn": ["Werkzeuge"],
+  "themen": ["Anziehdrehmoment", "Vorspannkraft", "Festigkeitsklasse", "VDI 2230", "Dübel", "Konsole", "Abscheren", "Zugkraft", "Spannungsquerschnitt", "Drehmoment"],
+  "text": "Schrauben und Dübel berechnen: Vorspannkraft und Anziehdrehmoment aus Gewinde, Festigkeitsklasse und Reibung, Tragfähigkeit auf Zug und Abscheren, Zug und Querlast je Dübel einer Konsole mit Nachweis gegen die zulässigen Lasten – mit Simulation.",
+  "tex": "M_\\text{A} = F_\\text{M}\\left(0{,}16P + 0{,}58 d_2 \\mu + \\tfrac{D_\\text{Km}}{2}\\mu\\right)",
+  "projektmappe": {"nr": 910, "name": "Schrauben und Dübel", "farbe": "#6E6FA6"}
+}

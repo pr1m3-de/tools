@@ -1,0 +1,16 @@
+{
+  "nr": 1050,
+  "titel": "Wechselstrom und RLC-Schaltungen",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Wechselstrom", "Sinus", "Effektivwert", "Scheitelwert", "Kreisfrequenz", "Blindwiderstand", "Scheinwiderstand", "Zeigerdiagramm", "Phasenverschiebung", "RLC", "Reihenschaltung", "Parallelschaltung", "Resonanz", "Schwingkreis", "Güte", "Bandbreite", "Tiefpass", "Hochpass", "Grenzfrequenz", "Filter"],
+  "text": "Wechselstrom verstehen und rechnen: Scheitel- und Effektivwert, Frequenz und Kreisfrequenz, Blindwiderstände, R-L-C in Reihe und parallel mit Zeigerdiagramm, Phasenverschiebung und Leistung, Resonanz mit Güte und Bandbreite, Tiefpass und Hochpass.",
+  "tex": "Z = \\sqrt{R^2 + (X_L - X_C)^2}",
+  "projektmappe": {"nr": 800, "name": "Wechselstrom und RLC", "farbe": "#2B7BB9"},
+  "verwandt": ["elektro/kompensation.html"],
+  "fragen": [
+    ["Wie verhält sich der Blindwiderstand einer Spule, wenn die Frequenz steigt?", "Er steigt.", ["Er sinkt.", "Er bleibt gleich.", "Er wird negativ."], "X_L = 2π f L."],
+    ["Was gilt bei Resonanz einer Reihenschaltung aus R, L und C?", "X_L = X_C, die Impedanz ist am kleinsten und gleich R.", ["Der Strom ist null.", "Die Spannung an R ist null.", "Die Impedanz ist unendlich."], "Die Blindwiderstände heben sich auf."],
+    ["Wie groß ist der Scheitelwert einer Wechselspannung mit 230 V Effektivwert?", "etwa 325 V", ["230 V", "115 V", "400 V"], "û = √2 · U."]
+  ]
+}

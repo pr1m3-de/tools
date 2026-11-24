@@ -1,0 +1,10 @@
+{
+  "nr": 590,
+  "titel": "Absturz und Auffangen",
+  "bereich": "Dach und Klempnerei",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["Absturzsicherung", "PSA gegen Absturz", "Fallfaktor", "Fangstoß", "Falldämpfer", "EN 355", "lichte Höhe", "Pendelsturz", "Hängetrauma", "Anschlagpunkt"],
+  "text": "Sturz in die PSA gegen Absturz: Freifallhöhe und Fallfaktor, Fangstoß mit und ohne Falldämpfer, Aufreißlänge, nötige lichte Höhe, Pendelsturz und Hängetrauma – mit Simulation des Sturzes und Kraftverlauf.",
+  "tex": "s = \\frac{m g h_\\text{f}}{F_\\text{B} - m g}",
+  "projektmappe": {"nr": 460, "name": "Absturz und Auffangen", "farbe": "#A0785A"}
+}

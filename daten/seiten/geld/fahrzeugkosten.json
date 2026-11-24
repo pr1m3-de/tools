@@ -1,0 +1,11 @@
+{
+  "nr": 890,
+  "titel": "Fahrzeugkosten je Kilometer",
+  "gruppe": "Betrieb und Angebot",
+  "bereich": "Geld und Kalkulation",
+  "auchIn": ["Mechanik"],
+  "themen": ["Fahrzeugkosten", "Kilometerkosten", "Wertverlust", "Elektroauto", "Verbrenner", "Kraftstoffkosten", "Firmenwagen", "Reisekosten", "Vollkosten", "Fahrleistung"],
+  "text": "Fahrzeugkosten je Kilometer für zwei Fahrzeuge im Vergleich, zum Beispiel Verbrenner gegen Elektro: Wertverlust, Zinsen, Steuer, Versicherung, Wartung und Energie – mit Kosten je Monat, der Fahrleistung mit gleichen Kosten und Vergleich mit 30 Cent Pauschale.",
+  "tex": "k = \\frac{K_\\text{fix}}{s} + \\frac{v}{100} \\cdot p + k_\\text{W}",
+  "projektmappe": {"nr": 1000, "name": "Fahrzeugkosten je Kilometer", "farbe": "#A16207"}
+}

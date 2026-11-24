@@ -8,7 +8,7 @@ Anleitung für alle, die zur Sammlung „Formeln & Rechner“ (https://tools.pr1
 
 ## 1. Grundsätze
 
-- **Nur HTML, CSS und JavaScript.** Keine Frameworks, keine Build-Schritte, keine Pakete. Jede Seite ist eine fertige Datei, die im Browser läuft.
+- **Nur HTML, CSS und JavaScript.** Keine Frameworks, keine Pakete. Jede Seite ist eine fertige Datei, die im Browser läuft. Nur was mehrere Seiten gemeinsam betrifft (Startseiten-Liste, Suchmaschinen-Angaben, Offline-Liste …), baut `werkzeuge/bauen.js` – siehe Abschnitt 5.
 - **Nichts von außen.** Keine CDNs, keine Webfonts, keine fremden Skripte oder Bilder. Einzige Bibliothek ist KaTeX für den Formelsatz, lokal in `assets/katex/`. Dadurch läuft alles offline.
 - **JavaScript nach ES2015**, damit es auch auf älteren Geräten läuft (`const`, `let`, Pfeilfunktionen ja; `?.`, `??`, `async/await` nein).
 - **Deutsch**: Texte, Variablen und Funktionsnamen (`rechne`, `zeichne`, `felder`).
@@ -18,10 +18,10 @@ Anleitung für alle, die zur Sammlung „Formeln & Rechner“ (https://tools.pr1
 ## 2. Aufbau des Repos
 
 ```
-index.html            Startseite: Liste aller Rechner (Array „eintraege“), Suche, Bereiche
+index.html            Startseite: Suche, Bereiche; die Liste aller Rechner füllt bauen.js aus daten/seiten/
 lernen.html           Lernbereich: Aufgaben, Formelkarten, Formelsammlung, Aufgabenblätter
 projektmappe.html     Ablage im Browser für Seiten mit eigenem Speicher
-sw.js                 Service Worker: Dateiliste für offline (DATEIEN) und Versionsstand (STAND)
+sw.js                 Service Worker; Dateiliste (DATEIEN) und Versionsstand (STAND) setzt bauen.js
 manifest.webmanifest  App-Angaben zum Installieren
 
 assets/
@@ -39,14 +39,20 @@ elektro/ mechanik/ sanitaer/ heizung/ brandschutz/ arbeitsschutz/ dach/ it/ geld
 protokolle/           Prüfprotokolle mit eigenem Aufbau (Elektro, IT-Sicherheit, Gefährdungsbeurteilung)
 aufgabenblaetter/     Aufgabenblätter als Markdown, siehe aufgabenblaetter/LIESMICH.md
 vorlage/              Beispielseite für Mitmachende (nicht auf der Startseite, nicht in Suchmaschinen)
+daten/seiten/         je Seite eine JSON-Datei: Karte der Startseite, Verständnisfragen, Projektmappe, feste Nachbarn
+fehlerprotokoll/      je behobenem Fehler eine Datei (siehe FEHLERPROTOKOLL.md)
 
 werkzeuge/            Hilfsskripte (Node.js ohne Pakete), werden nicht ausgeliefert
+  bauen.js            baut alles nach _site/ (ruft die folgenden auf); veröffentlicht wird nur _site/
   seo-bauen.js        Suchmaschinen-Angaben in jede Seite, sitemap.xml, robots.txt
-  blaetter-bauen.js   Liste der Aufgabenblätter, Einträge in sw.js
+  verwandt-bauen.js   „Passt dazu“ unter jeder Seite
+  suche-bauen.js      Stichwortsuche (suchindex.json)
+  blaetter-bauen.js   Liste der Aufgabenblätter
+  pruefen/alles.js    automatische Prüfung (läuft bei jedem Pull Request)
   seo-daten.json      Zusatzangaben für einzelne Seiten
 
 CNAME                 Domain für GitHub Pages
-.nojekyll             GitHub Pages liefert alle Dateien unverändert aus (sonst würden .md-Dateien umgewandelt)
+.github/workflows/    Prüfen (jeder Pull Request) und Veröffentlichen (nach jedem Merge: bauen und auf GitHub Pages)
 LICENSE, LIZENZ.md    Code unter MIT, Aufgabenblätter unter CC BY 4.0
 FEHLERPROTOKOLL.md    alle bisherigen Fehler mit Ursache und Behebung
 ```
@@ -59,7 +65,6 @@ Jede Seite hat dasselbe Gerüst:
 <head>
   <title>Name des Rechners – Formeln &amp; Rechner</title>
   <meta name="description" content="Ein bis zwei Sätze, was der Rechner kann.">
-  <!-- seo --> <!-- /seo -->            ← füllt werkzeuge/seo-bauen.js, nicht von Hand
   theme-color, manifest, favicon, apple-touch-icon   ← wie in der Vorlage
   <link rel="stylesheet" href="../assets/katex/katex.min.css">
   <link rel="stylesheet" href="../assets/stil.css">
@@ -175,37 +180,45 @@ Hochauflösende Bildschirme, Größenänderung und Hell/Dunkel erledigt der Bauk
 ## 5. Schritt für Schritt: ein neuer Rechner
 
 1. **Kopieren**: `vorlage/beispiel-rechner.html` in den passenden Bereich kopieren, Name klein mit Bindestrichen, z. B. `dach/dachflaeche.html`. Die Pfade `../` bleiben.
-2. **Anpassen**: `<title>`, `meta description`, alles in `Rechner.seite({ … })` und die häufigen Fragen. Den Kommentar oben und den Block zwischen `<!-- seo -->` und `<!-- /seo -->` löschen bzw. leeren.
-3. **Auf die Startseite**: in `index.html` im Array `eintraege` einen Eintrag ergänzen:
-   ```js
+2. **Anpassen**: `<title>`, `meta description`, alles in `Rechner.seite({ … })` und die häufigen Fragen. Den Kommentar oben löschen.
+3. **Daten zur Seite**: eine Datei `daten/seiten/dach/dachflaeche.json` (gleicher Pfad wie die Seite, Endung `.json`):
+   ```json
    {
-     titel: 'Dachfläche',
-     pfad: 'dach/dachflaeche.html',
-     gruppe: 'Grundlagen',                       // freiwillig: Untergruppe in großen Bereichen
-     bereich: 'Dach und Klempnerei',             // einer aus BEREICHE in index.html
-     auchIn: ['Mechanik'],                       // freiwillig: auch in anderen Bereichen zeigen
-     themen: ['Dachfläche', 'Dachneigung', …],   // Suchwörter
-     text: 'Gleicher Text wie meta description.',
-     tex: 'A = \\frac{a \\cdot b}{\\cos\\alpha}' // Formel auf der Karte
-   },
+     "nr": 455,
+     "titel": "Dachfläche",
+     "gruppe": "Grundlagen",
+     "bereich": "Dach und Klempnerei",
+     "auchIn": ["Mechanik"],
+     "themen": ["Dachfläche", "Dachneigung"],
+     "text": "Gleicher Text wie meta description.",
+     "tex": "A = \\frac{a \\cdot b}{\\cos\\alpha}",
+     "verwandt": ["dach/sparren-lattung.html"],
+     "projektmappe": {"nr": 455, "name": "Dachfläche", "farbe": "#A16207"},
+     "fragen": [
+       ["Frage?", "richtige Antwort", ["falsch", "falsch", "falsch"], "Erklärung"]
+     ]
+   }
    ```
-4. **Suchmaschinen**: `node werkzeuge/seo-bauen.js`. Das füllt den `<!-- seo -->`-Block, ergänzt `sitemap.xml` und die Linkliste der Startseite.
-5. **Offline**: in `sw.js` die Seite unter `DATEIEN` eintragen (alphabetisch) und `STAND` auf einen neuen Wert setzen, z. B. die ersten zehn Zeichen eines Hashes. Ohne neuen `STAND` bekommen Besucher die alte Fassung aus dem Speicher.
-6. **Lernbereich prüfen**: `lernen.html` öffnen, nur das neue Thema wählen. Formelsammlung und Formelkarten zeigen alle Formeln; mit Löser entstehen in allen drei Stufen sinnvolle Aufgaben.
+   Pflicht sind `titel`, `bereich` (einer aus `BEREICHE` in index.html), `themen` (Suchwörter), `text` und `tex` (Formel auf der Karte). `nr` legt die Reihenfolge auf der Startseite fest (ohne `nr` ans Ende), `gruppe` die Untergruppe in großen Bereichen, `auchIn` weitere Bereiche. `verwandt` nennt feste Nachbarn für „Passt dazu“ (gelten in beide Richtungen), `projektmappe` braucht nur, wer eigene Daten speichert, `fragen` sind die Verständnisfragen im Lernbereich.
+4. **Bauen**: `node werkzeuge/bauen.js`. Das baut die ganze Seite nach `_site/`: Startseite, Suchmaschinen-Angaben, „Passt dazu“, Suche, Offline-Liste mit neuem Stand, Fragen.
+5. **Lernbereich prüfen**: `_site/lernen.html` öffnen (siehe Abschnitt 7), nur das neue Thema wählen. Formelsammlung und Formelkarten zeigen alle Formeln; mit Löser entstehen in allen drei Stufen sinnvolle Aufgaben.
 
-Nur die eigenen Änderungen committen. Wer mit einem flachen Git-Klon arbeitet (`--depth 1`), bekommt von `seo-bauen.js` geänderte Datumsangaben in fast allen Seiten. Diese Dateien dann nicht mit einchecken.
+**Nur Quellen einchecken**: die neue Seite, ihre Datei in `daten/seiten/`, eventuell Aufgabenblätter. Nie gebaute Inhalte und nie gemeinsame Listen – es gibt keine mehr, die man von Hand ändern muss. Deshalb kommen sich Pull Requests für verschiedene Seiten nicht in die Quere. Die Prüfung meldet, wenn doch etwas Gebautes in den Quellen steht.
 
 ## 6. Aufgabenblätter beitragen
 
-Am einfachsten: eine Markdown-Datei unter `aufgabenblaetter/<bereich>/<seite>/`, danach `node werkzeuge/blaetter-bauen.js`. Aufbau, erlaubte Elemente und Lösungen zum Aufklappen stehen in [`aufgabenblaetter/LIESMICH.md`](aufgabenblaetter/LIESMICH.md). Wer kein Git nutzt, kann ein Blatt auch per Mail schicken.
+Am einfachsten: eine Markdown-Datei unter `aufgabenblaetter/<bereich>/<seite>/`, danach `node werkzeuge/bauen.js`. Aufbau, erlaubte Elemente und Lösungen zum Aufklappen stehen in [`aufgabenblaetter/LIESMICH.md`](aufgabenblaetter/LIESMICH.md). Wer kein Git nutzt, kann ein Blatt auch per Mail schicken.
 
 ## 7. Lokal testen
 
-Die Seiten laden Formeln und Listen nach, deshalb über einen kleinen Webserver öffnen, nicht als Datei:
+Erst bauen, dann den gebauten Ordner über einen kleinen Webserver öffnen (nicht als Datei, die Seiten laden Formeln und Listen nach):
 
 ```
-python3 -m http.server 8000
+node werkzeuge/bauen.js
+python3 -m http.server 8000 -d _site
 ```
+
+Nach jeder Änderung an einer Quelle neu bauen. Die automatische Prüfung (wie im Pull Request) läuft mit `node werkzeuge/pruefen/alles.js`.
 
 Dann http://localhost:8000/ im Browser. Vor dem Einreichen prüfen:
 
@@ -223,7 +236,7 @@ Dann http://localhost:8000/ im Browser. Vor dem Einreichen prüfen:
 1. Repo auf GitHub forken, einen Branch mit sprechendem Namen anlegen (`dach-dachflaeche`).
 2. Commit-Nachricht auf Deutsch: erste Zeile, was sich ändert; darunter Stichpunkte.
 3. Pull Request gegen `main` öffnen und kurz sagen, was getestet wurde.
-4. Wer einen Fehler behebt, trägt ihn oben in [FEHLERPROTOKOLL.md](FEHLERPROTOKOLL.md) ein: Fehler, Ursache, Behebung, PR.
+4. Wer einen Fehler behebt, legt eine Datei in [`fehlerprotokoll/`](fehlerprotokoll/) an: Fehler, Ursache, Behebung (siehe [FEHLERPROTOKOLL.md](FEHLERPROTOKOLL.md)).
 
 Fehler gefunden, aber keine Zeit für Code? Ein Issue auf GitHub oder eine Mail an support@pr1m3.de reicht.
 

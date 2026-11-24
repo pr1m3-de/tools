@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Transistor und Operationsverstärker: Schalten und Verstärken – Formeln &amp; Rechner</title>
   <meta name="description" content="NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/elektro/transistor-opv.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Transistor und Operationsverstärker: Schalten und Verstärken">
-  <meta property="og:description" content="NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.">
-  <meta property="og:url" content="https://tools.pr1m3.de/elektro/transistor-opv.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Transistor und Operationsverstärker: Schalten und Verstärken">
-  <meta name="twitter:description" content="NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#seite","name":"Transistor und Operationsverstärker: Schalten und Verstärken","url":"https://tools.pr1m3.de/elektro/transistor-opv.html","inLanguage":"de","description":"NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#pfad"},"dateModified":"2026-11-22"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Transistor und Operationsverstärker: Schalten und Verstärken","item":"https://tools.pr1m3.de/elektro/transistor-opv.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#fragen","mainEntity":[{"@type":"Question","name":"Wie groß muss der Basiswiderstand sein?","acceptedAnswer":{"@type":"Answer","text":"Kollektorstrom durch Stromverstärkung teilen, mit dem Übersteuerungsfaktor malnehmen, dann R_B = (U_E − 0,7 V) / I_B. Den nächstkleineren Normwert wählen. Beispiel: 100 mA, B = 100, Faktor 3, 5 V Steuerspannung: I_B = 3 mA, R_B = 1,43 kΩ → 1,2 kΩ."}},{"@type":"Question","name":"Warum braucht ein Relais am Transistor eine Freilaufdiode?","acceptedAnswer":{"@type":"Answer","text":"Beim Abschalten erzeugt die Spule eine hohe Gegenspannung, die den Transistor zerstören kann. Die Diode parallel zur Spule (in Sperrrichtung zur Versorgung) lässt den Strom gefahrlos auslaufen."}},{"@type":"Question","name":"Warum ist das Ausgangssignal des Verstärkers oben und unten abgeschnitten?","acceptedAnswer":{"@type":"Answer","text":"Der Ausgang kann die Versorgungsspannung nicht überschreiten, bei vielen Typen bleibt er sogar 1 bis 2 V darunter. Ist Verstärkung mal Eingangsspannung größer, wird das Signal begrenzt (Übersteuerung)."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/elektro/transistor-opv.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -58,17 +40,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="halbleiter.html"><b>Halbleiter, Diode und Gleichrichter</b><span>Wie Strom in Metallen und Halbleitern fließt, Dotierung und pn-Übergang, Diodenkennlinie, Brückengleichrichter mit …</span></a></li>
-      <li><a href="../steuerung/digitaltechnik.html"><b>Digitaltechnik: Gatter, Flipflops, Zähler, Addierer</b><span>Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als …</span></a></li>
-      <li><a href="drehfeldmaschinen.html"><b>Drehfeldmaschinen: Drehfeld, Asynchron- und Synchronmaschine</b><span>Drehfeldmaschinen verstehen: Drehfeld aus drei Wicklungen, Polpaarzahl und synchrone Drehzahl, Schlupf, Drehmoment …</span></a></li>
-      <li><a href="drehstrom.html"><b>Drehstrom: Stern, Dreieck und Unsymmetrie</b><span>Drehstrom berechnen: Stern- und Dreieckschaltung, Leiter- und Strangspannungen, Leiter- und Strangströme, Leistung …</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

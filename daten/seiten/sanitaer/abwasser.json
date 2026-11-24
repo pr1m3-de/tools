@@ -1,0 +1,14 @@
+{
+  "nr": 90,
+  "titel": "Abwasser bemessen",
+  "bereich": "Sanitärtechnik",
+  "themen": ["Schmutzwasser", "Regenwasser", "Anschlusswerte", "Teilfüllung", "Gefälle", "Nennweite"],
+  "text": "Schmutzwasserabfluss aus den Anschlusswerten, Regenabfluss von Dach und Hof, Grundleitung bemessen mit Füllungsgrad, Fließgeschwindigkeit und Mindestgefälle.",
+  "tex": "Q_\\text{ww} = K \\cdot \\sqrt{\\textstyle\\sum DU}",
+  "projektmappe": {"nr": 270, "name": "Abwasser bemessen", "farbe": "#0E6B6A"},
+  "fragen": [
+    ["Warum braucht eine Abwasserleitung Gefälle?", "Damit das Wasser von selbst abfließt und Feststoffe mitnimmt", ["Damit sie leiser ist", "Damit kein Druck entsteht", "Weil sonst Gas einströmt"], "Typisch 1 bis 2 % je nach Leitung."],
+    ["Wofür ist die Lüftung (über Dach) einer Fallleitung nötig?", "Damit beim Abfließen kein Unterdruck die Geruchsverschlüsse leer saugt", ["Damit Regenwasser hineinlaufen kann", "Zur Kühlung der Leitung", "Damit sie nicht friert"], "Geruchsverschluss bleibt gefüllt."],
+    ["Was ist ein Geruchsverschluss?", "ein Wasserbogen, der Kanalgase zurückhält", ["ein Rückstauventil", "ein Fettabscheider", "ein Lüftungsventil"], "Zum Beispiel der Siphon unter dem Waschbecken."]
+  ]
+}

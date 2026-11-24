@@ -1,0 +1,15 @@
+{
+  "nr": 20,
+  "titel": "Leitungsdimensionierung",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "themen": ["Leitungen", "Spannungsfall", "Schutzorgane", "Kurzschluss", "Verlustkosten"],
+  "text": "Gleich-, Wechsel- und Drehstrom: Betriebsstrom, Schutzorgan, Querschnitt nach Verlegeart, Spannungsfall, Abschaltbedingung und Leitungsverluste, mit allen Nachweisen und Rechenweg.",
+  "tex": "\\Delta U = \\frac{2 \\cdot l \\cdot I \\cdot \\cos\\varphi}{\\kappa \\cdot A}",
+  "projektmappe": {"nr": 30, "name": "Leitungsdimensionierung", "farbe": "#2B7BB9"},
+  "fragen": [
+    ["Welche drei Bedingungen muss eine Leitung erfüllen?", "Strombelastbarkeit, Schutz bei Kurzschluss und Überlast, zulässiger Spannungsfall", ["Farbe, Länge und Preis", "Nur die Strombelastbarkeit", "Nur der Spannungsfall"], "Nach DIN VDE 0100-430/-520 und DIN 18015 müssen alle drei gleichzeitig erfüllt sein."],
+    ["Warum sinkt die Strombelastbarkeit, wenn viele Leitungen gebündelt verlegt sind?", "Sie erwärmen sich gegenseitig und geben schlechter Wärme ab.", ["Der Widerstand jeder Leitung sinkt.", "Die Spannung steigt.", "Wegen der Induktion fließt weniger Strom."], "Deshalb gibt es Umrechnungsfaktoren für Häufung."],
+    ["Was bedeutet die Regel I_b ≤ I_n ≤ I_z?", "Betriebsstrom ≤ Nennstrom der Schutzeinrichtung ≤ Belastbarkeit der Leitung", ["Isolationsstrom ≤ Nennstrom ≤ Zündstrom", "Nennstrom ≤ Betriebsstrom ≤ Kurzschlussstrom", "Die Leitung muss immer 16 A tragen."], "So schützt die Sicherung die Leitung vor Überlast."]
+  ]
+}

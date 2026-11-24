@@ -1,0 +1,11 @@
+{
+  "nr": 920,
+  "titel": "Energiekosten im Vergleich",
+  "gruppe": "Investition und Energie",
+  "bereich": "Geld und Kalkulation",
+  "auchIn": ["Heizungstechnik"],
+  "themen": ["Heizkosten", "Energiekosten", "Gas", "Heizöl", "Pellets", "Wärmepumpe", "Fernwärme", "Wärmepreis", "Vollkosten", "Jahresarbeitszahl"],
+  "text": "Heizkosten vergleichen: Gas, Öl, Pellets, Wärmepumpe und Fernwärme mit Energiepreis, Wirkungsgrad oder Jahresarbeitszahl, Grundkosten und Anschaffung – Wärmepreis je kWh, Jahreskosten, Vollkosten über die Nutzungsdauer, CO₂ und Amortisation.",
+  "tex": "w = \\frac{p}{\\eta} + \\frac{K_\\text{G}}{Q}",
+  "projektmappe": {"nr": 1030, "name": "Energiekosten im Vergleich", "farbe": "#A16207"}
+}

@@ -1,0 +1,14 @@
+{
+  "nr": 1100,
+  "titel": "SPS-Simulator: Strukturierter Text und Zyklus",
+  "bereich": "Steuerungstechnik",
+  "themen": ["SPS", "speicherprogrammierbare Steuerung", "IEC 61131-3", "Strukturierter Text", "ST", "KOP", "FUP", "AWL", "Ablaufsprache", "Zyklus", "Prozessabbild", "PAE", "PAA", "Öffner", "Schließer", "Drahtbruchsicherheit", "Selbsthaltung", "Wendeschützschaltung", "TON", "TOF", "TP", "CTU", "Zähler", "Flanke", "Schrittkette", "Analogwert", "4-20 mA", "Skalierung", "Merker", "Datentyp", "FUNCTION_BLOCK", "VAR_GLOBAL", "ARRAY", "Watchdog", "Forcen", "Mischbehälter", "Not-Halt"],
+  "text": "SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, Signale, Öffner und Schließer, Adressen, Datentypen und die Sprachen nach IEC 61131-3 – mit realistischem SPS-Simulator: Strukturierter Text mit eigenen Funktionsbausteinen, Funktionen, Feldern, globalen Variablen und AT-Adressen, Timer, Zähler, Watchdog, Forcen und Anlagenmodellen vom Motor bis zum Mischbehälter.",
+  "tex": "y = \\frac{x - x_\\text{min}}{x_\\text{max} - x_\\text{min}} \\cdot (y_\\text{max} - y_\\text{min}) + y_\\text{min}",
+  "projektmappe": {"nr": 90, "name": "SPS-Simulator", "farbe": "#0E7C86", "speicher": "sps-1"},
+  "fragen": [
+    ["Wie arbeitet eine SPS ihr Programm ab?", "zyklisch: Eingänge lesen, Programm rechnen, Ausgänge schreiben", ["nur bei Tastendruck", "einmal beim Einschalten", "zufällig"], "Die Zykluszeit liegt meist im Millisekundenbereich."],
+    ["Warum sind Not-Halt-Taster als Öffner ausgeführt?", "Ein Drahtbruch wird so wie ein Not-Halt erkannt.", ["Weil Öffner billiger sind.", "Weil Schließer verboten sind.", "Weil Öffner schneller schalten, sonst egal."], "Prinzip der Drahtbruchsicherheit."],
+    ["Was macht ein Einschaltverzögerungs-Timer (TON)?", "Der Ausgang wird erst nach Ablauf der Zeit 1, solange der Eingang 1 bleibt.", ["Der Ausgang bleibt nach dem Ausschalten noch an.", "Er zählt Impulse.", "Er invertiert den Eingang."], "Fällt der Eingang vorher ab, startet die Zeit neu."]
+  ]
+}

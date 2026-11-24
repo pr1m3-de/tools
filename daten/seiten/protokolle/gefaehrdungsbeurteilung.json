@@ -1,0 +1,10 @@
+{
+  "nr": 380,
+  "titel": "Gefährdungsbeurteilung",
+  "bereich": "Werkzeuge",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["Gefährdungsbeurteilung", "ArbSchG", "Arbeitsschutz", "Risikomatrix", "STOP-Prinzip", "DGUV", "Unterweisung"],
+  "text": "Gefährdungsbeurteilung nach § 5 ArbSchG: Gefährdungen aus dem Katalog der 11 Faktoren oder Vorlagen, Risiko vor und nach den Maßnahmen, Maßnahmen nach STOP mit Verantwortlichen und Terminen, Wirksamkeit, Risikomatrix und PDF.",
+  "tex": "R = W \\cdot S",
+  "projektmappe": {"nr": 490, "name": "Gefährdungsbeurteilung", "farbe": "#6B7785", "speicher": "gefaehrdungsbeurteilung-1"}
+}

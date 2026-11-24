@@ -1,0 +1,15 @@
+{
+  "nr": 520,
+  "titel": "Verschlüsselung Schritt für Schritt",
+  "gruppe": "Sicherheit",
+  "bereich": "IT und Netzwerk",
+  "themen": ["SHA-256", "RSA", "Diffie-Hellman", "TLS"],
+  "text": "Hash, symmetrische Verschlüsselung, Diffie-Hellman, RSA und Signatur mit echten Rechnungen und Simulation, dazu der TLS-1.3-Handshake.",
+  "tex": "c = m^e \\bmod n",
+  "projektmappe": {"nr": 1230, "name": "Verschlüsselung Schritt für Schritt", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Was ist der Unterschied zwischen symmetrischer und asymmetrischer Verschlüsselung?", "Symmetrisch: ein gemeinsamer Schlüssel; asymmetrisch: öffentlicher und privater Schlüssel", ["Symmetrisch ist immer unsicher.", "Asymmetrisch braucht keinen Schlüssel.", "Es gibt keinen Unterschied."], "In der Praxis wird beides kombiniert (hybrid)."],
+    ["Wozu dient ein Hash-Wert?", "Er erkennt jede Änderung an Daten, lässt sich aber nicht zurückrechnen.", ["Er verschlüsselt Daten umkehrbar.", "Er komprimiert Dateien.", "Er ersetzt das Passwort."], "Zum Beispiel SHA-256."],
+    ["Was bestätigt ein Zertifikat bei HTTPS?", "dass der öffentliche Schlüssel wirklich zu diesem Server gehört", ["dass die Seite virenfrei ist", "dass die Verbindung schnell ist", "dass der Betreiber seriös ist"], "Ausgestellt von einer Zertifizierungsstelle."]
+  ]
+}

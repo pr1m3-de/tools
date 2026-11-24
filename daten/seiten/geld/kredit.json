@@ -1,0 +1,10 @@
+{
+  "nr": 910,
+  "titel": "Kredit und Tilgung",
+  "gruppe": "Investition und Energie",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Kredit", "Tilgung", "Annuitätendarlehen", "Baufinanzierung", "Restschuld", "Zinsbindung", "Sondertilgung", "Tilgungsplan", "Monatsrate", "Effektivzins"],
+  "text": "Kreditrechner mit Tilgungsplan: Monatsrate aus Anfangstilgung, fester Rate oder Laufzeit, Restschuld am Ende der Zinsbindung, Zinsen insgesamt, Sondertilgung und Anschlusszins – für Baufinanzierung und Ratenkredit, mit Löser in jede Richtung.",
+  "tex": "R = S \\cdot \\frac{i\\,(1+i)^N}{(1+i)^N - 1}",
+  "projektmappe": {"nr": 1020, "name": "Kredit und Tilgung", "farbe": "#A16207"}
+}

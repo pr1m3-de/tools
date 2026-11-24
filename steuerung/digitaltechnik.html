@@ -5,24 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer – Formeln &amp; Rechner</title>
   <meta name="description" content="Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.">
-  <!-- seo -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; worker-src 'self'; manifest-src 'self'; frame-src 'self' blob:; media-src 'self' blob: data:; object-src 'none'; base-uri 'self'; form-action 'self'">
-  <link rel="canonical" href="https://tools.pr1m3.de/steuerung/digitaltechnik.html">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Formeln &amp; Rechner">
-  <meta property="og:locale" content="de_DE">
-  <meta property="og:title" content="Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer">
-  <meta property="og:description" content="Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.">
-  <meta property="og:url" content="https://tools.pr1m3.de/steuerung/digitaltechnik.html">
-  <meta property="og:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <meta property="og:image:alt" content="Formeln &amp; Rechner">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer">
-  <meta name="twitter:description" content="Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.">
-  <meta name="twitter:image" content="https://tools.pr1m3.de/assets/symbol-512.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#seite","name":"Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer","url":"https://tools.pr1m3.de/steuerung/digitaltechnik.html","inLanguage":"de","description":"Logikgatter zum Anklicken mit Wahrheitstabelle, RS-, D- und T-Flipflop im Zeitdiagramm, Binärzähler als Frequenzteiler und ein 4-Bit-Volladdierer mit wanderndem Übertrag.","isPartOf":{"@type":"WebSite","@id":"https://tools.pr1m3.de/#website","name":"Formeln & Rechner","url":"https://tools.pr1m3.de/"},"breadcrumb":{"@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#pfad"},"dateModified":"2026-11-22"},{"@type":"BreadcrumbList","@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#pfad","itemListElement":[{"@type":"ListItem","position":1,"name":"Formeln & Rechner","item":"https://tools.pr1m3.de/"},{"@type":"ListItem","position":2,"name":"Digitaltechnik: Logikgatter, Flipflops, Zähler und Addierer","item":"https://tools.pr1m3.de/steuerung/digitaltechnik.html"}]},{"@type":"FAQPage","@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#fragen","mainEntity":[{"@type":"Question","name":"Wie viele Stufen braucht ein Frequenzteiler von 32 768 Hz auf 1 Hz?","acceptedAnswer":{"@type":"Answer","text":"32 768 = 2¹⁵, also 15 Flipflop-Stufen. Deshalb haben Uhrenquarze genau diese Frequenz."}},{"@type":"Question","name":"Was ist der Unterschied zwischen Schaltnetz und Schaltwerk?","acceptedAnswer":{"@type":"Answer","text":"Ein Schaltnetz (nur Gatter) hängt allein von den aktuellen Eingängen ab. Ein Schaltwerk enthält Speicher (Flipflops) und hängt auch von der Vorgeschichte ab, zum Beispiel ein Zähler oder eine Ablaufsteuerung."}},{"@type":"Question","name":"Wie hängen Gatter und SPS zusammen?","acceptedAnswer":{"@type":"Answer","text":"In einer SPS werden dieselben Verknüpfungen programmiert, im Funktionsplan sogar mit denselben Schaltzeichen (&, ≥1, =1). Speicher heißen dort SR- oder RS-Glied, Flankenerkennung R_TRIG."}}],"isPartOf":{"@id":"https://tools.pr1m3.de/steuerung/digitaltechnik.html#seite"}}]}</script>
-  <!-- /seo -->
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -61,17 +43,6 @@
       </div>
     </section>
   </main>
-  <!-- verwandt -->
-  <nav class="verwandt" aria-labelledby="h-verwandt">
-    <h2 id="h-verwandt">Passt dazu</h2>
-    <ul>
-      <li><a href="../elektro/transistor-opv.html"><b>Transistor und Operationsverstärker</b><span>NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit …</span></a></li>
-      <li><a href="kleinsteuerung.html"><b>Kleinsteuerung (Logikmodul): Funktionsplan</b><span>Kleinsteuerungen (Logikmodule) verstehen und programmieren</span></a></li>
-      <li><a href="../it/pruefsummen.html"><b>Prüfsummen und Fehlerkorrektur: Parität, Hamming, CRC</b><span>Paritätsbit, Hamming(7,4)-Code mit Fehlerkorrektur im Kreisdiagramm, CRC-8 als schriftliche Division mit XOR und die …</span></a></li>
-      <li><a href="sps.html"><b>SPS-Simulator: Strukturierter Text und Zyklus</b><span>SPS verstehen und programmieren</span></a></li>
-    </ul>
-  </nav>
-  <!-- /verwandt -->
 
   <div id="seitenfuss" data-wurzel="../"></div>
 

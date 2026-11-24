@@ -1,0 +1,10 @@
+{
+  "nr": 490,
+  "titel": "Serverraum-Klima",
+  "gruppe": "Betrieb",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Kühllast", "Kaltgang", "PUE"],
+  "text": "Kühllast, Luftvolumenstrom zwischen Kalt- und Warmgang, Klimageräte mit Redundanz, PUE und Zeit bis zur Überhitzung bei Ausfall der Kühlung.",
+  "tex": "\\dot V = \\frac{Q}{\\rho c_p \\Delta\\vartheta}",
+  "projektmappe": {"nr": 1200, "name": "Serverraum-Klima", "farbe": "#3B5BDB"}
+}

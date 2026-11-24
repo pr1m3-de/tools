@@ -1,0 +1,14 @@
+{
+  "nr": 160,
+  "titel": "Hydraulischer Abgleich",
+  "bereich": "Heizungstechnik",
+  "themen": ["Abgleich", "Thermostatventil", "Voreinstellung", "kv-Wert", "Pumpe", "Förderhöhe"],
+  "text": "Verfahren B: Volumenstrom je Heizkörper, Druckverlust der Wege, kv-Wert und Voreinstellung der Ventile, Förderhöhe und Förderstrom der Pumpe.",
+  "tex": "k_\\text{v} = \\frac{\\dot V}{\\sqrt{\\Delta p}}",
+  "projektmappe": {"nr": 320, "name": "Hydraulischer Abgleich", "farbe": "#C2410C"},
+  "fragen": [
+    ["Was ist das Ziel des hydraulischen Abgleichs?", "Jeder Heizkörper bekommt genau die nötige Wassermenge.", ["Alle Heizkörper werden gleich heiß.", "Die Pumpe läuft immer auf höchster Stufe.", "Das Wasser fließt schneller."], "Nahe Heizkörper werden sonst überversorgt, ferne zu wenig."],
+    ["Womit wird der Durchfluss am Heizkörper eingestellt?", "mit voreinstellbaren Thermostatventilen", ["mit dem Entlüftungsventil", "mit dem Sicherheitsventil", "mit dem Ausdehnungsgefäß"], "Die Voreinstellung begrenzt den Durchfluss."],
+    ["Woran erkennt man oft fehlenden Abgleich?", "Strömungsgeräusche und ungleich warme Räume", ["ein zu kleines Ausdehnungsgefäß", "zu hoher Wasserdruck im Sommer", "leere Heizkörper"], "Oft wird dann die Pumpe hochgestellt – das verschlimmert es."]
+  ]
+}

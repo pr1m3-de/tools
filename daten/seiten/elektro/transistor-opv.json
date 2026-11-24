@@ -1,0 +1,15 @@
+{
+  "nr": 1320,
+  "titel": "Transistor und Operationsverstärker",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "themen": ["Transistor", "Bipolartransistor", "NPN", "Stromverstärkung", "Basiswiderstand", "Transistor als Schalter", "Übersteuerung", "Sättigung", "Kennlinienfeld", "Lastgerade", "Arbeitspunkt", "Operationsverstärker", "OPV", "invertierender Verstärker", "nichtinvertierender Verstärker", "Spannungsfolger", "Komparator"],
+  "text": "NPN-Transistor als Schalter mit Basiswiderstand, Übersteuerung und Verlustleistung, Ausgangskennlinienfeld mit Lastgerade und die Grundschaltungen des Operationsverstärkers mit Begrenzung – als Animation und mit Lernaufgaben.",
+  "tex": "R_B = \\frac{U_E - U_{BE}}{I_B}",
+  "verwandt": ["steuerung/digitaltechnik.html"],
+  "fragen": [
+    ["Warum übersteuert man einen Transistor als Schalter?", "Damit er sicher ganz durchschaltet und wenig Verlustwärme entsteht.", ["Damit er schneller kaputtgeht.", "Damit die Lampe heller wird als vorgesehen.", "Damit der Basisstrom null wird."], "Faktor 2 bis 5 über I_C / B."],
+    ["Wie groß ist die Verstärkung eines invertierenden Verstärkers?", "−R₂ / R₁", ["1 + R₂ / R₁", "R₁ · R₂", "immer 1"], "Das Minus bedeutet: Ausgang gegenphasig."],
+    ["Warum braucht ein Relais am Transistor eine Freilaufdiode?", "Gegen die hohe Induktionsspannung beim Abschalten der Spule", ["Damit das Relais schneller anzieht", "Als Sicherung bei Kurzschluss", "Damit Gleichstrom zu Wechselstrom wird"], "Die Diode lässt den Spulenstrom auslaufen."]
+  ]
+}

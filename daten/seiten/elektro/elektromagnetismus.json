@@ -1,0 +1,10 @@
+{
+  "nr": 1140,
+  "titel": "Elektromagnetismus: Animationen",
+  "gruppe": "Grundlagen",
+  "bereich": "Elektrotechnik",
+  "auchIn": ["Physik"],
+  "themen": ["Elektromagnetismus", "Magnetfeld", "Leiter", "Rechte-Faust-Regel", "Lorentzkraft", "Leiterschaukel", "Drei-Finger-Regel", "Gleichstrommotor", "Kommutator", "Induktion", "Induktionsgesetz", "Lenzsche Regel", "Generator", "Wechselstromgenerator", "Drehstromgenerator", "Schleifringe", "Elektromagnet", "Klingel", "Selbstunterbrecher", "Fluss"],
+  "text": "Interaktive Animationen zum Elektromagnetismus: Magnetfeld um einen Leiter, Leiterschaukel und Lorentzkraft, Gleichstrommotor mit Kommutator, Induktion mit Magnet und Spule, Wechselstrom- und Drehstromgenerator und die elektrische Klingel – zum Verstellen, mit Messkurven und Formeln.",
+  "tex": "u_\\text{i} = -N \\cdot \\frac{\\Delta \\Phi}{\\Delta t}"
+}

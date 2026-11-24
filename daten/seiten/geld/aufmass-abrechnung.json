@@ -1,0 +1,10 @@
+{
+  "nr": 870,
+  "titel": "Aufmaß und Abrechnung",
+  "gruppe": "Betrieb und Angebot",
+  "bereich": "Geld und Kalkulation",
+  "themen": ["Aufmaß", "Abrechnung", "Abschlagsrechnung", "Schlussrechnung", "Einheitspreis", "Sicherheitseinbehalt", "VOB", "Leistungsstand", "Bauabzugsteuer", "Mehrmengen"],
+  "text": "Aufmaß und Abrechnung am Bau: Positionen mit beauftragter und ausgeführter Menge, Leistungsstand, Abschlags- und Schlussrechnung mit Umsatzsteuer, Sicherheitseinbehalt nach VOB/B, bisherigen Zahlungen und Bauabzugsteuer – mit Zahlbetrag und Mehrmengen.",
+  "tex": "Z = B \\cdot (1 - e) - V",
+  "projektmappe": {"nr": 980, "name": "Aufmaß und Abrechnung", "farbe": "#A16207"}
+}

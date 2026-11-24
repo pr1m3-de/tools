@@ -1,0 +1,15 @@
+{
+  "nr": 780,
+  "titel": "Feuerlöscher und Löschwasser",
+  "bereich": "Brandschutz",
+  "auchIn": ["Arbeitsschutz"],
+  "themen": ["Feuerlöscher", "Löschmitteleinheiten", "ASR A2.2", "Brandklassen", "Brandschutzhelfer", "Löschwasser", "DVGW W 405", "Löschwasserbedarf", "Löschteich", "Rating"],
+  "text": "Feuerlöscher nach ASR A2.2 berechnen: Löschmitteleinheiten aus der Grundfläche, Anzahl und Verteilung mit 20 m Weg, Löschmittel und Brandklassen, Brandschutzhelfer und Löschwasserbedarf über zwei Stunden – mit Simulation der Abdeckung.",
+  "tex": "n = \\left\\lceil \\frac{LE_\\text{soll}}{LE_\\text{Gerät}} \\right\\rceil",
+  "projektmappe": {"nr": 880, "name": "Feuerlöscher und Löschwasser", "farbe": "#E4572E"},
+  "fragen": [
+    ["Mit welchem Löschmittel darf man brennendes Fett nicht löschen?", "Wasser", ["Fettbrandlöscher Klasse F", "Löschdecke", "Deckel auf den Topf"], "Wasser verdampft schlagartig und schleudert brennendes Fett heraus."],
+    ["Welche Brandklasse steht für brennbare Flüssigkeiten?", "B", ["A", "D", "F"], "A feste Stoffe, B Flüssigkeiten, C Gase, D Metalle, F Speisefette."],
+    ["Was gibt die Zahl der Löschmitteleinheiten (LE) an?", "das Löschvermögen eines Feuerlöschers", ["das Gewicht des Löschers", "die Anzahl der Düsen", "das Baujahr"], "Nach ASR A2.2 richtet sich die nötige Zahl nach Fläche und Brandgefährdung."]
+  ]
+}

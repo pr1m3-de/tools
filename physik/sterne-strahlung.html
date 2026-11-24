@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sterne und Strahlung: Planck, Wien, Stefan-Boltzmann, Helligkeit, HR-Diagramm – Formeln &amp; Rechner</title>
+  <meta name="description" content="Sterne berechnen: Farbe und Strahlungsmaximum (Wien), Leuchtkraft (Stefan-Boltzmann), Helligkeit und Entfernungsmodul, Parallaxe, Lebensdauer und lebensfreundliche Zone – mit Planck-Spektrum, Hertzsprung-Russell-Diagramm und Lernaufgaben.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <link rel="stylesheet" href="../assets/baukasten.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner>
+    <section class="tafel abstand" id="wissen" aria-labelledby="h-wissen">
+      <h2 id="h-wissen">Was uns das Licht der Sterne verrät</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Schwarzer Körper</h3><p>Jeder heiße Körper strahlt. Ein idealer „Schwarzer Körper“ absorbiert alles und strahlt nur nach seiner Temperatur – Max Planck beschrieb 1900 die Verteilung über die Wellenlängen und führte dafür die Quantisierung der Energie ein. Sterne kommen dem Schwarzen Körper recht nahe.</p></article>
+        <article class="wissen-karte" style="--farbe:#7A5195"><h3>Wiensches Verschiebungsgesetz</h3><p>Das Maximum der Strahlung liegt bei λ<sub>max</sub> = 2,898 mm·K / T. Die Sonne (5 772 K) strahlt am stärksten bei 502 nm, im Grünen; zusammen mit den anderen Farben wirkt das weiß. Kühle Sterne (3 000 K) leuchten rot, heiße (20 000 K) blau. Ein Mensch (310 K) strahlt bei 9,3 µm – Wärmebildkameras sehen das.</p></article>
+        <article class="wissen-karte" style="--farbe:#E07A1F"><h3>Stefan-Boltzmann-Gesetz</h3><p>Die abgestrahlte Leistung je Fläche wächst mit der vierten Potenz der Temperatur: P = σ · A · T⁴. Doppelte Temperatur bedeutet 16-fache Strahlung. Die Leuchtkraft eines Sterns ist L = 4πR²σT⁴ – ein kühler Stern kann trotzdem sehr hell sein, wenn er riesig ist.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Helligkeit in Magnituden</h3><p>Schon Hipparch teilte Sterne in sechs Größenklassen ein. Heute gilt: 5 Magnituden Unterschied entsprechen dem Faktor 100 im Strahlungsfluss; kleiner ist heller. Die scheinbare Helligkeit m hängt von der Entfernung ab, die absolute Helligkeit M ist die in 10 Parsec. Aus m − M folgt die Entfernung.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Parallaxe und Parsec</h3><p>Während die Erde um die Sonne läuft, verschieben sich nahe Sterne vor dem fernen Hintergrund. Der halbe Verschiebungswinkel ist die Parallaxe p. Bei p = 1″ ist der Stern 1 Parsec entfernt (3,26 Lichtjahre). Der nächste Stern, Proxima Centauri, hat nur 0,768″.</p></article>
+        <article class="wissen-karte" style="--farbe:#A16207"><h3>Hertzsprung-Russell-Diagramm</h3><p>Trägt man Leuchtkraft gegen Temperatur auf, liegen die meisten Sterne auf einem Band, der Hauptreihe – dort verschmelzen sie im Kern Wasserstoff zu Helium. Rechts oben stehen Riesen und Überriesen, links unten Weiße Zwerge. Ein Stern wandert im Lauf seines Lebens durch das Diagramm.</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Masse bestimmt das Leben</h3><p>Massereiche Sterne verbrennen ihren Vorrat viel schneller: L ∝ M³·⁵, die Lebensdauer t ∝ M/L ∝ M⁻²·⁵. Die Sonne lebt etwa 10 Milliarden Jahre, ein Stern mit 10 Sonnenmassen nur 30 Millionen, ein Roter Zwerg mit 0,1 Sonnenmassen Billionen Jahre.</p></article>
+        <article class="wissen-karte" style="--farbe:#6B7785"><h3>Lebensfreundliche Zone</h3><p>In welchem Abstand ein Planet flüssiges Wasser haben kann, hängt von der Leuchtkraft ab: Die Strahlung fällt mit 1/d². Ohne Atmosphäre hätte die Erde −18 °C; erst der Treibhauseffekt hebt sie auf +15 °C. Die Zone liegt grob bei 0,95–1,37 AE · √(L/L☉).</p></article>
+      </div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Stern</th><th>Klasse</th><th class="zahl">Temperatur</th><th class="zahl">Radius</th><th class="zahl">Leuchtkraft</th><th class="zahl">Entfernung</th></tr></thead><tbody id="stern-tabelle"></tbody></table></div>
+      <div class="rahmen"><table class="tabelle"><thead><tr><th>Spektralklasse</th><th class="zahl">Temperatur</th><th>Farbe</th><th>Merkmal im Spektrum</th></tr></thead><tbody id="klassen-tabelle"></tbody></table></div>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Warum sehen Sterne verschieden farbig aus?</summary><p>Ihre Farbe hängt von der Oberflächentemperatur ab. Nach dem Wienschen Verschiebungsgesetz liegt das Strahlungsmaximum kühler Sterne im Roten, heißer Sterne im Blauen. Beteigeuze (3 600 K) wirkt orangerot, Rigel (12 100 K) bläulich weiß.</p></details>
+        <details><summary>Warum ist die Sonne weiß und nicht grün, obwohl ihr Maximum im Grünen liegt?</summary><p>Sie strahlt alle sichtbaren Farben fast gleich stark ab; das Maximum ist sehr breit. Das Gemisch sehen wir als Weiß. Gelb wirkt sie nur tief am Horizont, weil die Luft Blau herausstreut.</p></details>
+        <details><summary>Was ist ein Lichtjahr?</summary><p>Die Strecke, die Licht in einem Jahr zurücklegt: 9,46 Billionen Kilometer. Ein Parsec sind 3,26 Lichtjahre.</p></details>
+        <details><summary>Wie lange lebt die Sonne noch?</summary><p>Sie ist etwa 4,6 Milliarden Jahre alt und bleibt noch rund 5 Milliarden Jahre auf der Hauptreihe. Danach bläht sie sich zum Roten Riesen auf und endet als Weißer Zwerg.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script src="../assets/baukasten.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const BK = Baukasten, R = BK.R, tz = BK.tz, E = BK.E, F = BK.F, zz = BK.zz, rd = BK.rd, PI2 = BK.PI2, W2 = BK.W2, GRAD = BK.GRAD, BLAU = BK.BLAU, ROT = BK.ROT, GRUEN = BK.GRUEN, ORANGE = BK.ORANGE, LILA = BK.LILA, GRAU = BK.GRAU, GELB = BK.GELB, KUPFER = BK.KUPFER, TUERKIS = BK.TUERKIS, T = BK.T, TW = BK.TW, TWU = BK.TWU, pfeil = BK.pfeil, kreis = BK.kreis, strecke = BK.strecke, zug = BK.zug, uhr = BK.uhr, diagramm = BK.diagramm, schritt = BK.schritt, teilung = BK.teilung, stellen = BK.stellen, runde = BK.runde, ansichten = BK.ansichten, zufall = BK.zufall, bildCanvas = BK.bildCanvas, zeiger = BK.zeiger;
+    // wissenschaftliche Schreibweise für Text (wz) und TeX (wt), s gültige Stellen
+    function hoch(n) { const z = '⁰¹²³⁴⁵⁶⁷⁸⁹'; return String(n).replace('-', '⁻').replace(/\d/g, function (d) { return z[+d]; }); }
+    function zerlege(v, s) { const a = Math.abs(v); let ex = Math.floor(Math.log10(a)), m = v / Math.pow(10, ex); if (Math.abs(Number(m.toFixed(s - 1))) >= 10) { ex++; m = v / Math.pow(10, ex); } return [m, ex]; }
+    function wz(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '–'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return zz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return zz(q[0], s - 1) + ' · 10' + hoch(q[1]); }
+    function wt(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '\\infty'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return tz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return tz(q[0], s - 1) + ' \\cdot 10^{' + q[1] + '}'; }
+    // sichtbare Farbe einer Wellenlänge in nm (Näherung nach Bruton); außerhalb: Ersatzfarben
+    function wlFarbe(l) {
+      if (l < 380) return '#8a5cf6'; if (l > 780) return '#a33a3a';
+      let r = 0, g = 0, b = 0;
+      if (l < 440) { r = (440 - l) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = (510 - l) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = (645 - l) / 65; } else r = 1;
+      const f = l < 420 ? 0.3 + 0.7 * (l - 380) / 40 : l > 700 ? 0.3 + 0.7 * (780 - l) / 80 : 1, k = function (v) { return Math.round(255 * Math.pow(v * f, 0.8)); };
+      return 'rgb(' + k(r) + ',' + k(g) + ',' + k(b) + ')';
+    }
+    const SIGMA = 5.670374e-8, WIEN = 2.897772e-3, H_P = 6.62607015e-34, C0 = 299792458, KB = 1.380649e-23;
+    const L_SONNE = 3.828e26, R_SONNE = 6.957e8, T_SONNE = 5772, AE = 1.495978707e11, LJ = 9.4607e15, PC = 3.0857e16;
+    // [Name, T in K, R in Sonnenradien, d in Lichtjahren, M in Sonnenmassen, Art]
+    const STERNE = {
+      sonne: ['Sonne', 5772, 1, AE / LJ, 1, 'Hauptreihe'], proxima: ['Proxima Centauri', 3042, 0.154, 4.25, 0.122, 'Hauptreihe'],
+      sirius: ['Sirius A', 9940, 1.711, 8.6, 2.06, 'Hauptreihe'], wega: ['Wega', 9602, 2.36, 25, 2.14, 'Hauptreihe'],
+      siriusb: ['Sirius B (Weißer Zwerg)', 25000, 0.0084, 8.6, 1.02, 'Weißer Zwerg'], aldebaran: ['Aldebaran', 3910, 44.1, 65, 1.16, 'Riese'],
+      beteigeuze: ['Beteigeuze', 3600, 764, 548, 16.5, 'Überriese'], rigel: ['Rigel', 12100, 78.9, 860, 21, 'Überriese']
+    };
+    let ansicht = 'spektrum', takt = uhr();
+    const SIM = { t: 0 };
+
+    function planck(lam, T) { const x = H_P * C0 / (lam * KB * T); return x > 700 ? 0 : 2 * H_P * C0 * C0 / Math.pow(lam, 5) / (Math.exp(x) - 1); }
+    function klasse(T) { return T >= 30000 ? 'O' : T >= 10000 ? 'B' : T >= 7500 ? 'A' : T >= 6000 ? 'F' : T >= 5200 ? 'G' : T >= 3700 ? 'K' : 'M'; }
+    function sternFarbe(T) {
+      const t = T / 100; let r, g, b;
+      r = t <= 66 ? 255 : 329.7 * Math.pow(t - 60, -0.1332);
+      g = t <= 66 ? 99.47 * Math.log(t) - 161.1 : 288.1 * Math.pow(t - 60, -0.0755);
+      b = t >= 66 ? 255 : t <= 19 ? 0 : 138.5 * Math.log(t - 10) - 305.0;
+      const k = function (v) { return Math.round(Math.max(0, Math.min(255, v))); };
+      return 'rgb(' + k(r) + ',' + k(g) + ',' + k(b) + ')';
+    }
+    function rechne(e) {
+      const r = { T: e.T }, R = e.R * R_SONNE, d = e.d * LJ;
+      r.lam = WIEN / e.T; r.L = 4 * Math.PI * R * R * SIGMA * Math.pow(e.T, 4); r.Lrel = r.L / L_SONNE;
+      r.Mbol = 4.74 - 2.5 * Math.log10(r.Lrel); r.dpc = d / PC; r.m = r.Mbol + 5 * Math.log10(r.dpc / 10);
+      r.p = 1 / r.dpc; r.S = r.L / (4 * Math.PI * d * d); r.Sflaeche = SIGMA * Math.pow(e.T, 4);
+      r.leben = 1e10 * Math.pow(e.M, -2.5); r.kl = klasse(e.T);
+      r.Tp = e.T * Math.sqrt(R / (2 * e.a * AE)) * Math.pow(1 - e.A, 0.25); r.Sp = r.L / (4 * Math.PI * Math.pow(e.a * AE, 2));
+      r.hzInnen = 0.95 * Math.sqrt(r.Lrel); r.hzAussen = 1.37 * Math.sqrt(r.Lrel);
+      r.lichtzeit = d / C0;
+      r.anteilSicht = sichtAnteil(e.T);
+      return r;
+    }
+    function sichtAnteil(T) { let s = 0, ges = SIGMA * Math.pow(T, 4) / Math.PI; for (let l = 380; l < 780; l += 2) s += planck(l * 1e-9 + 1e-9, T) * 2e-9; return Math.min(1, s / ges); }
+    function zeitText(s) { const j = s / 3.156e7; return j >= 1 ? wz(j, 3) + ' Jahre' : s >= 86400 ? zz(s / 86400, 1) + ' Tage' : s >= 60 ? zz(s / 60, 1) + ' min' : zz(s, 1) + ' s'; }
+
+    const seite = R.seite({
+      titel: 'Sterne und Strahlung',
+      einleitung: 'Aus Temperatur, Radius und Entfernung eines Sterns folgen Farbe, Leuchtkraft, Helligkeit am Himmel und Lebensdauer. Der Rechner nutzt das Plancksche Strahlungsgesetz, das Wiensche Verschiebungsgesetz und das Stefan-Boltzmann-Gesetz – mit Hertzsprung-Russell-Diagramm und Parallaxe.',
+      hilfe: 'Beispiel: die Sonne, gesehen von der Erde, und die Erde als Planet in 1 AE Abstand mit 30 % Albedo.',
+      gruppen: [
+        { titel: 'Stern', farbe: ORANGE, felder: [
+          { k: 'stern', name: 'Vorlage', wahl: [['eigen', 'eigene Werte']].concat(Object.keys(STERNE).map(function (k) { return [k, STERNE[k][0]]; })), bei: function (e, w, setze) { const S = STERNE[w]; if (S) setze({ T: S[1], R: S[2], d: S[3], M: S[4] }); } },
+          { k: 'T', tex: 'T', name: 'Oberflächentemperatur', e: 'K', min: 500, max: 200000 },
+          { k: 'R', tex: 'R', name: 'Radius', e: 'R☉', min: 1e-5, max: 3000 },
+          { k: 'M', tex: 'M', name: 'Masse', e: 'M☉', min: 0.08, max: 300 },
+          { k: 'd', tex: 'd', name: 'Entfernung', e: 'Lj', min: 1e-6, max: 1e10 }
+        ] },
+        { titel: 'Planet um den Stern', farbe: BLAU, felder: [
+          { k: 'a', tex: 'a', name: 'Abstand Planet – Stern', e: 'AE', min: 0.001, max: 10000 },
+          { k: 'A', tex: 'A', name: 'Albedo (Rückstrahlvermögen)', e: '', min: 0, max: 0.99 }
+        ] }
+      ],
+      beispiel: { stern: 'sonne', T: 5772, R: 1, M: 1, d: AE / LJ, a: 1, A: 0.3 },
+      rechne: rechne,
+      ergebnis: function (r, e, H) {
+        const art = STERNE[e.stern] ? STERNE[e.stern][5] : '';
+        if (art && art !== 'Hauptreihe') H.meldung('Die Lebensdauer-Formel gilt nur für Sterne auf der Hauptreihe. ' + STERNE[e.stern][0] + ' hat das Wasserstoffbrennen im Kern schon hinter sich.');
+        H.kacheln([
+          [zz(r.lam * 1e9, 0) + ' nm', 'Wellenlänge des Strahlungsmaximums (' + (r.lam < 380e-9 ? 'ultraviolett' : r.lam < 780e-9 ? 'sichtbar' : 'infrarot') + ')', LILA],
+          [r.kl + ' · ' + zz(e.T, 0) + ' K', 'Spektralklasse und Farbe', ORANGE],
+          [wz(r.Lrel, 3) + ' L☉', 'Leuchtkraft = ' + wz(r.L, 3) + ' W', ROT],
+          [zz(r.m, 2) + ' mag', 'scheinbare Helligkeit (bolometrisch), absolut ' + zz(r.Mbol, 2) + ' mag', BLAU],
+          [r.dpc > 0.01 ? wz(r.p, 3) + '″' : '–', 'jährliche Parallaxe (Entfernung ' + wz(r.dpc, 3) + ' pc)', GRUEN],
+          [wz(r.leben, 2) + ' Jahre', 'Lebensdauer auf der Hauptreihe (grob)', GRAU],
+          [zz(r.Tp, 0) + ' K = ' + zz(r.Tp - 273.15, 0) + ' °C', 'Gleichgewichtstemperatur des Planeten (ohne Treibhauseffekt)', BLAU],
+          [zz(r.hzInnen, 2) + '–' + zz(r.hzAussen, 2) + ' AE', 'lebensfreundliche Zone (flüssiges Wasser möglich)', GRUEN]
+        ]);
+        H.tabelle('Strahlung', ['Größe', 'Wert'], [
+          ['Strahlung je m² Sternoberfläche σT⁴', wz(r.Sflaeche, 3) + ' W/m²'], ['Anteil im sichtbaren Bereich (380–780 nm)', zz(r.anteilSicht * 100, 1) + ' %'],
+          ['Strahlungsfluss beim Beobachter', wz(r.S, 3) + ' W/m²'], ['Strahlungsfluss beim Planeten', wz(r.Sp, 4) + ' W/m²'],
+          ['Licht ist unterwegs', zeitText(r.lichtzeit)], ['Radius', wz(e.R * R_SONNE / 1000, 3) + ' km'],
+          ['Planet in der lebensfreundlichen Zone?', e.a >= r.hzInnen && e.a <= r.hzAussen ? 'ja' : e.a < r.hzInnen ? 'nein, zu nah' : 'nein, zu weit']
+        ], { zahl: [1] });
+      },
+      weg: function (r, e) {
+        return [
+          ['Wiensches Verschiebungsgesetz', '\\lambda_\\text{max} = \\frac{b}{T} = \\frac{2{,}898 \\cdot 10^{-3}\\,\\text{m K}}{' + tz(e.T, 0) + '\\,\\text{K}} = ' + E(tz(r.lam * 1e9, 0) + '\\,\\text{nm}')],
+          ['Stefan-Boltzmann-Gesetz', 'L = 4\\pi R^2 \\sigma T^4 = 4\\pi \\cdot (' + wt(e.R * R_SONNE) + ')^2 \\cdot 5{,}67 \\cdot 10^{-8} \\cdot ' + tz(e.T, 0) + '^4 = ' + E(wt(r.L) + '\\,\\text{W}')],
+          ['Absolute Helligkeit', 'M = 4{,}74 - 2{,}5 \\lg\\frac{L}{L_\\odot} = 4{,}74 - 2{,}5 \\lg ' + wt(r.Lrel) + ' = ' + E(tz(r.Mbol, 2))],
+          ['Entfernungsmodul', 'm = M + 5 \\lg\\frac{d}{10\\,\\text{pc}} = ' + tz(r.Mbol, 2) + ' + 5 \\lg\\frac{' + wt(r.dpc) + '}{10} = ' + E(tz(r.m, 2))],
+          ['Parallaxe', 'p = \\frac{1}{d\\,[\\text{pc}]} = \\frac{1}{' + wt(r.dpc) + '} = ' + E(wt(r.p) + "''")],
+          ['Lebensdauer', 't \\approx 10^{10}\\,\\text{a} \\cdot \\left(\\frac{M}{M_\\odot}\\right)^{-2{,}5} = ' + E(wt(r.leben, 2) + '\\,\\text{a}')],
+          ['Gleichgewichtstemperatur des Planeten', 'T_\\text{P} = T \\sqrt{\\frac{R}{2a}} \\sqrt[4]{1 - A} = ' + E(tz(r.Tp, 0) + '\\,\\text{K}')]
+        ];
+      },
+      loeser: [
+        { titel: 'Wiensches Verschiebungsgesetz', felder: [{ k: 'lam', tex: '\\lambda_\\text{max}', name: 'Wellenlänge des Maximums', e: 'nm', min: 1, max: 1e7 }, { k: 'T', tex: 'T', name: 'Temperatur', e: 'K', min: 1, max: 1e7 }],
+          beispiel: { T: 5772 },
+          gleichungen: [{ name: 'λ · T = b', v: ['lam', 'T'], f: function (q) { return [q.lam * 1e-9 * q.T, WIEN]; },
+            loese: { lam: function (q) { return WIEN / q.T * 1e9; }, T: function (q) { return WIEN / (q.lam * 1e-9); } },
+            weg: function (k, q) { return k === 'lam' ? '\\lambda_\\text{max} = \\frac{2{,}898 \\cdot 10^{-3}\\,\\text{m K}}{' + tz(q.T, 0) + '\\,\\text{K}} = ' + E(tz(q.lam, 0) + '\\,\\text{nm}') : 'T = \\frac{2{,}898 \\cdot 10^{-3}\\,\\text{m K}}{' + tz(q.lam, 0) + ' \\cdot 10^{-9}\\,\\text{m}} = ' + E(tz(q.T, 0) + '\\,\\text{K}'); } }] },
+        { titel: 'Leuchtkraft in Sonneneinheiten', hilfe: 'Aus Stefan-Boltzmann: L/L☉ = (R/R☉)² · (T/5772 K)⁴.',
+          felder: [{ k: 'L', tex: 'L', name: 'Leuchtkraft', e: 'L☉', min: 1e-6, max: 1e8 }, { k: 'R', tex: 'R', name: 'Radius', e: 'R☉', min: 1e-4, max: 3000 }, { k: 'T', tex: 'T', name: 'Temperatur', e: 'K', min: 1000, max: 100000 }],
+          beispiel: { R: 1.711, T: 9940 },
+          gleichungen: [{ name: 'L = R² T⁴', v: ['L', 'R', 'T'], f: function (q) { return [q.L, q.R * q.R * Math.pow(q.T / T_SONNE, 4)]; },
+            loese: { L: function (q) { return q.R * q.R * Math.pow(q.T / T_SONNE, 4); }, R: function (q) { return Math.sqrt(q.L) / Math.pow(q.T / T_SONNE, 2); }, T: function (q) { return T_SONNE * Math.pow(q.L / (q.R * q.R), 0.25); } },
+            weg: function (k, q) {
+              if (k === 'L') return '\\frac{L}{L_\\odot} = \\left(\\frac{R}{R_\\odot}\\right)^2 \\left(\\frac{T}{5772\\,\\text{K}}\\right)^4 = ' + tz(q.R, 3) + '^2 \\cdot \\left(\\frac{' + tz(q.T, 0) + '}{5772}\\right)^4 = ' + E(wt(q.L));
+              if (k === 'R') return '\\frac{R}{R_\\odot} = \\frac{\\sqrt{L/L_\\odot}}{(T/5772\\,\\text{K})^2} = ' + E(wt(q.R));
+              return 'T = 5772\\,\\text{K} \\cdot \\sqrt[4]{\\frac{L/L_\\odot}{(R/R_\\odot)^2}} = ' + E(tz(q.T, 0) + '\\,\\text{K}');
+            } }] },
+        { titel: 'Entfernungsmodul', hilfe: 'm scheinbare, M absolute Helligkeit, d in Parsec.',
+          felder: [{ k: 'm', tex: 'm', name: 'scheinbare Helligkeit', e: 'mag', min: -30, max: 40 }, { k: 'M', tex: 'M', name: 'absolute Helligkeit', e: 'mag', min: -15, max: 25 }, { k: 'd', tex: 'd', name: 'Entfernung', e: 'pc', min: 1e-6, max: 1e10 }],
+          beispiel: { M: 1.42, d: 2.64 },
+          gleichungen: [{ name: 'm − M = 5 lg(d/10 pc)', v: ['m', 'M', 'd'], f: function (q) { return [q.m - q.M, 5 * Math.log10(q.d / 10)]; },
+            loese: { m: function (q) { return q.M + 5 * Math.log10(q.d / 10); }, M: function (q) { return q.m - 5 * Math.log10(q.d / 10); }, d: function (q) { return 10 * Math.pow(10, (q.m - q.M) / 5); } },
+            weg: function (k, q) {
+              if (k === 'm') return 'm = M + 5 \\lg\\frac{d}{10\\,\\text{pc}} = ' + tz(q.M, 2) + ' + 5 \\lg\\frac{' + wt(q.d) + '}{10} = ' + E(tz(q.m, 2));
+              if (k === 'M') return 'M = m - 5 \\lg\\frac{d}{10\\,\\text{pc}} = ' + tz(q.m, 2) + ' - 5 \\lg\\frac{' + wt(q.d) + '}{10} = ' + E(tz(q.M, 2));
+              return 'd = 10\\,\\text{pc} \\cdot 10^{(m - M)/5} = 10 \\cdot 10^{(' + tz(q.m, 2) + ' - ' + tz(q.M, 2) + ')/5} = ' + E(wt(q.d) + '\\,\\text{pc}');
+            } }] },
+        { titel: 'Parallaxe', hilfe: 'p in Bogensekunden, d in Parsec (1 pc = 3,26 Lichtjahre).',
+          felder: [{ k: 'd', tex: 'd', name: 'Entfernung', e: 'pc', min: 0.01, max: 1e6 }, { k: 'p', tex: 'p', name: 'Parallaxe', e: '″', min: 1e-6, max: 100 }],
+          beispiel: { p: 0.768 },
+          gleichungen: [{ name: 'd = 1/p', v: ['d', 'p'], f: function (q) { return [q.d * q.p, 1]; },
+            loese: { d: function (q) { return 1 / q.p; }, p: function (q) { return 1 / q.d; } },
+            weg: function (k, q) { return k === 'd' ? 'd = \\frac{1}{p} = \\frac{1}{' + wt(q.p) + "''} = " + E(wt(q.d) + '\\,\\text{pc}') : 'p = \\frac{1}{d} = \\frac{1}{' + wt(q.d) + '\\,\\text{pc}} = ' + E(wt(q.p) + "''"); } }] },
+        { titel: 'Lebensdauer auf der Hauptreihe', hilfe: 'Grobe Näherung: t = 10 Mrd. Jahre · (M/M☉)^−2,5.',
+          felder: [{ k: 't', tex: 't', name: 'Lebensdauer', e: 'Mrd. a', min: 1e-4, max: 1e5 }, { k: 'M', tex: 'M', name: 'Masse', e: 'M☉', min: 0.08, max: 150 }],
+          beispiel: { M: 2 },
+          gleichungen: [{ name: 't = 10 · M^−2,5', v: ['t', 'M'], f: function (q) { return [q.t, 10 * Math.pow(q.M, -2.5)]; },
+            loese: { t: function (q) { return 10 * Math.pow(q.M, -2.5); }, M: function (q) { return Math.pow(q.t / 10, -0.4); } },
+            weg: function (k, q) { return k === 't' ? 't = 10\\,\\text{Mrd. a} \\cdot ' + tz(q.M, 2) + '^{-2{,}5} = ' + E(wt(q.t) + '\\,\\text{Mrd. a}') : 'M = \\left(\\frac{t}{10\\,\\text{Mrd. a}}\\right)^{-0{,}4} = \\left(\\frac{' + wt(q.t) + '}{10}\\right)^{-0{,}4} = ' + E(tz(q.M, 2) + '\\,M_\\odot'); } }] },
+        { titel: 'Strahlungsfluss im Abstand d', hilfe: 'L in Sonnenleuchtkräften, d in AE; bei der Erde (L = 1, d = 1): Solarkonstante 1 361 W/m².',
+          felder: [{ k: 'S', tex: 'S', name: 'Strahlungsfluss', e: 'W/m²', min: 1e-12, max: 1e12 }, { k: 'L', tex: 'L', name: 'Leuchtkraft', e: 'L☉', min: 1e-6, max: 1e8 }, { k: 'd', tex: 'd', name: 'Abstand', e: 'AE', min: 0.001, max: 1e9 }],
+          beispiel: { L: 1, d: 5.2 },
+          gleichungen: [{ name: 'S = 1361 · L / d²', v: ['S', 'L', 'd'], f: function (q) { return [q.S * q.d * q.d, 1361 * q.L]; },
+            loese: { S: function (q) { return 1361 * q.L / (q.d * q.d); }, L: function (q) { return q.S * q.d * q.d / 1361; }, d: function (q) { return Math.sqrt(1361 * q.L / q.S); } },
+            weg: function (k, q) {
+              if (k === 'S') return 'S = 1361\\,\\tfrac{\\text{W}}{\\text{m}^2} \\cdot \\frac{L / L_\\odot}{(d / \\text{AE})^2} = 1361 \\cdot \\frac{' + wt(q.L) + '}{' + wt(q.d) + '^2} = ' + E(wt(q.S) + '\\,\\tfrac{\\text{W}}{\\text{m}^2}');
+              if (k === 'L') return '\\frac{L}{L_\\odot} = \\frac{S \\cdot d^2}{1361} = ' + E(wt(q.L));
+              return 'd = \\sqrt{\\frac{1361 \\cdot L}{S}} = ' + E(wt(q.d) + '\\,\\text{AE}');
+            } }] }
+      ],
+      sammlung: [
+        ['Plancksches Strahlungsgesetz', 'B_\\lambda(T) = \\frac{2 h c^2}{\\lambda^5} \\cdot \\frac{1}{e^{h c / (\\lambda k T)} - 1}', 'Strahlung eines Schwarzen Körpers'],
+        ['Wiensches Verschiebungsgesetz', '\\lambda_\\text{max} \\cdot T = 2{,}898 \\cdot 10^{-3}\\,\\text{m K}', ''],
+        ['Stefan-Boltzmann-Gesetz', 'P = \\sigma A T^4, \\quad \\sigma = 5{,}67 \\cdot 10^{-8}\\,\\tfrac{\\text{W}}{\\text{m}^2 \\text{K}^4}', ''],
+        ['Leuchtkraft eines Sterns', 'L = 4\\pi R^2 \\sigma T^4', 'Sonne: 3,83 · 10²⁶ W'],
+        ['Strahlungsfluss', 'S = \\frac{L}{4\\pi d^2}', 'Solarkonstante 1 361 W/m²'],
+        ['Helligkeit (Pogson)', 'm_1 - m_2 = -2{,}5 \\lg\\frac{S_1}{S_2}', '5 mag = Faktor 100'],
+        ['Entfernungsmodul', 'm - M = 5 \\lg\\frac{d}{10\\,\\text{pc}}', ''],
+        ['Parallaxe', "d\\,[\\text{pc}] = \\frac{1}{p\\,['']}", '1 pc = 3,26 Lj = 206 265 AE'],
+        ['Masse-Leuchtkraft-Beziehung', 'L \\propto M^{3{,}5}', 'Hauptreihensterne'],
+        ['Lebensdauer', 't \\approx 10^{10}\\,\\text{a} \\cdot \\left(\\frac{M}{M_\\odot}\\right)^{-2{,}5}', ''],
+        ['Gleichgewichtstemperatur eines Planeten', 'T_\\text{P} = T \\sqrt{\\frac{R}{2a}} \\sqrt[4]{1 - A}', 'A Albedo']
+      ],
+      quellen: 'Sterndaten gerundet nach gängigen Katalogen; Radien und Entfernungen großer Sterne sind unsicher. Helligkeiten bolometrisch (über alle Wellenlängen), visuelle Werte weichen ab.',
+      bild: { titel: 'Animation', label: 'Planck-Spektrum, Hertzsprung-Russell-Diagramm, Größenvergleich und Parallaxe', animiert: true,
+        hoehe: function (B) { return B < 600 ? Math.round(B + 60) : 460; },
+        hinweis: function (r) {
+          if (ansicht === 'spektrum') return 'Strahlung über der Wellenlänge (Planck). Je heißer, desto mehr Strahlung und desto weiter links liegt das Maximum (Wien). Farbiges Band: sichtbares Licht.';
+          if (ansicht === 'hr') return 'Hertzsprung-Russell-Diagramm: Temperatur nach rechts fallend, Leuchtkraft logarithmisch. Die meisten Sterne liegen auf der Hauptreihe. Antippen wählt einen Stern.';
+          if (ansicht === 'groesse') return 'Größenvergleich mit der Sonne in der Farbe des Sterns. Bei sehr großen Sternen ist die Sonne nur noch ein Punkt.';
+          return 'Parallaxe: Die Erde läuft um die Sonne, ein naher Stern scheint sich vor den fernen hin und her zu bewegen. Der Winkel ist stark übertrieben; echt ' + wz(r.p, 3) + '″.';
+        },
+        zeichne: function (cx, B, H, t, r, e) { const dt = takt(t); ({ spektrum: spektrumBild, hr: hrBild, groesse: groesseBild, parallaxe: parallaxeBild })[ansicht](cx, B, H, dt, r, e); } }
+    });
+
+    // ---------- Spektrum ----------
+    function spektrumBild(cx, B, H, dt, r, e) {
+      const T = e.T, lmax = Math.max(2500, Math.min(20000, 4 * WIEN / T * 1e9)), temps = [T, 3000, 6000, 10000].filter(function (x, i) { return i === 0 || Math.abs(x - T) > 300; });
+      const kurven = temps.map(function (t) { const pk = []; for (let i = 1; i <= 200; i++) { const l = lmax * i / 200; pk.push([l, planck(l * 1e-9, t)]); } return pk; });
+      const spitze = kurven.map(function (pk, i) { return planck(WIEN / temps[i], temps[i]); }), maxi = spitze[0];
+      const reihen = kurven.map(function (pk, i) { return { name: (i ? '' : 'gewählt ') + zz(temps[i], 0) + ' K' + (i ? ' (×' + wz(Math.pow(temps[i] / T, 4), 2) + ' Leistung)' : ''), farbe: i ? (temps[i] > T ? BLAU : ROT) : ORANGE, punkte: pk.map(function (q, j) { return [q[0], q[1] / spitze[i] * 100]; }), breite: i ? 1.3 : 3, strich: i ? [4, 3] : null }; });
+      const g = diagramm(cx, 8, 8, B - 16, H - 16, reihen, { titel: 'Spektrum, jede Kurve auf ihr Maximum bezogen', xl: 'Wellenlänge in nm', xr: [0, lmax], yr: [0, 110] });
+      for (let l = 380; l < 780; l += 4) { cx.fillStyle = wlFarbe(l); cx.globalAlpha = 0.25; cx.fillRect(g.X(l), g.Y(100), Math.max(1, g.X(l + 4) - g.X(l)), g.Y(0) - g.Y(100)); }
+      cx.globalAlpha = 1;
+      const lm = r.lam * 1e9; if (lm < lmax) { strecke(cx, g.X(lm), g.Y(0), g.X(lm), g.Y(100), F('--text'), 1, [3, 3]); T_(cx, 'λmax = ' + zz(lm, 0) + ' nm', g.X(lm) + 4, g.Y(100) - 6); }
+      kreis(cx, B - 40, 60, 18, sternFarbe(T), F('--text'), 1);
+      void dt;
+    }
+    function T_(cx, t, x, y) { T(cx, t, x, y, 'left', 10, true, F('--text')); }
+    // ---------- HR-Diagramm ----------
+    const HR = { geom: null };
+    function hrBild(cx, B, H, dt, r, e) {
+      const x0 = 46, x1 = B - 12, y0 = 22, y1 = H - 30, lt0 = Math.log10(40000), lt1 = Math.log10(2400), ll0 = -4.5, ll1 = 6.2;
+      const X = function (T) { return x0 + (lt0 - Math.log10(T)) / (lt0 - lt1) * (x1 - x0); }, Y = function (L) { return y1 - (Math.log10(L) - ll0) / (ll1 - ll0) * (y1 - y0); };
+      cx.fillStyle = F('--flaeche'); cx.fillRect(x0, y0, x1 - x0, y1 - y0); cx.strokeStyle = F('--linie'); cx.strokeRect(x0, y0, x1 - x0, y1 - y0);
+      [-4, -2, 0, 2, 4, 6].forEach(function (p) { const y = Y(Math.pow(10, p)); strecke(cx, x0, y, x1, y, F('--linie'), 0.5); T(cx, '10' + hoch(p), x0 - 4, y, 'right', 9, false, GRAU); });
+      [30000, 10000, 6000, 4000, 3000].forEach(function (t) { const x = X(t); strecke(cx, x, y0, x, y1, F('--linie'), 0.5); T(cx, zz(t, 0), x, y1 + 12, 'center', 9, false, GRAU); });
+      T(cx, 'Temperatur in K', x1, y1 + 25, 'right', 10, true, GRAU); T(cx, 'L / L☉', x0 - 4, y0 - 10, 'right', 10, true, GRAU);
+      // Hauptreihe
+      const hr = [[2600, 1e-4], [3000, 1e-3], [3500, 0.02], [4500, 0.2], [5772, 1], [7500, 6], [10000, 40], [20000, 2000], [35000, 1.5e5]];
+      cx.save(); cx.lineWidth = 16; cx.strokeStyle = F('--linie'); cx.lineCap = 'round'; cx.beginPath(); hr.forEach(function (p, i) { if (i) cx.lineTo(X(p[0]), Y(p[1])); else cx.moveTo(X(p[0]), Y(p[1])); }); cx.stroke(); cx.restore();
+      T(cx, 'Hauptreihe', X(9000) + 10, Y(9), 'left', 10, true, GRAU); T(cx, 'Riesen', X(4300), Y(300), 'center', 10, true, GRAU); T(cx, 'Überriesen', X(6000), Y(2e5), 'center', 10, true, GRAU); T(cx, 'Weiße Zwerge', X(14000), Y(3e-3), 'center', 10, true, GRAU);
+      HR.geom = [];
+      Object.keys(STERNE).forEach(function (k) { const S = STERNE[k], L = S[2] * S[2] * Math.pow(S[1] / T_SONNE, 4), x = X(S[1]), y = Y(L); kreis(cx, x, y, 5, sternFarbe(S[1]), F('--text'), 0.5); const rechts = x > x1 - 80; T(cx, S[0].replace(/ \(.*/, ''), rechts ? x - 7 : x + 7, y - 6, rechts ? 'right' : 'left', 9, false, F('--text')); HR.geom.push([x, y, k]); });
+      if (e.T >= 2400 && e.T <= 40000) { const x = X(e.T), y = Y(Math.max(3.2e-5, Math.min(1.5e6, r.Lrel))); kreis(cx, x, y, 9, 'rgba(0,0,0,0)', ROT, 2.5); }
+      HR.rahmen = [x0, x1, y0, y1];
+      void dt;
+    }
+    // ---------- Größenvergleich ----------
+    function groesseBild(cx, B, H, dt, r, e) {
+      const maxR = Math.min(B * 0.3, H / 2 - 30), k = maxR / Math.max(e.R, 1), rs = Math.max(1.5, e.R * k), sun = Math.max(1.5, k), my = H / 2 + 8, mx = B * 0.36;
+      SIM.t += dt; const puls = 1 + 0.02 * Math.sin(SIM.t * 2);
+      const grad = cx.createRadialGradient(mx, my, 0, mx, my, rs * puls); grad.addColorStop(0, '#ffffff'); grad.addColorStop(0.25, sternFarbe(e.T)); grad.addColorStop(1, sternFarbe(e.T));
+      cx.beginPath(); cx.arc(mx, my, rs * puls, 0, 2 * Math.PI); cx.fillStyle = grad; cx.fill(); cx.strokeStyle = F('--linie'); cx.lineWidth = 1; cx.stroke();
+      const sx = B * 0.8, sy = my;
+      cx.beginPath(); cx.arc(sx, sy, sun, 0, 2 * Math.PI); cx.fillStyle = sternFarbe(T_SONNE); cx.fill(); cx.strokeStyle = F('--text'); cx.lineWidth = 1; cx.stroke();
+      T(cx, 'Sonne', sx, sy + sun + 14, 'center', 10, true, F('--text'));
+      T(cx, (STERNE[e.stern] ? STERNE[e.stern][0] : 'Stern') + ': ' + wz(e.R, 3) + ' Sonnenradien, ' + zz(e.T, 0) + ' K', 10, 18, 'left', 12, true, F('--text'));
+      if (e.R > 200) T(cx, 'An die Stelle der Sonne gesetzt, reichte er bis über die Bahn ' + (e.R * R_SONNE > 2.28e11 ? 'des Mars' : 'der Erde') + '.', 10, H - 10, 'left', 10, false, GRAU);
+    }
+    // ---------- Parallaxe ----------
+    function parallaxeBild(cx, B, H, dt, r, e) {
+      if (r.dpc < 0.01) { T(cx, 'Für die Sonne gibt es keine Parallaxe – wähle einen anderen Stern.', B / 2, H / 2, 'center', 12, true, GRAU); return; }
+      SIM.t += dt * 0.6; const w = SIM.t, sx = B / 2, sy = H - 60, ra = Math.min(B * 0.3, 110), ex = sx + ra * Math.cos(w), ey = sy + ra * 0.35 * Math.sin(w);
+      cx.fillStyle = F('--flaeche'); cx.fillRect(0, 0, B, 60);
+      for (let i = 0; i < 40; i++) { const x = ((i * 0.6180339) % 1) * B, y = 8 + ((i * 0.7548777 + 0.3) % 1) * 44; kreis(cx, x, y, 1.2, GRAU); }
+      T(cx, 'ferne Hintergrundsterne', 8, 70, 'left', 9, false, GRAU);
+      cx.save(); cx.setLineDash([3, 3]); cx.strokeStyle = GRAU; cx.beginPath(); cx.ellipse(sx, sy, ra, ra * 0.35, 0, 0, 2 * Math.PI); cx.stroke(); cx.restore();
+      kreis(cx, sx, sy, 10, sternFarbe(T_SONNE), F('--linie'), 1); kreis(cx, ex, ey, 5, BLAU);
+      const nx = sx, ny = H * 0.38; kreis(cx, nx, ny, 6, sternFarbe(e.T), F('--text'), 1);
+      // Projektion des nahen Sterns auf den Hintergrund
+      const tt = (30 - ey) / (ny - ey), px = ex + tt * (nx - ex);
+      strecke(cx, ex, ey, nx, ny, ORANGE, 1); strecke(cx, nx, ny, Math.max(-20, Math.min(B + 20, px)), 30, ORANGE, 1, [3, 3]);
+      kreis(cx, Math.max(4, Math.min(B - 4, px)), 30, 4, ORANGE);
+      T(cx, 'naher Stern', nx + 10, ny, 'left', 10, true, F('--text')); T(cx, 'Erde', ex + 8, ey + 4, 'left', 9, true, BLAU); T(cx, 'Sonne', sx + 12, sy + 14, 'left', 9, false, GRAU);
+      T(cx, 'p = ' + wz(r.p, 3) + '″ → d = ' + wz(r.dpc, 3) + ' pc = ' + wz(e.d, 3) + ' Lj', 8, H - 10, 'left', 11, true, F('--text'));
+    }
+
+    ansicht = (ansichten(seite, [['spektrum', 'Spektrum'], ['hr', 'HR-Diagramm'], ['groesse', 'Größe'], ['parallaxe', 'Parallaxe']], 'spektrum', function (a) { ansicht = a; SIM.t = 0; }))();
+    const cv = bildCanvas();
+    if (cv) cv.addEventListener('pointerdown', function (ev) {
+      if (ansicht !== 'hr' || !HR.geom) return; const p = zeiger(cv, ev); let best = null, bd = 400;
+      HR.geom.forEach(function (g) { const d = (g[0] - p[0]) * (g[0] - p[0]) + (g[1] - p[1]) * (g[1] - p[1]); if (d < bd) { bd = d; best = g[2]; } });
+      if (best) { const S = STERNE[best]; seite.setze({ stern: best, T: S[1], R: S[2], d: S[3], M: S[4] }); }
+    });
+    const TABELLEN = [['stern-tabelle', Object.keys(STERNE).map(function (k) { const S = STERNE[k], L = S[2] * S[2] * Math.pow(S[1] / T_SONNE, 4); return [S[0], klasse(S[1]) + ' (' + S[5] + ')', zz(S[1], 0) + ' K', wz(S[2], 3) + ' R☉', wz(L, 3) + ' L☉', wz(S[3], 3) + ' Lj']; }), [2, 3, 4, 5]], ['klassen-tabelle', [['O', 'über 30 000 K', 'blau', 'ionisiertes Helium'], ['B', '10 000–30 000 K', 'blauweiß', 'neutrales Helium'], ['A', '7 500–10 000 K', 'weiß', 'starke Wasserstofflinien'], ['F', '6 000–7 500 K', 'gelbweiß', 'Metalllinien nehmen zu'], ['G', '5 200–6 000 K', 'gelb', 'Sonne: G2'], ['K', '3 700–5 200 K', 'orange', 'Metalle, erste Moleküle'], ['M', 'unter 3 700 K', 'rot', 'Molekülbanden (Titanoxid)']], [1]]];
+
+    function tabelleFuellen(id, zeilen, zahl) { const tb = document.getElementById(id); if (!tb) return; zeilen.forEach(function (z) { const tr = document.createElement('tr'); z.forEach(function (x, i) { const td = document.createElement('td'); if (zahl.indexOf(i) >= 0) td.className = 'zahl'; td.textContent = x; tr.append(td); }); tb.append(tr); }); }
+    (typeof TABELLEN !== 'undefined' ? TABELLEN : []).forEach(function (t) { tabelleFuellen(t[0], t[1], t[2]); });
+    const main = document.querySelector('main'), faq = main.querySelector('.seo-info');
+    main.insertBefore(document.getElementById('wissen'), faq);
+  })();
+  </script>
+</body>
+</html>

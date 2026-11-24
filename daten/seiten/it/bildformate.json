@@ -1,0 +1,15 @@
+{
+  "nr": 1250,
+  "titel": "Bildformate: JPEG, PNG, WebP, AVIF, GIF im Vergleich",
+  "gruppe": "Dateiformate",
+  "bereich": "IT und Netzwerk",
+  "themen": ["Bildformat", "Bild", "JPEG", "PNG", "WebP", "AVIF", "GIF", "SVG", "HEIC", "BMP", "Pixel", "Megapixel", "Farbtiefe", "DCT", "Quantisierung", "Farbunterabtastung", "Rastergrafik", "Vektorgrafik", "dpi", "Druckgröße", "PSNR", "Dateigröße"],
+  "text": "JPEG, PNG, WebP, AVIF, GIF und SVG im Vergleich: Dateigröße, Farbtiefe, Druckgröße und welches Format zu welchem Motiv passt. Bildlabor mit echter Codierung im Browser, Lupe, Fehlerbild und PSNR, dazu JPEG-Block, Farbtiefe und Raster gegen Vektor.",
+  "tex": "S = \\frac{B \\cdot H \\cdot b}{8}",
+  "projektmappe": {"nr": 620, "name": "Bildformate", "farbe": "#3B5BDB"},
+  "fragen": [
+    ["Welches Format eignet sich für Screenshots und Grafiken mit scharfen Kanten?", "PNG", ["JPEG", "MP3", "GIF mit Fotoqualität"], "JPEG erzeugt an Kanten Artefakte."],
+    ["Was bedeutet 24 Bit Farbtiefe?", "8 Bit je Farbkanal, etwa 16,7 Millionen Farben", ["24 Farben", "24 Pixel", "256 Farben"], "2²⁴ = 16 777 216."],
+    ["Wie spart JPEG Daten?", "DCT in 8×8-Blöcken und Weglassen feiner Details", ["Es entfernt jeden zweiten Pixel.", "Es speichert nur Schwarz-Weiß.", "Es nutzt nur 16 Farben."], "Hohe Frequenzen werden grob quantisiert."]
+  ]
+}

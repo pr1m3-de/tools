@@ -1,0 +1,14 @@
+{
+  "nr": 1280,
+  "titel": "Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler",
+  "bereich": "Physik",
+  "themen": ["Schwingung", "Federpendel", "Fadenpendel", "Periodendauer", "Frequenz", "Amplitude", "Dämpfung", "Resonanz", "Eigenfrequenz", "Welle", "Wellenlänge", "Querwelle", "Längswelle", "Schall", "Schallgeschwindigkeit", "Doppler-Effekt", "Machzahl", "Überschall"],
+  "text": "Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und Wellenlänge in verschiedenen Stoffen und der Doppler-Effekt bis zum Überschallknall – mit Animationen und Lernaufgaben.",
+  "tex": "T = 2\\pi \\sqrt{\\frac{m}{D}}",
+  "verwandt": ["it/audioformate.html"],
+  "fragen": [
+    ["Wovon hängt die Periodendauer eines Fadenpendels ab (kleine Auslenkung)?", "von Länge und Fallbeschleunigung", ["von der Masse der Kugel", "von der Auslenkung", "von der Farbe der Kugel"], "T = 2π √(l / g)."],
+    ["Was ist Resonanz?", "starke Schwingung, wenn die Anregung die Eigenfrequenz trifft", ["das Abklingen einer Schwingung", "eine Welle ohne Medium", "die Reflexion einer Welle"], "Bei schwacher Dämpfung kann sie Bauteile zerstören."],
+    ["Warum klingt ein Martinshorn beim Vorbeifahren erst höher, dann tiefer?", "Doppler-Effekt: Die Wellen werden vorn gestaucht, hinten gedehnt.", ["Weil der Fahrer den Ton umschaltet.", "Wegen der Reflexion an Häusern.", "Weil Schall bergab schneller ist."], "Die Frequenz am Ohr ändert sich, nicht die der Quelle."]
+  ]
+}
