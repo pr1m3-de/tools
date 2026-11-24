@@ -25,7 +25,8 @@ const PAARE = [
   ['physik/schwingungen-wellen.html', 'it/audioformate.html'], ['physik/optik.html', 'it/bildformate.html'],
   ['elektro/halbleiter.html', 'elektro/transistor-opv.html'], ['elektro/transistor-opv.html', 'steuerung/digitaltechnik.html'],
   ['it/rack-strom.html', 'it/serverraum-klima.html'], ['it/rack-strom.html', 'it/usv.html'],
-  ['physik/perkolation.html', 'physik/chaos-feigenbaum.html'], ['physik/perkolation.html', 'brandschutz/brandsimulation.html'], ['physik/perkolation.html', 'physik/radioaktivitaet.html'], ['physik/chaos-feigenbaum.html', 'physik/schwingungen-wellen.html']
+  ['physik/perkolation.html', 'physik/chaos-feigenbaum.html'], ['physik/perkolation.html', 'brandschutz/brandsimulation.html'], ['physik/perkolation.html', 'physik/radioaktivitaet.html'], ['physik/chaos-feigenbaum.html', 'physik/schwingungen-wellen.html'],
+  ['elektro/akku-laden-entladen.html', 'elektro/kondensator.html'], ['elektro/akku-laden-entladen.html', 'elektro/batteriespeicher.html'], ['elektro/akku-laden-entladen.html', 'it/usv.html'], ['elektro/akku-laden-entladen.html', 'elektro/pv-notstrom.html']
 ];
 
 const start = fs.readFileSync(path.join(WURZEL, 'index.html'), 'utf8');
