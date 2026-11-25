@@ -215,6 +215,45 @@
     .frage-marke { display: inline-block; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--leise); }
     .faellig-zeile { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 0 0 12px; }
     .pruef-geteilt { border-left: 4px solid var(--text); }
+    .ka-kopf { position: sticky; top: 0; z-index: 5; background: var(--grund); padding: 8px 0; }
+    .ka-aufgabe { border-top: 1px solid var(--linie); border-left: 3px solid transparent; padding: 12px 0 12px 10px; margin-left: -10px; }
+    .ka-aufgabe-kopf { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+    .ka-punkte { font: 600 .82rem var(--technik); color: var(--leise); white-space: nowrap; flex: none; }
+    .ka-teil { margin: 10px 0 0; padding: 0 0 0 4px; }
+    .ka-teil .antwort { margin-top: 4px; }
+    .ka-teil-text { margin: 0; }
+    .ka-nobr { white-space: nowrap; }
+    .ka-teil.gut .ka-wertung { color: var(--ergebnis); }
+    .ka-teil.schlecht .ka-wertung { color: var(--fehler); }
+    .ka-wertung { font-weight: 600; margin: 4px 0; }
+    .pruef-einzel.halb summary b { color: var(--text); }
+    .ka-spiegel-box { grid-column: 1 / -1; }
+    .ka-spiegel { max-width: 340px; margin-top: 6px; }
+    .ka-spiegel tr.aktuell td { font-weight: 700; background: var(--ergebnis-flaeche); }
+    #ka-druck { display: none; }
+    @media print {
+      html.ka-druck body > * { display: none !important; }
+      html.ka-druck body > #ka-druck { display: block !important; }
+      html.ka-druck body { padding: 0 !important; }
+      #ka-druck { font-size: 11pt; color: #000; }
+      #ka-druck h1 { font-size: 16pt; margin: 0 0 6pt; }
+      #ka-druck h2 { font-size: 12pt; margin: 12pt 0 4pt; }
+      #ka-druck .neue-seite { break-before: page; }
+      .ka-druck-kopf { width: 100%; border-collapse: collapse; margin-bottom: 6pt; }
+      .ka-druck-kopf td { border: 1px solid #000; padding: 4pt 6pt; vertical-align: top; }
+      .ka-druck-aufgabe { break-inside: avoid; border-top: 1px solid #999; padding: 6pt 0; }
+      .ka-druck-wahl { list-style: none; padding: 0 0 0 12pt; margin: 3pt 0; }
+      .ka-druck-wahl li.richtig { font-weight: 700; }
+      .ka-druck-lang { break-inside: auto; }
+      .ka-druck-aufgabe > .ka-aufgabe-kopf, .ka-druck-aufgabe > .gegeben { break-after: avoid; }
+      .ka-druck-teil { break-inside: avoid; margin: 4pt 0 0 8pt; }
+      .ka-druck-platz { height: 32mm; border-bottom: 1px dotted #999; }
+      .ka-druck-erg { font-weight: 700; margin: 2pt 0; }
+      .ka-druck-erkl { font-size: 9.5pt; margin: 2pt 0; }
+      .ka-druck-fuss { break-inside: avoid; margin-top: 10pt; border-top: 1.5px solid #000; padding-top: 6pt; }
+      #ka-druck .ka-spiegel tr.aktuell td { background: #ddd; }
+      #ka-druck .ka-punkte { color: #000; }
+    }
     @media print {
       html.pruef-druck #seitenkopf, html.pruef-druck #seitenfuss, html.pruef-druck .verwandt, html.pruef-druck .app-nav, html.pruef-druck .themen-leiste, html.pruef-druck .pruef-knoepfe, html.pruef-druck .app-meldung, html.pruef-druck .rechner-knopf { display: none !important; }
       html.pruef-druck .pruef-einzel { break-inside: avoid; }
@@ -402,6 +441,7 @@
         <button type="button" class="app-tab" data-modus="karten" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="6.5" width="13" height="13" rx="2"/><path d="M7.5 6.5V5a1.5 1.5 0 0 1 1.5-1.5h10A1.5 1.5 0 0 1 20.5 5v10a1.5 1.5 0 0 1-1.5 1.5h-2.5"/></svg><span class="app-tab-text">Karten</span></button>
         <button type="button" class="app-tab" data-modus="kopf" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 3 5 13.5h6L10 21l8-10.5h-6z"/></svg><span class="app-tab-text"><span class="lang">Kopfrechnen</span><span class="kurz">Kopf</span></span></button>
         <button type="button" class="app-tab nur-breit" data-modus="pruefung" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 9.5v4l2.5 2M10 3.5h4M12 3.5V6"/></svg><span class="app-tab-text">Prüfung</span></button>
+        <button type="button" class="app-tab nur-breit" data-modus="klassenarbeit" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h12v17H6z"/><path d="M9 8h6M9 11.5h6M9 15h3"/><path d="m14 16.5 1.5 1.5 3-3.5"/></svg><span class="app-tab-text">Klassenarbeit</span></button>
         <button type="button" class="app-tab" data-modus="blaetter" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.5h8l4.5 4.5v12.5H6z"/><path d="M14 3.5V8h4.5M9 12.5h6M9 16h6"/></svg><span class="app-tab-text">Blätter</span></button>
         <button type="button" class="app-tab" data-modus="sammlung" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 5.5c2.5-1.3 5-1.3 7.5 0v14c-2.5-1.3-5-1.3-7.5 0z"/><path d="M12 5.5c2.5-1.3 5-1.3 7.5 0v14c-2.5-1.3-5-1.3-7.5 0"/></svg><span class="app-tab-text">Formeln</span></button>
     </nav>
@@ -468,6 +508,8 @@
       <div id="p-kopf" hidden><div id="kopfrechnen"></div></div>
 
       <div id="p-pruefung" hidden><div id="pruefung"></div></div>
+
+      <div id="p-klassenarbeit" hidden><div id="klassenarbeit"></div></div>
 
       <div id="p-blaetter" hidden>
         <div id="blatt-uebersicht"></div>
@@ -1066,10 +1108,11 @@
       ['karten', 'Formelkarten', 'Formel aufdecken, gewusst oder nochmal', '#6E6FA6'],
       ['kopf', 'Kopfrechnen', '42 Tricks bis Profi, Sprint auf Zeit – ohne Taschenrechner', '#E4572E'],
       ['pruefung', 'Prüfung', 'Gemischte Aufgaben auf Zeit, Note erst nach dem Abgeben', '#C2255C'],
+      ['klassenarbeit', 'Klassenarbeit', 'Ganze Arbeit mit Teilaufgaben, Punkten und Notenschlüssel – auch zum Drucken', '#7048E8'],
       ['blaetter', 'Aufgabenblätter', 'Zum Ausdrucken, mit Lösungen und QR-Code', '#2E8B57'],
       ['sammlung', 'Formelsammlung', 'Alle Formeln deiner Themen zum Nachschlagen', '#0E6B6A']
     ];
-    const NAMEN = { aufgaben: 'Aufgaben', karten: 'Formelkarten', kopf: 'Kopfrechnen', pruefung: 'Prüfung', blaetter: 'Aufgabenblätter', sammlung: 'Formelsammlung' };
+    const NAMEN = { aufgaben: 'Aufgaben', karten: 'Formelkarten', kopf: 'Kopfrechnen', pruefung: 'Prüfung', klassenarbeit: 'Klassenarbeit', blaetter: 'Aufgabenblätter', sammlung: 'Formelsammlung' };
     let fokus = null, fokusListe = null;
     function quote() { return stand.gesamt ? Math.round(stand.richtig / stand.gesamt * 100) : null; }
     function startZeigen() {
@@ -1107,7 +1150,8 @@
         kopf: (Number(kopfStand.serieBest) ? 'beste Serie ' + kopfStand.serieBest : 'noch nicht trainiert') + (kopfBest ? ' · Sprint ' + kopfBest : ''),
         blaetter: blaetter.length ? blaetter.filter(function (b) { return gewaehlt.indexOf(b.thema) >= 0; }).length + ' von ' + blaetter.length + ' zu deinen Themen' : 'bald verfügbar',
         sammlung: gewaehlt.length + ' Themen gewählt',
-        pruefung: pruefungen.length ? 'zuletzt ' + Math.round(pruefungen[pruefungen.length - 1].r / pruefungen[pruefungen.length - 1].n * 100) + ' % (Note ' + note(Math.round(pruefungen[pruefungen.length - 1].r / pruefungen[pruefungen.length - 1].n * 100))[0] + ')' : 'noch keine geschrieben'
+        pruefung: pruefungen.length ? 'zuletzt ' + Math.round(pruefungen[pruefungen.length - 1].r / pruefungen[pruefungen.length - 1].n * 100) + ' % (Note ' + note(Math.round(pruefungen[pruefungen.length - 1].r / pruefungen[pruefungen.length - 1].n * 100))[0] + ')' : 'noch keine geschrieben',
+        klassenarbeit: arbeiten.length ? 'zuletzt Note ' + kaNote(arbeiten[arbeiten.length - 1].p / arbeiten[arbeiten.length - 1].m * 100, arbeiten[arbeiten.length - 1].s)[0] : 'noch keine geschrieben'
       };
       ARTEN.forEach(function (a) {
         if (a[0] === 'blaetter' && !blaetter.length) return;
@@ -1612,15 +1656,418 @@
       box.append(liste);
     }
 
+    // ---------- Klassenarbeit ----------
+    const S_KA = 'lernen-klassenarbeiten', S_KA_EINST = 'lernen-klassenarbeit-einst';
+    const SCHLUESSEL = {
+      schule: ['Schule', [[85, 1], [70, 2], [55, 3], [40, 4], [20, 5], [0, 6]]],
+      kammer: ['Berufsschule und Kammer', [[92, 1], [81, 2], [67, 3], [50, 4], [30, 5], [0, 6]]],
+      oberstufe: ['Oberstufe, 15 Punkte', [[95, 15], [90, 14], [85, 13], [80, 12], [75, 11], [70, 10], [65, 9], [60, 8], [55, 7], [50, 6], [45, 5], [40, 4], [33, 3], [27, 2], [20, 1], [0, 0]]]
+    };
+    const NOTENWORT = ['', 'sehr gut', 'gut', 'befriedigend', 'ausreichend', 'mangelhaft', 'ungenügend'];
+    const UMFANG = { kurz: [4, 3], normal: [6, 4], lang: [8, 6] };
+    let arbeiten = lies(S_KA, []); if (!Array.isArray(arbeiten)) arbeiten = [];
+    arbeiten = arbeiten.filter(function (x) { return x && /^\d{4}-\d{2}-\d{2}$/.test(String(x.d)) && x.m > 0 && x.m <= 500 && x.p >= 0 && x.p <= x.m && SCHLUESSEL[x.s]; })
+      .map(function (x) { return { d: String(x.d), p: Math.round(x.p * 2) / 2, m: Math.round(x.m), s: x.s, z: Math.max(0, Math.round(Number(x.z) || 0)) }; }).slice(-30);
+    let kaEinst = lies(S_KA_EINST, null);
+    if (!kaEinst || typeof kaEinst !== 'object') kaEinst = {};
+    if (['45', '90', 'ohne'].indexOf(String(kaEinst.dauer)) < 0) kaEinst.dauer = '45';
+    if (!UMFANG[kaEinst.umfang]) kaEinst.umfang = 'normal';
+    if (!SCHLUESSEL[kaEinst.schluessel]) kaEinst.schluessel = 'schule';
+    if (typeof kaEinst.paket !== 'string' || (kaEinst.paket && !PAKETE.some(function (x) { return x[0] === kaEinst.paket; }))) kaEinst.paket = '';
+    kaEinst = { dauer: String(kaEinst.dauer), umfang: kaEinst.umfang, schluessel: kaEinst.schluessel, paket: kaEinst.paket };
+    let K = null, kaUhr = null;
+    // Note aus Prozent: [Anzeige, Wort, Stufe 1–6 für die Farbe]
+    function kaNote(pz, s) {
+      const l = SCHLUESSEL[s][1];
+      for (let i = 0; i < l.length; i++) if (pz >= l[i][0] - 1e-9) {
+        if (s !== 'oberstufe') return [String(l[i][1]), NOTENWORT[l[i][1]], l[i][1]];
+        const p = l[i][1], st = p >= 13 ? 1 : p >= 10 ? 2 : p >= 7 ? 3 : p >= 4 ? 4 : p >= 1 ? 5 : 6;
+        return [String(p), (p === 1 ? '1 Punkt' : p + ' Punkte') + ', ' + NOTENWORT[st], st];
+      }
+      return ['6', NOTENWORT[6], 6];
+    }
+    function punktText(p) { return String(Math.round(p * 2) / 2).replace('.', ','); }
+    function kaGrenzen(max, s) { return SCHLUESSEL[s][1].map(function (z) { return [z[1], Math.ceil(z[0] / 100 * max * 2 - 1e-9) / 2]; }); }
+    function kaQuelle() {
+      const pk = PAKETE.filter(function (x) { return x[0] === kaEinst.paket; })[0];
+      const basis = pk ? themen.filter(function (t) { return pk[2].indexOf(t.bereich) >= 0 || pk[3].indexOf(t.pfad) >= 0; }).map(function (t) { return t.pfad; }) : gewaehlt;
+      return basis.filter(function (p) { return thema(p) && (FRAGEN[p] || !formelCache.seiten[p] || formelCache.seiten[p].aufgaben); });
+    }
+    // Eine Rechenaufgabe mit Teilaufgaben a), b), c) aus einem Löser: dieselben Angaben, mehrere gesuchte Größen nacheinander
+    function kaSzenario(lo, vorgabe) {
+      const basis = lo.beispiel || {}, kandidaten = [];
+      lo.gleichungen.forEach(function (g) { if (g.loese) Object.keys(g.loese).forEach(function (k) { if (kandidaten.indexOf(k) < 0) kandidaten.push(k); }); });
+      let bestes = null;
+      for (let v = 0; v < 60; v++) {
+        const start = {};
+        Object.keys(basis).forEach(function (k) { start[k] = v < 50 ? wuerfle(feld(lo, k), basis[k], 'mittel') : basis[k]; });
+        const voll = weiterRechnen(lo, start).q;
+        const gesucht = vorgabe ? vorgabe.slice() : mischen(kandidaten.filter(function (k) { return k in voll; })).slice(0, 2 + Math.floor(Math.random() * 2));
+        if (!gesucht.length || gesucht.some(function (k) { return !(k in voll); })) continue;
+        const bekannt = {}; Object.keys(voll).forEach(function (k) { if (gesucht.indexOf(k) < 0) bekannt[k] = voll[k]; });
+        const rr = weiterRechnen(lo, bekannt);
+        if (gesucht.some(function (k) { return !(k in rr.q); })) continue;
+        const noetig = gesucht.slice(), blaetter = [];
+        for (let i = 0; i < noetig.length; i++) {
+          const k = noetig[i], st = rr.schritte.filter(function (x) { return x.k === k; })[0];
+          if (!st) { if (blaetter.indexOf(k) < 0) blaetter.push(k); continue; }
+          st.g.v.forEach(function (x) { if (x !== k && noetig.indexOf(x) < 0) noetig.push(x); });
+        }
+        if (!blaetter.length || blaetter.length > 6) continue;
+        const geg = {};
+        blaetter.forEach(function (k) { const f = feld(lo, k); let w = k in start ? start[k] : rundeSig(voll[k], 3); if (f.n === 0 && Math.abs(w) >= 10) w = Math.round(w); geg[k] = w; });
+        if (blaetter.some(function (k) { return !imBereich(feld(lo, k), geg[k]) || !isFinite(geg[k]); })) continue;
+        const r2 = weiterRechnen(lo, geg);
+        if (gesucht.some(function (k) { return !(k in r2.q) || !imBereich(feld(lo, k), r2.q[k]) || Math.abs(r2.q[k]) < 1e-12; })) continue;
+        // nötige Schritte im neuen Rechenweg, Zwischenschritte gehören zur nächsten Teilaufgabe
+        const brauch = gesucht.slice();
+        for (let i = 0; i < brauch.length; i++) { const st = r2.schritte.filter(function (x) { return x.k === brauch[i]; })[0]; if (st) st.g.v.forEach(function (x) { if (x !== brauch[i] && brauch.indexOf(x) < 0) brauch.push(x); }); }
+        const teile = []; let puffer = [];
+        r2.schritte.forEach(function (st) {
+          if (brauch.indexOf(st.k) < 0) return;
+          puffer.push([st.g.name || '', wegTex(st.g, st.k, r2.q)]);
+          if (gesucht.indexOf(st.k) >= 0) { teile.push({ ziel: st.k, antwort: r2.q[st.k], weg: puffer, punkte: Math.min(4, puffer.length + 1) }); puffer = []; }
+        });
+        if (teile.length !== gesucht.length) continue;
+        const erg = { gegeben: blaetter.map(function (k) { return [k, geg[k]]; }), teile: teile };
+        if (vorgabe || teile.length >= 2) return erg;
+        if (!bestes) bestes = erg;
+      }
+      return bestes;
+    }
+    function kaGruppeB(A) {
+      const benutzt = A.a.map(function (x) { return x.frage; });
+      const a = A.a.map(function (x) {
+        const l = FRAGEN[x.pfad] || [], frei = l.filter(function (q) { return benutzt.indexOf(q[0]) < 0; });
+        if (frei.length) { const q = zufall(frei); benutzt.push(q[0]); const opt = mischen([q[1]].concat(q[2])); return { typ: 'frage', pfad: x.pfad, frage: q[0], optionen: opt, richtig: opt.indexOf(q[1]), erkl: q[3] }; }
+        const opt = mischen(x.optionen.slice()); return { typ: 'frage', pfad: x.pfad, frage: x.frage, optionen: opt, richtig: opt.indexOf(x.optionen[x.richtig]), erkl: x.erkl };
+      });
+      const b = A.b.map(function (x) {
+        const s = kaSzenario(x.lo, x.teile.map(function (t) { return t.ziel; }));
+        return s ? { pfad: x.pfad, lo: x.lo, gegeben: s.gegeben, teile: s.teile } : x;
+      });
+      return { a: a, b: b };
+    }
+    function kaZeigen() {
+      const box = document.getElementById('klassenarbeit');
+      if (K && K.phase === 'laeuft') { kaBlatt(); return; }
+      if (K && K.phase === 'ende') { kaErgebnis(); return; }
+      if (K && K.phase === 'bereit') { kaBereit(); return; }
+      if (K && K.phase === 'bau') return;
+      box.textContent = '';
+      const k = el('div', 'karte');
+      k.append(el('h3', '', 'Klassenarbeit üben'), el('p', '', 'Eine ganze Arbeit auf einem Blatt: Teil A mit Verständnisfragen, Teil B mit Rechenaufgaben in Teilaufgaben a), b), c). Jede Aufgabe hat Punkte, die Note gibt es nach dem Abgeben. Die Arbeit lässt sich auch mit Erwartungshorizont und als zweite Gruppe ausdrucken.'));
+      const reihe = function (titel, name, werte) {
+        const f = el('fieldset', 'pruef-wahl'); f.append(el('legend', '', titel));
+        werte.forEach(function (w) { const b = el('button', 'knopf', w[1]); b.type = 'button'; b.setAttribute('aria-pressed', String(w[0]) === String(kaEinst[name]) ? 'true' : 'false'); b.addEventListener('click', function () { kaEinst[name] = w[0]; schreib(S_KA_EINST, kaEinst); kaZeigen(); }); f.append(b); });
+        return f;
+      };
+      k.append(reihe('Umfang', 'umfang', [['kurz', 'kurz: 4 Fragen, 3 Rechenaufgaben'], ['normal', 'normal: 6 + 4'], ['lang', 'lang: 8 + 6']]));
+      k.append(reihe('Dauer', 'dauer', [['45', '45 min (eine Stunde)'], ['90', '90 min (Doppelstunde)'], ['ohne', 'ohne Zeit']]));
+      k.append(reihe('Notenschlüssel', 'schluessel', Object.keys(SCHLUESSEL).map(function (s) { return [s, SCHLUESSEL[s][0]]; })));
+      const sl = SCHLUESSEL[kaEinst.schluessel][1];
+      k.append(el('p', 'hinweis-klein', kaEinst.schluessel === 'oberstufe' ? 'Ab 95 % 15 Punkte, ab 50 % 6 Punkte, unter 20 % 0 Punkte – in 5-%-Schritten, unten etwas weiter.' : 'Note ' + sl.slice(0, 5).map(function (z) { return z[1] + ' ab ' + z[0] + ' %'; }).join(', ') + ', darunter 6. Schulen und Lehrkräfte legen den Schlüssel selbst fest – bitte den eigenen nehmen, wenn er abweicht.'));
+      k.append(reihe('Themen', 'paket', [['', 'meine Auswahl']].concat(PAKETE.map(function (x) { return [x[0], x[1]]; }))));
+      const quelle = kaQuelle();
+      k.append(el('p', 'hinweis-klein', quelle.length ? 'Die Aufgaben kommen aus ' + quelle.length + (quelle.length === 1 ? ' Thema.' : ' Themen.') : 'Bitte zuerst Themen wählen – oben „Themen ändern“.'));
+      const los = el('button', 'knopf-haupt', 'Klassenarbeit erstellen'); los.type = 'button'; los.disabled = !quelle.length;
+      los.addEventListener('click', function () { kaBauen(quelle); });
+      k.append(los); box.append(k);
+      if (arbeiten.length) {
+        const h = el('div', 'karte'); h.append(el('h3', '', 'Bisherige Klassenarbeiten'));
+        const t = el('table', 'pruef-verlauf'), kopf = el('tr'); ['Datum', 'Punkte', 'Note', 'Zeit'].forEach(function (x) { kopf.append(el('th', '', x)); }); t.append(kopf);
+        arbeiten.slice().reverse().slice(0, 10).forEach(function (x) {
+          const tr = el('tr'), nt = kaNote(x.p / x.m * 100, x.s);
+          [x.d.split('-').reverse().join('.'), punktText(x.p) + ' von ' + x.m + ' (' + Math.round(x.p / x.m * 100) + ' %)', nt[0] + ' (' + nt[1] + ')', x.z ? uhrText(x.z) + ' min' : '–'].forEach(function (v) { tr.append(el('td', '', v)); });
+          t.append(tr);
+        });
+        const weg = el('button', 'knopf', 'Verlauf löschen'); weg.type = 'button'; weg.addEventListener('click', function () { arbeiten = []; schreib(S_KA, arbeiten); kaZeigen(); });
+        h.append(t, weg); box.append(h);
+      }
+    }
+    function kaBauen(quelle) {
+      const box = document.getElementById('klassenarbeit'), um = UMFANG[kaEinst.umfang], mein = { phase: 'bau', a: [], b: [], schluessel: kaEinst.schluessel, minuten: Number(kaEinst.dauer) || 0 };
+      K = mein; box.textContent = '';
+      const k = el('div', 'karte'), txt = el('p', 'warte', 'Die Arbeit wird zusammengestellt …'), bal = el('div', 'balken'), bi = el('i'); bal.append(bi); k.append(txt, bal); box.append(k);
+      // Teil A: Fragen reihum aus den Themen
+      const mitF = mischen(quelle.filter(function (p) { return FRAGEN[p]; }));
+      for (let v = 0; v < um[0] * 6 && mein.a.length < um[0] && mitF.length; v++) {
+        const fa = frageAus(mitF[v % mitF.length]);
+        if (fa && !mein.a.some(function (x) { return x.frage === fa.frage; })) mein.a.push(fa);
+      }
+      // Teil B: Rechenaufgaben, möglichst aus verschiedenen Themen
+      const reihe = mischen(quelle.filter(function (p) { return !formelCache.seiten[p] || formelCache.seiten[p].aufgaben; }));
+      let pos = 0;
+      (function naechste() {
+        if (K !== mein) return;
+        if (mein.b.length >= um[1] || pos >= reihe.length * 3 || !reihe.length) {
+          if (!mein.a.length && !mein.b.length) { K = null; box.textContent = ''; box.append(el('p', 'warte', 'Aus den gewählten Themen ließ sich keine Arbeit bilden. Bitte andere Themen wählen.')); return; }
+          mein.antA = mein.a.map(function () { return ''; }); mein.antB = mein.b.map(function (x) { return x.teile.map(function () { return ''; }); });
+          mein.max = kaMax(mein);
+          mein.phase = 'bereit'; if (modus === 'klassenarbeit') kaBereit(); return;
+        }
+        const pfad = reihe[pos % reihe.length], runde = Math.floor(pos / reihe.length); pos++;
+        if (runde > 0 && mein.b.length && reihe.length > 1 && mein.b.filter(function (x) { return x.pfad === pfad; }).length >= runde + 1) { naechste(); return; }
+        lade(pfad).then(function (d) {
+          if (K !== mein || !d.loeser || !d.loeser.length) return;
+          const lo = zufall(d.loeser), s = kaSzenario(lo);
+          if (s) mein.b.push({ pfad: pfad, lo: lo, gegeben: s.gegeben, teile: s.teile });
+        }).catch(function () { /* Thema überspringen */ }).then(function () {
+          bi.style.width = Math.min(100, mein.b.length / um[1] * 100) + '%';
+          naechste();
+        });
+      })();
+    }
+    function kaMax(G) { return G.a.length * 2 + G.b.reduce(function (s, x) { return s + x.teile.reduce(function (t, y) { return t + y.punkte; }, 0); }, 0); }
+    function kaThemen() {
+      const l = []; K.a.concat(K.b).forEach(function (x) { const t = thema(x.pfad); if (t && l.indexOf(t.titel) < 0) l.push(t.titel); }); return l;
+    }
+    function kaBereit() {
+      const box = document.getElementById('klassenarbeit'); box.textContent = '';
+      const k = el('div', 'karte');
+      k.append(el('h3', '', 'Deine Klassenarbeit ist fertig'));
+      k.append(el('p', '', 'Teil A: ' + K.a.length + ' Verständnisfragen · Teil B: ' + K.b.length + ' Rechenaufgaben mit ' + K.b.reduce(function (s, x) { return s + x.teile.length; }, 0) + ' Teilaufgaben · ' + K.max + ' Punkte · ' + (K.minuten ? K.minuten + ' min' : 'ohne Zeit') + ' · Notenschlüssel ' + SCHLUESSEL[K.schluessel][0] + '.'));
+      k.append(el('p', 'hinweis-klein', 'Themen: ' + kaThemen().join(', ') + '. Hilfsmittel: Taschenrechner und Formelsammlung.'));
+      const kn = el('div', 'pruef-knoepfe');
+      const los = el('button', 'knopf-haupt', 'Jetzt schreiben' + (K.minuten ? ' – die Zeit läuft' : '')); los.type = 'button';
+      los.addEventListener('click', function () { K.phase = 'laeuft'; K.start = Date.now(); kaUhrStarten(); kaBlatt(); window.scrollTo(0, 0); });
+      const dr = el('button', 'knopf', 'Aufgabenblatt drucken'); dr.type = 'button'; dr.addEventListener('click', function () { kaDrucken(false); });
+      const lo = el('button', 'knopf', 'Erwartungshorizont drucken'); lo.type = 'button'; lo.addEventListener('click', function () { kaDrucken(true); });
+      const gb = el('button', 'knopf', K.B ? 'Gruppe B neu würfeln' : 'Gruppe B dazu (andere Zahlen)'); gb.type = 'button'; gb.setAttribute('aria-pressed', K.B ? 'true' : 'false');
+      gb.addEventListener('click', function () { K.B = kaGruppeB(K); meldung('Gruppe B erzeugt – sie wird beim Drucken mit ausgegeben.'); kaBereit(); });
+      const neu = el('button', 'knopf', 'Andere Arbeit'); neu.type = 'button'; neu.addEventListener('click', function () { K = null; kaZeigen(); });
+      kn.append(los, dr, lo, gb, neu); k.append(kn);
+      if (K.B) { const ohne = el('button', 'knopf', 'Gruppe B wieder weglassen'); ohne.type = 'button'; ohne.addEventListener('click', function () { K.B = null; kaBereit(); }); k.append(el('p', 'hinweis-klein', 'Gruppe B hat dieselben Aufgabenarten mit anderen Zahlen und anderen Fragen. Online geschrieben wird Gruppe A.'), ohne); }
+      box.append(k);
+    }
+    function kaRest() { return K && K.minuten ? Math.max(0, K.minuten * 60 - (Date.now() - K.start) / 1000) : Infinity; }
+    function kaUhrStarten() {
+      clearInterval(kaUhr);
+      kaUhr = setInterval(function () {
+        if (!K || K.phase !== 'laeuft') { clearInterval(kaUhr); return; }
+        const r = kaRest(), u = document.getElementById('ka-uhr');
+        if (u && isFinite(r)) { u.textContent = uhrText(r); u.classList.toggle('knapp', r < 300); }
+        if (r <= 0) { meldung('Die Zeit ist um – die Arbeit wurde abgegeben.'); kaAbgeben(); }
+      }, 1000);
+    }
+    function kaAngaben(lo, gegeben) {
+      const ul = el('ul', 'gegeben');
+      gegeben.forEach(function (x) { const f = feld(lo, x[0]), li = el('li'), sym = el('span'); formel(sym, f.tex || x[0], false); li.append(sym, el('span', 'gwert', '= ' + zahl(x[1]) + (f.e ? ' ' + f.e : '')), el('span', 'gname', f.name || '')); ul.append(li); });
+      return ul;
+    }
+    function kaTeilText(lo, t, j) {
+      const zf = feld(lo, t.ziel), p = el('p', 'ka-teil-text'), sym = el('span');
+      formel(sym, zf.tex || t.ziel, false);
+      const zus = el('span', 'ka-nobr'); zus.append(sym, document.createTextNode('.'));
+      p.append(el('b', '', BUCHST[j].toLowerCase() + ') '), document.createTextNode('Berechne ' + (zf.name || t.ziel) + ' '), zus);
+      return p;
+    }
+    function kaBlatt() {
+      const box = document.getElementById('klassenarbeit'); box.textContent = '';
+      const kopf = el('div', 'pruef-kopf ka-kopf'), rest = kaRest();
+      kopf.append(el('b', '', 'Klassenarbeit · ' + K.max + ' Punkte'));
+      const u = el('span', 'pruef-uhr' + (rest < 300 ? ' knapp' : ''), isFinite(rest) ? uhrText(rest) : 'ohne Zeit'); u.id = 'ka-uhr'; u.setAttribute('aria-label', 'verbleibende Zeit'); kopf.append(u);
+      box.append(kopf);
+      let nr = 0;
+      if (K.a.length) {
+        const ka = el('div', 'karte'); ka.append(el('h3', '', 'Teil A: Verständnisfragen'), el('p', 'hinweis-klein', 'Je Frage ist genau eine Antwort richtig, 2 Punkte.'));
+        K.a.forEach(function (a, i) {
+          nr++;
+          const f = el('div', 'ka-aufgabe'), kk = el('div', 'ka-aufgabe-kopf');
+          kk.append(el('b', '', nr + '. ' + ((thema(a.pfad) || {}).titel || '')), el('span', 'ka-punkte', '2 P'));
+          const liste = el('div', 'wahl-liste'); liste.setAttribute('role', 'group'); liste.setAttribute('aria-label', 'Antworten zu Aufgabe ' + nr);
+          a.optionen.forEach(function (o, j) {
+            const b = el('button', 'wahl-knopf'); b.type = 'button'; b.setAttribute('aria-pressed', K.antA[i] === String(j) ? 'true' : 'false'); b.append(el('b', '', BUCHST[j]), el('span', '', o));
+            b.addEventListener('click', function () { K.antA[i] = K.antA[i] === String(j) ? '' : String(j); Array.prototype.forEach.call(liste.children, function (x, m) { x.setAttribute('aria-pressed', K.antA[i] === String(m) ? 'true' : 'false'); }); });
+            liste.append(b);
+          });
+          f.append(kk, el('p', 'frage-text', a.frage), liste); ka.append(f);
+        });
+        box.append(ka);
+      }
+      if (K.b.length) {
+        const kb = el('div', 'karte'); kb.append(el('h3', '', 'Teil B: Rechenaufgaben'), el('p', 'hinweis-klein', 'Ergebnis mit Komma oder Punkt eintragen, Zehnerpotenzen als 3,2·10^5. Gewertet wird mit 2 % Toleranz; Ergebnisse aus a) dürfen in b) weiterverwendet werden.'));
+        K.b.forEach(function (b, i) {
+          nr++;
+          const t = thema(b.pfad) || { titel: b.pfad, bereich: '' }, f = el('div', 'ka-aufgabe'), kk = el('div', 'ka-aufgabe-kopf');
+          f.style.borderLeftColor = farbe(t.bereich);
+          kk.append(el('b', '', nr + '. ' + t.titel), el('span', 'ka-punkte', b.teile.reduce(function (s, x) { return s + x.punkte; }, 0) + ' P'));
+          f.append(kk, el('p', 'hinweis-klein', 'Gegeben:'), kaAngaben(b.lo, b.gegeben));
+          b.teile.forEach(function (x, j) {
+            const zf = feld(b.lo, x.ziel), z = el('div', 'ka-teil');
+            const inp = el('input'); inp.type = 'text'; inp.inputMode = 'decimal'; inp.value = K.antB[i][j]; inp.placeholder = 'Ergebnis'; inp.maxLength = 40;
+            inp.setAttribute('aria-label', 'Aufgabe ' + nr + ' ' + BUCHST[j].toLowerCase() + '): ' + (zf.name || x.ziel)); inp.setAttribute('data-nicht-merken', '');
+            inp.addEventListener('input', function () { K.antB[i][j] = inp.value.trim().slice(0, 40); });
+            const zeile = el('div', 'antwort'); zeile.append(inp, el('span', 'einheit', zf.e || ''), el('span', 'ka-punkte', x.punkte + ' P'));
+            z.append(kaTeilText(b.lo, x, j), zeile); f.append(z);
+          });
+          kb.append(f);
+        });
+        box.append(kb);
+      }
+      const ab = el('div', 'pruef-abgabe'); ab.id = 'ka-abgabe';
+      const knoepfe = function () {
+        ab.textContent = '';
+        const abg = el('button', 'knopf-haupt', 'Abgeben'); abg.type = 'button';
+        abg.addEventListener('click', function () {
+          const offen = K.antA.filter(function (x) { return x === ''; }).length + K.antB.reduce(function (s, l) { return s + l.filter(function (x) { return x === ''; }).length; }, 0);
+          ab.textContent = '';
+          ab.append(el('span', '', offen ? offen + (offen === 1 ? ' Antwort fehlt' : ' Antworten fehlen') + ' noch. Trotzdem abgeben?' : 'Alles beantwortet. Jetzt abgeben?'));
+          const ja = el('button', 'knopf-haupt', 'Ja, abgeben'); ja.type = 'button'; ja.addEventListener('click', kaAbgeben);
+          const nein = el('button', 'knopf', 'Weiter bearbeiten'); nein.type = 'button'; nein.addEventListener('click', knoepfe);
+          ab.append(ja, nein); ja.focus();
+        });
+        const abbr = el('button', 'knopf', 'Abbrechen'); abbr.type = 'button'; abbr.addEventListener('click', function () { clearInterval(kaUhr); K.phase = 'bereit'; kaBereit(); });
+        ab.append(abg, abbr);
+      };
+      knoepfe(); box.append(ab);
+    }
+    function kaAbgeben() {
+      if (!K || K.phase !== 'laeuft') return;
+      clearInterval(kaUhr);
+      K.phase = 'ende'; K.dauer = Math.min((Date.now() - K.start) / 1000, K.minuten ? K.minuten * 60 : Infinity);
+      const zaehlen = function (pfad, ok) { stand.gesamt++; if (ok) stand.richtig++; const tt = stand.themen[pfad] || [0, 0]; tt[1]++; if (ok) tt[0]++; stand.themen[pfad] = tt; merke(pfad, ok); zaehle(); };
+      K.okA = K.a.map(function (a, i) { const ok = K.antA[i] === String(a.richtig); zaehlen(a.pfad, ok); return ok; });
+      K.okB = K.b.map(function (b, i) { return b.teile.map(function (t, j) { const u = parse(K.antB[i][j]), ok = isFinite(u) && Math.abs(u - t.antwort) / Math.max(Math.abs(t.antwort), 1e-12) <= 0.02; zaehlen(b.pfad, ok); return ok; }); });
+      K.punkte = K.okA.filter(Boolean).length * 2 + K.b.reduce(function (s, b, i) { return s + b.teile.reduce(function (t, x, j) { return t + (K.okB[i][j] ? x.punkte : 0); }, 0); }, 0);
+      stand.serie = 0; schreib(S_STAND, stand); standZeigen();
+      arbeiten.push({ d: tagSchluessel(new Date()), p: K.punkte, m: K.max, s: K.schluessel, z: Math.round(K.dauer) }); arbeiten = arbeiten.slice(-30); schreib(S_KA, arbeiten);
+      kaErgebnis();
+      if (modus === 'klassenarbeit') window.scrollTo(0, 0);
+    }
+    function kaSpiegel(max, s, pz) {
+      const t = el('table', 'pruef-verlauf ka-spiegel'), kopf = el('tr'), nt = kaNote(pz, s);
+      [s === 'oberstufe' ? 'Punkte' : 'Note', 'ab'].forEach(function (x) { kopf.append(el('th', '', x)); }); t.append(kopf);
+      kaGrenzen(max, s).forEach(function (g) {
+        const tr = el('tr'); if (pz !== null && String(g[0]) === nt[0]) tr.className = 'aktuell';
+        tr.append(el('td', '', String(g[0]) + (s === 'oberstufe' ? '' : ' ' + NOTENWORT[g[0]])), el('td', '', punktText(g[1]) + ' P')); t.append(tr);
+      });
+      return t;
+    }
+    function kaErgebnis() {
+      const box = document.getElementById('klassenarbeit'); box.textContent = '';
+      const pz = K.punkte / K.max * 100, nt = kaNote(pz, K.schluessel);
+      const k = el('div', 'karte pruef-ergebnis');
+      const gross = el('div', 'pruef-note note-' + nt[2]); gross.append(el('b', '', nt[0]), el('span', '', K.schluessel === 'oberstufe' ? 'Punkte' : nt[1])); gross.setAttribute('aria-label', (K.schluessel === 'oberstufe' ? '' : 'Note ') + nt[0] + ', ' + nt[1]);
+      const pa = K.okA.filter(Boolean).length * 2, pb = K.punkte - pa;
+      const tx = el('div'); tx.append(el('h3', '', punktText(K.punkte) + ' von ' + K.max + ' Punkten (' + Math.round(pz) + ' %)'),
+        el('p', 'hinweis-klein', (K.a.length ? 'Teil A: ' + pa + ' von ' + K.a.length * 2 + ' P · ' : '') + (K.b.length ? 'Teil B: ' + pb + ' von ' + (K.max - K.a.length * 2) + ' P · ' : '') + 'Zeit: ' + uhrText(K.dauer) + ' min' + (K.minuten ? ' von ' + K.minuten : '') + ' · ' + SCHLUESSEL[K.schluessel][0] + ': ' + nt[1] + '.'));
+      k.append(gross, tx);
+      const sp = el('details', 'ka-spiegel-box'); sp.append(el('summary', '', 'Notenschlüssel dieser Arbeit'), kaSpiegel(K.max, K.schluessel, pz)); k.append(sp);
+      const kn = el('div', 'pruef-knoepfe'), neu = el('button', 'knopf-haupt', 'Neue Klassenarbeit'); neu.type = 'button'; neu.addEventListener('click', function () { K = null; kaZeigen(); }); kn.append(neu);
+      const falsch = {}; K.a.forEach(function (a, i) { if (!K.okA[i]) falsch[a.pfad] = (falsch[a.pfad] || 0) + 1; }); K.b.forEach(function (b, i) { K.okB[i].forEach(function (ok) { if (!ok) falsch[b.pfad] = (falsch[b.pfad] || 0) + 1; }); });
+      const schw = Object.keys(falsch).sort(function (x, y) { return falsch[y] - falsch[x]; })[0];
+      if (schw && thema(schw)) { const ue = el('button', 'knopf', 'Gezielt üben: ' + thema(schw).titel); ue.type = 'button'; ue.addEventListener('click', function () { fokus = schw; aktuelle = null; modusWaehlen('aufgaben'); themenLeiste(); }); kn.append(ue); }
+      const dr = el('button', 'knopf', 'Korrektur drucken'); dr.type = 'button'; dr.addEventListener('click', function () { kaDrucken(true, true); }); kn.append(dr);
+      k.append(kn); box.append(k);
+      const liste = el('div', 'karte'); liste.append(el('h3', '', 'Korrektur'), el('p', 'hinweis-klein', 'Antippen für Angaben und Lösungsweg.'));
+      let nr = 0;
+      K.a.forEach(function (a, i) {
+        nr++;
+        const d = el('details', 'pruef-einzel' + (K.okA[i] ? ' gut' : ' schlecht')), s = el('summary'), ant = K.antA[i];
+        s.append(el('b', '', (K.okA[i] ? '✓ ' : '✗ ') + nr + '. ' + ((thema(a.pfad) || {}).titel || '')), el('span', '', ' – Verständnisfrage, ' + (K.okA[i] ? 2 : 0) + ' von 2 P'));
+        d.append(s, el('p', 'frage-text', a.frage));
+        const ul = el('ul', 'gegeben'); ul.append(el('li', '', 'Deine Antwort: ' + (ant === '' ? 'keine' : a.optionen[Number(ant)] || '–'))); if (!K.okA[i]) ul.append(el('li', '', 'Richtig: ' + a.optionen[a.richtig]));
+        d.append(ul); if (a.erkl) d.append(el('p', 'hinweis-klein', a.erkl));
+        liste.append(d);
+      });
+      K.b.forEach(function (b, i) {
+        nr++;
+        const t = thema(b.pfad) || { titel: b.pfad }, alle = K.okB[i].every(Boolean), keins = !K.okB[i].some(Boolean);
+        const erreicht = b.teile.reduce(function (s, x, j) { return s + (K.okB[i][j] ? x.punkte : 0); }, 0), max = b.teile.reduce(function (s, x) { return s + x.punkte; }, 0);
+        const d = el('details', 'pruef-einzel' + (alle ? ' gut' : keins ? ' schlecht' : ' halb')), s = el('summary');
+        s.append(el('b', '', (alle ? '✓ ' : keins ? '✗ ' : '◐ ') + nr + '. ' + t.titel), el('span', '', ' – ' + erreicht + ' von ' + max + ' P'));
+        d.append(s);
+        let gefuellt = false;
+        d.addEventListener('toggle', function () {
+          if (!d.open || gefuellt) return; gefuellt = true;
+          d.append(kaAngaben(b.lo, b.gegeben));
+          b.teile.forEach(function (x, j) {
+            const zf = feld(b.lo, x.ziel), ein = zf.e ? ' ' + zf.e : '', z = el('div', 'ka-teil ' + (K.okB[i][j] ? 'gut' : 'schlecht'));
+            z.append(kaTeilText(b.lo, x, j), el('p', 'ka-wertung', (K.okB[i][j] ? '✓ ' : '✗ ') + 'Deine Antwort: ' + (K.antB[i][j] === '' ? 'keine' : K.antB[i][j] + ein) + (K.okB[i][j] ? '' : ', richtig: ' + zahl(x.antwort) + ein) + ' – ' + (K.okB[i][j] ? x.punkte : 0) + ' von ' + x.punkte + ' P'));
+            z.append(kaWeg(x)); d.append(z);
+          });
+          const lk = el('a', '', 'im Rechner nachvollziehen'); lk.href = b.pfad; d.append(lk);
+        });
+        liste.append(d);
+      });
+      box.append(liste);
+    }
+    function kaWeg(x) {
+      const ol = el('ol', 'weg');
+      x.weg.forEach(function (w) { const li = el('li'); if (w[0]) li.append(el('div', 'titel', w[0])); const rr = el('div', 'rechnung'); formel(rr, w[1], false); li.append(rr); ol.append(li); });
+      return ol;
+    }
+    // ---------- Klassenarbeit drucken: Aufgabenblatt, Erwartungshorizont, Gruppe B ----------
+    function kaDrucken(loesung, korrektur) {
+      let d = document.getElementById('ka-druck');
+      if (!d) { d = el('div'); d.id = 'ka-druck'; document.body.append(d); }
+      d.textContent = '';
+      const gruppen = [['A', K]].concat(K.B && !korrektur ? [['B', K.B]] : []);
+      const themenText = kaThemen().join(', ');
+      gruppen.forEach(function (gr, gi) {
+        const G = gr[1], gmax = kaMax(G), blatt = el('section', 'ka-blatt' + (gi ? ' neue-seite' : ''));
+        const titel = (loesung ? (korrektur ? 'Korrektur' : 'Erwartungshorizont') : 'Klassenarbeit') + (gruppen.length > 1 ? ' · Gruppe ' + gr[0] : '');
+        blatt.append(el('h1', '', titel));
+        const kopf = el('table', 'ka-druck-kopf'), z1 = el('tr'), z2 = el('tr');
+        z1.append(el('td', '', 'Name: ____________________________'), el('td', '', 'Datum: ______________'));
+        z2.append(el('td', '', 'Themen: ' + themenText), el('td', '', 'Zeit: ' + (K.minuten ? K.minuten + ' min' : 'frei') + ' · Hilfsmittel: Taschenrechner, Formelsammlung'));
+        kopf.append(z1, z2); blatt.append(kopf);
+        let nr = 0;
+        if (G.a.length) {
+          blatt.append(el('h2', '', 'Teil A: Verständnisfragen (je 2 P, genau eine Antwort ist richtig)'));
+          G.a.forEach(function (a, i) {
+            nr++;
+            const f = el('div', 'ka-druck-aufgabe'), kk = el('div', 'ka-aufgabe-kopf');
+            kk.append(el('b', '', nr + '. ' + a.frage), el('span', 'ka-punkte', korrektur ? (K.okA[i] ? 2 : 0) + ' / 2 P' : '___ / 2 P'));
+            const ul = el('ul', 'ka-druck-wahl');
+            a.optionen.forEach(function (o, j) { const li = el('li', loesung && j === a.richtig ? 'richtig' : '', (loesung && j === a.richtig ? '☒ ' : korrektur && K.antA[i] === String(j) ? '☒ ' : '☐ ') + BUCHST[j] + ') ' + o); ul.append(li); });
+            f.append(kk, ul);
+            if (loesung && a.erkl) f.append(el('p', 'ka-druck-erkl', a.erkl));
+            blatt.append(f);
+          });
+        }
+        if (G.b.length) {
+          blatt.append(el('h2', '', 'Teil B: Rechenaufgaben (Rechenweg angeben)'));
+          G.b.forEach(function (b, i) {
+            nr++;
+            const t = thema(b.pfad) || { titel: b.pfad }, f = el('div', 'ka-druck-aufgabe ka-druck-lang'), kk = el('div', 'ka-aufgabe-kopf');
+            const max = b.teile.reduce(function (s, x) { return s + x.punkte; }, 0);
+            kk.append(el('b', '', nr + '. ' + t.titel), el('span', 'ka-punkte', (korrektur ? b.teile.reduce(function (s, x, j) { return s + (K.okB[i][j] ? x.punkte : 0); }, 0) : '___') + ' / ' + max + ' P'));
+            f.append(kk, el('p', '', 'Gegeben:'), kaAngaben(b.lo, b.gegeben));
+            b.teile.forEach(function (x, j) {
+              const zf = feld(b.lo, x.ziel), ein = zf.e ? ' ' + zf.e : '', z = el('div', 'ka-druck-teil'), zk = el('div', 'ka-aufgabe-kopf');
+              zk.append(kaTeilText(b.lo, x, j), el('span', 'ka-punkte', x.punkte + ' P')); z.append(zk);
+              if (loesung) {
+                z.append(kaWeg(x), el('p', 'ka-druck-erg', 'Ergebnis: ' + zahl(x.antwort) + ein + (korrektur ? ' · Antwort: ' + (K.antB[i][j] === '' ? 'keine' : K.antB[i][j] + ein) + (K.okB[i][j] ? ' ✓' : ' ✗') : '')));
+                if (!korrektur && x.weg.length > 1) z.append(el('p', 'ka-druck-erkl', 'Folgefehler aus einer vorherigen Teilaufgabe nicht doppelt abziehen.'));
+              } else z.append(el('div', 'ka-druck-platz'));
+              f.append(z);
+            });
+            blatt.append(f);
+          });
+        }
+        const fuss = el('div', 'ka-druck-fuss');
+        fuss.append(el('p', '', (korrektur ? 'Erreicht: ' + punktText(K.punkte) : 'Erreicht: ______') + ' von ' + gmax + ' Punkten · Note: ' + (korrektur ? kaNote(K.punkte / K.max * 100, K.schluessel)[0] : '______')));
+        fuss.append(el('p', 'ka-druck-erkl', 'Notenschlüssel (' + SCHLUESSEL[K.schluessel][0] + '):'), kaSpiegel(gmax, K.schluessel, korrektur ? K.punkte / K.max * 100 : null));
+        blatt.append(fuss);
+        d.append(blatt);
+      });
+      document.documentElement.classList.add('ka-druck');
+      const weg = function () { document.documentElement.classList.remove('ka-druck'); window.removeEventListener('afterprint', weg); };
+      window.addEventListener('afterprint', weg);
+      setTimeout(function () { window.print(); }, 250);
+    }
+
     // ---------- Bedienung ----------
     let modus = 'start';
-    const MODI = ['start', 'aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf', 'pruefung'], ANKER = { start: 'start', aufgaben: 'aufgaben', karten: 'karten', sammlung: 'formeln', blaetter: 'blaetter', kopf: 'kopfrechnen', pruefung: 'pruefung' };
+    const MODI = ['start', 'aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf', 'pruefung', 'klassenarbeit'], ANKER = { start: 'start', aufgaben: 'aufgaben', karten: 'karten', sammlung: 'formeln', blaetter: 'blaetter', kopf: 'kopfrechnen', pruefung: 'pruefung', klassenarbeit: 'klassenarbeit' };
     function ansicht(m, ohneAnker) {
       modus = m;
       Array.prototype.forEach.call(document.querySelectorAll('.modi [data-modus]'), function (x) { x.setAttribute('aria-pressed', x.getAttribute('data-modus') === m ? 'true' : 'false'); });
       document.getElementById('p-start').hidden = m !== 'start'; document.documentElement.classList.toggle('lern-start', m === 'start');
       document.getElementById('ueben-bereich').hidden = m === 'start';
-      ['aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf', 'pruefung'].forEach(function (x) { document.getElementById('p-' + x).hidden = x !== m; });
+      ['aufgaben', 'karten', 'sammlung', 'blaetter', 'kopf', 'pruefung', 'klassenarbeit'].forEach(function (x) { document.getElementById('p-' + x).hidden = x !== m; });
       document.getElementById('themen-leiste').hidden = m === 'start' || m === 'kopf';
       if (m === 'kopf' || m === 'start') document.getElementById('themen-tafel').hidden = true;
       if (m === 'kopf') kopfStarten(); else if (kopf) kopf.verlassen();
@@ -1633,6 +2080,7 @@
       if (m === 'sammlung') sammlungZeigen();
       if (m === 'blaetter') blaetterZeigen();
       if (m === 'pruefung') pruefungZeigen();
+      if (m === 'klassenarbeit') kaZeigen();
     }
     Array.prototype.forEach.call(document.querySelectorAll('.modi [data-modus]'), function (k) {
       k.addEventListener('click', function () { ansicht(k.getAttribute('data-modus')); if (innerWidth > 760) return; window.scrollTo(0, 0); });
