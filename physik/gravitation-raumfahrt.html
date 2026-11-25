@@ -61,6 +61,14 @@
     function zerlege(v, s) { const a = Math.abs(v); let ex = Math.floor(Math.log10(a)), m = v / Math.pow(10, ex); if (Math.abs(Number(m.toFixed(s - 1))) >= 10) { ex++; m = v / Math.pow(10, ex); } return [m, ex]; }
     function wz(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '–'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return zz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return zz(q[0], s - 1) + ' · 10' + hoch(q[1]); }
     function wt(v, s) { s = s || 3; if (typeof v !== 'number' || !isFinite(v)) return '\\infty'; const a = Math.abs(v); if (a === 0) return '0'; if (a >= 1e-3 && a < 1e6) return tz(v, Math.max(0, s - 1 - Math.floor(Math.log10(a)))); const q = zerlege(v, s); return tz(q[0], s - 1) + ' \\cdot 10^{' + q[1] + '}'; }
+    // sichtbare Farbe einer Wellenlänge in nm (Näherung nach Bruton); außerhalb: Ersatzfarben
+    function wlFarbe(l) {
+      if (l < 380) return '#8a5cf6'; if (l > 780) return '#a33a3a';
+      let r = 0, g = 0, b = 0;
+      if (l < 440) { r = (440 - l) / 60; b = 1; } else if (l < 490) { g = (l - 440) / 50; b = 1; } else if (l < 510) { g = 1; b = (510 - l) / 20; } else if (l < 580) { r = (l - 510) / 70; g = 1; } else if (l < 645) { r = 1; g = (645 - l) / 65; } else r = 1;
+      const f = l < 420 ? 0.3 + 0.7 * (l - 380) / 40 : l > 700 ? 0.3 + 0.7 * (780 - l) / 80 : 1, k = function (v) { return Math.round(255 * Math.pow(v * f, 0.8)); };
+      return 'rgb(' + k(r) + ',' + k(g) + ',' + k(b) + ')';
+    }
     const G = 6.674e-11;
     // [Name, Masse in 10²⁴ kg, Radius in km, siderische Rotation in h]
     const KOERPER = {
@@ -155,44 +163,44 @@
               if (k === 'r') return 'r = \\sqrt{\\frac{G m_1 m_2}{F}} = ' + E(wt(q.r) + '\\,\\text{m}');
               return (k === 'm1' ? 'm_1 = \\frac{F r^2}{G m_2}' : 'm_2 = \\frac{F r^2}{G m_1}') + ' = ' + E(wt(q[k]) + '\\,\\text{kg}');
             } }] },
-        { titel: 'Kreisbahngeschwindigkeit', hilfe: 'M in 10²⁴ kg, r = Abstand vom Mittelpunkt in km, v in km/s.',
-          felder: [{ k: 'v', tex: 'v', name: 'Bahngeschwindigkeit', e: 'km/s', min: 0.001, max: 1000 }, { k: 'M', tex: 'M', name: 'Masse des Zentralkörpers', e: '· 10²⁴ kg', min: 1e-4, max: 1e7 }, { k: 'r', tex: 'r', name: 'Bahnradius', e: 'km', min: 1, max: 1e10 }],
-          beispiel: { M: 5.972, r: 6791 },
-          gleichungen: [{ name: 'v = √(GM/r)', v: ['v', 'M', 'r'], f: function (q) { return [q.v * q.v * 1e6 * q.r * 1e3, G * q.M * 1e24]; },
-            loese: { v: function (q) { return Math.sqrt(G * q.M * 1e24 / (q.r * 1e3)) / 1e3; }, M: function (q) { return q.v * q.v * 1e6 * q.r * 1e3 / G / 1e24; }, r: function (q) { return G * q.M * 1e24 / (q.v * q.v * 1e6) / 1e3; } },
+        { titel: 'Kreisbahngeschwindigkeit', hilfe: 'r = Abstand vom Mittelpunkt in km, v in km/s.',
+          felder: [{ k: 'v', tex: 'v', name: 'Bahngeschwindigkeit', e: 'km/s', min: 0.001, max: 1000 }, { k: 'M', tex: 'M', name: 'Masse des Zentralkörpers', e: 'kg', min: 1e20, max: 1e31 }, { k: 'r', tex: 'r', name: 'Bahnradius', e: 'km', min: 1, max: 1e10 }],
+          beispiel: { M: 5.972e24, r: 6791 },
+          gleichungen: [{ name: 'v = √(GM/r)', v: ['v', 'M', 'r'], f: function (q) { return [q.v * q.v * 1e6 * q.r * 1e3, G * q.M]; },
+            loese: { v: function (q) { return Math.sqrt(G * q.M / (q.r * 1e3)) / 1e3; }, M: function (q) { return q.v * q.v * 1e6 * q.r * 1e3 / G; }, r: function (q) { return G * q.M / (q.v * q.v * 1e6) / 1e3; } },
             weg: function (k, q) {
-              if (k === 'v') return 'v = \\sqrt{\\frac{G M}{r}} = \\sqrt{\\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}{' + wt(q.r * 1e3) + '}}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 3) + '\\,\\tfrac{\\text{km}}{\\text{s}}');
-              if (k === 'M') return 'M = \\frac{v^2 r}{G} = \\frac{(' + wt(q.v * 1e3) + ')^2 \\cdot ' + wt(q.r * 1e3) + '}{6{,}674 \\cdot 10^{-11}} = ' + E(wt(q.M * 1e24) + '\\,\\text{kg}');
-              return 'r = \\frac{G M}{v^2} = \\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}{(' + wt(q.v * 1e3) + ')^2} = ' + E(wt(q.r) + '\\,\\text{km}');
+              if (k === 'v') return 'v = \\sqrt{\\frac{G M}{r}} = \\sqrt{\\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M) + '}{' + wt(q.r * 1e3) + '}}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 3) + '\\,\\tfrac{\\text{km}}{\\text{s}}');
+              if (k === 'M') return 'M = \\frac{v^2 r}{G} = \\frac{(' + wt(q.v * 1e3) + ')^2 \\cdot ' + wt(q.r * 1e3) + '}{6{,}674 \\cdot 10^{-11}} = ' + E(wt(q.M) + '\\,\\text{kg}');
+              return 'r = \\frac{G M}{v^2} = \\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M) + '}{(' + wt(q.v * 1e3) + ')^2} = ' + E(wt(q.r) + '\\,\\text{km}');
             } }] },
-        { titel: 'Drittes Keplersches Gesetz', hilfe: 'M in 10²⁴ kg, große Halbachse a in km, Umlaufzeit T in Stunden.',
-          felder: [{ k: 'T', tex: 'T', name: 'Umlaufzeit', e: 'h', min: 0.01, max: 1e7 }, { k: 'a', tex: 'a', name: 'große Halbachse', e: 'km', min: 1, max: 1e10 }, { k: 'M', tex: 'M', name: 'Masse des Zentralkörpers', e: '· 10²⁴ kg', min: 1e-4, max: 1e7 }],
-          beispiel: { a: 42164, M: 5.972 },
-          gleichungen: [{ name: 'T² = 4π² a³ / (GM)', v: ['T', 'a', 'M'], f: function (q) { const T = q.T * 3600, a = q.a * 1e3; return [T * T * G * q.M * 1e24, 4 * Math.PI * Math.PI * a * a * a]; },
-            loese: { T: function (q) { const a = q.a * 1e3; return 2 * Math.PI * Math.sqrt(a * a * a / (G * q.M * 1e24)) / 3600; }, a: function (q) { const T = q.T * 3600; return Math.cbrt(G * q.M * 1e24 * T * T / (4 * Math.PI * Math.PI)) / 1e3; }, M: function (q) { const T = q.T * 3600, a = q.a * 1e3; return 4 * Math.PI * Math.PI * a * a * a / (G * T * T) / 1e24; } },
+        { titel: 'Drittes Keplersches Gesetz', hilfe: 'Große Halbachse a in km, Umlaufzeit T in Stunden.',
+          felder: [{ k: 'T', tex: 'T', name: 'Umlaufzeit', e: 'h', min: 0.01, max: 1e7 }, { k: 'a', tex: 'a', name: 'große Halbachse', e: 'km', min: 1, max: 1e10 }, { k: 'M', tex: 'M', name: 'Masse des Zentralkörpers', e: 'kg', min: 1e20, max: 1e31 }],
+          beispiel: { a: 42164, M: 5.972e24 },
+          gleichungen: [{ name: 'T² = 4π² a³ / (GM)', v: ['T', 'a', 'M'], f: function (q) { const T = q.T * 3600, a = q.a * 1e3; return [T * T * G * q.M, 4 * Math.PI * Math.PI * a * a * a]; },
+            loese: { T: function (q) { const a = q.a * 1e3; return 2 * Math.PI * Math.sqrt(a * a * a / (G * q.M)) / 3600; }, a: function (q) { const T = q.T * 3600; return Math.cbrt(G * q.M * T * T / (4 * Math.PI * Math.PI)) / 1e3; }, M: function (q) { const T = q.T * 3600, a = q.a * 1e3; return 4 * Math.PI * Math.PI * a * a * a / (G * T * T); } },
             weg: function (k, q) {
-              if (k === 'T') return 'T = 2\\pi \\sqrt{\\frac{a^3}{G M}} = 2\\pi \\sqrt{\\frac{(' + wt(q.a * 1e3) + ')^3}{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}}\\,\\text{s} = ' + E(tz(q.T, 3) + '\\,\\text{h}');
+              if (k === 'T') return 'T = 2\\pi \\sqrt{\\frac{a^3}{G M}} = 2\\pi \\sqrt{\\frac{(' + wt(q.a * 1e3) + ')^3}{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M) + '}}\\,\\text{s} = ' + E(tz(q.T, 3) + '\\,\\text{h}');
               if (k === 'a') return 'a = \\sqrt[3]{\\frac{G M T^2}{4\\pi^2}} = ' + E(tz(q.a, 0) + '\\,\\text{km}');
-              return 'M = \\frac{4\\pi^2 a^3}{G T^2} = ' + E(wt(q.M * 1e24) + '\\,\\text{kg}');
+              return 'M = \\frac{4\\pi^2 a^3}{G T^2} = ' + E(wt(q.M) + '\\,\\text{kg}');
             } }] },
-        { titel: 'Fluchtgeschwindigkeit', hilfe: 'M in 10²⁴ kg, R in km, v in km/s.',
-          felder: [{ k: 'v', tex: 'v_\\text{F}', name: 'Fluchtgeschwindigkeit', e: 'km/s', min: 0.001, max: 300000 }, { k: 'M', tex: 'M', name: 'Masse', e: '· 10²⁴ kg', min: 1e-4, max: 1e8 }, { k: 'R', tex: 'R', name: 'Radius', e: 'km', min: 0.001, max: 1e7 }],
-          beispiel: { M: 0.6417, R: 3389.5 },
-          gleichungen: [{ name: 'v = √(2GM/R)', v: ['v', 'M', 'R'], f: function (q) { return [q.v * q.v * 1e6 * q.R * 1e3, 2 * G * q.M * 1e24]; },
-            loese: { v: function (q) { return Math.sqrt(2 * G * q.M * 1e24 / (q.R * 1e3)) / 1e3; }, M: function (q) { return q.v * q.v * 1e6 * q.R * 1e3 / (2 * G) / 1e24; }, R: function (q) { return 2 * G * q.M * 1e24 / (q.v * q.v * 1e6) / 1e3; } },
+        { titel: 'Fluchtgeschwindigkeit', hilfe: 'R in km, v in km/s.',
+          felder: [{ k: 'v', tex: 'v_\\text{F}', name: 'Fluchtgeschwindigkeit', e: 'km/s', min: 0.001, max: 300000 }, { k: 'M', tex: 'M', name: 'Masse', e: 'kg', min: 1e20, max: 1e32 }, { k: 'R', tex: 'R', name: 'Radius', e: 'km', min: 0.001, max: 1e7 }],
+          beispiel: { M: 6.417e23, R: 3389.5 },
+          gleichungen: [{ name: 'v = √(2GM/R)', v: ['v', 'M', 'R'], f: function (q) { return [q.v * q.v * 1e6 * q.R * 1e3, 2 * G * q.M]; },
+            loese: { v: function (q) { return Math.sqrt(2 * G * q.M / (q.R * 1e3)) / 1e3; }, M: function (q) { return q.v * q.v * 1e6 * q.R * 1e3 / (2 * G); }, R: function (q) { return 2 * G * q.M / (q.v * q.v * 1e6) / 1e3; } },
             weg: function (k, q) {
-              if (k === 'v') return 'v_\\text{F} = \\sqrt{\\frac{2 G M}{R}} = \\sqrt{\\frac{2 \\cdot 6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}{' + wt(q.R * 1e3) + '}}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 3) + '\\,\\tfrac{\\text{km}}{\\text{s}}');
-              if (k === 'M') return 'M = \\frac{v_\\text{F}^2 R}{2 G} = ' + E(wt(q.M * 1e24) + '\\,\\text{kg}');
+              if (k === 'v') return 'v_\\text{F} = \\sqrt{\\frac{2 G M}{R}} = \\sqrt{\\frac{2 \\cdot 6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M) + '}{' + wt(q.R * 1e3) + '}}\\,\\tfrac{\\text{m}}{\\text{s}} = ' + E(tz(q.v, 3) + '\\,\\tfrac{\\text{km}}{\\text{s}}');
+              if (k === 'M') return 'M = \\frac{v_\\text{F}^2 R}{2 G} = ' + E(wt(q.M) + '\\,\\text{kg}');
               return 'R = \\frac{2 G M}{v_\\text{F}^2} = ' + E(wt(q.R) + '\\,\\text{km}');
             } }] },
-        { titel: 'Schwerebeschleunigung', hilfe: 'M in 10²⁴ kg, r in km.',
-          felder: [{ k: 'g', tex: 'g', name: 'Schwerebeschleunigung', e: 'm/s²', min: 1e-6, max: 1e8 }, { k: 'M', tex: 'M', name: 'Masse', e: '· 10²⁴ kg', min: 1e-4, max: 1e8 }, { k: 'r', tex: 'r', name: 'Abstand vom Mittelpunkt', e: 'km', min: 0.001, max: 1e10 }],
-          beispiel: { M: 0.07342, r: 1737.4 },
-          gleichungen: [{ name: 'g = GM/r²', v: ['g', 'M', 'r'], f: function (q) { return [q.g * q.r * q.r * 1e6, G * q.M * 1e24]; },
-            loese: { g: function (q) { return G * q.M * 1e24 / (q.r * q.r * 1e6); }, M: function (q) { return q.g * q.r * q.r * 1e6 / G / 1e24; }, r: function (q) { return Math.sqrt(G * q.M * 1e24 / q.g) / 1e3; } },
+        { titel: 'Schwerebeschleunigung', hilfe: 'r in km.',
+          felder: [{ k: 'g', tex: 'g', name: 'Schwerebeschleunigung', e: 'm/s²', min: 1e-6, max: 1e8 }, { k: 'M', tex: 'M', name: 'Masse', e: 'kg', min: 1e20, max: 1e32 }, { k: 'r', tex: 'r', name: 'Abstand vom Mittelpunkt', e: 'km', min: 0.001, max: 1e10 }],
+          beispiel: { M: 7.342e22, r: 1737.4 },
+          gleichungen: [{ name: 'g = GM/r²', v: ['g', 'M', 'r'], f: function (q) { return [q.g * q.r * q.r * 1e6, G * q.M]; },
+            loese: { g: function (q) { return G * q.M / (q.r * q.r * 1e6); }, M: function (q) { return q.g * q.r * q.r * 1e6 / G; }, r: function (q) { return Math.sqrt(G * q.M / q.g) / 1e3; } },
             weg: function (k, q) {
-              if (k === 'g') return 'g = \\frac{G M}{r^2} = \\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M * 1e24) + '}{(' + wt(q.r * 1e3) + ')^2} = ' + E(wt(q.g) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}');
-              if (k === 'M') return 'M = \\frac{g r^2}{G} = ' + E(wt(q.M * 1e24) + '\\,\\text{kg}');
+              if (k === 'g') return 'g = \\frac{G M}{r^2} = \\frac{6{,}674 \\cdot 10^{-11} \\cdot ' + wt(q.M) + '}{(' + wt(q.r * 1e3) + ')^2} = ' + E(wt(q.g) + '\\,\\tfrac{\\text{m}}{\\text{s}^2}');
+              if (k === 'M') return 'M = \\frac{g r^2}{G} = ' + E(wt(q.M) + '\\,\\text{kg}');
               return 'r = \\sqrt{\\frac{G M}{g}} = ' + E(wt(q.r) + '\\,\\text{km}');
             } }] }
       ],
