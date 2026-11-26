@@ -25,12 +25,37 @@
     .sk-pal-knopf:hover, .sk-pal-knopf:focus-visible { border-color: var(--farbe); }
     .sk-pal-knopf svg { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--farbe); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .sk-buehne { position: relative; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); overflow: hidden; }
-    .sk-buehne.voll { position: fixed; inset: 0; z-index: 60; border-radius: 0; border: none; }
     html.sk-voll-aktiv { overflow: hidden; }
+    .sk-griff, .sk-zoomknoepfe { display: none; }
+    .sk-app.voll { position: fixed; inset: 0; z-index: 60; background: var(--grund); display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto auto auto auto minmax(0, 1fr); grid-template-areas: "griff griff" "leiste leiste" "sim sim" "palette palette" "buehne raster"; }
+    .sk-app.voll .sk-griff { grid-area: griff; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 8px 10px; border-bottom: 1px solid var(--linie); background: var(--flaeche); }
+    .sk-griff .knopf, .sk-griff .knopf-haupt { padding: 6px 12px; }
+    .sk-griff > * { flex: none; width: auto; margin: 0; min-width: 0; }
+    .sk-griff > .sk-griff-platz { flex: 1 1 auto; }
+    .sk-app.voll #sk-plus, .sk-app.voll #sk-voll, .sk-app.voll #sk-einpassen, .sk-app.voll .sk-leiste .sk-gruppe-knopf { display: none; }
+    .sk-griff-zeit { font-family: var(--technik); font-size: .85rem; color: var(--leise); }
+    #sk-panel-auf[aria-expanded="true"], #sk-leiste-auf[aria-expanded="true"] { background: var(--flaeche2); }
+    .sk-app.voll .sk-leiste { grid-area: leiste; margin: 0; padding: 8px 10px 0; }
+    .sk-app.voll .sk-sim { grid-area: sim; margin: 0; padding: 8px 10px; border-bottom: 1px solid var(--linie); }
+    .sk-app.voll .sk-palette { grid-area: palette; margin: 0; border-radius: 0; border-width: 0 0 1px; max-height: 42vh; overflow: auto; }
+    .sk-app.voll .sk-buehne { grid-area: buehne; border: none; border-radius: 0; min-height: 0; }
+    .sk-app.voll #sk-svg { height: 100%; }
+    .sk-app.voll .sk-raster { grid-area: raster; display: flex; flex-direction: column; gap: 10px; width: min(380px, 40vw); margin: 0; padding: 10px; overflow: auto; border-left: 1px solid var(--linie); background: var(--grund); }
+    .sk-app.voll.leiste-zu .sk-leiste, .sk-app.voll.leiste-zu .sk-sim { display: none; }
+    .sk-app.voll.panel-zu .sk-raster { display: none; }
+    .sk-app.voll .sk-zoomknoepfe { display: flex; position: absolute; right: 10px; bottom: 10px; gap: 4px; }
+    .sk-zoomknoepfe .knopf { min-width: 38px; padding: 6px 10px; background: var(--flaeche); }
+    .sk-app.voll .sk-hinweis { right: 150px; }
+    @media (max-width: 760px) {
+      .sk-app.voll { grid-template-columns: minmax(0, 1fr); grid-template-areas: "griff" "leiste" "sim" "palette" "buehne"; }
+      .sk-app.voll .sk-raster { position: absolute; left: 0; right: 0; bottom: 0; width: auto; max-height: 48vh; border-left: none; border-top: 2px solid var(--linie); z-index: 2; box-shadow: 0 -6px 18px rgba(0, 0, 0, .15); }
+      .sk-app.voll:not(.panel-zu) .sk-zoomknoepfe { bottom: calc(48vh + 10px); }
+      .sk-griff-zeit, .sk-breit { display: none; }
+      .sk-app.voll .sk-griff { flex-wrap: nowrap; gap: 5px; padding: 6px 8px; }
+      .sk-griff .knopf, .sk-griff .knopf-haupt { padding: 6px 10px; white-space: nowrap; }
+      #sk-panel-auf { max-width: 130px; overflow: hidden; text-overflow: ellipsis; }
+    }
     #sk-svg { display: block; width: 100%; height: max(420px, 66vh); touch-action: none; user-select: none; -webkit-user-select: none; background-image: radial-gradient(var(--linie) 1px, transparent 1.2px); background-size: 20px 20px; }
-    .sk-buehne.voll #sk-svg { height: 100vh; height: 100dvh; }
-    .sk-voll-leiste { display: none; }
-    .sk-buehne.voll .sk-voll-leiste { display: flex; position: absolute; top: 8px; right: 8px; gap: 6px; }
     .sk-hinweis { position: absolute; left: 8px; bottom: 8px; right: 8px; padding: 6px 10px; border-radius: var(--rund-klein); background: var(--text); color: var(--grund); font-size: .85rem; pointer-events: none; }
     .sk-kasten { fill: var(--flaeche); stroke: var(--leise); stroke-width: 1; }
     .sk-teil { cursor: grab; }
@@ -65,6 +90,7 @@
     .sk-ader.gewaehlt .sk-unterlage { stroke: var(--ergebnis); stroke-width: 8; }
     .sk-ader.offen .sk-draht, .sk-ader.offen .sk-gelb, .sk-ader.offen .sk-pen { stroke-dasharray: 3 9; opacity: .55; }
     .sk-bruch { stroke: var(--fehler) !important; stroke-width: 3; }
+    .sk-brand { fill: #FF6A00; fill-opacity: .35; stroke: var(--fehler); stroke-width: 1.5; }
     .sk-ueberlast { stroke: transparent; stroke-width: 12; }
     .sk-ueberlast.an { stroke: var(--fehler); opacity: .45; }
     .sk-strom { fill: none; stroke: #FF6A00; stroke-width: 4.4; stroke-linecap: round; stroke-dasharray: 0.1 18; pointer-events: none; filter: drop-shadow(0 0 1.5px #FFF3BF); }
@@ -119,7 +145,17 @@
 
     <section class="tafel abstand" aria-labelledby="h-sim">
       <h2 id="h-sim">Simulator</h2>
-      <div class="sk-leiste">
+      <div class="sk-app" id="sk-app">
+      <div class="sk-griff" id="sk-griff">
+        <button type="button" class="knopf" id="sk-leiste-auf" aria-expanded="true" aria-controls="sk-leiste sk-sim" title="Werkzeugleiste ein- und ausklappen (W)"><span id="sk-leiste-pfeil">▴</span> Werkzeuge</button>
+        <button type="button" class="knopf-haupt" id="sk-plus2" aria-controls="sk-palette" aria-label="Bauteil hinzufügen">+<span class="sk-breit"> Bauteil</span></button>
+        <button type="button" class="knopf" id="sk-pause2" aria-pressed="false">⏸</button>
+        <span class="sk-griff-zeit" id="sk-zeit2"></span>
+        <span class="sk-griff-platz"></span>
+        <button type="button" class="knopf" id="sk-panel-auf" aria-expanded="true" aria-controls="sk-raster" title="Eigenschaften und Ereignisse ein- und ausklappen (E)">Eigenschaften ▸</button>
+        <button type="button" class="knopf" id="sk-voll-aus" aria-label="Vollbild beenden" title="Vollbild beenden (Esc)">✕</button>
+      </div>
+      <div class="sk-leiste" id="sk-leiste">
         <button type="button" class="knopf-haupt" id="sk-plus" aria-expanded="false" aria-controls="sk-palette">+ Bauteil</button>
         <select id="sk-beispiel" aria-label="Beispiel laden" data-nicht-merken><option value="">Beispiel laden …</option></select>
         <button type="button" class="knopf" id="sk-rueck">↶ Rückgängig</button>
@@ -132,8 +168,9 @@
       <div class="sk-buehne" id="sk-buehne">
         <svg id="sk-svg" role="img" aria-label="Aufbau der Schaltung"></svg>
         <div class="sk-hinweis" id="sk-hinweis" hidden></div>
+        <div class="sk-zoomknoepfe" role="group" aria-label="Ansicht"><button type="button" class="knopf" data-zoom="minus" aria-label="Verkleinern">−</button><button type="button" class="knopf" data-zoom="plus" aria-label="Vergrößern">+</button><button type="button" class="knopf" data-zoom="passen" aria-label="Einpassen">⤢</button></div>
       </div>
-      <div class="sk-sim">
+      <div class="sk-sim" id="sk-sim">
         <button type="button" class="knopf" id="sk-pause" aria-pressed="false">⏸ Pause</button>
         <span class="sk-gruppe-knopf" role="group" aria-label="Zeitraffer"><button type="button" class="knopf" data-tempo="1" aria-pressed="true">1×</button><button type="button" class="knopf" data-tempo="10" aria-pressed="false">10×</button><button type="button" class="knopf" data-tempo="60" aria-pressed="false">60×</button><button type="button" class="knopf" data-tempo="600" aria-pressed="false">600×</button></span>
         <label>Sonne <input type="range" id="sk-sonne" min="0" max="100" value="70" data-nicht-merken> <output id="sk-sonne-wert">70 %</output></label>
@@ -142,9 +179,10 @@
         <button type="button" class="knopf" id="sk-neu">Leere Fläche</button>
         <span><button type="button" class="knopf" id="sk-teilen">Link teilen</button> <span id="sk-teilen-meldung" class="hilfe" aria-live="polite"></span></span>
       </div>
-      <div class="sk-raster">
+      <div class="sk-raster" id="sk-raster">
         <div class="sk-karte" id="sk-auswahl" aria-live="polite"></div>
         <div class="sk-karte"><h3>Ereignisse</h3><div id="sk-bilanz"></div><ol id="sk-protokoll" aria-live="polite"></ol></div>
+      </div>
       </div>
       <p class="hilfe">Rechenmodell: Kupferadern mit 0,0178 Ω·mm²/m bei 20 °C, Verbraucher als feste Impedanz, Auslösekennlinien und Körperstrom-Zonen als Näherung nach DIN EN 60898-1, DIN EN 60269, DIN EN 61008/61009 und DIN IEC/TS 60479-1. Ersetzt keine Planung, Messung oder Prüfung nach DIN VDE 0100-600 – Arbeiten an elektrischen Anlagen nur durch Elektrofachkräfte.</p>
     </section>
@@ -211,6 +249,7 @@
         <details><summary>Automatik oder Handumschaltung?</summary><p>Die Automatik schaltet ohne Zutun um und zurück. Bei „Rückschalten von Hand“ bleibt das Haus nach Netzwiederkehr auf Notstrom, bis jemand quittiert – praktisch, wenn das Netz unruhig ist. Der reine Handbetrieb mit Wahlschalter I-0-II ist am einfachsten, verlangt aber, dass jemand da ist.</p></details>
         <details><summary>Warum schaltet die Box bei Ausfall nur einer Phase um?</summary><p>Fällt nur eine Phase aus, laufen Drehstrommotoren unrund und Geräte an dieser Phase stehen. Mit der Überwachung „jede Phase“ schaltet die Box schon dann um. Mit „nur L1“ merkt sie den Ausfall von L2 oder L3 nicht.</p></details>
         <details><summary>Was ist der Unterschied zwischen Notstrom und Ersatzstrom?</summary><p>Umgangssprachlich wird beides gleich benutzt. Bei einer Unterbrechung von einigen Sekunden spricht man von Ersatzstrom oder Netzersatz, unterbrechungsfrei ist nur ein Online-Speicher oder eine USV. Im Simulator zeigt das Protokoll die genaue Unterbrechung.</p></details>
+        <details><summary>Was passiert, wenn ich Außenleiter direkt verbinde?</summary><p>Das ist ein Kurzschluss. Liegt er hinter einer Sicherung oder einem LS, schaltet dieser ab. Liegt er davor – etwa direkt am Ortsnetz –, muss die Abgangssicherung im Ortsnetz auslösen. Ist sie zu träge für den Querschnitt, erwärmt sich die Ader nach der adiabatischen Kurzschlussfestigkeit (k = 115 für Kupfer mit PVC) und brennt durch. Auch eine überlastete Ader ohne passenden Schutz brennt nach einiger Zeit durch – im Protokoll steht dann „Brandgefahr“.</p></details>
         <details><summary>Wie genau ist die Simulation?</summary><p>Spannungen und Ströme werden mit komplexer Knotenanalyse bei 50 Hz berechnet. Verbraucher sind feste Impedanzen, Anlaufströme und Oberschwingungen fehlen. Die Kennlinien von LS, Sicherung, FI und Wechselrichter sind Näherungen typischer Werte – echte Geräte streuen innerhalb der Normgrenzen.</p></details>
         <details><summary>Kann ich meinen Aufbau speichern?</summary><p>Er wird automatisch auf diesem Gerät gespeichert. Mit „Link teilen“ entsteht ein Link, der den ganzen Aufbau enthält. Er wird nicht an einen Server geschickt.</p></details>
       </div>
@@ -409,23 +448,29 @@
         { k: 'system', name: 'Netzform', werte: [['TN', 'TN (PEN vom Netz)'], ['TT', 'TT (N vom Netz, eigener Erder)']], std: 'TN' },
         { k: 'un', name: 'Spannung L–N', e: 'V', min: 200, max: 250, std: 230 },
         { k: 'zs', name: 'Netzimpedanz je Außenleiter', e: 'Ω', min: 0.01, max: 5, std: 0.2 },
-        { k: 'rb', name: 'Betriebserder R_B', e: 'Ω', min: 0.1, max: 100, std: 2 }
+        { k: 'rb', name: 'Betriebserder R_B', e: 'Ω', min: 0.1, max: 100, std: 2 },
+        { k: 'nh', name: 'Abgangssicherung im Ortsnetz (gG)', e: 'A', werte: [[160, '160 A'], [250, '250 A'], [400, '400 A'], [630, '630 A']], std: 250 }
       ],
-      st: { ein: true },
+      st: { ein: true, f: [1, 1, 1] },
       klemmen: function (t) { return { o: [], u: [['L1', 'L1'], ['L2', 'L2'], ['L3', 'L3'], [t.par.system === 'TT' ? 'N' : 'PEN', t.par.system === 'TT' ? 'N' : 'PEN']] }; },
       init: function (t) { t.z.q = [null, null, null]; },
       modell: function (t, M) {
         const S = ik(t, 'S'), n = t.par.system === 'TT' ? 'N' : 'PEN';
         M.V(S, kl(t, n)); M.R(S, 'E', t.par.rb, 0);
         t.z.q = [null, null, null];
-        if (t.st.ein) ['L1', 'L2', 'L3'].forEach(function (L, p) { t.z.q[p] = M.Q(kl(t, L), S, C.polar(t.par.un, PHASE[p]), [t.par.zs * 0.8, t.par.zs * 0.6]); });
+        if (t.st.ein) ['L1', 'L2', 'L3'].forEach(function (L, p) { if (t.st.f[p]) t.z.q[p] = M.Q(kl(t, L), S, C.polar(t.par.un, PHASE[p]), [t.par.zs * 0.8, t.par.zs * 0.6]); });
       },
       status: function (t) {
         if (!t.st.ein) return ['Netzausfall', 'keine Spannung', 'fehler'];
+        const weg = t.st.f.map(function (f, p) { return f ? '' : 'L' + (p + 1); }).filter(Boolean);
+        if (weg.length) return ['Sicherung ausgelöst', weg.join(', ') + ' ohne Spannung', 'fehler'];
         const I = Math.max.apply(null, t.z.q.map(function (e) { return e ? C.betrag(e.Ist) : 0; }));
         return [Math.round(t.par.un * Math.sqrt(3)) + '/' + t.par.un + ' V ' + (t.par.system === 'TT' ? 'TT' : 'TN'), 'max. ' + fI(I) + ' · ' + fP(quellenP(t)), 'gut'];
       },
-      werte: function (t) { return t.z.q.map(function (e, p) { return ['L' + (p + 1), e ? fI(C.betrag(e.Ist)) + ', ' + fP(C.mul(e.U, C.kon(e.Ist))[0]) : 'aus']; }); },
+      werte: function (t) { return t.z.q.map(function (e, p) { return ['L' + (p + 1), e ? fI(C.betrag(e.Ist)) + ', ' + fP(C.mul(e.U, C.kon(e.Ist))[0]) : t.st.f[p] ? 'aus' : 'Sicherung ausgelöst']; }); },
+      schutz: function (t) { return t.z.q.map(function (e, p) { return e ? { I: C.betrag(e.Ist), In: t.par.nh, art: 'gG', p: p } : null; }); },
+      ausloesen: function (t, p, s) { t.st.f[p] = 0; log(name(t) + ': Abgangssicherung L' + (p + 1) + ' (' + t.par.nh + ' A) im Ortsnetz schmilzt bei ' + fI(s.I) + ' – Kurzschluss vor dem Hausanschluss.', 'aus'); },
+      aktionen: function (t) { return t.st.f.indexOf(0) >= 0 ? [['Netzbetreiber ersetzt die Sicherung', function () { t.st.f = [1, 1, 1]; t.z.wmap = {}; log(name(t) + ': Abgangssicherungen ersetzt.'); }]] : []; },
       aktion: function (t) { return [t.st.ein ? 'Netzausfall' : 'Netz zurück', function () { t.st.ein = !t.st.ein; log(name(t) + ': ' + (t.st.ein ? 'Netzspannung ist wieder da.' : 'Netzausfall.'), t.st.ein ? 'gut' : 'aus'); }]; }
     };
     TYP.hak = {
@@ -1171,7 +1216,14 @@
       if (s.wr) { let tt = kurve(KENN_WR, s.x); if (s.begrenzt) tt = Math.min(tt, s.agg ? 3 : 0.3); return tt; }
       return s.In > 0 ? ausloesezeit(s.I, s.In, s.art) : Infinity;
     }
+    // Ader ohne passenden Schutz: Erwärmung, bei Kurzschluss adiabatisch (k = 115 für Cu/PVC), bei Überlast langsamer
+    function aderZeit(a) {
+      if (!a._el || !(a._I > IZ[a.q] * 1.45)) return Infinity;
+      const ad = Math.pow(115 * a.q / a._I, 2), ue = 600 * Math.pow(IZ[a.q] / a._I, 4);
+      return Math.max(ad, ue);
+    }
     function fortschreiben(dt) {
+      adern.forEach(function (a) { const tt = aderZeit(a); a._w = isFinite(tt) ? (a._w || 0) + dt / tt : Math.max(0, (a._w || 0) - dt / 300); });
       teile.forEach(function (t) {
         const T = TYP[t.typ], z = t.z; z.wmap = z.wmap || {};
         z.smax = z.smax || {};
@@ -1205,6 +1257,11 @@
             } else z._pl = null;
           }
           if (T.ereignisse) T.ereignisse(t).forEach(function (e) { if (!best || e.dt < best.dt) best = e; });
+        });
+        adern.forEach(function (a) {
+          const tt = aderZeit(a); if (!isFinite(tt)) return;
+          const dt = Math.max(0, (1 - (a._w || 0)) * tt);
+          if (!best || dt < best.dt) best = { dt: dt, tun: function () { const I = a._I; a.offen = true; a._w = 0; a._brand = true; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + ' (' + zahl(a.q) + ' mm²): ' + fI(I) + ' = ' + zahl(I / IZ[a.q], 1) + ' × Belastbarkeit – kein Schutzorgan schaltet rechtzeitig ab, die Ader glüht und brennt durch. Brandgefahr!', 'gefahr'); speichern(); zeichnen(); } };
         });
         const feuern = best && best.dt <= rest, schritt = feuern ? best.dt : rest;
         if (schritt > 0) fortschreiben(schritt);
@@ -1260,7 +1317,7 @@
         sv('path', { d: pf.d, 'class': 'sk-draht', stroke: FARBEN[a.f][1] }, g);
         if (a.f === 'PE' || a.f === 'PEN') sv('path', { d: pf.d, 'class': 'sk-gelb' }, g);
         if (a.f === 'PEN') sv('path', { d: pf.d, 'class': 'sk-pen' }, g);
-        if (a.offen) { sv('path', { d: 'M' + (pf.mx - 7) + ' ' + (pf.my - 7) + 'l14 14m0-14l-14 14', 'class': 'sk-bruch' }, g); }
+        if (a.offen) { if (a._brand) sv('circle', { cx: pf.mx, cy: pf.my, r: 11, 'class': 'sk-brand' }, g); sv('path', { d: 'M' + (pf.mx - 7) + ' ' + (pf.my - 7) + 'l14 14m0-14l-14 14', 'class': 'sk-bruch' }, g); }
         sv('path', { d: pf.d, 'class': 'sk-treffer' }, g);
         a._fluss = sv('path', { d: pf.d, 'class': 'sk-strom', visibility: 'hidden' }, ebFluss); a._off = a._off || 0;
       });
@@ -1390,12 +1447,12 @@
     }
     svg.addEventListener('pointerup', zugEnde);
     svg.addEventListener('pointercancel', function (ev) { delete zeiger[ev.pointerId]; zug = null; pinch = null; gummi.setAttribute('d', ''); });
-    svg.addEventListener('wheel', function (ev) { if (!ev.ctrlKey && !ev.metaKey && !buehne.classList.contains('voll')) return; ev.preventDefault(); const p = punkt(ev); zoom(ev.deltaY > 0 ? 1.15 : 1 / 1.15, p.x, p.y); }, { passive: false });
+    svg.addEventListener('wheel', function (ev) { if (!ev.ctrlKey && !ev.metaKey && !istVoll()) return; ev.preventDefault(); const p = punkt(ev); zoom(ev.deltaY > 0 ? 1.15 : 1 / 1.15, p.x, p.y); }, { passive: false });
     window.addEventListener('resize', ansichtSetzen);
     document.addEventListener('keydown', function (ev) {
       const tag = (ev.target.tagName || '').toLowerCase(); if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
       if ((ev.key === 'Delete' || ev.key === 'Backspace') && auswahl) { ev.preventDefault(); auswahlLoeschen(); }
-      else if (ev.key === 'Escape') { aderStart = null; hinweis(''); auswaehlen(null); if (buehne.classList.contains('voll')) vollbild(false); }
+      else if (ev.key === 'Escape') { aderStart = null; hinweis(''); auswaehlen(null); if (istVoll()) vollbild(false); }
       else if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'z') { ev.preventDefault(); rueckgaengig(); }
     });
     function klemmName(s) { const i = s.lastIndexOf('.'), t = teilVon(s.slice(0, i)); if (!t) return s; const g = geo(t), k = g.kl[s.slice(i + 1)]; return name(t) + ' ' + (k ? (k.gruppe ? k.gruppe + ' ' : '') + k.label : ''); }
@@ -1409,7 +1466,7 @@
       const ta = teilVon(a.slice(0, a.lastIndexOf('.'))), tb = teilVon(b.slice(0, b.lastIndexOf('.')));
       const haus = ['netz', 'hak'].indexOf(ta.typ) >= 0 && ['netz', 'hak'].indexOf(tb.typ) >= 0, mess = ['mensch', 'messgeraet', 'fehler'].indexOf(ta.typ) >= 0 || ['mensch', 'messgeraet', 'fehler'].indexOf(tb.typ) >= 0;
       const ad = { id: 'a' + (P.nr++), a: a, b: b, f: f, q: haus ? 25 : mess ? 1.5 : 2.5, l: haus ? 20 : mess ? 1 : 3, offen: false };
-      adern.push(ad); schmutzig = true; hinweis(''); speichern(); zeichnen(); auswaehlen({ art: 'ader', id: ad.id });
+      adern.push(ad); schmutzig = true; G.T0 = G.T; hinweis(''); speichern(); zeichnen(); auswaehlen({ art: 'ader', id: ad.id });
     }
     function teilNeu(typ, x, y) {
       if (teile.length >= MAX_TEILE) { hinweis('Höchstens ' + MAX_TEILE + ' Bauteile.'); return null; }
@@ -1435,7 +1492,7 @@
       auswahl = a;
       Array.prototype.forEach.call(svg.querySelectorAll('.gewaehlt'), function (x) { x.classList.remove('gewaehlt'); });
       if (a) { const o = a.art === 'teil' ? teilVon(a.id) : aderVon(a.id); if (o && o._g) o._g.classList.add('gewaehlt'); }
-      $('sk-loeschen').disabled = !a; panelZeigen();
+      $('sk-loeschen').disabled = !a; panelZeigen(); panelKnopfText();
     }
     let panelWerteEl = null;
     function panelZeigen() {
@@ -1516,8 +1573,8 @@
       feld('Länge (m)', l, function () { const v = Number(String(l.value).replace(',', '.')); if (isFinite(v)) a.l = Math.min(1000, Math.max(0.1, v)); });
       box.append(f);
       const kn0 = kn('div', 'sk-knoepfe');
-      const ub = kn('button', a.offen ? 'knopf-haupt' : 'knopf', a.offen ? 'Wieder verbinden' : 'Unterbrechen (Aderbruch)'); ub.type = 'button';
-      ub.addEventListener('click', function () { G.T0 = G.T; a.offen = !a.offen; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + (a.offen ? ' unterbrochen.' : ' wieder verbunden.'), a.offen ? 'gefahr' : 'info'); schmutzig = true; speichern(); zeichnen(); panelZeigen(); protokollZeigen(); });
+      const ub = kn('button', a.offen ? 'knopf-haupt' : 'knopf', a.offen ? (a._brand ? 'Ader ersetzen' : 'Wieder verbinden') : 'Unterbrechen (Aderbruch)'); ub.type = 'button';
+      ub.addEventListener('click', function () { G.T0 = G.T; a.offen = !a.offen; a._brand = false; a._w = 0; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + (a.offen ? ' unterbrochen.' : ' wieder verbunden.'), a.offen ? 'gefahr' : 'info'); schmutzig = true; speichern(); zeichnen(); panelZeigen(); protokollZeigen(); });
       const lo = kn('button', 'knopf', 'Löschen'); lo.type = 'button'; lo.addEventListener('click', auswahlLoeschen);
       kn0.append(ub, lo); box.append(kn0);
       panelWerteEl = kn('div', 'sk-werte'); box.append(panelWerteEl); aderWerte();
@@ -1541,13 +1598,13 @@
           b.append(s, kn('span', '', TYP[x].name));
           b.addEventListener('click', function () {
             merke(); const t = teilNeu(x, vb.x + vb.w / 2 - 80 + (teile.length % 5) * 20, vb.y + vb.h / 2 - 40 + (teile.length % 5) * 20); if (!t) return;
-            schmutzig = true; speichern(); zeichnen(); auswaehlen({ art: 'teil', id: t.id }); pal.hidden = true; $('sk-plus').setAttribute('aria-expanded', 'false');
+            schmutzig = true; speichern(); zeichnen(); auswaehlen({ art: 'teil', id: t.id }); pal.hidden = true; $('sk-plus').setAttribute('aria-expanded', 'false'); $('sk-plus2').setAttribute('aria-expanded', 'false');
           });
           g.append(b);
         });
         pal.append(g);
       });
-      $('sk-plus').addEventListener('click', function () { pal.hidden = !pal.hidden; this.setAttribute('aria-expanded', String(!pal.hidden)); });
+      $('sk-plus').addEventListener('click', function () { pal.hidden = !pal.hidden; this.setAttribute('aria-expanded', String(!pal.hidden)); $('sk-plus2').setAttribute('aria-expanded', String(!pal.hidden)); });
     })();
 
     // ---------- Protokoll und Bilanz ----------
@@ -1579,8 +1636,11 @@
       if (hatAgg) feld('Aggregat', fP(agg));
       feld('Verbraucher', fP(last));
     }
-    function uhr() { $('sk-zeit').textContent = 'Simulationszeit ' + fT(G.T); }
-    function pauseZeigen() { $('sk-pause').textContent = G.pause ? '▶ Weiter' : '⏸ Pause'; $('sk-pause').setAttribute('aria-pressed', G.pause ? 'true' : 'false'); }
+    function uhr() { $('sk-zeit').textContent = 'Simulationszeit ' + fT(G.T); $('sk-zeit2').textContent = 't = ' + fT(G.T) + (G.tempo > 1 ? ' · ' + G.tempo + '×' : ''); }
+    function pauseZeigen() {
+      $('sk-pause').textContent = G.pause ? '▶ Weiter' : '⏸ Pause'; $('sk-pause').setAttribute('aria-pressed', G.pause ? 'true' : 'false');
+      $('sk-pause2').textContent = G.pause ? '▶' : '⏸'; $('sk-pause2').setAttribute('aria-pressed', G.pause ? 'true' : 'false'); $('sk-pause2').setAttribute('aria-label', G.pause ? 'Simulation fortsetzen' : 'Simulation anhalten');
+    }
 
     // ---------- Speichern, Laden, Prüfen ----------
     function planDaten() {
@@ -1900,8 +1960,46 @@
     $('sk-zoom-plus').addEventListener('click', function () { zoom(1 / 1.25); });
     $('sk-zoom-minus').addEventListener('click', function () { zoom(1.25); });
     $('sk-einpassen').addEventListener('click', einpassen);
-    function vollbild(an) { buehne.classList.toggle('voll', an); document.documentElement.classList.toggle('sk-voll-aktiv', an); $('sk-voll').setAttribute('aria-pressed', an ? 'true' : 'false'); $('sk-voll').textContent = an ? 'Vollbild verlassen' : 'Vollbild'; setTimeout(ansichtSetzen, 30); }
-    $('sk-voll').addEventListener('click', function () { vollbild(!buehne.classList.contains('voll')); });
+    // ---------- Vollbild mit ausklappbarer Werkzeugleiste und Seitenleiste ----------
+    const app = $('sk-app'), S_VOLL = 'stromkreis-vollbild';
+    let vollEinst = { leiste: window.innerWidth > 760, panel: window.innerWidth > 760 };
+    try { const v = JSON.parse(localStorage.getItem(S_VOLL) || 'null'); if (v && typeof v === 'object') { if (typeof v.leiste === 'boolean') vollEinst.leiste = v.leiste; if (typeof v.panel === 'boolean') vollEinst.panel = v.panel; } } catch (e) { /* ohne Speicher */ }
+    function vollZeigen() {
+      app.classList.toggle('leiste-zu', !vollEinst.leiste); app.classList.toggle('panel-zu', !vollEinst.panel);
+      $('sk-leiste-auf').setAttribute('aria-expanded', String(vollEinst.leiste)); $('sk-leiste-pfeil').textContent = vollEinst.leiste ? '▴' : '▾';
+      $('sk-panel-auf').setAttribute('aria-expanded', String(vollEinst.panel)); panelKnopfText();
+      try { localStorage.setItem(S_VOLL, JSON.stringify(vollEinst)); } catch (e) { /* ohne Speicher */ }
+      setTimeout(ansichtSetzen, 30);
+    }
+    function panelKnopfText() {
+      const o = auswahl && (auswahl.art === 'teil' ? teilVon(auswahl.id) : aderVon(auswahl.id));
+      const schmal = window.innerWidth <= 760, n = !o ? (schmal ? 'Details' : 'Eigenschaften') : auswahl.art === 'teil' ? kuerzen(name(o), schmal ? 10 : 18) : 'Ader';
+      $('sk-panel-auf').textContent = n + (vollEinst.panel ? ' ▸' : ' ◂');
+    }
+    function istVoll() { return app.classList.contains('voll'); }
+    function vollbild(an) {
+      app.classList.toggle('voll', an); document.documentElement.classList.toggle('sk-voll-aktiv', an);
+      $('sk-voll').setAttribute('aria-pressed', an ? 'true' : 'false'); $('sk-voll').textContent = an ? 'Vollbild verlassen' : 'Vollbild';
+      try {
+        if (an && app.requestFullscreen && !document.fullscreenElement) { const pr = app.requestFullscreen(); if (pr && pr.catch) pr.catch(function () { /* nur CSS-Vollbild */ }); }
+        if (!an && document.fullscreenElement && document.exitFullscreen) { const pr = document.exitFullscreen(); if (pr && pr.catch) pr.catch(function () {}); }
+      } catch (e) { /* nur CSS-Vollbild */ }
+      vollZeigen();
+      if (!an) setTimeout(function () { app.scrollIntoView({ block: 'start' }); }, 40);
+    }
+    document.addEventListener('fullscreenchange', function () { if (!document.fullscreenElement && istVoll()) vollbild(false); else setTimeout(ansichtSetzen, 60); });
+    $('sk-voll').addEventListener('click', function () { vollbild(!istVoll()); });
+    $('sk-voll-aus').addEventListener('click', function () { vollbild(false); });
+    $('sk-leiste-auf').addEventListener('click', function () { vollEinst.leiste = !vollEinst.leiste; vollZeigen(); });
+    $('sk-panel-auf').addEventListener('click', function () { vollEinst.panel = !vollEinst.panel; vollZeigen(); });
+    $('sk-plus2').addEventListener('click', function () { $('sk-plus').click(); });
+    $('sk-pause2').addEventListener('click', function () { $('sk-pause').click(); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-zoom]'), function (b) { b.addEventListener('click', function () { const z = b.getAttribute('data-zoom'); if (z === 'plus') zoom(1 / 1.25); else if (z === 'minus') zoom(1.25); else einpassen(); }); });
+    document.addEventListener('keydown', function (ev) {
+      const tag = (ev.target.tagName || '').toLowerCase(); if (!istVoll() || tag === 'input' || tag === 'select' || tag === 'textarea' || ev.ctrlKey || ev.metaKey || ev.altKey) return;
+      if (ev.key === 'w' || ev.key === 'W') { vollEinst.leiste = !vollEinst.leiste; vollZeigen(); }
+      else if (ev.key === 'e' || ev.key === 'E') { vollEinst.panel = !vollEinst.panel; vollZeigen(); }
+    });
     $('sk-neu').addEventListener('click', function () { if (teile.length) merke(); protokoll = []; laden({ v: 1, sonne: G.sonne, nr: 1, teile: [], adern: [] }); speichern(); protokollZeigen(); $('sk-palette').hidden = false; $('sk-plus').setAttribute('aria-expanded', 'true'); });
     $('sk-reset').addEventListener('click', function () {
       teile.forEach(function (t) {
