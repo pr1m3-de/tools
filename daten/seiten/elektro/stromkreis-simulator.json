@@ -3,18 +3,188 @@
   "titel": "Stromkreis-Simulator: Hausinstallation ab HAK mit Notstrom und PV",
   "gruppe": "Installation und Schutz",
   "bereich": "Elektrotechnik",
-  "themen": ["Simulator", "Stromkreis", "Hausanschlusskasten", "HAK", "Zähler", "TN-C-S", "TN-C", "TT-System", "PEN", "klassische Nullung", "PEN-Bruch", "Neutralleiterbruch", "Körperschluss", "Fehlerstrom-Schutzschalter", "FI", "RCD", "Leitungsschutzschalter", "Notstrom", "Netzumschalter", "Umschalteinrichtung", "Inselnetz", "N-PE-Brücke", "Hybrid-Wechselrichter", "Stromspeicher", "Photovoltaik", "NA-Schutz", "Stromaggregat", "Körperstrom", "Berührungsspannung", "VDE 0100-410", "VDE 0100-551"],
-  "text": "Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, FI und LS bis zum Verbraucher, mit Notstrom-Wechselrichter, Umschalter, automatischer Umschaltung, Hybrid-Speicher und PV – Körperschluss, PEN-Bruch, N-Bruch, FI-Auslösung und Körperstrom.",
+  "themen": [
+    "Simulator",
+    "Stromkreis",
+    "Hausanschlusskasten",
+    "HAK",
+    "Zähler",
+    "TN-C-S",
+    "TN-C",
+    "TT-System",
+    "PEN",
+    "klassische Nullung",
+    "PEN-Bruch",
+    "Neutralleiterbruch",
+    "Körperschluss",
+    "Fehlerstrom-Schutzschalter",
+    "FI",
+    "RCD",
+    "Leitungsschutzschalter",
+    "Notstrom",
+    "Netzumschalter",
+    "Umschalteinrichtung",
+    "Inselnetz",
+    "N-PE-Brücke",
+    "Hybrid-Wechselrichter",
+    "Stromspeicher",
+    "Photovoltaik",
+    "NA-Schutz",
+    "Stromaggregat",
+    "Körperstrom",
+    "Berührungsspannung",
+    "VDE 0100-410",
+    "VDE 0100-551",
+    "Notstromspeicher",
+    "Netzumschaltbox",
+    "Netzumschaltung",
+    "Ersatzstrom",
+    "Phasenbrücke",
+    "Lastabwurf",
+    "Isolationswächter",
+    "IT-System",
+    "Online-USV",
+    "Doppelwandler",
+    "Netzvorrang",
+    "4-polige Umschaltung",
+    "3-polige Umschaltung"
+  ],
+  "text": "Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, FI und LS bis zum Verbraucher, mit Notstromspeicher, Netzumschaltbox (automatisch oder Hand, mit oder ohne N, Phasenbrücke, N-PE-Relais), Aggregat, Hybrid-Speicher und PV – Körperschluss, PEN-Bruch, N-Bruch, IT-Inselnetz, FI-Auslösung und Körperstrom.",
   "tex": "Z_S \\cdot I_a \\le U_0",
-  "verwandt": ["elektro/netzsysteme.html", "elektro/pv-notstrom.html", "elektro/koerperstrom.html"],
-  "projektmappe": {"nr": 1260, "name": "Stromkreis-Simulator", "farbe": "#C2255C", "speicher": "stromkreis-1"},
+  "verwandt": [
+    "elektro/netzsysteme.html",
+    "elektro/pv-notstrom.html",
+    "elektro/koerperstrom.html"
+  ],
+  "projektmappe": {
+    "nr": 1260,
+    "name": "Stromkreis-Simulator",
+    "farbe": "#C2255C",
+    "speicher": "stromkreis-1"
+  },
   "fragen": [
-    ["Warum löst bei einem satten Körperschluss im TN-System meist zuerst der LS aus?", "Der Fehlerstrom über den Schutzleiter ist so groß, dass der magnetische Auslöser in rund 10 ms abschaltet.", ["Weil der FI bei Körperschluss nicht reagiert.", "Weil der LS immer schneller ist als jede Sicherung.", "Weil im TN-System kein Strom über den Schutzleiter fließt."], "Der FI braucht etwa 20 bis 30 ms, der Kurzschlussauslöser des LS etwa 10 ms."],
-    ["Was passiert bei klassischer Nullung, wenn der PEN zur Steckdose unterbricht?", "Das Gehäuse liegt über das eingeschaltete Gerät an voller Netzspannung, ohne dass etwas auslöst.", ["Die Sicherung löst sofort aus.", "Das Gerät geht nur aus, sonst passiert nichts.", "Der FI im Zählerschrank schaltet ab."], "Deshalb ist die klassische Nullung in neuen Anlagen nicht mehr zulässig."],
-    ["Was bewirkt ein Neutralleiterbruch bei ungleicher Last im Drehstromnetz?", "Der Sternpunkt verschiebt sich; schwach belastete Phasen bekommen bis fast 400 V.", ["Alle Geräte gehen einfach aus.", "Die Spannung sinkt an allen Phasen gleichmäßig.", "Der LS der größten Last löst aus."], "Kleine Verbraucher wie Lampen oder Netzteile werden dabei zerstört."],
-    ["Warum muss ein Netzumschalter den N mitschalten, wenn die Notstromquelle eine N-PE-Brücke hat?", "Sonst ist im Netzbetrieb N über die Brücke mit PE verbunden und Laststrom fließt über den Schutzleiter – der FI löst aus.", ["Weil sonst die Spannung auf 400 V steigt.", "Weil der Zähler sonst rückwärts läuft.", "Weil der N sonst überlastet wird."], "N und PE dürfen hinter dem FI nicht verbunden sein."],
-    ["Warum löst ein B16 an einem 3-kW-Inselwechselrichter bei Kurzschluss oft nicht aus?", "Der Wechselrichter liefert nur etwa das 1,5- bis 2-Fache seines Bemessungsstroms, der B16 bräuchte 80 A.", ["Weil im Inselnetz keine Kurzschlüsse möglich sind.", "Weil der LS nur auf Gleichstrom reagiert.", "Weil der Wechselrichter keinen Neutralleiter hat."], "Der Wechselrichter schaltet dann selbst ab – die Abschaltbedingung muss für den Notstrombetrieb eigens geprüft werden."],
-    ["Was macht ein netzgekoppelter PV-Wechselrichter bei Netzausfall?", "Er trennt sich sofort (NA-Schutz) und schaltet erst nach einer Wartezeit mit gültiger Spannung wieder zu.", ["Er versorgt das Haus allein weiter.", "Er speist mit voller Leistung ins Erdreich.", "Er lädt den Hausakku aus dem Netz."], "So wird ein ungewolltes Inselnetz verhindert, etwa während Arbeiten am Ortsnetz."],
-    ["Wie groß ist der Fehlerstrom im TT-System mit R_A = 30 Ω und R_B = 2 Ω etwa?", "Rund 7 A", ["Rund 70 A", "Rund 700 A", "Rund 0,7 A"], "I = 230 V / 32 Ω ≈ 7 A – zu wenig für einen B16, deshalb ist ein FI nötig."]
+    [
+      "Warum löst bei einem satten Körperschluss im TN-System meist zuerst der LS aus?",
+      "Der Fehlerstrom über den Schutzleiter ist so groß, dass der magnetische Auslöser in rund 10 ms abschaltet.",
+      [
+        "Weil der FI bei Körperschluss nicht reagiert.",
+        "Weil der LS immer schneller ist als jede Sicherung.",
+        "Weil im TN-System kein Strom über den Schutzleiter fließt."
+      ],
+      "Der FI braucht etwa 20 bis 30 ms, der Kurzschlussauslöser des LS etwa 10 ms."
+    ],
+    [
+      "Was passiert bei klassischer Nullung, wenn der PEN zur Steckdose unterbricht?",
+      "Das Gehäuse liegt über das eingeschaltete Gerät an voller Netzspannung, ohne dass etwas auslöst.",
+      [
+        "Die Sicherung löst sofort aus.",
+        "Das Gerät geht nur aus, sonst passiert nichts.",
+        "Der FI im Zählerschrank schaltet ab."
+      ],
+      "Deshalb ist die klassische Nullung in neuen Anlagen nicht mehr zulässig."
+    ],
+    [
+      "Was bewirkt ein Neutralleiterbruch bei ungleicher Last im Drehstromnetz?",
+      "Der Sternpunkt verschiebt sich; schwach belastete Phasen bekommen bis fast 400 V.",
+      [
+        "Alle Geräte gehen einfach aus.",
+        "Die Spannung sinkt an allen Phasen gleichmäßig.",
+        "Der LS der größten Last löst aus."
+      ],
+      "Kleine Verbraucher wie Lampen oder Netzteile werden dabei zerstört."
+    ],
+    [
+      "Warum muss ein Netzumschalter den N mitschalten, wenn die Notstromquelle eine N-PE-Brücke hat?",
+      "Sonst ist im Netzbetrieb N über die Brücke mit PE verbunden und Laststrom fließt über den Schutzleiter – der FI löst aus.",
+      [
+        "Weil sonst die Spannung auf 400 V steigt.",
+        "Weil der Zähler sonst rückwärts läuft.",
+        "Weil der N sonst überlastet wird."
+      ],
+      "N und PE dürfen hinter dem FI nicht verbunden sein."
+    ],
+    [
+      "Warum löst ein B16 an einem 3-kW-Inselwechselrichter bei Kurzschluss oft nicht aus?",
+      "Der Wechselrichter liefert nur etwa das 1,5- bis 2-Fache seines Bemessungsstroms, der B16 bräuchte 80 A.",
+      [
+        "Weil im Inselnetz keine Kurzschlüsse möglich sind.",
+        "Weil der LS nur auf Gleichstrom reagiert.",
+        "Weil der Wechselrichter keinen Neutralleiter hat."
+      ],
+      "Der Wechselrichter schaltet dann selbst ab – die Abschaltbedingung muss für den Notstrombetrieb eigens geprüft werden."
+    ],
+    [
+      "Was macht ein netzgekoppelter PV-Wechselrichter bei Netzausfall?",
+      "Er trennt sich sofort (NA-Schutz) und schaltet erst nach einer Wartezeit mit gültiger Spannung wieder zu.",
+      [
+        "Er versorgt das Haus allein weiter.",
+        "Er speist mit voller Leistung ins Erdreich.",
+        "Er lädt den Hausakku aus dem Netz."
+      ],
+      "So wird ein ungewolltes Inselnetz verhindert, etwa während Arbeiten am Ortsnetz."
+    ],
+    [
+      "Wie groß ist der Fehlerstrom im TT-System mit R_A = 30 Ω und R_B = 2 Ω etwa?",
+      "Rund 7 A",
+      [
+        "Rund 70 A",
+        "Rund 700 A",
+        "Rund 0,7 A"
+      ],
+      "I = 230 V / 32 Ω ≈ 7 A – zu wenig für einen B16, deshalb ist ein FI nötig."
+    ],
+    [
+      "Ein Notstromspeicher hat im Inselbetrieb eine eigene N-PE-Brücke. Wie muss die Netzumschaltbox ausgeführt sein?",
+      "4-polig, der N muss mitgeschaltet werden.",
+      [
+        "3-polig, der N bleibt durchverbunden.",
+        "Es ist egal, die Brücke stört nicht.",
+        "2-polig nur für L1 und L2."
+      ],
+      "Sonst wären N und PE hinter dem PEN-Aufteilungspunkt ein zweites Mal verbunden."
+    ],
+    [
+      "Wozu dient eine Phasenbrücke in einer Netzumschaltbox?",
+      "Sie versorgt im Notstrombetrieb alle drei Phasen des Hauses aus einer 1-phasigen Notstromquelle.",
+      [
+        "Sie verbindet Netz und Notstrom für eine unterbrechungsfreie Umschaltung.",
+        "Sie erzeugt aus einer Phase ein Drehfeld für Motoren.",
+        "Sie verbindet N und PE im Notstrombetrieb."
+      ],
+      "Drehstromverbraucher laufen damit nicht, große Lasten müssen abgeworfen werden."
+    ],
+    [
+      "Was meldet ein Isolationswächter im Inselnetz ohne N-PE-Brücke?",
+      "Den ersten Isolationsfehler zwischen aktivem Leiter und PE, der sonst unbemerkt bliebe.",
+      [
+        "Den Ladezustand des Akkus.",
+        "Einen Kurzschluss zwischen L und N.",
+        "Die Netzwiederkehr."
+      ],
+      "Der erste Fehler führt im IT-ähnlichen Netz zu keiner Abschaltung; erst der zweite wird gefährlich."
+    ],
+    [
+      "Der Speicher schaltet seinen Ausgang 30 s nach Netzwiederkehr ab, die Umschaltbox schaltet erst nach 60 s zurück. Was passiert?",
+      "Das Haus ist für etwa 30 s ohne Strom.",
+      [
+        "Nichts, beides läuft parallel.",
+        "Der Speicher speist ins Netz zurück.",
+        "Die Box schaltet sofort zurück."
+      ],
+      "Die Zeiten von Speicher und Box müssen aufeinander abgestimmt sein."
+    ],
+    [
+      "Welche Notstromlösung schaltet ohne jede Unterbrechung um?",
+      "Ein Online-Speicher (Doppelwandler), weil der Ausgang immer aus dem Wechselrichter kommt.",
+      [
+        "Eine automatische Netzumschaltbox mit 0,5 s Umschaltzeit.",
+        "Ein Aggregat mit automatischem Start.",
+        "Ein Hand-Umschalter I-0-II."
+      ],
+      "Bei allen anderen Lösungen gibt es eine Unterbrechung von Millisekunden bis Sekunden."
+    ]
+  ],
+  "auchIn": [
+    "Werkzeuge"
   ]
 }
