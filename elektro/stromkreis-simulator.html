@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stromkreis-Simulator: Hausinstallation ab HAK mit Notstrom und PV – Formeln &amp; Rechner</title>
+  <meta name="description" content="Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, FI und LS bis zum Verbraucher, mit Notstrom-Wechselrichter, Umschalter, automatischer Umschaltung, Hybrid-Speicher und PV – Körperschluss, PEN-Bruch, N-Bruch, FI-Auslösung und Körperstrom.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .sk-leiste, .sk-sim { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 10px; }
+    .sk-sim { margin: 10px 0 0; }
+    .sk-leiste select { padding: 8px 10px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; max-width: 100%; }
+    .sk-gruppe-knopf { display: inline-flex; gap: 4px; }
+    .knopf:disabled { opacity: .45; cursor: default; }
+    .sk-palette { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px 16px; padding: 12px; margin: 0 0 10px; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); }
+    .sk-pal-gruppe h4 { margin: 0 0 6px; font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; color: var(--leise); }
+    .sk-pal-knopf { display: flex; gap: 8px; align-items: center; width: 100%; text-align: left; padding: 6px 8px; margin: 0 0 4px; border: 1px solid var(--linie); border-left: 3px solid var(--farbe); border-radius: var(--rund-klein); background: var(--grund); color: var(--text); font: inherit; font-size: .88rem; cursor: pointer; }
+    .sk-pal-knopf:hover, .sk-pal-knopf:focus-visible { border-color: var(--farbe); }
+    .sk-pal-knopf svg { width: 20px; height: 20px; flex: none; fill: none; stroke: var(--farbe); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .sk-buehne { position: relative; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); overflow: hidden; }
+    .sk-buehne.voll { position: fixed; inset: 0; z-index: 60; border-radius: 0; border: none; }
+    html.sk-voll-aktiv { overflow: hidden; }
+    #sk-svg { display: block; width: 100%; height: max(420px, 66vh); touch-action: none; user-select: none; -webkit-user-select: none; background-image: radial-gradient(var(--linie) 1px, transparent 1.2px); background-size: 20px 20px; }
+    .sk-buehne.voll #sk-svg { height: 100vh; height: 100dvh; }
+    .sk-voll-leiste { display: none; }
+    .sk-buehne.voll .sk-voll-leiste { display: flex; position: absolute; top: 8px; right: 8px; gap: 6px; }
+    .sk-hinweis { position: absolute; left: 8px; bottom: 8px; right: 8px; padding: 6px 10px; border-radius: var(--rund-klein); background: var(--text); color: var(--grund); font-size: .85rem; pointer-events: none; }
+    .sk-kasten { fill: var(--flaeche); stroke: var(--leise); stroke-width: 1; }
+    .sk-teil { cursor: grab; }
+    .sk-teil.gewaehlt .sk-kasten { stroke: var(--ergebnis); stroke-width: 2.5; }
+    .sk-notiz { fill: var(--achtung-flaeche); stroke: var(--linie); }
+    .sk-teil.gewaehlt .sk-notiz { stroke: var(--ergebnis); stroke-width: 2; }
+    .sk-notiz-text { font: 12px var(--schrift); fill: var(--text); }
+    .sk-titel { font: 600 13px var(--technik); fill: var(--text); }
+    .sk-status { font: 11px var(--schrift); fill: var(--text); }
+    .sk-status.leise { fill: var(--leise); }
+    .sk-icon path { fill: none; stroke: var(--leise); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .sk-led { fill: var(--linie); }
+    .sk-led.gut { fill: #2F9E44; } .sk-led.warn { fill: #F2A541; } .sk-led.fehler { fill: var(--fehler); }
+    .sk-aktion { cursor: pointer; }
+    .sk-aktion circle { fill: var(--grund); stroke: var(--leise); stroke-width: 1.2; }
+    .sk-aktion:hover circle { stroke: var(--text); fill: var(--ergebnis-flaeche); }
+    .sk-aktion path { fill: none; stroke: var(--text); stroke-width: 1.8; stroke-linecap: round; }
+    .sk-klemme { cursor: crosshair; }
+    .sk-klemme-treffer { fill: transparent; }
+    .sk-klemme-punkt { stroke: var(--text); stroke-width: 1.2; }
+    .sk-klemme:hover .sk-klemme-punkt, .sk-klemme.start .sk-klemme-punkt { stroke: var(--ergebnis); stroke-width: 3; }
+    .sk-klemme.start .sk-klemme-treffer { fill: var(--ergebnis-flaeche); }
+    .sk-klemme-text { font: 600 10px var(--technik); fill: var(--leise); text-anchor: middle; pointer-events: none; }
+    .sk-gruppe { font: 10px var(--schrift); fill: var(--leise); text-anchor: middle; text-transform: uppercase; letter-spacing: .05em; pointer-events: none; }
+    .sk-ader { cursor: pointer; }
+    .sk-ader path { fill: none; stroke-linecap: round; }
+    .sk-unterlage { stroke: var(--linie); stroke-width: 6; }
+    .sk-draht { stroke-width: 3.4; }
+    .sk-gelb { stroke: #F2C94C; stroke-width: 3.4; stroke-dasharray: 7 7; stroke-linecap: butt !important; }
+    .sk-pen { stroke: #2F7FD0; stroke-width: 1.2; }
+    .sk-treffer { stroke: transparent; stroke-width: 16; }
+    .sk-ader.gewaehlt .sk-unterlage { stroke: var(--ergebnis); stroke-width: 8; }
+    .sk-ader.offen .sk-draht, .sk-ader.offen .sk-gelb, .sk-ader.offen .sk-pen { stroke-dasharray: 3 9; opacity: .55; }
+    .sk-bruch { stroke: var(--fehler) !important; stroke-width: 3; }
+    .sk-ueberlast { stroke: transparent; stroke-width: 12; }
+    .sk-ueberlast.an { stroke: var(--fehler); opacity: .45; }
+    .sk-strom { fill: none; stroke: #FF6A00; stroke-width: 4.4; stroke-linecap: round; stroke-dasharray: 0.1 18; pointer-events: none; filter: drop-shadow(0 0 1.5px #FFF3BF); }
+    .sk-gummi { fill: none; stroke: var(--ergebnis); stroke-width: 2; stroke-dasharray: 5 4; pointer-events: none; }
+    .sk-raster { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 14px; margin-top: 14px; }
+    @media (max-width: 860px) { .sk-raster { grid-template-columns: minmax(0, 1fr); } }
+    .sk-karte { border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); padding: 12px 14px; min-width: 0; }
+    .sk-karte h3 { margin: 0 0 8px; font-size: 1.02rem; }
+    .sk-karte h4 { margin: 12px 0 6px; font-size: .9rem; }
+    .sk-felder { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px 12px; margin: 8px 0; }
+    .sk-feld { display: flex; flex-direction: column; gap: 3px; font-size: .86rem; min-width: 0; }
+    .sk-feld span { font-weight: 600; }
+    .sk-feld input, .sk-feld select { width: 100%; padding: 7px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--grund); color: var(--text); font: inherit; font-size: .92rem; }
+    .sk-knoepfe { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+    .sk-tabelle { width: 100%; border-collapse: collapse; font-size: .86rem; }
+    .sk-tabelle th, .sk-tabelle td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--linie); vertical-align: top; }
+    .sk-tabelle th { font-weight: 500; color: var(--leise); width: 48%; }
+    .sk-tabelle td { font-family: var(--technik); }
+    .sk-klein { font-size: .86rem; color: var(--leise); margin: 0 0 6px; }
+    .sk-hilfe { margin: 0; padding-left: 18px; font-size: .9rem; }
+    .sk-hilfe li { margin: 4px 0; }
+    #sk-bilanz { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .sk-bil { padding: 5px 10px; border-radius: var(--rund-klein); background: var(--grund); display: flex; flex-direction: column; min-width: 86px; }
+    .sk-bil small { color: var(--leise); font-size: .75rem; }
+    .sk-bil b { font-family: var(--technik); font-weight: 600; }
+    .sk-bil.gut b { color: var(--ergebnis); }
+    #sk-protokoll { list-style: none; margin: 0; padding: 0; max-height: 360px; overflow: auto; font-size: .87rem; }
+    .sk-ev { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 8px; padding: 5px 0; border-bottom: 1px solid var(--linie); }
+    .sk-ev time { font-family: var(--technik); color: var(--leise); }
+    .sk-ev.aus span { color: var(--text); font-weight: 600; }
+    .sk-ev.gefahr span { color: var(--fehler); font-weight: 600; }
+    .sk-ev.gut span { color: var(--ergebnis); }
+    #sk-zeit { font-family: var(--technik); color: var(--leise); font-size: .9rem; }
+    .sk-sim label { display: inline-flex; gap: 6px; align-items: center; font-size: .9rem; }
+    .sk-sim input[type=range] { width: 120px; accent-color: #F2A541; }
+    .formel-liste { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .formel-liste li { padding: 10px 12px; border-radius: var(--rund); background: var(--flaeche2); }
+    .formel-liste h3 { margin: 0 0 4px; font-size: .98rem; }
+    .formel-liste p { margin: 4px 0 0; font-size: .87rem; color: var(--leise); }
+    @media print { .sk-leiste, .sk-sim, .sk-palette, .sk-knoepfe, .sk-hinweis { display: none !important; } #sk-svg { height: 150mm; } .sk-raster { grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite">
+    <section class="tafel">
+      <h1><span class="unterstrichen">Stromkreis-Simulator</span></h1>
+      <p>Baue eine Installation Ader für Ader auf – Ortsnetz, Hausanschlusskasten, Zähler, Haupterdungsschiene, FI, LS, Verbraucher – und dazu Notstrom-Wechselrichter, Hand- oder Automatik-Umschalter, Hybrid-Speicher und PV. Die Simulation rechnet mit komplexen Wechselstromgrößen jede Spannung und jeden Strom aus und lässt die Schutzorgane nach ihren Kennlinien auslösen: Körperschluss im TN- und TT-Netz, Unterbrechung des PEN bei klassischer Nullung, Neutralleiterbruch, Kurzschluss im Inselnetz und Körperstrom einer Person.</p>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-sim">
+      <h2 id="h-sim">Simulator</h2>
+      <div class="sk-leiste">
+        <button type="button" class="knopf-haupt" id="sk-plus" aria-expanded="false" aria-controls="sk-palette">+ Bauteil</button>
+        <select id="sk-beispiel" aria-label="Beispiel laden" data-nicht-merken><option value="">Beispiel laden …</option></select>
+        <button type="button" class="knopf" id="sk-rueck">↶ Rückgängig</button>
+        <button type="button" class="knopf" id="sk-loeschen">Löschen</button>
+        <span class="sk-gruppe-knopf"><button type="button" class="knopf" id="sk-zoom-minus" aria-label="Verkleinern">−</button><button type="button" class="knopf" id="sk-zoom-plus" aria-label="Vergrößern">+</button></span>
+        <button type="button" class="knopf" id="sk-einpassen">Einpassen</button>
+        <button type="button" class="knopf" id="sk-voll" aria-pressed="false">Vollbild</button>
+      </div>
+      <div class="sk-palette" id="sk-palette" hidden></div>
+      <div class="sk-buehne" id="sk-buehne">
+        <svg id="sk-svg" role="img" aria-label="Aufbau der Schaltung"></svg>
+        <div class="sk-hinweis" id="sk-hinweis" hidden></div>
+      </div>
+      <div class="sk-sim">
+        <button type="button" class="knopf" id="sk-pause" aria-pressed="false">⏸ Pause</button>
+        <span class="sk-gruppe-knopf" role="group" aria-label="Zeitraffer"><button type="button" class="knopf" data-tempo="1" aria-pressed="true">1×</button><button type="button" class="knopf" data-tempo="10" aria-pressed="false">10×</button><button type="button" class="knopf" data-tempo="60" aria-pressed="false">60×</button><button type="button" class="knopf" data-tempo="600" aria-pressed="false">600×</button></span>
+        <label>Sonne <input type="range" id="sk-sonne" min="0" max="100" value="70" data-nicht-merken> <output id="sk-sonne-wert">70 %</output></label>
+        <span id="sk-zeit"></span>
+        <button type="button" class="knopf" id="sk-reset">Alles wieder einschalten</button>
+        <button type="button" class="knopf" id="sk-neu">Leere Fläche</button>
+        <span><button type="button" class="knopf" id="sk-teilen">Link teilen</button> <span id="sk-teilen-meldung" class="hilfe" aria-live="polite"></span></span>
+      </div>
+      <div class="sk-raster">
+        <div class="sk-karte" id="sk-auswahl" aria-live="polite"></div>
+        <div class="sk-karte"><h3>Ereignisse</h3><div id="sk-bilanz"></div><ol id="sk-protokoll" aria-live="polite"></ol></div>
+      </div>
+      <p class="hilfe">Rechenmodell: Kupferadern mit 0,0178 Ω·mm²/m bei 20 °C, Verbraucher als feste Impedanz, Auslösekennlinien und Körperstrom-Zonen als Näherung nach DIN EN 60898-1, DIN EN 60269, DIN EN 61008/61009 und DIN IEC/TS 60479-1. Ersetzt keine Planung, Messung oder Prüfung nach DIN VDE 0100-600 – Arbeiten an elektrischen Anlagen nur durch Elektrofachkräfte.</p>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-wissen-sk">
+      <h2 id="h-wissen-sk">Was die Simulation zeigt</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#C0392B"><h3>Körperschluss im TN-System</h3><p>Der Außenleiter berührt das Gehäuse, der Strom fließt über den Schutzleiter zurück zum Trafo – ein Kurzschluss mit einigen Hundert Ampere. Der LS löst magnetisch in rund 10 ms aus. Die Berührungsspannung am Gehäuse ist nur so hoch wie der Spannungsfall auf dem Schutzleiter. Bedingung nach DIN VDE 0100-410: Z_S · I_a ≤ U_0.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>TT-System</h3><p>Der Fehlerstrom muss durch zwei Erder und das Erdreich. Bei 30 Ω am Haus und 2 Ω am Trafo sind das nur etwa 7 A – zu wenig für einen B16. Das Gehäuse bleibt dauerhaft unter gefährlicher Spannung. Deshalb gehört vor jeden Stromkreis ein FI: R_A · I_∆n ≤ 50 V.</p></article>
+        <article class="wissen-karte" style="--farbe:#9333EA"><h3>Klassische Nullung und PEN</h3><p>In Altanlagen (TN-C) ist der Schutzkontakt in der Steckdose mit dem PEN gebrückt. Reißt der PEN, liegt das Gehäuse über das Gerät an voller Netzspannung, ohne dass eine Sicherung auslöst. Deshalb ist die klassische Nullung in neuen Anlagen nicht mehr erlaubt und der PEN braucht mindestens 10 mm² Kupfer.</p></article>
+        <article class="wissen-karte" style="--farbe:#E4572E"><h3>Neutralleiterbruch</h3><p>Fehlt im Drehstromnetz der gemeinsame N, verschiebt sich der Sternpunkt zur Phase mit der größten Last. Kleine Verbraucher an den anderen Phasen bekommen fast 400 V und werden zerstört – große bekommen zu wenig. Im Simulator brennt die Lampe durch.</p></article>
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Notstrom und N-PE-Brücke</h3><p>Ein Inselnetz braucht keinen Erder, um zu funktionieren. Ohne Verbindung von N und PE ist es ein IT-ähnliches Netz: Beim ersten Körperschluss fließt fast kein Strom, der FI bleibt drin. Damit der FI wie gewohnt schützt, wird N im Inselbetrieb mit PE verbunden – dann muss der Umschalter den N mitschalten. Sonst sind N und PE im Netzbetrieb ein zweites Mal verbunden, ein Teil des Laststroms fließt über den Schutzleiter und ein vorgeschalteter FI löst aus (DIN VDE 0100-551, VDE-AR-N 4105).</p></article>
+        <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Kurzschlussstrom im Inselnetz</h3><p>Ein Wechselrichter liefert im Kurzschluss oft nur das 1,5- bis 2-Fache seines Bemessungsstroms. Ein B16 braucht 80 A, um sofort auszulösen – das schafft ein 3-kW-Wechselrichter nicht. Er schaltet stattdessen selbst ab. Die Abschaltbedingung muss deshalb auch für den Notstrombetrieb nachgewiesen werden.</p></article>
+        <article class="wissen-karte" style="--farbe:#F2A541"><h3>PV und Netzausfall</h3><p>Ein netzgekoppelter PV-Wechselrichter speist nur, solange er eine gültige Netzspannung sieht (NA-Schutz). Fällt das Netz aus, trennt er sofort und schaltet erst nach einer Wartezeit wieder zu. In einem Inselnetz mit Batterie-Wechselrichter läuft er weiter (AC-Kopplung); ist der Akku voll, regelt er ab.</p></article>
+        <article class="wissen-karte" style="--farbe:#6E6FA6"><h3>Körperstrom</h3><p>Entscheidend sind Stromstärke und Dauer. Ab etwa 10 mA kann man nicht mehr loslassen, ab rund 50 mA über eine Sekunde droht Herzkammerflimmern. 230 mA für 30 ms sind dagegen meist überlebbar – genau dafür ist der 30-mA-FI da. Der Körperwiderstand liegt bei 230 V zwischen Hand und Füßen bei etwa 1 kΩ.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand formelsammlung" id="sk-wissen" aria-labelledby="h-formeln-sk">
+      <h2 id="h-formeln-sk">Formeln</h2>
+      <ul class="formel-liste">
+        <li><h3>Abschaltbedingung im TN-System</h3><div data-tex="Z_S \cdot I_a \le U_0" title="Abschaltbedingung im TN-System"></div><p>Schleifenimpedanz mal Abschaltstrom (B16: 80 A) höchstens 230 V.</p></li>
+        <li><h3>Abschaltbedingung im TT-System mit FI</h3><div data-tex="R_A \cdot I_{\Delta n} \le 50\,\text{V}" title="Abschaltbedingung im TT-System"></div><p>Erderwiderstand mal Bemessungsdifferenzstrom höchstens 50 V.</p></li>
+        <li><h3>Fehlerstrom im TT-System</h3><div data-tex="I_F = \frac{U_0}{R_A + R_B + R_L}" title="Fehlerstrom im TT-System"></div><p>Der Strom muss durch Anlagenerder R_A und Betriebserder R_B.</p></li>
+        <li><h3>Berührungsspannung</h3><div data-tex="U_B = I_K \cdot R_K" title="Berührungsspannung"></div><p>Körperstrom mal Körperwiderstand (rund 1 kΩ).</p></li>
+        <li><h3>Differenzstrom am FI</h3><div data-tex="I_\Delta = \left|\underline{I}_{L1} + \underline{I}_{L2} + \underline{I}_{L3} + \underline{I}_N\right|" title="Differenzstrom am FI"></div><p>Zeigersumme aller Ströme durch den FI; was über PE oder Erde zurückfließt, fehlt in der Summe.</p></li>
+        <li><h3>Leiterwiderstand</h3><div data-tex="R = \frac{\rho \cdot l}{A}" title="Leiterwiderstand"></div><p>Kupfer bei 20 °C: ρ = 0,0178 Ω·mm²/m.</p></li>
+        <li><h3>Kurzschlussstrom eines Wechselrichters</h3><div data-tex="I_k \approx k \cdot \frac{P_n}{U_0}" title="Kurzschlussstrom eines Wechselrichters"></div><p>k meist 1,5 bis 2 – oft zu wenig für die magnetische Auslösung eines LS.</p></li>
+        <li><h3>Sternpunktverschiebung</h3><div data-tex="\underline{U}_{NN'} = \frac{\sum \underline{U}_i \underline{Y}_i}{\sum \underline{Y}_i}" title="Sternpunktverschiebung bei N-Bruch"></div><p>Bei fehlendem N stellt sich der Sternpunkt nach den Leitwerten der Lasten ein.</p></li>
+      </ul>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie baue ich eine Ader?</summary><p>Eine Klemme antippen und dann die zweite – oder mit der Maus von Klemme zu Klemme ziehen. Die Farbe wird aus der Klemme übernommen; Querschnitt, Länge und Farbe lassen sich danach ändern. An eine Klemme dürfen mehrere Adern.</p></details>
+        <details><summary>Warum löst der LS vor dem FI aus?</summary><p>Bei einem satten Körperschluss im TN-System fließen einige Hundert Ampere. Der magnetische Auslöser des LS braucht rund 10 ms, der FI etwa 20 bis 30 ms. Der FI schützt vor allem dann, wenn der Fehlerstrom klein ist – etwa über einen Menschen oder einen hochohmigen Fehler.</p></details>
+        <details><summary>Braucht ein Notstromnetz einen Erder?</summary><p>Zum Funktionieren nicht. Ein Inselnetz ohne Verbindung zur Erde ist wie ein IT-Netz: Der erste Fehler ist ungefährlich, ein zweiter an einem anderen Leiter aber nicht. Damit FI und LS wie gewohnt schützen, wird im Inselbetrieb N mit PE verbunden und alle Gehäuse sind über den Schutzleiter verbunden. Welche Lösung gilt, legt der Hersteller zusammen mit DIN VDE 0100-551 fest.</p></details>
+        <details><summary>Warum muss der Umschalter den N mitschalten?</summary><p>Hat die Notstromquelle eine N-PE-Brücke, wäre bei durchverbundenem N im Netzbetrieb der N über die Brücke ein zweites Mal mit dem PE verbunden. Hinter dem Aufteilungspunkt des PEN ist das nicht erlaubt: Ein Teil des Laststroms fließt dann dauerhaft über den Schutzleiter, und ein FI, der vor dieser Verbindung sitzt, löst aus. Probiere es im Beispiel „Netzersatz“ mit der Einstellung „N durchverbunden“ und achte auf die Strompunkte auf der grün-gelben Ader zum Wechselrichter.</p></details>
+        <details><summary>Wie genau ist die Simulation?</summary><p>Spannungen und Ströme werden mit komplexer Knotenanalyse bei 50 Hz berechnet. Verbraucher sind feste Impedanzen, Anlaufströme und Oberschwingungen fehlen. Die Kennlinien von LS, Sicherung, FI und Wechselrichter sind Näherungen typischer Werte – echte Geräte streuen innerhalb der Normgrenzen.</p></details>
+        <details><summary>Kann ich meinen Aufbau speichern?</summary><p>Er wird automatisch auf diesem Gerät gespeichert. Mit „Link teilen“ entsteht ein Link, der den ganzen Aufbau enthält. Er wird nicht an einen Server geschickt.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const $ = function (id) { return document.getElementById(id); };
+    const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
+    const SVGNS = 'http://www.w3.org/2000/svg';
+    const sv = function (tag, attr, eltern) { const e = document.createElementNS(SVGNS, tag); if (attr) Object.keys(attr).forEach(function (a) { e.setAttribute(a, attr[a]); }); if (eltern) eltern.appendChild(e); return e; };
+    const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 2 : n, minimumFractionDigits: 0 }); };
+    const UN = 230, SPEICHER = 'stromkreis-1', MAX_TEILE = 120, MAX_ADERN = 400;
+
+    // ---------- komplexe Zahlen als [re, im] ----------
+    const C = {
+      neu: function (re, im) { return [re, im || 0]; },
+      add: function (a, b) { return [a[0] + b[0], a[1] + b[1]]; },
+      sub: function (a, b) { return [a[0] - b[0], a[1] - b[1]]; },
+      mul: function (a, b) { return [a[0] * b[0] - a[1] * b[1], a[0] * b[1] + a[1] * b[0]]; },
+      div: function (a, b) { const n = b[0] * b[0] + b[1] * b[1] || 1e-30; return [(a[0] * b[0] + a[1] * b[1]) / n, (a[1] * b[0] - a[0] * b[1]) / n]; },
+      kon: function (a) { return [a[0], -a[1]]; },
+      betrag: function (a) { return Math.sqrt(a[0] * a[0] + a[1] * a[1]); },
+      polar: function (r, w) { return [r * Math.cos(w), r * Math.sin(w)]; },
+      mal: function (a, k) { return [a[0] * k, a[1] * k]; }
+    };
+    const PHASE = [0, -2 * Math.PI / 3, 2 * Math.PI / 3];
+
+    // ---------- Netzwerk: Knoten, Bauelemente, Lösung ----------
+    // Elemente: R (Impedanz), Q (Spannungsquelle mit Innenimpedanz, + an a), I (Stromquelle, speist in a ein)
+    function Netzwerk() { this.el = []; this.eltern = {}; this.namen = {}; }
+    Netzwerk.prototype.wurzel = function (n) {
+      let w = n; while (this.eltern[w] !== undefined && this.eltern[w] !== w) w = this.eltern[w];
+      let x = n; while (this.eltern[x] !== undefined && this.eltern[x] !== w) { const nx = this.eltern[x]; this.eltern[x] = w; x = nx; }
+      return w;
+    };
+    Netzwerk.prototype.knoten = function (n) { if (this.eltern[n] === undefined) this.eltern[n] = n; this.namen[n] = 1; return n; };
+    Netzwerk.prototype.V = function (a, b) { this.knoten(a); this.knoten(b); const x = this.wurzel(a), y = this.wurzel(b); if (x === y) return; if (y === 'E') this.eltern[x] = y; else this.eltern[y] = x; };
+    Netzwerk.prototype.R = function (a, b, re, im) { this.knoten(a); this.knoten(b); const e = { art: 'R', a: a, b: b, z: [Math.max(re, 1e-6), im || 0] }; this.el.push(e); return e; };
+    Netzwerk.prototype.Q = function (a, b, E, Z) { this.knoten(a); this.knoten(b); const e = { art: 'Q', a: a, b: b, E: E, z: [Math.max(Z[0], 1e-6), Z[1]] }; this.el.push(e); return e; };
+    Netzwerk.prototype.I = function (a, b, I) { this.knoten(a); this.knoten(b); const e = { art: 'I', a: a, b: b, I: I }; this.el.push(e); return e; };
+    Netzwerk.prototype.loesen = function () {
+      const self = this, idx = { E: 0 }; let n = 0;
+      this.knoten('E');
+      Object.keys(this.namen).forEach(function (k) { const w = self.wurzel(k); if (idx[w] === undefined) idx[w] = ++n; });
+      const N = n, re = new Float64Array(N * N), im = new Float64Array(N * N), bre = new Float64Array(N), bim = new Float64Array(N);
+      const stamp = function (i, j, y) { if (i > 0) { re[(i - 1) * N + i - 1] += y[0]; im[(i - 1) * N + i - 1] += y[1]; } if (j > 0) { re[(j - 1) * N + j - 1] += y[0]; im[(j - 1) * N + j - 1] += y[1]; } if (i > 0 && j > 0) { re[(i - 1) * N + j - 1] -= y[0]; im[(i - 1) * N + j - 1] -= y[1]; re[(j - 1) * N + i - 1] -= y[0]; im[(j - 1) * N + i - 1] -= y[1]; } };
+      const quelle = function (i, j, I) { if (i > 0) { bre[i - 1] += I[0]; bim[i - 1] += I[1]; } if (j > 0) { bre[j - 1] -= I[0]; bim[j - 1] -= I[1]; } };
+      for (let i = 0; i < N; i++) re[i * N + i] += 1e-7; // Isolationswiderstand 10 MΩ je Knoten gegen Erde
+      this.el.forEach(function (e) {
+        e.i = idx[self.wurzel(e.a)]; e.j = idx[self.wurzel(e.b)];
+        if (e.art === 'I') { quelle(e.i, e.j, e.I); return; }
+        const y = C.div([1, 0], e.z); e.y = y;
+        if (e.i === e.j) return;
+        stamp(e.i, e.j, y);
+        if (e.art === 'Q') quelle(e.i, e.j, C.mul(e.E, y));
+      });
+      // Gauß mit Spaltenpivot
+      for (let k = 0; k < N; k++) {
+        let p = k, best = 0;
+        for (let r = k; r < N; r++) { const m = Math.abs(re[r * N + k]) + Math.abs(im[r * N + k]); if (m > best) { best = m; p = r; } }
+        if (best < 1e-30) continue;
+        if (p !== k) {
+          for (let c = 0; c < N; c++) { let t = re[k * N + c]; re[k * N + c] = re[p * N + c]; re[p * N + c] = t; t = im[k * N + c]; im[k * N + c] = im[p * N + c]; im[p * N + c] = t; }
+          let t = bre[k]; bre[k] = bre[p]; bre[p] = t; t = bim[k]; bim[k] = bim[p]; bim[p] = t;
+        }
+        const pr = re[k * N + k], pi = im[k * N + k], pn = pr * pr + pi * pi;
+        for (let r = k + 1; r < N; r++) {
+          const ar = re[r * N + k], ai = im[r * N + k]; if (ar === 0 && ai === 0) continue;
+          const fr = (ar * pr + ai * pi) / pn, fi = (ai * pr - ar * pi) / pn;
+          for (let c = k; c < N; c++) { const xr = re[k * N + c], xi = im[k * N + c]; if (xr === 0 && xi === 0) continue; re[r * N + c] -= fr * xr - fi * xi; im[r * N + c] -= fr * xi + fi * xr; }
+          bre[r] -= fr * bre[k] - fi * bim[k]; bim[r] -= fr * bim[k] + fi * bre[k];
+        }
+      }
+      const vre = new Float64Array(N + 1), vim = new Float64Array(N + 1);
+      for (let k = N - 1; k >= 0; k--) {
+        let sr = bre[k], si = bim[k];
+        for (let c = k + 1; c < N; c++) { const ar = re[k * N + c], ai = im[k * N + c]; if (ar === 0 && ai === 0) continue; sr -= ar * vre[c + 1] - ai * vim[c + 1]; si -= ar * vim[c + 1] + ai * vre[c + 1]; }
+        const pr = re[k * N + k], pi = im[k * N + k], pn = pr * pr + pi * pi;
+        if (pn < 1e-60) { vre[k + 1] = 0; vim[k + 1] = 0; continue; }
+        vre[k + 1] = (sr * pr + si * pi) / pn; vim[k + 1] = (si * pr - sr * pi) / pn;
+        if (!isFinite(vre[k + 1]) || !isFinite(vim[k + 1])) { vre[k + 1] = 0; vim[k + 1] = 0; }
+      }
+      const V = function (i) { return [vre[i], vim[i]]; };
+      this.el.forEach(function (e) {
+        const u = C.sub(V(e.i), V(e.j)); e.U = u;
+        if (e.art === 'R') e.Ist = C.mul(u, e.y);
+        else if (e.art === 'Q') e.Ist = e.i === e.j ? C.div(e.E, e.z) : C.mul(C.sub(e.E, u), e.y); // aus + heraus
+        else e.Ist = e.I;
+      });
+      return {
+        u: function (name) { if (name === 'E') return [0, 0]; const w = self.eltern[name] === undefined ? null : self.wurzel(name); return w === null ? null : V(idx[w]); },
+        knoten: N
+      };
+    };
+
+    // ---------- Auslösekennlinien (Näherung) ----------
+    const KENN_LS = [[1.13, Infinity], [1.45, 1800], [2, 120], [2.55, 30], [3, 15], [4, 6], [5, 3.5], [8, 1.2], [15, 0.6]];
+    const KENN_GG = [[1.25, Infinity], [1.6, 3600], [2, 400], [2.5, 100], [3, 40], [4, 10], [5, 4], [6, 0.8], [7, 0.4], [10, 0.1], [15, 0.02], [20, 0.01]];
+    const KENN_WR = [[1.05, Infinity], [1.2, 60], [1.5, 10], [2, 2], [3, 0.5]];
+    const MAGNET = { B: 5, C: 10, D: 20 };
+    function kurve(tab, x) {
+      if (!(x > tab[0][0])) return Infinity;
+      for (let i = 1; i < tab.length; i++) {
+        if (x <= tab[i][0]) {
+          const a = tab[i - 1], b = tab[i];
+          if (!isFinite(a[1])) return b[1] * Math.pow((b[0] - a[0]) / (x - a[0]), 1.5);
+          return Math.exp(Math.log(a[1]) + (Math.log(b[1]) - Math.log(a[1])) * (Math.log(x) - Math.log(a[0])) / (Math.log(b[0]) - Math.log(a[0])));
+        }
+      }
+      return tab[tab.length - 1][1];
+    }
+    function ausloesezeit(I, In, art) {
+      const x = I / In;
+      if (art === 'gG') return kurve(KENN_GG, x);
+      let t = kurve(KENN_LS, x);
+      if (x >= MAGNET[art]) t = Math.min(t, 0.01);
+      return t;
+    }
+    // Körperstrom nach IEC 60479-1 (Näherung): Grenzkurven b (Loslassen) und c1 (Herzkammerflimmern möglich)
+    const KURVE_B = [[0.01, 200], [0.1, 60], [0.5, 15], [2, 10], [10, 10]], KURVE_C1 = [[0.01, 500], [0.1, 400], [0.2, 300], [0.5, 100], [1, 50], [3, 42], [10, 40]];
+    function grenze(tab, t) {
+      if (t <= tab[0][0]) return tab[0][1];
+      for (let i = 1; i < tab.length; i++) if (t <= tab[i][0]) { const a = tab[i - 1], b = tab[i]; return Math.exp(Math.log(a[1]) + (Math.log(b[1]) - Math.log(a[1])) * (Math.log(t) - Math.log(a[0])) / (Math.log(b[0]) - Math.log(a[0]))); }
+      return tab[tab.length - 1][1];
+    }
+    function zone(mA, t) {
+      if (mA < 0.5) return [1, 'AC-1: nicht wahrnehmbar'];
+      if (mA < grenze(KURVE_B, t)) return [2, 'AC-2: wahrnehmbar, meist ohne Folgen'];
+      if (mA < grenze(KURVE_C1, t)) return [3, 'AC-3: Verkrampfung, Atemnot – kein Herzkammerflimmern zu erwarten'];
+      return [4, 'AC-4: Herzkammerflimmern möglich – Lebensgefahr'];
+    }
+
+    // ---------- Formatierung ----------
+    function fU(v) { v = Math.abs(v); return v < 0.05 ? '0 V' : v < 10 ? zahl(v, 1) + ' V' : zahl(v, 0) + ' V'; }
+    function fI(a) { a = Math.abs(a); return a < 0.001 ? zahl(a * 1000, 2) + ' mA' : a < 1 ? zahl(a * 1000, 0) + ' mA' : a < 100 ? zahl(a, 1) + ' A' : zahl(a, 0) + ' A'; }
+    function fP(w) { const a = Math.abs(w); return a < 1000 ? zahl(w, 0) + ' W' : zahl(w / 1000, a < 10000 ? 2 : 1) + ' kW'; }
+    function fT(s) { s = Math.max(0, s); return s < 1 ? zahl(s * 1000, 0) + ' ms' : s < 120 ? zahl(s, s < 10 ? 2 : 1) + ' s' : s < 7200 ? Math.floor(s / 60) + ' min ' + Math.round(s % 60) + ' s' : zahl(s / 3600, 1) + ' h'; }
+
+    // ---------- Simulationszustand ----------
+    const G = { T: 0, T0: 0, sonne: 0.7, pvFaktor: 1, pvNenn: 0, anf: false, R: null, netz: null, pause: false, tempo: 1 };
+    const kl = function (t, k) { return t.id + '.' + k; };
+    const ik = function (t, n) { return t.id + '#' + n; };
+    function uk(a, b) { if (!G.R) return [0, 0]; const x = G.R.u(a) || [0, 0], y = b ? (G.R.u(b) || [0, 0]) : [0, 0]; return C.sub(x, y); }
+    function uBetrag(a, b) { return C.betrag(uk(a, b)); }
+    const POL = { 1: ['L'], 2: ['L', 'N'], 3: ['L1', 'L2', 'L3'], 4: ['L1', 'L2', 'L3', 'N'] };
+    const LEITER = function (ph) { return Number(ph) === 3 ? ['L1', 'L2', 'L3'] : ['L']; };
+    function pole(n, vor, gruppe) { return POL[n].map(function (x) { return [vor + x, x, gruppe]; }); }
+    let protokoll = [];
+    function log(text, art) { protokoll.push({ T: G.T, T0: G.T0, text: text, art: art || 'info' }); if (protokoll.length > 200) protokoll = protokoll.slice(-200); protokollNeu = true; }
+    let protokollNeu = false, schmutzig = true;
+    function name(t) { return t.name || TYP[t.typ].kurz; }
+    function zaehlerP(t, R) { // Wirkleistung durch einen Zähler (positiv = Bezug)
+      let p = 0; (t.z.el || []).forEach(function (e) { if (e && e.U !== undefined) p += C.mul(uk(e.a, t.z.nKl), C.kon(e.Ist))[0]; }); return p;
+    }
+    function pqStrom(z, p, P, ua) { // Konstantleistung: Strom aus Spannung, gedämpft
+      const um = C.betrag(ua); if (um < 20) { const alt = z.pq[p]; z.pq[p] = [0, 0]; return C.betrag(alt) > 0.01; }
+      let neu = C.kon(C.div([P, 0], ua)); const imax = 1.5 * Math.abs(P) / UN + 0.01; if (C.betrag(neu) > imax) neu = C.mal(neu, imax / C.betrag(neu)); // Wechselrichter begrenzen den Strom
+      const alt = z.pq[p] || [0, 0], d = C.betrag(C.sub(neu, alt));
+      z.pq[p] = neu;
+      return d > 0.02 + 0.005 * C.betrag(neu);
+    }
+    function strombegrenzung(t, Imax) { // Spannungsquelle mit Strombegrenzung über die Innenimpedanz
+      let neu = false;
+      t.z.q.forEach(function (e, p) {
+        if (!e) return; const I = C.betrag(e.Ist);
+        if (I > Imax * 1.02) { t.z.lim[p] *= I / Imax; neu = true; }
+        else if (t.z.lim[p] > 1 && I < Imax * 0.9) { t.z.lim[p] = Math.max(1, t.z.lim[p] * I / Imax); neu = true; }
+      });
+      return neu;
+    }
+    function abregeln(zuviel) { // Frequenz-Leistungs-Regelung: AC-gekoppelte PV-Wechselrichter drosseln
+      let ist = 0; teile.forEach(function (t) { if (t.typ === 'pvwr') (t.z.iq || []).forEach(function (e) { if (e.U) ist += C.mul(e.U, C.kon(e.Ist))[0]; }); });
+      G.pvFaktor = Math.max(0, Math.min(G.pvFaktor, (ist - zuviel) / G.pvNenn));
+    }
+    function quellenP(t) { let p = 0; t.z.q.forEach(function (e) { if (e && e.U) p += C.mul(e.U, C.kon(e.Ist))[0]; }); return p; }
+
+    // ---------- Bauteile ----------
+    const VORLAGEN1 = {
+      wk: ['Wasserkocher', 2000, 1, 'I'], hz: ['Heizlüfter', 2000, 1, 'I'], lampe: ['Lampe', 60, 1, 'I'], wm: ['Waschmaschine', 2200, 0.9, 'I'],
+      ks: ['Kühlschrank', 150, 0.7, 'I'], pc: ['Laptop-Netzteil', 65, 0.95, 'II'], frei: ['Verbraucher', 1000, 1, 'I']
+    };
+    const VORLAGEN3 = {
+      motor: ['Motor', 4000, 0.85, 'dreieck'], dlh: ['Durchlauferhitzer', 21000, 1, 'dreieck'], wb: ['Wallbox', 11000, 0.99, 'stern_n'],
+      herd: ['Herd', 6000, 1, 'stern_n'], frei: ['Drehstromverbraucher', 3000, 0.9, 'stern_n']
+    };
+    const TYP = {};
+    TYP.netz = {
+      name: 'Ortsnetz-Transformator', kurz: 'Ortsnetz', kat: 'Einspeisung', icon: 'M4 7h16M4 12h16M4 17h16M7 4v16M17 4v16',
+      par: [
+        { k: 'system', name: 'Netzform', werte: [['TN', 'TN (PEN vom Netz)'], ['TT', 'TT (N vom Netz, eigener Erder)']], std: 'TN' },
+        { k: 'un', name: 'Spannung L–N', e: 'V', min: 200, max: 250, std: 230 },
+        { k: 'zs', name: 'Netzimpedanz je Außenleiter', e: 'Ω', min: 0.01, max: 5, std: 0.2 },
+        { k: 'rb', name: 'Betriebserder R_B', e: 'Ω', min: 0.1, max: 100, std: 2 }
+      ],
+      st: { ein: true },
+      klemmen: function (t) { return { o: [], u: [['L1', 'L1'], ['L2', 'L2'], ['L3', 'L3'], [t.par.system === 'TT' ? 'N' : 'PEN', t.par.system === 'TT' ? 'N' : 'PEN']] }; },
+      init: function (t) { t.z.q = [null, null, null]; },
+      modell: function (t, M) {
+        const S = ik(t, 'S'), n = t.par.system === 'TT' ? 'N' : 'PEN';
+        M.V(S, kl(t, n)); M.R(S, 'E', t.par.rb, 0);
+        t.z.q = [null, null, null];
+        if (t.st.ein) ['L1', 'L2', 'L3'].forEach(function (L, p) { t.z.q[p] = M.Q(kl(t, L), S, C.polar(t.par.un, PHASE[p]), [t.par.zs * 0.8, t.par.zs * 0.6]); });
+      },
+      status: function (t) {
+        if (!t.st.ein) return ['Netzausfall', 'keine Spannung', 'fehler'];
+        const I = Math.max.apply(null, t.z.q.map(function (e) { return e ? C.betrag(e.Ist) : 0; }));
+        return [Math.round(t.par.un * Math.sqrt(3)) + '/' + t.par.un + ' V ' + (t.par.system === 'TT' ? 'TT' : 'TN'), 'max. ' + fI(I) + ' · ' + fP(quellenP(t)), 'gut'];
+      },
+      werte: function (t) { return t.z.q.map(function (e, p) { return ['L' + (p + 1), e ? fI(C.betrag(e.Ist)) + ', ' + fP(C.mul(e.U, C.kon(e.Ist))[0]) : 'aus']; }); },
+      aktion: function (t) { return [t.st.ein ? 'Netzausfall' : 'Netz zurück', function () { t.st.ein = !t.st.ein; log(name(t) + ': ' + (t.st.ein ? 'Netzspannung ist wieder da.' : 'Netzausfall.'), t.st.ein ? 'gut' : 'aus'); }]; }
+    };
+    TYP.hak = {
+      name: 'Hausanschlusskasten (HAK)', kurz: 'HAK', kat: 'Verteilung', icon: 'M5 4h14v16H5zM9 8v8M12 8v8M15 8v8',
+      par: [{ k: 'in', name: 'NH-Sicherung gG', e: 'A', werte: [[35, '35 A'], [50, '50 A'], [63, '63 A'], [80, '80 A'], [100, '100 A'], [125, '125 A']], std: 63 },
+        { k: 'nl', name: 'Neutralleiter vom Netz', werte: [['PEN', 'PEN (TN-Netz)'], ['N', 'N (TT-Netz)']], std: 'PEN' }],
+      st: { f: [1, 1, 1] },
+      klemmen: function (t) { const n = t.par.nl === 'N' ? 'N' : 'PEN'; return { o: [['eL1', 'L1'], ['eL2', 'L2'], ['eL3', 'L3'], ['ePEN', n]], u: [['aL1', 'L1'], ['aL2', 'L2'], ['aL3', 'L3'], ['aPEN', n]] }; },
+      init: function (t) { t.z.w = [0, 0, 0]; t.z.el = [null, null, null]; },
+      modell: function (t, M) {
+        M.V(kl(t, 'ePEN'), kl(t, 'aPEN'));
+        ['L1', 'L2', 'L3'].forEach(function (L, p) { t.z.el[p] = t.st.f[p] ? M.R(kl(t, 'e' + L), kl(t, 'a' + L), 0.002, 0) : null; });
+      },
+      status: function (t) {
+        const weg = t.st.f.map(function (f, p) { return f ? '' : 'L' + (p + 1); }).filter(Boolean);
+        return ['3 × ' + t.par.in + ' A gG', weg.length ? 'ausgelöst: ' + weg.join(', ') : 'max. ' + fI(Math.max.apply(null, t.z.el.map(function (e) { return e ? C.betrag(e.Ist) : 0; }))), weg.length ? 'fehler' : 'gut'];
+      },
+      werte: function (t) { return t.z.el.map(function (e, p) { return ['F L' + (p + 1), e ? fI(C.betrag(e.Ist)) + ' (Erwärmung ' + Math.round(((t.z.wmap || {})['p' + p] || 0) * 100) + ' %)' : 'ausgelöst']; }); },
+      schutz: function (t) { return t.z.el.map(function (e, p) { return e ? { I: C.betrag(e.Ist), In: t.par.in, art: 'gG', p: p } : null; }); },
+      ausloesen: function (t, p, s) { t.st.f[p] = 0; log(name(t) + ': NH-Sicherung L' + (p + 1) + ' (' + t.par.in + ' A) schmilzt bei ' + fI(s.I) + '.', 'aus'); },
+      aktion: function (t) { return t.st.f.indexOf(0) >= 0 ? ['Sicherungen ersetzen', function () { t.st.f = [1, 1, 1]; t.z.wmap = {}; log(name(t) + ': Sicherungen ersetzt.'); }] : null; }
+    };
+    TYP.zaehler = {
+      name: 'Zähler', kurz: 'Zähler', kat: 'Verteilung', icon: 'M4 5h16v14H4zM7 9h10M8 13h2M12 13h2M16 13h0',
+      par: [{ k: 'pole', name: 'Ausführung', werte: [[4, 'Drehstrom (L1, L2, L3, N)'], [2, 'Wechselstrom (L, N)']], std: 4 }],
+      st: { bezug: 0, einsp: 0 },
+      klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.P = 0; },
+      modell: function (t, M) {
+        const L = POL[t.par.pole].filter(function (x) { return x !== 'N'; });
+        M.V(kl(t, 'eN'), kl(t, 'aN')); t.z.nKl = kl(t, 'eN');
+        t.z.el = L.map(function (x) { return M.R(kl(t, 'e' + x), kl(t, 'a' + x), 0.001, 0); });
+      },
+      messen: function (t) { t.z.P = zaehlerP(t); },
+      fort: function (t, dt) { const kwh = t.z.P * dt / 3.6e6; if (kwh > 0) t.st.bezug += kwh; else t.st.einsp -= kwh; },
+      status: function (t) { const P = t.z.P; return [Math.abs(P) < 1 ? 'kein Fluss' : (P > 0 ? 'Bezug ' : 'Einspeisung ') + fP(Math.abs(P)), '↓ ' + zahl(t.st.bezug, 3) + ' · ↑ ' + zahl(t.st.einsp, 3) + ' kWh', P < -1 ? 'gut' : '']; },
+      werte: function (t) { return t.z.el.map(function (e, p) { return ['Leiter ' + (p + 1), fI(C.betrag(e.Ist)) + ', ' + fP(C.mul(uk(e.a, t.z.nKl), C.kon(e.Ist))[0])]; }); },
+      aktionen: function (t) { return [['Zählerstand auf null', function () { t.st.bezug = 0; t.st.einsp = 0; }]]; }
+    };
+    function lsTyp(fi, ls) { // gemeinsamer Baustein für LS, FI und FI/LS
+      return {
+        modell: function (t, M) {
+          t.z.el = [];
+          if (t.st.ein) POL[t.par.pole].forEach(function (x) { t.z.el.push(M.R(kl(t, 'e' + x), kl(t, 'a' + x), ls ? 0.006 : 0.002, 0)); });
+          if (fi && t.st.ein && t.z.test) { const L = POL[t.par.pole][0]; t.z.el.push(null); t.z.testEl = M.R(kl(t, 'a' + L), kl(t, 'eN'), UN / (2.5 * t.par.idn / 1000), 0); } else t.z.testEl = null;
+        },
+        messen: function (t) {
+          let s = [0, 0]; t.z.el.forEach(function (e) { if (e) s = C.add(s, e.Ist); }); t.z.diff = C.betrag(s);
+          t.z.imax = Math.max.apply(null, [0].concat(t.z.el.map(function (e) { return e ? C.betrag(e.Ist) : 0; })));
+        },
+        schutz: function (t) {
+          if (!t.st.ein) return [];
+          const l = [];
+          if (ls) t.z.el.forEach(function (e, p) { if (e) l.push({ I: C.betrag(e.Ist), In: t.par.in, art: t.par.kenn, p: p }); });
+          if (fi) l.push({ fi: true, I: t.z.diff, idn: t.par.idn / 1000, s: t.par.art === 'S' });
+          return l;
+        },
+        ausloesen: function (t, p, s) {
+          t.st.ein = false; t.z.test = false; t.z.ausgeloest = true;
+          if (s.fi) log(name(t) + ': FI löst aus – Fehlerstrom ' + fI(s.I) + ' (I∆n ' + t.par.idn + ' mA).', 'aus');
+          else log(name(t) + ': LS ' + t.par.kenn + t.par.in + ' löst aus – ' + fI(s.I) + ' = ' + zahl(s.I / t.par.in, 1) + ' × In, ' + (s.I / t.par.in >= MAGNET[t.par.kenn] ? 'Kurzschlussauslöser (magnetisch).' : 'Überlastauslöser (thermisch).'), 'aus');
+        },
+        status: function (t) {
+          const tx = (ls ? t.par.kenn + t.par.in : '') + (fi ? (ls ? ' · ' : '') + t.par.idn + ' mA' + (t.par.art === 'S' ? ' S' : '') : '');
+          if (!t.st.ein) return [tx, t.z.ausgeloest ? 'ausgelöst' : 'aus', t.z.ausgeloest ? 'fehler' : ''];
+          return [tx, (fi ? 'I∆ ' + fI(t.z.diff) + ' · ' : '') + fI(t.z.imax), 'gut'];
+        },
+        werte: function (t) {
+          const r = []; POL[t.par.pole].forEach(function (x, p) { const e = t.z.el[p]; r.push(['Pol ' + x, e ? fI(C.betrag(e.Ist)) : 'offen']); });
+          if (fi) r.push(['Differenzstrom', fI(t.z.diff || 0) + ' (löst ab ca. ' + Math.round(t.par.idn * 0.7) + ' mA aus)']);
+          if (ls) r.push(['Erwärmung (thermischer Auslöser)', Math.round(Math.max.apply(null, [0].concat(Object.keys(t.z.wmap || {}).filter(function (k) { return k !== 'fi'; }).map(function (k) { return t.z.wmap[k]; }))) * 100) + ' %']);
+          return r;
+        },
+        aktion: function (t) { return [t.st.ein ? 'Ausschalten' : 'Einschalten', function () { t.st.ein = !t.st.ein; t.z.ausgeloest = false; t.z.wmap = {}; log(name(t) + (t.st.ein ? ' eingeschaltet.' : ' ausgeschaltet.')); }]; },
+        aktionen: fi ? function (t) { return t.st.ein ? [['Prüftaste T drücken', function () { t.z.test = true; t.z.testBis = G.T + 0.3; log(name(t) + ': Prüftaste gedrückt.'); }]] : []; } : null,
+        ereignisse: fi ? function (t) { return t.z.test ? [{ dt: Math.max(0, t.z.testBis - G.T), tun: function () { t.z.test = false; } }] : []; } : null
+      };
+    }
+    function mischen(a, b) { Object.keys(b).forEach(function (k) { if (b[k] !== null && b[k] !== undefined) a[k] = b[k]; }); return a; }
+    const IN_LS = [[6, '6 A'], [10, '10 A'], [13, '13 A'], [16, '16 A'], [20, '20 A'], [25, '25 A'], [32, '32 A'], [40, '40 A'], [50, '50 A'], [63, '63 A']];
+    const KENN = { k: 'kenn', name: 'Auslösecharakteristik', werte: [['B', 'B (5 × In)'], ['C', 'C (10 × In)'], ['D', 'D (20 × In)']], std: 'B' };
+    const IDN = { k: 'idn', name: 'Bemessungsdifferenzstrom I∆n', e: 'mA', werte: [[10, '10 mA'], [30, '30 mA'], [100, '100 mA'], [300, '300 mA'], [500, '500 mA']], std: 30 };
+    const FIART = { k: 'art', name: 'Ausführung', werte: [['A', 'Typ A, unverzögert'], ['S', 'Typ A, selektiv (S)']], std: 'A' };
+    TYP.ls = mischen({
+      name: 'Leitungsschutzschalter (LS)', kurz: 'LS', kat: 'Schutz', icon: 'M12 3v6M12 15v6M9 9l6 6M8 9h8',
+      par: [{ k: 'pole', name: 'Pole', werte: [[1, '1-polig (L)'], [2, '1+N'], [3, '3-polig'], [4, '3+N']], std: 1 }, KENN, { k: 'in', name: 'Bemessungsstrom In', e: 'A', werte: IN_LS, std: 16 }],
+      st: { ein: true },
+      klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.w = []; }
+    }, lsTyp(false, true));
+    TYP.fi = mischen({
+      name: 'Fehlerstrom-Schutzschalter (FI/RCD)', kurz: 'FI', kat: 'Schutz', icon: 'M5 4h14v16H5zM9 15l3-6 3 6zM8 18h8',
+      par: [{ k: 'pole', name: 'Pole', werte: [[2, '2-polig (L, N)'], [4, '4-polig (L1, L2, L3, N)']], std: 4 }, IDN, FIART],
+      st: { ein: true },
+      klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.w = []; t.z.diff = 0; }
+    }, lsTyp(true, false));
+    TYP.fils = mischen({
+      name: 'FI/LS-Schalter (RCBO)', kurz: 'FI/LS', kat: 'Schutz', icon: 'M5 4h14v16H5zM9 13l3-5 3 5zM12 14v4',
+      par: [{ k: 'pole', name: 'Pole', werte: [[2, '1+N']], std: 2 }, KENN, { k: 'in', name: 'Bemessungsstrom In', e: 'A', werte: IN_LS, std: 16 }, IDN, FIART],
+      st: { ein: true },
+      klemmen: function (t) { return { o: pole(2, 'e'), u: pole(2, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.w = []; t.z.diff = 0; }
+    }, lsTyp(true, true));
+    TYP.sicherung = {
+      name: 'Schmelzsicherung gG', kurz: 'Sicherung', kat: 'Schutz', icon: 'M8 3h8v18H8zM12 3v18',
+      par: [{ k: 'pole', name: 'Pole', werte: [[1, '1-polig (L)'], [3, '3-polig']], std: 1 }, { k: 'in', name: 'Bemessungsstrom', e: 'A', werte: [[10, '10 A'], [16, '16 A'], [20, '20 A'], [25, '25 A'], [35, '35 A'], [50, '50 A'], [63, '63 A']], std: 16 }],
+      st: { f: [1, 1, 1] },
+      klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.w = []; },
+      modell: function (t, M) { t.z.el = POL[t.par.pole].map(function (x, p) { return t.st.f[p] ? M.R(kl(t, 'e' + x), kl(t, 'a' + x), 0.008, 0) : null; }); },
+      schutz: function (t) { return t.z.el.map(function (e, p) { return e ? { I: C.betrag(e.Ist), In: t.par.in, art: 'gG', p: p } : null; }); },
+      ausloesen: function (t, p, s) { t.st.f[p] = 0; log(name(t) + ': Sicherung ' + t.par.in + ' A ' + POL[t.par.pole][p] + ' schmilzt bei ' + fI(s.I) + '.', 'aus'); },
+      status: function (t) { const weg = POL[t.par.pole].filter(function (x, p) { return !t.st.f[p]; }); return [t.par.in + ' A gG', weg.length ? 'ausgelöst: ' + weg.join(', ') : fI(Math.max.apply(null, [0].concat(t.z.el.map(function (e) { return e ? C.betrag(e.Ist) : 0; })))), weg.length ? 'fehler' : 'gut']; },
+      werte: function (t) { return POL[t.par.pole].map(function (x, p) { const e = t.z.el[p]; return [x, e ? fI(C.betrag(e.Ist)) : 'ausgelöst']; }); },
+      aktion: function (t) { return t.st.f.slice(0, POL[t.par.pole].length).indexOf(0) >= 0 ? ['Ersetzen', function () { t.st.f = [1, 1, 1]; t.z.wmap = {}; log(name(t) + ': Sicherung ersetzt.'); }] : null; }
+    };
+    TYP.schalter = {
+      name: 'Trenn- und Hauptschalter', kurz: 'Schalter', kat: 'Schalten', icon: 'M12 3v5M12 16v5M12 16l5-7',
+      par: [{ k: 'pole', name: 'Pole', werte: [[1, '1-polig'], [2, '2-polig (L, N)'], [3, '3-polig'], [4, '4-polig']], std: 4 }],
+      st: { ein: true },
+      klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
+      init: function (t) { t.z.el = []; },
+      modell: function (t, M) { t.z.el = t.st.ein ? POL[t.par.pole].map(function (x) { return M.R(kl(t, 'e' + x), kl(t, 'a' + x), 0.001, 0); }) : []; },
+      status: function (t) { return [t.st.ein ? 'ein' : 'aus', t.st.ein ? fI(Math.max.apply(null, [0].concat(t.z.el.map(function (e) { return C.betrag(e.Ist); })))) : 'alle Pole offen', t.st.ein ? 'gut' : '']; },
+      aktion: function (t) { return [t.st.ein ? 'Aus' : 'Ein', function () { t.st.ein = !t.st.ein; log(name(t) + (t.st.ein ? ' eingeschaltet.' : ' ausgeschaltet.')); }]; }
+    };
+    function umKlemmen(t) {
+      return { o: pole(t.par.pole, 'n', 'Netz').concat(pole(t.par.pole, 's', 'Notstrom')), u: pole(t.par.pole, '') };
+    }
+    function umModell(t, M, pos) {
+      t.z.el = [];
+      POL[t.par.pole].forEach(function (x) {
+        if (x === 'N' && t.par.nmit === 'nein') { M.V(kl(t, 'nN'), kl(t, 'N')); M.V(kl(t, 'sN'), kl(t, 'N')); return; }
+        if (pos === 'netz') t.z.el.push(M.R(kl(t, 'n' + x), kl(t, x), 0.001, 0));
+        if (pos === 'not') t.z.el.push(M.R(kl(t, 's' + x), kl(t, x), 0.001, 0));
+      });
+    }
+    const POSNAME = { netz: 'I · Netz', 0: '0 · aus', not: 'II · Notstrom' };
+    const NMIT = { k: 'nmit', name: 'Neutralleiter', werte: [['ja', 'wird mitgeschaltet (4-polig)'], ['nein', 'durchverbunden (nicht geschaltet)']], std: 'ja' };
+    TYP.umschalter = {
+      name: 'Netzumschalter I-0-II (Hand)', kurz: 'Umschalter', kat: 'Schalten', icon: 'M6 4v5M18 4v5M12 20v-6M12 14L6 9',
+      par: [{ k: 'pole', name: 'Pole', werte: [[4, 'L1, L2, L3, N'], [2, 'L, N']], std: 4 }, NMIT],
+      st: { pos: 'netz' },
+      klemmen: umKlemmen,
+      init: function (t) { t.z.el = []; },
+      modell: function (t, M) { umModell(t, M, t.st.pos); },
+      status: function (t) { return [POSNAME[t.st.pos], t.par.nmit === 'nein' ? 'N durchverbunden' : 'N geschaltet', t.st.pos === '0' ? '' : 'gut']; },
+      aktion: function (t) { return ['Umschalten', function () { t.st.pos = t.st.pos === 'netz' ? '0' : t.st.pos === '0' ? (t.z.vorher === 'not' ? 'netz' : 'not') : '0'; if (t.st.pos !== '0') t.z.vorher = t.st.pos; else t.z.vorher = t.z.vorher || 'netz'; log(name(t) + ': Stellung ' + POSNAME[t.st.pos] + '.'); }]; },
+      aktionen: function (t) { return ['netz', '0', 'not'].filter(function (p) { return p !== t.st.pos; }).map(function (p) { return ['Stellung ' + POSNAME[p], function () { t.st.pos = p; log(name(t) + ': Stellung ' + POSNAME[p] + '.'); }]; }); }
+    };
+    function minU(t, vor) { const L = POL[t.par.pole].filter(function (x) { return x !== 'N'; }); let m = Infinity; L.forEach(function (x) { m = Math.min(m, uBetrag(kl(t, vor + x), kl(t, vor + 'N'))); }); return m; }
+    TYP.ats = {
+      name: 'Automatische Umschalteinrichtung', kurz: 'Auto-Umschalter', kat: 'Schalten', icon: 'M6 4v5M18 4v5M12 20v-6M12 14L6 9M17 15a3 3 0 1 1-3-3',
+      par: [{ k: 'pole', name: 'Pole', werte: [[4, 'L1, L2, L3, N'], [2, 'L, N']], std: 4 }, NMIT,
+        { k: 'tum', name: 'Umschalten nach Netzausfall', e: 's', min: 0.1, max: 60, std: 2 },
+        { k: 'trueck', name: 'Rückschalten nach Netzwiederkehr', e: 's', min: 1, max: 600, std: 30 }],
+      st: {},
+      klemmen: umKlemmen,
+      init: function (t) { t.z.el = []; t.z.pos = 'netz'; },
+      modell: function (t, M) { umModell(t, M, t.z.pos); },
+      messen: function (t) { t.z.uNetz = minU(t, 'n'); t.z.uNot = minU(t, 's'); t.z.netzOk = t.z.uNetz > 0.85 * UN && t.z.uNetz < 1.15 * UN; t.z.notOk = t.z.uNot > 0.85 * UN && t.z.uNot < 1.15 * UN; },
+      plan: function (t) {
+        const z = t.z;
+        if (z.pos === 'netz' && !z.netzOk) return { id: 'weg', dauer: t.par.tum, tun: function () { z.pos = z.notOk ? 'not' : '0'; log(name(t) + ': Netzausfall – schaltet ' + (z.notOk ? 'auf Notstrom.' : 'auf 0 und fordert die Notstromquelle an.'), 'aus'); } };
+        if (z.pos === '0' && z.netzOk) return { id: 'zurueck0', dauer: t.par.trueck, tun: function () { z.pos = 'netz'; log(name(t) + ': Netz stabil – zurück auf Netz.', 'gut'); } };
+        if (z.pos === '0' && z.notOk) return { id: 'not', dauer: 0.5, tun: function () { z.pos = 'not'; log(name(t) + ': Notstromquelle bereit – schaltet auf Notstrom.', 'gut'); } };
+        if (z.pos === 'not' && z.netzOk) return { id: 'zurueck', dauer: t.par.trueck, tun: function () { z.pos = 'netz'; log(name(t) + ': Netz seit ' + t.par.trueck + ' s stabil – schaltet zurück auf Netz.', 'gut'); } };
+        if (z.pos === 'not' && !z.notOk) return { id: 'notweg', dauer: 0.2, tun: function () { z.pos = '0'; log(name(t) + ': Notstromquelle ausgefallen – Stellung 0.', 'aus'); } };
+        return null;
+      },
+      anforderung: function (t) { return !t.z.netzOk; },
+      status: function (t) { return [POSNAME[t.z.pos], 'Netz ' + fU(t.z.uNetz || 0) + ' · Not ' + fU(t.z.uNot || 0), t.z.pos === 'netz' ? 'gut' : t.z.pos === 'not' ? 'warn' : 'fehler']; }
+    };
+    TYP.notstrom = {
+      name: 'Notstromquelle (Batterie-Wechselrichter oder Aggregat)', kurz: 'Notstrom', kat: 'Einspeisung', icon: 'M6 7h11v10H6zM17 10h2v4h-2M9 10v4M12 10v4',
+      par: [
+        { k: 'art', name: 'Art', werte: [['wr', 'Batterie-Wechselrichter (Inselwechselrichter)'], ['agg', 'Stromaggregat (Generator)']], std: 'wr' },
+        { k: 'ph', name: 'Ausgang', werte: [[1, '1-phasig'], [3, '3-phasig']], std: 3 },
+        { k: 'pn', name: 'Bemessungsleistung', e: 'kW', min: 0.3, max: 100, std: 6 },
+        { k: 'ik', name: 'Kurzschlussstrom (Vielfaches von In)', e: '×', min: 1, max: 10, std: 1.5 },
+        { k: 'akku', name: 'Akku (nur Wechselrichter)', e: 'kWh', min: 0.5, max: 200, std: 10 },
+        { k: 'npe', name: 'N-PE-Brücke im Gerät', werte: [['ja', 'ja – N mit PE verbunden (TN-Inselnetz)'], ['nein', 'nein – N und PE getrennt (IT-ähnlich)']], std: 'ja' },
+        { k: 'start', name: 'Start', werte: [['hand', 'von Hand'], ['auto', 'automatisch (Anforderung vom Auto-Umschalter)']], std: 'hand' }
+      ],
+      st: { ein: true, soc: 80 },
+      klemmen: function (t) { return { o: [], u: LEITER(t.par.ph).map(function (x) { return [x, x]; }).concat([['N', 'N'], ['PE', 'PE']]) }; },
+      init: function (t) { t.z.q = []; t.z.lim = [1, 1, 1]; t.z.lauf = t.par.start === 'hand' ? !!t.st.ein : false; t.z.w = 0; },
+      modell: function (t, M) {
+        if (t.par.npe === 'ja') M.V(kl(t, 'N'), kl(t, 'PE'));
+        t.z.q = [];
+        const an = t.z.lauf && !t.z.stoerung && (t.par.art !== 'wr' || t.st.soc > 5);
+        if (an) LEITER(t.par.ph).forEach(function (x, p) { const z0 = t.par.art === 'wr' ? 0.03 : 0.25; t.z.q.push(M.Q(kl(t, x), kl(t, 'N'), C.polar(UN, PHASE[p]), [z0 * t.z.lim[p], z0 * 0.5 * t.z.lim[p]])); });
+      },
+      nach: function (t) {
+        if (!t.z.q.length) return false;
+        const In = t.par.pn * 1000 / (t.par.ph * UN);
+        let neu = strombegrenzung(t, In * t.par.ik);
+        const P = quellenP(t), lade = t.par.art === 'wr' && t.st.soc < 100 ? t.par.pn * 1000 : 0;
+        if (P < -lade - 20 && G.pvNenn > 0 && G.pvFaktor > 0) { abregeln(-P - lade); neu = true; }
+        return neu;
+      },
+      messen: function (t) {
+        t.z.P = t.z.q.length ? quellenP(t) : 0;
+        const In = t.par.pn * 1000 / (t.par.ph * UN);
+        t.z.x = t.z.q.length ? Math.max.apply(null, t.z.q.map(function (e) { return C.betrag(e.Ist); })) / In : 0;
+        t.z.begrenzt = t.z.lim.some(function (l, p) { return p < t.z.q.length && l > 1.01; });
+      },
+      schutz: function (t) { return t.z.q.length ? [{ wr: true, x: t.z.x, begrenzt: t.z.begrenzt, agg: t.par.art === 'agg' }] : []; },
+      ausloesen: function (t, p, s) { t.z.stoerung = s.begrenzt ? 'Kurzschluss' : 'Überlast'; log(name(t) + ': schaltet ab – ' + (s.begrenzt ? 'Kurzschluss: Strom auf ' + zahl(t.par.ik, 1) + ' × In begrenzt' : 'Überlast ' + Math.round(s.x * 100) + ' %') + '.', 'aus'); },
+      fort: function (t, dt) {
+        if (t.par.art !== 'wr' || !t.z.q.length) return;
+        const Pdc = t.z.P > 0 ? t.z.P / 0.95 : t.z.P * 0.95;
+        t.st.soc = Math.min(100, Math.max(0, t.st.soc - Pdc * dt / 3600 / (t.par.akku * 1000) * 100));
+      },
+      plan: function (t) {
+        const z = t.z;
+        if (t.par.art === 'wr' && z.q.length && z.P > 0 && t.st.soc > 5) return { id: 'leer', rest: true, dauer: (t.st.soc - 5) / 100 * t.par.akku * 1000 * 3600 / (z.P / 0.95), tun: function () { t.st.soc = 5; z.stoerung = 'Akku leer'; log(name(t) + ': Akku leer – schaltet ab.', 'aus'); } };
+        if (t.par.start === 'auto' && G.anf && !z.lauf) return { id: 'start', dauer: t.par.art === 'agg' ? 8 : 1, tun: function () { z.lauf = true; log(name(t) + ': startet auf Anforderung' + (t.par.art === 'agg' ? ' (Anlaufzeit 8 s).' : '.'), 'gut'); } };
+        if (t.par.start === 'auto' && !G.anf && z.lauf) return { id: 'stop', dauer: t.par.art === 'agg' ? 60 : 2, tun: function () { z.lauf = false; log(name(t) + ': keine Anforderung mehr – stoppt.'); } };
+        return null;
+      },
+      status: function (t) {
+        const z = t.z;
+        if (z.stoerung) return ['Störung', z.stoerung, 'fehler'];
+        if (!z.q.length) return [z.lauf ? 'bereit' : 'aus', t.par.art === 'wr' ? 'Akku ' + Math.round(t.st.soc) + ' %' : (t.par.start === 'auto' ? 'wartet auf Anforderung' : 'Stromaggregat'), ''];
+        return ['Insel · ' + (z.P < -20 ? 'lädt ' + fP(-z.P) : fP(Math.max(0, z.P))), (t.par.art === 'wr' ? 'Akku ' + Math.round(t.st.soc) + ' % · ' : '') + (z.begrenzt ? 'Strom begrenzt!' : 'Last ' + Math.round(z.x * 100) + ' %'), z.begrenzt || z.x > 1 ? 'fehler' : 'gut'];
+      },
+      werte: function (t) { return t.z.q.map(function (e, p) { return [LEITER(t.par.ph)[p], fI(C.betrag(e.Ist)) + ', ' + fP(C.mul(e.U, C.kon(e.Ist))[0])]; }).concat([['Bemessungsstrom je Phase', fI(t.par.pn * 1000 / (t.par.ph * UN))], ['Kurzschlussstrom max.', fI(t.par.ik * t.par.pn * 1000 / (t.par.ph * UN))]]); },
+      aktion: function (t) {
+        if (t.z.stoerung) return ['Störung quittieren', function () { if (t.z.stoerung === 'Akku leer' && t.st.soc <= 5) t.st.soc = 30; t.z.stoerung = null; t.z.lim = [1, 1, 1]; t.z.w = 0; log(name(t) + ': Störung quittiert' + (t.par.art === 'wr' && t.st.soc <= 30 ? ' (Akku zum Testen auf 30 % gesetzt).' : '.')); }];
+        if (t.par.start === 'auto') return null;
+        return [t.z.lauf ? 'Aus' : 'Ein', function () { t.z.lauf = !t.z.lauf; t.st.ein = t.z.lauf; log(name(t) + (t.z.lauf ? ' eingeschaltet.' : ' ausgeschaltet.')); }];
+      },
+      aktionen: function (t) { return t.par.art === 'wr' ? [['Akku auf 100 %', function () { t.st.soc = 100; }], ['Akku auf 10 %', function () { t.st.soc = 10; }]] : []; }
+    };
+    TYP.hybrid = {
+      name: 'Hybrid-Wechselrichter mit Speicher und Notstromausgang', kurz: 'Hybrid-WR', kat: 'Einspeisung', icon: 'M4 6h9v12H4zM13 9h2v6h-2M18 4v2M18 10v2M21 7h-2M17 7h-2',
+      par: [
+        { k: 'ph', name: 'Phasen', werte: [[1, '1-phasig'], [3, '3-phasig']], std: 3 },
+        { k: 'pn', name: 'Wechselrichterleistung', e: 'kW', min: 1, max: 50, std: 10 },
+        { k: 'pv', name: 'PV-Generator (DC)', e: 'kWp', min: 0, max: 50, std: 8 },
+        { k: 'akku', name: 'Akku', e: 'kWh', min: 1, max: 100, std: 10 },
+        { k: 'modus', name: 'Betrieb am Netz', werte: [['eigen', 'Eigenverbrauch (regelt den Zähler auf 0)'], ['reserve', 'Notstromreserve (lädt nur, entlädt nicht)']], std: 'eigen' },
+        { k: 'tum', name: 'Umschaltzeit auf Notstrom', e: 's', werte: [[0.02, 'unter 20 ms (USV-ähnlich)'], [0.5, '0,5 s'], [3, '3 s'], [10, '10 s']], std: 3 },
+        { k: 'npe', name: 'N-PE-Brücke im Notstrombetrieb', werte: [['auto', 'automatisch (Relais im Gerät)'], ['nein', 'keine']], std: 'auto' },
+        { k: 'ik', name: 'Kurzschlussstrom im Inselbetrieb', e: '× In', min: 1, max: 5, std: 1.5 }
+      ],
+      st: { ein: true, soc: 60 },
+      klemmen: function (t) {
+        const L = LEITER(t.par.ph);
+        return { o: L.map(function (x) { return ['n' + x, x, 'Netz']; }).concat([['nN', 'N', 'Netz'], ['nPE', 'PE', 'Netz']]), u: L.map(function (x) { return ['b' + x, x, 'Notstrom']; }).concat([['bN', 'N', 'Notstrom'], ['bPE', 'PE', 'Notstrom']]) };
+      },
+      init: function (t) { t.z.modus = 'netz'; t.z.q = []; t.z.pq = [[0, 0], [0, 0], [0, 0]]; t.z.lim = [1, 1, 1]; t.z.pB = 0; t.z.netzOk = false; },
+      modell: function (t, M, ohnePQ) {
+        const z = t.z, L = LEITER(t.par.ph);
+        M.V(kl(t, 'nPE'), kl(t, 'bPE')); z.q = []; z.iq = [];
+        if (z.modus === 'netz') {
+          L.forEach(function (x) { M.V(kl(t, 'n' + x), kl(t, 'b' + x)); }); M.V(kl(t, 'nN'), kl(t, 'bN'));
+          if (!ohnePQ && z.netzOk && t.st.ein) L.forEach(function (x, p) { z.iq.push(M.I(kl(t, 'n' + x), kl(t, 'nN'), z.pq[p])); });
+        } else if (z.modus === 'insel' && t.st.ein && !z.stoerung) {
+          if (t.par.npe === 'auto') M.V(kl(t, 'bN'), kl(t, 'bPE'));
+          L.forEach(function (x, p) { z.q.push(M.Q(kl(t, 'b' + x), kl(t, 'bN'), C.polar(UN, PHASE[p]), [0.03 * z.lim[p], 0.015 * z.lim[p]])); });
+        }
+      },
+      messen0: function (t) { const L = LEITER(t.par.ph); t.z.netzOk = L.every(function (x) { const u = uBetrag(kl(t, 'n' + x), kl(t, 'nN')); return u > 0.85 * UN && u < 1.15 * UN; }); },
+      ppv: function (t) { return Math.min(t.par.pv * 1000 * G.sonne * 0.96, t.par.pn * 1000 * 1.5); },
+      nach: function (t) {
+        const z = t.z, L = LEITER(t.par.ph), Ppv = TYP.hybrid.ppv(t);
+        if (z.modus === 'netz' && z.netzOk && t.st.ein) {
+          const zl = teile.filter(function (x) { return x.typ === 'zaehler'; })[0];
+          const entl = t.par.modus === 'eigen' && t.st.soc > 10 ? t.par.pn * 1000 : 0, lade = t.st.soc < 100 ? t.par.pn * 1000 : 0;
+          let pB = z.pB;
+          if (t.par.modus === 'eigen' && zl) pB = Math.max(-lade, Math.min(entl, pB + zaehlerP(zl)));
+          else pB = -Math.min(lade, Ppv);
+          pB = Math.max(-lade, Math.min(entl, pB));
+          if (t.par.modus === 'eigen' && pB < 0) pB = Math.max(pB, -Ppv); // geladen wird nur aus PV-Überschuss
+          const Pac = Math.max(-t.par.pn * 1000, Math.min(t.par.pn * 1000, Ppv + pB));
+          z.pB = Pac - Ppv; z.Pac = Pac;
+          let neu = false;
+          L.forEach(function (x, p) { if (pqStrom(z, p, Pac / L.length, uk(kl(t, 'n' + x), kl(t, 'nN')))) neu = true; });
+          return neu;
+        }
+        if (z.q.length) {
+          const In = t.par.pn * 1000 / (L.length * UN);
+          let neu = strombegrenzung(t, In * t.par.ik);
+          const P = quellenP(t), lade = t.st.soc < 100 ? Math.max(0, t.par.pn * 1000 - Ppv) : 0;
+          if (P < -lade - 20 && G.pvNenn > 0 && G.pvFaktor > 0) { abregeln(-P - lade); neu = true; }
+          return neu;
+        }
+        return false;
+      },
+      messen: function (t) {
+        const z = t.z, Ppv = TYP.hybrid.ppv(t);
+        if (z.q.length) {
+          z.Pac = quellenP(t); const In = t.par.pn * 1000 / (LEITER(t.par.ph).length * UN);
+          z.x = Math.max.apply(null, z.q.map(function (e) { return C.betrag(e.Ist); })) / In;
+          z.begrenzt = z.lim.some(function (l, p) { return p < z.q.length && l > 1.01; });
+          const lade = t.st.soc < 100 ? t.par.pn * 1000 : 0;
+          z.PpvGenutzt = Math.min(Ppv, Math.max(0, z.Pac + lade)); z.pB = z.Pac - z.PpvGenutzt;
+        } else if (z.modus === 'netz' && z.netzOk && t.st.ein) { z.PpvGenutzt = Ppv; z.x = 0; z.begrenzt = false; }
+        else { z.Pac = 0; z.pB = 0; z.PpvGenutzt = 0; z.x = 0; z.begrenzt = false; }
+      },
+      schutz: function (t) { return t.z.q.length ? [{ wr: true, x: t.z.x, begrenzt: t.z.begrenzt }] : []; },
+      ausloesen: function (t, p, s) { t.z.stoerung = s.begrenzt ? 'Kurzschluss' : 'Überlast'; log(name(t) + ': Notstromausgang schaltet ab – ' + (s.begrenzt ? 'Kurzschluss, Strom auf ' + zahl(t.par.ik, 1) + ' × In begrenzt' : 'Überlast ' + Math.round(s.x * 100) + ' %') + '.', 'aus'); },
+      fort: function (t, dt) {
+        const z = t.z; if (!t.st.ein) return;
+        const Pdc = z.pB > 0 ? z.pB / 0.95 : z.pB * 0.95;
+        t.st.soc = Math.min(100, Math.max(0, t.st.soc - Pdc * dt / 3600 / (t.par.akku * 1000) * 100));
+      },
+      plan: function (t) {
+        const z = t.z;
+        if (z.modus === 'netz' && !z.netzOk) return { id: 'trenn', dauer: 0.05, tun: function () { z.modus = 'trenn'; z.pq = [[0, 0], [0, 0], [0, 0]]; log(name(t) + ': Netzausfall erkannt – trennt allpolig vom Netz.', 'aus'); } };
+        if (z.modus === 'trenn' && t.st.ein && !z.stoerung && t.st.soc > 5) return { id: 'insel', dauer: t.par.tum, tun: function () { z.modus = 'insel'; z.lim = [1, 1, 1]; log(name(t) + ': Notstrombetrieb – Inselnetz am Notstromausgang' + (t.par.npe === 'auto' ? ' mit N-PE-Brücke.' : ' ohne N-PE-Brücke.'), 'gut'); } };
+        if ((z.modus === 'insel' || z.modus === 'trenn') && z.netzOk) return { id: 'netz', dauer: 60, tun: function () { z.modus = 'netz'; z.stoerung = null; log(name(t) + ': Netz seit 60 s stabil – zurück in den Netzbetrieb.', 'gut'); } };
+        if (z.modus === 'insel' && z.pB > 0 && t.st.soc > 5) return { id: 'leer', rest: true, dauer: (t.st.soc - 5) / 100 * t.par.akku * 3.6e6 / (z.pB / 0.95), tun: function () { t.st.soc = 5; z.stoerung = 'Akku leer'; log(name(t) + ': Akku leer – Notstromausgang aus.', 'aus'); } };
+        return null;
+      },
+      status: function (t) {
+        const z = t.z;
+        if (!t.st.ein) return ['aus', 'Akku ' + Math.round(t.st.soc) + ' %', ''];
+        if (z.stoerung) return ['Störung: ' + z.stoerung, 'Akku ' + Math.round(t.st.soc) + ' %', 'fehler'];
+        const pv = 'PV ' + fP(z.PpvGenutzt || 0) + ' · Akku ' + Math.round(t.st.soc) + ' % ' + (z.pB > 20 ? '▼' : z.pB < -20 ? '▲' : '');
+        if (z.modus === 'netz') return [z.netzOk ? 'Netzbetrieb ' + fP(z.Pac || 0) : 'kein Netz', pv, z.netzOk ? 'gut' : 'warn'];
+        if (z.modus === 'trenn') return ['getrennt, schaltet um …', pv, 'warn'];
+        return ['Notstrom ' + fP(Math.max(0, z.Pac || 0)) + (z.begrenzt ? ' · begrenzt!' : ''), pv, z.begrenzt ? 'fehler' : 'warn'];
+      },
+      werte: function (t) {
+        const z = t.z;
+        return [['Betrieb', { netz: 'Netzbetrieb (Notstromausgang über Relais am Netz)', trenn: 'vom Netz getrennt', insel: 'Inselbetrieb am Notstromausgang' }[z.modus]], ['PV-Leistung', fP(z.PpvGenutzt || 0) + ' von ' + fP(TYP.hybrid.ppv(t))], ['Akku', (z.pB > 0 ? 'entlädt ' : z.pB < 0 ? 'lädt ' : '') + fP(Math.abs(z.pB || 0)) + ', ' + zahl(t.st.soc, 1) + ' %'], ['AC-Leistung', fP(z.Pac || 0)]];
+      },
+      aktion: function (t) {
+        if (t.z.stoerung) return ['Quittieren', function () { if (t.st.soc <= 5) t.st.soc = 30; t.z.stoerung = null; t.z.lim = [1, 1, 1]; t.z.w = 0; if (t.z.modus === 'insel') t.z.modus = 'trenn'; log(name(t) + ': Störung quittiert.'); }];
+        return [t.st.ein ? 'Aus' : 'Ein', function () { t.st.ein = !t.st.ein; log(name(t) + (t.st.ein ? ' eingeschaltet.' : ' ausgeschaltet.')); }];
+      },
+      aktionen: function (t) { return [['Akku auf 100 %', function () { t.st.soc = 100; }], ['Akku auf 10 %', function () { t.st.soc = 10; }]]; }
+    };
+    TYP.pvwr = {
+      name: 'PV-Wechselrichter (netzgekoppelt)', kurz: 'PV-WR', kat: 'Einspeisung', icon: 'M3 14h18l-3-8H6zM9 6l-1 8M15 6l1 8M4 10h16M12 17v3',
+      par: [
+        { k: 'ph', name: 'Phasen', werte: [[1, '1-phasig'], [3, '3-phasig']], std: 3 },
+        { k: 'kwp', name: 'PV-Leistung', e: 'kWp', min: 0.3, max: 100, std: 5 },
+        { k: 'tzu', name: 'Zuschalten nach gültiger Netzspannung', e: 's', werte: [[5, '5 s (Test)'], [30, '30 s'], [60, '60 s (üblich)']], std: 60 }
+      ],
+      st: {},
+      klemmen: function (t) { return { o: [], u: LEITER(t.par.ph).map(function (x) { return [x, x]; }).concat([['N', 'N'], ['PE', 'PE']]) }; },
+      init: function (t) { t.z.pq = [[0, 0], [0, 0], [0, 0]]; t.z.verbunden = false; t.z.iq = []; },
+      modell: function (t, M, ohnePQ) { t.z.iq = []; if (!ohnePQ && t.z.verbunden && t.z.uOk) LEITER(t.par.ph).forEach(function (x, p) { t.z.iq.push(M.I(kl(t, x), kl(t, 'N'), t.z.pq[p])); }); },
+      messen0: function (t) { t.z.uOk = LEITER(t.par.ph).every(function (x) { const u = uBetrag(kl(t, x), kl(t, 'N')); return u > 0.8 * UN && u < 1.15 * UN; }); },
+      nach: function (t) {
+        if (!t.z.verbunden) return false;
+        const L = LEITER(t.par.ph), P = t.par.kwp * 1000 * G.sonne * 0.96 * G.pvFaktor; let neu = false;
+        L.forEach(function (x, p) { if (pqStrom(t.z, p, P / L.length, uk(kl(t, x), kl(t, 'N')))) neu = true; });
+        return neu;
+      },
+      messen: function (t) { let P = 0; t.z.iq.forEach(function (e) { P += C.mul(e.U, C.kon(e.Ist))[0]; }); t.z.P = P; },
+      plan: function (t) {
+        const z = t.z;
+        if (!z.verbunden && z.uOk) return { id: 'zu', dauer: t.par.tzu, tun: function () { z.verbunden = true; z.pq = [[0, 0], [0, 0], [0, 0]]; log(name(t) + ': Netzspannung seit ' + t.par.tzu + ' s gültig – schaltet zu.', 'gut'); } };
+        if (z.verbunden && !z.uOk) return { id: 'ab', dauer: 0.1, tun: function () { z.verbunden = false; z.pq = [[0, 0], [0, 0], [0, 0]]; log(name(t) + ': NA-Schutz – keine gültige Netzspannung, trennt.', 'aus'); } };
+        return null;
+      },
+      status: function (t) {
+        if (!t.z.verbunden) return ['wartet auf Netz', t.z.uOk ? 'Spannung gültig, schaltet bald zu' : 'keine gültige Spannung', ''];
+        return ['speist ' + fP(t.z.P || 0), G.pvFaktor < 0.99 ? 'abgeregelt (' + Math.round(G.pvFaktor * 100) + ' %)' : 'Sonne ' + Math.round(G.sonne * 100) + ' %', 'gut'];
+      }
+    };
+    TYP.last = {
+      name: 'Verbraucher 1~ (Steckdose oder fest)', kurz: 'Verbraucher', kat: 'Verbraucher', icon: 'M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5V16h8v-2.5A6 6 0 0 0 12 3z',
+      par: [
+        { k: 'vorlage', name: 'Gerät', werte: Object.keys(VORLAGEN1).map(function (k) { return [k, VORLAGEN1[k][0] + (k === 'frei' ? '' : ' ' + fP(VORLAGEN1[k][1]))]; }), std: 'wk', vorlage: VORLAGEN1 },
+        { k: 'p', name: 'Leistung bei 230 V', e: 'W', min: 1, max: 15000, std: 2000 },
+        { k: 'cos', name: 'Leistungsfaktor cos φ', e: '', min: 0.2, max: 1, std: 1 },
+        { k: 'sk', name: 'Schutzklasse', werte: [['I', 'I (Schutzleiter am Gehäuse)'], ['II', 'II (schutzisoliert)']], std: 'I' },
+        { k: 'rks', name: 'Widerstand des Körperschlusses', e: 'Ω', min: 0.01, max: 100000, std: 0.5 }
+      ],
+      st: { ein: true, ks: false },
+      klemmen: function (t) { return { o: [['L', 'L'], ['N', 'N']].concat(t.par.sk === 'I' ? [['PE', 'PE']] : []), u: [['G', 'Gehäuse']] }; },
+      init: function (t) { t.z.el = null; t.z.kaputt = false; t.z.U = 0; t.z.P = 0; },
+      modell: function (t, M) {
+        if (t.par.sk === 'I') M.V(kl(t, 'PE'), kl(t, 'G'));
+        t.z.el = null;
+        if (t.st.ein && !t.z.kaputt) { const zb = UN * UN * t.par.cos / t.par.p, s = Math.sqrt(1 - t.par.cos * t.par.cos); t.z.el = M.R(kl(t, 'L'), kl(t, 'N'), zb * t.par.cos, zb * s); }
+        t.z.ksEl = t.st.ks ? M.R(kl(t, 'L'), kl(t, 'G'), t.par.rks, 0) : null;
+      },
+      messen: function (t) { t.z.U = uBetrag(kl(t, 'L'), kl(t, 'N')); t.z.P = t.z.el ? C.mul(t.z.el.U, C.kon(t.z.el.Ist))[0] : 0; t.z.UG = uBetrag(kl(t, 'G')); },
+      plan: function (t) { if (!t.z.kaputt && t.z.el && t.z.U > 270) return { id: 'kaputt', dauer: t.z.U > 350 ? 0.05 : 2, tun: function () { t.z.kaputt = true; log(name(t) + ': durch Überspannung zerstört (' + fU(t.z.U) + ' statt 230 V).', 'gefahr'); } }; return null; },
+      status: function (t) {
+        const z = t.z;
+        if (z.kaputt) return ['zerstört', 'Überspannung', 'fehler'];
+        const g = t.st.ks ? 'Körperschluss! Gehäuse ' + fU(z.UG) : '';
+        if (!t.st.ein) return ['aus', g || fU(z.U) + ' am Anschluss', g ? 'fehler' : ''];
+        if (z.U < 20) return ['keine Spannung', g || ' ', g ? 'fehler' : ''];
+        return [fP(z.P) + ' · ' + fU(z.U), g || (z.U > 253 ? 'Überspannung!' : z.U < 207 ? 'Unterspannung' : 'läuft'), g || z.U > 253 ? 'fehler' : z.U < 207 ? 'warn' : 'gut'];
+      },
+      werte: function (t) { return [['Spannung L–N', fU(t.z.U)], ['Strom', t.z.el ? fI(C.betrag(t.z.el.Ist)) : '–'], ['Gehäuse gegen Erde', fU(t.z.UG || 0)]].concat(t.z.ksEl ? [['Strom im Körperschluss', fI(C.betrag(t.z.ksEl.Ist))]] : []); },
+      aktion: function (t) { return [t.st.ein ? 'Aus' : 'Ein', function () { t.st.ein = !t.st.ein; log(name(t) + (t.st.ein ? ' eingeschaltet.' : ' ausgeschaltet.')); }]; },
+      aktionen: function (t) { const l = [[t.st.ks ? 'Körperschluss beheben' : 'Körperschluss (L an Gehäuse)', function () { t.st.ks = !t.st.ks; log(name(t) + ': ' + (t.st.ks ? 'Körperschluss – Außenleiter berührt das Gehäuse.' : 'Körperschluss behoben.'), t.st.ks ? 'gefahr' : 'info'); }]]; if (t.z.kaputt) l.push(['Gerät ersetzen', function () { t.z.kaputt = false; }]); return l; }
+    };
+    TYP.last3 = {
+      name: 'Drehstromverbraucher 3~', kurz: 'Drehstrom', kat: 'Verbraucher', icon: 'M12 4a8 8 0 1 0 0 16a8 8 0 1 0 0-16M8 15V9l4 4 4-4v6',
+      par: [
+        { k: 'vorlage', name: 'Gerät', werte: Object.keys(VORLAGEN3).map(function (k) { return [k, VORLAGEN3[k][0] + (k === 'frei' ? '' : ' ' + fP(VORLAGEN3[k][1]))]; }), std: 'motor', vorlage: VORLAGEN3 },
+        { k: 'p', name: 'Leistung', e: 'W', min: 100, max: 60000, std: 4000 },
+        { k: 'cos', name: 'Leistungsfaktor cos φ', e: '', min: 0.2, max: 1, std: 0.85 },
+        { k: 'sch', name: 'Schaltung', werte: [['dreieck', 'Dreieck (ohne N)'], ['stern', 'Stern ohne N'], ['stern_n', 'Stern mit N (3 einzelne Lasten)']], std: 'dreieck' },
+        { k: 'rks', name: 'Widerstand des Körperschlusses', e: 'Ω', min: 0.01, max: 100000, std: 0.5 }
+      ],
+      st: { ein: true, ks: false },
+      klemmen: function () { return { o: [['L1', 'L1'], ['L2', 'L2'], ['L3', 'L3'], ['N', 'N'], ['PE', 'PE']], u: [['G', 'Gehäuse']] }; },
+      init: function (t) { t.z.el = []; t.z.kaputt = false; t.z.u = [0, 0, 0]; t.z.P = 0; },
+      modell: function (t, M) {
+        M.V(kl(t, 'PE'), kl(t, 'G')); t.z.el = [];
+        const L = ['L1', 'L2', 'L3'];
+        if (t.st.ein && !t.z.kaputt) {
+          const s = Math.sqrt(1 - t.par.cos * t.par.cos), dr = t.par.sch === 'dreieck', zb = (dr ? 400 * 400 : UN * UN) * t.par.cos / (t.par.p / 3);
+          const S = t.par.sch === 'stern_n' ? kl(t, 'N') : ik(t, 'S');
+          L.forEach(function (x, p) { t.z.el.push(dr ? M.R(kl(t, x), kl(t, L[(p + 1) % 3]), zb * t.par.cos, zb * s) : M.R(kl(t, x), S, zb * t.par.cos, zb * s)); });
+        }
+        t.z.ksEl = t.st.ks ? M.R(kl(t, 'L1'), kl(t, 'G'), t.par.rks, 0) : null;
+      },
+      messen: function (t) {
+        const z = t.z; z.u = z.el.map(function (e) { return C.betrag(e.U); }); z.P = 0; z.el.forEach(function (e) { z.P += C.mul(e.U, C.kon(e.Ist))[0]; });
+        z.UG = uBetrag(kl(t, 'G')); z.un = t.par.sch === 'dreieck' ? 400 : UN;
+      },
+      plan: function (t) { const m = Math.max.apply(null, [0].concat(t.z.u)) / t.z.un; if (!t.z.kaputt && t.z.el.length && m > 1.17) return { id: 'kaputt', dauer: m > 1.5 ? 0.05 : 2, tun: function () { t.z.kaputt = true; log(name(t) + ': durch Überspannung zerstört (' + fU(m * t.z.un) + ').', 'gefahr'); } }; return null; },
+      status: function (t) {
+        const z = t.z, g = t.st.ks ? 'Körperschluss! Gehäuse ' + fU(z.UG) : '';
+        if (z.kaputt) return ['zerstört', 'Überspannung', 'fehler'];
+        if (!t.st.ein) return ['aus', g || ' ', g ? 'fehler' : ''];
+        const mi = Math.min.apply(null, z.u.length ? z.u : [0]), ma = Math.max.apply(null, z.u.length ? z.u : [0]);
+        if (ma < 20) return ['keine Spannung', g || ' ', g ? 'fehler' : ''];
+        const unsym = ma - mi > 0.1 * z.un;
+        return [fP(z.P), g || (unsym ? 'unsymmetrisch ' + fU(mi) + '–' + fU(ma) : mi < 0.85 * z.un ? 'Phase fehlt / Unterspannung' : z.un + ' V je Strang'), g || unsym || mi < 0.85 * z.un ? 'fehler' : 'gut'];
+      },
+      werte: function (t) { const n = t.par.sch === 'dreieck' ? ['L1–L2', 'L2–L3', 'L3–L1'] : ['Strang L1', 'Strang L2', 'Strang L3']; return t.z.el.map(function (e, p) { return [n[p], fU(C.betrag(e.U)) + ', ' + fI(C.betrag(e.Ist))]; }).concat([['Gehäuse gegen Erde', fU(t.z.UG || 0)]]); },
+      aktion: TYP.last.aktion, aktionen: TYP.last.aktionen
+    };
+    TYP.schiene = {
+      name: 'Klemmschiene (PE, N, PEN, Potentialausgleich)', kurz: 'Schiene', kat: 'Verteilung', icon: 'M3 10h18v4H3zM7 10v-3M12 10v-3M17 10v-3',
+      par: [{ k: 'art', name: 'Art', werte: [['PAS', 'Haupterdungsschiene (Potentialausgleich)'], ['PE', 'PE-Schiene'], ['N', 'N-Schiene'], ['PEN', 'PEN-Klemme'], ['L', 'Phasenschiene / Brücke']], std: 'PE' }, { k: 'n', name: 'Klemmen', werte: [[3, '3'], [4, '4'], [6, '6'], [8, '8']], std: 6 }],
+      st: {},
+      klemmen: function (t) { const l = []; for (let i = 1; i <= t.par.n; i++) l.push(['k' + i, t.par.art === 'PAS' ? 'PE' : t.par.art]); return { o: [], u: l }; },
+      init: function () {},
+      modell: function (t, M) { for (let i = 2; i <= t.par.n; i++) M.V(kl(t, 'k1'), kl(t, 'k' + i)); },
+      status: function (t) { return [{ PAS: 'Haupterdungsschiene', PE: 'PE-Schiene', N: 'N-Schiene', PEN: 'PEN-Klemme', L: 'Brücke' }[t.par.art], 'gegen Erde ' + fU(uBetrag(kl(t, 'k1'))), uBetrag(kl(t, 'k1')) > 50 ? 'warn' : '']; }
+    };
+    TYP.erder = {
+      name: 'Erder', kurz: 'Erder', kat: 'Verteilung', icon: 'M12 3v9M5 12h14M7.5 15.5h9M10 19h4',
+      par: [{ k: 'r', name: 'Ausbreitungswiderstand R_A', e: 'Ω', min: 0.1, max: 5000, std: 2 }],
+      st: {},
+      klemmen: function () { return { o: [['E', 'PE']], u: [] }; },
+      init: function (t) { t.z.el = null; },
+      modell: function (t, M) { t.z.el = M.R(kl(t, 'E'), 'E', t.par.r, 0); },
+      status: function (t) { return ['R_A = ' + zahl(t.par.r, 2) + ' Ω', fI(C.betrag(t.z.el ? t.z.el.Ist : [0, 0])) + ' ins Erdreich', '']; }
+    };
+    TYP.mensch = {
+      name: 'Person (Berührung)', kurz: 'Person', kat: 'Prüfen', icon: 'M12 3a2 2 0 1 0 0 4a2 2 0 1 0 0-4M12 8v7M8 10l4 2 4-2M9 21l3-6 3 6',
+      par: [
+        { k: 'kontakt', name: 'Stromweg', werte: [['erde', 'Hand – Füße (Erde)'], ['hand', 'Hand – Hand']], std: 'erde' },
+        { k: 'rk', name: 'Körperwiderstand', e: 'Ω', min: 300, max: 10000, std: 1000 },
+        { k: 'rst', name: 'Standort', e: 'Ω', werte: [[10, 'nass, barfuß (10 Ω)'], [200, 'barfuß auf Erdreich (200 Ω)'], [1000, 'feuchter Boden, Schuhe (1 kΩ)'], [20000, 'trockener Boden, Schuhe (20 kΩ)'], [1000000, 'isolierender Standort (1 MΩ)']], std: 200 }
+      ],
+      st: { an: true },
+      klemmen: function (t) { return { o: t.par.kontakt === 'hand' ? [['H', 'Hand'], ['H2', 'Hand']] : [['H', 'Hand']], u: [] }; },
+      init: function (t) { t.z.el = null; t.z.dauer = 0; t.z.schlimmst = null; },
+      modell: function (t, M) {
+        t.z.el = null; if (!t.st.an) return;
+        if (t.par.kontakt === 'hand') t.z.el = M.R(kl(t, 'H'), kl(t, 'H2'), t.par.rk, 0);
+        else { t.z.el = M.R(kl(t, 'H'), ik(t, 'F'), t.par.rk, 0); M.R(ik(t, 'F'), 'E', t.par.rst, 0); }
+      },
+      messen: function (t) { const z = t.z; z.I = z.el ? C.betrag(z.el.Ist) : 0; if (z.Ialt !== undefined && (z.I > z.Ialt * 1.3 + 1e-4 || z.I < z.Ialt / 1.3 - 1e-4)) { z.dauer = 0; z.lz = 1; } z.Ialt = z.I; },
+      fort: function (t, dt) {
+        const z = t.z;
+        if (z.I > 0.0005) {
+          z.dauer += dt; const zo = zone(z.I * 1000, z.dauer);
+          if (!z.schlimmst || zo[0] > z.schlimmst[0] || (zo[0] === z.schlimmst[0] && z.I > z.schlimmst[2])) z.schlimmst = [zo[0], zo[1], z.I, z.dauer];
+          else if (zo[0] === z.schlimmst[0]) z.schlimmst[3] = Math.max(z.schlimmst[3], z.dauer);
+        } else z.dauer = 0;
+      },
+      plan: function (t) {
+        const z = t.z; if (!(z.I > 0.0005)) { z.lz = 1; return null; }
+        const zo = zone(z.I * 1000, z.dauer);
+        if (zo[0] >= 3 && zo[0] > (z.lz || 1)) return { id: 'jetzt' + zo[0], rest: true, dauer: 0, tun: function () { z.lz = zo[0]; log(name(t) + ': ' + fI(z.I) + ' – ' + zo[1] + '.', 'gefahr'); } };
+        z.lz = Math.max(z.lz || 1, zo[0]);
+        if (zo[0] >= 4) return null;
+        // nächster Zonenwechsel bei gleichem Strom
+        let dt = null;
+        if (zone(z.I * 1000, 10)[0] > zo[0]) { let a = z.dauer, e = 10; for (let i = 0; i < 40; i++) { const m = (a + e) / 2; if (zone(z.I * 1000, m)[0] > zo[0]) e = m; else a = m; } dt = e - z.dauer; }
+        return dt === null ? null : { id: 'zone' + zo[0], rest: true, dauer: dt, tun: function () { const n = zone(z.I * 1000, z.dauer + 1e-6); z.lz = n[0]; log(name(t) + ': ' + fI(z.I) + ' seit ' + fT(z.dauer) + ' – ' + n[1] + '.', 'gefahr'); } };
+      },
+      status: function (t) {
+        const z = t.z;
+        if (!t.st.an) return ['berührt nichts', z.schlimmst ? 'zuletzt: ' + z.schlimmst[1].split(':')[0] : ' ', ''];
+        if (!(z.I > 0.0005)) return ['kein Körperstrom', z.schlimmst ? 'zuletzt: ' + z.schlimmst[1].split(':')[0] + ', ' + fI(z.schlimmst[2]) + ' für ' + fT(z.schlimmst[3]) : 'U ' + fU((z.I || 0) * t.par.rk), z.schlimmst && z.schlimmst[0] >= 3 ? 'fehler' : 'gut'];
+        const zo = zone(z.I * 1000, z.dauer);
+        return [fI(z.I) + ' seit ' + fT(z.dauer), zo[1].split(':')[0] + ' · U ' + fU(z.I * t.par.rk), zo[0] >= 3 ? 'fehler' : 'warn'];
+      },
+      werte: function (t) { const z = t.z; return [['Körperstrom', fI(z.I || 0)], ['Berührungsspannung', fU((z.I || 0) * t.par.rk)], ['Dauer', fT(z.dauer)], ['Bewertung', z.I > 0.0005 ? zone(z.I * 1000, z.dauer)[1] : '–'], ['Schlimmster Wert', z.schlimmst ? z.schlimmst[1] + ' (' + fI(z.schlimmst[2]) + ', ' + fT(z.schlimmst[3]) + ')' : '–']]; },
+      aktion: function (t) { return [t.st.an ? 'Loslassen' : 'Berühren', function () { t.st.an = !t.st.an; if (t.st.an) { t.z.schlimmst = null; t.z.dauer = 0; } log(name(t) + (t.st.an ? ' berührt.' : ' lässt los.')); }]; }
+    };
+    TYP.messgeraet = {
+      name: 'Spannungsmesser', kurz: 'Messgerät', kat: 'Prüfen', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M8 9l4 7 4-7',
+      par: [], st: {},
+      klemmen: function () { return { o: [['a', 'V'], ['b', 'COM']], u: [] }; },
+      init: function (t) { t.z.el = null; },
+      modell: function (t, M) { t.z.el = M.R(kl(t, 'a'), kl(t, 'b'), 1e7, 0); },
+      status: function (t) { return [fU(t.z.el && t.z.el.U ? C.betrag(t.z.el.U) : 0), 'Innenwiderstand 10 MΩ', '']; }
+    };
+    TYP.fehler = {
+      name: 'Fehlerstelle (Kurz- oder Erdschluss)', kurz: 'Fehler', kat: 'Prüfen', icon: 'M13 3 6 14h5l-1 7 8-11h-5z',
+      par: [{ k: 'rf', name: 'Fehlerwiderstand', e: 'Ω', min: 0.001, max: 100000, std: 0.05 }],
+      st: { aktiv: false },
+      klemmen: function () { return { o: [['a', 'a']], u: [['b', 'b']] }; },
+      init: function (t) { t.z.el = null; },
+      modell: function (t, M) { t.z.el = t.st.aktiv ? M.R(kl(t, 'a'), kl(t, 'b'), t.par.rf, 0) : null; },
+      status: function (t) { return t.st.aktiv ? ['Fehler aktiv', fI(t.z.el ? C.betrag(t.z.el.Ist) : 0), 'fehler'] : ['kein Fehler', zahl(t.par.rf, 3) + ' Ω, wenn aktiv', '']; },
+      aktion: function (t) { return [t.st.aktiv ? 'Beheben' : 'Auslösen', function () { t.st.aktiv = !t.st.aktiv; log(name(t) + (t.st.aktiv ? ': Fehler tritt auf (' + zahl(t.par.rf, 3) + ' Ω).' : ': Fehler behoben.'), t.st.aktiv ? 'gefahr' : 'info'); }]; }
+    };
+    TYP.notiz = {
+      name: 'Notiz', kurz: 'Notiz', kat: 'Prüfen', icon: 'M5 4h14v16H5zM8 8h8M8 12h8M8 16h5',
+      par: [], st: {},
+      klemmen: function () { return { o: [], u: [] }; },
+      init: function () {}, modell: function () {},
+      status: function () { return ['', '', '']; }
+    };
+    Object.keys(TYP).forEach(function (k) { TYP[k].typ = k; });
+
+    // ---------- Anlage: Teile und Adern ----------
+    let P = { v: 1, teile: [], adern: [], sonne: 0.7, nr: 1 };
+    let teile = P.teile, adern = P.adern;
+    const FARBEN = {
+      L1: ['braun', '#8B5A2B'], L2: ['schwarz', '#1F1F1F'], L3: ['grau', '#8E8E8E'], N: ['blau', '#2F7FD0'],
+      PE: ['grün-gelb', '#2F9E44'], PEN: ['grün-gelb, blau markiert (PEN)', '#2F9E44'], mess: ['rot (Mess- und Kontaktleitung)', '#C2255C']
+    };
+    const QUERSCHNITTE = [0.75, 1, 1.5, 2.5, 4, 6, 10, 16, 25, 35, 50, 70, 95];
+    const IZ = { 0.75: 10, 1: 13, 1.5: 16.5, 2.5: 23, 4: 30, 6: 38, 10: 52, 16: 69, 25: 90, 35: 111, 50: 133, 70: 168, 95: 201 };
+    function klemmenListe(t) { const k = TYP[t.typ].klemmen(t); return k.o.concat(k.u); }
+    function klemmeDa(schluessel) {
+      const i = schluessel.lastIndexOf('.'), id = schluessel.slice(0, i), k = schluessel.slice(i + 1);
+      const t = teilVon(id); return !!t && klemmenListe(t).some(function (e) { return e[0] === k; });
+    }
+    function teilVon(id) { for (let i = 0; i < teile.length; i++) if (teile[i].id === id) return teile[i]; return null; }
+    function aderVon(id) { for (let i = 0; i < adern.length; i++) if (adern[i].id === id) return adern[i]; return null; }
+    function zInit(t) { t.z = {}; TYP[t.typ].init(t); }
+
+    function netzBauen(ohnePQ) {
+      const M = new Netzwerk();
+      teile.forEach(function (t) { klemmenListe(t).forEach(function (e) { M.knoten(kl(t, e[0])); }); TYP[t.typ].modell(t, M, ohnePQ); });
+      adern.forEach(function (a) { a._el = null; if (!a.offen) a._el = M.R(a.a, a.b, 0.0178 * a.l / a.q, 0.00008 * a.l); });
+      return M;
+    }
+    function loesen() {
+      G.pvFaktor = 1;
+      let M = netzBauen(true); G.R = M.loesen();
+      teile.forEach(function (t) { if (TYP[t.typ].messen0) TYP[t.typ].messen0(t); });
+      G.pvNenn = 0;
+      teile.forEach(function (t) { if (t.typ === 'pvwr' && t.z.verbunden) G.pvNenn += t.par.kwp * 1000 * G.sonne * 0.96; });
+      for (let it = 0; it < 14; it++) {
+        M = netzBauen(false); G.R = M.loesen();
+        let neu = false;
+        teile.forEach(function (t) { if (TYP[t.typ].nach && TYP[t.typ].nach(t)) neu = true; });
+        if (!neu) break;
+      }
+      teile.forEach(function (t) { if (TYP[t.typ].messen) TYP[t.typ].messen(t); });
+      G.anf = teile.some(function (t) { return t.typ === 'ats' && TYP.ats.anforderung(t); });
+      adern.forEach(function (a) {
+        a._I = a._el ? C.betrag(a._el.Ist) : 0;
+        if (a._el) { const ua = G.R.u(a.a) || [0, 0], p = C.mul(ua, C.kon(a._el.Ist))[0]; a._dir = C.betrag(ua) > 50 ? (p >= 0 ? 1 : -1) : (a._el.Ist[0] >= 0 ? 1 : -1); }
+      });
+      G.netz = M; schmutzig = false;
+    }
+
+    // ---------- Schutzorgane und Zeitablauf ----------
+    function eintraege(t) { const T = TYP[t.typ]; return T.schutz ? T.schutz(t).filter(Boolean) : []; }
+    function sKey(s) { return s.fi ? 'fi' : s.wr ? 'wr' : 'p' + s.p; }
+    function sZeit(s) {
+      if (s.fi) return s.I >= 0.7 * s.idn ? (s.s ? (s.I >= 5 * s.idn ? 0.06 : 0.2) : (s.I >= 5 * s.idn ? 0.015 : 0.03)) : Infinity;
+      if (s.wr) { let tt = kurve(KENN_WR, s.x); if (s.begrenzt) tt = Math.min(tt, s.agg ? 3 : 0.3); return tt; }
+      return s.In > 0 ? ausloesezeit(s.I, s.In, s.art) : Infinity;
+    }
+    function fortschreiben(dt) {
+      teile.forEach(function (t) {
+        const T = TYP[t.typ], z = t.z; z.wmap = z.wmap || {};
+        z.smax = z.smax || {};
+        eintraege(t).forEach(function (s) {
+          const k = sKey(s), tt = sZeit(s), w = z.wmap[k] || 0;
+          z.wmap[k] = isFinite(tt) ? w + dt / tt : s.fi ? 0 : Math.max(0, w - dt / (s.wr ? 30 : 120));
+          if (isFinite(tt) && (!z.smax[k] || (s.I || s.x) > (z.smax[k].I || z.smax[k].x))) z.smax[k] = s; else if (!z.wmap[k]) delete z.smax[k];
+        });
+        if (z._pl) z._pe += dt;
+        if (T.fort) T.fort(t, dt);
+      });
+    }
+    function simulieren(dauer) {
+      let rest = dauer;
+      for (let n = 0; n < 400; n++) {
+        if (schmutzig) loesen();
+        let best = null;
+        teile.forEach(function (t) {
+          const T = TYP[t.typ], z = t.z; z.wmap = z.wmap || {};
+          eintraege(t).forEach(function (s) {
+            const tt = sZeit(s); if (!isFinite(tt)) return;
+            const dt = Math.max(0, (1 - (z.wmap[sKey(s)] || 0)) * tt);
+            if (!best || dt < best.dt) best = { dt: dt, tun: function () { const k = sKey(s), m = z.smax && z.smax[k] && (z.smax[k].I || z.smax[k].x) > (s.I || s.x) ? z.smax[k] : s; z.ausgeloest = true; z.wmap = {}; z.smax = {}; T.ausloesen(t, s.p, m); } };
+          });
+          if (T.plan) {
+            const p = T.plan(t);
+            if (p) {
+              if (z._pl !== p.id) { z._pl = p.id; z._pe = 0; }
+              const dt = Math.max(0, p.rest ? p.dauer : p.dauer - z._pe);
+              if (isFinite(dt) && (!best || dt < best.dt)) best = { dt: dt, tun: function () { z._pl = null; p.tun(); } };
+            } else z._pl = null;
+          }
+          if (T.ereignisse) T.ereignisse(t).forEach(function (e) { if (!best || e.dt < best.dt) best = e; });
+        });
+        const feuern = best && best.dt <= rest, schritt = feuern ? best.dt : rest;
+        if (schritt > 0) fortschreiben(schritt);
+        G.T += schritt; rest -= schritt;
+        if (!feuern) return;
+        best.tun(); schmutzig = true;
+      }
+      G.pause = true; pauseZeigen();
+      log('Simulation angehalten: sehr viele Schaltvorgänge in kurzer Zeit (Schaltung schwingt?).', 'gefahr');
+    }
+
+    // ---------- Darstellung ----------
+    const svg = $('sk-svg'), buehne = $('sk-buehne');
+    const ebAdern = sv('g', { 'class': 'sk-adern' }, svg), ebFluss = sv('g', { 'class': 'sk-fluss' }, svg), ebTeile = sv('g', { 'class': 'sk-teile' }, svg);
+    const gummi = sv('path', { 'class': 'sk-gummi', d: '' }, svg);
+    let vb = { x: -40, y: -40, w: 900, h: 600 }, auswahl = null, aderStart = null;
+    const KAT_FARBE = { Einspeisung: '#E4572E', Verteilung: '#6E6FA6', Schutz: '#C2255C', Schalten: '#0E7C86', Verbraucher: '#2B7BB9', 'Prüfen': '#8E8E8E' };
+    function klemmFarbe(label) {
+      if (label === 'L' || label === 'L1') return 'L1';
+      if (label === 'L2' || label === 'L3' || label === 'N' || label === 'PE' || label === 'PEN') return label;
+      return 'mess';
+    }
+    function geo(t) {
+      if (t.typ === 'notiz') { const zeilen = Math.max(1, Math.ceil((t.name || '').length / 34)); return { w: 240, h: 26 + zeilen * 16, kl: {}, o: [], u: [] }; }
+      const k = TYP[t.typ].klemmen(t), SP = 30, GAP = 18;
+      const reihe = function (l) { let x = 0, g0 = null; const pos = []; l.forEach(function (e, i) { if (i > 0) { x += SP; if (e[2] !== g0) x += GAP; } g0 = e[2]; pos.push(x); }); return { pos: pos, b: l.length ? x : 0 }; };
+      const o = reihe(k.o), u = reihe(k.u), gr = k.o.concat(k.u).some(function (e) { return e[2]; }), grO = k.o.some(function (e) { return e[2]; }), grU = k.u.some(function (e) { return e[2]; });
+      const w = Math.max(180, o.b + 44, u.b + 44), h = 58 + (k.o.length ? 16 : 0) + (k.u.length ? 16 : 0) + (grO ? 12 : 0) + (grU ? 12 : 0);
+      const kl0 = {};
+      k.o.forEach(function (e, i) { kl0[e[0]] = { x: (w - o.b) / 2 + o.pos[i], y: 0, s: 'o', label: e[1], gruppe: e[2] }; });
+      k.u.forEach(function (e, i) { kl0[e[0]] = { x: (w - u.b) / 2 + u.pos[i], y: h, s: 'u', label: e[1], gruppe: e[2] }; });
+      return { w: w, h: h, kl: kl0, o: k.o, u: k.u, gr: gr };
+    }
+    function klemmPos(schluessel) {
+      const i = schluessel.lastIndexOf('.'), t = teilVon(schluessel.slice(0, i)); if (!t) return null;
+      const g = geo(t), k = g.kl[schluessel.slice(i + 1)]; if (!k) return null;
+      return { x: t.x + k.x, y: t.y + k.y, s: k.s };
+    }
+    function aderPfad(a) {
+      const p = klemmPos(a.a), q = klemmPos(a.b); if (!p || !q) return null;
+      const dy = Math.abs(q.y - p.y), dx = Math.abs(q.x - p.x), off = Math.max(28, Math.min(160, dy * 0.45 + dx * 0.12));
+      const c1 = p.y + (p.s === 'o' ? -off : off), c2 = q.y + (q.s === 'o' ? -off : off);
+      return { d: 'M' + p.x + ' ' + p.y + 'C' + p.x + ' ' + c1 + ' ' + q.x + ' ' + c2 + ' ' + q.x + ' ' + q.y, mx: 0.125 * p.x + 0.375 * p.x + 0.375 * q.x + 0.125 * q.x, my: 0.125 * p.y + 0.375 * c1 + 0.375 * c2 + 0.125 * q.y };
+    }
+    function zeichnen() {
+      ebAdern.textContent = ''; ebFluss.textContent = ''; ebTeile.textContent = '';
+      adern.forEach(function (a) {
+        const pf = aderPfad(a); if (!pf) return;
+        const g = sv('g', { 'class': 'sk-ader' + (auswahl && auswahl.id === a.id ? ' gewaehlt' : '') + (a.offen ? ' offen' : ''), 'data-ader': a.id }, ebAdern);
+        a._g = g;
+        a._ueber = sv('path', { d: pf.d, 'class': 'sk-ueberlast' }, g);
+        sv('path', { d: pf.d, 'class': 'sk-unterlage' }, g);
+        sv('path', { d: pf.d, 'class': 'sk-draht', stroke: FARBEN[a.f][1] }, g);
+        if (a.f === 'PE' || a.f === 'PEN') sv('path', { d: pf.d, 'class': 'sk-gelb' }, g);
+        if (a.f === 'PEN') sv('path', { d: pf.d, 'class': 'sk-pen' }, g);
+        if (a.offen) { sv('path', { d: 'M' + (pf.mx - 7) + ' ' + (pf.my - 7) + 'l14 14m0-14l-14 14', 'class': 'sk-bruch' }, g); }
+        sv('path', { d: pf.d, 'class': 'sk-treffer' }, g);
+        a._fluss = sv('path', { d: pf.d, 'class': 'sk-strom', visibility: 'hidden' }, ebFluss); a._off = a._off || 0;
+      });
+      teile.forEach(function (t) {
+        const T = TYP[t.typ], g = geo(t), gr = sv('g', { 'class': 'sk-teil' + (auswahl && auswahl.id === t.id ? ' gewaehlt' : ''), transform: 'translate(' + t.x + ' ' + t.y + ')', 'data-teil': t.id }, ebTeile);
+        t._g = gr;
+        if (t.typ === 'notiz') {
+          sv('rect', { x: 0, y: 0, width: g.w, height: g.h, rx: 6, 'class': 'sk-notiz' }, gr);
+          const txt = (t.name || 'Notiz – Text im Feld „Bezeichnung“ eingeben').match(/.{1,34}(\s|$)|\S+/g) || [];
+          txt.forEach(function (z, i) { const e = sv('text', { x: 10, y: 20 + i * 16, 'class': 'sk-notiz-text' }, gr); e.textContent = z.trim(); });
+          return;
+        }
+        const y0 = (g.o.length ? 16 : 0) + (g.gr && g.o.some(function (e) { return e[2]; }) ? 12 : 0);
+        sv('rect', { x: 0, y: 0, width: g.w, height: g.h, rx: 8, 'class': 'sk-kasten' }, gr);
+        sv('rect', { x: 0, y: 8, width: 4, height: g.h - 16, rx: 2, fill: KAT_FARBE[T.kat] }, gr);
+        const ic = sv('g', { transform: 'translate(12 ' + (y0 + 7) + ') scale(.66)', 'class': 'sk-icon' }, gr); sv('path', { d: T.icon }, ic);
+        t._led = sv('circle', { cx: g.w - 44, cy: y0 + 15, r: 4, 'class': 'sk-led' }, gr);
+        const ti = sv('text', { x: 32, y: y0 + 20, 'class': 'sk-titel' }, gr); ti.textContent = kuerzen(name(t), (g.w - 80) / 6.8);
+        t._s1 = sv('text', { x: 12, y: y0 + 37, 'class': 'sk-status' }, gr); t._s2 = sv('text', { x: 12, y: y0 + 51, 'class': 'sk-status leise' }, gr);
+        t._maxZ = (g.w - 46) / 6;
+        if (T.aktion) { const ak = sv('g', { 'class': 'sk-aktion', 'data-aktion': t.id, transform: 'translate(' + (g.w - 20) + ' ' + (y0 + 15) + ')' }, gr); sv('circle', { r: 13 }, ak); sv('path', { d: 'M0-6v6M-4.5-3.5a6 6 0 1 0 9 0' }, ak); t._ak = ak; t._akTitel = sv('title', {}, ak); }
+        Object.keys(g.kl).forEach(function (k) {
+          const p = g.kl[k], kg = sv('g', { 'class': 'sk-klemme' + (aderStart === t.id + '.' + k ? ' start' : ''), 'data-klemme': t.id + '.' + k }, gr);
+          sv('circle', { cx: p.x, cy: p.y, r: 11, 'class': 'sk-klemme-treffer' }, kg);
+          sv('circle', { cx: p.x, cy: p.y, r: 5, fill: FARBEN[klemmFarbe(p.label)][1], 'class': 'sk-klemme-punkt' }, kg);
+          const lt = sv('text', { x: p.x, y: p.s === 'o' ? 14 : g.h - 6, 'class': 'sk-klemme-text' }, gr); lt.textContent = p.label === 'Gehäuse' ? '⏚ Gehäuse' : p.label;
+        });
+        const gruppen = {}; Object.keys(g.kl).forEach(function (k) { const p = g.kl[k]; if (!p.gruppe) return; const s = p.s + p.gruppe; gruppen[s] = gruppen[s] || { a: p.x, b: p.x, s: p.s, n: p.gruppe }; gruppen[s].a = Math.min(gruppen[s].a, p.x); gruppen[s].b = Math.max(gruppen[s].b, p.x); });
+        Object.keys(gruppen).forEach(function (s) { const q = gruppen[s], e = sv('text', { x: (q.a + q.b) / 2, y: q.s === 'o' ? 26 : g.h - 18, 'class': 'sk-gruppe' }, gr); e.textContent = q.n; });
+      });
+      aktualisieren();
+    }
+    function kuerzen(s, n) { n = Math.max(6, Math.floor(n)); return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+    function aktualisieren() {
+      teile.forEach(function (t) {
+        if (!t._s1) return;
+        const st = TYP[t.typ].status(t);
+        t._s1.textContent = kuerzen(st[0], t._maxZ); t._s2.textContent = kuerzen(st[1], t._maxZ);
+        t._led.setAttribute('class', 'sk-led ' + (st[2] || 'aus'));
+        if (t._ak) { const a = TYP[t.typ].aktion(t); t._ak.style.display = a ? '' : 'none'; t._akTitel.textContent = a ? a[0] : ''; }
+      });
+      adern.forEach(function (a) {
+        if (!a._g) return;
+        const ueber = a._I > IZ[a.q] * 1.05;
+        a._ueber.setAttribute('class', 'sk-ueberlast' + (ueber ? ' an' : ''));
+        if (a._fluss) a._fluss.setAttribute('visibility', a._I > 0.005 ? 'visible' : 'hidden');
+      });
+    }
+    function flussBewegen(dt) {
+      adern.forEach(function (a) {
+        if (!a._fluss || !(a._I > 0.005)) return;
+        const v = 12 + 28 * Math.log(1 + a._I / 0.05) / Math.LN10;
+        a._off = (a._off - v * dt * (a._dir || 1)) % 1000;
+        a._fluss.setAttribute('stroke-dashoffset', a._off.toFixed(1));
+      });
+    }
+    function ansichtSetzen() {
+      const r = svg.getBoundingClientRect(), v = r.width > 0 ? r.height / r.width : 0.66;
+      vb.h = vb.w * v;
+      svg.setAttribute('viewBox', vb.x + ' ' + vb.y + ' ' + vb.w + ' ' + vb.h);
+    }
+    function einpassen() {
+      if (!teile.length) { vb = { x: -40, y: -40, w: 900, h: 600 }; ansichtSetzen(); return; }
+      let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+      teile.forEach(function (t) { const g = geo(t); x0 = Math.min(x0, t.x); y0 = Math.min(y0, t.y); x1 = Math.max(x1, t.x + g.w); y1 = Math.max(y1, t.y + g.h); });
+      const r = svg.getBoundingClientRect(), v = r.width > 0 ? r.height / r.width : 0.66, rand = 50;
+      let w = Math.max(x1 - x0 + 2 * rand, (y1 - y0 + 2 * rand) / v, 300);
+      const grenzeW = Math.max(r.width, 300) * 1.7; // nicht kleiner als etwa 60 %, sonst ist die Schrift unlesbar
+      if (w > grenzeW) { w = grenzeW; vb = { x: x0 - rand / 2, y: y0 - rand / 2, w: w, h: w * v }; }
+      else vb = { x: (x0 + x1) / 2 - w / 2, y: (y0 + y1) / 2 - w * v / 2, w: w, h: w * v };
+      ansichtSetzen();
+    }
+    function zoom(f, cx, cy) {
+      const nw = Math.min(6000, Math.max(220, vb.w * f)), k = nw / vb.w;
+      if (cx === undefined) { cx = vb.x + vb.w / 2; cy = vb.y + vb.h / 2; }
+      vb.x = cx - (cx - vb.x) * k; vb.y = cy - (cy - vb.y) * k; vb.w = nw; ansichtSetzen();
+    }
+    function punkt(ev) { const m = svg.getScreenCTM(); if (!m) return { x: 0, y: 0 }; const p = svg.createSVGPoint(); p.x = ev.clientX; p.y = ev.clientY; const q = p.matrixTransform(m.inverse()); return { x: q.x, y: q.y }; }
+
+    // ---------- Bedienung auf der Fläche ----------
+    const zeiger = {}; let zug = null, pinch = null;
+    svg.addEventListener('pointerdown', function (ev) {
+      zeiger[ev.pointerId] = { x: ev.clientX, y: ev.clientY };
+      const ids = Object.keys(zeiger);
+      if (ids.length === 2) { const a = zeiger[ids[0]], b = zeiger[ids[1]]; pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), w: vb.w }; zug = null; gummi.setAttribute('d', ''); return; }
+      if (ids.length > 2) return;
+      try { svg.setPointerCapture(ev.pointerId); } catch (e) { /* egal */ }
+      const ziel = ev.target.closest ? ev.target : null, p = punkt(ev);
+      const akt = ziel && ziel.closest('[data-aktion]'), klm = ziel && ziel.closest('[data-klemme]'), te = ziel && ziel.closest('[data-teil]'), ad = ziel && ziel.closest('[data-ader]');
+      zug = { start: p, sx: ev.clientX, sy: ev.clientY, bewegt: false };
+      if (akt) zug.art = 'aktion', zug.id = akt.getAttribute('data-aktion');
+      else if (klm) zug.art = 'klemme', zug.id = klm.getAttribute('data-klemme');
+      else if (te) { const t = teilVon(te.getAttribute('data-teil')); zug.art = 'teil'; zug.id = t.id; zug.tx = t.x; zug.ty = t.y; }
+      else if (ad) zug.art = 'ader', zug.id = ad.getAttribute('data-ader');
+      else { zug.art = 'flaeche'; zug.vx = vb.x; zug.vy = vb.y; zug.k = vb.w / svg.getBoundingClientRect().width; }
+      ev.preventDefault();
+    });
+    svg.addEventListener('pointermove', function (ev) {
+      if (zeiger[ev.pointerId]) zeiger[ev.pointerId] = { x: ev.clientX, y: ev.clientY };
+      if (pinch) { const ids = Object.keys(zeiger); if (ids.length < 2) return; const a = zeiger[ids[0]], b = zeiger[ids[1]], d = Math.hypot(a.x - b.x, a.y - b.y); const r = svg.getBoundingClientRect(); const m = punkt({ clientX: (a.x + b.x) / 2, clientY: (a.y + b.y) / 2 }); zoom(pinch.w * pinch.d / Math.max(d, 10) / vb.w, m.x, m.y); void r; return; }
+      if (!zug) return;
+      if (!zug.bewegt && Math.hypot(ev.clientX - zug.sx, ev.clientY - zug.sy) > 5) { zug.bewegt = true; if (zug.art === 'teil') merke(); }
+      if (!zug.bewegt) return;
+      const p = punkt(ev);
+      if (zug.art === 'teil') {
+        const t = teilVon(zug.id); t.x = Math.round((zug.tx + p.x - zug.start.x) / 10) * 10; t.y = Math.round((zug.ty + p.y - zug.start.y) / 10) * 10;
+        t._g.setAttribute('transform', 'translate(' + t.x + ' ' + t.y + ')');
+        adern.forEach(function (a) { if (a.a.indexOf(t.id + '.') === 0 || a.b.indexOf(t.id + '.') === 0) { const pf = aderPfad(a); if (pf && a._g) { Array.prototype.forEach.call(a._g.querySelectorAll('path:not(.sk-bruch)'), function (x) { x.setAttribute('d', pf.d); }); a._fluss.setAttribute('d', pf.d); } } });
+      } else if (zug.art === 'flaeche') { vb.x = zug.vx - (ev.clientX - zug.sx) * zug.k; vb.y = zug.vy - (ev.clientY - zug.sy) * zug.k; ansichtSetzen(); }
+      else if (zug.art === 'klemme') { const q = klemmPos(zug.id); if (q) gummi.setAttribute('d', 'M' + q.x + ' ' + q.y + 'L' + p.x + ' ' + p.y); }
+    });
+    function zugEnde(ev) {
+      delete zeiger[ev.pointerId];
+      if (pinch) { if (Object.keys(zeiger).length < 2) pinch = null; return; }
+      if (!zug) return;
+      const z = zug; zug = null; gummi.setAttribute('d', '');
+      if (z.art === 'aktion' && !z.bewegt) { const t = teilVon(z.id), a = t && TYP[t.typ].aktion(t); if (a) aktionAusfuehren(a[1]); auswaehlen({ art: 'teil', id: z.id }); return; }
+      if (z.art === 'klemme') {
+        let ziel = null;
+        if (z.bewegt) { const e = document.elementFromPoint(ev.clientX, ev.clientY), k = e && e.closest && e.closest('[data-klemme]'); ziel = k ? k.getAttribute('data-klemme') : null; if (ziel && ziel !== z.id) aderNeu(z.id, ziel); return; }
+        if (aderStart && aderStart !== z.id) { aderNeu(aderStart, z.id); aderStart = null; zeichnen(); return; }
+        aderStart = aderStart === z.id ? null : z.id; hinweis(aderStart ? 'Ader beginnt an ' + klemmName(aderStart) + ' – jetzt die zweite Klemme antippen.' : ''); zeichnen(); return;
+      }
+      if (z.art === 'teil') { if (z.bewegt) { speichern(); return; } auswaehlen({ art: 'teil', id: z.id }); return; }
+      if (z.art === 'ader' && !z.bewegt) { auswaehlen({ art: 'ader', id: z.id }); return; }
+      if (z.art === 'flaeche' && !z.bewegt) { if (aderStart) { aderStart = null; hinweis(''); zeichnen(); } auswaehlen(null); }
+    }
+    svg.addEventListener('pointerup', zugEnde);
+    svg.addEventListener('pointercancel', function (ev) { delete zeiger[ev.pointerId]; zug = null; pinch = null; gummi.setAttribute('d', ''); });
+    svg.addEventListener('wheel', function (ev) { if (!ev.ctrlKey && !ev.metaKey && !buehne.classList.contains('voll')) return; ev.preventDefault(); const p = punkt(ev); zoom(ev.deltaY > 0 ? 1.15 : 1 / 1.15, p.x, p.y); }, { passive: false });
+    window.addEventListener('resize', ansichtSetzen);
+    document.addEventListener('keydown', function (ev) {
+      const tag = (ev.target.tagName || '').toLowerCase(); if (tag === 'input' || tag === 'select' || tag === 'textarea') return;
+      if ((ev.key === 'Delete' || ev.key === 'Backspace') && auswahl) { ev.preventDefault(); auswahlLoeschen(); }
+      else if (ev.key === 'Escape') { aderStart = null; hinweis(''); auswaehlen(null); if (buehne.classList.contains('voll')) vollbild(false); }
+      else if ((ev.ctrlKey || ev.metaKey) && ev.key.toLowerCase() === 'z') { ev.preventDefault(); rueckgaengig(); }
+    });
+    function klemmName(s) { const i = s.lastIndexOf('.'), t = teilVon(s.slice(0, i)); if (!t) return s; const g = geo(t), k = g.kl[s.slice(i + 1)]; return name(t) + ' ' + (k ? (k.gruppe ? k.gruppe + ' ' : '') + k.label : ''); }
+    function hinweis(t) { $('sk-hinweis').textContent = t; $('sk-hinweis').hidden = !t; }
+    function aderNeu(a, b) {
+      if (adern.length >= MAX_ADERN) { hinweis('Höchstens ' + MAX_ADERN + ' Adern.'); return; }
+      if (a === b || adern.some(function (x) { return (x.a === a && x.b === b) || (x.a === b && x.b === a); })) return;
+      merke();
+      const la = klemmPos(a) && geo(teilVon(a.slice(0, a.lastIndexOf('.')))).kl[a.slice(a.lastIndexOf('.') + 1)].label, lb = geo(teilVon(b.slice(0, b.lastIndexOf('.')))).kl[b.slice(b.lastIndexOf('.') + 1)].label;
+      let f = klemmFarbe(la); if (f === 'mess') f = klemmFarbe(lb);
+      const ta = teilVon(a.slice(0, a.lastIndexOf('.'))), tb = teilVon(b.slice(0, b.lastIndexOf('.')));
+      const haus = ['netz', 'hak'].indexOf(ta.typ) >= 0 && ['netz', 'hak'].indexOf(tb.typ) >= 0, mess = ['mensch', 'messgeraet', 'fehler'].indexOf(ta.typ) >= 0 || ['mensch', 'messgeraet', 'fehler'].indexOf(tb.typ) >= 0;
+      const ad = { id: 'a' + (P.nr++), a: a, b: b, f: f, q: haus ? 25 : mess ? 1.5 : 2.5, l: haus ? 20 : mess ? 1 : 3, offen: false };
+      adern.push(ad); schmutzig = true; hinweis(''); speichern(); zeichnen(); auswaehlen({ art: 'ader', id: ad.id });
+    }
+    function teilNeu(typ, x, y) {
+      if (teile.length >= MAX_TEILE) { hinweis('Höchstens ' + MAX_TEILE + ' Bauteile.'); return null; }
+      const T = TYP[typ], t = { id: 't' + (P.nr++), typ: typ, x: Math.round(x / 10) * 10, y: Math.round(y / 10) * 10, name: '', par: {}, st: JSON.parse(JSON.stringify(T.st || {})) };
+      T.par.forEach(function (p) { t.par[p.k] = p.std; });
+      zInit(t); teile.push(t); return t;
+    }
+    function auswahlLoeschen() {
+      if (!auswahl) return; merke();
+      if (auswahl.art === 'teil') { const id = auswahl.id; P.teile = teile = teile.filter(function (t) { return t.id !== id; }); P.adern = adern = adern.filter(function (a) { return a.a.indexOf(id + '.') !== 0 && a.b.indexOf(id + '.') !== 0; }); }
+      else P.adern = adern = adern.filter(function (a) { return a.id !== auswahl.id; });
+      auswahl = null; schmutzig = true; speichern(); zeichnen(); panelZeigen();
+    }
+    function aktionAusfuehren(f) { G.T0 = G.T; f(); schmutzig = true; speichern(); if (G.pause) loesen(); aktualisieren(); panelWerte(); protokollZeigen(); }
+
+    // ---------- Rückgängig ----------
+    let verlauf = [];
+    function merke() { verlauf.push(JSON.stringify(planDaten())); if (verlauf.length > 60) verlauf.shift(); $('sk-rueck').disabled = false; }
+    function rueckgaengig() { const s = verlauf.pop(); if (!s) return; laden(JSON.parse(s), true); $('sk-rueck').disabled = !verlauf.length; speichern(); }
+
+    // ---------- Eigenschaften ----------
+    function auswaehlen(a) {
+      auswahl = a;
+      Array.prototype.forEach.call(svg.querySelectorAll('.gewaehlt'), function (x) { x.classList.remove('gewaehlt'); });
+      if (a) { const o = a.art === 'teil' ? teilVon(a.id) : aderVon(a.id); if (o && o._g) o._g.classList.add('gewaehlt'); }
+      $('sk-loeschen').disabled = !a; panelZeigen();
+    }
+    let panelWerteEl = null;
+    function panelZeigen() {
+      const box = $('sk-auswahl'); box.textContent = ''; panelWerteEl = null;
+      if (!auswahl) {
+        box.append(kn('h3', '', 'Bedienung'));
+        const ul = kn('ul', 'sk-hilfe');
+        ['„+ Bauteil“ setzt ein Bauteil in die Mitte; verschieben durch Ziehen.', 'Ader: Klemme antippen, dann die zweite Klemme – oder von Klemme zu Klemme ziehen. Mehrere Adern an einer Klemme sind erlaubt.', 'Bauteil oder Ader antippen: hier erscheinen Einstellungen, Messwerte und Fehler zum Auslösen.', 'Runder Knopf am Bauteil: schalten, Netzausfall, Fehler, Wiedereinschalten.', 'Fläche ziehen verschiebt die Ansicht; zoomen mit zwei Fingern, den Knöpfen oder Strg + Mausrad.', 'Die orangen Punkte zeigen den Strom: je schneller, desto größer. Rot hinterlegte Adern sind überlastet.'].forEach(function (x) { ul.append(kn('li', '', x)); });
+        box.append(ul); return;
+      }
+      if (auswahl.art === 'ader') { aderPanel(box, aderVon(auswahl.id)); return; }
+      const t = teilVon(auswahl.id); if (!t) return;
+      const T = TYP[t.typ];
+      box.append(kn('h3', '', T.name));
+      const nz = kn('label', 'sk-feld'); nz.append(kn('span', '', t.typ === 'notiz' ? 'Text' : 'Bezeichnung'));
+      const ni = kn('input'); ni.type = 'text'; ni.maxLength = t.typ === 'notiz' ? 400 : 24; ni.value = t.name; ni.placeholder = T.kurz; ni.setAttribute('data-nicht-merken', '');
+      ni.addEventListener('change', function () { merke(); t.name = ni.value.trim().slice(0, ni.maxLength); speichern(); zeichnen(); });
+      nz.append(ni); box.append(nz);
+      const kn0 = kn('div', 'sk-knoepfe');
+      const a = T.aktion && T.aktion(t); if (a) { const b = kn('button', 'knopf-haupt', a[0]); b.type = 'button'; b.addEventListener('click', function () { aktionAusfuehren(a[1]); panelZeigen(); }); kn0.append(b); }
+      (T.aktionen ? T.aktionen(t) : []).forEach(function (x) { const b = kn('button', 'knopf', x[0]); b.type = 'button'; b.addEventListener('click', function () { aktionAusfuehren(x[1]); panelZeigen(); }); kn0.append(b); });
+      if (kn0.children.length) box.append(kn0);
+      if (T.par.length) {
+        const f = kn('div', 'sk-felder');
+        T.par.forEach(function (p) {
+          const l = kn('label', 'sk-feld'); l.append(kn('span', '', p.name + (p.e && !p.werte ? ' (' + p.e + ')' : '')));
+          let e;
+          if (p.werte) { e = kn('select'); p.werte.forEach(function (w) { const o = kn('option', '', w[1]); o.value = String(w[0]); e.append(o); }); e.value = String(t.par[p.k]); }
+          else { e = kn('input'); e.type = 'number'; e.min = p.min; e.max = p.max; e.step = 'any'; e.inputMode = 'decimal'; e.value = t.par[p.k]; }
+          e.setAttribute('data-nicht-merken', '');
+          e.addEventListener('change', function () {
+            let v = p.werte ? p.werte.filter(function (w) { return String(w[0]) === e.value; })[0] : null;
+            if (p.werte) { if (!v) return; v = v[0]; } else { v = Number(String(e.value).replace(',', '.')); if (!isFinite(v)) { e.value = t.par[p.k]; return; } v = Math.min(p.max, Math.max(p.min, v)); e.value = v; }
+            merke(); t.par[p.k] = v;
+            if (p.vorlage && p.vorlage[v]) { const vl = p.vorlage[v]; t.par.p = vl[1]; t.par.cos = vl[2]; if (t.typ === 'last') t.par.sk = vl[3]; else t.par.sch = vl[3]; }
+            parGeaendert(t); panelZeigen();
+          });
+          l.append(e); f.append(l);
+        });
+        box.append(f);
+      }
+      panelWerteEl = kn('div', 'sk-werte'); box.append(panelWerteEl); panelWerte();
+      const kn1 = kn('div', 'sk-knoepfe');
+      const du = kn('button', 'knopf', 'Duplizieren'); du.type = 'button'; du.addEventListener('click', function () { merke(); const n = teilNeu(t.typ, t.x + 30, t.y + 30); if (!n) return; n.par = JSON.parse(JSON.stringify(t.par)); n.st = JSON.parse(JSON.stringify(t.st)); zInit(n); schmutzig = true; speichern(); zeichnen(); auswaehlen({ art: 'teil', id: n.id }); });
+      const lo = kn('button', 'knopf', 'Löschen'); lo.type = 'button'; lo.addEventListener('click', auswahlLoeschen);
+      kn1.append(du, lo); box.append(kn1);
+    }
+    function parGeaendert(t) {
+      const da = klemmenListe(t).map(function (e) { return t.id + '.' + e[0]; });
+      const vorher = adern.length;
+      P.adern = adern = adern.filter(function (a) { return (a.a.indexOf(t.id + '.') !== 0 || da.indexOf(a.a) >= 0) && (a.b.indexOf(t.id + '.') !== 0 || da.indexOf(a.b) >= 0); });
+      if (adern.length < vorher) hinweis((vorher - adern.length) + (vorher - adern.length === 1 ? ' Ader wurde' : ' Adern wurden') + ' entfernt, weil die Klemme nicht mehr existiert.');
+      const st = t.st; zInit(t); t.st = st;
+      if (t.typ === 'notstrom') t.z.lauf = t.par.start === 'hand' ? !!t.st.ein : false;
+      schmutzig = true; speichern(); zeichnen();
+    }
+    function panelWerte() {
+      if (!panelWerteEl || !auswahl || auswahl.art !== 'teil') return;
+      const t = teilVon(auswahl.id); if (!t) return;
+      const T = TYP[t.typ], zeilen = T.werte ? T.werte(t) : [];
+      const g = geo(t);
+      Object.keys(g.kl).forEach(function (k) { const p = g.kl[k]; if (p.label === 'Gehäuse' && t.typ.indexOf('last') === 0) return; zeilen.push(['Klemme ' + (p.gruppe ? p.gruppe + ' ' : '') + p.label + ' gegen Erde', fU(uBetrag(kl(t, k)))]); });
+      panelWerteEl.textContent = '';
+      if (!zeilen.length) return;
+      const tb = kn('table', 'sk-tabelle'); zeilen.forEach(function (z) { const tr = kn('tr'); tr.append(kn('th', '', z[0]), kn('td', '', z[1])); tb.append(tr); });
+      panelWerteEl.append(kn('h4', '', 'Messwerte'), tb);
+    }
+    function aderPanel(box, a) {
+      if (!a) return;
+      box.append(kn('h3', '', 'Ader'), kn('p', 'sk-klein', klemmName(a.a) + ' → ' + klemmName(a.b)));
+      const f = kn('div', 'sk-felder');
+      const feld = function (titel, el, fn) { const l = kn('label', 'sk-feld'); l.append(kn('span', '', titel), el); el.setAttribute('data-nicht-merken', ''); el.addEventListener('change', function () { merke(); fn(); schmutzig = true; speichern(); zeichnen(); panelZeigen(); }); f.append(l); };
+      const fa = kn('select'); Object.keys(FARBEN).forEach(function (k) { const o = kn('option', '', FARBEN[k][0]); o.value = k; fa.append(o); }); fa.value = a.f;
+      feld('Farbe', fa, function () { if (FARBEN[fa.value]) a.f = fa.value; });
+      const q = kn('select'); QUERSCHNITTE.forEach(function (x) { const o = kn('option', '', zahl(x) + ' mm²'); o.value = String(x); q.append(o); }); q.value = String(a.q);
+      feld('Querschnitt (Kupfer)', q, function () { const v = Number(q.value); if (QUERSCHNITTE.indexOf(v) >= 0) a.q = v; });
+      const l = kn('input'); l.type = 'number'; l.min = 0.1; l.max = 1000; l.step = 'any'; l.value = a.l; l.inputMode = 'decimal';
+      feld('Länge (m)', l, function () { const v = Number(String(l.value).replace(',', '.')); if (isFinite(v)) a.l = Math.min(1000, Math.max(0.1, v)); });
+      box.append(f);
+      const kn0 = kn('div', 'sk-knoepfe');
+      const ub = kn('button', a.offen ? 'knopf-haupt' : 'knopf', a.offen ? 'Wieder verbinden' : 'Unterbrechen (Aderbruch)'); ub.type = 'button';
+      ub.addEventListener('click', function () { G.T0 = G.T; a.offen = !a.offen; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + (a.offen ? ' unterbrochen.' : ' wieder verbunden.'), a.offen ? 'gefahr' : 'info'); schmutzig = true; speichern(); zeichnen(); panelZeigen(); protokollZeigen(); });
+      const lo = kn('button', 'knopf', 'Löschen'); lo.type = 'button'; lo.addEventListener('click', auswahlLoeschen);
+      kn0.append(ub, lo); box.append(kn0);
+      panelWerteEl = kn('div', 'sk-werte'); box.append(panelWerteEl); aderWerte();
+    }
+    function aderWerte() {
+      if (!panelWerteEl || !auswahl || auswahl.art !== 'ader') return;
+      const a = aderVon(auswahl.id); if (!a) return;
+      const R = 0.0178 * a.l / a.q, I = a._I || 0, tb = kn('table', 'sk-tabelle');
+      [['Strom', a.offen ? 'unterbrochen' : fI(I)], ['Widerstand', zahl(R * 1000, 1) + ' mΩ'], ['Spannungsfall', fU(I * R)], ['Belastbarkeit (Näherung)', IZ[a.q] + ' A' + (I > IZ[a.q] ? ' – überlastet!' : ' (' + Math.round(I / IZ[a.q] * 100) + ' %)')], ['Spannung über der Unterbrechung', a.offen ? fU(C.betrag(uk(a.a, a.b))) : '–']].forEach(function (z) { const tr = kn('tr'); tr.append(kn('th', '', z[0]), kn('td', '', z[1])); tb.append(tr); });
+      panelWerteEl.textContent = ''; panelWerteEl.append(kn('h4', '', 'Messwerte'), tb);
+    }
+
+    // ---------- Palette ----------
+    (function () {
+      const pal = $('sk-palette'), kats = ['Einspeisung', 'Verteilung', 'Schutz', 'Schalten', 'Verbraucher', 'Prüfen'];
+      kats.forEach(function (k) {
+        const g = kn('div', 'sk-pal-gruppe'); g.append(kn('h4', '', k));
+        Object.keys(TYP).filter(function (x) { return TYP[x].kat === k; }).forEach(function (x) {
+          const b = kn('button', 'sk-pal-knopf'); b.type = 'button'; b.style.setProperty('--farbe', KAT_FARBE[k]);
+          const s = document.createElementNS(SVGNS, 'svg'); s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('aria-hidden', 'true'); sv('path', { d: TYP[x].icon }, s);
+          b.append(s, kn('span', '', TYP[x].name));
+          b.addEventListener('click', function () {
+            merke(); const t = teilNeu(x, vb.x + vb.w / 2 - 80 + (teile.length % 5) * 20, vb.y + vb.h / 2 - 40 + (teile.length % 5) * 20); if (!t) return;
+            schmutzig = true; speichern(); zeichnen(); auswaehlen({ art: 'teil', id: t.id }); pal.hidden = true; $('sk-plus').setAttribute('aria-expanded', 'false');
+          });
+          g.append(b);
+        });
+        pal.append(g);
+      });
+      $('sk-plus').addEventListener('click', function () { pal.hidden = !pal.hidden; this.setAttribute('aria-expanded', String(!pal.hidden)); });
+    })();
+
+    // ---------- Protokoll und Bilanz ----------
+    function protokollZeigen() {
+      protokollNeu = false;
+      const ol = $('sk-protokoll'); ol.textContent = '';
+      if (!protokoll.length) { ol.append(kn('li', 'leise', 'Noch keine Ereignisse. Schalte etwas oder löse einen Fehler aus.')); return; }
+      protokoll.slice().reverse().slice(0, 60).forEach(function (e) {
+        const li = kn('li', 'sk-ev ' + e.art);
+        li.append(kn('time', '', e.T - e.T0 < 1e-9 ? 'jetzt' : '+' + fT(e.T - e.T0)), kn('span', '', e.text));
+        ol.append(li);
+      });
+    }
+    function bilanz() {
+      let netz = 0, pv = 0, akku = 0, agg = 0, last = 0, hatNetz = false, hatPv = false, hatAkku = false, hatAgg = false;
+      teile.forEach(function (t) {
+        const z = t.z;
+        if (t.typ === 'netz') { hatNetz = true; netz += quellenP(t); }
+        else if (t.typ === 'pvwr') { hatPv = true; pv += z.P || 0; }
+        else if (t.typ === 'hybrid') { hatPv = hatPv || t.par.pv > 0; hatAkku = true; pv += z.PpvGenutzt || 0; akku += z.pB || 0; }
+        else if (t.typ === 'notstrom') { if (t.par.art === 'wr') { hatAkku = true; akku += z.P || 0; } else { hatAgg = true; agg += z.P || 0; } }
+        else if (t.typ === 'last' || t.typ === 'last3') last += z.P || 0;
+      });
+      const box = $('sk-bilanz'); box.textContent = '';
+      const feld = function (t, v, k) { const d = kn('div', 'sk-bil ' + (k || '')); d.append(kn('small', '', t), kn('b', '', v)); box.append(d); };
+      if (hatNetz) feld('Netz', (netz >= 0 ? '' : '−') + fP(Math.abs(netz)), netz < -1 ? 'gut' : '');
+      if (hatPv) feld('PV', fP(pv), pv > 1 ? 'gut' : '');
+      if (hatAkku) feld('Akku', (akku > 20 ? 'entlädt ' : akku < -20 ? 'lädt ' : '') + fP(Math.abs(akku)));
+      if (hatAgg) feld('Aggregat', fP(agg));
+      feld('Verbraucher', fP(last));
+    }
+    function uhr() { $('sk-zeit').textContent = 'Simulationszeit ' + fT(G.T); }
+    function pauseZeigen() { $('sk-pause').textContent = G.pause ? '▶ Weiter' : '⏸ Pause'; $('sk-pause').setAttribute('aria-pressed', G.pause ? 'true' : 'false'); }
+
+    // ---------- Speichern, Laden, Prüfen ----------
+    function planDaten() {
+      return { v: 1, sonne: G.sonne, nr: P.nr, teile: teile.map(function (t) { return { id: t.id, typ: t.typ, x: t.x, y: t.y, name: t.name, par: t.par, st: t.st }; }), adern: adern.map(function (a) { return { id: a.id, a: a.a, b: a.b, f: a.f, q: a.q, l: a.l, offen: !!a.offen }; }) };
+    }
+    function pruefen(roh) {
+      if (!roh || typeof roh !== 'object' || !Array.isArray(roh.teile) || !Array.isArray(roh.adern) || roh.teile.length > MAX_TEILE || roh.adern.length > MAX_ADERN) return null;
+      const zahlIn = function (v, a, b, s) { v = Number(v); return isFinite(v) ? Math.min(b, Math.max(a, v)) : s; };
+      const ids = {}, aus = { v: 1, sonne: zahlIn(roh.sonne, 0, 1, 0.7), nr: 1, teile: [], adern: [] };
+      let maxNr = 0;
+      for (let i = 0; i < roh.teile.length; i++) {
+        const r = roh.teile[i]; if (!r || typeof r !== 'object' || !TYP[r.typ] || !Object.prototype.hasOwnProperty.call(TYP, r.typ)) return null;
+        const id = String(r.id || ''); if (!/^t\d{1,6}$/.test(id) || ids[id]) return null; ids[id] = 1; maxNr = Math.max(maxNr, Number(id.slice(1)));
+        const T = TYP[r.typ], par = {}, rp = r.par && typeof r.par === 'object' ? r.par : {};
+        T.par.forEach(function (p) {
+          if (p.werte) { const w = p.werte.filter(function (x) { return String(x[0]) === String(rp[p.k]); })[0]; par[p.k] = w ? w[0] : p.std; }
+          else par[p.k] = zahlIn(rp[p.k], p.min, p.max, p.std);
+        });
+        const st = JSON.parse(JSON.stringify(T.st || {})), rs = r.st && typeof r.st === 'object' ? r.st : {};
+        Object.keys(st).forEach(function (k) {
+          if (typeof st[k] === 'boolean') st[k] = typeof rs[k] === 'boolean' ? rs[k] : st[k];
+          else if (Array.isArray(st[k])) { if (Array.isArray(rs[k]) && rs[k].length === st[k].length) st[k] = rs[k].map(function (x) { return x ? 1 : 0; }); }
+          else if (typeof st[k] === 'number') st[k] = zahlIn(rs[k], 0, k === 'soc' ? 100 : 1e9, st[k]);
+          else if (k === 'pos') st[k] = ['netz', '0', 'not'].indexOf(rs[k]) >= 0 ? rs[k] : 'netz';
+        });
+        aus.teile.push({ id: id, typ: r.typ, x: Math.round(zahlIn(r.x, -20000, 20000, 0)), y: Math.round(zahlIn(r.y, -20000, 20000, 0)), name: typeof r.name === 'string' ? r.name.slice(0, r.typ === 'notiz' ? 400 : 24) : '', par: par, st: st });
+      }
+      const da = {}; aus.teile.forEach(function (t) { klemmenListe(t).forEach(function (e) { da[t.id + '.' + e[0]] = 1; }); });
+      const aids = {};
+      for (let i = 0; i < roh.adern.length; i++) {
+        const r = roh.adern[i]; if (!r || typeof r !== 'object') return null;
+        const id = String(r.id || ''); if (!/^a\d{1,6}$/.test(id) || aids[id]) return null; aids[id] = 1; maxNr = Math.max(maxNr, Number(id.slice(1)));
+        const a = String(r.a || ''), b = String(r.b || '');
+        if (!da[a] || !da[b] || a === b) continue;
+        aus.adern.push({ id: id, a: a, b: b, f: Object.prototype.hasOwnProperty.call(FARBEN, r.f) ? r.f : 'L1', q: QUERSCHNITTE.indexOf(Number(r.q)) >= 0 ? Number(r.q) : 2.5, l: zahlIn(r.l, 0.1, 1000, 3), offen: r.offen === true });
+      }
+      aus.nr = Math.max(zahlIn(roh.nr, 1, 1e6, 1), maxNr + 1);
+      return aus;
+    }
+    function laden(d, ohneAnsicht) {
+      P = { v: 1, teile: d.teile, adern: d.adern, sonne: d.sonne, nr: d.nr }; teile = P.teile; adern = P.adern;
+      G.sonne = d.sonne; $('sk-sonne').value = Math.round(G.sonne * 100); sonneZeigen();
+      teile.forEach(zInit);
+      teile.forEach(function (t) { if (t.typ === 'notstrom') t.z.lauf = t.par.start === 'hand' ? !!t.st.ein : false; });
+      auswahl = null; aderStart = null; schmutzig = true;
+      loesen(); zeichnen(); panelZeigen();
+      if (!ohneAnsicht) einpassen();
+    }
+    let speicherUhr = null;
+    function speichernJetzt() { try { localStorage.setItem(SPEICHER, JSON.stringify(planDaten())); } catch (e) { /* ohne Speicher */ } }
+    function speichern() { clearTimeout(speicherUhr); speicherUhr = setTimeout(speichernJetzt, 400); }
+    window.addEventListener('pagehide', function () { clearTimeout(speicherUhr); speichernJetzt(); });
+
+    // ---------- Beispiele ----------
+    function baue(fn) {
+      const d = { v: 1, sonne: 0.7, nr: 1, teile: [], adern: [] };
+      const T = function (typ, x, y, par, st, nm) {
+        const t = { id: 't' + (d.nr++), typ: typ, x: x, y: y, name: nm || '', par: {}, st: JSON.parse(JSON.stringify(TYP[typ].st || {})) };
+        TYP[typ].par.forEach(function (p) { t.par[p.k] = p.std; }); Object.keys(par || {}).forEach(function (k) { t.par[k] = par[k]; }); Object.keys(st || {}).forEach(function (k) { t.st[k] = st[k]; });
+        const vl = TYP[typ].par.filter(function (p) { return p.vorlage; })[0];
+        if (vl && par && par[vl.k] && !('p' in par)) { const v = vl.vorlage[par[vl.k]]; t.par.p = v[1]; t.par.cos = v[2]; if (typ === 'last') t.par.sk = v[3]; else t.par.sch = v[3]; }
+        d.teile.push(t); return t.id;
+      };
+      const A = function (a, ka, b, kb, f, q, l) {
+        const ta = d.teile.filter(function (x) { return x.id === a; })[0];
+        let farbe = f; if (!farbe) { const lab = klemmenListe(ta).filter(function (e) { return e[0] === ka; })[0]; farbe = klemmFarbe(lab ? lab[1] : ''); }
+        d.adern.push({ id: 'a' + (d.nr++), a: a + '.' + ka, b: b + '.' + kb, f: farbe, q: q || 2.5, l: l || 3, offen: false });
+      };
+      const L3 = function (a, va, b, vb, q, l, mitN, nA, nB) { ['L1', 'L2', 'L3'].forEach(function (x) { A(a, va + x, b, vb + x, null, q, l); }); if (mitN) A(a, nA || va + 'N', b, nB || vb + 'N', 'N', q, l); };
+      fn(T, A, L3, d);
+      return d;
+    }
+    function hausanschluss(T, A, L3, sys) { // Ortsnetz, HAK, Zähler, Haupterdungsschiene mit Fundamenterder
+      const tt = sys === 'TT';
+      const n = T('netz', 0, 0, { system: tt ? 'TT' : 'TN' }, null, 'Ortsnetz'), h = T('hak', 0, 140, { nl: tt ? 'N' : 'PEN' }, null, 'HAK'), z = T('zaehler', 0, 300, {}, null, 'Zähler');
+      const pas = T('schiene', 260, 300, { art: 'PAS', n: 6 }, null, 'HES'), e = T('erder', 480, 300, { r: tt ? 30 : 2 }, null, tt ? 'Staberder' : 'Fundamenterder');
+      L3(n, '', h, 'e', 35, 25); A(n, tt ? 'N' : 'PEN', h, 'ePEN', tt ? 'N' : 'PEN', 35, 25);
+      L3(h, 'a', z, 'e', 16, 2);
+      if (tt) A(h, 'aPEN', z, 'eN', 'N', 16, 2);
+      else { A(h, 'aPEN', pas, 'k1', 'PEN', 16, 2); A(pas, 'k2', z, 'eN', 'N', 16, 1); }
+      A(pas, 'k3', e, 'E', 'PE', 16, 5);
+      return { netz: n, hak: h, z: z, pas: pas, erder: e };
+    }
+    const BEISPIELE = {
+      tncs: ['TN-C-S: Hausanschluss bis zur Steckdose, Körperschluss', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const fi = T('fi', 0, 470, { pole: 4, idn: 30 }, null, 'Q1 FI');
+          const f1 = T('ls', 0, 640, { pole: 1, kenn: 'B', in: 16 }, null, 'F1'), f2 = T('ls', 200, 640, { pole: 1, kenn: 'B', in: 10 }, null, 'F2');
+          const wk = T('last', 0, 800, { vorlage: 'wk' }, null, 'Wasserkocher'), la = T('last', 220, 800, { vorlage: 'lampe' }, null, 'Lampe');
+          const m = T('mensch', 0, 980, { rst: 200 }, null, 'Person');
+          T('notiz', 260, 20, {}, null, 'Wasserkocher antippen, dann „Körperschluss“: Der Strom fließt über den Schutzleiter, der LS F1 schaltet in rund 10 ms ab. Danach Schutzleiter-Ader unterbrechen und noch einmal probieren.');
+          L3(h.z, 'a', fi, 'e', 10, 1, true);
+          A(fi, 'aL1', f1, 'eL', null, 2.5, 0.3); A(fi, 'aL2', f2, 'eL', null, 1.5, 0.3);
+          A(f1, 'aL', wk, 'L', 'L1', 2.5, 18); A(fi, 'aN', wk, 'N', 'N', 2.5, 18); A(h.pas, 'k4', wk, 'PE', 'PE', 2.5, 20);
+          A(f2, 'aL', la, 'L', 'L2', 1.5, 12); A(fi, 'aN', la, 'N', 'N', 1.5, 12); A(h.pas, 'k5', la, 'PE', 'PE', 1.5, 14);
+          A(m, 'H', wk, 'G', 'mess', 1.5, 1);
+        });
+      }],
+      nullung: ['Klassische Nullung (TN-C) und PEN-Unterbrechung', function () {
+        return baue(function (T, A, L3) {
+          const n = T('netz', 0, 0, {}, null, 'Ortsnetz'), h = T('hak', 0, 140, {}, null, 'HAK'), z = T('zaehler', 0, 300, {}, null, 'Zähler');
+          L3(n, '', h, 'e', 35, 25); A(n, 'PEN', h, 'ePEN', 'PEN', 35, 25); L3(h, 'a', z, 'e', 10, 2); A(h, 'aPEN', z, 'eN', 'PEN', 10, 2);
+          const s = T('sicherung', 0, 470, { pole: 1, in: 16 }, null, 'Sicherung 16 A');
+          const wm = T('last', 0, 640, { vorlage: 'wm' }, null, 'Waschmaschine'), m = T('mensch', 0, 820, { rst: 200 }, null, 'Person');
+          A(z, 'aL1', s, 'eL', 'L1', 1.5, 1); A(s, 'aL', wm, 'L', 'L1', 1.5, 15);
+          A(z, 'aN', wm, 'N', 'PEN', 1.5, 15);
+          A(wm, 'N', wm, 'PE', 'PEN', 1.5, 0.1);
+          A(m, 'H', wm, 'G', 'mess', 1.5, 1);
+          T('notiz', 240, 300, {}, null, 'Altanlage ohne eigenen Schutzleiter: In der Steckdose ist der Schutzkontakt mit dem PEN gebrückt. Die PEN-Ader zur Waschmaschine antippen und „Unterbrechen“ – das Gehäuse liegt dann über die Maschine an 230 V.');
+        });
+      }],
+      tt: ['TT-System: ohne FI keine Abschaltung', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TT');
+          const f1 = T('ls', 0, 470, { pole: 1, kenn: 'B', in: 16 }, null, 'F1 ohne FI'), h1 = T('last', 0, 630, { vorlage: 'hz' }, null, 'Heizlüfter 1');
+          const fi = T('fils', 250, 470, { idn: 30 }, null, 'F2 FI/LS'), h2 = T('last', 250, 630, { vorlage: 'hz' }, null, 'Heizlüfter 2');
+          const m = T('mensch', 0, 810, { rst: 200 }, null, 'Person');
+          A(h.z, 'aL1', f1, 'eL', null, 4, 1); A(f1, 'aL', h1, 'L', 'L1', 2.5, 15); A(h.z, 'aN', h1, 'N', 'N', 2.5, 15); A(h.pas, 'k1', h1, 'PE', 'PE', 2.5, 15);
+          A(h.z, 'aL2', fi, 'eL', null, 4, 1); A(h.z, 'aN', fi, 'eN', 'N', 4, 1); A(fi, 'aL', h2, 'L', 'L2', 2.5, 15); A(fi, 'aN', h2, 'N', 'N', 2.5, 15); A(h.pas, 'k2', h2, 'PE', 'PE', 2.5, 15);
+          A(m, 'H', h1, 'G', 'mess', 1.5, 1);
+          T('notiz', 520, 460, {}, null, 'Körperschluss an Heizlüfter 1: Der Fehlerstrom fließt über Staberder (30 Ω) und Betriebserder – rund 7 A. Der B16 löst nicht aus, das Gehäuse bleibt unter Spannung. Am Heizlüfter 2 schaltet der FI sofort ab.');
+        });
+      }],
+      umschalter: ['Netzersatz: Hand-Umschalter und Inselwechselrichter', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const wr = T('notstrom', 300, 140, { art: 'wr', ph: 3, pn: 6, npe: 'ja' }, null, 'Insel-WR');
+          const u = T('umschalter', 0, 460, { pole: 4, nmit: 'ja' }, null, 'Q0 Umschalter');
+          const fi = T('fi', 0, 630, { pole: 4 }, null, 'Q1 FI'), f1 = T('ls', 0, 790, { pole: 1, in: 16 }, null, 'F1');
+          const ks = T('last', 0, 950, { vorlage: 'ks' }, null, 'Kühlschrank'), m = T('mensch', 0, 1120, {}, null, 'Person');
+          L3(h.z, 'a', u, 'n', 10, 1, true);
+          ['L1', 'L2', 'L3', 'N'].forEach(function (x) { A(wr, x, u, 's' + x, x === 'N' ? 'N' : null, 6, 5); });
+          A(wr, 'PE', h.pas, 'k4', 'PE', 6, 5);
+          L3(u, '', fi, 'e', 10, 1, true);
+          A(fi, 'aL1', f1, 'eL', null, 2.5, 0.3); A(f1, 'aL', ks, 'L', 'L1', 2.5, 12); A(fi, 'aN', ks, 'N', 'N', 2.5, 12); A(h.pas, 'k5', ks, 'PE', 'PE', 2.5, 14);
+          A(m, 'H', ks, 'G', 'mess', 1.5, 1);
+          const pv = T('pvwr', 300, 790, { ph: 3, kwp: 4, tzu: 60 }, null, 'PV-WR');
+          L3(u, '', pv, '', 4, 8, true); A(h.pas, 'k6', pv, 'PE', 'PE', 4, 8);
+          T('notiz', 480, 430, {}, null, 'Am Ortsnetz „Netzausfall“, dann den Umschalter auf II. Der PV-Wechselrichter trennt sofort und schaltet nach 60 s auf das Inselnetz zu – er lädt dann den Akku (Zeitraffer nutzen). Mit N-PE-Brücke im Wechselrichter löst der FI bei Körperschluss aus. Ohne Brücke (Einstellung am WR) fließt beim ersten Fehler fast kein Strom – wie im IT-Netz.');
+        });
+      }],
+      hybrid: ['Hybrid-Wechselrichter mit Speicher, PV und Notstromausgang', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const hy = T('hybrid', 0, 460, { ph: 3, pn: 10, pv: 8, akku: 10, tum: 3 }, { soc: 60 }, 'Hybrid-WR');
+          const f3 = T('ls', 270, 470, { pole: 3, in: 16 }, null, 'F3'), herd = T('last3', 270, 630, { vorlage: 'herd' }, null, 'Herd (ohne Notstrom)');
+          const fi = T('fi', 0, 640, { pole: 4 }, null, 'Q2 FI'), f1 = T('ls', 0, 800, { pole: 1, in: 16 }, null, 'F1'), f2 = T('ls', 200, 800, { pole: 1, in: 10 }, null, 'F2');
+          const ks = T('last', 0, 960, { vorlage: 'ks' }, null, 'Kühlschrank'), la = T('last', 220, 960, { vorlage: 'lampe' }, null, 'Licht');
+          L3(h.z, 'a', hy, 'n', 10, 3, true, 'aN', 'nN'); A(h.pas, 'k4', hy, 'nPE', 'PE', 10, 3);
+          L3(h.z, 'a', f3, 'e', 4, 1); L3(f3, 'a', herd, '', 2.5, 10); A(h.z, 'aN', herd, 'N', 'N', 2.5, 10); A(h.pas, 'k5', herd, 'PE', 'PE', 2.5, 10);
+          L3(hy, 'b', fi, 'e', 6, 2, true, 'bN', 'eN');
+          A(fi, 'aL1', f1, 'eL', null, 2.5, 0.3); A(fi, 'aL2', f2, 'eL', null, 1.5, 0.3);
+          A(f1, 'aL', ks, 'L', 'L1', 2.5, 12); A(fi, 'aN', ks, 'N', 'N', 2.5, 12); A(hy, 'bPE', ks, 'PE', 'PE', 2.5, 12);
+          A(f2, 'aL', la, 'L', 'L2', 1.5, 10); A(fi, 'aN', la, 'N', 'N', 1.5, 10); A(hy, 'bPE', la, 'PE', 'PE', 1.5, 10);
+          T('notiz', 520, 460, {}, null, 'Sonne-Regler verschieben: Der Speicher regelt den Zähler auf null. Netzausfall am Ortsnetz: Der WR trennt allpolig, nach 3 s versorgt der Notstromausgang Kühlschrank und Licht – der Herd bleibt aus.');
+        });
+      }],
+      ats: ['Automatische Umschaltung mit Stromaggregat', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const g = T('notstrom', 300, 140, { art: 'agg', ph: 3, pn: 8, ik: 3, npe: 'ja', start: 'auto' }, { ein: false }, 'Aggregat');
+          const u = T('ats', 0, 460, { pole: 4, nmit: 'ja', tum: 2, trueck: 30 }, null, 'Auto-Umschalter');
+          const f3 = T('ls', 0, 640, { pole: 3, in: 16 }, null, 'F1'), mo = T('last3', 0, 800, { vorlage: 'motor' }, null, 'Pumpe');
+          L3(h.z, 'a', u, 'n', 10, 1, true);
+          ['L1', 'L2', 'L3', 'N'].forEach(function (x) { A(g, x, u, 's' + x, x === 'N' ? 'N' : null, 6, 10); });
+          A(g, 'PE', h.pas, 'k4', 'PE', 6, 10);
+          L3(u, '', f3, 'e', 6, 1); L3(f3, 'a', mo, '', 2.5, 15); A(h.pas, 'k5', mo, 'PE', 'PE', 2.5, 15);
+          T('notiz', 300, 640, {}, null, 'Netzausfall auslösen und zusehen: Der Umschalter fordert das Aggregat an, es läuft nach 8 s hoch, dann schaltet er um. Netz zurück: Nach 30 s stabiler Spannung schaltet er zurück, das Aggregat läuft 60 s nach.');
+        });
+      }],
+      nbruch: ['Drehstrom: Neutralleiterbruch bei ungleicher Last', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const ns = T('schiene', 0, 460, { art: 'N', n: 4 }, null, 'N-Schiene');
+          const f1 = T('ls', 0, 600, { in: 16 }, null, 'F1'), f2 = T('ls', 190, 600, { in: 10 }, null, 'F2'), f3 = T('ls', 380, 600, { in: 10 }, null, 'F3');
+          const a1 = T('last', 0, 760, { vorlage: 'hz' }, null, 'Heizlüfter L1'), a2 = T('last', 190, 760, { vorlage: 'lampe' }, null, 'Lampe L2'), a3 = T('last', 380, 760, { vorlage: 'ks' }, null, 'Kühlschrank L3');
+          A(h.z, 'aN', ns, 'k1', 'N', 10, 3);
+          [[f1, a1, 'L1'], [f2, a2, 'L2'], [f3, a3, 'L3']].forEach(function (x, i) { A(h.z, 'a' + x[2], x[0], 'eL', x[2], 2.5, 1); A(x[0], 'aL', x[1], 'L', x[2], 1.5, 10); A(ns, 'k' + (i + 2), x[1], 'N', 'N', 1.5, 10); A(h.pas, 'k' + (i + 4), x[1], 'PE', 'PE', 1.5, 10); });
+          T('notiz', 560, 460, {}, null, 'Die blaue Ader vom Zähler zur N-Schiene antippen und unterbrechen: Der Sternpunkt verschiebt sich, die Lampe bekommt fast 400 V und brennt durch, der Heizlüfter fast nichts.');
+        });
+      }],
+      insel: ['Kurzschluss im Inselnetz: Wechselrichter oder LS?', function () {
+        return baue(function (T, A) {
+          const wr = T('notstrom', 0, 0, { art: 'wr', ph: 1, pn: 3, ik: 1.5, npe: 'ja' }, null, 'Insel-WR 3 kW');
+          const f1 = T('ls', 0, 150, { pole: 1, in: 16 }, null, 'F1 B16'), wk = T('last', 0, 310, { vorlage: 'wk' }, null, 'Wasserkocher');
+          const fe = T('fehler', 260, 300, { rf: 0.05 }, null, 'Kurzschluss');
+          const pe = T('schiene', 230, 140, { art: 'PE', n: 3 }, null, 'PE');
+          A(wr, 'L', f1, 'eL', 'L1', 2.5, 1); A(f1, 'aL', wk, 'L', 'L1', 2.5, 10); A(wr, 'N', wk, 'N', 'N', 2.5, 10); A(wr, 'PE', pe, 'k1', 'PE', 2.5, 1); A(pe, 'k2', wk, 'PE', 'PE', 2.5, 10);
+          A(f1, 'aL', fe, 'a', 'L1', 2.5, 8); A(fe, 'b', wr, 'N', 'N', 2.5, 8);
+          T('notiz', 260, 460, {}, null, 'Fehler auslösen: Der WR liefert höchstens 1,5 × 13 A ≈ 20 A, der B16 bräuchte 80 A – also schaltet der WR ab und alles ist dunkel. Am WR den Kurzschlussstrom auf 6 setzen: dann löst der LS aus. Abhilfe in der Praxis: kleinere LS, Kennlinie mit kleinem Auslösestrom oder ein WR mit hohem Kurzschlussstrom.');
+        });
+      }]
+    };
+    (function () {
+      const s = $('sk-beispiel');
+      Object.keys(BEISPIELE).forEach(function (k) { const o = kn('option', '', BEISPIELE[k][0]); o.value = k; s.append(o); });
+      s.addEventListener('change', function () {
+        const b = BEISPIELE[s.value]; s.value = ''; if (!b) return;
+        if (teile.length) merke();
+        protokoll = []; G.T = 0; G.T0 = 0; laden(b[1]()); speichern(); protokollZeigen();
+        log('Beispiel geladen: ' + b[0] + '.'); protokollZeigen();
+      });
+    })();
+
+    // ---------- Leiste ----------
+    function sonneZeigen() { $('sk-sonne-wert').textContent = Math.round(G.sonne * 100) + ' %'; }
+    $('sk-sonne').addEventListener('input', function () { G.sonne = Math.min(1, Math.max(0, Number(this.value) / 100 || 0)); sonneZeigen(); schmutzig = true; speichern(); });
+    $('sk-pause').addEventListener('click', function () { G.pause = !G.pause; pauseZeigen(); });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-tempo]'), function (b) {
+      b.addEventListener('click', function () { G.tempo = Number(b.getAttribute('data-tempo')) || 1; Array.prototype.forEach.call(document.querySelectorAll('[data-tempo]'), function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); }); });
+    });
+    $('sk-rueck').addEventListener('click', rueckgaengig);
+    $('sk-loeschen').addEventListener('click', auswahlLoeschen);
+    $('sk-zoom-plus').addEventListener('click', function () { zoom(1 / 1.25); });
+    $('sk-zoom-minus').addEventListener('click', function () { zoom(1.25); });
+    $('sk-einpassen').addEventListener('click', einpassen);
+    function vollbild(an) { buehne.classList.toggle('voll', an); document.documentElement.classList.toggle('sk-voll-aktiv', an); $('sk-voll').setAttribute('aria-pressed', an ? 'true' : 'false'); $('sk-voll').textContent = an ? 'Vollbild verlassen' : 'Vollbild'; setTimeout(ansichtSetzen, 30); }
+    $('sk-voll').addEventListener('click', function () { vollbild(!buehne.classList.contains('voll')); });
+    $('sk-neu').addEventListener('click', function () { if (teile.length) merke(); protokoll = []; laden({ v: 1, sonne: G.sonne, nr: 1, teile: [], adern: [] }); speichern(); protokollZeigen(); $('sk-palette').hidden = false; $('sk-plus').setAttribute('aria-expanded', 'true'); });
+    $('sk-reset').addEventListener('click', function () {
+      teile.forEach(function (t) {
+        if (t.st.f) t.st.f = [1, 1, 1];
+        if (['ls', 'fi', 'fils'].indexOf(t.typ) >= 0 && !t.st.ein) { t.st.ein = true; t.z.ausgeloest = false; }
+        t.z.wmap = {}; if (t.z.stoerung) t.z.stoerung = null; if (t.z.lim) t.z.lim = [1, 1, 1]; if (t.z.kaputt) t.z.kaputt = false;
+      });
+      log('Alle Schutzorgane wieder eingeschaltet, Sicherungen ersetzt, Störungen quittiert.'); G.T0 = G.T; schmutzig = true; speichern(); aktualisieren(); panelZeigen(); protokollZeigen();
+    });
+
+    // ---------- Teilen ----------
+    $('sk-teilen').addEventListener('click', function () { speichernJetzt(); Teilen.url('plan', planDaten()).then(function (url) { Teilen.kopieren(url, function (t) { $('sk-teilen-meldung').textContent = t; setTimeout(function () { $('sk-teilen-meldung').textContent = ''; }, 5000); }); }); });
+    const vorherKnopf = Teilen.knopf($('sk-teilen').parentNode, SPEICHER, function (roh) {
+      let p = null; try { p = pruefen(JSON.parse(roh)); } catch (e) { p = null; }
+      if (!p) { hinweis('Kein gültiger vorheriger Aufbau gefunden.'); return; }
+      laden(p); speichernJetzt(); hinweis('Vorheriger Aufbau wiederhergestellt.');
+    }, 'Aufbau');
+
+    // ---------- Schleife ----------
+    let zuletzt = 0, anzeige = 0;
+    function schleife(ts) {
+      const dt = zuletzt ? Math.min(0.1, (ts - zuletzt) / 1000) : 0; zuletzt = ts;
+      if (!G.pause) simulieren(dt * G.tempo); else if (schmutzig) loesen();
+      flussBewegen(dt);
+      if (ts - anzeige > 200) { anzeige = ts; aktualisieren(); panelWerte(); aderWerte(); bilanz(); uhr(); if (protokollNeu) protokollZeigen(); }
+      requestAnimationFrame(schleife);
+    }
+
+    // ---------- Start ----------
+    let start = null;
+    try { const roh = localStorage.getItem(SPEICHER); if (roh) start = pruefen(JSON.parse(roh)); } catch (e) { start = null; }
+    if (!start) start = BEISPIELE.tncs[1]();
+    laden(start);
+    $('sk-rueck').disabled = true; $('sk-loeschen').disabled = true; pauseZeigen(); protokollZeigen();
+    requestAnimationFrame(schleife);
+    Teilen.lesen('plan').then(function (roh) {
+      if (!roh) return;
+      const p = pruefen(roh); if (!p) throw new Error('ungültig');
+      const gesichert = Teilen.sichern(SPEICHER, JSON.stringify(p));
+      laden(p); speichernJetzt(); vorherKnopf.zeigen();
+      hinweis('Aufbau aus dem Link geladen.' + (gesichert ? ' Dein vorheriger ist gesichert.' : ''));
+    }).catch(function () { hinweis('Der Link ist unvollständig oder beschädigt – es gilt der gespeicherte Aufbau.'); });
+    Array.prototype.forEach.call(document.querySelectorAll('#sk-wissen [data-tex]'), function (e) { Formel.setze(e, e.getAttribute('data-tex'), true); });
+  })();
+  </script>
+</body>
+</html>
