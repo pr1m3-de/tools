@@ -100,6 +100,10 @@
     .tafel.abstand { margin-top: 18px; }
     .einstellungen { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 6px 26px; margin-top: 10px; }
     .einstellungen .gruppe { margin: 0 0 10px; }
+    .export-box { margin-top: 14px; border: 1px solid var(--linie); border-radius: var(--rund); padding: 10px 14px; background: var(--flaeche); }
+    .export-box summary { cursor: pointer; font-weight: 600; }
+    .export-felder { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 0 26px; margin: 10px 0; }
+    .export-felder .ef { grid-template-columns: minmax(0, 1fr) 150px 30px; }
     .datei { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 
     .kopf-zeile { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; }
@@ -235,6 +239,23 @@
         <span class="teilen-meldung" id="planMeldung" aria-live="polite"></span>
       </div>
       <p class="hilfe" style="margin-top:8px">Der Plan bleibt in diesem Browser gespeichert, auch nach dem Schließen. Der Link enthält den ganzen Plan und öffnet ihn auf jedem Gerät.</p>
+      <details class="export-box" id="exportBox">
+        <summary>Export für Auslegungsrechner von Montagesystemen (JSON)</summary>
+        <p class="hilfe">Beschreibt alle Dachflächen als 3D-Umriss mit Neigung, Richtung, Hindernissen, Randabstand, Dachdeckung und Modulanzahl, dazu den Modultyp und den Standort – im verbreiteten JSON-Austauschformat für Planungsprogramme, das Auslegungsrechner von Montagesystem-Herstellern einlesen. Flächen mit Knick werden als einzelne Teilflächen ausgegeben, gegenüberliegende Flächen (Ausrichtung 180° versetzt) am First zusammengesetzt.</p>
+        <div class="export-felder">
+          <div class="ef"><label for="exName">Projektname</label><input id="exName" class="text" type="text" maxlength="80" autocomplete="off"><span class="e"></span></div>
+          <div class="ef"><label for="exLat">Breitengrad</label><input id="exLat" type="text" inputmode="decimal" autocomplete="off"><span class="e">°</span></div>
+          <div class="ef"><label for="exLng">Längengrad</label><input id="exLng" type="text" inputmode="decimal" autocomplete="off"><span class="e">°</span></div>
+          <div class="ef"><label for="exTraufe">Traufhöhe über Gelände</label><input id="exTraufe" type="text" inputmode="decimal" autocomplete="off"><span class="e">m</span></div>
+          <div class="ef"><label for="exHersteller">Modul: Hersteller</label><input id="exHersteller" class="text" type="text" maxlength="60" autocomplete="off"><span class="e"></span></div>
+          <div class="ef"><label for="exModell">Modul: Typ</label><input id="exModell" class="text" type="text" maxlength="60" autocomplete="off"><span class="e"></span></div>
+          <div class="ef"><label for="exRahmen">Modul: Rahmenhöhe</label><input id="exRahmen" type="text" inputmode="decimal" autocomplete="off"><span class="e">mm</span></div>
+          <div class="ef"><label for="exZellen">Modul: Zellenzahl</label><input id="exZellen" type="text" inputmode="numeric" autocomplete="off"><span class="e"></span></div>
+        </div>
+        <button type="button" class="knopf-haupt" id="exportJson">JSON exportieren</button>
+        <span class="teilen-meldung" id="exportMeldung" aria-live="polite"></span>
+        <p class="hilfe">Koordinaten in Metern: x nach Osten, y nach Norden, z Höhe über Gelände. Neigung in Grad, Richtung als Himmelsrichtung der Steigung (0° = Nord, im Uhrzeigersinn). Bitte im Zielprogramm Maße und Lage kontrollieren – Lastannahmen, Schnee- und Windzone werden dort neu festgelegt.</p>
+      </details>
     </section>
 
     <section class="tafel abstand" aria-labelledby="h-formeln">
@@ -2583,6 +2604,119 @@
       a.href = URL.createObjectURL(blob); a.download = 'pv-dachplan.json';
       document.body.append(a); a.click(); a.remove();
       setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+    });
+
+    // ---------- Export als JSON-Austauschformat für Auslegungsrechner von Montagesystemen ----------
+    const S_EXPORT = 'pv-dach-export';
+    const EXPORT_HOEHE = { schornstein: 1.0, luefter: 0.3, antenne: 1.5, fangstange: 1.5, gaube: 1.5, solarthermie: 0.15, lichtkuppel: 0.3, brandwand: 0.3, ausstieg: 0.1 };
+    const EXPORT_DECKUNG = { ziegel: 'tile', biber: 'tile', schiefer: 'slate', trapez: 'trapezoidalSheet', folie: 'flatRoof' };
+    function exportEinst() {
+      let e = null; try { e = JSON.parse(localStorage.getItem(S_EXPORT) || 'null'); } catch (x) { e = null; }
+      e = e && typeof e === 'object' ? e : {};
+      const t = function (v, n) { return typeof v === 'string' ? v.slice(0, n) : ''; }, z = function (v, a, b, d) { v = Number(v); return isFinite(v) && v >= a && v <= b ? v : d; };
+      return { name: t(e.name, 80), lat: z(e.lat, -90, 90, projekt.standort.phi || 51), lng: z(e.lng, -180, 180, 10), traufe: z(e.traufe, 0, 300, Math.max(0, (projekt.standort.hoeheM || 8) - 3)), hersteller: t(e.hersteller, 60), modell: t(e.modell, 60), rahmen: z(e.rahmen, 5, 100, 30), zellen: Math.round(z(e.zellen, 0, 400, 0)) };
+    }
+    function exportFelderFuellen() {
+      const e = exportEinst();
+      document.getElementById('exName').value = e.name; document.getElementById('exLat').value = zahl(e.lat, 9); document.getElementById('exLng').value = zahl(e.lng, 9);
+      document.getElementById('exTraufe').value = zahl(e.traufe, 3); document.getElementById('exHersteller').value = e.hersteller; document.getElementById('exModell').value = e.modell;
+      document.getElementById('exRahmen').value = zahl(e.rahmen, 1); document.getElementById('exZellen').value = e.zellen ? String(e.zellen) : '';
+    }
+    function exportFelderLesen() {
+      const e = exportEinst(), w = function (id) { return document.getElementById(id).value; };
+      const n = function (id, a, b, d) { const v = lies(w(id)); return isFinite(v) && v >= a && v <= b ? v : d; };
+      const neu = { name: w('exName').trim().slice(0, 80), lat: n('exLat', -90, 90, e.lat), lng: n('exLng', -180, 180, e.lng), traufe: n('exTraufe', 0, 300, e.traufe), hersteller: w('exHersteller').trim().slice(0, 60), modell: w('exModell').trim().slice(0, 60), rahmen: n('exRahmen', 5, 100, e.rahmen), zellen: Math.round(n('exZellen', 0, 400, 0)) };
+      try { localStorage.setItem(S_EXPORT, JSON.stringify(neu)); } catch (x) { /* ohne Speicher */ }
+      return neu;
+    }
+    // Polygon auf ein Band y0 ≤ y ≤ y1 zuschneiden (Sutherland-Hodgman)
+    function bandSchnitt(p, y0, y1) {
+      const schneide = function (pts, innen, grenze) {
+        const o = [];
+        for (let i = 0; i < pts.length; i++) {
+          const a = pts[i], b = pts[(i + 1) % pts.length], ia = innen(a), ib = innen(b);
+          if (ia) o.push(a);
+          if (ia !== ib) { const t = (grenze - a.y) / (b.y - a.y); o.push({ x: a.x + t * (b.x - a.x), y: grenze }); }
+        }
+        return o;
+      };
+      let r = schneide(p, function (q) { return q.y >= y0 - 1e-9; }, y0);
+      if (r.length >= 3) r = schneide(r, function (q) { return q.y <= y1 + 1e-9; }, y1);
+      return r.length >= 3 ? r : null;
+    }
+    function exportJson() {
+      const e = exportFelderLesen(), mo = projekt.modul, r6 = function (v) { return Math.round(v * 1e4) / 1e4; };
+      const flaechen = projekt.flaechen.map(function (f) { return { f: f, c: kontext(f) }; });
+      // Lage jeder Fläche: Ursprung (Traufe links), Richtung der Traufe und der Steigung in der Horizontalen
+      const lage = flaechen.map(function (q) {
+        const az = rad(180 + q.f.azimut), auf = [-Math.sin(az), -Math.cos(az)], rechts = [auf[1], -auf[0]];
+        return { auf: auf, rechts: rechts, O: null };
+      });
+      // Punkt (x, y) der Fläche in 3D: y abgewickelt ab Traufe, Knicke stückweise
+      const punkt3 = function (k, x, y) {
+        const q = flaechen[k], L = lage[k], c = q.c; let h = 0, z = 0;
+        c.segmente.forEach(function (sg) { const a = Math.max(sg.y0, c.bb.y0), b = Math.min(sg.y1, y); if (b > a) { const n = rad(sg.neigung); h += (b - a) * Math.cos(n); z += (b - a) * Math.sin(n); } });
+        const dx = x - c.bb.x0;
+        return [L.O[0] + dx * L.rechts[0] + h * L.auf[0], L.O[1] + dx * L.rechts[1] + h * L.auf[1], L.O[2] + z];
+      };
+      let versatz = 0;
+      flaechen.forEach(function (q, k) {
+        const L = lage[k];
+        // gegenüberliegende Fläche (180° versetzt, schon platziert): am First anschließen
+        let partner = -1;
+        for (let j = 0; j < k; j++) { const d = Math.abs((((flaechen[j].f.azimut - q.f.azimut) % 360) + 540) % 360 - 180); if (d < 5 && Math.abs((flaechen[j].c.bb.x1 - flaechen[j].c.bb.x0) - (q.c.bb.x1 - q.c.bb.x0)) < 0.5 && !lage[j].partner) { partner = j; break; } }
+        if (partner >= 0) {
+          L.O = [0, 0, 0]; lage[partner].partner = true; L.partner = true;
+          const ziel = punkt3(partner, flaechen[partner].c.bb.x1, flaechen[partner].c.bb.y1), ist = punkt3(k, q.c.bb.x0, q.c.bb.y1);
+          L.O = [ziel[0] - ist[0], ziel[1] - ist[1], ziel[2] - ist[2]];
+        } else {
+          L.O = [versatz, 0, e.traufe];
+          versatz += (q.c.bb.x1 - q.c.bb.x0) + 3;
+        }
+      });
+      const roofs = [];
+      flaechen.forEach(function (q, k) {
+        const f = q.f, c = q.c;
+        c.segmente.forEach(function (sg, si) {
+          const poly = c.segmente.length > 1 ? bandSchnitt(f.punkte, sg.y0, sg.y1) : f.punkte; if (!poly) return;
+          const umriss = poly.map(function (p) { return punkt3(k, p.x, p.y).map(r6); });
+          const bb = bbox(poly);
+          const imSeg = function (y) { return segmentBei(c, y) === si; };
+          const hindernisse = f.hindernisse.filter(function (o) { const r = hindernisRechteck(o); return imSeg(r.y + r.h / 2); }).map(function (o, i) {
+            const r = hindernisRechteck(o); let ecken;
+            if (o.rund) { ecken = []; for (let a = 0; a < 8; a++) { const w = a * Math.PI / 4; ecken.push({ x: r.x + r.w / 2 + Math.cos(w) * r.w / 2, y: r.y + r.w / 2 + Math.sin(w) * r.w / 2 }); } }
+            else ecken = [{ x: r.x, y: r.y }, { x: r.x + r.w, y: r.y }, { x: r.x + r.w, y: r.y + Math.max(r.h, 0.05) }, { x: r.x, y: r.y + Math.max(r.h, 0.05) }];
+            const hoehe = EXPORT_HOEHE[o.typ] || 0;
+            return { obstacleName: HINDERNISSE[o.typ].name + ' ' + (i + 1), obstacleShape: 'polygon', height: hoehe, offset: 0, flush: hoehe === 0, outline: ecken.map(function (p) { return punkt3(k, p.x, p.y).map(r6); }) };
+          });
+          const nMod = f.module.filter(function (m) { const r = modulRechteck(f, m); return imSeg(r.y + r.h / 2); }).length;
+          const steigung = (Math.atan2(lage[k].auf[0], lage[k].auf[1]) * 180 / Math.PI + 360) % 360;
+          roofs.push({
+            edgeDistance: r6(Math.max(0, f.rand.seite)), height: r6(Math.max.apply(null, umriss.map(function (p) { return p[2]; }))), hipType: 'none',
+            length: r6(bb.x1 - bb.x0), width: r6(bb.y1 - bb.y0), moduleCount: nMod, moduleFields: [], moduleTypeIndex: 0,
+            obstacles: hindernisse, outline: umriss, parapetWallHeight: 0, fasteningMethod: 'roofConstruction', roofCover: EXPORT_DECKUNG[f.deckung] || 'tile',
+            roofName: (f.name || 'Fläche ' + (k + 1)) + (c.segmente.length > 1 ? ' ' + (si + 1) : ''), roofShape: 'polygon', roofType: c.aufgest ? 'flat' : 'monopitch',
+            slope: r6(c.aufgest ? f.neigung : sg.neigung), slopeDirection: Math.round(steigung * 10) / 10, systemInfo: { systemHeight: 0 }
+          });
+        });
+      });
+      const jetzt = new Date(), zz = function (v) { return (v < 10 ? '0' : '') + v; };
+      return {
+        data: { name: e.name || 'PV-Dachplan' }, date: zz(jetzt.getFullYear() % 100) + '-' + zz(jetzt.getMonth() + 1) + '-' + zz(jetzt.getDate()) + ' ' + zz(jetzt.getHours()) + ':' + zz(jetzt.getMinutes()) + ':' + zz(jetzt.getSeconds()),
+        location: { elevation: 0, geoCoordinates: { lat: e.lat, lng: e.lng } },
+        moduleTypes: [{ cellCount: e.zellen, height: e.rahmen, id: 1, impp: 0, irmax: 0, isUserDefined: true, isc: 0, length: Math.round(mo.L * 1000), manufacturer: e.hersteller, model: e.modell || ('Modul ' + mo.P + ' W'), pmpp: 0, pot: false, power: mo.P, tkIsc: 0, tkPmpp: 0, tkUoc: 0, umax: 0, umpp: 0, uoc: 0, weight: mo.G, width: Math.round(mo.B * 1000) }],
+        roofs: roofs, version: '3.1.65.0', exportType: 'eturnity', exportFormatVersion: 1
+      };
+    }
+    document.getElementById('exportBox').addEventListener('toggle', function () { if (this.open) exportFelderFuellen(); });
+    ['exName', 'exLat', 'exLng', 'exTraufe', 'exHersteller', 'exModell', 'exRahmen', 'exZellen'].forEach(function (id) { document.getElementById(id).addEventListener('change', exportFelderLesen); });
+    document.getElementById('exportJson').addEventListener('click', function () {
+      let daten;
+      try { daten = exportJson(); } catch (x) { document.getElementById('exportMeldung').textContent = 'Export nicht möglich: ' + x.message; return; }
+      const blob = new Blob([JSON.stringify(daten, null, 4)], { type: 'application/json' }), a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = (daten.data.name.replace(/[^\wäöüÄÖÜß.-]+/g, '_') || 'pv-dach') + '.json';
+      document.body.append(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+      document.getElementById('exportMeldung').textContent = daten.roofs.length + (daten.roofs.length === 1 ? ' Dachfläche' : ' Dachflächen') + ' exportiert.';
     });
     document.getElementById('planLaden').addEventListener('click', function () { document.getElementById('planDatei').click(); });
     document.getElementById('planDatei').addEventListener('change', function (ev) {
