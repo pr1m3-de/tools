@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photogrammetrie: 3D-Modell aus Fotos mit Maßen für PV – Formeln &amp; Rechner</title>
+  <meta name="description" content="Aus Fotos ein 3D-Modell mit echten Maßen berechnen – direkt im Browser, ohne Upload: Kameras ausrichten, dichte Punktwolke, Netz, Messen, Maßstab aus GPS oder Referenzstrecke, Dachflächen mit Neigung, Ausrichtung und Hindernissen für den PV-Dachplaner und als JSON für Montagesystem-Rechner, Export als OBJ, PLY, STL und GLB.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/symbol-apple.png">
+  <link rel="stylesheet" href="assets/katex/katex.min.css">
+  <link rel="stylesheet" href="assets/stil.css">
+  <script src="assets/basis.js"></script>
+  <style>
+    .pg-ablage { border: 2px dashed var(--linie); border-radius: var(--rund); padding: 18px; text-align: center; background: var(--flaeche); transition: border-color .15s; }
+    .pg-ablage.ueber { border-color: var(--ergebnis); background: var(--ergebnis-flaeche); }
+    .pg-ablage p { margin: 6px 0; }
+    .pg-zeile { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 10px 0; }
+    .pg-zeile select, .pg-zeile input[type=text] { padding: 8px 10px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; }
+    .knopf:disabled, .knopf-haupt:disabled { opacity: .45; cursor: default; }
+    .pg-fotos { display: grid; grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); gap: 8px; margin: 10px 0; max-height: 420px; overflow: auto; }
+    .pg-foto { position: relative; margin: 0; border: 1px solid var(--linie); border-radius: var(--rund-klein); overflow: hidden; background: var(--flaeche); }
+    .pg-foto img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .pg-foto figcaption { padding: 4px 6px; font-size: .75rem; display: flex; flex-direction: column; }
+    .pg-foto-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .pg-foto small { color: var(--leise); }
+    .pg-foto-weg { position: absolute; top: 4px; right: 4px; width: 24px; height: 24px; border-radius: 50%; border: none; background: rgba(0, 0, 0, .55); color: #fff; cursor: pointer; line-height: 1; }
+    #pg-schritte { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+    #pg-schritte li { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr) minmax(0, 220px); gap: 10px; align-items: center; color: var(--leise); }
+    #pg-schritte li.laeuft, #pg-schritte li.fertig { color: var(--text); }
+    #pg-schritte li.fertig b::after { content: ' ✓'; color: var(--ergebnis); }
+    .pg-balken { height: 8px; border-radius: 4px; background: var(--linie); overflow: hidden; }
+    .pg-balken i { display: block; height: 100%; width: 0; background: var(--ergebnis); transition: width .2s; }
+    #pg-schritte small { font-family: var(--technik); font-size: .8rem; }
+    @media (max-width: 640px) { #pg-schritte li { grid-template-columns: 1fr; gap: 2px; } }
+    #pg-protokoll { max-height: 160px; overflow: auto; font-size: .82rem; color: var(--leise); margin: 10px 0 0; padding-left: 18px; font-family: var(--technik); }
+    .pg-fehler { padding: 10px 12px; border-radius: var(--rund-klein); background: var(--fehler-flaeche); color: var(--fehler); margin: 10px 0; }
+    .pg-buehne { position: relative; border: 1px solid var(--linie); border-radius: var(--rund); overflow: hidden; background: var(--flaeche); }
+    .pg-buehne.voll { position: fixed; inset: 0; z-index: 60; border-radius: 0; border: none; }
+    html.pg-voll-aktiv { overflow: hidden; }
+    #pg-gl { display: block; width: 100%; height: max(380px, 62vh); touch-action: none; cursor: grab; }
+    .pg-buehne.voll #pg-gl { height: 100vh; height: 100dvh; }
+    #pg-overlay { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+    .pg-schwebend { position: absolute; left: 8px; top: 8px; display: flex; flex-wrap: wrap; gap: 6px; max-width: calc(100% - 16px); }
+    .pg-schwebend .knopf { padding: 5px 10px; background: var(--flaeche); font-size: .85rem; }
+    #pg-werkzeug-status, #pg-hinweis { position: absolute; left: 8px; right: 8px; bottom: 8px; padding: 7px 10px; border-radius: var(--rund-klein); background: var(--text); color: var(--grund); font-size: .88rem; }
+    #pg-hinweis { bottom: 48px; background: var(--ergebnis); color: #fff; }
+    .pg-unten { position: absolute; right: 8px; bottom: 46px; display: flex; gap: 6px; }
+    .pg-unten .knopf, .pg-unten .knopf-haupt { padding: 5px 12px; font-size: .88rem; min-width: 0; }
+    .pg-sicht { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: center; margin: 10px 0; font-size: .9rem; }
+    .pg-sicht label { display: inline-flex; gap: 5px; align-items: center; }
+    .pg-raster { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 14px; margin-top: 12px; }
+    @media (max-width: 860px) { .pg-raster { grid-template-columns: minmax(0, 1fr); } }
+    .pg-karte { border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); padding: 12px 14px; min-width: 0; }
+    .pg-karte h3 { margin: 0 0 8px; font-size: 1.02rem; }
+    .pg-werte { width: 100%; border-collapse: collapse; font-size: .87rem; }
+    .pg-werte th, .pg-werte td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--linie); vertical-align: top; }
+    .pg-werte th { color: var(--leise); font-weight: 500; width: 40%; }
+    .pg-reiter { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+    .pg-reiter button { padding: 6px 13px; border-radius: 999px; border: 1px solid var(--linie); background: var(--grund); color: var(--text); font: inherit; font-size: .9rem; cursor: pointer; }
+    .pg-reiter button[aria-selected="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .pg-knoepfe { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; }
+    .pg-knoepfe select, .pg-knoepfe input { padding: 7px 9px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--grund); color: var(--text); font: inherit; font-size: .92rem; }
+    .pg-knoepfe input[type=text] { width: 110px; }
+    #pg-messungen { padding-left: 18px; font-size: .9rem; }
+    .pg-dach { border-top: 1px solid var(--linie); padding: 10px 0 4px; }
+    .pg-dach-kopf { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 6px; }
+    .pg-dach-kopf input { font: inherit; font-weight: 600; padding: 4px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--grund); color: var(--text); min-width: 0; }
+    .pg-hind { font-size: .86rem; padding-left: 18px; margin: 6px 0; }
+    .pg-schieber { display: grid; grid-template-columns: 70px 1fr 1fr; gap: 4px 8px; align-items: center; font-size: .86rem; margin: 8px 0; }
+    .pg-schieber input { width: 100%; }
+    .knopf-leise { border: none; background: none; color: var(--leise); text-decoration: underline; cursor: pointer; padding: 0 2px; font: inherit; font-size: .85rem; }
+    .formel-liste { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+    .formel-liste li { padding: 10px 12px; border-radius: var(--rund); background: var(--flaeche2); }
+    .formel-liste h3 { margin: 0 0 4px; font-size: .98rem; }
+    .formel-liste p { margin: 4px 0 0; font-size: .87rem; color: var(--leise); }
+    @media print { .pg-ablage, .pg-zeile, .pg-schwebend, .pg-unten, .pg-reiter, .pg-knoepfe, #pg-lauf { display: none !important; } }
+  </style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel=""></div>
+
+  <main class="seite">
+    <section class="tafel">
+      <h1><span class="unterstrichen">Photogrammetrie</span>: 3D-Modell aus Fotos</h1>
+      <p>Fotos eines Hauses, Daches oder Gegenstands laden – das Programm sucht gleiche Punkte in den Bildern, berechnet daraus die Lage jeder Kamera, eine dichte Punktwolke und eine farbige Oberfläche. Mit GPS aus Drohnen- oder Handyfotos oder einer gemessenen Referenzstrecke hat das Modell echte Maße: Strecken messen, Dachflächen mit Neigung, Ausrichtung und Hindernissen erfassen und direkt an den PV-Dachplaner oder als JSON an Auslegungsrechner für Montagesysteme geben.</p>
+      <p class="hilfe">Alles läuft in diesem Browser. Die Fotos werden nicht hochgeladen. Rechenzeit je nach Gerät und Fotozahl: einige Sekunden bis einige Minuten.</p>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-fotos">
+      <h2 id="h-fotos">1 · Fotos</h2>
+      <div class="pg-ablage" id="pg-ablage">
+        <p><b>Fotos hierher ziehen</b> oder</p>
+        <p><label class="knopf-haupt" for="pg-datei" style="display:inline-block;cursor:pointer">Fotos wählen</label> <input type="file" id="pg-datei" accept="image/jpeg,image/png,image/webp" multiple hidden> <button type="button" class="knopf" id="pg-beispiel">Beispiel: Haus mit 36 Drohnenfotos</button></p>
+        <p class="hilfe" id="pg-foto-info"></p>
+      </div>
+      <div class="pg-fotos" id="pg-fotos"></div>
+      <div class="pg-zeile">
+        <label>Projekt <input type="text" id="pg-projekt" maxlength="60" placeholder="Name"></label>
+        <label>Qualität <select id="pg-stufe"><option value="schnell">Schnell</option><option value="normal" selected>Normal</option><option value="hoch">Hoch (langsam)</option></select></label>
+        <button type="button" class="knopf-haupt" id="pg-start" disabled>3D-Modell berechnen</button>
+        <button type="button" class="knopf" id="pg-leeren" hidden>Alle Fotos entfernen</button>
+      </div>
+    </section>
+
+    <section class="tafel abstand" id="pg-lauf" hidden aria-labelledby="h-lauf">
+      <h2 id="h-lauf">2 · Berechnung</h2>
+      <ol id="pg-schritte"></ol>
+      <div class="pg-zeile"><button type="button" class="knopf" id="pg-abbruch" hidden>Abbrechen</button></div>
+      <div class="pg-fehler" id="pg-fehler" hidden role="alert"></div>
+      <details><summary>Protokoll</summary><ol id="pg-protokoll"></ol></details>
+    </section>
+
+    <section class="tafel abstand" id="pg-ergebnis" hidden aria-labelledby="h-modell">
+      <h2 id="h-modell">3 · Modell, Maße und Dach</h2>
+      <div class="pg-buehne" id="pg-buehne">
+        <canvas id="pg-gl" aria-label="3D-Ansicht des Modells"></canvas>
+        <canvas id="pg-overlay" aria-hidden="true"></canvas>
+        <div class="pg-schwebend">
+          <button type="button" class="knopf" id="pg-blick-oben">Von oben</button><button type="button" class="knopf" id="pg-blick-schraeg">Schräg</button><button type="button" class="knopf" id="pg-blick-passen">Einpassen</button><button type="button" class="knopf" id="pg-voll">Vollbild</button>
+        </div>
+        <div class="pg-unten"><button type="button" class="knopf-haupt" id="pg-dach-schliessen" hidden>Fläche schließen</button><button type="button" class="knopf-haupt" id="pg-hind-fertig" hidden>Hindernis übernehmen</button><button type="button" class="knopf" id="pg-werkzeug-ende" hidden>Abbrechen</button></div>
+        <div id="pg-hinweis" hidden></div>
+        <div id="pg-werkzeug-status" hidden></div>
+      </div>
+      <div class="pg-sicht">
+        <label><input type="checkbox" id="pg-sicht-netz" checked> Netz</label>
+        <label><input type="checkbox" id="pg-sicht-dicht" checked> dichte Punkte</label>
+        <label><input type="checkbox" id="pg-sicht-duenn"> Verknüpfungspunkte</label>
+        <label><input type="checkbox" id="pg-sicht-kameras" checked> Kameras</label>
+        <label><input type="checkbox" id="pg-sicht-grau"> Netz grau</label>
+        <label>Punktgröße <input type="range" id="pg-groesse" min="1" max="8" value="2"></label>
+        <span class="hilfe">Ziehen dreht · Umschalt- oder rechte Taste / zwei Finger verschieben · Rad / zwei Finger zoomen</span>
+      </div>
+      <div class="pg-raster">
+        <div class="pg-karte"><h3>Ergebnis</h3><table class="pg-werte"><tbody id="pg-info"></tbody></table></div>
+        <div class="pg-karte">
+          <div class="pg-reiter" role="tablist" aria-label="Werkzeuge">
+            <button type="button" data-reiter="messen" aria-selected="true">Messen</button>
+            <button type="button" data-reiter="lage" aria-selected="false">Maßstab und Lage</button>
+            <button type="button" data-reiter="dach" aria-selected="false">Dach und PV</button>
+            <button type="button" data-reiter="export" aria-selected="false">Export</button>
+          </div>
+          <div class="pg-tafel" id="pg-tafel-messen">
+            <div class="pg-knoepfe"><button type="button" class="knopf-haupt" id="pg-mess-strecke">Strecke messen</button></div>
+            <ol id="pg-messungen"></ol>
+          </div>
+          <div class="pg-tafel" id="pg-tafel-lage" hidden>
+            <p class="hilfe">Ohne GPS hat das Modell keine Maße. Eine bekannte Strecke im Modell anklicken (Zollstock, Fensterbreite, Ziegelreihe, Gebäudekante) und ihre echte Länge eingeben.</p>
+            <div class="pg-knoepfe"><button type="button" class="knopf" id="pg-ref-start">Referenzstrecke anklicken</button><input type="text" id="pg-ref-laenge" inputmode="decimal" placeholder="Länge in m" aria-label="echte Länge in Metern"><button type="button" class="knopf-haupt" id="pg-ref-uebernehmen">Maßstab übernehmen</button></div>
+            <p class="hilfe" id="pg-ref-ist"></p>
+            <div class="pg-knoepfe"><button type="button" class="knopf" id="pg-boden">Boden waagerecht (3 Punkte)</button><button type="button" class="knopf" id="pg-nullhoehe">Geländehöhe setzen (1 Punkt)</button></div>
+            <div class="pg-knoepfe" id="pg-nord-zeile"><label>Nordrichtung korrigieren <input type="text" id="pg-nord" inputmode="decimal" value="0"> °</label><span class="hilfe">Drehung, bis die Dachausrichtung stimmt (nur ohne GPS)</span></div>
+          </div>
+          <div class="pg-tafel" id="pg-tafel-dach" hidden>
+            <p class="hilfe">Dachfläche: die Ecken im Modell der Reihe nach anklicken. Neigung und Ausrichtung kommen aus allen Punkten der Fläche. Hindernisse wie Fenster oder Schornsteine mit zwei Ecken (Diagonale) oder mehreren Punkten einzeichnen – ihre Höhe über dem Dach wird gemessen.</p>
+            <div class="pg-knoepfe"><button type="button" class="knopf-haupt" id="pg-dach-neu">Neue Dachfläche</button></div>
+            <div id="pg-daecher"></div>
+            <div class="pg-knoepfe"><button type="button" class="knopf-haupt" id="pg-zum-planer">Im PV-Dachplaner öffnen</button><button type="button" class="knopf" id="pg-montage-json">JSON für Montagesystem-Rechner</button></div>
+            <div class="pg-knoepfe"><label>Breitengrad <input type="text" id="pg-lat" inputmode="decimal"></label><label>Längengrad <input type="text" id="pg-lng" inputmode="decimal"></label></div>
+          </div>
+          <div class="pg-tafel" id="pg-tafel-export" hidden>
+            <div class="pg-knoepfe"><button type="button" class="knopf" data-export="obj">Netz OBJ</button><button type="button" class="knopf" data-export="ply">Netz PLY</button><button type="button" class="knopf" data-export="stl">Netz STL</button><button type="button" class="knopf" data-export="glb">Netz GLB</button><button type="button" class="knopf" data-export="punkte">Punktwolke PLY</button><button type="button" class="knopf" id="pg-mass-csv">Maße CSV</button></div>
+            <p class="hilfe">Koordinaten in Metern (bei Maßstab aus GPS oder Referenz), x nach Osten, y nach Norden, z Höhe über Gelände. GLB mit y nach oben.</p>
+            <h3>Netz neu berechnen</h3>
+            <div class="pg-knoepfe"><label>Auflösung <select id="pg-aufloesung"><option value="128">grob (128)</option><option value="192" selected>mittel (192)</option><option value="256">fein (256)</option><option value="320">sehr fein (320)</option></select></label><label>Glättung <select id="pg-glatt"><option value="0">keine</option><option value="2" selected>leicht</option><option value="5">stark</option></select></label></div>
+            <div class="pg-schieber"><span>Bereich</span><span>von</span><span>bis</span>
+              <span>Ost–West</span><input type="range" id="pg-x0" min="0" max="100" value="0" aria-label="Bereich x von"><input type="range" id="pg-x1" min="0" max="100" value="100" aria-label="Bereich x bis">
+              <span>Süd–Nord</span><input type="range" id="pg-y0" min="0" max="100" value="0" aria-label="Bereich y von"><input type="range" id="pg-y1" min="0" max="100" value="100" aria-label="Bereich y bis">
+              <span>Höhe</span><input type="range" id="pg-z0" min="0" max="100" value="0" aria-label="Bereich z von"><input type="range" id="pg-z1" min="0" max="100" value="100" aria-label="Bereich z bis"></div>
+            <div class="pg-knoepfe"><button type="button" class="knopf-haupt" id="pg-netz-neu">Netz neu berechnen</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-tipps">
+      <h2 id="h-tipps">So gelingen die Fotos</h2>
+      <div class="wissen-raster">
+        <article class="wissen-karte" style="--farbe:#2B7BB9"><h3>Überlappung</h3><p>Jeder Punkt muss auf mindestens drei Fotos zu sehen sein. Zwischen zwei Fotos höchstens 10 bis 15 Grad weitergehen, Nachbarbilder überlappen 60 bis 80 Prozent. Für ein Haus: zwei Runden in verschiedenen Höhen, 20 bis 60 Fotos.</p></article>
+        <article class="wissen-karte" style="--farbe:#2E8B57"><h3>Bewegen, nicht drehen</h3><p>Den Standort zwischen den Fotos wechseln. Aus einem Punkt im Kreis gedrehte Fotos haben keine Parallaxe – daraus entsteht keine Tiefe. Zoom während der Aufnahme nicht verändern.</p></article>
+        <article class="wissen-karte" style="--farbe:#E4572E"><h3>Licht und Oberfläche</h3><p>Gleichmäßiges Licht (leicht bewölkt) ist ideal. Glas, Wasser, Spiegel, glänzendes Blech und einfarbige Flächen lassen sich kaum rekonstruieren. Nicht verwackeln, lieber kürzere Belichtungszeit.</p></article>
+        <article class="wissen-karte" style="--farbe:#7048E8"><h3>Maßstab</h3><p>Drohnenfotos haben meist GPS mit Höhe – dann stimmen Maßstab und Nordrichtung automatisch. Bei Handyfotos ist das GPS oft zu ungenau: besser eine bekannte Strecke messen, etwa einen Zollstock, der mitfotografiert wird.</p></article>
+      </div>
+    </section>
+
+    <section class="tafel abstand formelsammlung" id="pg-wissen" aria-labelledby="h-formeln">
+      <h2 id="h-formeln">Wie es funktioniert</h2>
+      <ul class="formel-liste">
+        <li><h3>Lochkamera</h3><div data-tex="u = f \cdot \frac{X_c}{Z_c} + c_x,\quad v = f \cdot \frac{Y_c}{Z_c} + c_y" title="Abbildung der Lochkamera"></div><p>Ein Raumpunkt in Kamerakoordinaten wird mit der Brennweite f in Pixeln aufs Bild abgebildet.</p></li>
+        <li><h3>Epipolarbedingung</h3><div data-tex="\mathbf{x}_2^{\mathsf T} \mathbf{E}\, \mathbf{x}_1 = 0" title="Epipolarbedingung"></div><p>Gleiche Punkte in zwei Fotos erfüllen sie; aus der Essentialmatrix E folgen Drehung und Richtung zwischen den Kameras.</p></li>
+        <li><h3>Rückprojektionsfehler</h3><div data-tex="e = \lVert \pi(\mathbf{K}, \mathbf{R}, \mathbf{t}, \mathbf{X}) - \mathbf{x} \rVert" title="Rückprojektionsfehler"></div><p>Der Bündelausgleich verschiebt Kameras und Punkte, bis die Summe dieser Fehler minimal ist.</p></li>
+        <li><h3>Bodenauflösung</h3><div data-tex="\mathrm{GSD} = \frac{p \cdot H}{f}" title="Bodenauflösung (GSD)"></div><p>Pixelgröße p mal Abstand H durch Brennweite f: so groß ist ein Pixel auf dem Objekt.</p></li>
+        <li><h3>Tiefengenauigkeit</h3><div data-tex="\sigma_Z \approx \frac{Z^2}{B \cdot f}\, \sigma_{px}" title="Tiefengenauigkeit"></div><p>Mit größerem Abstand Z wird es ungenauer, mit größerer Basis B zwischen den Kameras genauer.</p></li>
+        <li><h3>Ähnlichkeit zum GPS</h3><div data-tex="\mathbf{X}_{\mathrm{Welt}} = s \cdot \mathbf{Q}\, \mathbf{X} + \mathbf{c}" title="Ähnlichkeitstransformation"></div><p>Maßstab s, Drehung Q und Verschiebung c aus den Kamerapositionen und ihren GPS-Werten.</p></li>
+        <li><h3>Dachneigung aus der Normalen</h3><div data-tex="\alpha = \arccos(n_z)" title="Dachneigung aus der Flächennormalen"></div><p>Die Normale der Ausgleichsebene durch alle Punkte der Dachfläche ergibt die Neigung.</p></li>
+        <li><h3>Abgerundete Ebene im Volumen</h3><div data-tex="D(\mathbf{v}) = \frac{\sum_i w_i\, \min\!\left(1, \tfrac{d_i - z_i}{\tau}\right)}{\sum_i w_i}" title="Abstandsfeld (TSDF)"></div><p>Alle Tiefenkarten werden in ein Volumen gemittelt, die Oberfläche liegt dort, wo D = 0 ist.</p></li>
+      </ul>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie genau sind die Maße?</summary><p>Mit gutem GPS (Drohne) oder einer Referenzstrecke liegen Strecken typischerweise innerhalb von 1 bis 3 Prozent, Dachneigungen innerhalb von 1 bis 2 Grad. Die Genauigkeit hängt von Fotoqualität, Abstand und Überlappung ab. Für Aufmaß und Bestellung immer kritische Maße vor Ort nachmessen.</p></details>
+        <details><summary>Warum werden nicht alle Fotos ausgerichtet?</summary><p>Ein Foto braucht genug gemeinsame Punkte mit den anderen. Fehlende Überlappung, starke Unschärfe, Gegenlicht oder einfarbige Flächen verhindern das. Zusätzliche Fotos zwischen den Lücken helfen.</p></details>
+        <details><summary>Werden meine Fotos hochgeladen?</summary><p>Nein. Alles läuft lokal im Browser, auch ohne Internet, wenn die Seite einmal geladen war.</p></details>
+        <details><summary>Wie komme ich zum PV-Plan?</summary><p>Im Reiter „Dach und PV“ die Dachflächen und Hindernisse einzeichnen und „Im PV-Dachplaner öffnen“ wählen. Der Planer übernimmt Form, Neigung, Ausrichtung und Hindernisse. Alternativ entsteht eine JSON-Datei im Austauschformat für Auslegungsrechner von Montagesystemen.</p></details>
+        <details><summary>Welche Formate gibt es?</summary><p>Netze als OBJ (mit Eckfarben), PLY, STL für den 3D-Druck und GLB für Betrachter und 3D-Programme, die Punktwolke als PLY und alle Maße als CSV.</p></details>
+        <details><summary>Was ist das Beispiel?</summary><p>Ein künstlich gerendertes Haus mit Satteldach (38°), Dachfenstern, Schornstein und Garage, aufgenommen von einer gedachten Drohne mit GPS. Damit lässt sich der ganze Ablauf ohne eigene Fotos ausprobieren und das Ergebnis mit den bekannten Maßen vergleichen.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel=""></div>
+
+  <script src="assets/katex/katex.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const $ = function (id) { return document.getElementById(id); };
+    const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
+    const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 2 : n, minimumFractionDigits: 0 }); };
+    const STUFEN = {
+      schnell: { name: 'Schnell', feat: 1000, nMax: 2500, grob: 300, dicht: 360, ebenen: 48, quellen: 2, voxel: 128 },
+      normal: { name: 'Normal', feat: 1400, nMax: 4000, grob: 400, dicht: 480, ebenen: 64, quellen: 3, voxel: 192 },
+      hoch: { name: 'Hoch', feat: 2000, nMax: 6000, grob: 500, dicht: 640, ebenen: 96, quellen: 4, voxel: 256 }
+    };
+    const MAX_BILDER = 200;
+
+    // ---------- Arbeitsfäden ----------
+    const werkerUrl = 'assets/photogrammetrie-werker.js';
+    const anzahlWerker = Math.max(1, Math.min(6, (navigator.hardwareConcurrency || 2) - 1));
+    let werker = [], auftragNr = 0, abbruch = false;
+    function werkerStarten() {
+      werker.forEach(function (w) { w.w.terminate(); });
+      werker = [];
+      for (let i = 0; i < anzahlWerker; i++) {
+        const w = { w: new Worker(werkerUrl), offen: {}, last: 0 };
+        w.w.onmessage = function (ev) {
+          const m = ev.data, o = w.offen[m.id]; if (!o) return;
+          if (m.fortschritt !== undefined) { if (o.melden) o.melden(m.fortschritt); return; }
+          delete w.offen[m.id]; w.last--;
+          if (m.fehler) o.nein(new Error(m.fehler)); else o.ja(m.ergebnis);
+        };
+        w.w.onerror = function (e) { Object.keys(w.offen).forEach(function (k) { w.offen[k].nein(new Error(e.message || 'Fehler im Arbeitsfaden')); }); w.offen = {}; w.last = 0; };
+        werker.push(w);
+      }
+    }
+    function auftrag(daten, transfer, melden, nr) {
+      if (abbruch) return Promise.reject(new Error('abgebrochen'));
+      const w = nr !== undefined ? werker[nr % werker.length] : werker.reduce(function (a, b) { return b.last < a.last ? b : a; });
+      return new Promise(function (ja, nein) { const id = ++auftragNr; daten.id = id; w.offen[id] = { ja: ja, nein: nein, melden: melden }; w.last++; w.w.postMessage(daten, transfer || []); });
+    }
+    function anAlle(daten) { return Promise.all(werker.map(function (w, i) { return auftrag(Object.assign({}, daten), [], null, i); })); }
+    // Aufgaben gleichzeitig abarbeiten, höchstens so viele wie Arbeitsfäden
+    function parallel(liste, fn, fortschritt) {
+      let i = 0, fertig = 0; const erg = new Array(liste.length);
+      return new Promise(function (ja, nein) {
+        if (!liste.length) { ja(erg); return; }
+        let laufend = 0, fehler = false;
+        const weiter = function () {
+          while (laufend < werker.length && i < liste.length && !fehler) {
+            const k = i++; laufend++;
+            Promise.resolve().then(function () { return fn(liste[k], k); }).then(function (r) {
+              erg[k] = r; laufend--; fertig++; if (fortschritt) fortschritt(fertig, liste.length);
+              if (fertig === liste.length) ja(erg); else weiter();
+            }, function (e) { fehler = true; nein(e); });
+          }
+        };
+        weiter();
+      });
+    }
+
+    // ---------- EXIF lesen (Brennweite, Kleinbild-Brennweite, Hersteller, Modell, GPS) ----------
+    function exifLesen(datei) {
+      return datei.slice(0, 262144).arrayBuffer().then(function (buf) {
+        const dv = new DataView(buf), e = {};
+        if (dv.byteLength < 4 || dv.getUint16(0) !== 0xFFD8) return e;
+        let p = 2;
+        while (p + 4 < dv.byteLength) {
+          const marker = dv.getUint16(p), len = dv.getUint16(p + 2);
+          if (marker === 0xFFE1 && dv.getUint32(p + 4) === 0x45786966) { tiffLesen(dv, p + 10, e); break; }
+          if ((marker & 0xFF00) !== 0xFF00 || marker === 0xFFDA) break;
+          p += 2 + len;
+        }
+        return e;
+      }).catch(function () { return {}; });
+    }
+    function tiffLesen(dv, t, e) {
+      const le = dv.getUint16(t) === 0x4949, u16 = function (o) { return dv.getUint16(t + o, le); }, u32 = function (o) { return dv.getUint32(t + o, le); };
+      const rat = function (o) { const d = u32(o + 4); return d ? u32(o) / d : 0; };
+      const ifd = function (o, fn) {
+        if (o <= 0 || t + o + 2 > dv.byteLength) return;
+        const n = u16(o);
+        for (let i = 0; i < n && t + o + 2 + i * 12 + 12 <= dv.byteLength; i++) {
+          const q = o + 2 + i * 12, tag = u16(q), typ = u16(q + 2), anz = u32(q + 4), wertOff = anz * ({ 1: 1, 2: 1, 3: 2, 4: 4, 5: 8, 7: 1, 9: 4, 10: 8 }[typ] || 1) > 4 ? u32(q + 8) : q + 8;
+          fn(tag, typ, anz, wertOff, q);
+        }
+      };
+      const text = function (o, n) { let s = ''; for (let i = 0; i < n && t + o + i < dv.byteLength; i++) { const c = dv.getUint8(t + o + i); if (!c) break; s += String.fromCharCode(c); } return s.trim().slice(0, 40); };
+      let exifOff = 0, gpsOff = 0;
+      ifd(u32(4), function (tag, typ, anz, w, q) {
+        if (tag === 0x010F) e.hersteller = text(w, anz); else if (tag === 0x0110) e.modell = text(w, anz);
+        else if (tag === 0x8769) exifOff = u32(q + 8); else if (tag === 0x8825) gpsOff = u32(q + 8);
+      });
+      ifd(exifOff, function (tag, typ, anz, w) {
+        if (tag === 0x920A) e.f = rat(w); else if (tag === 0xA405) e.f35 = u16(w);
+      });
+      const gps = {};
+      ifd(gpsOff, function (tag, typ, anz, w) {
+        if (tag === 1) gps.latRef = text(w, 2); else if (tag === 3) gps.lonRef = text(w, 2); else if (tag === 5) gps.altRef = dv.getUint8(t + w);
+        else if (tag === 2) gps.lat = rat(w) + rat(w + 8) / 60 + rat(w + 16) / 3600;
+        else if (tag === 4) gps.lon = rat(w) + rat(w + 8) / 60 + rat(w + 16) / 3600;
+        else if (tag === 6) gps.alt = rat(w);
+      });
+      if (isFinite(gps.lat) && isFinite(gps.lon) && (gps.lat || gps.lon)) {
+        e.gps = { lat: gps.latRef === 'S' ? -gps.lat : gps.lat, lon: gps.lonRef === 'W' ? -gps.lon : gps.lon, alt: isFinite(gps.alt) ? (gps.altRef === 1 ? -gps.alt : gps.alt) : null };
+      }
+    }
+    // Bild dekodieren (Ausrichtung aus EXIF beachtet) und auf eine lange Seite verkleinern
+    function bildLaden(quelle) {
+      if (quelle.canvas) return Promise.resolve(quelle.canvas);
+      if (window.createImageBitmap) return createImageBitmap(quelle.datei, { imageOrientation: 'from-image' }).catch(function () { return imgLaden(quelle.datei); });
+      return imgLaden(quelle.datei);
+    }
+    function imgLaden(datei) {
+      return new Promise(function (ja, nein) { const u = URL.createObjectURL(datei), i = new Image(); i.onload = function () { URL.revokeObjectURL(u); ja(i); }; i.onerror = function () { URL.revokeObjectURL(u); nein(new Error('Bild nicht lesbar')); }; i.src = u; });
+    }
+    function pixel(bild, lang) {
+      const w0 = bild.width, h0 = bild.height, s = Math.min(1, lang / Math.max(w0, h0)), w = Math.max(1, Math.round(w0 * s)), h = Math.max(1, Math.round(h0 * s));
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const x = c.getContext('2d', { willReadFrequently: true }); x.imageSmoothingEnabled = true; x.imageSmoothingQuality = 'high'; x.drawImage(bild, 0, 0, w, h);
+      return { rgba: x.getImageData(0, 0, w, h).data, w: w, h: h, s: w / w0 };
+    }
+// ---------- Lineare Algebra (Zeilen-Matrizen als flache Arrays) ----------
+function m3(a, b) { // 3x3 · 3x3
+  return [a[0] * b[0] + a[1] * b[3] + a[2] * b[6], a[0] * b[1] + a[1] * b[4] + a[2] * b[7], a[0] * b[2] + a[1] * b[5] + a[2] * b[8],
+    a[3] * b[0] + a[4] * b[3] + a[5] * b[6], a[3] * b[1] + a[4] * b[4] + a[5] * b[7], a[3] * b[2] + a[4] * b[5] + a[5] * b[8],
+    a[6] * b[0] + a[7] * b[3] + a[8] * b[6], a[6] * b[1] + a[7] * b[4] + a[8] * b[7], a[6] * b[2] + a[7] * b[5] + a[8] * b[8]];
+}
+function m3v(a, v) { return [a[0] * v[0] + a[1] * v[1] + a[2] * v[2], a[3] * v[0] + a[4] * v[1] + a[5] * v[2], a[6] * v[0] + a[7] * v[1] + a[8] * v[2]]; }
+function m3t(a) { return [a[0], a[3], a[6], a[1], a[4], a[7], a[2], a[5], a[8]]; }
+function m3det(a) { return a[0] * (a[4] * a[8] - a[5] * a[7]) - a[1] * (a[3] * a[8] - a[5] * a[6]) + a[2] * (a[3] * a[7] - a[4] * a[6]); }
+function m3inv(a) {
+  const d = m3det(a); if (Math.abs(d) < 1e-300) return null;
+  const i = 1 / d;
+  return [(a[4] * a[8] - a[5] * a[7]) * i, (a[2] * a[7] - a[1] * a[8]) * i, (a[1] * a[5] - a[2] * a[4]) * i,
+    (a[5] * a[6] - a[3] * a[8]) * i, (a[0] * a[8] - a[2] * a[6]) * i, (a[2] * a[3] - a[0] * a[5]) * i,
+    (a[3] * a[7] - a[4] * a[6]) * i, (a[1] * a[6] - a[0] * a[7]) * i, (a[0] * a[4] - a[1] * a[3]) * i];
+}
+function v3sub(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
+function v3add(a, b) { return [a[0] + b[0], a[1] + b[1], a[2] + b[2]]; }
+function v3mal(a, k) { return [a[0] * k, a[1] * k, a[2] * k]; }
+function v3dot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+function v3kreuz(a, b) { return [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]]; }
+function v3len(a) { return Math.sqrt(a[0] * a[0] + a[1] * a[1] + a[2] * a[2]); }
+function v3norm(a) { const l = v3len(a) || 1; return [a[0] / l, a[1] / l, a[2] / l]; }
+function schief(v) { return [0, -v[2], v[1], v[2], 0, -v[0], -v[1], v[0], 0]; }
+function rodrigues(w) {
+  const th = v3len(w);
+  if (th < 1e-12) return [1, -w[2], w[1], w[2], 1, -w[0], -w[1], w[0], 1];
+  const k = [w[0] / th, w[1] / th, w[2] / th], c = Math.cos(th), s = Math.sin(th), v = 1 - c;
+  return [c + k[0] * k[0] * v, k[0] * k[1] * v - k[2] * s, k[0] * k[2] * v + k[1] * s,
+    k[1] * k[0] * v + k[2] * s, c + k[1] * k[1] * v, k[1] * k[2] * v - k[0] * s,
+    k[2] * k[0] * v - k[1] * s, k[2] * k[1] * v + k[0] * s, c + k[2] * k[2] * v];
+}
+// Orthonormieren (nächste Drehmatrix)
+function drehungNahe(a) {
+  const s = svd3(a); let r = m3(s.U, m3t(s.V));
+  if (m3det(r) < 0) { const V = s.V.slice(); V[2] = -V[2]; V[5] = -V[5]; V[8] = -V[8]; r = m3(s.U, m3t(V)); }
+  return r;
+}
+// Jacobi-Eigenzerlegung einer symmetrischen n×n-Matrix; Eigenwerte aufsteigend, Vektoren als Spalten
+function eigenSym(Ain, n) {
+  const A = Float64Array.from(Ain), V = new Float64Array(n * n);
+  for (let i = 0; i < n; i++) V[i * n + i] = 1;
+  for (let sweep = 0; sweep < 60; sweep++) {
+    let off = 0;
+    for (let p = 0; p < n; p++) for (let q = p + 1; q < n; q++) off += A[p * n + q] * A[p * n + q];
+    if (off < 1e-26) break;
+    for (let p = 0; p < n; p++) for (let q = p + 1; q < n; q++) {
+      const apq = A[p * n + q]; if (Math.abs(apq) < 1e-300) continue;
+      const app = A[p * n + p], aqq = A[q * n + q], th = (aqq - app) / (2 * apq);
+      const t = (th >= 0 ? 1 : -1) / (Math.abs(th) + Math.sqrt(th * th + 1)), c = 1 / Math.sqrt(t * t + 1), s = t * c;
+      for (let k = 0; k < n; k++) {
+        const akp = A[k * n + p], akq = A[k * n + q];
+        A[k * n + p] = c * akp - s * akq; A[k * n + q] = s * akp + c * akq;
+      }
+      for (let k = 0; k < n; k++) {
+        const apk = A[p * n + k], aqk = A[q * n + k];
+        A[p * n + k] = c * apk - s * aqk; A[q * n + k] = s * apk + c * aqk;
+      }
+      for (let k = 0; k < n; k++) {
+        const vkp = V[k * n + p], vkq = V[k * n + q];
+        V[k * n + p] = c * vkp - s * vkq; V[k * n + q] = s * vkp + c * vkq;
+      }
+    }
+  }
+  const idx = []; for (let i = 0; i < n; i++) idx.push(i);
+  idx.sort(function (a, b) { return A[a * n + a] - A[b * n + b]; });
+  const werte = idx.map(function (i) { return A[i * n + i]; }), vek = new Float64Array(n * n);
+  idx.forEach(function (i, j) { for (let k = 0; k < n; k++) vek[k * n + j] = V[k * n + i]; });
+  return { werte: werte, V: vek };
+}
+// kleinster rechter Singulärvektor einer m×n-Matrix (Zeilen)
+function nullvektor(A, m, n) {
+  const M = new Float64Array(n * n);
+  for (let r = 0; r < m; r++) for (let i = 0; i < n; i++) { const a = A[r * n + i]; if (a === 0) continue; for (let j = i; j < n; j++) M[i * n + j] += a * A[r * n + j]; }
+  for (let i = 0; i < n; i++) for (let j = 0; j < i; j++) M[i * n + j] = M[j * n + i];
+  const e = eigenSym(M, n), v = new Float64Array(n);
+  for (let k = 0; k < n; k++) v[k] = e.V[k * n];
+  return v;
+}
+// SVD einer 3x3-Matrix: A = U·diag(S)·V^T, S absteigend
+function svd3(A) {
+  const AtA = m3(m3t(A), A), e = eigenSym(AtA, 3);
+  const V = [e.V[2], e.V[1], e.V[0], e.V[5], e.V[4], e.V[3], e.V[8], e.V[7], e.V[6]];
+  const S = [Math.sqrt(Math.max(0, e.werte[2])), Math.sqrt(Math.max(0, e.werte[1])), Math.sqrt(Math.max(0, e.werte[0]))];
+  const sp = function (i) { return [V[i], V[3 + i], V[6 + i]]; };
+  const u0 = S[0] > 1e-300 ? v3mal(m3v(A, sp(0)), 1 / S[0]) : [1, 0, 0];
+  let u1 = S[1] > 1e-12 * (S[0] || 1) ? v3mal(m3v(A, sp(1)), 1 / S[1]) : null;
+  if (!u1) { const h = Math.abs(u0[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0]; u1 = v3norm(v3kreuz(u0, h)); }
+  u1 = v3norm(v3sub(u1, v3mal(u0, v3dot(u0, u1))));
+  let u2 = v3kreuz(u0, u1);
+  if (S[2] > 1e-12 * (S[0] || 1) && v3dot(m3v(A, sp(2)), u2) < 0) u2 = v3mal(u2, -1);
+  return { U: [u0[0], u1[0], u2[0], u0[1], u1[1], u2[1], u0[2], u1[2], u2[2]], S: S, V: V };
+}
+// Cholesky-Lösung (überschreibt nichts), A n×n symmetrisch positiv definit
+function cholLoesen(A, b, n) {
+  const L = new Float64Array(n * n);
+  for (let i = 0; i < n; i++) {
+    for (let j = 0; j <= i; j++) {
+      let s = A[i * n + j];
+      for (let k = 0; k < j; k++) s -= L[i * n + k] * L[j * n + k];
+      if (i === j) { if (s <= 1e-300) s = 1e-12; L[i * n + i] = Math.sqrt(s); }
+      else L[i * n + j] = s / L[j * n + j];
+    }
+  }
+  const y = new Float64Array(n);
+  for (let i = 0; i < n; i++) { let s = b[i]; for (let k = 0; k < i; k++) s -= L[i * n + k] * y[k]; y[i] = s / L[i * n + i]; }
+  const x = new Float64Array(n);
+  for (let i = n - 1; i >= 0; i--) { let s = y[i]; for (let k = i + 1; k < n; k++) s -= L[k * n + i] * x[k]; x[i] = s / L[i * n + i]; }
+  return x;
+}
+function sym3inv(a) { return m3inv(a); }
+// Zufall mit Startwert (reproduzierbar)
+function zufallMit(s) { let x = s >>> 0 || 1; return function () { x ^= x << 13; x >>>= 0; x ^= x >>> 17; x ^= x << 5; x >>>= 0; return x / 4294967296; }; }
+function stichprobe(n, k, zf) { const r = []; while (r.length < k) { const i = Math.floor(zf() * n); if (r.indexOf(i) < 0) r.push(i); } return r; }
+function median(a) { if (!a.length) return 0; const s = Array.prototype.slice.call(a).sort(function (x, y) { return x - y; }); return s[s.length >> 1]; }
+function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slice.call(a).sort(function (x, y) { return x - y; }); return s[Math.min(s.length - 1, Math.max(0, Math.floor(q * (s.length - 1))))]; }
+    const I3 = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+    // ---------- Ablauf der Berechnung ----------
+    // Ablauf mit Generatoren (ES2015): yield wartet auf ein Promise
+    function lauf(gen) {
+      const it = gen();
+      return new Promise(function (ja, nein) {
+        const schritt = function (fn, wert) { let r; try { r = fn.call(it, wert); } catch (e) { nein(e); return; } if (r.done) { ja(r.value); return; } Promise.resolve(r.value).then(function (v) { schritt(it.next, v); }, function (e) { schritt(it.throw, e); }); };
+        schritt(it.next);
+      });
+    }
+    const fotos = []; // { name, datei | canvas, exif, w0, h0, thumb }
+    let rek = null; // Ergebnis der Rekonstruktion
+    const SCHRITTE = [['merkmale', 'Merkmale finden'], ['paare', 'Bildpaare zuordnen'], ['kameras', 'Kameras ausrichten und Bündelausgleich'], ['tiefe', 'Tiefenkarten'], ['pruefen', 'Tiefen gegenseitig prüfen'], ['netz', 'Oberfläche erzeugen']];
+    function schrittSetzen(k, anteil, text) {
+      const li = document.querySelector('#pg-schritte [data-schritt="' + k + '"]'); if (!li) return;
+      li.className = anteil >= 1 ? 'fertig' : anteil > 0 || text ? 'laeuft' : '';
+      li.querySelector('i').style.width = Math.round(Math.min(1, anteil) * 100) + '%';
+      if (text !== undefined) li.querySelector('small').textContent = text;
+    }
+    function protokoll(t) { const ol = $('pg-protokoll'), li = kn('li', '', t); ol.append(li); while (ol.children.length > 80) ol.firstChild.remove(); ol.scrollTop = ol.scrollHeight; }
+    function brennweitePx(f, w, h) {
+      if (f.exif && f.exif.f35 > 5 && f.exif.f35 < 400) return f.exif.f35 / 36 * Math.max(w, h);
+      return 0.85 * Math.max(w, h);
+    }
+    function berechnen() { return lauf(function* () {
+      const st = STUFEN[$('pg-stufe').value] || STUFEN.normal, N = fotos.length;
+      abbruch = false; werkerStarten();
+      const t0 = Date.now();
+      document.querySelectorAll('#pg-schritte li').forEach(function (li) { li.className = ''; li.querySelector('i').style.width = '0'; li.querySelector('small').textContent = ''; });
+      $('pg-protokoll').textContent = '';
+      rek = { stufe: st, bilder: [], merk: [] };
+      // 1 Merkmale
+      schrittSetzen('merkmale', 0.01, '0 von ' + N);
+      yield parallel(fotos, function (f, i) {
+        return bildLaden(f).then(function (b) {
+          f.w0 = b.width; f.h0 = b.height;
+          const px = pixel(b, st.feat);
+          if (b.close) b.close();
+          rek.bilder[i] = { w: px.w, h: px.h, cx: px.w / 2, cy: px.h / 2, f0: brennweitePx(f, px.w, px.h) };
+          return auftrag({ art: 'merkmale', rgba: px.rgba, w: px.w, h: px.h, nMax: st.nMax }, [px.rgba.buffer]);
+        }).then(function (m) { rek.merk[i] = m; });
+      }, function (n) { schrittSetzen('merkmale', n / N, n + ' von ' + N); });
+      const mm = rek.merk.map(function (m) { return m.n; });
+      protokoll('Merkmale: im Mittel ' + Math.round(mm.reduce(function (a, b) { return a + b; }, 0) / N) + ' je Bild');
+      // Kameragruppen (gleiche Größe, Brennweite und Kamera teilen sich die inneren Werte)
+      const gruppen = [], gIdx = {};
+      rek.bilder.forEach(function (b, i) {
+        const e = fotos[i].exif || {}, key = b.w + 'x' + b.h + '|' + (e.f35 || '?') + '|' + (e.modell || '');
+        if (gIdx[key] === undefined) { gIdx[key] = gruppen.length; gruppen.push({ f: b.f0 }); }
+        b.gruppe = gIdx[key];
+      });
+      // 2 Paare
+      schrittSetzen('paare', 0.01, 'Vorauswahl');
+      const K = {}, M = {};
+      rek.merk.forEach(function (m, i) { K[i] = { f: rek.bilder[i].f0, cx: rek.bilder[i].cx, cy: rek.bilder[i].cy }; M[i] = { n: m.n, x: m.x, y: m.y, d: m.d, antwort: m.antwort }; });
+      yield anAlle({ art: 'ablegen', merkmale: M, K: K });
+      const allePaare = []; for (let i = 0; i < N; i++) for (let j = i + 1; j < N; j++) allePaare.push([i, j]);
+      let kandidaten;
+      if (N <= 20) kandidaten = allePaare;
+      else {
+        const pakete = []; for (let k = 0; k < allePaare.length; k += 40) pakete.push(allePaare.slice(k, k + 40));
+        const grob = [];
+        yield parallel(pakete, function (p) { return auftrag({ art: 'paare', liste: p.map(function (q) { return { i: q[0], j: q[1], grob: st.grob }; }) }).then(function (r) { r.forEach(function (x) { grob.push(x); }); }); },
+          function (n) { schrittSetzen('paare', 0.3 * n / pakete.length, 'Vorauswahl ' + Math.round(n / pakete.length * 100) + ' %'); });
+        const wahl = {}, jeBild = []; for (let i = 0; i < N; i++) jeBild.push([]);
+        grob.forEach(function (g) { jeBild[g.i].push(g); jeBild[g.j].push(g); });
+        jeBild.forEach(function (l) { l.sort(function (a, b) { return b.n - a.n; }); l.slice(0, 12).forEach(function (g) { if (g.n >= 12) wahl[g.i + ':' + g.j] = 1; }); });
+        for (let i = 0; i < N; i++) for (let d = 1; d <= 2; d++) if (i + d < N) wahl[i + ':' + (i + d)] = 1;
+        kandidaten = Object.keys(wahl).map(function (k) { return k.split(':').map(Number); });
+      }
+      const pakete = []; for (let k = 0; k < kandidaten.length; k += 4) pakete.push(kandidaten.slice(k, k + 4));
+      const paare = [];
+      yield parallel(pakete, function (p) { return auftrag({ art: 'paare', liste: p.map(function (q) { return { i: q[0], j: q[1] }; }), schwelle: 3 }).then(function (r) { r.forEach(function (x) { if (x.n >= 20) paare.push(x); }); }); },
+        function (n) { schrittSetzen('paare', 0.3 + 0.7 * n / pakete.length, n * 4 > kandidaten.length ? kandidaten.length + ' Paare geprüft' : n * 4 + ' von ' + kandidaten.length + ' Paaren'); });
+      protokoll(paare.length + ' von ' + kandidaten.length + ' geprüften Bildpaaren passen zusammen');
+      protokoll('Paare: ' + paare.map(function (x) { return (x.i + 1) + '-' + (x.j + 1) + ':' + x.n; }).join(' '));
+      if (paare.length < 1) throw new Error('Kein Bildpaar passt zusammen. Die Fotos brauchen mehr Überlappung (60 bis 80 %) und Struktur auf den Flächen.');
+      schrittSetzen('paare', 1);
+      // 3 Kameras
+      schrittSetzen('kameras', 0.01, 'Startpaar suchen');
+      const sfmE = yield auftrag({
+        art: 'sfm', gruppen: gruppen, paare: paare,
+        bilder: rek.bilder.map(function (b, i) { const m = rek.merk[i]; return { n: m.n, x: m.x, y: m.y, farbe: m.farbe, cx: b.cx, cy: b.cy, gruppe: b.gruppe }; })
+      }, null, function (m) { if (m.reg) schrittSetzen('kameras', Math.min(0.95, m.reg / N), m.reg + ' von ' + N + ' ausgerichtet'); if (m.text) protokoll(m.text); });
+      if (sfmE.fehler && typeof sfmE.fehler === 'string') throw new Error(sfmE.fehler);
+      rek.sfm = sfmE;
+      const nReg = sfmE.kameras.filter(function (k) { return k.reg; }).length;
+      schrittSetzen('kameras', 1, nReg + ' von ' + N + ' ausgerichtet, Fehler ' + zahl(sfmE.fehler, 2) + ' px');
+      protokoll('Kameras: ' + nReg + ' von ' + N + ', ' + (sfmE.punkte.length / 3) + ' Punkte, mittlerer Rückprojektionsfehler ' + zahl(sfmE.fehler, 2) + ' px, Brennweite ' + sfmE.gruppen.map(function (g) { return zahl(g.f, 0) + ' px'; }).join(', '));
+      if (nReg < 3) throw new Error('Nur ' + nReg + ' Kameras ließen sich ausrichten. Mehr Fotos mit mehr Überlappung aufnehmen.');
+      ausrichtungBerechnen();
+      ergebnisZeigen('duenn');
+      // 4 Tiefenkarten
+      yield dichtBerechnen(st);
+      // 5 Netz
+      yield netzBerechnen();
+      protokoll('Fertig nach ' + Math.round((Date.now() - t0) / 1000) + ' s');
+    }); }
+    // Kamera i im Rekonstruktions-System
+    function kamera(i) { return rek.sfm.kameras[i]; }
+    function zentrumVon(i) { const k = kamera(i); return v3mal(m3v(m3t(k.R), k.t), -1); }
+    function dichtBerechnen(st) { return lauf(function* () {
+      const N = fotos.length, reg = []; for (let i = 0; i < N; i++) if (kamera(i).reg) reg.push(i);
+      schrittSetzen('tiefe', 0.01, 'Bilder vorbereiten');
+      // Bilder in Tiefenkarten-Auflösung, entzerrt
+      const ans = {};
+      yield parallel(reg, function (i) {
+        return bildLaden(fotos[i]).then(function (b) {
+          const px = pixel(b, st.dicht); if (b.close) b.close();
+          const fb = rek.bilder[i], gr = rek.sfm.gruppen[fb.gruppe], s = px.w / fb.w, f = gr.f * s, cx = px.w / 2, cy = px.h / 2, k1 = gr.k1;
+          const n = px.w * px.h, grau = new Float32Array(n), farbe = new Uint8Array(n * 3), q = px.rgba, w = px.w, h = px.h;
+          for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+            const xn = (x - cx) / f, yn = (y - cy) / f, d = 1 + k1 * (xn * xn + yn * yn), u = Math.min(w - 1.001, Math.max(0, f * xn * d + cx)), v = Math.min(h - 1.001, Math.max(0, f * yn * d + cy));
+            const x0 = u | 0, y0 = v | 0, fx = u - x0, fy = v - y0, j = y0 * w + x0, o = y * w + x;
+            for (let c = 0; c < 3; c++) { const a = q[4 * j + c] * (1 - fx) + q[4 * j + 4 + c] * fx, bb = q[4 * (j + w) + c] * (1 - fx) + q[4 * (j + w) + 4 + c] * fx; farbe[3 * o + c] = a * (1 - fy) + bb * fy; }
+            grau[o] = 0.299 * farbe[3 * o] + 0.587 * farbe[3 * o + 1] + 0.114 * farbe[3 * o + 2];
+          }
+          ans[i] = { w: w, h: h, f: f, cx: cx, cy: cy, R: kamera(i).R, t: kamera(i).t, grau: grau, farbe: farbe };
+        });
+      });
+      // Nachbarn: gemeinsame Punkte und guter Schnittwinkel
+      const P = rek.sfm.punkte, sets = {};
+      reg.forEach(function (i) { const s = new Set(); rek.sfm.sicht[i].forEach(function (p) { s.add(p); }); sets[i] = s; });
+      const nachbarn = {}, bereich = {};
+      reg.forEach(function (i) {
+        const Ci = zentrumVon(i), kand = [];
+        reg.forEach(function (j) {
+          if (j === i) return; const Cj = zentrumVon(j); let n = 0; const wink = [];
+          rek.sfm.sicht[j].forEach(function (p) { if (!sets[i].has(p)) return; n++; if (wink.length < 60) { const X = [P[3 * p], P[3 * p + 1], P[3 * p + 2]]; wink.push(Math.acos(Math.max(-1, Math.min(1, v3dot(v3norm(v3sub(X, Ci)), v3norm(v3sub(X, Cj)))))) * 180 / Math.PI); } });
+          if (n < 10) return; const w = median(wink); if (w < 2.5 || w > 45) return;
+          kand.push([j, n * Math.exp(-Math.pow(w - 14, 2) / (2 * 9 * 9))]);
+        });
+        kand.sort(function (a, b) { return b[1] - a[1]; });
+        nachbarn[i] = kand.slice(0, Math.max(st.quellen, 4)).map(function (k) { return k[0]; });
+        const k = kamera(i), z = [];
+        rek.sfm.sicht[i].forEach(function (p) { const X = [P[3 * p], P[3 * p + 1], P[3 * p + 2]]; z.push(v3dot([k.R[6], k.R[7], k.R[8]], X) + k.t[2]); });
+        bereich[i] = [Math.max(1e-3, quantil(z, 0.03) * 0.7), quantil(z, 0.97) * 1.4];
+      });
+      const mitN = reg.filter(function (i) { return nachbarn[i].length && rek.sfm.sicht[i].length >= 10; });
+      let fertig = 0;
+      const tiefen = {};
+      yield parallel(mitN, function (i) {
+        const ref = ans[i], quellen = nachbarn[i].slice(0, st.quellen).map(function (j) { const a = ans[j]; return { w: a.w, h: a.h, f: a.f, cx: a.cx, cy: a.cy, R: a.R, t: a.t, grau: a.grau }; });
+        return auftrag({ art: 'tiefe', ref: { w: ref.w, h: ref.h, f: ref.f, cx: ref.cx, cy: ref.cy, R: ref.R, t: ref.t, grau: ref.grau }, quellen: quellen, opt: { dmin: bereich[i][0], dmax: bereich[i][1], ebenen: st.ebenen, beste: 2 } })
+          .then(function (r) { tiefen[i] = r.tiefe; fertig++; schrittSetzen('tiefe', fertig / mitN.length, fertig + ' von ' + mitN.length); });
+      });
+      // gegenseitig prüfen
+      schrittSetzen('pruefen', 0.01, '');
+      const gut = {}; fertig = 0;
+      yield parallel(mitN, function (i) {
+        const a = ans[i], nb = nachbarn[i].filter(function (j) { return tiefen[j]; }).slice(0, 4).map(function (j) { const b = ans[j]; return { w: b.w, h: b.h, f: b.f, cx: b.cx, cy: b.cy, R: b.R, t: b.t, tiefe: tiefen[j] }; });
+        return auftrag({ art: 'pruefen', ref: { w: a.w, h: a.h, f: a.f, cx: a.cx, cy: a.cy, R: a.R, t: a.t, tiefe: tiefen[i] }, nachbarn: nb, minK: nb.length >= 3 ? 2 : 1, tol: 0.012 })
+          .then(function (r) { gut[i] = r.tiefe; fertig++; schrittSetzen('pruefen', fertig / mitN.length, fertig + ' von ' + mitN.length); });
+      });
+      rek.ansichten = mitN.map(function (i) { const a = ans[i]; return { i: i, w: a.w, h: a.h, f: a.f, cx: a.cx, cy: a.cy, R: a.R, t: a.t, tiefe: gut[i], farbe: a.farbe }; });
+      // dichte Punktwolke (höchstens etwa 2 Millionen Punkte)
+      let summe = 0; rek.ansichten.forEach(function (a) { for (let k = 0; k < a.tiefe.length; k++) if (a.tiefe[k]) summe++; });
+      const schritt = Math.max(1, Math.ceil(summe / 2000000)), pos = [], fa = [];
+      let zaehl = 0;
+      rek.ansichten.forEach(function (a) {
+        const Rt = m3t(a.R);
+        for (let y = 0; y < a.h; y++) for (let x = 0; x < a.w; x++) {
+          const k = y * a.w + x, d = a.tiefe[k]; if (!d) continue; if ((zaehl++) % schritt) continue;
+          const c = [(x - a.cx) / a.f * d - a.t[0], (y - a.cy) / a.f * d - a.t[1], d - a.t[2]], X = m3v(Rt, c);
+          pos.push(X[0], X[1], X[2]); fa.push(a.farbe[3 * k], a.farbe[3 * k + 1], a.farbe[3 * k + 2]);
+        }
+      });
+      rek.dicht = { pos: Float32Array.from(pos), farbe: Uint8Array.from(fa) };
+      protokoll('Dichte Punktwolke: ' + zahl(pos.length / 3, 0) + ' Punkte aus ' + rek.ansichten.length + ' Tiefenkarten');
+      if (pos.length < 300) throw new Error('Die Tiefenkarten enthalten zu wenige sichere Punkte – die Oberflächen brauchen mehr Struktur oder die Fotos mehr Überlappung.');
+      bodenSchaetzen();
+      ergebnisZeigen('dicht');
+    }); }
+    // Oberfläche aus den geprüften Tiefenkarten (in Anzeige-Koordinaten, Bereich aus Punktwolke oder Zuschnitt)
+    function netzBerechnen(opt) { return lauf(function* () {
+      opt = opt || {};
+      const st = rek.stufe, T = rek.T, res = opt.voxel || st.voxel;
+      schrittSetzen('netz', 0.01, 'Volumen aufbauen');
+      const A = anzeigePunkte(rek.dicht.pos), n = A.length / 3;
+      const bx = [], by = [], bz = []; for (let k = 0; k < n; k += Math.max(1, Math.floor(n / 200000))) { bx.push(A[3 * k]); by.push(A[3 * k + 1]); bz.push(A[3 * k + 2]); }
+      let lo = [quantil(bx, 0.01), quantil(by, 0.01), quantil(bz, 0.005)], hi = [quantil(bx, 0.99), quantil(by, 0.99), quantil(bz, 0.995)];
+      if (rek.zuschnitt) { lo = rek.zuschnitt.lo.slice(); hi = rek.zuschnitt.hi.slice(); }
+      const rand = 0.04 * Math.max(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]);
+      lo = v3sub(lo, [rand, rand, rand]); hi = v3add(hi, [rand, rand, rand]);
+      const ausd = Math.max(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]), v = ausd / res;
+      const g = { o: lo, v: v, nx: Math.ceil((hi[0] - lo[0]) / v), ny: Math.ceil((hi[1] - lo[1]) / v), nz: Math.ceil((hi[2] - lo[2]) / v) };
+      rek.netzBereich = { lo: lo, hi: hi };
+      // Ansichten ins Anzeige-System: X_sfm = Qᵀ (X_anz − c) / s
+      const Qt = m3t(T.Q), ansichten = rek.ansichten.map(function (a) {
+        const R = m3(a.R, Qt).map(function (x) { return x / T.s; }), t = v3sub(a.t, m3v(R, T.c));
+        return { w: a.w, h: a.h, f: a.f, cx: a.cx, cy: a.cy, R: R, t: t, tiefe: a.tiefe, farbe: a.farbe };
+      });
+      const scheiben = [], dz = Math.ceil(g.nz / (werker.length * 2));
+      for (let z = 0; z < g.nz; z += dz) scheiben.push([z, Math.min(g.nz, z + dz)]);
+      const Tv = new Float32Array(g.nx * g.ny * g.nz), Wv = new Float32Array(Tv.length), Fv = new Uint8Array(Tv.length * 3);
+      let fertig = 0;
+      yield parallel(scheiben, function (sc) {
+        return auftrag({ art: 'tsdf', g: g, zA: sc[0], zB: sc[1], ansichten: ansichten, trunk: v * 3, skala: T.s }).then(function (r) {
+          const o = sc[0] * g.nx * g.ny; Tv.set(r.T, o); Wv.set(r.W, o); Fv.set(r.F, o * 3);
+          fertig++; schrittSetzen('netz', 0.8 * fertig / scheiben.length, 'Volumen ' + g.nx + ' × ' + g.ny + ' × ' + g.nz);
+        });
+      });
+      const m = yield auftrag({ art: 'netz', g: g, T: Tv, W: Wv, F: Fv, minW: 0.5, anteil: 0.02, glatt: opt.glatt === undefined ? 2 : opt.glatt }, [Tv.buffer, Wv.buffer, Fv.buffer], function (x) { if (x.text) schrittSetzen('netz', 0.9, x.text); });
+      // zurück ins Rekonstruktions-System speichern
+      const Qt2 = m3t(T.Q), P = m.pos;
+      for (let k = 0; k < P.length; k += 3) { const X = m3v(Qt2, [(P[k] - T.c[0]) / T.s, (P[k + 1] - T.c[1]) / T.s, (P[k + 2] - T.c[2]) / T.s]); P[k] = X[0]; P[k + 1] = X[1]; P[k + 2] = X[2]; }
+      const N2 = m.normalen; for (let k = 0; k < N2.length; k += 3) { const X = m3v(Qt2, [N2[k], N2[k + 1], N2[k + 2]]); N2[k] = X[0]; N2[k + 1] = X[1]; N2[k + 2] = X[2]; }
+      rek.netz = m;
+      schrittSetzen('netz', 1, zahl(m.dreiecke.length / 3, 0) + ' Dreiecke');
+      protokoll('Netz: ' + zahl(m.dreiecke.length / 3, 0) + ' Dreiecke, Voxelgröße ' + laengeText(v));
+      ergebnisZeigen('netz');
+    }); }
+    // ---------- 3D-Ansicht (WebGL, Z nach oben) ----------
+    const ansicht = (function () {
+      const cv = $('pg-gl'), ov = $('pg-overlay');
+      let gl = null, gl2 = false, uint32 = true;
+      try { gl = cv.getContext('webgl2', { antialias: true, preserveDrawingBuffer: true }); gl2 = !!gl; } catch (e) { gl = null; }
+      if (!gl) { try { gl = cv.getContext('webgl', { antialias: true, preserveDrawingBuffer: true }); uint32 = !!(gl && gl.getExtension('OES_element_index_uint')); } catch (e) { gl = null; } }
+      const cam = { ziel: [0, 0, 0], gier: -0.6, nick: 0.5, abst: 30, fov: 50 };
+      const ebenen = { punkteD: null, punkteS: null, netz: null };
+      let modell = new Float32Array(16), normMat = new Float32Array(9), mvp = new Float32Array(16), linien = [], marken = [], schrift = [], dpr = 1, punktGroesse = 2, sicht = { kameras: true, duenn: false, dicht: true, netz: true, grau: false };
+      function shader(vs, fs) {
+        const p = gl.createProgram();
+        [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]].forEach(function (s) { const sh = gl.createShader(s[0]); gl.shaderSource(sh, s[1]); gl.compileShader(sh); if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh)); gl.attachShader(p, sh); });
+        gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p)); return p;
+      }
+      let progP = null, progN = null, progL = null;
+      if (gl) {
+        progP = shader('attribute vec3 p; attribute vec3 c; uniform mat4 mvp; uniform float g; varying vec3 vc; void main(){ gl_Position = mvp * vec4(p,1.0); gl_PointSize = g; vc = c; }',
+          'precision mediump float; varying vec3 vc; void main(){ gl_FragColor = vec4(vc,1.0); }');
+        progN = shader('attribute vec3 p; attribute vec3 n; attribute vec3 c; uniform mat4 mvp; uniform mat3 nm; varying vec3 vn; varying vec3 vc; void main(){ gl_Position = mvp * vec4(p,1.0); vn = nm * n; vc = c; }',
+          'precision mediump float; varying vec3 vn; varying vec3 vc; uniform float grau; void main(){ vec3 n = normalize(vn); float l = 0.38 + 0.5*max(dot(n, normalize(vec3(0.35,-0.45,0.82))),0.0) + 0.17*max(dot(n, normalize(vec3(-0.5,0.6,0.3))),0.0); vec3 f = mix(vc, vec3(0.78), grau); gl_FragColor = vec4(f*(grau>0.5?l:0.55+0.5*l),1.0); }');
+        progL = shader('attribute vec3 p; attribute vec3 c; uniform mat4 mvp; varying vec3 vc; void main(){ gl_Position = mvp * vec4(p,1.0); vc = c; }',
+          'precision mediump float; varying vec3 vc; void main(){ gl_FragColor = vec4(vc,1.0); }');
+      }
+      function puffer(daten, art) { const b = gl.createBuffer(); gl.bindBuffer(art || gl.ARRAY_BUFFER, b); gl.bufferData(art || gl.ARRAY_BUFFER, daten, gl.STATIC_DRAW); return b; }
+      function farbenFloat(u8) { const f = new Float32Array(u8.length); for (let i = 0; i < u8.length; i++) f[i] = u8[i] / 255; return f; }
+      function punkteSetzen(name, pos, farbe) {
+        if (!gl) return; if (ebenen[name]) { gl.deleteBuffer(ebenen[name].p); gl.deleteBuffer(ebenen[name].c); }
+        ebenen[name] = pos && pos.length ? { p: puffer(pos), c: puffer(farbenFloat(farbe)), n: pos.length / 3 } : null; zeichnen();
+      }
+      function netzSetzen(m) {
+        if (!gl) return; if (ebenen.netz) { ['p', 'n', 'c', 'i'].forEach(function (k) { gl.deleteBuffer(ebenen.netz[k]); }); ebenen.netz = null; }
+        if (!m || !m.dreiecke.length) { zeichnen(); return; }
+        let idx = m.dreiecke;
+        if (!uint32) idx = Uint16Array.from(m.dreiecke.subarray(0, Math.min(m.dreiecke.length, 65535 * 3)).filter(function (v) { return v < 65535; }));
+        ebenen.netz = { p: puffer(m.pos), n: puffer(m.normalen), c: puffer(farbenFloat(m.farbe)), i: puffer(idx, gl.ELEMENT_ARRAY_BUFFER), anz: idx.length, typ: uint32 ? gl.UNSIGNED_INT : gl.UNSIGNED_SHORT };
+        zeichnen();
+      }
+      function modellSetzen(T) { // Rekonstruktion → Anzeige: s·Q·X + c
+        const Q = T.Q, s = T.s;
+        modell = new Float32Array([s * Q[0], s * Q[3], s * Q[6], 0, s * Q[1], s * Q[4], s * Q[7], 0, s * Q[2], s * Q[5], s * Q[8], 0, T.c[0], T.c[1], T.c[2], 1]);
+        normMat = new Float32Array([Q[0], Q[3], Q[6], Q[1], Q[4], Q[7], Q[2], Q[5], Q[8]]);
+        zeichnen();
+      }
+      function mal(a, b) { const o = new Float32Array(16); for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { let s = 0; for (let k = 0; k < 4; k++) s += a[k * 4 + j] * b[i * 4 + k]; o[i * 4 + j] = s; } return o; }
+      function auge() { const c = Math.cos(cam.nick); return [cam.ziel[0] + cam.abst * c * Math.sin(cam.gier), cam.ziel[1] - cam.abst * c * Math.cos(cam.gier), cam.ziel[2] + cam.abst * Math.sin(cam.nick)]; }
+      function vp() {
+        const e = auge(), f = v3norm(v3sub(cam.ziel, e)), r = v3norm(v3kreuz(f, [0, 0, 1])), u = v3kreuz(r, f);
+        const V = new Float32Array([r[0], u[0], -f[0], 0, r[1], u[1], -f[1], 0, r[2], u[2], -f[2], 0, -v3dot(r, e), -v3dot(u, e), v3dot(f, e), 1]);
+        const asp = cv.width / Math.max(1, cv.height), n = cam.abst / 500, fa = cam.abst * 50, t = 1 / Math.tan(cam.fov * Math.PI / 360);
+        const P = new Float32Array([t / asp, 0, 0, 0, 0, t, 0, 0, 0, 0, (fa + n) / (n - fa), -1, 0, 0, 2 * fa * n / (n - fa), 0]);
+        return mal(P, V);
+      }
+      function groesse() { dpr = Math.min(2, window.devicePixelRatio || 1); const r = cv.getBoundingClientRect(); cv.width = Math.max(1, Math.round(r.width * dpr)); cv.height = Math.max(1, Math.round(r.height * dpr)); ov.width = cv.width; ov.height = cv.height; zeichnen(); }
+      function attrib(prog, name, buf, n) { const l = gl.getAttribLocation(prog, name); if (l < 0) return; gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.enableVertexAttribArray(l); gl.vertexAttribPointer(l, n, gl.FLOAT, false, 0, 0); }
+      function aus(prog) { ['p', 'c', 'n'].forEach(function (a) { const l = gl.getAttribLocation(prog, a); if (l >= 0) gl.disableVertexAttribArray(l); }); }
+      let geplant = false;
+      function zeichnen() { if (geplant) return; geplant = true; requestAnimationFrame(function () { geplant = false; jetzt(); }); }
+      function jetzt() {
+        if (!gl) return;
+        const dunkel = window.Thema ? Thema.aktuell() === 'dunkel' : false;
+        gl.viewport(0, 0, cv.width, cv.height); gl.clearColor(dunkel ? 0.08 : 0.93, dunkel ? 0.09 : 0.94, dunkel ? 0.1 : 0.95, 1); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); gl.enable(gl.DEPTH_TEST);
+        const VP = vp(); mvp = mal(VP, modell);
+        if (ebenen.netz && sicht.netz) {
+          gl.useProgram(progN); gl.uniformMatrix4fv(gl.getUniformLocation(progN, 'mvp'), false, mvp); gl.uniformMatrix3fv(gl.getUniformLocation(progN, 'nm'), false, normMat); gl.uniform1f(gl.getUniformLocation(progN, 'grau'), sicht.grau ? 1 : 0);
+          attrib(progN, 'p', ebenen.netz.p, 3); attrib(progN, 'n', ebenen.netz.n, 3); attrib(progN, 'c', ebenen.netz.c, 3);
+          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebenen.netz.i); gl.drawElements(gl.TRIANGLES, ebenen.netz.anz, ebenen.netz.typ, 0); aus(progN);
+        }
+        gl.useProgram(progP); gl.uniformMatrix4fv(gl.getUniformLocation(progP, 'mvp'), false, mvp); gl.uniform1f(gl.getUniformLocation(progP, 'g'), punktGroesse * dpr);
+        [['punkteD', sicht.dicht && !(ebenen.netz && sicht.netz)], ['punkteS', sicht.duenn]].forEach(function (e) { const l = ebenen[e[0]]; if (!l || !e[1]) return; attrib(progP, 'p', l.p, 3); attrib(progP, 'c', l.c, 3); gl.drawArrays(gl.POINTS, 0, l.n); });
+        aus(progP);
+        // Linien im Anzeige-System
+        if (linien.length) {
+          const p = [], c = [];
+          linien.forEach(function (l) { if (l.nurKamera && !sicht.kameras) return; for (let k = 0; k + 1 < l.pts.length; k++) { p.push(l.pts[k][0], l.pts[k][1], l.pts[k][2], l.pts[k + 1][0], l.pts[k + 1][1], l.pts[k + 1][2]); c.push(l.f[0], l.f[1], l.f[2], l.f[0], l.f[1], l.f[2]); } });
+          if (p.length) {
+            const bp = puffer(new Float32Array(p)), bc = puffer(new Float32Array(c));
+            gl.useProgram(progL); gl.uniformMatrix4fv(gl.getUniformLocation(progL, 'mvp'), false, VP); gl.disable(gl.DEPTH_TEST);
+            attrib(progL, 'p', bp, 3); attrib(progL, 'c', bc, 3); gl.drawArrays(gl.LINES, 0, p.length / 3); aus(progL); gl.deleteBuffer(bp); gl.deleteBuffer(bc); gl.enable(gl.DEPTH_TEST);
+          }
+        }
+        // Beschriftungen und Marken
+        const x = ov.getContext('2d'); x.clearRect(0, 0, ov.width, ov.height);
+        x.font = (12 * dpr) + 'px system-ui, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+        marken.forEach(function (m) { const q = bildschirm(VP, m.p); if (!q) return; x.beginPath(); x.arc(q[0], q[1], (m.r || 5) * dpr, 0, 7); x.fillStyle = m.f || '#E4572E'; x.fill(); x.lineWidth = 1.5 * dpr; x.strokeStyle = '#fff'; x.stroke(); });
+        schrift.forEach(function (s) {
+          const q = bildschirm(VP, s.p); if (!q) return;
+          const b = x.measureText(s.t).width + 10 * dpr, h = 18 * dpr;
+          x.fillStyle = s.hg || 'rgba(17,18,20,.82)'; x.beginPath(); if (x.roundRect) x.roundRect(q[0] - b / 2, q[1] - h / 2, b, h, 5 * dpr); else x.rect(q[0] - b / 2, q[1] - h / 2, b, h); x.fill();
+          x.fillStyle = '#fff'; x.fillText(s.t, q[0], q[1]);
+        });
+      }
+      function bildschirm(VP, p) { // Anzeige-Koordinaten → Pixel im Zeichenpuffer
+        const a = VP[0] * p[0] + VP[4] * p[1] + VP[8] * p[2] + VP[12], b = VP[1] * p[0] + VP[5] * p[1] + VP[9] * p[2] + VP[13], w = VP[3] * p[0] + VP[7] * p[1] + VP[11] * p[2] + VP[15];
+        if (w <= 1e-6) return null; return [(a / w * 0.5 + 0.5) * cv.width, (1 - (b / w * 0.5 + 0.5)) * cv.height, w];
+      }
+      // Punkt unter dem Mauszeiger: sichtbarer Punkt (kleiner Tiefenpuffer im Umkreis), davon der nächste zum Zeiger
+      function picken(cx, cy, quellen) {
+        const r = cv.getBoundingClientRect(), px = (cx - r.left) * dpr, py = (cy - r.top) * dpr, M = mvp, rad = 12 * dpr, zelle = 3 * dpr;
+        const kand = [], tief = new Map();
+        quellen.forEach(function (pos) {
+          if (!pos) return;
+          for (let k = 0; k < pos.length; k += 3) {
+            const X = pos[k], Y = pos[k + 1], Z = pos[k + 2], w = M[3] * X + M[7] * Y + M[11] * Z + M[15]; if (w <= 1e-6) continue;
+            const sx = ((M[0] * X + M[4] * Y + M[8] * Z + M[12]) / w * 0.5 + 0.5) * cv.width, sy = (1 - ((M[1] * X + M[5] * Y + M[9] * Z + M[13]) / w * 0.5 + 0.5)) * cv.height;
+            const d = Math.hypot(sx - px, sy - py); if (d > rad) continue;
+            const key = Math.floor((sx - px) / zelle) * 1000 + Math.floor((sy - py) / zelle), t = tief.get(key);
+            if (t === undefined || w < t) tief.set(key, w);
+            kand.push(d, w, key, X, Y, Z);
+          }
+        });
+        let best = null, wmin = Infinity;
+        tief.forEach(function (w) { if (w < wmin) wmin = w; });
+        for (let k = 0; k < kand.length; k += 6) {
+          const w = kand[k + 1]; if (w > tief.get(kand[k + 2]) * 1.004 + 1e-9) continue;
+          const d = kand[k] + rad * (w - wmin) / (wmin * 0.03); // weiter hinten liegende Flächen (Boden neben der Traufe) nur, wenn nichts davor liegt
+          if (!best || d < best.d) best = { d: d, X: [kand[k + 3], kand[k + 4], kand[k + 5]] };
+        }
+        return best ? best.X : null;
+      }
+      // Bedienung: Ziehen dreht, Umschalt/rechte Taste/zwei Finger verschieben, Rad/zwei Finger zoomen
+      const zeiger = {}; let zug = null, pinch = null, klick = null;
+      cv.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+      cv.addEventListener('pointerdown', function (e) {
+        zeiger[e.pointerId] = { x: e.clientX, y: e.clientY }; try { cv.setPointerCapture(e.pointerId); } catch (x) { /* egal */ }
+        const ids = Object.keys(zeiger);
+        if (ids.length === 2) { const a = zeiger[ids[0]], b = zeiger[ids[1]]; pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), abst: cam.abst, mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2 }; zug = null; return; }
+        zug = { x: e.clientX, y: e.clientY, gier: cam.gier, nick: cam.nick, ziel: cam.ziel.slice(), schieben: e.shiftKey || e.button === 2 || e.button === 1, bewegt: false };
+        klick = { x: e.clientX, y: e.clientY, t: Date.now() };
+      });
+      cv.addEventListener('pointermove', function (e) {
+        if (zeiger[e.pointerId]) zeiger[e.pointerId] = { x: e.clientX, y: e.clientY };
+        if (pinch) {
+          const ids = Object.keys(zeiger); if (ids.length < 2) return; const a = zeiger[ids[0]], b = zeiger[ids[1]];
+          cam.abst = Math.max(0.05, pinch.abst * pinch.d / Math.max(10, Math.hypot(a.x - b.x, a.y - b.y)));
+          const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2; schieben(mx - pinch.mx, my - pinch.my); pinch.mx = mx; pinch.my = my; zeichnen(); return;
+        }
+        if (!zug) return;
+        const dx = e.clientX - zug.x, dy = e.clientY - zug.y; if (Math.hypot(dx, dy) > 4) zug.bewegt = true;
+        if (zug.schieben) { cam.ziel = zug.ziel.slice(); schieben(dx, dy); }
+        else { cam.gier = zug.gier - dx * 0.006; cam.nick = Math.max(-1.5, Math.min(1.55, zug.nick + dy * 0.006)); }
+        zeichnen();
+      });
+      function schieben(dx, dy) {
+        const e = auge(), f = v3norm(v3sub(cam.ziel, e)), r = v3norm(v3kreuz(f, [0, 0, 1])), u = v3kreuz(r, f), k = cam.abst * Math.tan(cam.fov * Math.PI / 360) * 2 / Math.max(1, cv.getBoundingClientRect().height);
+        cam.ziel = v3add(cam.ziel, v3add(v3mal(r, -dx * k), v3mal(u, dy * k)));
+      }
+      const ende = function (e) {
+        delete zeiger[e.pointerId];
+        if (pinch) { if (Object.keys(zeiger).length < 2) pinch = null; zug = null; klick = null; return; }
+        if (zug && !zug.bewegt && klick && Date.now() - klick.t < 600 && api.beiKlick) api.beiKlick(e.clientX, e.clientY);
+        zug = null;
+      };
+      cv.addEventListener('pointerup', ende); cv.addEventListener('pointercancel', function (e) { delete zeiger[e.pointerId]; zug = null; pinch = null; });
+      cv.addEventListener('wheel', function (e) { e.preventDefault(); cam.abst = Math.max(0.05, cam.abst * (e.deltaY > 0 ? 1.12 : 1 / 1.12)); zeichnen(); }, { passive: false });
+      window.addEventListener('resize', groesse);
+      document.addEventListener('themawechsel', zeichnen);
+      const api = {
+        gl: !!gl, cam: cam, sicht: sicht, groesse: groesse, zeichnen: zeichnen, punkteSetzen: punkteSetzen, netzSetzen: netzSetzen, modellSetzen: modellSetzen, picken: picken,
+        linienSetzen: function (l) { linien = l; zeichnen(); }, markenSetzen: function (m, s) { marken = m; schrift = s; zeichnen(); },
+        punktGroesse: function (g) { punktGroesse = g; zeichnen(); },
+        einpassen: function (lo, hi) { cam.ziel = v3mal(v3add(lo, hi), 0.5); cam.abst = Math.max(1e-3, v3len(v3sub(hi, lo)) * 1.1 * Math.max(1, Math.min(2.2, cv.height / Math.max(1, cv.width)))); zeichnen(); },
+        blick: function (gier, nick) { cam.gier = gier; cam.nick = nick; zeichnen(); },
+        bild: function () { jetzt(); return cv.toDataURL('image/png'); },
+        nachClient: function (p) { const q = bildschirm(mvp, p), r = cv.getBoundingClientRect(); return q ? [q[0] / dpr + r.left, q[1] / dpr + r.top] : null; },
+        beiKlick: null
+      };
+      return api;
+    })();
+    // ---------- Ausrichtung, Maßstab und Lage ----------
+    function umeyama(A, B, mitSkala) { // findet s, Q, c mit B ≈ s·Q·A + c
+      const n = A.length; let ma = [0, 0, 0], mb = [0, 0, 0];
+      A.forEach(function (a, i) { ma = v3add(ma, a); mb = v3add(mb, B[i]); }); ma = v3mal(ma, 1 / n); mb = v3mal(mb, 1 / n);
+      const S = [0, 0, 0, 0, 0, 0, 0, 0, 0]; let va = 0;
+      A.forEach(function (a, i) { const x = v3sub(a, ma), y = v3sub(B[i], mb); va += v3dot(x, x); for (let r = 0; r < 3; r++) for (let c = 0; c < 3; c++) S[r * 3 + c] += y[r] * x[c] / n; });
+      va /= n;
+      const sv = svd3(S), D = [1, 1, m3det(sv.U) * m3det(sv.V) < 0 ? -1 : 1];
+      const Q = m3(m3(sv.U, [D[0], 0, 0, 0, D[1], 0, 0, 0, D[2]]), m3t(sv.V));
+      const s = mitSkala ? (sv.S[0] * D[0] + sv.S[1] * D[1] + sv.S[2] * D[2]) / va : 1;
+      return { s: s, Q: Q, c: v3sub(mb, v3mal(m3v(Q, ma), s)) };
+    }
+    function drehungAuf(a, b) { // Drehung, die Einheitsvektor a auf b dreht
+      const v = v3kreuz(a, b), c = v3dot(a, b);
+      if (c < -0.9999) { const h = Math.abs(a[0]) < 0.9 ? [1, 0, 0] : [0, 1, 0], ax = v3norm(v3kreuz(a, h)); return rodrigues(v3mal(ax, Math.PI)); }
+      const s = v3len(v); if (s < 1e-12) return I3.slice();
+      return rodrigues(v3mal(v, Math.atan2(s, c) / s));
+    }
+    function ausrichtungBerechnen() {
+      const reg = [], C = [], oben = [];
+      rek.sfm.kameras.forEach(function (k, i) { if (!k.reg) return; reg.push(i); C.push(zentrumVon(i)); oben.push([-k.R[3], -k.R[4], -k.R[5]]); });
+      let ob = [0, 0, 0]; oben.forEach(function (o) { ob = v3add(ob, o); }); ob = v3norm(ob);
+      const Q0 = drehungAuf(ob, [0, 0, 1]);
+      let mc = [0, 0, 0]; C.forEach(function (c) { mc = v3add(mc, c); }); mc = v3mal(mc, 1 / C.length);
+      const P = rek.sfm.punkte; let mp = [0, 0, 0]; const np = P.length / 3; for (let k = 0; k < np; k++) mp = v3add(mp, [P[3 * k], P[3 * k + 1], P[3 * k + 2]]); mp = v3mal(mp, 1 / Math.max(1, np));
+      const dist = C.map(function (c) { return v3len(v3sub(c, mp)); });
+      rek.geo = null; rek.massstab = null; rek.nord = false;
+      let T = { s: 10 / (median(dist) || 1), Q: Q0, c: [0, 0, 0] };
+      T.c = v3mal(m3v(T.Q, mp), -T.s);
+      // GPS aus den Fotos
+      const mitGps = reg.filter(function (i) { return fotos[i].exif && fotos[i].exif.gps; });
+      if (mitGps.length >= 3) {
+        const g = mitGps.map(function (i) { return fotos[i].exif.gps; }), lat0 = g.reduce(function (a, b) { return a + b.lat; }, 0) / g.length, lon0 = g.reduce(function (a, b) { return a + b.lon; }, 0) / g.length;
+        const hoehen = g.every(function (x) { return x.alt !== null && isFinite(x.alt); }), alt0 = hoehen ? g.reduce(function (a, b) { return a + b.alt; }, 0) / g.length : 0;
+        const enu = g.map(function (x) { return [(x.lon - lon0) * Math.cos(lat0 * Math.PI / 180) * 111320, (x.lat - lat0) * 110574, hoehen ? x.alt - alt0 : 0]; });
+        const Cg = mitGps.map(function (i) { return zentrumVon(i); });
+        const spannH = Math.max.apply(null, enu.map(function (e) { return Math.hypot(e[0], e[1]); })), spannZ = hoehen ? Math.max.apply(null, enu.map(function (e) { return Math.abs(e[2]); })) : 0;
+        if (spannH > 2) {
+          let Tg;
+          if (hoehen && spannZ > 4) Tg = umeyama(Cg, enu, true);
+          else { // waagerecht über die Kamerahaltung, dann Drehung um die Hochachse und Maßstab aus der Lage
+            const A2 = Cg.map(function (c) { const q = m3v(Q0, c); return [q[0], q[1], 0]; }), B2 = enu.map(function (e) { return [e[0], e[1], 0]; });
+            const t2 = umeyama(A2, B2, true); Tg = { s: t2.s, Q: m3(t2.Q, Q0), c: [t2.c[0], t2.c[1], 0] };
+          }
+          let rms = 0; Cg.forEach(function (c, k) { const p = v3add(v3mal(m3v(Tg.Q, c), Tg.s), Tg.c); rms += Math.pow(p[0] - enu[k][0], 2) + Math.pow(p[1] - enu[k][1], 2); }); rms = Math.sqrt(rms / Cg.length);
+          T = Tg; rek.geo = { lat0: lat0, lon0: lon0, alt0: alt0, rms: rms, n: mitGps.length, spann: spannH }; rek.massstab = 'gps'; rek.nord = true;
+          protokoll('Lage und Maßstab aus GPS von ' + mitGps.length + ' Fotos, Restfehler ' + zahl(rms, 2) + ' m');
+        }
+      }
+      rek.T = T; rek.Tver = (rek.Tver || 0) + 1; rek.nordKorr = 0;
+    }
+    function bodenSchaetzen() {
+      const A = anzeigePunkte(rek.dicht.pos), z = []; for (let k = 2; k < A.length; k += 3 * Math.max(1, Math.floor(A.length / 600000))) z.push(A[k]);
+      // Gelände = häufigste Höhe im unteren Teil (robuster als der tiefste Punkt, der oft Rauschen ist)
+      const lo = quantil(z, 0.01), hi = quantil(z, 0.6), nb = 200, bw = (hi - lo) / nb || 1, hist = new Float64Array(nb + 1);
+      z.forEach(function (v) { if (v >= lo && v <= hi) hist[Math.min(nb, Math.floor((v - lo) / bw))]++; });
+      let bi = 0; for (let i = 1; i <= nb; i++) if (hist[i] > hist[bi]) bi = i;
+      const nah = z.filter(function (v) { return Math.abs(v - (lo + (bi + 0.5) * bw)) < 2 * bw; });
+      rek.T.c[2] -= nah.length ? median(nah) : quantil(z, 0.02); rek.Tver++; rek.boden = 'geschätzt';
+    }
+    function anz(X) { const T = rek.T; return v3add(v3mal(m3v(T.Q, X), T.s), T.c); }
+    let anzCache = { ver: -1, quelle: null, a: null };
+    function anzeigePunkte(pos) {
+      if (anzCache.quelle === pos && anzCache.ver === rek.Tver) return anzCache.a;
+      const T = rek.T, Q = T.Q, s = T.s, o = new Float32Array(pos.length);
+      for (let k = 0; k < pos.length; k += 3) { const x = pos[k], y = pos[k + 1], z = pos[k + 2]; o[k] = s * (Q[0] * x + Q[1] * y + Q[2] * z) + T.c[0]; o[k + 1] = s * (Q[3] * x + Q[4] * y + Q[5] * z) + T.c[1]; o[k + 2] = s * (Q[6] * x + Q[7] * y + Q[8] * z) + T.c[2]; }
+      anzCache = { ver: rek.Tver, quelle: pos, a: o }; return o;
+    }
+    function einheit() { return rek && rek.massstab ? 'm' : 'E'; }
+    function laengeText(v) { if (!rek || !rek.massstab) return zahl(v, 3) + ' E'; return Math.abs(v) < 1 ? zahl(v * 100, 1) + ' cm' : zahl(v, 3) + ' m'; }
+    function flaecheText(a) { return rek && rek.massstab ? zahl(a, 2) + ' m²' : zahl(a, 2) + ' E²'; }
+    function transformGeaendert() { rek.Tver++; ansicht.modellSetzen(rek.T); werkzeugeZeichnen(); infoZeigen(); }
+
+    // ---------- Werkzeuge in der Ansicht ----------
+    const messungen = [], daecher = [];
+    let werkzeug = null; // { art, punkte, dach, typ }
+    const HTYP = {
+      fenster: ['Dachfenster', 0.3, false], ausstieg: ['Dachausstieg', 0.5, false], schornstein: ['Schornstein', 0.5, false], luefter: ['Lüfter', 0.2, true],
+      antenne: ['Antenne / Sat', 0.5, true], gaube: ['Gaube', 0.3, false], solarthermie: ['Solarthermie', 0.1, false], lichtkuppel: ['Lichtkuppel', 0.5, false], sperr: ['Sperrfläche', 0, false]
+    };
+    function pickQuellen() { return [rek.netz && ansicht.sicht.netz ? rek.netz.pos : null, rek.dicht && ansicht.sicht.dicht ? rek.dicht.pos : null, rek.sfm && (ansicht.sicht.duenn || !rek.dicht) ? rek.sfm.punkte : null]; }
+    ansicht.beiKlick = function (x, y) {
+      if (!werkzeug || !rek) return;
+      const X = ansicht.picken(x, y, pickQuellen());
+      if (!X) { werkzeugHinweis('Kein Punkt getroffen – näher an eine Fläche klicken oder heranzoomen.'); return; }
+      werkzeug.punkte.push(X);
+      const w = werkzeug;
+      if ((w.art === 'strecke' || w.art === 'referenz') && w.punkte.length === 2) {
+        if (w.art === 'strecke') { messungen.push({ a: w.punkte[0], b: w.punkte[1] }); werkzeug = null; messListe(); }
+        else { const l = v3len(v3sub(anz(w.punkte[0]), anz(w.punkte[1]))); w.fertig = true; $('pg-ref-ist').textContent = 'Strecke im Modell: ' + laengeText(l); $('pg-ref-laenge').focus(); }
+      } else if (w.art === 'boden' && w.punkte.length === 3) { bodenAusrichten(w.punkte); werkzeug = null; }
+      else if (w.art === 'nullhoehe') { const z = anz(X)[2]; rek.T.c[2] -= z; rek.boden = 'gesetzt'; werkzeug = null; transformGeaendert(); werkzeugHinweis('Geländehöhe gesetzt.'); }
+      else if (w.art === 'dach' && w.punkte.length >= 3 && v3len(v3sub(anz(X), anz(w.punkte[0]))) < 1e-9) { w.punkte.pop(); dachFertig(); return; }
+      werkzeugZeichnen(); werkzeugStatus();
+    };
+    function werkzeugStarten(art, extra) {
+      if (!rek) return;
+      werkzeug = Object.assign({ art: art, punkte: [] }, extra || {});
+      werkzeugZeichnen(); werkzeugStatus();
+    }
+    function werkzeugHinweis(t) { $('pg-hinweis').textContent = t; $('pg-hinweis').hidden = !t; clearTimeout(werkzeugHinweis.u); if (t) werkzeugHinweis.u = setTimeout(function () { $('pg-hinweis').hidden = true; }, 6000); }
+    function werkzeugStatus() {
+      const w = werkzeug, t = !w ? '' : {
+        strecke: 'Strecke: ' + (w.punkte.length ? 'zweiten Punkt anklicken.' : 'ersten Punkt anklicken.'),
+        referenz: w.fertig ? 'Länge eingeben und übernehmen.' : 'Referenzstrecke: ' + (w.punkte.length ? 'zweiten Punkt anklicken.' : 'Anfang einer bekannten Strecke anklicken.'),
+        boden: 'Boden: ' + (3 - w.punkte.length) + ' weitere Punkte auf dem Boden anklicken.',
+        nullhoehe: 'Geländehöhe: einen Punkt auf dem Gelände anklicken.',
+        dach: 'Dachfläche: Ecken der Reihe nach anklicken (' + w.punkte.length + ' gesetzt), dann „Fläche schließen“.',
+        hindernis: 'Hindernis: Ecken anklicken (2 Punkte = Rechteck über die Diagonale), dann „Hindernis übernehmen“.'
+      }[w.art];
+      $('pg-werkzeug-status').textContent = t; $('pg-werkzeug-status').hidden = !t;
+      $('pg-werkzeug-ende').hidden = !w; $('pg-dach-schliessen').hidden = !(w && w.art === 'dach' && w.punkte.length >= 3); $('pg-hind-fertig').hidden = !(w && w.art === 'hindernis' && w.punkte.length >= 2);
+    }
+    $('pg-werkzeug-ende').addEventListener('click', function () { werkzeug = null; werkzeugZeichnen(); werkzeugStatus(); });
+    function bodenAusrichten(pts) {
+      const a = anz(pts[0]), b = anz(pts[1]), c = anz(pts[2]); let n = v3norm(v3kreuz(v3sub(b, a), v3sub(c, a))); if (n[2] < 0) n = v3mal(n, -1);
+      const R = drehungAuf(n, [0, 0, 1]), m = v3mal(v3add(v3add(a, b), c), 1 / 3);
+      rek.T.Q = m3(R, rek.T.Q); rek.T.c = v3add(m3v(R, v3sub(rek.T.c, m)), m);
+      const z = (anz(pts[0])[2] + anz(pts[1])[2] + anz(pts[2])[2]) / 3; rek.T.c[2] -= z; rek.boden = 'gesetzt';
+      transformGeaendert(); werkzeugHinweis('Boden waagerecht ausgerichtet, Höhe 0 auf dem Boden.');
+    }
+    $('pg-ref-uebernehmen').addEventListener('click', function () {
+      if (!werkzeug || werkzeug.art !== 'referenz' || werkzeug.punkte.length < 2) { werkzeugHinweis('Zuerst zwei Punkte einer bekannten Strecke anklicken.'); return; }
+      const L = Number(String($('pg-ref-laenge').value).replace(',', '.')); if (!(L > 0 && L < 100000)) { werkzeugHinweis('Bitte eine Länge in Metern eingeben.'); return; }
+      const ist = v3len(v3sub(anz(werkzeug.punkte[0]), anz(werkzeug.punkte[1]))); if (!(ist > 0)) return;
+      const k = L / ist; rek.T.s *= k; rek.T.c = v3mal(rek.T.c, k); rek.massstab = 'referenz'; rek.refStrecke = { a: werkzeug.punkte[0], b: werkzeug.punkte[1], l: L };
+      werkzeug = null; transformGeaendert(); werkzeugStatus(); $('pg-ref-ist').textContent = 'Maßstab gesetzt: ' + zahl(L, 3) + ' m.';
+    });
+    // ---------- Dachflächen ----------
+    function ebeneAnpassen(pts) { // Ausgleichsebene: Schwerpunkt und Normale (kleinster Eigenvektor)
+      let m = [0, 0, 0]; pts.forEach(function (p) { m = v3add(m, p); }); m = v3mal(m, 1 / pts.length);
+      const C = new Float64Array(9); pts.forEach(function (p) { const d = v3sub(p, m); for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) C[i * 3 + j] += d[i] * d[j]; });
+      const e = eigenSym(C, 3); let n = [e.V[0], e.V[3], e.V[6]]; if (n[2] < 0) n = v3mal(n, -1);
+      return { m: m, n: v3norm(n) };
+    }
+    function imPolygon(poly, x, y) { let innen = false; for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) { const a = poly[i], b = poly[j]; if ((a[1] > y) !== (b[1] > y) && x < (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1] + 1e-30) + a[0]) innen = !innen; } return innen; }
+    function dachAuswerten(d) {
+      const E = d.ecken.map(anz); if (E.length < 3) return null;
+      let eb = ebeneAnpassen(E);
+      const A = rek.dicht ? anzeigePunkte(rek.dicht.pos) : null, ausd = Math.max.apply(null, E.map(function (p) { return v3len(v3sub(p, eb.m)); }));
+      const basis = function (eb) {
+        const n = eb.n, slope = Math.acos(Math.min(1, n[2])) * 180 / Math.PI;
+        let up = [-n[0], -n[1]]; const l = Math.hypot(up[0], up[1]); up = l > 1e-6 ? [up[0] / l, up[1] / l] : [0, 1];
+        const e = [up[1], -up[0], 0], s = v3norm(v3kreuz(n, e));
+        return { n: n, slope: slope, up: up, e: e, s: s };
+      };
+      if (A) { // Ebene mit den dichten Punkten innerhalb der Fläche verfeinern
+        let thr = Math.max(0.03 * ausd, rek.massstab ? 0.05 : 0);
+        for (let it = 0; it < 3; it++) {
+          const b = basis(eb), poly = E.map(function (p) { const d = v3sub(p, eb.m); return [v3dot(d, b.e), v3dot(d, b.s)]; });
+          const sel = [], schritt = Math.max(1, Math.floor(A.length / 3 / 400000));
+          for (let k = 0; k < A.length; k += 3 * schritt) {
+            const d = [A[k] - eb.m[0], A[k + 1] - eb.m[1], A[k + 2] - eb.m[2]], h = v3dot(d, b.n); if (Math.abs(h) > thr) continue;
+            if (imPolygon(poly, v3dot(d, b.e) * 1.06, v3dot(d, b.s) * 1.06)) sel.push([A[k], A[k + 1], A[k + 2]]);
+          }
+          if (sel.length < 30) break;
+          eb = ebeneAnpassen(sel.length > 60000 ? sel.filter(function (_, i) { return i % Math.ceil(sel.length / 60000) === 0; }) : sel); thr *= 0.6;
+        }
+      }
+      const b = basis(eb);
+      const ecken3 = E.map(function (p) { return v3sub(p, v3mal(b.n, v3dot(v3sub(p, eb.m), b.n))); });
+      let poly = ecken3.map(function (p) { const d = v3sub(p, eb.m); return [v3dot(d, b.e), v3dot(d, b.s)]; });
+      const x0 = Math.min.apply(null, poly.map(function (p) { return p[0]; })), y0 = Math.min.apply(null, poly.map(function (p) { return p[1]; }));
+      poly = poly.map(function (p) { return [p[0] - x0, p[1] - y0]; });
+      let fl = 0; for (let i = 0; i < poly.length; i++) { const a = poly[i], c = poly[(i + 1) % poly.length]; fl += a[0] * c[1] - c[0] * a[1]; }
+      const kanten = ecken3.map(function (p, i) { return v3len(v3sub(ecken3[(i + 1) % ecken3.length], p)); });
+      const nordKorr = rek.nord ? 0 : (rek.nordKorr || 0);
+      const richtung = ((Math.atan2(b.up[0], b.up[1]) * 180 / Math.PI + nordKorr) % 360 + 360) % 360;
+      const ursprung = v3add(eb.m, v3add(v3mal(b.e, x0), v3mal(b.s, y0)));
+      const zuEbene = function (p) { const d = v3sub(p, ursprung); return [v3dot(d, b.e), v3dot(d, b.s)]; };
+      const hind = d.hindernisse.map(function (h) {
+        let ecken = h.ecken.map(anz).map(function (p) { return v3sub(p, v3mal(b.n, v3dot(v3sub(p, eb.m), b.n))); }), pe = ecken.map(zuEbene);
+        if (pe.length === 2) { const a = pe[0], c = pe[1]; pe = [[Math.min(a[0], c[0]), Math.min(a[1], c[1])], [Math.max(a[0], c[0]), Math.min(a[1], c[1])], [Math.max(a[0], c[0]), Math.max(a[1], c[1])], [Math.min(a[0], c[0]), Math.max(a[1], c[1])]]; ecken = pe.map(function (q) { return v3add(ursprung, v3add(v3mal(b.e, q[0]), v3mal(b.s, q[1]))); }); }
+        // Höhe über der Dachfläche aus den dichten Punkten
+        let hoehe = 0;
+        if (A) {
+          const hs = [], schritt = Math.max(1, Math.floor(A.length / 3 / 400000));
+          for (let k = 0; k < A.length; k += 3 * schritt) {
+            const p = [A[k], A[k + 1], A[k + 2]], q = zuEbene(p);
+            if (!imPolygon(pe, q[0], q[1])) continue; const hh = v3dot(v3sub(p, eb.m), b.n); if (hh > -0.1 * ausd && hh < 0.6 * ausd) hs.push(hh);
+          }
+          if (hs.length >= 5) hoehe = Math.max(0, quantil(hs, 0.95));
+        }
+        const xs = pe.map(function (q) { return q[0]; }), ys = pe.map(function (q) { return q[1]; });
+        return { typ: h.typ, ecken3: ecken, pe: pe, hoehe: hoehe, bund: hoehe < (rek.massstab ? 0.08 : 0.01 * ausd), x: Math.min.apply(null, xs), y: Math.min.apply(null, ys), b: Math.max.apply(null, xs) - Math.min.apply(null, xs), h: Math.max.apply(null, ys) - Math.min.apply(null, ys) };
+      });
+      return { ebene: eb, b: b, neigung: b.slope, richtung: richtung, ecken3: ecken3, poly: poly, flaeche: Math.abs(fl) / 2, kanten: kanten, laenge: Math.max.apply(null, poly.map(function (p) { return p[0]; })), breite: Math.max.apply(null, poly.map(function (p) { return p[1]; })), hoehe: Math.max.apply(null, ecken3.map(function (p) { return p[2]; })), hind: hind };
+    }
+    function richtungName(r) { const n = ['Nord', 'Nord-Ost', 'Ost', 'Süd-Ost', 'Süd', 'Süd-West', 'West', 'Nord-West']; return n[Math.round(((r % 360) + 360) % 360 / 45) % 8]; }
+    function dachFertig() {
+      const w = werkzeug; if (!w || w.art !== 'dach' || w.punkte.length < 3) return;
+      daecher.push({ name: 'Dach ' + (daecher.length + 1), ecken: w.punkte.slice(), hindernisse: [] });
+      werkzeug = null; dachListe(); werkzeugZeichnen(); werkzeugStatus();
+    }
+    $('pg-dach-schliessen').addEventListener('click', dachFertig);
+    if (window.PG_DEBUG) window.PG_TEST = { starten: werkzeugStarten, klick: function (p) { const T = rek.T, c = ansicht.nachClient(v3mal(m3v(m3t(T.Q), v3sub(p, T.c)), 1 / T.s)); ansicht.beiKlick(c[0], c[1]); return c; }, daecher: daecher, dachFertig: dachFertig, rek: function () { return rek; } };
+    $('pg-hind-fertig').addEventListener('click', function () {
+      const w = werkzeug; if (!w || w.art !== 'hindernis' || w.punkte.length < 2) return;
+      w.dach.hindernisse.push({ typ: w.typ, ecken: w.punkte.slice() }); werkzeug = null; dachListe(); werkzeugZeichnen(); werkzeugStatus();
+    });
+    // ---------- Linien, Marken, Listen ----------
+    function werkzeugZeichnen() {
+      if (!rek || !rek.T) return;
+      const lin = [], mk = [], sch = [];
+      // Kameras als kleine Pyramiden
+      const gr = rek.sfm ? rek.sfm.gruppen : [];
+      let groesse = 0.4; if (rek.sfm) { const C = []; rek.sfm.kameras.forEach(function (k, i) { if (k.reg) C.push(anz(zentrumVon(i))); }); let s = 0; for (let i = 1; i < C.length; i++) s += v3len(v3sub(C[i], C[i - 1])); groesse = Math.max(0.05, s / Math.max(1, C.length - 1) * 0.5); }
+      if (rek.sfm) rek.sfm.kameras.forEach(function (k, i) {
+        if (!k.reg) return; const b = rek.bilder[i], g = gr[b.gruppe], Rt = m3t(k.R), C = zentrumVon(i);
+        const ecke = function (x, y) { const d = m3v(Rt, [(x - b.cx) / g.f, (y - b.cy) / g.f, 1]); return anz(v3add(C, v3mal(d, groesse / rek.T.s))); };
+        const c = anz(C), a = ecke(0, 0), bb = ecke(b.w, 0), cc = ecke(b.w, b.h), dd = ecke(0, b.h), f = [0.95, 0.55, 0.15];
+        lin.push({ pts: [c, a], f: f, nurKamera: true }, { pts: [c, bb], f: f, nurKamera: true }, { pts: [c, cc], f: f, nurKamera: true }, { pts: [c, dd], f: f, nurKamera: true }, { pts: [a, bb, cc, dd, a], f: f, nurKamera: true });
+      });
+      messungen.forEach(function (m, i) {
+        const a = anz(m.a), b = anz(m.b); lin.push({ pts: [a, b], f: [0.9, 0.2, 0.3] }); mk.push({ p: a, f: '#E03131', r: 4 }, { p: b, f: '#E03131', r: 4 });
+        sch.push({ p: v3mal(v3add(a, b), 0.5), t: (i + 1) + ': ' + laengeText(v3len(v3sub(a, b))) });
+      });
+      if (rek.refStrecke) { const a = anz(rek.refStrecke.a), b = anz(rek.refStrecke.b); lin.push({ pts: [a, b], f: [0.2, 0.6, 0.9] }); sch.push({ p: v3mal(v3add(a, b), 0.5), t: 'Referenz ' + zahl(rek.refStrecke.l, 3) + ' m', hg: 'rgba(25,113,194,.9)' }); }
+      daecher.forEach(function (d) {
+        const r = dachAuswerten(d); if (!r) return; d.erg = r;
+        lin.push({ pts: r.ecken3.concat([r.ecken3[0]]), f: [0.18, 0.62, 0.27] });
+        let m = [0, 0, 0]; r.ecken3.forEach(function (p) { m = v3add(m, p); }); m = v3mal(m, 1 / r.ecken3.length);
+        sch.push({ p: m, t: d.name + ' · ' + zahl(r.neigung, 1) + '° · ' + flaecheText(r.flaeche), hg: 'rgba(43,138,62,.9)' });
+        r.hind.forEach(function (h) { lin.push({ pts: h.ecken3.concat([h.ecken3[0]]), f: [0.95, 0.6, 0.1] }); });
+      });
+      if (werkzeug) werkzeug.punkte.forEach(function (p, i) { const q = anz(p); mk.push({ p: q, f: '#F08C00', r: 6 }); if (i) lin.push({ pts: [anz(werkzeug.punkte[i - 1]), q], f: [0.94, 0.55, 0] }); });
+      if (rek.zuschnitt) { const lo = rek.zuschnitt.lo, hi = rek.zuschnitt.hi, k = function (x, y, z) { return [x ? hi[0] : lo[0], y ? hi[1] : lo[1], z ? hi[2] : lo[2]]; }; const f = [0.5, 0.5, 0.95]; [[0, 0], [1, 0], [1, 1], [0, 1]].forEach(function (q) { lin.push({ pts: [k(q[0], q[1], 0), k(q[0], q[1], 1)], f: f }); }); [0, 1].forEach(function (z) { lin.push({ pts: [k(0, 0, z), k(1, 0, z), k(1, 1, z), k(0, 1, z), k(0, 0, z)], f: f }); }); }
+      ansicht.linienSetzen(lin); ansicht.markenSetzen(mk, sch);
+    }
+    function messListe() {
+      const ol = $('pg-messungen'); ol.textContent = '';
+      messungen.forEach(function (m, i) {
+        const a = anz(m.a), b = anz(m.b), d = v3sub(b, a), li = kn('li');
+        li.append(kn('b', '', (i + 1) + ': ' + laengeText(v3len(d))), kn('span', '', ' · waagerecht ' + laengeText(Math.hypot(d[0], d[1])) + ' · Höhenunterschied ' + laengeText(Math.abs(d[2]))));
+        const x = kn('button', 'knopf-leise', 'entfernen'); x.type = 'button'; x.addEventListener('click', function () { messungen.splice(i, 1); messListe(); werkzeugZeichnen(); }); li.append(' ', x);
+        ol.append(li);
+      });
+      if (!messungen.length) ol.append(kn('li', 'leise', 'Noch keine Messung.'));
+      werkzeugZeichnen();
+    }
+    function dachListe() {
+      const box = $('pg-daecher'); box.textContent = '';
+      if (!daecher.length) box.append(kn('p', 'leise', 'Noch keine Dachfläche. „Neue Dachfläche“ wählen und die Ecken im Modell anklicken.'));
+      daecher.forEach(function (d, di) {
+        const r = dachAuswerten(d); d.erg = r; if (!r) return;
+        const k = kn('div', 'pg-dach');
+        const kopf = kn('div', 'pg-dach-kopf'), name = kn('input'); name.type = 'text'; name.value = d.name; name.maxLength = 30; name.setAttribute('aria-label', 'Name der Dachfläche');
+        name.addEventListener('change', function () { d.name = name.value.trim().slice(0, 30) || 'Dach ' + (di + 1); werkzeugZeichnen(); });
+        const weg = kn('button', 'knopf-leise', 'Fläche entfernen'); weg.type = 'button'; weg.addEventListener('click', function () { daecher.splice(di, 1); dachListe(); werkzeugZeichnen(); });
+        kopf.append(name, weg); k.append(kopf);
+        const tb = kn('table', 'pg-werte');
+        [['Neigung', zahl(r.neigung, 1) + '°'], ['Ausrichtung', richtungName(r.richtung + 180) + ' (' + zahl((r.richtung + 180) % 360, 0) + '°)' + (rek.nord ? '' : ' – Norden nicht bekannt')],
+          ['Fläche', flaecheText(r.flaeche)], ['Länge an der Traufe', laengeText(r.laenge)], ['Länge in Fallrichtung', laengeText(r.breite)], ['Kanten', r.kanten.map(laengeText).join(' · ')], ['Höchster Punkt über Gelände', laengeText(r.hoehe)]]
+          .forEach(function (z) { const tr = kn('tr'); tr.append(kn('th', '', z[0]), kn('td', '', z[1])); tb.append(tr); });
+        k.append(tb);
+        if (r.hind.length) {
+          const ul = kn('ul', 'pg-hind');
+          r.hind.forEach(function (h, hi) {
+            const li = kn('li', '', HTYP[h.typ][0] + ': ' + laengeText(h.b) + ' × ' + laengeText(h.h) + ', ' + (h.bund ? 'bündig' : laengeText(h.hoehe) + ' hoch') + ', ab Traufe ' + laengeText(h.y) + ', von links ' + laengeText(h.x) + ' ');
+            const x = kn('button', 'knopf-leise', 'entfernen'); x.type = 'button'; x.addEventListener('click', function () { d.hindernisse.splice(hi, 1); dachListe(); werkzeugZeichnen(); }); li.append(x); ul.append(li);
+          });
+          k.append(ul);
+        }
+        const hz = kn('div', 'pg-knoepfe'), sel = kn('select'); sel.setAttribute('aria-label', 'Art des Hindernisses');
+        Object.keys(HTYP).forEach(function (t) { const o = kn('option', '', HTYP[t][0]); o.value = t; sel.append(o); });
+        const nh = kn('button', 'knopf', 'Hindernis einzeichnen'); nh.type = 'button'; nh.addEventListener('click', function () { werkzeugStarten('hindernis', { dach: d, typ: sel.value }); });
+        hz.append(sel, nh); k.append(hz);
+        box.append(k);
+      });
+      werkzeugZeichnen();
+    }
+    // ---------- Ausgabe: Dateien, PV-Dachplaner, Montagesystem-JSON ----------
+    function speichern(name, daten, typ) {
+      const blob = daten instanceof Blob ? daten : new Blob([daten], { type: typ || 'application/octet-stream' }), a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = name; document.body.append(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
+    }
+    function netzAnz() { // Netz in Anzeige-Koordinaten (Meter, Z nach oben)
+      const m = rek.netz, P = anzeigePunkte(m.pos), Q = rek.T.Q, N = new Float32Array(m.normalen.length);
+      for (let k = 0; k < N.length; k += 3) { const n = m3v(Q, [m.normalen[k], m.normalen[k + 1], m.normalen[k + 2]]); N[k] = n[0]; N[k + 1] = n[1]; N[k + 2] = n[2]; }
+      return { pos: P, normalen: N, farbe: m.farbe, dreiecke: m.dreiecke };
+    }
+    function dateiname(endung) { return ($('pg-projekt').value.trim().replace(/[^\wäöüÄÖÜß.-]+/g, '_') || 'modell') + endung; }
+    function plyPunkte(pos, farbe) {
+      const n = pos.length / 3, kopf = 'ply\nformat binary_little_endian 1.0\ncomment Photogrammetrie, Einheit ' + (rek.massstab ? 'Meter' : 'unskaliert') + '\nelement vertex ' + n + '\nproperty float x\nproperty float y\nproperty float z\nproperty uchar red\nproperty uchar green\nproperty uchar blue\nend_header\n';
+      const k = new TextEncoder().encode(kopf), buf = new ArrayBuffer(k.length + n * 15), dv = new DataView(buf); new Uint8Array(buf).set(k);
+      let o = k.length; for (let i = 0; i < n; i++) { dv.setFloat32(o, pos[3 * i], true); dv.setFloat32(o + 4, pos[3 * i + 1], true); dv.setFloat32(o + 8, pos[3 * i + 2], true); dv.setUint8(o + 12, farbe[3 * i]); dv.setUint8(o + 13, farbe[3 * i + 1]); dv.setUint8(o + 14, farbe[3 * i + 2]); o += 15; }
+      return buf;
+    }
+    function plyNetz(m) {
+      const n = m.pos.length / 3, t = m.dreiecke.length / 3;
+      const kopf = 'ply\nformat binary_little_endian 1.0\ncomment Photogrammetrie, Einheit ' + (rek.massstab ? 'Meter' : 'unskaliert') + '\nelement vertex ' + n + '\nproperty float x\nproperty float y\nproperty float z\nproperty float nx\nproperty float ny\nproperty float nz\nproperty uchar red\nproperty uchar green\nproperty uchar blue\nelement face ' + t + '\nproperty list uchar int vertex_indices\nend_header\n';
+      const k = new TextEncoder().encode(kopf), buf = new ArrayBuffer(k.length + n * 27 + t * 13), dv = new DataView(buf); new Uint8Array(buf).set(k);
+      let o = k.length;
+      for (let i = 0; i < n; i++) { for (let c = 0; c < 3; c++) dv.setFloat32(o + 4 * c, m.pos[3 * i + c], true); for (let c = 0; c < 3; c++) dv.setFloat32(o + 12 + 4 * c, m.normalen[3 * i + c], true); for (let c = 0; c < 3; c++) dv.setUint8(o + 24 + c, m.farbe[3 * i + c]); o += 27; }
+      for (let i = 0; i < t; i++) { dv.setUint8(o, 3); dv.setInt32(o + 1, m.dreiecke[3 * i], true); dv.setInt32(o + 5, m.dreiecke[3 * i + 1], true); dv.setInt32(o + 9, m.dreiecke[3 * i + 2], true); o += 13; }
+      return buf;
+    }
+    function objNetz(m) {
+      const z = ['# Photogrammetrie, Einheit ' + (rek.massstab ? 'Meter' : 'unskaliert') + ', Z nach oben', '# Ecken mit Farbe (r g b 0..1)'];
+      const r = function (v) { return Math.round(v * 10000) / 10000; };
+      for (let i = 0; i < m.pos.length; i += 3) z.push('v ' + r(m.pos[i]) + ' ' + r(m.pos[i + 1]) + ' ' + r(m.pos[i + 2]) + ' ' + r(m.farbe[i] / 255) + ' ' + r(m.farbe[i + 1] / 255) + ' ' + r(m.farbe[i + 2] / 255));
+      for (let i = 0; i < m.normalen.length; i += 3) z.push('vn ' + r(m.normalen[i]) + ' ' + r(m.normalen[i + 1]) + ' ' + r(m.normalen[i + 2]));
+      for (let i = 0; i < m.dreiecke.length; i += 3) { const a = m.dreiecke[i] + 1, b = m.dreiecke[i + 1] + 1, c = m.dreiecke[i + 2] + 1; z.push('f ' + a + '//' + a + ' ' + b + '//' + b + ' ' + c + '//' + c); }
+      return z.join('\n') + '\n';
+    }
+    function stlNetz(m) {
+      const t = m.dreiecke.length / 3, buf = new ArrayBuffer(84 + t * 50), dv = new DataView(buf), kopf = 'Photogrammetrie Netz';
+      for (let i = 0; i < kopf.length; i++) dv.setUint8(i, kopf.charCodeAt(i)); dv.setUint32(80, t, true);
+      let o = 84;
+      for (let i = 0; i < t; i++) {
+        const p = [0, 1, 2].map(function (k) { const v = m.dreiecke[3 * i + k]; return [m.pos[3 * v], m.pos[3 * v + 1], m.pos[3 * v + 2]]; }), n = v3norm(v3kreuz(v3sub(p[1], p[0]), v3sub(p[2], p[0])));
+        [n].concat(p).forEach(function (v, j) { for (let c = 0; c < 3; c++) dv.setFloat32(o + j * 12 + c * 4, v[c] || 0, true); }); dv.setUint16(o + 48, 0, true); o += 50;
+      }
+      return buf;
+    }
+    function glbNetz(m) { // glTF 2.0 binär, Y nach oben
+      const n = m.pos.length / 3, P = new Float32Array(n * 3), N = new Float32Array(n * 3), F = new Uint8Array(n * 4), I = m.dreiecke;
+      const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+      for (let i = 0; i < n; i++) {
+        P[3 * i] = m.pos[3 * i]; P[3 * i + 1] = m.pos[3 * i + 2]; P[3 * i + 2] = -m.pos[3 * i + 1];
+        N[3 * i] = m.normalen[3 * i]; N[3 * i + 1] = m.normalen[3 * i + 2]; N[3 * i + 2] = -m.normalen[3 * i + 1];
+        F[4 * i] = m.farbe[3 * i]; F[4 * i + 1] = m.farbe[3 * i + 1]; F[4 * i + 2] = m.farbe[3 * i + 2]; F[4 * i + 3] = 255;
+        for (let c = 0; c < 3; c++) { lo[c] = Math.min(lo[c], P[3 * i + c]); hi[c] = Math.max(hi[c], P[3 * i + c]); }
+      }
+      const teile = [P, N, F, I], off = []; let len = 0; teile.forEach(function (t) { off.push(len); len += Math.ceil(t.byteLength / 4) * 4; });
+      const json = {
+        asset: { version: '2.0', generator: 'Photogrammetrie' }, scene: 0, scenes: [{ nodes: [0] }], nodes: [{ mesh: 0 }],
+        meshes: [{ primitives: [{ attributes: { POSITION: 0, NORMAL: 1, COLOR_0: 2 }, indices: 3, material: 0 }] }], materials: [{ pbrMetallicRoughness: { baseColorFactor: [1, 1, 1, 1], metallicFactor: 0, roughnessFactor: 1 } }],
+        buffers: [{ byteLength: len }], bufferViews: teile.map(function (t, i) { return { buffer: 0, byteOffset: off[i], byteLength: t.byteLength, target: i === 3 ? 34963 : 34962 }; }),
+        accessors: [{ bufferView: 0, componentType: 5126, count: n, type: 'VEC3', min: lo, max: hi }, { bufferView: 1, componentType: 5126, count: n, type: 'VEC3' }, { bufferView: 2, componentType: 5121, normalized: true, count: n, type: 'VEC4' }, { bufferView: 3, componentType: 5125, count: I.length, type: 'SCALAR' }]
+      };
+      let js = JSON.stringify(json); while (js.length % 4) js += ' ';
+      const jb = new TextEncoder().encode(js), gesamt = 12 + 8 + jb.length + 8 + len, buf = new ArrayBuffer(gesamt), dv = new DataView(buf), u8 = new Uint8Array(buf);
+      dv.setUint32(0, 0x46546C67, true); dv.setUint32(4, 2, true); dv.setUint32(8, gesamt, true);
+      dv.setUint32(12, jb.length, true); dv.setUint32(16, 0x4E4F534A, true); u8.set(jb, 20);
+      const b0 = 20 + jb.length; dv.setUint32(b0, len, true); dv.setUint32(b0 + 4, 0x004E4942, true);
+      teile.forEach(function (t, i) { u8.set(new Uint8Array(t.buffer, t.byteOffset, t.byteLength), b0 + 8 + off[i]); });
+      return buf;
+    }
+    document.querySelectorAll('[data-export]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        if (!rek) return; const art = b.getAttribute('data-export');
+        if (art === 'punkte') { const q = rek.dicht || { pos: rek.sfm.punkte, farbe: rek.sfm.farben }; speichern(dateiname('-punkte.ply'), plyPunkte(anzeigePunkte(q.pos), q.farbe)); return; }
+        if (!rek.netz) { werkzeugHinweis('Es gibt noch kein Netz.'); return; }
+        const m = netzAnz();
+        if (art === 'obj') speichern(dateiname('.obj'), objNetz(m), 'text/plain');
+        else if (art === 'ply') speichern(dateiname('.ply'), plyNetz(m));
+        else if (art === 'stl') speichern(dateiname('.stl'), stlNetz(m));
+        else if (art === 'glb') speichern(dateiname('.glb'), glbNetz(m), 'model/gltf-binary');
+      });
+    });
+    // ---------- Dachflächen zum PV-Dachplaner und als JSON für Montagesystem-Rechner ----------
+    function dachplanerProjekt() {
+      let id = 1;
+      const fl = daecher.map(function (d) {
+        const r = d.erg || dachAuswerten(d); if (!r) return null;
+        const xs = r.poly.map(function (p) { return p[0]; }), ys = r.poly.map(function (p) { return p[1]; }), bu = Math.max.apply(null, xs), l = Math.max.apply(null, ys);
+        const r3 = function (v) { return Math.round(v * 1000) / 1000; };
+        let az = Math.round(((r.richtung + 540) % 360) - 180);
+        return {
+          id: id++, name: d.name.slice(0, 30), form: { typ: 'frei', bu: r3(bu), bo: r3(bu), l: r3(l), st: r3(l / 2) }, punkte: r.poly.map(function (p) { return { x: r3(p[0]), y: r3(p[1]) }; }),
+          neigung: Math.round(r.neigung * 10) / 10, azimut: az, deckung: 'ziegel', knicke: [], sparren: { a: 0.8, x0: 0.35, b: 0.08 }, rand: { traufe: 0.4, first: 0.4, seite: 0.4 },
+          auf: { an: r.neigung < 5, beta: 15 }, module: [],
+          hindernisse: r.hind.map(function (h) { return { id: id++, typ: h.typ, x: r3(h.x), y: r3(h.y), b: r3(Math.max(0.05, h.b)), h: r3(Math.max(0.05, h.h)), a: HTYP[h.typ][1], rund: HTYP[h.typ][2] }; })
+        };
+      }).filter(Boolean);
+      return { version: 2, flaechen: fl };
+    }
+    $('pg-zum-planer').addEventListener('click', function () {
+      if (!daecher.length) { werkzeugHinweis('Zuerst eine Dachfläche einzeichnen.'); return; }
+      if (!rek.massstab) { werkzeugHinweis('Das Modell hat noch keinen Maßstab – erst eine Referenzstrecke setzen oder Fotos mit GPS verwenden.'); return; }
+      const fenster = window.open('', '_blank');
+      Teilen.urlFuer('elektro/pv-dach.html', 'dach', JSON.stringify(dachplanerProjekt())).then(function (url) { if (fenster) fenster.location.href = url; else location.href = url; });
+    });
+    function montageJson() {
+      const geo = rek.geo, lat = Number(String($('pg-lat').value).replace(',', '.')), lng = Number(String($('pg-lng').value).replace(',', '.'));
+      const r6 = function (v) { return Math.round(v * 1e4) / 1e4; }, jetzt = new Date(), zz = function (v) { return (v < 10 ? '0' : '') + v; };
+      const roofs = daecher.map(function (d) {
+        const r = d.erg || dachAuswerten(d); if (!r) return null;
+        return {
+          edgeDistance: 0.3, height: r6(r.hoehe), hipType: 'none', length: r6(r.laenge), width: r6(r.breite), moduleCount: 0, moduleFields: [], moduleTypeIndex: 0,
+          obstacles: r.hind.map(function (h, i) { return { obstacleName: HTYP[h.typ][0] + ' ' + (i + 1), obstacleShape: 'polygon', height: r6(h.bund ? 0 : h.hoehe), offset: 0, flush: h.bund, outline: h.ecken3.map(function (p) { return p.map(r6); }) }; }),
+          outline: r.ecken3.map(function (p) { return p.map(r6); }), parapetWallHeight: 0, fasteningMethod: 'roofConstruction', roofCover: 'tile', roofName: d.name, roofShape: 'polygon',
+          roofType: r.neigung < 5 ? 'flat' : 'monopitch', slope: Math.round(r.neigung * 10) / 10, slopeDirection: Math.round(r.richtung * 10) / 10, systemInfo: { systemHeight: 0 }
+        };
+      }).filter(Boolean);
+      return {
+        data: { name: $('pg-projekt').value.trim() || 'Photogrammetrie' }, date: zz(jetzt.getFullYear() % 100) + '-' + zz(jetzt.getMonth() + 1) + '-' + zz(jetzt.getDate()) + ' ' + zz(jetzt.getHours()) + ':' + zz(jetzt.getMinutes()) + ':' + zz(jetzt.getSeconds()),
+        location: { elevation: geo ? Math.round(geo.alt0) : 0, geoCoordinates: { lat: isFinite(lat) ? lat : (geo ? geo.lat0 : 0), lng: isFinite(lng) ? lng : (geo ? geo.lon0 : 0) } },
+        moduleTypes: [{ cellCount: 0, height: 30, id: 1, impp: 0, irmax: 0, isUserDefined: true, isc: 0, length: 1762, manufacturer: '', model: 'Modul 430 W', pmpp: 0, pot: false, power: 430, tkIsc: 0, tkPmpp: 0, tkUoc: 0, umax: 0, umpp: 0, uoc: 0, weight: 21.5, width: 1134 }],
+        roofs: roofs, version: '3.1.65.0', exportType: 'eturnity', exportFormatVersion: 1
+      };
+    }
+    $('pg-montage-json').addEventListener('click', function () {
+      if (!daecher.length) { werkzeugHinweis('Zuerst eine Dachfläche einzeichnen.'); return; }
+      if (!rek.massstab) { werkzeugHinweis('Das Modell hat noch keinen Maßstab – erst eine Referenzstrecke setzen oder Fotos mit GPS verwenden.'); return; }
+      speichern(dateiname('-daecher.json'), JSON.stringify(montageJson(), null, 4), 'application/json');
+    });
+    $('pg-mass-csv').addEventListener('click', function () {
+      if (!rek) return;
+      const z = ['Art;Name;Wert;Einheit'];
+      messungen.forEach(function (m, i) { z.push('Strecke;' + (i + 1) + ';' + zahl(v3len(v3sub(anz(m.a), anz(m.b))), 4) + ';' + einheit()); });
+      daecher.forEach(function (d) { const r = d.erg || dachAuswerten(d); if (!r) return; z.push('Dach;' + d.name + ' Neigung;' + zahl(r.neigung, 2) + ';°', 'Dach;' + d.name + ' Fläche;' + zahl(r.flaeche, 3) + ';' + einheit() + '²', 'Dach;' + d.name + ' Länge Traufe;' + zahl(r.laenge, 3) + ';' + einheit(), 'Dach;' + d.name + ' Länge Fallrichtung;' + zahl(r.breite, 3) + ';' + einheit(), 'Dach;' + d.name + ' Ausrichtung;' + zahl((r.richtung + 180) % 360, 1) + ';° (0 = Nord)'); r.hind.forEach(function (h, i) { z.push('Hindernis;' + d.name + ' ' + HTYP[h.typ][0] + ' ' + (i + 1) + ';' + zahl(h.b, 3) + ' × ' + zahl(h.h, 3) + ' ab Traufe ' + zahl(h.y, 3) + ' von links ' + zahl(h.x, 3) + ';' + einheit()); }); });
+      speichern(dateiname('-masse.csv'), '﻿' + z.join('\r\n'), 'text/csv');
+    });
+    // ---------- Beispiel: Haus mit Satteldach, künstliche Drohnenfotos mit GPS ----------
+    function beispielFotos(fortschritt) {
+      const W = 1280, H = 960, F35 = 24, f = F35 / 36 * W, cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+      const gl = cv.getContext('webgl', { preserveDrawingBuffer: true, antialias: true }); if (!gl) return Promise.reject(new Error('WebGL fehlt'));
+      const p = [], n = [], m = [];
+      const viereck = function (a, b, c, d, mat) { const nn = v3norm(v3kreuz(v3sub(b, a), v3sub(c, a))); [a, b, c, a, c, d].forEach(function (q) { p.push(q[0], q[1], q[2]); n.push(nn[0], nn[1], nn[2]); m.push(mat); }); };
+      const dreieck = function (a, b, c, mat) { const nn = v3norm(v3kreuz(v3sub(b, a), v3sub(c, a))); [a, b, c].forEach(function (q) { p.push(q[0], q[1], q[2]); n.push(nn[0], nn[1], nn[2]); m.push(mat); }); };
+      const kiste = function (x0, x1, y0, y1, z0, z1, mat, deckel) {
+        viereck([x0, y0, z0], [x1, y0, z0], [x1, y0, z1], [x0, y0, z1], mat); viereck([x1, y1, z0], [x0, y1, z0], [x0, y1, z1], [x1, y1, z1], mat);
+        viereck([x1, y0, z0], [x1, y1, z0], [x1, y1, z1], [x1, y0, z1], mat); viereck([x0, y1, z0], [x0, y0, z0], [x0, y0, z1], [x0, y1, z1], mat);
+        if (deckel !== undefined) viereck([x0, y0, z1], [x1, y0, z1], [x1, y1, z1], [x0, y1, z1], deckel);
+      };
+      viereck([-45, -45, 0], [45, -45, 0], [45, 45, 0], [-45, 45, 0], 0);
+      const tn = Math.tan(38 * Math.PI / 180), zf = 6 + 4 * tn, zt = 6 - 0.5 * tn;
+      kiste(-5, 5, -4, 4, 0, 6, 1);
+      dreieck([5, -4, 6], [5, 4, 6], [5, 0, zf], 1); dreieck([-5, 4, 6], [-5, -4, 6], [-5, 0, zf], 1);
+      viereck([-5.5, -4.5, zt], [5.5, -4.5, zt], [5.5, 0, zf], [-5.5, 0, zf], 2); viereck([5.5, 4.5, zt], [-5.5, 4.5, zt], [-5.5, 0, zf], [5.5, 0, zf], 2);
+      // Dachfenster auf der Südseite (bündig), Schornstein auf der Nordseite
+      const auf = function (x, s) { const y = -4.5 + s * Math.cos(38 * Math.PI / 180); return [x, y, zt + s * Math.sin(38 * Math.PI / 180) + 0.012]; };
+      viereck(auf(-2.5, 1.5), auf(-1.72, 1.5), auf(-1.72, 2.9), auf(-2.5, 2.9), 4);
+      viereck(auf(1.2, 2.2), auf(1.98, 2.2), auf(1.98, 3.6), auf(1.2, 3.6), 4);
+      kiste(1.5, 2.1, 1.0, 1.6, 6.5, 10.2, 3, 3);
+      kiste(7, 11, -3, 3, 0, 3, 1, 5);
+      kiste(-14, -12, 6, 8, 0, 1.2, 3, 3);
+      kiste(-9, -7.6, -8, -6.8, 0, 0.8, 5, 5); kiste(8, 10.5, 6, 7, 0, 1.4, 3, 1); kiste(-3, 3, 5.5, 7.5, 0, 0.25, 5, 5);
+      const vs = 'attribute vec3 p; attribute vec3 n; attribute float m; uniform mat4 mvp; varying vec3 wp; varying vec3 wn; varying float vm; void main(){ wp = p; wn = n; vm = m; gl_Position = mvp * vec4(p,1.0); }';
+      const fs = [
+        'precision highp float; varying vec3 wp; varying vec3 wn; varying float vm;',
+        'float h(vec2 q){ return fract(sin(dot(q, vec2(127.1,311.7))) * 43758.5453); }',
+        'float rausch(vec2 q){ vec2 i = floor(q), f = fract(q); f = f*f*(3.0-2.0*f); return mix(mix(h(i),h(i+vec2(1,0)),f.x), mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x), f.y); }',
+        'float fbm(vec2 q){ float s = 0.0, a = 0.5; for(int i=0;i<5;i++){ s += a*rausch(q); q *= 2.07; a *= 0.5; } return s; }',
+        'void main(){',
+        ' vec3 n = normalize(wn), c; vec2 q;',
+        ' if (abs(n.z) > 0.9) q = wp.xy; else if (abs(n.x) > abs(n.y)) q = vec2(wp.y, wp.z); else q = vec2(wp.x, wp.z);',
+        ' if (vm < 0.5) { float g = fbm(q*0.7), k = fbm(q*6.0), d = rausch(q*28.0); c = mix(vec3(0.18,0.33,0.11), vec3(0.47,0.47,0.22), g) * (0.55+0.7*k) * (0.8+0.4*d);',
+        '   vec2 st = floor(q*1.6); vec2 sf = fract(q*1.6) - 0.5 + 0.3*vec2(h(st)-0.5, h(st+7.0)-0.5); if (h(st+3.0) > 0.82 && length(sf) < 0.12) c = vec3(0.62,0.60,0.55)*(0.6+0.8*h(st+5.0));',
+        '   if (abs(wp.y + 9.0 + 2.0*sin(wp.x*0.15)) < 1.4) c = vec3(0.55,0.52,0.47)*(0.55+0.8*fbm(q*9.0))*(0.8+0.4*rausch(q*35.0)); }',
+        ' else if (vm < 1.5) { c = vec3(0.86,0.82,0.74)*(0.7+0.45*fbm(q*5.0))*(0.85+0.3*rausch(q*30.0)) - 0.18*fbm(q*1.2); vec2 fz = fract(vec2(q.x/2.2, q.y/2.6)); if (q.y > 0.9 && fz.x > 0.35 && fz.x < 0.7 && fz.y > 0.35 && fz.y < 0.8) c = vec3(0.16,0.2,0.25)*(0.7+0.6*fbm(q*8.0)); }',
+        ' else if (vm < 2.5) { vec2 t = vec2(wp.x, (9.125 - wp.z) / 0.6157); float zeile = floor(t.y/0.33); vec2 z = vec2((t.x + 0.15*mod(zeile,2.0))/0.30, t.y/0.33); vec2 id = floor(z), fz = fract(z);',
+        '   c = mix(vec3(0.55,0.20,0.13), vec3(0.72,0.33,0.20), h(id)) * (0.85+0.3*fbm(q*11.0)); c *= smoothstep(0.0,0.08,fz.x)*smoothstep(0.0,0.12,fz.y)*0.5+0.5; c *= 0.8 + 0.35*fbm(q*0.8); }',
+        ' else if (vm < 3.5) { vec2 z = vec2((q.x + 0.12*mod(floor(q.y/0.075),2.0))/0.24, q.y/0.075); vec2 fz = fract(z); c = mix(vec3(0.50,0.22,0.16), vec3(0.65,0.32,0.22), h(floor(z))) * (smoothstep(0.0,0.06,fz.x)*smoothstep(0.0,0.12,fz.y)*0.6+0.4); }',
+        ' else if (vm < 4.5) { c = vec3(0.10,0.14,0.20) + 0.25*vec3(fbm(q*5.0)); }',
+        ' else { c = vec3(0.50,0.50,0.48)*(0.6+0.7*fbm(q*16.0)); }',
+        ' float l = 0.42 + 0.65*max(dot(n, normalize(vec3(0.45,-0.55,0.72))), 0.0);',
+        ' gl_FragColor = vec4(c*l, 1.0); }'
+      ].join('\n');
+      const prog = gl.createProgram();
+      [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]].forEach(function (s) { const sh = gl.createShader(s[0]); gl.shaderSource(sh, s[1]); gl.compileShader(sh); if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh)); gl.attachShader(prog, sh); });
+      gl.linkProgram(prog); gl.useProgram(prog);
+      [['p', p, 3], ['n', n, 3], ['m', m, 1]].forEach(function (a) { const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(a[1]), gl.STATIC_DRAW); const l = gl.getAttribLocation(prog, a[0]); gl.enableVertexAttribArray(l); gl.vertexAttribPointer(l, a[2], gl.FLOAT, false, 0, 0); });
+      // Aufnahmepositionen: zwei Ringe und Blicke von oben
+      const pos = [], zielP = [1.5, 0, 2.5];
+      for (let i = 0; i < 20; i++) { const a = i / 20 * 2 * Math.PI; pos.push([Math.cos(a) * 19, Math.sin(a) * 19, 14]); }
+      for (let i = 0; i < 12; i++) { const a = (i + 0.5) / 12 * 2 * Math.PI; pos.push([Math.cos(a) * 11, Math.sin(a) * 11, 20]); }
+      [[-6, -6], [6, -6], [6, 6], [-6, 6]].forEach(function (q) { pos.push([q[0], q[1], 27]); });
+      const lat0 = 48.5321, lon0 = 8.2827, alt0 = 520, rnd = zufallMit(42), dateien = [];
+      gl.enable(gl.DEPTH_TEST); gl.viewport(0, 0, W, H);
+      let k = 0;
+      return new Promise(function (ja, nein) {
+        const naechste = function () {
+          if (k >= pos.length) { ja(dateien); return; }
+          const C = pos[k], ziel = k >= 32 ? [C[0] * 0.3, C[1] * 0.3, 3] : zielP;
+          const fw = v3norm(v3sub(ziel, C)), r = v3norm(v3kreuz(fw, [0, 0, 1])), u = v3kreuz(r, fw);
+          const V = [r[0], u[0], -fw[0], 0, r[1], u[1], -fw[1], 0, r[2], u[2], -fw[2], 0, -v3dot(r, C), -v3dot(u, C), v3dot(fw, C), 1];
+          const nn = 0.5, ff = 300, P = [2 * f / W, 0, 0, 0, 0, 2 * f / H, 0, 0, 0, 0, (ff + nn) / (nn - ff), -1, 0, 0, 2 * ff * nn / (nn - ff), 0];
+          const MVP = new Float32Array(16); for (let i = 0; i < 4; i++) for (let j = 0; j < 4; j++) { let s = 0; for (let q = 0; q < 4; q++) s += P[q * 4 + j] * V[i * 4 + q]; MVP[i * 4 + j] = s; }
+          gl.clearColor(0.62, 0.74, 0.88, 1); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+          gl.uniformMatrix4fv(gl.getUniformLocation(prog, 'mvp'), false, MVP); gl.drawArrays(gl.TRIANGLES, 0, p.length / 3);
+          const gps = { lat: lat0 + (C[1] + (rnd() - 0.5) * 0.6) / 110574, lon: lon0 + (C[0] + (rnd() - 0.5) * 0.6) / (111320 * Math.cos(lat0 * Math.PI / 180)), alt: alt0 + C[2] + (rnd() - 0.5) * 0.8 };
+          const nr = k;
+          cv.toBlob(function (b) {
+            if (!b) { nein(new Error('Bild konnte nicht erzeugt werden')); return; }
+            dateien.push({ name: 'beispiel-' + (nr < 9 ? '0' : '') + (nr + 1) + '.jpg', datei: b, exif: { f35: F35, f: 4.5, hersteller: 'Beispiel', modell: 'Künstliche Kamera', gps: gps } });
+            k++; if (fortschritt) fortschritt(k, pos.length); setTimeout(naechste, 0);
+          }, 'image/jpeg', 0.92);
+        };
+        naechste();
+      });
+    }
+    // ---------- Oberfläche: Fotos, Start, Ergebnis ----------
+    function fotosZeigen() {
+      const box = $('pg-fotos'); box.textContent = '';
+      fotos.forEach(function (f, i) {
+        const k = kn('figure', 'pg-foto'), img = kn('img'); img.alt = ''; img.loading = 'lazy';
+        if (!f.thumb) { f.thumb = URL.createObjectURL(f.datei); }
+        img.src = f.thumb;
+        const cap = kn('figcaption'), e = f.exif || {};
+        cap.append(kn('span', 'pg-foto-name', f.name));
+        const info = [];
+        if (e.f35) info.push(e.f35 + ' mm KB'); else if (e.f) info.push(zahl(e.f, 1) + ' mm');
+        if (e.gps) info.push('GPS');
+        if (rek && rek.sfm) info.push(rek.sfm.kameras[i] && rek.sfm.kameras[i].reg ? '✓ ausgerichtet' : '✗ nicht ausgerichtet');
+        cap.append(kn('small', '', info.join(' · ') || 'keine Kameradaten'));
+        const x = kn('button', 'pg-foto-weg', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Foto ' + f.name + ' entfernen');
+        x.addEventListener('click', function () { if (f.thumb) URL.revokeObjectURL(f.thumb); fotos.splice(i, 1); fotosZeigen(); });
+        k.append(img, cap, x); box.append(k);
+      });
+      const n = fotos.length, mitGps = fotos.filter(function (f) { return f.exif && f.exif.gps; }).length, mitF = fotos.filter(function (f) { return f.exif && (f.exif.f35 || f.exif.f); }).length;
+      $('pg-foto-info').textContent = n ? n + (n === 1 ? ' Foto' : ' Fotos') + ' · ' + mitF + ' mit Brennweite · ' + mitGps + ' mit GPS' + (n < 8 ? ' · mindestens 8 Fotos nötig, besser 20 bis 80' : '') : 'Noch keine Fotos.';
+      $('pg-start').disabled = n < 8 || laeuft;
+      $('pg-leeren').hidden = !n;
+    }
+    function dateienHinzu(liste) {
+      const neu = Array.prototype.filter.call(liste, function (d) { return /^image\/(jpeg|png|webp)$/.test(d.type) || /\.(jpe?g|png|webp)$/i.test(d.name); });
+      const platz = MAX_BILDER - fotos.length, nehmen = neu.slice(0, Math.max(0, platz));
+      if (neu.length > nehmen.length) werkzeugHinweis('Höchstens ' + MAX_BILDER + ' Fotos – ' + (neu.length - nehmen.length) + ' wurden nicht übernommen.');
+      return Promise.all(nehmen.map(function (d) { return exifLesen(d).then(function (e) { fotos.push({ name: String(d.name).slice(0, 80), datei: d, exif: e }); }); })).then(function () {
+        fotos.sort(function (a, b) { return a.name.localeCompare(b.name, 'de', { numeric: true }); }); fotosZeigen();
+      });
+    }
+    $('pg-datei').addEventListener('change', function () { dateienHinzu(this.files).then(function () { $('pg-datei').value = ''; }); });
+    const zone = $('pg-ablage');
+    ['dragenter', 'dragover'].forEach(function (t) { zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.add('ueber'); }); });
+    ['dragleave', 'drop'].forEach(function (t) { zone.addEventListener(t, function (e) { e.preventDefault(); zone.classList.remove('ueber'); }); });
+    zone.addEventListener('drop', function (e) { if (e.dataTransfer && e.dataTransfer.files) dateienHinzu(e.dataTransfer.files); });
+    $('pg-leeren').addEventListener('click', function () { fotos.forEach(function (f) { if (f.thumb) URL.revokeObjectURL(f.thumb); }); fotos.length = 0; fotosZeigen(); });
+    $('pg-beispiel').addEventListener('click', function () {
+      const b = this; b.disabled = true;
+      beispielFotos(function (k, n) { b.textContent = 'Erzeuge Beispielfotos … ' + k + ' / ' + n; }).then(function (l) {
+        fotos.forEach(function (f) { if (f.thumb) URL.revokeObjectURL(f.thumb); }); fotos.length = 0;
+        l.forEach(function (x) { fotos.push(x); }); $('pg-projekt').value = 'Beispielhaus';
+        b.disabled = false; b.textContent = 'Beispiel: Haus mit 36 Drohnenfotos'; fotosZeigen();
+        werkzeugHinweis('36 künstliche Drohnenfotos mit GPS erzeugt – jetzt „3D-Modell berechnen“.');
+      }).catch(function (e) { b.disabled = false; b.textContent = 'Beispiel: Haus mit 36 Drohnenfotos'; werkzeugHinweis('Beispiel nicht möglich: ' + e.message); });
+    });
+    let laeuft = false;
+    $('pg-start').addEventListener('click', function () {
+      if (laeuft || fotos.length < 8) return;
+      laeuft = true; $('pg-start').disabled = true; $('pg-abbruch').hidden = false; $('pg-lauf').hidden = false; $('pg-fehler').hidden = true;
+      messungen.length = 0; daecher.length = 0; werkzeug = null;
+      $('pg-lauf').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      berechnen().then(function () { fotosZeigen(); }).catch(function (e) {
+        const t = String(e && e.message || e);
+        $('pg-fehler').hidden = false; $('pg-fehler').textContent = t === 'abgebrochen' ? 'Berechnung abgebrochen.' : 'Die Berechnung ist nicht gelungen: ' + t.split('\n')[0];
+        if (rek && rek.sfm && rek.T) ergebnisZeigen('duenn');
+      }).then(function () { laeuft = false; $('pg-abbruch').hidden = true; fotosZeigen(); werker.forEach(function (w) { w.w.terminate(); }); werker = []; });
+    });
+    $('pg-abbruch').addEventListener('click', function () { abbruch = true; werker.forEach(function (w) { w.w.terminate(); Object.keys(w.offen).forEach(function (k) { w.offen[k].nein(new Error('abgebrochen')); }); w.offen = {}; }); });
+    let ersteAnsicht = true;
+    function ergebnisZeigen(stand) {
+      $('pg-ergebnis').hidden = false; ansicht.groesse();
+      ansicht.modellSetzen(rek.T);
+      ansicht.punkteSetzen('punkteS', rek.sfm.punkte, rek.sfm.farben);
+      if (rek.dicht) ansicht.punkteSetzen('punkteD', rek.dicht.pos, rek.dicht.farbe); else ansicht.punkteSetzen('punkteD', null);
+      ansicht.netzSetzen(rek.netz || null);
+      ansicht.sicht.duenn = !rek.dicht;
+      $('pg-sicht-duenn').checked = ansicht.sicht.duenn;
+      if (ersteAnsicht || stand === 'duenn') {
+        const A = anzeigePunkte(rek.dicht ? rek.dicht.pos : rek.sfm.punkte), x = [], y = [], z = [];
+        for (let k = 0; k < A.length; k += 3 * Math.max(1, Math.floor(A.length / 3 / 100000))) { x.push(A[k]); y.push(A[k + 1]); z.push(A[k + 2]); }
+        ansicht.einpassen([quantil(x, 0.05), quantil(y, 0.05), quantil(z, 0.05)], [quantil(x, 0.95), quantil(y, 0.95), quantil(z, 0.95)]);
+        ersteAnsicht = stand === 'duenn';
+      }
+      infoZeigen(); messListe(); dachListe(); werkzeugZeichnen(); zuschnittFelder();
+    }
+    function infoZeigen() {
+      if (!rek || !rek.sfm) return;
+      const nReg = rek.sfm.kameras.filter(function (k) { return k.reg; }).length, tb = $('pg-info'); tb.textContent = '';
+      [['Kameras', nReg + ' von ' + fotos.length + ' ausgerichtet'], ['Punkte', zahl(rek.sfm.punkte.length / 3, 0) + ' Verknüpfungspunkte' + (rek.dicht ? ', ' + zahl(rek.dicht.pos.length / 3, 0) + ' dichte Punkte' : '')],
+        ['Netz', rek.netz ? zahl(rek.netz.dreiecke.length / 3, 0) + ' Dreiecke' : '–'], ['Genauigkeit', 'Rückprojektionsfehler ' + zahl(rek.sfm.fehler, 2) + ' px'],
+        ['Maßstab', rek.massstab === 'gps' ? 'aus GPS der Fotos (Restfehler ' + zahl(rek.geo.rms, 2) + ' m bei ' + zahl(rek.geo.spann, 0) + ' m Ausdehnung)' : rek.massstab === 'referenz' ? 'aus Referenzstrecke ' + zahl(rek.refStrecke.l, 3) + ' m' : 'fehlt – Referenzstrecke setzen'],
+        ['Norden', rek.nord ? 'aus GPS' : 'unbekannt – Richtung unten eingeben'], ['Gelände (Höhe 0)', rek.boden === 'gesetzt' ? 'von Hand gesetzt' : 'geschätzt (häufigste Höhe unten)']]
+        .forEach(function (z) { const tr = kn('tr'); tr.append(kn('th', '', z[0]), kn('td', '', z[1])); tb.append(tr); });
+      $('pg-nord-zeile').hidden = !!rek.nord;
+      if (rek.geo) { if (!$('pg-lat').value) $('pg-lat').value = zahl(rek.geo.lat0, 7).replace(/\./g, ''); if (!$('pg-lng').value) $('pg-lng').value = zahl(rek.geo.lon0, 7).replace(/\./g, ''); }
+    }
+    $('pg-nord').addEventListener('change', function () { const v = Number(String(this.value).replace(',', '.')); if (isFinite(v) && rek) { rek.nordKorr = v; dachListe(); } });
+    // Ansicht-Schalter
+    [['pg-sicht-kameras', 'kameras'], ['pg-sicht-duenn', 'duenn'], ['pg-sicht-dicht', 'dicht'], ['pg-sicht-netz', 'netz'], ['pg-sicht-grau', 'grau']].forEach(function (z) {
+      $(z[0]).addEventListener('change', function () { ansicht.sicht[z[1]] = this.checked; ansicht.zeichnen(); });
+    });
+    $('pg-groesse').addEventListener('input', function () { ansicht.punktGroesse(Number(this.value) || 2); });
+    $('pg-blick-oben').addEventListener('click', function () { ansicht.blick(ansicht.cam.gier, 1.55); });
+    $('pg-blick-schraeg').addEventListener('click', function () { ansicht.blick(ansicht.cam.gier, 0.5); });
+    $('pg-blick-passen').addEventListener('click', function () { ersteAnsicht = true; ergebnisZeigen('passen'); });
+    $('pg-voll').addEventListener('click', function () { const b = $('pg-buehne'), an = !b.classList.contains('voll'); b.classList.toggle('voll', an); document.documentElement.classList.toggle('pg-voll-aktiv', an); this.textContent = an ? 'Vollbild verlassen' : 'Vollbild'; setTimeout(ansicht.groesse, 30); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('pg-buehne').classList.contains('voll')) $('pg-voll').click(); });
+    // Werkzeug-Knöpfe
+    $('pg-mess-strecke').addEventListener('click', function () { werkzeugStarten('strecke'); });
+    $('pg-ref-start').addEventListener('click', function () { $('pg-ref-ist').textContent = ''; werkzeugStarten('referenz'); });
+    $('pg-boden').addEventListener('click', function () { werkzeugStarten('boden'); });
+    $('pg-nullhoehe').addEventListener('click', function () { werkzeugStarten('nullhoehe'); });
+    $('pg-dach-neu').addEventListener('click', function () { werkzeugStarten('dach'); });
+    // Reiter der Werkzeuge
+    document.querySelectorAll('[data-reiter]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        document.querySelectorAll('[data-reiter]').forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); });
+        document.querySelectorAll('.pg-tafel').forEach(function (t) { t.hidden = t.id !== 'pg-tafel-' + b.getAttribute('data-reiter'); });
+      });
+    });
+    // Netz neu berechnen, Bereich begrenzen
+    function zuschnittFelder() {
+      if (!rek || !rek.dicht) return;
+      const A = anzeigePunkte(rek.dicht.pos), lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+      for (let k = 0; k < A.length; k += 3 * Math.max(1, Math.floor(A.length / 300000))) for (let c = 0; c < 3; c++) { lo[c] = Math.min(lo[c], A[k + c]); hi[c] = Math.max(hi[c], A[k + c]); }
+      rek.vollBereich = { lo: lo, hi: hi };
+    }
+    function zuschnittLesen() {
+      if (!rek || !rek.vollBereich) return;
+      const vb = rek.vollBereich, w = function (id) { return Number($(id).value) / 100; };
+      const lo = [0, 1, 2].map(function (c) { return vb.lo[c] + (vb.hi[c] - vb.lo[c]) * w(['pg-x0', 'pg-y0', 'pg-z0'][c]); }), hi = [0, 1, 2].map(function (c) { return vb.lo[c] + (vb.hi[c] - vb.lo[c]) * w(['pg-x1', 'pg-y1', 'pg-z1'][c]); });
+      const voll = ['pg-x0', 'pg-y0', 'pg-z0'].every(function (id) { return $(id).value === '0'; }) && ['pg-x1', 'pg-y1', 'pg-z1'].every(function (id) { return $(id).value === '100'; });
+      rek.zuschnitt = voll ? null : { lo: [Math.min(lo[0], hi[0]), Math.min(lo[1], hi[1]), Math.min(lo[2], hi[2])], hi: [Math.max(lo[0], hi[0]), Math.max(lo[1], hi[1]), Math.max(lo[2], hi[2])] };
+      werkzeugZeichnen();
+    }
+    ['pg-x0', 'pg-x1', 'pg-y0', 'pg-y1', 'pg-z0', 'pg-z1'].forEach(function (id) { $(id).addEventListener('input', zuschnittLesen); });
+    $('pg-netz-neu').addEventListener('click', function () {
+      if (!rek || !rek.ansichten || laeuft) return;
+      laeuft = true; this.disabled = true; werkerStarten(); abbruch = false; $('pg-fehler').hidden = true;
+      const b = this;
+      netzBerechnen({ voxel: Number($('pg-aufloesung').value), glatt: Number($('pg-glatt').value) }).catch(function (e) { $('pg-fehler').hidden = false; $('pg-fehler').textContent = 'Netz nicht berechnet: ' + String(e.message).split('\n')[0]; })
+        .then(function () { laeuft = false; b.disabled = false; werker.forEach(function (w) { w.w.terminate(); }); werker = []; });
+    });
+    // Liste der Schritte aufbauen
+    SCHRITTE.forEach(function (s) { const li = kn('li'); li.setAttribute('data-schritt', s[0]); const b = kn('span', 'pg-balken'); b.append(kn('i')); li.append(kn('b', '', s[1]), b, kn('small')); $('pg-schritte').append(li); });
+    if (!ansicht.gl) { $('pg-start').disabled = true; $('pg-foto-info').textContent = 'Dieser Browser kann kein WebGL – die 3D-Ansicht ist nicht möglich.'; }
+    fotosZeigen();
+    document.querySelectorAll('#pg-wissen [data-tex]').forEach(function (e) { Formel.setze(e, e.getAttribute('data-tex'), true); });
+  })();
+  </script>
+</body>
+</html>

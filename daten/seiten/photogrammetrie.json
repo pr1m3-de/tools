@@ -1,0 +1,16 @@
+{
+  "nr": 335,
+  "titel": "Photogrammetrie: 3D-Modell aus Fotos mit Maßen",
+  "bereich": "Werkzeuge",
+  "auchIn": ["Elektrotechnik", "Dach und Klempnerei"],
+  "themen": ["Photogrammetrie", "3D-Modell", "3D-Scan", "Fotos", "Punktwolke", "Structure from Motion", "Bündelausgleich", "Drohne", "Aufmaß", "Dachaufmaß", "Dachneigung", "Dachausrichtung", "PV-Planung", "Photovoltaik", "Hindernisse", "Schornstein", "Dachfenster", "Messen", "OBJ", "PLY", "STL", "GLB", "GPS", "Maßstab"],
+  "text": "Aus Fotos ein 3D-Modell mit echten Maßen berechnen – direkt im Browser, ohne Upload: Kameras ausrichten, dichte Punktwolke, Netz, Messen, Maßstab aus GPS oder Referenzstrecke, Dachflächen mit Neigung, Ausrichtung und Hindernissen für den PV-Dachplaner und als JSON für Montagesystem-Rechner, Export als OBJ, PLY, STL und GLB.",
+  "tex": "\\mathbf{x}_2^{\\mathsf T} \\mathbf{E}\\, \\mathbf{x}_1 = 0",
+  "verwandt": ["elektro/pv-dach.html"],
+  "fragen": [
+    ["Warum braucht Photogrammetrie Fotos von verschiedenen Standorten?", "Nur mit Parallaxe zwischen den Aufnahmen lässt sich die Tiefe eines Punktes bestimmen.", ["Weil sonst die Farben nicht stimmen.", "Weil eine Kamera nur 50 Merkmale findet.", "Weil das GPS sonst nicht funktioniert."], "Aus einem Standort gedrehte Fotos liegen alle auf denselben Sehstrahlen – es entsteht keine Tiefe."],
+    ["Was bestimmt den Maßstab eines Photogrammetrie-Modells?", "GPS-Positionen der Kameras oder eine bekannte Referenzstrecke im Bild.", ["Die Brennweite allein.", "Die Anzahl der Fotos.", "Die Auflösung der Kamera."], "Aus Fotos allein ist ein Modell nur bis auf einen Maßstab bestimmt."],
+    ["Wie ändert sich die Tiefengenauigkeit, wenn der Abstand zum Objekt verdoppelt wird?", "Sie wird etwa viermal schlechter.", ["Sie bleibt gleich.", "Sie wird doppelt so gut.", "Sie wird etwa halb so gut."], "σ_Z ≈ Z² / (B · f) · σ_px – der Abstand geht quadratisch ein."],
+    ["Was minimiert der Bündelausgleich?", "Die Summe der Rückprojektionsfehler aller Punkte in allen Bildern.", ["Die Zahl der Fotos.", "Den Abstand zwischen den Kameras.", "Die Helligkeitsunterschiede der Bilder."], "Kameras, innere Werte und Punkte werden gemeinsam verschoben, bis die Bildpunkte am besten passen."]
+  ]
+}
