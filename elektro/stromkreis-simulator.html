@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stromkreis-Simulator: Hausinstallation ab HAK mit Notstrom und PV – Formeln &amp; Rechner</title>
-  <meta name="description" content="Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, FI und LS bis zum Verbraucher, mit Notstrom-Wechselrichter, Umschalter, automatischer Umschaltung, Hybrid-Speicher und PV – Körperschluss, PEN-Bruch, N-Bruch, FI-Auslösung und Körperstrom.">
+  <meta name="description" content="Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, FI und LS bis zum Verbraucher, mit Notstromspeicher, Netzumschaltbox (automatisch oder Hand, mit oder ohne N, Phasenbrücke, N-PE-Relais), Aggregat, Hybrid-Speicher und PV – Körperschluss, PEN-Bruch, N-Bruch, IT-Inselnetz, FI-Auslösung und Körperstrom.">
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -114,7 +114,7 @@
   <main class="seite">
     <section class="tafel">
       <h1><span class="unterstrichen">Stromkreis-Simulator</span></h1>
-      <p>Baue eine Installation Ader für Ader auf – Ortsnetz, Hausanschlusskasten, Zähler, Haupterdungsschiene, FI, LS, Verbraucher – und dazu Notstrom-Wechselrichter, Hand- oder Automatik-Umschalter, Hybrid-Speicher und PV. Die Simulation rechnet mit komplexen Wechselstromgrößen jede Spannung und jeden Strom aus und lässt die Schutzorgane nach ihren Kennlinien auslösen: Körperschluss im TN- und TT-Netz, Unterbrechung des PEN bei klassischer Nullung, Neutralleiterbruch, Kurzschluss im Inselnetz und Körperstrom einer Person.</p>
+      <p>Baue eine Installation Ader für Ader auf – Ortsnetz, Hausanschlusskasten, Zähler, Haupterdungsschiene, FI, LS, Verbraucher – und dazu Notstromspeicher, Inselwechselrichter, Aggregat, Hybrid-Speicher und PV, angeschlossen über Hand-Umschalter oder Netzumschaltbox – automatisch oder von Hand, 2- oder 4-polig, mit oder ohne geschalteten N, mit Phasenbrücke, N-PE-Relais, Lastabwurf und Isolationswächter. Die Simulation rechnet mit komplexen Wechselstromgrößen jede Spannung und jeden Strom aus und lässt die Schutzorgane nach ihren Kennlinien auslösen: Körperschluss im TN- und TT-Netz, Unterbrechung des PEN bei klassischer Nullung, Neutralleiterbruch, Kurzschluss im Inselnetz und Körperstrom einer Person.</p>
     </section>
 
     <section class="tafel abstand" aria-labelledby="h-sim">
@@ -160,7 +160,30 @@
         <article class="wissen-karte" style="--farbe:#0E7C86"><h3>Kurzschlussstrom im Inselnetz</h3><p>Ein Wechselrichter liefert im Kurzschluss oft nur das 1,5- bis 2-Fache seines Bemessungsstroms. Ein B16 braucht 80 A, um sofort auszulösen – das schafft ein 3-kW-Wechselrichter nicht. Er schaltet stattdessen selbst ab. Die Abschaltbedingung muss deshalb auch für den Notstrombetrieb nachgewiesen werden.</p></article>
         <article class="wissen-karte" style="--farbe:#F2A541"><h3>PV und Netzausfall</h3><p>Ein netzgekoppelter PV-Wechselrichter speist nur, solange er eine gültige Netzspannung sieht (NA-Schutz). Fällt das Netz aus, trennt er sofort und schaltet erst nach einer Wartezeit wieder zu. In einem Inselnetz mit Batterie-Wechselrichter läuft er weiter (AC-Kopplung); ist der Akku voll, regelt er ab.</p></article>
         <article class="wissen-karte" style="--farbe:#6E6FA6"><h3>Körperstrom</h3><p>Entscheidend sind Stromstärke und Dauer. Ab etwa 10 mA kann man nicht mehr loslassen, ab rund 50 mA über eine Sekunde droht Herzkammerflimmern. 230 mA für 30 ms sind dagegen meist überlebbar – genau dafür ist der 30-mA-FI da. Der Körperwiderstand liegt bei 230 V zwischen Hand und Füßen bei etwa 1 kΩ.</p></article>
+        <article class="wissen-karte" style="--farbe:#7048E8"><h3>Netzumschaltbox</h3><p>Die Box sitzt hinter dem Zähler und schaltet das Haus zwischen Netz und Notstromquelle. Automatisch mit Netzvorrang: Fällt eine Phase unter die Schwelle, geht sie nach der Umschaltzeit über Stellung 0 auf Notstrom und nach stabiler Netzwiederkehr zurück. Netz und Notstrom dürfen nie gleichzeitig verbunden sein – deshalb gibt es die Stellung 0 und eine mechanische oder elektrische Verriegelung.</p></article>
+        <article class="wissen-karte" style="--farbe:#B5179E"><h3>Mit oder ohne N schalten</h3><p>4-polig (N mitgeschaltet) trennt das Hausnetz vollständig vom Netz; die N-PE-Brücke kommt dann in den Speicher oder als Relais in die Box. 3-polig (N durchverbunden) erdet das Inselnetz über den Hausanschluss – dann darf die Quelle keine eigene N-PE-Brücke haben. Was zulässig ist, legt der Hersteller zusammen mit DIN VDE 0100-551 fest.</p></article>
+        <article class="wissen-karte" style="--farbe:#F08C00"><h3>Phasenbrücke und Lastabwurf</h3><p>Mit einem 1-phasigen Speicher lassen sich im Notstrombetrieb alle drei Phasen des Hauses aus einer Phase versorgen. Drehstrommotoren laufen dann nicht, Herd und Durchlauferhitzer würden den Speicher überlasten. Ein Lastabwurf-Schütz trennt solche Verbraucher, sobald Notstrombetrieb ist.</p></article>
+        <article class="wissen-karte" style="--farbe:#495057"><h3>Isolationswächter</h3><p>Im Inselnetz ohne N-PE-Brücke meldet erst der Isolationswächter den ersten Fehler – er misst den Widerstand zwischen den aktiven Leitern und PE. Bleibt der Fehler unbemerkt, wird der zweite Fehler an einem anderen Leiter zum Kurzschluss über den Schutzleiter.</p></article>
+        <article class="wissen-karte" style="--farbe:#2F9E44"><h3>Zeiten abstimmen</h3><p>Speicher, Box und PV-Wechselrichter haben eigene Zeiten. Schaltet der Speicher seinen Ausgang nach Netzwiederkehr früher ab als die Box zurückschaltet, wird das Haus dunkel. Startet ein Aggregat erst nach dem Umschalten, verlängert sich die Unterbrechung um die Anlaufzeit.</p></article>
       </div>
+    </section>
+
+    <section class="tafel abstand" aria-labelledby="h-varianten">
+      <h2 id="h-varianten">Notstrom-Lösungen im Vergleich</h2>
+      <p>Alle Varianten lassen sich im Simulator aufbauen; zu den meisten gibt es ein fertiges Beispiel. Werte sind typisch – maßgeblich sind die Angaben des Herstellers.</p>
+      <div class="rahmen"><table class="tabelle">
+        <thead><tr><th>Lösung</th><th>Umschaltung</th><th>Unterbrechung</th><th>Neutralleiter</th><th>N-PE-Brücke</th><th>Besonderheiten</th></tr></thead>
+        <tbody>
+          <tr><td>Notstromspeicher mit automatischer Netzumschaltbox</td><td>Box im Zählerschrank, Netzvorrang</td><td>etwa 0,5 bis 3 s</td><td>4-polig mitgeschaltet</td><td>im Speicher oder als Relais in der Box, nur im Notstrombetrieb</td><td>Rückschaltzeit von Box und Speicher abstimmen; Speicher lädt aus dem Netz</td></tr>
+          <tr><td>Notstromspeicher mit Box, N durchverbunden (3-polig)</td><td>Box schaltet nur L1 bis L3</td><td>etwa 0,5 bis 3 s</td><td>bleibt mit dem Hausanschluss verbunden</td><td>keine – das Inselnetz ist über den PEN-Aufteilungspunkt geerdet</td><td>nur, wenn der Speicher dafür freigegeben ist; Brücke im Speicher wäre eine unzulässige zweite N-PE-Verbindung</td></tr>
+          <tr><td>1-phasiger Speicher mit Phasenbrücke</td><td>Box brückt L1 bis L3 auf die eine Notstromphase</td><td>wie oben</td><td>mitgeschaltet</td><td>wie oben</td><td>Drehstromverbraucher laufen nicht; große Lasten abwerfen; Box muss Netz und Notstrom sicher trennen</td></tr>
+          <tr><td>Hand-Umschalter I-0-II</td><td>von Hand</td><td>bis jemand umschaltet</td><td>4-polig empfohlen</td><td>an der Quelle oder per Hilfskontakt</td><td>einfach und robust; Stellung 0 verhindert Parallelbetrieb mit dem Netz</td></tr>
+          <tr><td>Hybrid-Wechselrichter mit Notstromausgang</td><td>Relais im Wechselrichter</td><td>unter 20 ms bis einige Sekunden</td><td>allpolig getrennt</td><td>automatisch im Wechselrichter</td><td>Notstromausgang versorgt nur angeschlossene Kreise; PV lädt im Inselbetrieb weiter</td></tr>
+          <tr><td>Online-Speicher (Doppelwandler)</td><td>keine</td><td>keine</td><td>Ausgang immer vom Wechselrichter</td><td>am Ausgang</td><td>für Server, Router, Steuerungen; Wechselrichter läuft dauernd mit, etwas höhere Verluste</td></tr>
+          <tr><td>Aggregat mit Hand- oder Auto-Umschalter</td><td>von Hand oder automatisch mit Startsignal</td><td>Startzeit plus Umschaltzeit, etwa 10 s</td><td>mitgeschaltet</td><td>bei vielen kleinen Aggregaten keine</td><td>ohne Brücke wirkt der FI nicht; Kurzschlussstrom oft höher als beim Wechselrichter</td></tr>
+          <tr><td>Inselnetz ohne Erde (IT-ähnlich)</td><td>beliebig</td><td>–</td><td>mitgeschaltet</td><td>keine</td><td>erster Fehler ungefährlich, nur mit Isolationswächter sicher erkannt; zweiter Fehler wie Kurzschluss</td></tr>
+        </tbody>
+      </table></div>
     </section>
 
     <section class="tafel abstand formelsammlung" id="sk-wissen" aria-labelledby="h-formeln-sk">
@@ -184,6 +207,10 @@
         <details><summary>Warum löst der LS vor dem FI aus?</summary><p>Bei einem satten Körperschluss im TN-System fließen einige Hundert Ampere. Der magnetische Auslöser des LS braucht rund 10 ms, der FI etwa 20 bis 30 ms. Der FI schützt vor allem dann, wenn der Fehlerstrom klein ist – etwa über einen Menschen oder einen hochohmigen Fehler.</p></details>
         <details><summary>Braucht ein Notstromnetz einen Erder?</summary><p>Zum Funktionieren nicht. Ein Inselnetz ohne Verbindung zur Erde ist wie ein IT-Netz: Der erste Fehler ist ungefährlich, ein zweiter an einem anderen Leiter aber nicht. Damit FI und LS wie gewohnt schützen, wird im Inselbetrieb N mit PE verbunden und alle Gehäuse sind über den Schutzleiter verbunden. Welche Lösung gilt, legt der Hersteller zusammen mit DIN VDE 0100-551 fest.</p></details>
         <details><summary>Warum muss der Umschalter den N mitschalten?</summary><p>Hat die Notstromquelle eine N-PE-Brücke, wäre bei durchverbundenem N im Netzbetrieb der N über die Brücke ein zweites Mal mit dem PE verbunden. Hinter dem Aufteilungspunkt des PEN ist das nicht erlaubt: Ein Teil des Laststroms fließt dann dauerhaft über den Schutzleiter, und ein FI, der vor dieser Verbindung sitzt, löst aus. Probiere es im Beispiel „Netzersatz“ mit der Einstellung „N durchverbunden“ und achte auf die Strompunkte auf der grün-gelben Ader zum Wechselrichter.</p></details>
+        <details><summary>Welche Netzumschaltbox brauche ich für einen Notstromspeicher?</summary><p>Das hängt vom Speicher ab: Hat er eine eigene N-PE-Brücke für den Inselbetrieb, braucht es eine 4-polige Box, die den N mitschaltet. Ist er für ein über den Hausanschluss geerdetes Inselnetz freigegeben, reicht eine 3-polige Box mit durchverbundenem N. Hat keins von beidem eine Brücke, kann die Box ein N-PE-Relais für den Notstrombetrieb haben. Im Simulator lassen sich alle drei Fälle einstellen.</p></details>
+        <details><summary>Automatik oder Handumschaltung?</summary><p>Die Automatik schaltet ohne Zutun um und zurück. Bei „Rückschalten von Hand“ bleibt das Haus nach Netzwiederkehr auf Notstrom, bis jemand quittiert – praktisch, wenn das Netz unruhig ist. Der reine Handbetrieb mit Wahlschalter I-0-II ist am einfachsten, verlangt aber, dass jemand da ist.</p></details>
+        <details><summary>Warum schaltet die Box bei Ausfall nur einer Phase um?</summary><p>Fällt nur eine Phase aus, laufen Drehstrommotoren unrund und Geräte an dieser Phase stehen. Mit der Überwachung „jede Phase“ schaltet die Box schon dann um. Mit „nur L1“ merkt sie den Ausfall von L2 oder L3 nicht.</p></details>
+        <details><summary>Was ist der Unterschied zwischen Notstrom und Ersatzstrom?</summary><p>Umgangssprachlich wird beides gleich benutzt. Bei einer Unterbrechung von einigen Sekunden spricht man von Ersatzstrom oder Netzersatz, unterbrechungsfrei ist nur ein Online-Speicher oder eine USV. Im Simulator zeigt das Protokoll die genaue Unterbrechung.</p></details>
         <details><summary>Wie genau ist die Simulation?</summary><p>Spannungen und Ströme werden mit komplexer Knotenanalyse bei 50 Hz berechnet. Verbraucher sind feste Impedanzen, Anlaufströme und Oberschwingungen fehlen. Die Kennlinien von LS, Sicherung, FI und Wechselrichter sind Näherungen typischer Werte – echte Geräte streuen innerhalb der Normgrenzen.</p></details>
         <details><summary>Kann ich meinen Aufbau speichern?</summary><p>Er wird automatisch auf diesem Gerät gespeichert. Mit „Link teilen“ entsteht ein Link, der den ganzen Aufbau enthält. Er wird nicht an einen Server geschickt.</p></details>
       </div>
@@ -228,8 +255,8 @@
     Netzwerk.prototype.knoten = function (n) { if (this.eltern[n] === undefined) this.eltern[n] = n; this.namen[n] = 1; return n; };
     Netzwerk.prototype.V = function (a, b) { this.knoten(a); this.knoten(b); const x = this.wurzel(a), y = this.wurzel(b); if (x === y) return; if (y === 'E') this.eltern[x] = y; else this.eltern[y] = x; };
     Netzwerk.prototype.R = function (a, b, re, im) { this.knoten(a); this.knoten(b); const e = { art: 'R', a: a, b: b, z: [Math.max(re, 1e-6), im || 0] }; this.el.push(e); return e; };
-    Netzwerk.prototype.Q = function (a, b, E, Z) { this.knoten(a); this.knoten(b); const e = { art: 'Q', a: a, b: b, E: E, z: [Math.max(Z[0], 1e-6), Z[1]] }; this.el.push(e); return e; };
-    Netzwerk.prototype.I = function (a, b, I) { this.knoten(a); this.knoten(b); const e = { art: 'I', a: a, b: b, I: I }; this.el.push(e); return e; };
+    Netzwerk.prototype.Q = function (a, b, E, Z) { this.knoten(a); this.knoten(b); const e = { art: 'Q', a: a, b: b, E: this.ohneQuellen ? [0, 0] : E, z: [Math.max(Z[0], 1e-6), Z[1]] }; this.el.push(e); return e; };
+    Netzwerk.prototype.I = function (a, b, I) { this.knoten(a); this.knoten(b); const e = { art: 'I', a: a, b: b, I: this.ohneQuellen && !this.mess ? [0, 0] : I }; this.mess = false; this.el.push(e); return e; };
     Netzwerk.prototype.loesen = function () {
       const self = this, idx = { E: 0 }; let n = 0;
       this.knoten('E');
@@ -527,51 +554,89 @@
       aktion: function (t) { return [t.st.ein ? 'Aus' : 'Ein', function () { t.st.ein = !t.st.ein; log(name(t) + (t.st.ein ? ' eingeschaltet.' : ' ausgeschaltet.')); }]; }
     };
     function umKlemmen(t) {
-      return { o: pole(t.par.pole, 'n', 'Netz').concat(pole(t.par.pole, 's', 'Notstrom')), u: pole(t.par.pole, '') };
+      return { o: pole(t.par.pole, 'n', 'Netz').concat(pole(t.par.pole, 's', 'Notstrom')), u: pole(t.par.pole, '').concat(t.par.npe === 'relais' ? [['PE', 'PE']] : []) };
     }
     function umModell(t, M, pos) {
       t.z.el = [];
+      const brueck = pos === 'not' && t.par.brueke === 'ja' && Number(t.par.pole) === 4;
       POL[t.par.pole].forEach(function (x) {
         if (x === 'N' && t.par.nmit === 'nein') { M.V(kl(t, 'nN'), kl(t, 'N')); M.V(kl(t, 'sN'), kl(t, 'N')); return; }
         if (pos === 'netz') t.z.el.push(M.R(kl(t, 'n' + x), kl(t, x), 0.001, 0));
-        if (pos === 'not') t.z.el.push(M.R(kl(t, 's' + x), kl(t, x), 0.001, 0));
+        if (pos === 'not') t.z.el.push(M.R(kl(t, 's' + (brueck && x !== 'N' ? 'L1' : x)), kl(t, x), 0.001, 0));
       });
+      if (pos === 'not' && t.par.npe === 'relais') M.V(kl(t, 'N'), kl(t, 'PE'));
     }
     const POSNAME = { netz: 'I · Netz', 0: '0 · aus', not: 'II · Notstrom' };
-    const NMIT = { k: 'nmit', name: 'Neutralleiter', werte: [['ja', 'wird mitgeschaltet (4-polig)'], ['nein', 'durchverbunden (nicht geschaltet)']], std: 'ja' };
+    const NMIT = { k: 'nmit', name: 'Neutralleiter', werte: [['ja', 'wird mitgeschaltet'], ['nein', 'durchverbunden (nicht geschaltet)']], std: 'ja' };
+    const BRUECKE = { k: 'brueke', name: 'Phasenbrücke (nur 4-polig)', werte: [['nein', 'nein'], ['ja', 'ja – im Notstrombetrieb L1, L2, L3 aus Notstrom-L1']], std: 'nein' };
+    const NPERELAIS = { k: 'npe', name: 'N-PE-Brücke im Gerät', werte: [['nein', 'keine'], ['relais', 'Relais: N mit PE nur im Notstrombetrieb']], std: 'nein' };
+    function umStatus(t, pos) { return (t.par.nmit === 'nein' ? 'N durch' : 'N geschaltet') + (t.par.brueke === 'ja' && Number(t.par.pole) === 4 ? ' · Phasenbrücke' : '') + (t.par.npe === 'relais' ? ' · N-PE-Relais' : '') + (pos === 'not' && t.par.npe === 'relais' ? ' zu' : ''); }
+    function handUmschalten(t) {
+      return ['Umschalten', function () { t.st.pos = t.st.pos === 'netz' ? '0' : t.st.pos === '0' ? (t.z.vorher === 'not' ? 'netz' : 'not') : '0'; if (t.st.pos !== '0') t.z.vorher = t.st.pos; else t.z.vorher = t.z.vorher || 'netz'; log(name(t) + ': Stellung ' + POSNAME[t.st.pos] + '.'); }];
+    }
+    function handStellungen(t) { return ['netz', '0', 'not'].filter(function (p) { return p !== t.st.pos; }).map(function (p) { return ['Stellung ' + POSNAME[p], function () { t.st.pos = p; log(name(t) + ': Stellung ' + POSNAME[p] + '.'); }]; }); }
     TYP.umschalter = {
       name: 'Netzumschalter I-0-II (Hand)', kurz: 'Umschalter', kat: 'Schalten', icon: 'M6 4v5M18 4v5M12 20v-6M12 14L6 9',
-      par: [{ k: 'pole', name: 'Pole', werte: [[4, 'L1, L2, L3, N'], [2, 'L, N']], std: 4 }, NMIT],
+      par: [{ k: 'pole', name: 'Pole', werte: [[4, 'L1, L2, L3, N'], [2, 'L, N']], std: 4 }, NMIT, BRUECKE, NPERELAIS],
       st: { pos: 'netz' },
       klemmen: umKlemmen,
       init: function (t) { t.z.el = []; },
       modell: function (t, M) { umModell(t, M, t.st.pos); },
-      status: function (t) { return [POSNAME[t.st.pos], t.par.nmit === 'nein' ? 'N durchverbunden' : 'N geschaltet', t.st.pos === '0' ? '' : 'gut']; },
-      aktion: function (t) { return ['Umschalten', function () { t.st.pos = t.st.pos === 'netz' ? '0' : t.st.pos === '0' ? (t.z.vorher === 'not' ? 'netz' : 'not') : '0'; if (t.st.pos !== '0') t.z.vorher = t.st.pos; else t.z.vorher = t.z.vorher || 'netz'; log(name(t) + ': Stellung ' + POSNAME[t.st.pos] + '.'); }]; },
-      aktionen: function (t) { return ['netz', '0', 'not'].filter(function (p) { return p !== t.st.pos; }).map(function (p) { return ['Stellung ' + POSNAME[p], function () { t.st.pos = p; log(name(t) + ': Stellung ' + POSNAME[p] + '.'); }]; }); }
+      status: function (t) { return [POSNAME[t.st.pos], umStatus(t, t.st.pos), t.st.pos === '0' ? '' : 'gut']; },
+      aktion: handUmschalten,
+      aktionen: handStellungen
     };
-    function minU(t, vor) { const L = POL[t.par.pole].filter(function (x) { return x !== 'N'; }); let m = Infinity; L.forEach(function (x) { m = Math.min(m, uBetrag(kl(t, vor + x), kl(t, vor + 'N'))); }); return m; }
+    function minU(t, vor) {
+      const L = POL[t.par.pole].filter(function (x) { return x !== 'N'; }), nur = t.par.ueberw === 'l1' || (vor === 's' && t.par.brueke === 'ja') ? L.slice(0, 1) : L;
+      let m = Infinity, x = 0;
+      nur.forEach(function (l) { const u = uBetrag(kl(t, vor + l), kl(t, vor + 'N')); m = Math.min(m, u); x = Math.max(x, u); });
+      return [m, x];
+    }
+    function atsPos(t) { return t.par.betrieb === 'hand' ? t.st.pos : t.z.pos; }
     TYP.ats = {
-      name: 'Automatische Umschalteinrichtung', kurz: 'Auto-Umschalter', kat: 'Schalten', icon: 'M6 4v5M18 4v5M12 20v-6M12 14L6 9M17 15a3 3 0 1 1-3-3',
-      par: [{ k: 'pole', name: 'Pole', werte: [[4, 'L1, L2, L3, N'], [2, 'L, N']], std: 4 }, NMIT,
-        { k: 'tum', name: 'Umschalten nach Netzausfall', e: 's', min: 0.1, max: 60, std: 2 },
-        { k: 'trueck', name: 'Rückschalten nach Netzwiederkehr', e: 's', min: 1, max: 600, std: 30 }],
-      st: {},
+      name: 'Netzumschaltbox (automatisch oder Hand)', kurz: 'Umschaltbox', kat: 'Schalten', icon: 'M6 4v5M18 4v5M12 20v-6M12 14L6 9M17 15a3 3 0 1 1-3-3',
+      par: [{ k: 'pole', name: 'Pole', werte: [[4, '4-polig: L1, L2, L3, N'], [2, '2-polig: L, N']], std: 4 }, NMIT,
+        { k: 'betrieb', name: 'Betriebsart', werte: [['auto', 'Automatik mit Netzvorrang'], ['auto_hand', 'Automatik, Rückschalten von Hand'], ['hand', 'Hand (Wahlschalter I-0-II)']], std: 'auto' },
+        { k: 'ueberw', name: 'Netzüberwachung', werte: [['alle', 'jede Phase (Ausfall einer Phase genügt)'], ['l1', 'nur L1']], std: 'alle' },
+        { k: 'uschw', name: 'Unterspannungsschwelle', e: '% von 230 V', min: 50, max: 95, std: 85 },
+        { k: 'tum', name: 'Umschalten nach Netzausfall', e: 's', min: 0.05, max: 60, std: 2 },
+        { k: 'tpause', name: 'Pause in Stellung 0', e: 's', min: 0, max: 10, std: 0.5 },
+        { k: 'trueck', name: 'Rückschalten nach Netzwiederkehr', e: 's', min: 1, max: 900, std: 30 },
+        { k: 'start', name: 'Startsignal an Notstromquelle', werte: [['sofort', 'sofort bei Netzausfall'], ['nach', 'erst nach der Umschaltzeit'], ['kein', 'kein Startsignal']], std: 'sofort' },
+        BRUECKE, NPERELAIS],
+      st: { pos: 'netz' },
       klemmen: umKlemmen,
       init: function (t) { t.z.el = []; t.z.pos = 'netz'; },
-      modell: function (t, M) { umModell(t, M, t.z.pos); },
-      messen: function (t) { t.z.uNetz = minU(t, 'n'); t.z.uNot = minU(t, 's'); t.z.netzOk = t.z.uNetz > 0.85 * UN && t.z.uNetz < 1.15 * UN; t.z.notOk = t.z.uNot > 0.85 * UN && t.z.uNot < 1.15 * UN; },
+      modell: function (t, M) { umModell(t, M, atsPos(t)); },
+      messen: function (t) {
+        const g = t.par.uschw / 100, a = minU(t, 'n'), b = minU(t, 's');
+        t.z.uNetz = a[0]; t.z.uNot = b[0];
+        t.z.netzOk = a[0] > g * UN && a[1] < 1.15 * UN; t.z.notOk = b[0] > g * UN && b[1] < 1.15 * UN;
+      },
       plan: function (t) {
-        const z = t.z;
-        if (z.pos === 'netz' && !z.netzOk) return { id: 'weg', dauer: t.par.tum, tun: function () { z.pos = z.notOk ? 'not' : '0'; log(name(t) + ': Netzausfall – schaltet ' + (z.notOk ? 'auf Notstrom.' : 'auf 0 und fordert die Notstromquelle an.'), 'aus'); } };
-        if (z.pos === '0' && z.netzOk) return { id: 'zurueck0', dauer: t.par.trueck, tun: function () { z.pos = 'netz'; log(name(t) + ': Netz stabil – zurück auf Netz.', 'gut'); } };
-        if (z.pos === '0' && z.notOk) return { id: 'not', dauer: 0.5, tun: function () { z.pos = 'not'; log(name(t) + ': Notstromquelle bereit – schaltet auf Notstrom.', 'gut'); } };
-        if (z.pos === 'not' && z.netzOk) return { id: 'zurueck', dauer: t.par.trueck, tun: function () { z.pos = 'netz'; log(name(t) + ': Netz seit ' + t.par.trueck + ' s stabil – schaltet zurück auf Netz.', 'gut'); } };
+        const z = t.z; if (t.par.betrieb === 'hand') return null;
+        if (z.pos === 'netz' && !z.netzOk) return { id: 'weg', dauer: t.par.tum, tun: function () { z.pos = '0'; z.seit0 = true; log(name(t) + ': Netzausfall – Stellung 0' + (z.notOk ? '.' : ', wartet auf die Notstromquelle.'), 'aus'); } };
+        if (z.pos === '0' && z.netzOk && z.vonNot && t.par.betrieb === 'auto_hand') return null;
+        if (z.pos === '0' && z.netzOk) return { id: 'zurueck0', dauer: z.vonNot ? t.par.tpause : t.par.trueck, tun: function () { z.pos = 'netz'; z.vonNot = false; log(name(t) + ': zurück auf Netz.', 'gut'); } };
+        if (z.pos === '0' && z.notOk) return { id: 'not', dauer: t.par.tpause, tun: function () { z.pos = 'not'; log(name(t) + ': schaltet auf Notstrom.', 'gut'); } };
+        if (z.pos === 'not' && z.netzOk && t.par.betrieb === 'auto') return { id: 'zurueck', dauer: t.par.trueck, tun: function () { z.pos = '0'; z.vonNot = true; log(name(t) + ': Netz seit ' + zahl(t.par.trueck) + ' s stabil – Stellung 0, dann zurück auf Netz.', 'gut'); } };
         if (z.pos === 'not' && !z.notOk) return { id: 'notweg', dauer: 0.2, tun: function () { z.pos = '0'; log(name(t) + ': Notstromquelle ausgefallen – Stellung 0.', 'aus'); } };
         return null;
       },
-      anforderung: function (t) { return !t.z.netzOk; },
-      status: function (t) { return [POSNAME[t.z.pos], 'Netz ' + fU(t.z.uNetz || 0) + ' · Not ' + fU(t.z.uNot || 0), t.z.pos === 'netz' ? 'gut' : t.z.pos === 'not' ? 'warn' : 'fehler']; }
+      anforderung: function (t) {
+        if (t.par.start === 'kein') return false;
+        const pos = atsPos(t);
+        if (t.par.betrieb === 'hand') return pos === 'not' || (pos === '0' && !t.z.netzOk);
+        return t.par.start === 'sofort' ? !t.z.netzOk || pos === 'not' : pos !== 'netz';
+      },
+      status: function (t) { const p = atsPos(t); return [POSNAME[p] + (t.par.betrieb === 'hand' ? ' (Hand)' : ''), 'Netz ' + fU(t.z.uNetz || 0) + ' · Not ' + fU(t.z.uNot || 0), p === 'netz' ? 'gut' : p === 'not' ? 'warn' : 'fehler']; },
+      werte: function (t) { const p = atsPos(t); return [['Stellung', POSNAME[p]], ['Ausführung', umStatus(t, p)], ['Netzseite', t.z.netzOk ? 'in Ordnung' : 'gestört']]; },
+      aktion: function (t) {
+        if (t.par.betrieb === 'hand') return handUmschalten(t);
+        if (t.par.betrieb === 'auto_hand' && t.z.pos !== 'netz' && t.z.netzOk) return ['Zurück auf Netz', function () { t.z.pos = 'netz'; t.z.vonNot = false; log(name(t) + ': von Hand zurück auf Netz.', 'gut'); }];
+        return null;
+      },
+      aktionen: function (t) { return t.par.betrieb === 'hand' ? handStellungen(t) : []; }
     };
     TYP.notstrom = {
       name: 'Notstromquelle (Batterie-Wechselrichter oder Aggregat)', kurz: 'Notstrom', kat: 'Einspeisung', icon: 'M6 7h11v10H6zM17 10h2v4h-2M9 10v4M12 10v4',
@@ -736,6 +801,122 @@
       },
       aktionen: function (t) { return [['Akku auf 100 %', function () { t.st.soc = 100; }], ['Akku auf 10 %', function () { t.st.soc = 10; }]]; }
     };
+    TYP.speicher = {
+      name: 'Notstromspeicher (Batteriespeicher für Notstrom)', kurz: 'Notstromspeicher', kat: 'Einspeisung', icon: 'M5 7h12v10H5zM17 10h2v4h-2M8 12h6M11 9v6',
+      par: [
+        { k: 'ph', name: 'Phasen', werte: [[1, '1-phasig'], [3, '3-phasig']], std: 1 },
+        { k: 'pn', name: 'Wechselrichterleistung', e: 'kW', min: 0.5, max: 50, std: 5 },
+        { k: 'akku', name: 'Akku', e: 'kWh', min: 0.5, max: 100, std: 10 },
+        { k: 'pl', name: 'Ladeleistung aus dem Netz', e: 'kW', min: 0, max: 50, std: 1.5 },
+        { k: 'ausgang', name: 'Ausgang', werte: [['getrennt', 'nur bei Netzausfall (für externe Umschaltbox)'], ['bypass', 'Netz durchgeschaltet, bei Ausfall intern umschalten'], ['online', 'Online-Doppelwandler: immer aus dem Wechselrichter']], std: 'getrennt' },
+        { k: 'tum', name: 'Umschaltzeit auf Notstrom', e: 's', werte: [[0.01, '10 ms'], [0.5, '0,5 s'], [3, '3 s'], [10, '10 s']], std: 0.5 },
+        { k: 'tzu', name: 'Zurück zum Netz nach', e: 's', werte: [[5, '5 s'], [30, '30 s'], [60, '60 s'], [300, '5 min']], std: 30 },
+        { k: 'npe', name: 'N-PE-Brücke am Ausgang', werte: [['auto', 'automatisch im Inselbetrieb'], ['fest', 'fest verbunden'], ['nein', 'keine (IT-ähnlich)']], std: 'auto' },
+        { k: 'ik', name: 'Kurzschlussstrom', e: '× In', min: 1, max: 10, std: 2 }
+      ],
+      st: { ein: true, soc: 90 },
+      klemmen: function (t) {
+        const L = LEITER(t.par.ph);
+        return { o: L.map(function (x) { return ['e' + x, x, 'Netz']; }).concat([['eN', 'N', 'Netz'], ['ePE', 'PE', 'Netz']]), u: L.map(function (x) { return ['a' + x, x, 'Ausgang']; }).concat([['aN', 'N', 'Ausgang'], ['aPE', 'PE', 'Ausgang']]) };
+      },
+      init: function (t) { t.z.modus = 'netz'; t.z.q = []; t.z.iq = []; t.z.pq = [[0, 0], [0, 0], [0, 0]]; t.z.lim = [1, 1, 1]; t.z.netzOk = false; t.z.pB = 0; t.z.x = 0; },
+      aktiv: function (t) { return t.st.ein && !t.z.stoerung && t.st.soc > 5; },
+      modell: function (t, M, ohnePQ) {
+        const z = t.z, L = LEITER(t.par.ph);
+        M.V(kl(t, 'ePE'), kl(t, 'aPE')); z.q = []; z.iq = [];
+        if (t.par.npe === 'fest') M.V(kl(t, 'aN'), kl(t, 'aPE'));
+        const insel = TYP.speicher.aktiv(t) && (t.par.ausgang === 'online' || z.modus === 'insel');
+        if (t.par.ausgang === 'bypass' && z.modus === 'netz') { L.forEach(function (x) { M.V(kl(t, 'e' + x), kl(t, 'a' + x)); }); M.V(kl(t, 'eN'), kl(t, 'aN')); }
+        if (insel) {
+          if (t.par.npe === 'auto') M.V(kl(t, 'aN'), kl(t, 'aPE'));
+          L.forEach(function (x, p) { z.q.push(M.Q(kl(t, 'a' + x), kl(t, 'aN'), C.polar(UN, PHASE[p]), [0.03 * z.lim[p], 0.015 * z.lim[p]])); });
+        }
+        if (!ohnePQ && z.netzOk && t.st.ein && z.modus === 'netz') L.forEach(function (x, p) { z.iq.push(M.I(kl(t, 'e' + x), kl(t, 'eN'), z.pq[p])); });
+      },
+      messen0: function (t) { t.z.netzOk = LEITER(t.par.ph).every(function (x) { const u = uBetrag(kl(t, 'e' + x), kl(t, 'eN')); return u > 0.85 * UN && u < 1.15 * UN; }); },
+      nach: function (t) {
+        const z = t.z, L = LEITER(t.par.ph); let neu = false;
+        if (z.q.length) {
+          neu = strombegrenzung(t, t.par.pn * 1000 / (L.length * UN) * t.par.ik) || neu;
+          const P = quellenP(t), lade = z.modus === 'insel' && t.st.soc < 100 ? t.par.pn * 1000 : 0;
+          if (z.modus === 'insel' && P < -lade - 20 && G.pvNenn > 0 && G.pvFaktor > 0) { abregeln(-P - lade); neu = true; }
+        }
+        if (z.modus === 'netz' && z.netzOk && t.st.ein) {
+          const lade = t.st.soc < 100 ? t.par.pl * 1000 : 0, aus = z.q.length ? Math.max(0, quellenP(t)) / 0.95 : 0;
+          L.forEach(function (x, p) { if (pqStrom(z, p, -(lade + aus) / L.length, uk(kl(t, 'e' + x), kl(t, 'eN')))) neu = true; });
+        }
+        return neu;
+      },
+      messen: function (t) {
+        const z = t.z, In = t.par.pn * 1000 / (LEITER(t.par.ph).length * UN);
+        z.Paus = z.q.length ? quellenP(t) : 0;
+        z.x = z.q.length ? Math.max.apply(null, z.q.map(function (e) { return C.betrag(e.Ist); })) / In : 0;
+        z.begrenzt = z.lim.some(function (l, p) { return p < z.q.length && l > 1.01; });
+        z.Pnetz = 0; z.iq.forEach(function (e) { z.Pnetz -= C.mul(e.U, C.kon(e.Ist))[0]; });
+        z.pB = z.modus === 'netz' && z.netzOk && t.st.ein ? -(t.st.soc < 100 ? t.par.pl * 1000 : 0) : z.Paus;
+      },
+      schutz: function (t) { return t.z.q.length ? [{ wr: true, x: t.z.x, begrenzt: t.z.begrenzt }] : []; },
+      ausloesen: function (t, p, s) { t.z.stoerung = s.begrenzt ? 'Kurzschluss' : 'Überlast'; log(name(t) + ': Ausgang schaltet ab – ' + (s.begrenzt ? 'Kurzschluss, Strom auf ' + zahl(t.par.ik, 1) + ' × In begrenzt' : 'Überlast ' + Math.round(s.x * 100) + ' %') + '.', 'aus'); },
+      fort: function (t, dt) { const z = t.z; if (!t.st.ein) return; const Pdc = z.pB > 0 ? z.pB / 0.95 : z.pB * 0.95; t.st.soc = Math.min(100, Math.max(0, t.st.soc - Pdc * dt / 3600 / (t.par.akku * 1000) * 100)); },
+      plan: function (t) {
+        const z = t.z, on = t.par.ausgang === 'online';
+        if (z.modus === 'netz' && !z.netzOk) return { id: 'trenn', dauer: 0.02, tun: function () { z.modus = on ? 'insel' : 'trenn'; z.pq = [[0, 0], [0, 0], [0, 0]]; log(name(t) + ': Netzausfall erkannt – ' + (on ? 'der Akku übernimmt ohne Unterbrechung.' : 'trennt vom Netz.'), on ? 'gut' : 'aus'); } };
+        if (z.modus === 'trenn' && TYP.speicher.aktiv(t)) return { id: 'insel', dauer: t.par.tum, tun: function () { z.modus = 'insel'; z.lim = [1, 1, 1]; log(name(t) + ': Notstrom am Ausgang' + (t.par.npe === 'nein' ? ' ohne N-PE-Brücke.' : ' mit N-PE-Brücke.'), 'gut'); } };
+        if ((z.modus === 'insel' || z.modus === 'trenn') && z.netzOk) return { id: 'netz', dauer: t.par.tzu, tun: function () { z.modus = 'netz'; log(name(t) + ': Netz wieder da – ' + (on ? 'lädt wieder aus dem Netz.' : t.par.ausgang === 'bypass' ? 'Ausgang wieder am Netz.' : 'Ausgang aus, lädt.'), 'gut'); } };
+        if (z.modus === 'insel' && z.pB > 0 && t.st.soc > 5) return { id: 'leer', rest: true, dauer: (t.st.soc - 5) / 100 * t.par.akku * 3.6e6 / (z.pB / 0.95), tun: function () { t.st.soc = 5; z.stoerung = 'Akku leer'; log(name(t) + ': Akku leer – Ausgang aus.', 'aus'); } };
+        return null;
+      },
+      status: function (t) {
+        const z = t.z, ak = 'Akku ' + Math.round(t.st.soc) + ' %' + (z.pB < -20 ? ' ▲ ' + fP(-z.pB) : z.pB > 20 ? ' ▼' : '');
+        if (!t.st.ein) return ['aus', ak, ''];
+        if (z.stoerung) return ['Störung: ' + z.stoerung, ak, 'fehler'];
+        if (z.modus === 'netz') return [t.par.ausgang === 'online' ? 'Online · ' + fP(Math.max(0, z.Paus)) : t.par.ausgang === 'bypass' ? 'Netz durchgeschaltet' : 'bereit, Ausgang aus', ak, z.netzOk ? 'gut' : 'warn'];
+        if (z.modus === 'trenn') return ['schaltet um …', ak, 'warn'];
+        return ['Notstrom · ' + (z.Paus < -20 ? 'lädt ' + fP(-z.Paus) : fP(Math.max(0, z.Paus))) + (z.begrenzt ? ' · begrenzt!' : ''), ak, z.begrenzt ? 'fehler' : 'warn'];
+      },
+      werte: function (t) {
+        const z = t.z;
+        return [['Betrieb', { netz: 'Netz vorhanden', trenn: 'vom Netz getrennt, schaltet um', insel: 'Inselbetrieb' }[z.modus]], ['Ausgang', fP(Math.max(0, z.Paus || 0))], ['Aus dem Netz', fP(z.Pnetz || 0)], ['Akku', zahl(t.st.soc, 1) + ' %, ' + (z.pB > 0 ? 'entlädt ' : z.pB < 0 ? 'lädt ' : '') + fP(Math.abs(z.pB || 0))], ['Kurzschlussstrom max.', fI(t.par.ik * t.par.pn * 1000 / (LEITER(t.par.ph).length * UN))]];
+      },
+      aktion: TYP.hybrid.aktion,
+      aktionen: TYP.hybrid.aktionen
+    };
+    TYP.lastabwurf = {
+      name: 'Lastabwurf-Schütz', kurz: 'Lastabwurf', kat: 'Schalten', icon: 'M5 5h14v14H5zM9 9l6 6M15 9l-6 6',
+      par: [{ k: 'pole', name: 'Pole', werte: [[1, '1-polig'], [2, '2-polig (L, N)'], [3, '3-polig'], [4, '4-polig']], std: 3 },
+        { k: 'bed', name: 'Öffnet', werte: [['not', 'im Notstrombetrieb'], ['last', 'bei Überlast einer Notstromquelle (über 90 %)']], std: 'not' }],
+      st: {},
+      klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.offen = false; },
+      modell: function (t, M) { t.z.el = t.z.offen ? [] : POL[t.par.pole].map(function (x) { return M.R(kl(t, 'e' + x), kl(t, 'a' + x), 0.002, 0); }); },
+      plan: function (t) {
+        const z = t.z, bed = t.par.bed === 'not' ? G.notbetrieb : G.notLast;
+        if (!z.offen && bed) return { id: 'ab', dauer: t.par.bed === 'not' ? 0.05 : 1, tun: function () { z.offen = true; log(name(t) + ': Last abgeworfen (' + (t.par.bed === 'not' ? 'Notstrombetrieb' : 'Notstromquelle überlastet') + ').', 'aus'); } };
+        if (z.offen && !G.notbetrieb) return { id: 'zu', dauer: 5, tun: function () { z.offen = false; log(name(t) + ': Netzbetrieb – Last wieder zugeschaltet.', 'gut'); } };
+        return null;
+      },
+      status: function (t) { return t.z.offen ? ['abgeworfen', t.par.bed === 'not' ? 'im Notstrombetrieb' : 'Überlastschutz', 'warn'] : ['zugeschaltet', fI(Math.max.apply(null, [0].concat(t.z.el.map(function (e) { return C.betrag(e.Ist); })))), 'gut']; }
+    };
+    TYP.iso = {
+      name: 'Isolationswächter (Inselnetz ohne Erde)', kurz: 'Isowächter', kat: 'Prüfen', icon: 'M12 3l8 4v5c0 5-4 8-8 9-4-1-8-4-8-9V7zM9 12h6',
+      par: [{ k: 'ran', name: 'Ansprechwert', e: 'kΩ', min: 1, max: 1000, std: 30 }],
+      st: {},
+      klemmen: function () { return { o: [['L', 'L'], ['N', 'N'], ['PE', 'PE']], u: [] }; },
+      init: function (t) { t.z.r = Infinity; t.z.alarm = false; },
+      // Messung wie ein Gleichspannungs-Isolationswächter: alle Quellen null, Prüfstrom von PE in den Außenleiter
+      modell: function (t, M) { if (M.ohneQuellen && M.isoId === t.id) { M.mess = true; t.z.pruef = M.I(kl(t, 'PE'), kl(t, 'L'), [1e-3, 0]); } },
+      messen: function (t) { t.z.uLN = C.betrag(uk(kl(t, 'L'), kl(t, 'N'))); },
+      isoMessen: function (t, R) { const a = R.u(kl(t, 'PE')) || [0, 0], b = R.u(kl(t, 'L')) || [0, 0]; t.z.r = t.z.uLN < 50 ? null : Math.max(0, C.betrag(C.sub(a, b)) / 1e-3); },
+      plan: function (t) {
+        const z = t.z; if (z.r === null) return null;
+        if (!z.alarm && z.r < t.par.ran * 1000) return { id: 'alarm', dauer: 1, tun: function () { z.alarm = true; log(name(t) + ': Isolationsfehler – ' + rText(z.r) + ' (Ansprechwert ' + t.par.ran + ' kΩ). Erster Fehler, noch keine Abschaltung.', 'gefahr'); } };
+        if (z.alarm && z.r > t.par.ran * 1250) return { id: 'gut', dauer: 1, tun: function () { z.alarm = false; log(name(t) + ': Isolation wieder in Ordnung.', 'gut'); } };
+        return null;
+      },
+      status: function (t) { const z = t.z; if (z.r === null) return ['keine Spannung', ' ', '']; return [z.alarm ? 'ALARM Isolationsfehler' : 'Isolation in Ordnung', 'R_iso ' + rText(z.r), z.alarm ? 'fehler' : 'gut']; },
+      werte: function (t) { return [['Isolationswiderstand (Näherung)', t.z.r === null ? '–' : rText(t.z.r)], ['Ansprechwert', t.par.ran + ' kΩ']]; }
+    };
+    function rText(r) { return !isFinite(r) || r > 1e7 ? 'über 10 MΩ' : r >= 1e6 ? zahl(r / 1e6, 1) + ' MΩ' : r >= 1000 ? zahl(r / 1000, 1) + ' kΩ' : zahl(r, 0) + ' Ω'; }
     TYP.pvwr = {
       name: 'PV-Wechselrichter (netzgekoppelt)', kurz: 'PV-WR', kat: 'Einspeisung', icon: 'M3 14h18l-3-8H6zM9 6l-1 8M15 6l1 8M4 10h16M12 17v3',
       par: [
@@ -965,10 +1146,20 @@
       }
       teile.forEach(function (t) { if (TYP[t.typ].messen) TYP[t.typ].messen(t); });
       G.anf = teile.some(function (t) { return t.typ === 'ats' && TYP.ats.anforderung(t); });
+      G.notbetrieb = teile.some(function (t) { return (t.typ === 'umschalter' && t.st.pos === 'not') || (t.typ === 'ats' && atsPos(t) === 'not') || ((t.typ === 'hybrid' || t.typ === 'speicher') && t.z.modus === 'insel') || (t.typ === 'notstrom' && t.z.q.length && t.z.P > 20); });
+      G.notLast = teile.some(function (t) { return ['notstrom', 'hybrid', 'speicher'].indexOf(t.typ) >= 0 && t.z.q && t.z.q.length && t.z.x > 0.9; });
       adern.forEach(function (a) {
         a._I = a._el ? C.betrag(a._el.Ist) : 0;
         if (a._el) { const ua = G.R.u(a.a) || [0, 0], p = C.mul(ua, C.kon(a._el.Ist))[0]; a._dir = C.betrag(ua) > 50 ? (p >= 0 ? 1 : -1) : (a._el.Ist[0] >= 0 ? 1 : -1); }
       });
+      const isos = teile.filter(function (t) { return t.typ === 'iso'; });
+      isos.forEach(function (t) {
+        const alt = G.R; const MI = new Netzwerk(); MI.ohneQuellen = true; MI.isoId = t.id;
+        teile.forEach(function (x) { klemmenListe(x).forEach(function (e) { MI.knoten(kl(x, e[0])); }); TYP[x.typ].modell(x, MI, true); });
+        adern.forEach(function (a) { if (!a.offen) MI.R(a.a, a.b, 0.0178 * a.l / a.q, 0.00008 * a.l); });
+        TYP.iso.isoMessen(t, MI.loesen()); G.R = alt;
+      });
+      if (isos.length) { M = netzBauen(false); G.R = M.loesen(); } // Elementbezüge der Bauteile wieder auf die Hauptlösung setzen
       G.netz = M; schmutzig = false;
     }
 
@@ -1041,7 +1232,7 @@
       const k = TYP[t.typ].klemmen(t), SP = 30, GAP = 18;
       const reihe = function (l) { let x = 0, g0 = null; const pos = []; l.forEach(function (e, i) { if (i > 0) { x += SP; if (e[2] !== g0) x += GAP; } g0 = e[2]; pos.push(x); }); return { pos: pos, b: l.length ? x : 0 }; };
       const o = reihe(k.o), u = reihe(k.u), gr = k.o.concat(k.u).some(function (e) { return e[2]; }), grO = k.o.some(function (e) { return e[2]; }), grU = k.u.some(function (e) { return e[2]; });
-      const w = Math.max(180, o.b + 44, u.b + 44), h = 58 + (k.o.length ? 16 : 0) + (k.u.length ? 16 : 0) + (grO ? 12 : 0) + (grU ? 12 : 0);
+      const w = Math.max(190, o.b + 44, u.b + 44), h = 58 + (k.o.length ? 16 : 0) + (k.u.length ? 16 : 0) + (grO ? 12 : 0) + (grU ? 12 : 0);
       const kl0 = {};
       k.o.forEach(function (e, i) { kl0[e[0]] = { x: (w - o.b) / 2 + o.pos[i], y: 0, s: 'o', label: e[1], gruppe: e[2] }; });
       k.u.forEach(function (e, i) { kl0[e[0]] = { x: (w - u.b) / 2 + u.pos[i], y: h, s: 'u', label: e[1], gruppe: e[2] }; });
@@ -1087,7 +1278,7 @@
         sv('rect', { x: 0, y: 8, width: 4, height: g.h - 16, rx: 2, fill: KAT_FARBE[T.kat] }, gr);
         const ic = sv('g', { transform: 'translate(12 ' + (y0 + 7) + ') scale(.66)', 'class': 'sk-icon' }, gr); sv('path', { d: T.icon }, ic);
         t._led = sv('circle', { cx: g.w - 44, cy: y0 + 15, r: 4, 'class': 'sk-led' }, gr);
-        const ti = sv('text', { x: 32, y: y0 + 20, 'class': 'sk-titel' }, gr); ti.textContent = kuerzen(name(t), (g.w - 80) / 6.8);
+        const ti = sv('text', { x: 32, y: y0 + 20, 'class': 'sk-titel' }, gr); ti.textContent = kuerzen(name(t), (g.w - 78) / 6.6);
         t._s1 = sv('text', { x: 12, y: y0 + 37, 'class': 'sk-status' }, gr); t._s2 = sv('text', { x: 12, y: y0 + 51, 'class': 'sk-status leise' }, gr);
         t._maxZ = (g.w - 46) / 6;
         if (T.aktion) { const ak = sv('g', { 'class': 'sk-aktion', 'data-aktion': t.id, transform: 'translate(' + (g.w - 20) + ' ' + (y0 + 15) + ')' }, gr); sv('circle', { r: 13 }, ak); sv('path', { d: 'M0-6v6M-4.5-3.5a6 6 0 1 0 9 0' }, ak); t._ak = ak; t._akTitel = sv('title', {}, ak); }
@@ -1462,10 +1653,10 @@
       fn(T, A, L3, d);
       return d;
     }
-    function hausanschluss(T, A, L3, sys) { // Ortsnetz, HAK, Zähler, Haupterdungsschiene mit Fundamenterder
+    function hausanschluss(T, A, L3, sys, nPas) { // Ortsnetz, HAK, Zähler, Haupterdungsschiene mit Fundamenterder
       const tt = sys === 'TT';
       const n = T('netz', 0, 0, { system: tt ? 'TT' : 'TN' }, null, 'Ortsnetz'), h = T('hak', 0, 140, { nl: tt ? 'N' : 'PEN' }, null, 'HAK'), z = T('zaehler', 0, 300, {}, null, 'Zähler');
-      const pas = T('schiene', 260, 300, { art: 'PAS', n: 6 }, null, 'HES'), e = T('erder', 480, 300, { r: tt ? 30 : 2 }, null, tt ? 'Staberder' : 'Fundamenterder');
+      const pas = T('schiene', 260, 300, { art: 'PAS', n: nPas || 6 }, null, 'HES'), e = T('erder', (nPas || 6) > 6 ? 560 : 480, 300, { r: tt ? 30 : 2 }, null, tt ? 'Staberder' : 'Fundamenterder');
       L3(n, '', h, 'e', 35, 25); A(n, tt ? 'N' : 'PEN', h, 'ePEN', tt ? 'N' : 'PEN', 35, 25);
       L3(h, 'a', z, 'e', 16, 2);
       if (tt) A(h, 'aPEN', z, 'eN', 'N', 16, 2);
@@ -1474,11 +1665,111 @@
       return { netz: n, hak: h, z: z, pas: pas, erder: e };
     }
     const BEISPIELE = {
+      box1: ['Notstromspeicher 1-phasig, Umschaltbox mit Phasenbrücke und Lastabwurf', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN', 8);
+          const sp = T('speicher', 300, 120, { ph: 1, pn: 5, akku: 10, ausgang: 'getrennt', npe: 'nein', tum: 0.5, tzu: 300 }, null, 'Notstromspeicher');
+          const box = T('ats', 0, 470, { pole: 4, nmit: 'ja', brueke: 'ja', npe: 'relais', start: 'kein', tum: 2, trueck: 30 }, null, 'Umschaltbox');
+          const fi = T('fi', 0, 660, { pole: 4 }, null, 'Q1 FI'), f1 = T('ls', 0, 820, { in: 16 }, null, 'F1'), f2 = T('ls', 220, 820, { in: 10 }, null, 'F2');
+          const la = T('lastabwurf', 440, 660, { pole: 3, bed: 'not' }, null, 'Lastabwurf'), f3 = T('ls', 440, 820, { pole: 3, in: 16 }, null, 'F3');
+          const ks = T('last', 0, 980, { vorlage: 'ks' }, null, 'Kühlschrank'), li = T('last', 220, 980, { vorlage: 'lampe' }, null, 'Licht'), he = T('last3', 440, 980, { vorlage: 'herd' }, null, 'Herd');
+          A(h.z, 'aL1', sp, 'eL', 'L1', 2.5, 3); A(h.z, 'aN', sp, 'eN', 'N', 2.5, 3); A(h.pas, 'k4', sp, 'ePE', 'PE', 2.5, 3);
+          L3(h.z, 'a', box, 'n', 10, 1, true);
+          A(sp, 'aL', box, 'sL1', 'L1', 4, 3); A(sp, 'aN', box, 'sN', 'N', 4, 3); A(box, 'PE', h.pas, 'k5', 'PE', 4, 1);
+          L3(box, '', fi, 'e', 10, 1, true);
+          A(fi, 'aL1', f1, 'eL', null, 2.5, 0.3); A(fi, 'aL2', f2, 'eL', null, 1.5, 0.3); L3(fi, 'a', la, 'e', 4, 0.3); L3(la, 'a', f3, 'e', 4, 0.3);
+          A(f1, 'aL', ks, 'L', 'L1', 2.5, 12); A(fi, 'aN', ks, 'N', 'N', 2.5, 12); A(h.pas, 'k6', ks, 'PE', 'PE', 2.5, 12);
+          A(f2, 'aL', li, 'L', 'L2', 1.5, 10); A(fi, 'aN', li, 'N', 'N', 1.5, 10); A(h.pas, 'k7', li, 'PE', 'PE', 1.5, 10);
+          L3(f3, 'a', he, '', 2.5, 8); A(fi, 'aN', he, 'N', 'N', 2.5, 8); A(h.pas, 'k8', he, 'PE', 'PE', 2.5, 8);
+          T('notiz', 720, 470, {}, null, 'Netzausfall: Der Speicher bildet nach 0,5 s ein Inselnetz, die Box schaltet nach 2 s um. Die Phasenbrücke versorgt L1 bis L3 aus der einen Phase des Speichers, das Schütz wirft vorher den Herd ab. Im Notstrombetrieb verbindet ein Relais in der Box N mit PE – Körperschluss am Kühlschrank: der FI löst aus.');
+        });
+      }, 'Notstrom mit Speicher'],
+      box3: ['Notstromspeicher 3-phasig, Umschaltbox automatisch, N geschaltet', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN', 8);
+          const sp = T('speicher', 300, 120, { ph: 3, pn: 10, akku: 15, ausgang: 'getrennt', npe: 'auto', tum: 0.5, tzu: 300 }, null, 'Notstromspeicher');
+          const box = T('ats', 0, 470, { pole: 4, nmit: 'ja', start: 'kein', tum: 1, trueck: 60 }, null, 'Umschaltbox');
+          const fi = T('fi', 0, 660, { pole: 4 }, null, 'Q1 FI'), f1 = T('ls', 0, 820, { pole: 3, in: 16 }, null, 'F1'), f2 = T('ls', 220, 820, { in: 16 }, null, 'F2');
+          const pu = T('last3', 0, 980, { vorlage: 'motor', p: 1500, cos: 0.8, sch: 'dreieck' }, null, 'Heizungspumpe'), ks = T('last', 220, 980, { vorlage: 'ks' }, null, 'Kühlschrank');
+          const pv = T('pvwr', 460, 820, { ph: 3, kwp: 6, tzu: 60 }, null, 'PV-WR');
+          L3(h.z, 'a', sp, 'e', 4, 3, true); A(h.pas, 'k4', sp, 'ePE', 'PE', 4, 3);
+          L3(h.z, 'a', box, 'n', 10, 1, true);
+          L3(sp, 'a', box, 's', 4, 3, true); A(sp, 'aPE', h.pas, 'k5', 'PE', 4, 3);
+          L3(box, '', fi, 'e', 10, 1, true);
+          L3(fi, 'a', f1, 'e', 2.5, 0.3); A(fi, 'aL1', f2, 'eL', null, 2.5, 0.3);
+          L3(f1, 'a', pu, '', 1.5, 10); A(h.pas, 'k6', pu, 'PE', 'PE', 1.5, 10);
+          A(f2, 'aL', ks, 'L', 'L1', 2.5, 12); A(fi, 'aN', ks, 'N', 'N', 2.5, 12); A(h.pas, 'k7', ks, 'PE', 'PE', 2.5, 12);
+          L3(box, '', pv, '', 4, 10, true); A(h.pas, 'k8', pv, 'PE', 'PE', 4, 10);
+          T('notiz', 720, 470, {}, null, 'Speicher und Box sind 3-phasig, die Box schaltet N mit, die N-PE-Brücke sitzt im Speicher. Der PV-Wechselrichter hängt am Hausnetz hinter der Box: Nach einem Netzausfall schaltet er nach 60 s auf das Inselnetz zu und lädt den Akku (Zeitraffer 60×). Bei Netzwiederkehr schaltet die Box nach 60 s zurück, der Speicher schaltet seinen Ausgang erst nach 5 min ab – stellt man ihn kürzer ein als die Box, wird das Haus dunkel.');
+        });
+      }, 'Notstrom mit Speicher'],
+      ndurch: ['Umschaltbox mit durchverbundenem N: Inselnetz über den Hausanschluss geerdet', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN', 8);
+          const sp = T('speicher', 300, 120, { ph: 3, pn: 8, akku: 10, ausgang: 'getrennt', npe: 'nein', tzu: 300 }, null, 'Notstromspeicher');
+          const box = T('ats', 0, 470, { pole: 4, nmit: 'nein', start: 'kein', tum: 1 }, null, 'Umschaltbox 3-polig');
+          const fi = T('fi', 0, 660, { pole: 4 }, null, 'Q1 FI'), f1 = T('ls', 0, 820, { in: 16 }, null, 'F1');
+          const wm = T('last', 0, 980, { vorlage: 'wm' }, null, 'Waschmaschine'), m = T('mensch', 0, 1160, {}, null, 'Person');
+          L3(h.z, 'a', sp, 'e', 4, 3, true); A(h.pas, 'k4', sp, 'ePE', 'PE', 4, 3);
+          L3(h.z, 'a', box, 'n', 10, 1, true);
+          L3(sp, 'a', box, 's', 4, 3, true); A(sp, 'aPE', h.pas, 'k5', 'PE', 4, 3);
+          L3(box, '', fi, 'e', 10, 1, true);
+          A(fi, 'aL1', f1, 'eL', null, 2.5, 0.3); A(f1, 'aL', wm, 'L', 'L1', 2.5, 12); A(fi, 'aN', wm, 'N', 'N', 2.5, 12); A(h.pas, 'k6', wm, 'PE', 'PE', 2.5, 12);
+          A(m, 'H', wm, 'G', 'mess', 1.5, 1);
+          T('notiz', 720, 470, {}, null, 'Die Box schaltet nur L1 bis L3, der N bleibt mit dem Hausanschluss verbunden. Das Inselnetz ist so über den PEN-Aufteilungspunkt geerdet, der FI wirkt auch ohne N-PE-Brücke im Speicher. Stellt man am Speicher eine N-PE-Brücke ein, sind N und PE doppelt verbunden: Dann fließt Laststrom über die grün-gelbe Ader. Nur zulässig, wenn der Hersteller es so vorsieht.');
+        });
+      }, 'Notstrom mit Speicher'],
+      it: ['Inselnetz ohne Erde (IT) mit Isolationswächter: erster und zweiter Fehler', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN', 8);
+          const sp = T('speicher', 300, 120, { ph: 1, pn: 5, akku: 10, ausgang: 'getrennt', npe: 'nein', ik: 4, tzu: 300 }, null, 'Notstromspeicher');
+          const u = T('umschalter', 0, 470, { pole: 2, nmit: 'ja' }, { pos: 'not' }, 'Q0 Umschalter');
+          const iso = T('iso', 600, 120, { ran: 30 }, null, 'Isowächter');
+          const f1 = T('ls', 0, 640, { in: 16 }, null, 'F1'), f2 = T('ls', 220, 640, { in: 16 }, null, 'F2');
+          const wm = T('last', 0, 800, { vorlage: 'wm' }, { ks: true }, 'Waschmaschine'), ks = T('last', 220, 800, { vorlage: 'ks' }, null, 'Kühlschrank');
+          const fe = T('fehler', 440, 800, { rf: 0.1 }, null, 'Fehler N an PE'), m = T('mensch', 0, 980, {}, null, 'Person');
+          A(h.z, 'aL1', sp, 'eL', 'L1', 2.5, 3); A(h.z, 'aN', sp, 'eN', 'N', 2.5, 3); A(h.pas, 'k4', sp, 'ePE', 'PE', 2.5, 3);
+          A(h.z, 'aL1', u, 'nL', 'L1', 4, 1); A(h.z, 'aN', u, 'nN', 'N', 4, 1); A(sp, 'aL', u, 'sL', 'L1', 4, 3); A(sp, 'aN', u, 'sN', 'N', 4, 3);
+          A(sp, 'aL', iso, 'L', 'L1', 1.5, 1); A(sp, 'aN', iso, 'N', 'N', 1.5, 1); A(sp, 'aPE', iso, 'PE', 'PE', 1.5, 1);
+          A(u, 'L', f1, 'eL', 'L1', 2.5, 0.5); A(u, 'L', f2, 'eL', 'L1', 2.5, 0.5);
+          A(f1, 'aL', wm, 'L', 'L1', 2.5, 12); A(u, 'N', wm, 'N', 'N', 2.5, 12); A(h.pas, 'k5', wm, 'PE', 'PE', 2.5, 12);
+          A(f2, 'aL', ks, 'L', 'L1', 2.5, 10); A(u, 'N', ks, 'N', 'N', 2.5, 10); A(h.pas, 'k6', ks, 'PE', 'PE', 2.5, 10);
+          A(u, 'N', fe, 'a', 'N', 2.5, 8); A(fe, 'b', h.pas, 'k7', 'PE', 2.5, 8);
+          A(m, 'H', wm, 'G', 'mess', 1.5, 1);
+          T('notiz', 720, 470, {}, null, 'Der Umschalter steht schon auf II. Ortsnetz auf „Netzausfall“: Der Speicher versorgt das Haus ohne N-PE-Brücke. Die Waschmaschine hat schon einen Körperschluss – es fließt kaum Strom, nur der Isolationswächter meldet den ersten Fehler. Jetzt „Fehler N an PE“ auslösen: Der zweite Fehler macht einen Kurzschluss über den Schutzleiter, F1 löst aus.');
+        });
+      }, 'Notstrom mit Speicher'],
+      online: ['Online-Speicher (Doppelwandler): Notstrom ohne Unterbrechung', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const sp = T('speicher', 0, 460, { ph: 1, pn: 3, akku: 5, ausgang: 'online', npe: 'auto', pl: 1 }, null, 'Online-Speicher');
+          const f1 = T('ls', 0, 640, { in: 10 }, null, 'F1'), se = T('last', 0, 800, { vorlage: 'frei', p: 300, cos: 0.95 }, null, 'Server und Router'), ks = T('last', 220, 800, { vorlage: 'ks' }, null, 'Kühlschrank');
+          A(h.z, 'aL1', sp, 'eL', 'L1', 2.5, 2); A(h.z, 'aN', sp, 'eN', 'N', 2.5, 2); A(h.pas, 'k4', sp, 'ePE', 'PE', 2.5, 2);
+          A(sp, 'aL', f1, 'eL', 'L1', 2.5, 1); A(f1, 'aL', se, 'L', 'L1', 2.5, 5); A(sp, 'aN', se, 'N', 'N', 2.5, 5); A(sp, 'aPE', se, 'PE', 'PE', 2.5, 5);
+          A(f1, 'aL', ks, 'L', 'L1', 2.5, 8); A(sp, 'aN', ks, 'N', 'N', 2.5, 8); A(sp, 'aPE', ks, 'PE', 'PE', 2.5, 8);
+          T('notiz', 300, 460, {}, null, 'Der Ausgang kommt immer aus dem Wechselrichter, das Netz lädt nur den Akku und deckt den Verbrauch. Netzausfall: Es gibt keine Umschaltung und keine Unterbrechung – der Akku übernimmt sofort. Gut für Server, Router und Steuerungen.');
+        });
+      }, 'Notstrom mit Speicher'],
+      aggregat: ['Aggregat über Einspeisestecker und Hand-Umschalter ohne N-PE-Brücke', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN', 8);
+          const g = T('notstrom', 320, 120, { art: 'agg', ph: 1, pn: 3, ik: 3, npe: 'nein', start: 'hand' }, { ein: false }, 'Aggregat 3 kW');
+          const u = T('umschalter', 0, 470, { pole: 4, nmit: 'ja', brueke: 'ja' }, null, 'Q0 Umschalter');
+          const fi = T('fi', 0, 660, { pole: 4 }, null, 'Q1 FI'), f1 = T('ls', 0, 820, { in: 16 }, null, 'F1');
+          const ks = T('last', 0, 980, { vorlage: 'ks' }, null, 'Kühlschrank'), m = T('mensch', 0, 1160, {}, null, 'Person');
+          L3(h.z, 'a', u, 'n', 10, 1, true);
+          A(g, 'L', u, 'sL1', 'L1', 2.5, 15); A(g, 'N', u, 'sN', 'N', 2.5, 15); A(g, 'PE', h.pas, 'k4', 'PE', 2.5, 15);
+          L3(u, '', fi, 'e', 10, 1, true);
+          A(fi, 'aL1', f1, 'eL', null, 2.5, 0.3); A(f1, 'aL', ks, 'L', 'L1', 2.5, 10); A(fi, 'aN', ks, 'N', 'N', 2.5, 10); A(h.pas, 'k5', ks, 'PE', 'PE', 2.5, 10);
+          A(m, 'H', ks, 'G', 'mess', 1.5, 1);
+          T('notiz', 720, 470, {}, null, 'Viele kleine Aggregate haben keine N-PE-Brücke. Netzausfall, Aggregat ein, Umschalter auf II, dann Körperschluss am Kühlschrank: Es fließt fast kein Fehlerstrom, der FI bleibt drin. Am Aggregat „N-PE-Brücke: ja“ einstellen und wiederholen – jetzt löst der FI aus.');
+        });
+      }, 'Notstrom mit Aggregat'],
       tncs: ['TN-C-S: Hausanschluss bis zur Steckdose, Körperschluss', function () {
         return baue(function (T, A, L3) {
           const h = hausanschluss(T, A, L3, 'TN');
           const fi = T('fi', 0, 470, { pole: 4, idn: 30 }, null, 'Q1 FI');
-          const f1 = T('ls', 0, 640, { pole: 1, kenn: 'B', in: 16 }, null, 'F1'), f2 = T('ls', 200, 640, { pole: 1, kenn: 'B', in: 10 }, null, 'F2');
+          const f1 = T('ls', 0, 640, { pole: 1, kenn: 'B', in: 16 }, null, 'F1'), f2 = T('ls', 220, 640, { pole: 1, kenn: 'B', in: 10 }, null, 'F2');
           const wk = T('last', 0, 800, { vorlage: 'wk' }, null, 'Wasserkocher'), la = T('last', 220, 800, { vorlage: 'lampe' }, null, 'Lampe');
           const m = T('mensch', 0, 980, { rst: 200 }, null, 'Person');
           T('notiz', 260, 20, {}, null, 'Wasserkocher antippen, dann „Körperschluss“: Der Strom fließt über den Schutzleiter, der LS F1 schaltet in rund 10 ms ab. Danach Schutzleiter-Ader unterbrechen und noch einmal probieren.');
@@ -1488,7 +1779,7 @@
           A(f2, 'aL', la, 'L', 'L2', 1.5, 12); A(fi, 'aN', la, 'N', 'N', 1.5, 12); A(h.pas, 'k5', la, 'PE', 'PE', 1.5, 14);
           A(m, 'H', wk, 'G', 'mess', 1.5, 1);
         });
-      }],
+      }, 'Grundlagen'],
       nullung: ['Klassische Nullung (TN-C) und PEN-Unterbrechung', function () {
         return baue(function (T, A, L3) {
           const n = T('netz', 0, 0, {}, null, 'Ortsnetz'), h = T('hak', 0, 140, {}, null, 'HAK'), z = T('zaehler', 0, 300, {}, null, 'Zähler');
@@ -1501,7 +1792,7 @@
           A(m, 'H', wm, 'G', 'mess', 1.5, 1);
           T('notiz', 240, 300, {}, null, 'Altanlage ohne eigenen Schutzleiter: In der Steckdose ist der Schutzkontakt mit dem PEN gebrückt. Die PEN-Ader zur Waschmaschine antippen und „Unterbrechen“ – das Gehäuse liegt dann über die Maschine an 230 V.');
         });
-      }],
+      }, 'Grundlagen'],
       tt: ['TT-System: ohne FI keine Abschaltung', function () {
         return baue(function (T, A, L3) {
           const h = hausanschluss(T, A, L3, 'TT');
@@ -1513,7 +1804,7 @@
           A(m, 'H', h1, 'G', 'mess', 1.5, 1);
           T('notiz', 520, 460, {}, null, 'Körperschluss an Heizlüfter 1: Der Fehlerstrom fließt über Staberder (30 Ω) und Betriebserder – rund 7 A. Der B16 löst nicht aus, das Gehäuse bleibt unter Spannung. Am Heizlüfter 2 schaltet der FI sofort ab.');
         });
-      }],
+      }, 'Grundlagen'],
       umschalter: ['Netzersatz: Hand-Umschalter und Inselwechselrichter', function () {
         return baue(function (T, A, L3) {
           const h = hausanschluss(T, A, L3, 'TN');
@@ -1531,13 +1822,13 @@
           L3(u, '', pv, '', 4, 8, true); A(h.pas, 'k6', pv, 'PE', 'PE', 4, 8);
           T('notiz', 480, 430, {}, null, 'Am Ortsnetz „Netzausfall“, dann den Umschalter auf II. Der PV-Wechselrichter trennt sofort und schaltet nach 60 s auf das Inselnetz zu – er lädt dann den Akku (Zeitraffer nutzen). Mit N-PE-Brücke im Wechselrichter löst der FI bei Körperschluss aus. Ohne Brücke (Einstellung am WR) fließt beim ersten Fehler fast kein Strom – wie im IT-Netz.');
         });
-      }],
+      }, 'Notstrom mit Wechselrichter'],
       hybrid: ['Hybrid-Wechselrichter mit Speicher, PV und Notstromausgang', function () {
         return baue(function (T, A, L3) {
           const h = hausanschluss(T, A, L3, 'TN');
           const hy = T('hybrid', 0, 460, { ph: 3, pn: 10, pv: 8, akku: 10, tum: 3 }, { soc: 60 }, 'Hybrid-WR');
           const f3 = T('ls', 270, 470, { pole: 3, in: 16 }, null, 'F3'), herd = T('last3', 270, 630, { vorlage: 'herd' }, null, 'Herd (ohne Notstrom)');
-          const fi = T('fi', 0, 640, { pole: 4 }, null, 'Q2 FI'), f1 = T('ls', 0, 800, { pole: 1, in: 16 }, null, 'F1'), f2 = T('ls', 200, 800, { pole: 1, in: 10 }, null, 'F2');
+          const fi = T('fi', 0, 640, { pole: 4 }, null, 'Q2 FI'), f1 = T('ls', 0, 800, { pole: 1, in: 16 }, null, 'F1'), f2 = T('ls', 220, 800, { pole: 1, in: 10 }, null, 'F2');
           const ks = T('last', 0, 960, { vorlage: 'ks' }, null, 'Kühlschrank'), la = T('last', 220, 960, { vorlage: 'lampe' }, null, 'Licht');
           L3(h.z, 'a', hy, 'n', 10, 3, true, 'aN', 'nN'); A(h.pas, 'k4', hy, 'nPE', 'PE', 10, 3);
           L3(h.z, 'a', f3, 'e', 4, 1); L3(f3, 'a', herd, '', 2.5, 10); A(h.z, 'aN', herd, 'N', 'N', 2.5, 10); A(h.pas, 'k5', herd, 'PE', 'PE', 2.5, 10);
@@ -1547,7 +1838,7 @@
           A(f2, 'aL', la, 'L', 'L2', 1.5, 10); A(fi, 'aN', la, 'N', 'N', 1.5, 10); A(hy, 'bPE', la, 'PE', 'PE', 1.5, 10);
           T('notiz', 520, 460, {}, null, 'Sonne-Regler verschieben: Der Speicher regelt den Zähler auf null. Netzausfall am Ortsnetz: Der WR trennt allpolig, nach 3 s versorgt der Notstromausgang Kühlschrank und Licht – der Herd bleibt aus.');
         });
-      }],
+      }, 'Notstrom mit Wechselrichter'],
       ats: ['Automatische Umschaltung mit Stromaggregat', function () {
         return baue(function (T, A, L3) {
           const h = hausanschluss(T, A, L3, 'TN');
@@ -1560,18 +1851,18 @@
           L3(u, '', f3, 'e', 6, 1); L3(f3, 'a', mo, '', 2.5, 15); A(h.pas, 'k5', mo, 'PE', 'PE', 2.5, 15);
           T('notiz', 300, 640, {}, null, 'Netzausfall auslösen und zusehen: Der Umschalter fordert das Aggregat an, es läuft nach 8 s hoch, dann schaltet er um. Netz zurück: Nach 30 s stabiler Spannung schaltet er zurück, das Aggregat läuft 60 s nach.');
         });
-      }],
+      }, 'Notstrom mit Aggregat'],
       nbruch: ['Drehstrom: Neutralleiterbruch bei ungleicher Last', function () {
         return baue(function (T, A, L3) {
           const h = hausanschluss(T, A, L3, 'TN');
           const ns = T('schiene', 0, 460, { art: 'N', n: 4 }, null, 'N-Schiene');
-          const f1 = T('ls', 0, 600, { in: 16 }, null, 'F1'), f2 = T('ls', 190, 600, { in: 10 }, null, 'F2'), f3 = T('ls', 380, 600, { in: 10 }, null, 'F3');
-          const a1 = T('last', 0, 760, { vorlage: 'hz' }, null, 'Heizlüfter L1'), a2 = T('last', 190, 760, { vorlage: 'lampe' }, null, 'Lampe L2'), a3 = T('last', 380, 760, { vorlage: 'ks' }, null, 'Kühlschrank L3');
+          const f1 = T('ls', 0, 600, { in: 16 }, null, 'F1'), f2 = T('ls', 210, 600, { in: 10 }, null, 'F2'), f3 = T('ls', 420, 600, { in: 10 }, null, 'F3');
+          const a1 = T('last', 0, 760, { vorlage: 'hz' }, null, 'Heizlüfter L1'), a2 = T('last', 210, 760, { vorlage: 'lampe' }, null, 'Lampe L2'), a3 = T('last', 420, 760, { vorlage: 'ks' }, null, 'Kühlschrank L3');
           A(h.z, 'aN', ns, 'k1', 'N', 10, 3);
           [[f1, a1, 'L1'], [f2, a2, 'L2'], [f3, a3, 'L3']].forEach(function (x, i) { A(h.z, 'a' + x[2], x[0], 'eL', x[2], 2.5, 1); A(x[0], 'aL', x[1], 'L', x[2], 1.5, 10); A(ns, 'k' + (i + 2), x[1], 'N', 'N', 1.5, 10); A(h.pas, 'k' + (i + 4), x[1], 'PE', 'PE', 1.5, 10); });
           T('notiz', 560, 460, {}, null, 'Die blaue Ader vom Zähler zur N-Schiene antippen und unterbrechen: Der Sternpunkt verschiebt sich, die Lampe bekommt fast 400 V und brennt durch, der Heizlüfter fast nichts.');
         });
-      }],
+      }, 'Grundlagen'],
       insel: ['Kurzschluss im Inselnetz: Wechselrichter oder LS?', function () {
         return baue(function (T, A) {
           const wr = T('notstrom', 0, 0, { art: 'wr', ph: 1, pn: 3, ik: 1.5, npe: 'ja' }, null, 'Insel-WR 3 kW');
@@ -1582,11 +1873,13 @@
           A(f1, 'aL', fe, 'a', 'L1', 2.5, 8); A(fe, 'b', wr, 'N', 'N', 2.5, 8);
           T('notiz', 260, 460, {}, null, 'Fehler auslösen: Der WR liefert höchstens 1,5 × 13 A ≈ 20 A, der B16 bräuchte 80 A – also schaltet der WR ab und alles ist dunkel. Am WR den Kurzschlussstrom auf 6 setzen: dann löst der LS aus. Abhilfe in der Praxis: kleinere LS, Kennlinie mit kleinem Auslösestrom oder ein WR mit hohem Kurzschlussstrom.');
         });
-      }]
+      }, 'Notstrom mit Wechselrichter']
     };
     (function () {
       const s = $('sk-beispiel');
-      Object.keys(BEISPIELE).forEach(function (k) { const o = kn('option', '', BEISPIELE[k][0]); o.value = k; s.append(o); });
+      const gruppen = {};
+      ['Grundlagen', 'Notstrom mit Speicher', 'Notstrom mit Wechselrichter', 'Notstrom mit Aggregat'].forEach(function (g) { const og = document.createElement('optgroup'); og.label = g; gruppen[g] = og; s.append(og); });
+      Object.keys(BEISPIELE).forEach(function (k) { const o = kn('option', '', BEISPIELE[k][0]); o.value = k; gruppen[BEISPIELE[k][2]].append(o); });
       s.addEventListener('change', function () {
         const b = BEISPIELE[s.value]; s.value = ''; if (!b) return;
         if (teile.length) merke();
