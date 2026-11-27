@@ -64,6 +64,9 @@
     .pg-knoepfe { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; }
     .pg-knoepfe select, .pg-knoepfe input { padding: 7px 9px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--grund); color: var(--text); font: inherit; font-size: .92rem; }
     .pg-knoepfe input[type=text] { width: 110px; }
+    .pg-optionen { margin: 10px 0 4px; } .pg-optionen summary { cursor: pointer; font-weight: 600; }
+    .pg-haken-liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 4px 16px; margin-top: 6px; font-size: .92rem; }
+    .pg-haken-liste label { display: flex; gap: 7px; align-items: flex-start; } .pg-haken-liste input { margin-top: 3px; }
     .pg-lage { display: grid; gap: 6px; margin: 6px 0 4px; }
     .pg-lage-zeile { display: grid; grid-template-columns: minmax(130px, 1fr) auto auto 74px 16px auto auto; gap: 5px; align-items: center; }
     .pg-lage-zeile .knopf { padding: 5px 8px; min-width: 44px; font-size: .85rem; }
@@ -104,9 +107,18 @@
         <p class="hilfe" id="pg-foto-info"></p>
       </div>
       <div class="pg-fotos" id="pg-fotos"></div>
+      <details class="pg-optionen" open><summary>Qualitätsoptionen</summary>
+        <div class="pg-haken-liste">
+          <label><input type="checkbox" id="pg-spitzen" checked> Spitzen und Zacken im Netz abflachen</label>
+          <label><input type="checkbox" id="pg-unscharf" checked> Unscharfe Fotos nicht für Tiefen und Textur nutzen</label>
+          <label><input type="checkbox" id="pg-hell" checked> Helligkeit der Fotos in der Textur angleichen</label>
+          <label><input type="checkbox" id="pg-schaerfen" checked> Textur nachschärfen</label>
+          <label><input type="checkbox" id="pg-loecher"> Größere Löcher im Netz schließen</label>
+        </div>
+      </details>
       <div class="pg-zeile">
         <label>Projekt <input type="text" id="pg-projekt" maxlength="60" placeholder="Name"></label>
-        <label>Qualität <select id="pg-stufe"><option value="schnell">Schnell</option><option value="normal" selected>Normal</option><option value="hoch">Hoch (langsam)</option></select></label>
+        <label>Qualität <select id="pg-stufe"><option value="schnell">Schnell</option><option value="normal" selected>Normal</option><option value="hoch">Hoch (langsam)</option><option value="hd">HD (sehr langsam, viel Speicher)</option></select></label>
         <button type="button" class="knopf-haupt" id="pg-start" disabled>3D-Modell berechnen</button>
         <button type="button" class="knopf" id="pg-leeren" hidden>Alle Fotos entfernen</button>
       </div>
@@ -225,7 +237,8 @@
         <details><summary>Warum werden nicht alle Fotos ausgerichtet?</summary><p>Ein Foto braucht genug gemeinsame Punkte mit den anderen. Fehlende Überlappung, starke Unschärfe, Gegenlicht oder einfarbige Flächen verhindern das. Zusätzliche Fotos zwischen den Lücken helfen.</p></details>
         <details><summary>Werden meine Fotos hochgeladen?</summary><p>Nein. Alles läuft lokal im Browser, auch ohne Internet, wenn die Seite einmal geladen war.</p></details>
         <details><summary>Wie komme ich zum PV-Plan?</summary><p>Im Reiter „Dach und PV“ die Dachflächen und Hindernisse einzeichnen und „Im PV-Dachplaner öffnen“ wählen. Der Planer übernimmt Form, Neigung, Ausrichtung und Hindernisse. Alternativ entsteht eine JSON-Datei im Austauschformat für Auslegungsrechner von Montagesystemen.</p></details>
-        <details><summary>Wie wird das Modell detailreicher?</summary><p>Qualität „Hoch“ wählen und mehr, nähere Fotos aufnehmen. Bei großen Aufnahmen (ganze Straße) unter „Export“ den Bereich auf das Gebäude begrenzen und das Netz neu berechnen: Die gleiche Voxelzahl verteilt sich dann auf die kleinere Fläche. Die Textur kommt immer aus den Originalfotos, je Dreieck aus dem Foto mit der nächsten, möglichst senkrechten Sicht.</p></details>
+        <details><summary>Was bewirken die Qualitätsoptionen?</summary><p>„Spitzen abflachen“ entfernt lange Fahnen-Dreiecke und lose Fetzen und zieht einzeln abstehende Ecken auf ihre Nachbarn zurück – Kanten des Gebäudes bleiben. Unscharfe Fotos (Verwacklung, Fokus daneben) erkennt das Programm an der Bildschärfe und nutzt sie nur noch zum Ausrichten. Die Helligkeit wird je Foto an den Mittelwert angepasst, damit in der Textur keine hellen und dunklen Flecken entstehen. Nachschärfen gleicht die Unschärfe aus, die beim Verkleinern der Fotos in den Atlas entsteht. „Löcher schließen“ füllt auch größere Lücken, kann aber an offenen Rändern Fahnen bilden. Der Haken bei „Spitzen“ wirkt sofort auf das fertige Netz.</p></details>
+        <details><summary>Wie wird das Modell detailreicher?</summary><p>Qualität „Hoch“ oder „HD“ wählen (HD rechnet mit größeren Bildern und feinerem Volumen, braucht aber deutlich mehr Zeit und Speicher) und mehr, nähere Fotos aufnehmen. Bei großen Aufnahmen (ganze Straße) unter „Export“ den Bereich auf das Gebäude begrenzen und das Netz neu berechnen: Die gleiche Voxelzahl verteilt sich dann auf die kleinere Fläche. Die Textur kommt immer aus den Originalfotos, je Dreieck aus dem Foto mit der nächsten, möglichst senkrechten Sicht.</p></details>
         <details><summary>Welche Formate gibt es?</summary><p>Netze als OBJ mit Fototextur (ZIP mit OBJ, MTL und JPG), GLB mit eingebetteter Textur für Betrachter und 3D-Programme, PLY mit Eckfarben und STL für den 3D-Druck, die Punktwolke als PLY und alle Maße als CSV.</p></details>
         <details><summary>Was ist das Beispiel?</summary><p>Ein künstlich gerendertes Haus mit Satteldach (38°), Dachfenstern, Schornstein und Garage, aufgenommen von einer gedachten Drohne mit GPS. Damit lässt sich der ganze Ablauf ohne eigene Fotos ausprobieren und das Ergebnis mit den bekannten Maßen vergleichen.</p></details>
       </div>
@@ -242,9 +255,10 @@
     const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
     const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 2 : n, minimumFractionDigits: 0 }); };
     const STUFEN = {
-      schnell: { name: 'Schnell', feat: 1000, nMax: 2500, grob: 300, dicht: 360, ebenen: 48, quellen: 2, budget: 4, atlas: 2048 },
+      schnell: { name: 'Schnell', feat: 1000, nMax: 2500, grob: 300, dicht: 360, ebenen: 48, quellen: 2, budget: 4, atlas: 2048, tsdfB: 512 },
       normal: { name: 'Normal', feat: 1400, nMax: 4000, grob: 400, dicht: 640, ebenen: 80, quellen: 3, budget: 16, atlas: 4096 },
-      hoch: { name: 'Hoch', feat: 2000, nMax: 6000, grob: 500, dicht: 800, ebenen: 96, quellen: 4, budget: 32, atlas: 8192 }
+      hoch: { name: 'Hoch', feat: 2000, nMax: 6000, grob: 500, dicht: 800, ebenen: 96, quellen: 4, budget: 32, atlas: 8192, tsdfB: 800 },
+      hd: { name: 'HD', feat: 2600, nMax: 8000, grob: 600, dicht: 1100, ebenen: 128, quellen: 5, budget: 48, atlas: 8192, tsdfB: 1000 }
     };
     const MAX_BILDER = 200;
 
@@ -512,6 +526,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         }).then(function (m) { rek.merk[i] = m; });
       }, function (n) { schrittSetzen('merkmale', n / N, n + ' von ' + N); });
       const mm = rek.merk.map(function (m) { return m.n; });
+      schaerfeBewerten();
       protokoll('Merkmale: im Mittel ' + Math.round(mm.reduce(function (a, b) { return a + b; }, 0) / N) + ' je Bild');
       // Kameragruppen (gleiche Größe, Brennweite und Kamera teilen sich die inneren Werte)
       const gruppen = [], gIdx = {};
@@ -576,7 +591,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       if (!m || !m.dreiecke.length) return;
       schrittSetzen('textur', 0.01, 'Sichtbarkeit');
       const nT = m.dreiecke.length / 3, nV = m.pos.length / 3, N = fotos.length;
-      const reg = []; for (let i = 0; i < N; i++) if (kamera(i).reg) reg.push(i);
+      const reg = []; for (let i = 0; i < N; i++) if (kamera(i).reg && !weglassen(i)) reg.push(i);
       const kam = {}; reg.forEach(function (i) { const fb = rek.bilder[i], gr = rek.sfm.gruppen[fb.gruppe], k = kamera(i); kam[i] = { i: i, R: k.R, t: k.t, f: gr.f, k1: gr.k1 || 0, cx: fb.cx, cy: fb.cy, w: fb.w, h: fb.h }; });
       yield anAlle({ art: 'netzAblegen', pos: m.pos, dreiecke: m.dreiecke });
       const pakete = []; for (let k = 0; k < reg.length; k += 3) pakete.push(reg.slice(k, k + 3));
@@ -699,14 +714,29 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       for (let k = 0; k < 4096; k++) { cx.fillStyle = 'rgb(' + ((k >> 8) * 17) + ',' + (((k >> 4) & 15) * 17) + ',' + ((k & 15) * 17) + ')'; cx.fillRect(k & 63, k >> 6, 1, 1); }
       const proBild = {}; stuecke.forEach(function (s) { (proBild[s.i] = proBild[s.i] || []).push(s); });
       const bilderListe = Object.keys(proBild); let kopiert = 0;
+      // Helligkeit angleichen: jedes Foto auf die mittlere Helligkeit aller Fotos (aus den Tiefenbildern bzw. Merkmalsfarben)
+      const hell = {}, alle = [];
+      reg.forEach(function (i) {
+        const a = (rek.ansichten || []).filter(function (x) { return x.i === i; })[0], f = a ? a.farbe : rek.merk[i].farbe; let s = 0, n = 0;
+        for (let k = 0; k < f.length; k += 3 * 7) { s += 0.299 * f[k] + 0.587 * f[k + 1] + 0.114 * f[k + 2]; n++; }
+        hell[i] = n ? s / n : 0; if (hell[i]) alle.push(hell[i]);
+      });
+      const hMed = alle.length ? median(alle) : 0, angleichen = $('pg-hell').checked && hMed > 0 && typeof cx.filter === 'string';
       for (let b = 0; b < bilderListe.length; b++) {
         const i = Number(bilderListe[b]), bild = yield bildLaden(fotos[i]);
         proBild[i].forEach(function (s) {
           const sx = Math.max(0, s.sx), sy = Math.max(0, s.sy), ex = Math.min(bild.width, s.sx + s.sw), ey = Math.min(bild.height, s.sy + s.sh);
+          cx.filter = angleichen && hell[i] ? 'brightness(' + Math.max(0.75, Math.min(1.33, hMed / hell[i])).toFixed(3) + ')' : 'none';
           if (ex > sx && ey > sy) cx.drawImage(bild, sx, sy, ex - sx, ey - sy, s.dx + (sx - s.sx) * sig, s.dy + (sy - s.sy) * sig, (ex - sx) * sig, (ey - sy) * sig);
         });
         if (bild.close) bild.close();
         kopiert++; schrittSetzen('textur', 0.7 + 0.28 * kopiert / bilderListe.length, 'Fotos kopieren ' + kopiert + ' von ' + bilderListe.length);
+      }
+      cx.filter = 'none';
+      if ($('pg-schaerfen').checked) {
+        schrittSetzen('textur', 0.985, 'Textur nachschärfen');
+        const bd = cx.getImageData(0, 0, A, A), r = yield auftrag({ art: 'schaerfen', px: bd.data, w: A, h: A, staerke: sig < 0.8 ? 0.8 : 0.5 }, [bd.data.buffer]);
+        cx.putImageData(new ImageData(new Uint8ClampedArray(r.px.buffer), A, A), 0, 0);
       }
       // Ecken je Stück vervielfachen (eigene Texturkoordinaten)
       const nEcken = nT * 3, pos = new Float32Array(nEcken * 3), nor = new Float32Array(nEcken * 3), uvs = new Float32Array(nEcken * 2), idx = new Uint32Array(nEcken);
@@ -732,11 +762,18 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       protokoll('Textur: ' + A + ' × ' + A + ' px, ' + stuecke.length + ' Stücke aus ' + bilderListe.length + ' Fotos, ' + aufl + (ohne.length ? ', ' + ohne.length + ' Dreiecke ohne Foto' : ''));
       ergebnisZeigen('textur');
     }); }
+    // Unscharfe Fotos: unter 35 % der mittleren Schärfe (Verwacklung, Fokus daneben)
+    function schaerfeBewerten() {
+      const w = rek.merk.map(function (m) { return m.schaerfe || 0; }).filter(function (x) { return x > 0; }), med = w.length ? median(w) : 0;
+      let n = 0; rek.merk.forEach(function (m, i) { fotos[i].schaerfe = med ? Math.min(2, (m.schaerfe || 0) / med) : 1; fotos[i].unscharf = fotos[i].schaerfe < 0.35; if (fotos[i].unscharf) n++; });
+      if (n) protokoll(n + (n === 1 ? ' Foto ist' : ' Fotos sind') + ' deutlich unschärfer als die anderen' + ($('pg-unscharf').checked ? ' – nur für die Ausrichtung genutzt, nicht für Tiefen und Textur.' : '.'));
+    }
+    function weglassen(i) { return $('pg-unscharf').checked && fotos[i].unscharf && fotos.filter(function (f) { return !f.unscharf; }).length >= 3; }
     // Kamera i im Rekonstruktions-System
     function kamera(i) { return rek.sfm.kameras[i]; }
     function zentrumVon(i) { const k = kamera(i); return v3mal(m3v(m3t(k.R), k.t), -1); }
     function dichtBerechnen(st) { return lauf(function* () {
-      const N = fotos.length, reg = []; for (let i = 0; i < N; i++) if (kamera(i).reg) reg.push(i);
+      const N = fotos.length, reg = []; for (let i = 0; i < N; i++) if (kamera(i).reg && !weglassen(i)) reg.push(i);
       schrittSetzen('tiefe', 0.01, 'Bilder vorbereiten');
       // Bilder in Tiefenkarten-Auflösung, entzerrt
       const ans = {};
@@ -807,6 +844,16 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       bodenSchaetzen();
       ergebnisZeigen('dicht');
     }); }
+    // Haken „Spitzen abflachen“: aus dem Rohnetz eine bereinigte Kopie im Arbeitsfaden
+    function spitzenAnwenden() {
+      const m = rek.netzRoh; if (!m) return Promise.resolve(null);
+      if (!$('pg-spitzen').checked) return Promise.resolve(m);
+      schrittSetzen('netz', 0.95, 'Spitzen abflachen');
+      return auftrag({ art: 'spitzen', m: { pos: m.pos.slice(), farbe: m.farbe.slice(), dreiecke: m.dreiecke.slice() } }).then(function (r) {
+        protokoll('Spitzen abgeflacht: ' + zahl(r.gezogen, 0) + ' Ecken zurückgezogen, ' + zahl(r.entfernt, 0) + ' lose oder spitze Dreiecke entfernt');
+        return r;
+      });
+    }
     // Tiefen- und Farbkarte auf höchstens maxB Pixel Breite verkleinern (für das Volumen)
     function verkleinert(a, maxB) {
       const s = Math.ceil(a.w / maxB); if (s <= 1) return a;
@@ -849,7 +896,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       rek.netzBereich = { lo: lo, hi: hi };
       // Ansichten ins Anzeige-System: X_sfm = Qᵀ (X_anz − c) / s
       const Qt = m3t(T.Q), ansichten = rek.ansichten.map(function (a) {
-        const R = m3(a.R, Qt).map(function (x) { return x / T.s; }), t = v3sub(a.t, m3v(R, T.c)), k = verkleinert(a, 640);
+        const R = m3(a.R, Qt).map(function (x) { return x / T.s; }), t = v3sub(a.t, m3v(R, T.c)), k = verkleinert(a, st.tsdfB || 640);
         return { w: k.w, h: k.h, f: k.f, cx: k.cx, cy: k.cy, R: R, t: t, tiefe: k.tiefe, farbe: k.farbe, gew: k.gew || blickGewicht(k).gew };
       });
       // Gewicht je Ansicht: nahe Ansichten (feinere Tiefen) zählen mehr
@@ -867,13 +914,14 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
           fertig++; schrittSetzen('netz', 0.8 * fertig / scheiben.length, 'Volumen ' + g.nx + ' × ' + g.ny + ' × ' + g.nz);
         });
       });
-      const m = yield auftrag({ art: 'netz', g: g, T: Tv, W: Wv, F: Fv, minW: 0.5, anteil: 0.02, glatt: opt.glatt === undefined ? 1 : opt.glatt }, [Tv.buffer, Wv.buffer, Fv.buffer], function (x) { if (x.text) schrittSetzen('netz', 0.9, x.text); });
+      const m = yield auftrag({ art: 'netz', g: g, T: Tv, W: Wv, F: Fv, minW: 0.5, fuellen: $('pg-loecher').checked ? 14 : 4, anteil: 0.02, glatt: opt.glatt === undefined ? 1 : opt.glatt }, [Tv.buffer, Wv.buffer, Fv.buffer], function (x) { if (x.text) schrittSetzen('netz', 0.9, x.text); });
       // zurück ins Rekonstruktions-System speichern
       const Qt2 = m3t(T.Q), P = m.pos;
       for (let k = 0; k < P.length; k += 3) { const X = m3v(Qt2, [(P[k] - T.c[0]) / T.s, (P[k + 1] - T.c[1]) / T.s, (P[k + 2] - T.c[2]) / T.s]); P[k] = X[0]; P[k + 1] = X[1]; P[k + 2] = X[2]; }
       const N2 = m.normalen; for (let k = 0; k < N2.length; k += 3) { const X = m3v(Qt2, [N2[k], N2[k + 1], N2[k + 2]]); N2[k] = X[0]; N2[k + 1] = X[1]; N2[k + 2] = X[2]; }
-      rek.netz = m; rek.netzVoxel = v; rek.textur = null; ansicht.texturSetzen(null);
-      schrittSetzen('netz', 1, zahl(m.dreiecke.length / 3, 0) + ' Dreiecke');
+      rek.netzRoh = m; rek.netzVoxel = v; rek.textur = null; ansicht.texturSetzen(null);
+      rek.netz = yield spitzenAnwenden();
+      schrittSetzen('netz', 1, zahl(rek.netz.dreiecke.length / 3, 0) + ' Dreiecke');
       protokoll('Netz: ' + zahl(m.dreiecke.length / 3, 0) + ' Dreiecke, Voxelgröße ' + laengeText(v) + ', Volumen ' + g.nx + ' × ' + g.ny + ' × ' + g.nz);
       ergebnisZeigen('netz');
     }); }
@@ -1666,6 +1714,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         const info = [];
         if (e.f35) info.push(e.f35 + ' mm KB'); else if (e.f) info.push(zahl(e.f, 1) + ' mm');
         if (e.gps) info.push('GPS');
+        if (f.schaerfe !== undefined) info.push(f.unscharf ? '⚠ unscharf' : 'Schärfe ' + Math.round(Math.min(1, f.schaerfe) * 100) + ' %');
         if (rek && rek.sfm) info.push(rek.sfm.kameras[i] && rek.sfm.kameras[i].reg ? '✓ ausgerichtet' : '✗ nicht ausgerichtet');
         cap.append(kn('small', '', info.join(' · ') || 'keine Kameradaten'));
         const x = kn('button', 'pg-foto-weg', '×'); x.type = 'button'; x.setAttribute('aria-label', 'Foto ' + f.name + ' entfernen');
@@ -1781,6 +1830,13 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       werkzeugZeichnen();
     }
     ['pg-x0', 'pg-x1', 'pg-y0', 'pg-y1', 'pg-z0', 'pg-z1'].forEach(function (id) { $(id).addEventListener('input', zuschnittLesen); });
+    $('pg-spitzen').addEventListener('change', function () {
+      if (!rek || !rek.netzRoh || laeuft) return;
+      laeuft = true; werkerStarten(); abbruch = false; $('pg-fehler').hidden = true;
+      spitzenAnwenden().then(function (m) { rek.netz = m; schrittSetzen('netz', 1, zahl(m.dreiecke.length / 3, 0) + ' Dreiecke'); ergebnisZeigen('netz'); return texturBerechnen(); })
+        .catch(function (e) { $('pg-fehler').hidden = false; $('pg-fehler').textContent = 'Netz nicht bearbeitet: ' + String(e.message).split('\n')[0]; })
+        .then(function () { laeuft = false; werker.forEach(function (w) { w.w.terminate(); }); werker = []; });
+    });
     $('pg-netz-neu').addEventListener('click', function () {
       if (!rek || !rek.ansichten || laeuft) return;
       laeuft = true; this.disabled = true; werkerStarten(); abbruch = false; $('pg-fehler').hidden = true;
