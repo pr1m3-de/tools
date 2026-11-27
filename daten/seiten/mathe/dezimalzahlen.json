@@ -1,0 +1,19 @@
+{
+  "nr": 3,
+  "titel": "Dezimalzahlen",
+  "gruppe": "Grundlagen",
+  "bereich": "Mathematik",
+  "themen": ["Dezimalzahlen", "Kommazahlen", "schriftlich addieren", "schriftlich multiplizieren", "schriftlich dividieren", "Runden", "Periode", "Zahlenstrahl", "Stellenwerte"],
+  "text": "Dezimalzahlen addieren, subtrahieren, multiplizieren, dividieren, runden und vergleichen – exakt ohne Rundungsfehler, schriftlich mit Komma unter Komma, als Bruch und auf dem Zahlenstrahl mit Lupe.",
+  "tex": "1{,}25 \\cdot 0{,}4 = 0{,}5",
+  "verwandt": ["mathe/brueche.html", "mathe/kommaverschiebung.html"],
+  "fragen": [
+    ["Was ergibt 12,5 + 3,75?", "16,25", ["15,125", "16,2", "4,0"], "Komma unter Komma: 12,50 + 3,75 = 16,25."],
+    ["Was ergibt 1,25 · 0,4?", "0,5", ["5", "0,05", "0,005"], "125 · 4 = 500, dazu 2 + 1 = 3 Nachkommastellen: 0,500 = 0,5."],
+    ["Was ergibt 7,5 : 0,25?", "30", ["3", "0,3", "300"], "Beide Zahlen mal 100: 750 : 25 = 30."],
+    ["Welche Zahl ist größer: 0,7 oder 0,65?", "0,7", ["0,65", "beide gleich", "kann man nicht sagen"], "Mit gleich vielen Stellen: 0,70 > 0,65."],
+    ["Wie lautet 2,345 auf zwei Nachkommastellen gerundet?", "2,35", ["2,34", "2,3", "2,4"], "Die erste wegfallende Ziffer ist 5 – also aufrunden."],
+    ["Wie schreibt man 0,375 als Bruch?", "3/8", ["3/75", "375/100", "3/4"], "375/1000, gekürzt mit 125 ergibt 3/8."],
+    ["Was kosten 12,5 m Kabel zu 0,89 € je Meter?", "11,13 €", ["11,25 €", "1,11 €", "111,25 €"], "12,5 · 0,89 = 11,125 € – gerundet 11,13 €."]
+  ]
+}

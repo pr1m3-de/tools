@@ -41,7 +41,7 @@
   // ---------- Kategorien ----------
   const KATEGORIEN = [
     ['plusminus', 'Plus und Minus'], ['mal', 'Malnehmen'], ['quadrat', 'Quadrate und Potenzen'], ['wurzel', 'Wurzeln'],
-    ['teilen', 'Teilen und Teilbarkeit'], ['prozent', 'Prozent und Dreisatz'], ['bruch', 'Brüche, Komma, Einheiten'],
+    ['teilen', 'Teilen und Teilbarkeit'], ['prozent', 'Prozent und Dreisatz'], ['bruch', 'Brüche, Komma, Einheiten'], ['komma', 'Kommazahlen und Zehnerpotenzen'],
     ['ueberschlag', 'Überschlag im Beruf'], ['profi', 'Profi: Logarithmus, Dezibel, Kalender']
   ];
 
@@ -491,6 +491,115 @@
       const g = ggT(Z, H), zk = Z / g, hk = H / g;
       return { frage: br.map(function (b, i) { return (i ? (zeichen[i] > 0 ? ' + ' : ' - ') : '') + '\\frac{' + b[0] + '}{' + b[1] + '}'; }).join(''), art: 'bruch', antwort: Z / H, trick: zk / hk, toleranz: { abs: 0.0006 }, anzeige: hk === 1 ? String(zk) : zk + '/' + hk + ' ≈ ' + zt(Z / H, 4),
         schritte: ['Hauptnenner: ' + H, br.map(function (b, i) { return (i ? (zeichen[i] > 0 ? ' + ' : ' − ') : '') + '$\\frac{' + b[0] * H / b[1] + '}{' + H + '}$'; }).join(''), '$\\frac{' + Z + '}{' + H + '}' + (g > 1 ? ' = \\frac{' + zk + '}{' + hk + '}' : '') + '$'] };
+    } });
+
+  trick({ id: 'bruchMalDurch', kat: 'bruch', titel: 'Brüche malnehmen und teilen', ab: 1, bis: 4,
+    kurz: 'Zähler mal Zähler, Nenner mal Nenner – vorher über Kreuz kürzen. Teilen = mal Kehrwert.',
+    anleitung: ['Malnehmen: $\\frac{a}{b} \\cdot \\frac{c}{d} = \\frac{a \\cdot c}{b \\cdot d}$.', 'Vorher kürzen, auch über Kreuz: Zähler links mit Nenner rechts und umgekehrt – dann bleiben die Zahlen klein.', 'Teilen: mit dem Kehrwert malnehmen, $\\frac{a}{b} : \\frac{c}{d} = \\frac{a}{b} \\cdot \\frac{d}{c}$.', 'Antwort als Bruch (z. B. 3/8) oder als Kommazahl.'],
+    aufgabe: function (st) {
+      const nmax = [0, 5, 9, 12, 20][st], durch = st >= 2 && Math.random() < 0.5;
+      const n1 = zuf(2, nmax), n2 = zuf(2, nmax), z1 = zuf(1, st === 1 ? n1 - 1 : nmax), z2 = zuf(1, st === 1 ? n2 - 1 : nmax);
+      const Z = durch ? z1 * n2 : z1 * z2, N = durch ? n1 * z2 : n1 * n2, g = ggT(Z, N), zk = Z / g, nk = N / g;
+      const b1 = '\\frac{' + z1 + '}{' + n1 + '}', b2 = '\\frac{' + z2 + '}{' + n2 + '}';
+      return { frage: b1 + (durch ? ' : ' : ' \\cdot ') + b2, art: 'bruch', antwort: Z / N, trick: zk / nk, toleranz: { abs: 0.0006 }, anzeige: nk === 1 ? String(zk) : zk + '/' + nk + ' ≈ ' + zt(Z / N, 4),
+        schritte: (durch ? ['Kehrwert: $' + b1 + ' \\cdot \\frac{' + n2 + '}{' + z2 + '}$'] : []).concat(['$\\frac{' + z1 + ' \\cdot ' + (durch ? n2 : z2) + '}{' + n1 + ' \\cdot ' + (durch ? z2 : n2) + '} = \\frac{' + Z + '}{' + N + '}$', g > 1 ? 'Kürzen mit ' + g + ': $\\frac{' + zk + '}{' + nk + '}$' : 'Nicht weiter kürzbar']) };
+    } });
+
+  trick({ id: 'kuerzen', kat: 'bruch', titel: 'Kürzen mit dem größten gemeinsamen Teiler', ab: 1, bis: 3,
+    kurz: '18/24: beide durch 6 → 3/4. Erst durch 2, 3, 5 teilen, bis nichts mehr geht.',
+    anleitung: ['Suche eine Zahl, die Zähler und Nenner teilt: zuerst 2 (gerade), 3 (Quersumme), 5 (Endziffer 0 oder 5).', 'Teile beide und wiederhole, bis es keinen gemeinsamen Teiler mehr gibt.', 'Schneller: gleich durch den größten gemeinsamen Teiler (ggT) teilen.'],
+    aufgabe: function (st) {
+      let z, n; do { n = zuf(2, [0, 9, 15, 25][st]); z = zuf(1, n - 1); } while (ggT(z, n) !== 1);
+      const k = st === 1 ? wahl([2, 3, 5, 10]) : st === 2 ? wahl([4, 6, 8, 9, 12]) : wahl([12, 14, 15, 16, 18, 24, 25]);
+      return { frage: '\\frac{' + z * k + '}{' + n * k + '}', text: 'Vollständig gekürzt (als Bruch eingeben, z. B. 3/4)', art: 'bruch', antwort: z / n, trick: z / n, toleranz: { abs: 1e-9 }, anzeige: z + '/' + n,
+        schritte: ['ggT(' + z * k + ', ' + n * k + ') = ' + k, '$\\frac{' + z * k + ' : ' + k + '}{' + n * k + ' : ' + k + '} = \\frac{' + z + '}{' + n + '}$'] };
+    } });
+
+  trick({ id: 'bruchProzent', kat: 'bruch', titel: 'Bruch, Kommazahl und Prozent', ab: 1, bis: 3,
+    kurz: '3/4 = 75 %: auf Hundertstel erweitern. 1/8 = 12,5 %, 1/3 ≈ 33,3 %.',
+    anleitung: ['Prozent heißt Hundertstel: Bruch so erweitern, dass unten 100 steht – $\\frac{3}{4} = \\frac{75}{100} = 75\\,\\%$.', 'Geht das nicht, Zähler durch Nenner teilen und mal 100: $\\frac{3}{8} = 0{,}375 = 37{,}5\\,\\%$.', 'Umgekehrt: $35\\,\\% = \\frac{35}{100} = \\frac{7}{20}$.'],
+    aufgabe: function (st) {
+      const L = st === 1 ? [[1, 2], [1, 4], [3, 4], [1, 5], [2, 5], [1, 10], [7, 10], [1, 20], [3, 20], [1, 25], [1, 50]] : st === 2 ? [[1, 8], [3, 8], [5, 8], [7, 8], [3, 25], [7, 20], [9, 40], [1, 40], [11, 20], [13, 50]] : [[1, 3], [2, 3], [1, 6], [5, 6], [1, 16], [3, 16], [5, 12], [7, 12], [1, 9]];
+      const b = wahl(L), p = 100 * b[0] / b[1], endlich = Math.abs(p * 10 - Math.round(p * 10)) < 1e-9;
+      return { frage: '\\frac{' + b[0] + '}{' + b[1] + '} = \\ ?\\ \\%', text: endlich ? 'In Prozent' : 'In Prozent, auf eine Nachkommastelle', antwort: p, trick: p, einheit: '%', toleranz: { abs: endlich ? 1e-9 : 0.051 }, anzeige: zt(rund(p, endlich ? 3 : 1)) + ' %',
+        schritte: [100 % b[1] === 0 ? 'Erweitern mit ' + 100 / b[1] + ': $\\frac{' + b[0] * 100 / b[1] + '}{100}$' : '$' + b[0] + ' : ' + b[1] + ' = ' + tx(b[0] / b[1], 4) + (endlich ? '' : '\\ldots') + '$', '$= ' + tx(rund(p, endlich ? 3 : 1)) + '\\,\\%$'] };
+    } });
+
+  // ===================== Kommazahlen und Zehnerpotenzen =====================
+  const POTW = ['10', '100', '1000', '10\\,000', '100\\,000', '1\\,000\\,000'];
+  trick({ id: 'kommaZehner', kat: 'komma', titel: 'Komma verschieben: mal und durch 10, 100, 1000', ab: 1, bis: 4,
+    kurz: 'So viele Nullen, so viele Stellen: · 100 → Komma 2 nach rechts, : 1000 → 3 nach links.',
+    anleitung: ['Zähle die Nullen der Zehnerzahl.', 'Malnehmen: Komma so viele Stellen nach rechts – die Zahl wird größer.', 'Teilen: Komma nach links – die Zahl wird kleiner.', 'Fehlen Stellen, mit Nullen auffüllen: $0{,}7 : 100 = 0{,}007$. Mal 0,1 ist dasselbe wie durch 10.'],
+    aufgabe: function (st) {
+      const nk = st === 1 ? zuf(0, 1) : zuf(1, 3), x = rund(zuf(st === 1 ? 1 : 1, st === 1 ? 99 : 9999) / Math.pow(10, nk), 6);
+      const k = st === 1 ? zuf(1, 2) : st === 2 ? zuf(1, 3) : zuf(1, 6), mal = Math.random() < 0.5, zehntel = st >= 3 && Math.random() < 0.35 && k <= 3;
+      const y = rund(mal !== zehntel ? x * Math.pow(10, k) : x / Math.pow(10, k), 12);
+      if (y < 1e-5 || y > 1e8) return this.aufgabe(st);
+      const op = zehntel ? ' \\cdot ' + ['0{,}1', '0{,}01', '0{,}001'][k - 1] : (mal ? ' \\cdot ' : ' : ') + POTW[k - 1];
+      return { frage: tx(x) + op, antwort: y, trick: y,
+        schritte: [(zehntel ? 'Mal ' + ['0,1', '0,01', '0,001'][k - 1] + ' ist durch ' + POTW[k - 1].replace(/\\,/g, ' ') + '. ' : '') + k + (k === 1 ? ' Stelle' : ' Stellen') + ' nach ' + (mal !== zehntel ? 'rechts' : 'links'), '$' + tx(x) + op + ' = ' + tx(y) + '$'] };
+    } });
+
+  trick({ id: 'dezimalPlus', kat: 'komma', titel: 'Kommazahlen addieren und subtrahieren', ab: 1, bis: 3,
+    kurz: 'Komma unter Komma: 2,5 + 0,75 → 2,50 + 0,75. Erst Ganze, dann Kommastellen.',
+    anleitung: ['Gleich viele Nachkommastellen schaffen: hinten Nullen anhängen ($2{,}5 = 2{,}50$).', 'Im Kopf: erst die Ganzen, dann die Nachkommastellen – Übertrag beachten.', 'Beim Minus: auf die nächste ganze Zahl ergänzen hilft ($5 - 2{,}35$: von 2,35 bis 3 sind 0,65, dann noch 2 → 2,65).'],
+    aufgabe: function (st) {
+      const n1 = st === 1 ? 1 : zuf(1, 2), n2 = st === 1 ? zuf(1, 2) : st === 2 ? zuf(1, 3) : 3;
+      const a = rund(zuf(1, st === 3 ? 99999 : 999) / Math.pow(10, n1), 6), b = rund(zuf(1, st === 3 ? 9999 : 999) / Math.pow(10, n2), 6);
+      const minus = Math.random() < 0.5, g = Math.max(a, b), k = Math.min(a, b), r = rund(minus ? g - k : a + b, 9), n = Math.max(n1, n2);
+      return { frage: minus ? tx(g) + ' - ' + tx(k) : tx(a) + ' + ' + tx(b), antwort: r, trick: r,
+        schritte: ['Komma unter Komma: $' + tx(minus ? g : a, n) + (minus ? ' - ' : ' + ') + tx(minus ? k : b, n) + '$', '$= ' + tx(r) + '$'] };
+    } });
+
+  trick({ id: 'dezimalMal', kat: 'komma', titel: 'Kommazahlen malnehmen', ab: 1, bis: 4,
+    kurz: 'Ohne Komma rechnen, dann Nachkommastellen zählen: 0,3 · 0,04 → 3 · 4 = 12 → 3 Stellen → 0,012.',
+    anleitung: ['Rechne zuerst ohne Komma: $0{,}3 \\cdot 0{,}04 \\to 3 \\cdot 4 = 12$.', 'Zähle die Nachkommastellen beider Zahlen zusammen: 1 + 2 = 3.', 'So viele Stellen bekommt das Ergebnis hinter dem Komma, fehlende Stellen mit Nullen auffüllen: $0{,}012$.', 'Überschlag zur Kontrolle: 0,3 · 0,04 ist etwas weniger als die Hälfte von 0,04 · 1.'],
+    aufgabe: function (st) {
+      const n1 = st === 1 ? 1 : zuf(1, 2), n2 = st <= 2 ? zuf(0, 1) : zuf(1, 3);
+      const g1 = st === 1 ? zuf(2, 9) : st === 2 ? zuf(2, 12) : zuf(11, 99), g2 = st === 4 ? zuf(11, 99) : zuf(2, 9);
+      const a = rund(g1 / Math.pow(10, n1), 6), b = rund(g2 / Math.pow(10, n2), 6), r = rund(g1 * g2 / Math.pow(10, n1 + n2), 12);
+      return { frage: tx(a) + ' \\cdot ' + tx(b), antwort: r, trick: r,
+        schritte: ['Ohne Komma: $' + g1 + ' \\cdot ' + g2 + ' = ' + g1 * g2 + '$', 'Nachkommastellen: ' + n1 + ' + ' + n2 + ' = ' + (n1 + n2), '$' + tx(a) + ' \\cdot ' + tx(b) + ' = ' + tx(r) + '$'] };
+    } });
+
+  trick({ id: 'dezimalDurch', kat: 'komma', titel: 'Durch eine Kommazahl teilen', ab: 2, bis: 4,
+    kurz: '7,5 : 0,25 = 750 : 25 = 30. Beide Kommas gleich weit verschieben, bis der Teiler ganz ist.',
+    anleitung: ['Verschiebe das Komma in beiden Zahlen um gleich viele Stellen nach rechts, bis der Teiler keine Nachkommastellen mehr hat.', 'Das Ergebnis ändert sich dadurch nicht – es ist ein Erweitern mit 10, 100 oder 1000.', 'Dann normal teilen: $7{,}5 : 0{,}25 = 750 : 25 = 30$.', 'Durch 0,5 ist mal 2, durch 0,25 ist mal 4, durch 0,2 ist mal 5.'],
+    aufgabe: function (st) {
+      const nb = st === 2 ? 1 : zuf(1, 2), gb = st === 2 ? wahl([2, 3, 4, 5]) : st === 3 ? wahl([2, 4, 5, 6, 8, 25]) : wahl([12, 15, 25, 75, 125]);
+      const q = st === 4 ? zuf(4, 60) : zuf(2, 40), b = rund(gb / Math.pow(10, nb), 6), a = rund(q * b, 9);
+      return { frage: tx(a) + ' : ' + tx(b), antwort: q, trick: q,
+        schritte: ['Beide Kommas ' + nb + (nb === 1 ? ' Stelle' : ' Stellen') + ' nach rechts: $' + tx(rund(a * Math.pow(10, nb), 9)) + ' : ' + gb + '$', '$= ' + q + '$'] };
+    } });
+
+  trick({ id: 'rundenKomma', kat: 'komma', titel: 'Kaufmännisch runden', ab: 1, bis: 3,
+    kurz: 'Auf die erste wegfallende Ziffer schauen: 0–4 abrunden, 5–9 aufrunden.',
+    anleitung: ['Markiere die Stelle, auf die gerundet wird.', 'Schau auf die Ziffer direkt dahinter – nur diese zählt.', '0 bis 4: abrunden (Rest fällt weg). 5 bis 9: die markierte Stelle um 1 erhöhen, auch mit Übertrag ($2{,}97 \\to 3{,}0$).'],
+    aufgabe: function (st) {
+      const n = st === 1 ? zuf(0, 1) : zuf(1, 3), extra = st === 3 ? zuf(2, 3) : zuf(1, 2), x = rund(zuf(1, 99999) / Math.pow(10, n + extra), 9);
+      const r = rund(Math.round(rund(x * Math.pow(10, n), 6)) / Math.pow(10, n), 9);
+      const erste = Math.floor(rund(x * Math.pow(10, n + 1), 6)) % 10;
+      return { frage: tx(x) + ' \\approx \\ ?', text: 'Auf ' + (n ? n + (n === 1 ? ' Nachkommastelle' : ' Nachkommastellen') : 'ganze Zahlen') + ' runden', antwort: r, trick: r, anzeige: zt(r, n),
+        schritte: ['Erste wegfallende Ziffer: ' + erste + ' → ' + (erste >= 5 ? 'aufrunden' : 'abrunden'), '$' + tx(x) + ' \\approx ' + tx(r, n) + '$'] };
+    } });
+
+  const EINHK = [
+    ['Länge', [['mm', -3], ['cm', -2], ['dm', -1], ['m', 0], ['km', 3]]],
+    ['Fläche', [['cm^2', -4], ['dm^2', -2], ['m^2', 0], ['a', 2], ['ha', 4]]],
+    ['Rauminhalt', [['ml', -6], ['l', -3], ['m^3', 0]]],
+    ['Masse', [['g', -3], ['kg', 0], ['t', 3]]]
+  ];
+  const etx = function (e) { return '\\text{' + e.replace(/\^(\d)/, '}^$1\\text{') + '}'; };
+  trick({ id: 'einheitenKomma', kat: 'komma', titel: 'Einheiten umrechnen', ab: 1, bis: 4,
+    kurz: 'Länge 10, Fläche 100, Rauminhalt und Masse 1000 je Schritt. 1 dm³ = 1 l.',
+    anleitung: ['Umrechnungszahl kennen: mm–cm–dm–m je 10, m–km 1000; Flächen je 100 (cm², dm², m², a, ha); Liter und Masse je 1000.', 'In die kleinere Einheit: mehr Stück → malnehmen, Komma nach rechts.', 'In die größere Einheit: weniger Stück → teilen, Komma nach links.'],
+    aufgabe: function (st) {
+      const gr = st === 1 ? EINHK[wahl([0, 3])] : st === 2 ? EINHK[wahl([0, 2, 3])] : wahl(EINHK), L = gr[1];
+      let i, j; do { i = zuf(0, L.length - 1); j = zuf(0, L.length - 1); } while (i === j || (st === 1 && Math.abs(i - j) > 1));
+      const nk = st === 1 ? zuf(0, 1) : zuf(0, 2), x = rund(zuf(1, st >= 3 ? 9999 : 999) / Math.pow(10, nk), 6), k = L[i][1] - L[j][1], y = rund(x * Math.pow(10, k), 12);
+      if (Math.abs(y) > 1e8 || Math.abs(y) < 1e-5) return this.aufgabe(st);
+      return { frage: tx(x) + '\\,' + etx(L[i][0]) + ' = \\ ?\\,' + etx(L[j][0]), text: gr[0] + ' umrechnen', antwort: y, trick: y, einheit: L[j][0].replace('^2', '²').replace('^3', '³'),
+        schritte: ['$1\\,' + etx(L[i][0]) + ' = 10^{' + k + '}\\,' + etx(L[j][0]) + '$ → Komma ' + Math.abs(k) + (Math.abs(k) === 1 ? ' Stelle' : ' Stellen') + ' nach ' + (k > 0 ? 'rechts' : 'links'), '$' + tx(x) + '\\,' + etx(L[i][0]) + ' = ' + tx(y) + '\\,' + etx(L[j][0]) + '$'] };
     } });
 
   const VORS = [['M', 1e6], ['k', 1e3], ['', 1], ['m', 1e-3], ['\\mu ', 1e-6], ['n', 1e-9]];
