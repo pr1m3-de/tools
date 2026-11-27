@@ -1,6 +1,7 @@
 {
   "nr": 1300,
   "titel": "Druck und Auftrieb: Hydraulik, Schweredruck, Archimedes",
+  "gruppe": "Wärme und Stoffe",
   "bereich": "Physik",
   "auchIn": ["Mechanik"],
   "themen": ["Druck", "hydraulische Presse", "Hydraulik", "Kolben", "Kraftübersetzung", "Schweredruck", "Wassertiefe", "Luftdruck", "Auftrieb", "Archimedes", "Dichte", "Schwimmen", "Sinken", "Schweben"],

@@ -1,6 +1,7 @@
 {
   "nr": 160,
   "titel": "Hydraulischer Abgleich",
+  "gruppe": "Heizkreis und Hydraulik",
   "bereich": "Heizungstechnik",
   "themen": ["Abgleich", "Thermostatventil", "Voreinstellung", "kv-Wert", "Pumpe", "Förderhöhe"],
   "text": "Verfahren B: Volumenstrom je Heizkörper, Druckverlust der Wege, kv-Wert und Voreinstellung der Ventile, Förderhöhe und Förderstrom der Pumpe.",

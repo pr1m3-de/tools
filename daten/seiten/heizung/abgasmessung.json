@@ -1,6 +1,7 @@
 {
   "nr": 400,
   "titel": "Abgasmessung Schritt für Schritt",
+  "gruppe": "Wärmeerzeuger",
   "bereich": "Heizungstechnik",
   "themen": ["Schornstein", "Zug", "Abgasverlust", "CO", "1. BImSchV"],
   "text": "Schornsteinzug, Abgasverlust, CO-Messung, Ringspalt und Rußzahl Schritt für Schritt mit Simulation: Förderdruck aus Höhe und Temperaturen, Siegert-Formel, Grenzwerte nach 1. BImSchV und KÜO, typische Messfehler.",

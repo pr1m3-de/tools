@@ -1,6 +1,7 @@
 {
   "nr": 190,
   "titel": "Fußbodenheizung",
+  "gruppe": "Heizkreis und Hydraulik",
   "bereich": "Heizungstechnik",
   "themen": ["Fußbodenheizung", "Verlegeabstand", "Heizkreis", "Oberflächentemperatur", "Durchfluss"],
   "text": "Nach DIN EN 1264: Wärmestromdichte aus Verlegeabstand und Belag, Grenze der Oberflächentemperatur, nötiger Vorlauf, Heizkreise mit Durchfluss in l/min und Druckverlust.",

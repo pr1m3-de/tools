@@ -1,6 +1,7 @@
 {
   "nr": 1180,
   "titel": "Radioaktivität und Kernspaltung",
+  "gruppe": "Atom und Quanten",
   "bereich": "Physik",
   "themen": ["Radioaktivität", "Kernstrahlung", "Alphastrahlung", "Betastrahlung", "Gammastrahlung", "Abschirmung", "Halbwertszeit", "Zerfallsgesetz", "Aktivität", "Becquerel", "Zerfallskonstante", "Nuklid", "Kernspaltung", "Kettenreaktion", "Uran", "Steuerstab"],
   "text": "Alpha-, Beta- und Gammastrahlung mit Abschirmung und Ablenkung im Magnetfeld, zufälliger Zerfall und Halbwertszeit, Kettenreaktion bei der Kernspaltung. Rechner für Restaktivität, Kernzahl und Zerfälle bekannter Nuklide.",

@@ -1,6 +1,7 @@
 {
   "nr": 790,
   "titel": "Wind- und Schneelast",
+  "gruppe": "Konstruktion und Lasten",
   "bereich": "Dach und Klempnerei",
   "auchIn": ["Mechanik"],
   "themen": ["Schneelast", "Windlast", "Schneelastzone", "Windzone", "Windsog", "Böengeschwindigkeitsdruck", "Formbeiwert", "Sparren", "DIN EN 1991", "Sturmklammern"],

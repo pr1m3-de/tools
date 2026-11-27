@@ -1,6 +1,7 @@
 {
   "nr": 1030,
   "titel": "Brandschutz in der Elektroinstallation",
+  "gruppe": "Anlagentechnik",
   "bereich": "Brandschutz",
   "auchIn": ["Elektrotechnik"],
   "themen": ["Brandschutz", "Funktionserhalt", "E30", "E90", "MLAR", "Leitungsanlagen-Richtlinie", "Brandabschnitt", "Abschottung", "Feuerwiderstand", "Brandlast", "PVC", "Rauch", "Schutzziele"],

@@ -1,6 +1,7 @@
 {
   "nr": 1175,
   "titel": "Gravitation und Raumfahrt",
+  "gruppe": "Astronomie und Kosmos",
   "bereich": "Physik",
   "themen": ["Astronomie", "Gravitation", "Gravitationsgesetz", "Newton", "Raumfahrt", "Satellit", "Umlaufbahn", "Kreisbahn", "Fluchtgeschwindigkeit", "kosmische Geschwindigkeit", "geostationär", "Hohmann-Übergang", "Kepler", "Umlaufzeit", "Raketengleichung", "Schwerelosigkeit", "Planeten"],
   "text": "Gravitationsgesetz und Raumfahrt zum Ausrechnen: Bahngeschwindigkeit, Umlaufzeit, Fluchtgeschwindigkeit, geostationäre Bahn und Hohmann-Übergang für Erde, Mond, Planeten und Sonne – mit Newtons Kanonenkugel, Bahnanimation und Lernaufgaben.",

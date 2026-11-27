@@ -1,6 +1,7 @@
 {
   "nr": 1310,
   "titel": "Wärmeübertragung: Leitung, Konvektion, Strahlung",
+  "gruppe": "Wärme und Stoffe",
   "bereich": "Physik",
   "auchIn": ["Heizungstechnik"],
   "themen": ["Wärmeübertragung", "Wärmeleitung", "Wärmeleitfähigkeit", "Lambda-Wert", "Konvektion", "Wärmeübergang", "Wärmestrahlung", "Stefan-Boltzmann", "Emissionsgrad", "Wiensches Gesetz", "Infrarot", "U-Wert", "Wärmestrom"],

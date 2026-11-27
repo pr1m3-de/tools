@@ -1,6 +1,7 @@
 {
   "nr": 780,
   "titel": "Feuerlöscher und Löschwasser",
+  "gruppe": "Baulich und Löschen",
   "bereich": "Brandschutz",
   "auchIn": ["Arbeitsschutz"],
   "themen": ["Feuerlöscher", "Löschmitteleinheiten", "ASR A2.2", "Brandklassen", "Brandschutzhelfer", "Löschwasser", "DVGW W 405", "Löschwasserbedarf", "Löschteich", "Rating"],

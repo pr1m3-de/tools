@@ -1,6 +1,7 @@
 {
   "nr": 1110,
   "titel": "Kleinsteuerung (Logikmodul): Funktionsplan",
+  "gruppe": "Speicherprogrammierbar",
   "bereich": "Steuerungstechnik",
   "themen": ["Kleinsteuerung", "Logikmodul", "Steuerrelais", "Funktionsplan", "FUP", "UND", "ODER", "NICHT", "XOR", "Einschaltverzögerung", "Ausschaltverzögerung", "Wischrelais", "Treppenlichtschalter", "Stromstoßrelais", "Selbsthaltung", "Taktgeber", "Zähler", "Schaltuhr", "Analogschwellwert", "Hysterese", "Rolltor"],
   "text": "Kleinsteuerungen (Logikmodule) verstehen und programmieren: Funktionsplan mit UND, ODER, NICHT, XOR, Flanke, Ein- und Ausschaltverzögerung, Wischrelais, Treppenlichtschalter, Stromstoßrelais, Selbsthaltung, Taktgeber, Zähler, Schaltuhr und Analogschwellwert – mit Simulator, negierbaren Eingängen und Beispielen von Treppenlicht bis Rolltor.",

@@ -1,6 +1,7 @@
 {
   "nr": 800,
   "titel": "Hebel, Flaschenzug und Anschlagmittel",
+  "gruppe": "Kräfte und Maschinen",
   "bereich": "Mechanik",
   "auchIn": ["Arbeitsschutz"],
   "themen": ["Hebelgesetz", "Flaschenzug", "Anschlagmittel", "Rundschlinge", "Neigungswinkel", "Strangkraft", "Tragfähigkeit", "WLL", "Hebeband", "Lastfaktor"],

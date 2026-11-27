@@ -1,6 +1,7 @@
 {
   "nr": 200,
   "titel": "Wärmepumpe auslegen",
+  "gruppe": "Wärmeerzeuger",
   "bereich": "Heizungstechnik",
   "themen": ["Wärmepumpe", "JAZ", "Bivalenzpunkt", "Sperrzeit", "Puffer", "COP"],
   "text": "Leistung mit Sperrzeiten und Warmwasser, Bivalenzpunkt, Heizstab-Anteil, Jahresarbeitszahl im Bin-Verfahren, Strombedarf, Kosten und Pufferspeicher.",

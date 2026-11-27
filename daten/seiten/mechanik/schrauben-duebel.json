@@ -1,6 +1,7 @@
 {
   "nr": 810,
   "titel": "Schrauben und Dübel",
+  "gruppe": "Kräfte und Maschinen",
   "bereich": "Mechanik",
   "auchIn": ["Werkzeuge"],
   "themen": ["Anziehdrehmoment", "Vorspannkraft", "Festigkeitsklasse", "VDI 2230", "Dübel", "Konsole", "Abscheren", "Zugkraft", "Spannungsquerschnitt", "Drehmoment"],

@@ -1,6 +1,7 @@
 {
   "nr": 1330,
   "titel": "Digitaltechnik: Gatter, Flipflops, Zähler, Addierer",
+  "gruppe": "Digitaltechnik",
   "bereich": "Steuerungstechnik",
   "auchIn": ["Elektrotechnik", "IT und Netzwerk"],
   "themen": ["Digitaltechnik", "Logikgatter", "UND", "ODER", "NICHT", "NAND", "NOR", "XOR", "Wahrheitstabelle", "Flipflop", "RS-Flipflop", "D-Flipflop", "T-Flipflop", "Taktflanke", "Zähler", "Frequenzteiler", "Binärzahl", "Addierer", "Volladdierer", "Übertrag"],

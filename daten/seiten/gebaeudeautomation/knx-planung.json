@@ -1,6 +1,7 @@
 {
   "nr": 1070,
   "titel": "KNX-Planung: Topologie, Adressen und Simulator",
+  "gruppe": "Bussysteme",
   "bereich": "Gebäudeautomation",
   "themen": ["KNX", "KNX TP", "TP-64", "TP-256", "KNX PL", "KNX RF", "KNX IP", "KNX IoT", "Linie", "Bereich", "Linienkoppler", "Linienverstärker", "Spannungsversorgung", "physikalische Adresse", "Gruppenadresse", "dreistufige Gruppenadresse", "zweistufige Gruppenadresse", "Busankoppler", "Anwendungsmodul", "Systemkomponenten", "Flags", "Programmierung", "Filtertabelle", "Buslast", "Routingzähler", "IP-Router", "Bereichskoppler", "Gruppenadressplan", "CSV"],
   "text": "KNX planen, simulieren und verstehen: Planungsrechner für Linien, Bereiche, Koppler und Spannungsversorgung, Topologie-Simulator mit Filtertabellen, Telegrammweg und Buslast, Gruppenadress-Planer mit CSV-Export, Adress-Werkstatt mit allen 16 Bit, Kommunikationsarten TP, PL, RF, IP und IoT, Gerätearten und Programmierung.",

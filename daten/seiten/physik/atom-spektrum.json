@@ -1,6 +1,7 @@
 {
   "nr": 1210,
   "titel": "Atom und Spektrallinien",
+  "gruppe": "Atom und Quanten",
   "bereich": "Physik",
   "themen": ["Quantenphysik", "Atom", "Atommodell", "Bohr", "Bohrsches Atommodell", "Spektrallinien", "Spektrum", "Wasserstoff", "Balmer", "Lyman", "Paschen", "Rydberg", "Energieniveau", "Emission", "Absorption", "Ionisierungsenergie"],
   "text": "Bohrsches Atommodell und Spektrallinien berechnen: Energiestufen, Wellenlänge beim Übergang, Lyman-, Balmer- und Paschen-Serie, Bahnradius und Ionisierungsenergie – mit springendem Elektron, Energieniveaus, Linienspektrum und Lernaufgaben.",

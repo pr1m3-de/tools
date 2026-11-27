@@ -1,6 +1,7 @@
 {
   "nr": 100,
   "titel": "Trinkwasserschutz",
+  "gruppe": "Trinkwasser",
   "bereich": "Sanitärtechnik",
   "themen": ["Legionellen", "Zirkulation", "Stagnation", "3-Liter-Regel", "Thermische Desinfektion", "DIN EN 1717"],
   "text": "Wann sich Legionellen vermehren und wann sie absterben, eine Warmwasseranlage drei Wochen im Zeitraffer, die 3-Liter-Regel mit Wartezeit am Hahn und der Schutz vor Rückfließen.",

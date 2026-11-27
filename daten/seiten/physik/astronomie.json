@@ -1,6 +1,7 @@
 {
   "nr": 1170,
   "titel": "Astronomie: Erdjahr und Keplersche Gesetze",
+  "gruppe": "Astronomie und Kosmos",
   "bereich": "Physik",
   "themen": ["Astronomie", "Erdjahr", "Jahreszeiten", "Erdachse", "Neigung", "Sonnenhöhe", "Mittagshöhe", "Tageslänge", "Deklination", "Polartag", "Kepler", "Keplersche Gesetze", "Ellipse", "Flächensatz", "Umlaufzeit", "Planeten", "Perihel", "Aphel"],
   "text": "Warum es Jahreszeiten gibt: Erde mit geneigter Achse auf ihrer Bahn, Sonnenhöhe mittags und Tageslänge für jeden Ort und Tag. Dazu die drei Keplerschen Gesetze mit Planetenbahn, Flächensatz und Umlaufzeiten der Planeten.",

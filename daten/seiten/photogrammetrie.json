@@ -1,6 +1,7 @@
 {
   "nr": 335,
   "titel": "Photogrammetrie: 3D-Modell aus Fotos mit Maßen",
+  "gruppe": "Planen und Erfassen",
   "bereich": "Werkzeuge",
   "auchIn": ["Elektrotechnik", "Dach und Klempnerei"],
   "themen": ["Photogrammetrie", "3D-Modell", "3D-Scan", "Fotos", "Punktwolke", "Structure from Motion", "Bündelausgleich", "Drohne", "Aufmaß", "Dachaufmaß", "Dachneigung", "Dachausrichtung", "PV-Planung", "Photovoltaik", "Hindernisse", "Schornstein", "Dachfenster", "Messen", "OBJ", "PLY", "STL", "GLB", "GPS", "Maßstab"],

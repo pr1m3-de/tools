@@ -1,6 +1,7 @@
 {
   "nr": 1205,
   "titel": "Photoeffekt und Photonen",
+  "gruppe": "Atom und Quanten",
   "bereich": "Physik",
   "themen": ["Quantenphysik", "Photoeffekt", "Photon", "Photonen", "Lichtquanten", "Einstein", "Planck", "Planck-Konstante", "Austrittsarbeit", "Gegenfeldmethode", "Grenzwellenlänge", "Grenzfrequenz", "Elektronvolt", "Millikan", "Photozelle"],
   "text": "Photoeffekt berechnen: Photonenenergie, Austrittsarbeit, Bewegungsenergie der Elektronen, Gegenspannung, Grenzwellenlänge und Photostrom – mit animierter Photozelle, Kennlinie, Millikan-Gerade und Lernaufgaben.",

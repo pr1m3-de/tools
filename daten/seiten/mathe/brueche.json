@@ -1,7 +1,7 @@
 {
   "nr": 1,
   "titel": "Bruchrechnen",
-  "gruppe": "Grundlagen",
+  "gruppe": "Zahlen und Rechnen",
   "bereich": "Mathematik",
   "themen": ["Brüche", "Hauptnenner", "Kürzen", "Erweitern", "Gemischte Zahl", "Kehrwert", "Periodische Dezimalzahl", "kgV", "ggT"],
   "text": "Brüche addieren, subtrahieren, multiplizieren, dividieren und vergleichen – mit Hauptnenner, Erweitern, Kürzen, gemischter Zahl, periodischer Dezimalzahl und animierten Bruchbildern.",

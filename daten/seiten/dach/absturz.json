@@ -1,6 +1,7 @@
 {
   "nr": 590,
   "titel": "Absturz und Auffangen",
+  "gruppe": "Konstruktion und Lasten",
   "bereich": "Dach und Klempnerei",
   "auchIn": ["Arbeitsschutz"],
   "themen": ["Absturzsicherung", "PSA gegen Absturz", "Fallfaktor", "Fangstoß", "Falldämpfer", "EN 355", "lichte Höhe", "Pendelsturz", "Hängetrauma", "Anschlagpunkt"],

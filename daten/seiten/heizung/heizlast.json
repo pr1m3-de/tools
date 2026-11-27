@@ -1,6 +1,7 @@
 {
   "nr": 150,
   "titel": "Heizlast und Heizkörper",
+  "gruppe": "Gebäude und Heizlast",
   "bereich": "Heizungstechnik",
   "themen": ["Heizlast", "U-Wert", "Lüftung", "Heizkörper", "Normleistung", "Raum"],
   "text": "Raumweise Heizlast nach DIN EN 12831-1 im vereinfachten Verfahren, nötige Normleistung der Heizkörper bei deinen Systemtemperaturen und Volumenstrom je Raum.",
