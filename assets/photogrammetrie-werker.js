@@ -835,7 +835,7 @@ function tsdfScheibe(g, zA, zB, ansichten, trunkAnz, skala, qref) {
   const nx = g.nx, ny = g.ny, nzS = zB - zA, N = nx * ny * nzS, T = new Float32Array(N), W = new Float32Array(N), Fr = new Float32Array(N), Fg = new Float32Array(N), Fb = new Float32Array(N), Cn = new Float32Array(N);
   const trunk = trunkAnz / skala;
   ansichten.forEach(function (a) {
-    const R = a.R, t = a.t, tf = a.tiefe, fa = a.farbe, w = a.w, h = a.h, f = a.f, cx = a.cx, cy = a.cy;
+    const R = a.R, t = a.t, tf = a.tiefe, fa = a.farbe, gw = a.gew, w = a.w, h = a.h, f = a.f, cx = a.cx, cy = a.cy;
     const dx0 = R[0] * g.v, dx1 = R[3] * g.v, dx2 = R[6] * g.v;
     for (let z = zA; z < zB; z++) {
       const Z = g.o[2] + (z + 0.5) * g.v;
@@ -849,7 +849,7 @@ function tsdfScheibe(g, zA, zB, ansichten, trunkAnz, skala, qref) {
           if (u < 0 || v < 0 || u >= w || v >= h) continue;
           const p = v * w + u, d = tf[p]; if (!d) continue;
           const sdf = d - a2; if (sdf < -trunk) continue;
-          const q = f / (a2 * qref), wert = Math.min(1, sdf / trunk), i = basis + x, ww = (sdf > trunk ? 0.3 : 1) * Math.max(0.15, Math.min(3, q * q));
+          const q = f / (a2 * qref), wert = Math.min(1, sdf / trunk), i = basis + x, ww = (sdf > trunk ? 0.3 : 1) * Math.max(0.15, Math.min(3, q * q)) * (gw ? gw[p] : 1);
           T[i] += wert * ww; W[i] += ww;
           if (sdf < trunk) { Fr[i] += fa[3 * p]; Fg[i] += fa[3 * p + 1]; Fb[i] += fa[3 * p + 2]; Cn[i]++; }
         }
@@ -1003,10 +1003,10 @@ function texturSicht(netz, ansichten) {
       if (Math.min(U[i0], U[i1], U[i2]) < rand || Math.min(V[i0], V[i1], V[i2]) < rand || Math.max(U[i0], U[i1], U[i2]) > w - 1 - rand || Math.max(V[i0], V[i1], V[i2]) > h - 1 - rand) continue;
       const sx = netz.S[3 * tr], sy = netz.S[3 * tr + 1], sz = netz.S[3 * tr + 2], dx = C[0] - sx, dy = C[1] - sy, dz = C[2] - sz, dl = Math.hypot(dx, dy, dz) || 1;
       const cos = (netz.N[3 * tr] * dx + netz.N[3 * tr + 1] * dy + netz.N[3 * tr + 2] * dz) / dl;
-      if (cos < 0.2) continue;
+      if (cos < 0.3) continue;
       const zc = (Z[i0] + Z[i1] + Z[i2]) / 3, cu = Math.min(ZW - 1, Math.max(0, Math.floor((U[i0] + U[i1] + U[i2]) / 3 * zs))), cv = Math.min(ZH - 1, Math.max(0, Math.floor((V[i0] + V[i1] + V[i2]) / 3 * zs)));
       if (zc > zb[cv * ZW + cu] * 1.015 + 1e-9) continue; // verdeckt
-      const q = f / zc, wert = cos * q * q;
+      const q = f / zc, wert = cos * cos * cos * q * q; // möglichst senkrecht, sonst wird die Textur verzerrt
       // in die Liste der drei besten einsortieren
       if (wert > bw[0][tr]) { bw[2][tr] = bw[1][tr]; bi[2][tr] = bi[1][tr]; bw[1][tr] = bw[0][tr]; bi[1][tr] = bi[0][tr]; bw[0][tr] = wert; bi[0][tr] = a.i; }
       else if (wert > bw[1][tr]) { bw[2][tr] = bw[1][tr]; bi[2][tr] = bi[1][tr]; bw[1][tr] = wert; bi[1][tr] = a.i; }

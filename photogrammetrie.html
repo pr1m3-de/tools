@@ -64,6 +64,12 @@
     .pg-knoepfe { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; }
     .pg-knoepfe select, .pg-knoepfe input { padding: 7px 9px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--grund); color: var(--text); font: inherit; font-size: .92rem; }
     .pg-knoepfe input[type=text] { width: 110px; }
+    .pg-lage { display: grid; gap: 6px; margin: 6px 0 4px; }
+    .pg-lage-zeile { display: grid; grid-template-columns: minmax(130px, 1fr) auto auto 74px 16px auto auto; gap: 5px; align-items: center; }
+    .pg-lage-zeile .knopf { padding: 5px 8px; min-width: 44px; font-size: .85rem; }
+    .pg-lage-zeile input { width: 74px; padding: 6px 7px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--grund); color: var(--text); font: inherit; font-size: .9rem; text-align: right; }
+    .pg-lage-e { font-size: .85rem; color: var(--leise); }
+    @media (max-width: 520px) { .pg-lage-zeile { grid-template-columns: auto auto 1fr 16px auto auto; } .pg-lage-zeile > span:first-child { grid-column: 1 / -1; font-size: .88rem; } .pg-lage-zeile input { width: 100%; } }
     #pg-messungen { padding-left: 18px; font-size: .9rem; }
     .pg-dach { border-top: 1px solid var(--linie); padding: 10px 0 4px; }
     .pg-dach-kopf { display: flex; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 6px; }
@@ -133,6 +139,7 @@
         <label><input type="checkbox" id="pg-sicht-duenn"> Verknüpfungspunkte</label>
         <label><input type="checkbox" id="pg-sicht-kameras" checked> Kameras</label>
         <label><input type="checkbox" id="pg-sicht-grau"> Netz grau</label>
+        <label><input type="checkbox" id="pg-sicht-raster"> Bodenraster</label>
         <label>Punktgröße <input type="range" id="pg-groesse" min="1" max="8" value="2"></label>
         <span class="hilfe">Ziehen dreht · Umschalt- oder rechte Taste / zwei Finger verschieben · Rad / zwei Finger zoomen</span>
       </div>
@@ -154,6 +161,15 @@
             <div class="pg-knoepfe"><button type="button" class="knopf" id="pg-ref-start">Referenzstrecke anklicken</button><input type="text" id="pg-ref-laenge" inputmode="decimal" placeholder="Länge in m" aria-label="echte Länge in Metern"><button type="button" class="knopf-haupt" id="pg-ref-uebernehmen">Maßstab übernehmen</button></div>
             <p class="hilfe" id="pg-ref-ist"></p>
             <div class="pg-knoepfe"><button type="button" class="knopf" id="pg-boden">Boden waagerecht (3 Punkte)</button><button type="button" class="knopf" id="pg-nullhoehe">Geländehöhe setzen (1 Punkt)</button></div>
+            <h3>Lage von Hand korrigieren</h3>
+            <p class="hilfe">Kippen und Drehen um den Punkt in der Bildmitte der Ansicht. Mit „Bodenraster“ in der Ansicht sieht man, ob Boden und Kanten waagerecht liegen. Dachneigungen und Maße werden sofort neu berechnet.</p>
+            <div class="pg-lage">
+              <div class="pg-lage-zeile"><span>Nordseite anheben</span><button type="button" class="knopf" data-lage="nick" data-schritt="-1" aria-label="Nordseite anheben minus 1">−1</button><button type="button" class="knopf" data-lage="nick" data-schritt="-0.1" aria-label="Nordseite anheben minus 0,1">−0,1</button><input type="text" id="pg-lage-nick" inputmode="decimal" value="0" aria-label="Nordseite anheben in °"><span class="pg-lage-e">°</span><button type="button" class="knopf" data-lage="nick" data-schritt="0.1" aria-label="Nordseite anheben plus 0,1">+0,1</button><button type="button" class="knopf" data-lage="nick" data-schritt="1" aria-label="Nordseite anheben plus 1">+1</button></div>
+              <div class="pg-lage-zeile"><span>Ostseite anheben</span><button type="button" class="knopf" data-lage="roll" data-schritt="-1" aria-label="Ostseite anheben minus 1">−1</button><button type="button" class="knopf" data-lage="roll" data-schritt="-0.1" aria-label="Ostseite anheben minus 0,1">−0,1</button><input type="text" id="pg-lage-roll" inputmode="decimal" value="0" aria-label="Ostseite anheben in °"><span class="pg-lage-e">°</span><button type="button" class="knopf" data-lage="roll" data-schritt="0.1" aria-label="Ostseite anheben plus 0,1">+0,1</button><button type="button" class="knopf" data-lage="roll" data-schritt="1" aria-label="Ostseite anheben plus 1">+1</button></div>
+              <div class="pg-lage-zeile"><span>Drehen (+ gegen den Uhrzeigersinn)</span><button type="button" class="knopf" data-lage="gier" data-schritt="-1" aria-label="Drehen (+ gegen den Uhrzeigersinn) minus 1">−1</button><button type="button" class="knopf" data-lage="gier" data-schritt="-0.1" aria-label="Drehen (+ gegen den Uhrzeigersinn) minus 0,1">−0,1</button><input type="text" id="pg-lage-gier" inputmode="decimal" value="0" aria-label="Drehen (+ gegen den Uhrzeigersinn) in °"><span class="pg-lage-e">°</span><button type="button" class="knopf" data-lage="gier" data-schritt="0.1" aria-label="Drehen (+ gegen den Uhrzeigersinn) plus 0,1">+0,1</button><button type="button" class="knopf" data-lage="gier" data-schritt="1" aria-label="Drehen (+ gegen den Uhrzeigersinn) plus 1">+1</button></div>
+              <div class="pg-lage-zeile"><span>Höhe verschieben</span><button type="button" class="knopf" data-lage="dz" data-schritt="-0.1" aria-label="Höhe verschieben minus 0,1">−0,1</button><button type="button" class="knopf" data-lage="dz" data-schritt="-0.01" aria-label="Höhe verschieben minus 0,01">−0,01</button><input type="text" id="pg-lage-dz" inputmode="decimal" value="0" aria-label="Höhe verschieben in m"><span class="pg-lage-e">m</span><button type="button" class="knopf" data-lage="dz" data-schritt="0.01" aria-label="Höhe verschieben plus 0,01">+0,01</button><button type="button" class="knopf" data-lage="dz" data-schritt="0.1" aria-label="Höhe verschieben plus 0,1">+0,1</button></div>
+            </div>
+            <div class="pg-knoepfe"><button type="button" class="knopf" id="pg-lage-zurueck" disabled>Lage zurücksetzen</button></div>
             <div class="pg-knoepfe" id="pg-nord-zeile"><label>Nordrichtung korrigieren <input type="text" id="pg-nord" inputmode="decimal" value="0"> °</label><span class="hilfe">Drehung, bis die Dachausrichtung stimmt (nur ohne GPS)</span></div>
           </div>
           <div class="pg-tafel" id="pg-tafel-dach" hidden>
@@ -167,7 +183,7 @@
             <div class="pg-knoepfe"><button type="button" class="knopf" data-export="obj">Netz OBJ (mit Textur als ZIP)</button><button type="button" class="knopf" data-export="ply">Netz PLY</button><button type="button" class="knopf" data-export="stl">Netz STL</button><button type="button" class="knopf" data-export="glb">Netz GLB mit Textur</button><button type="button" class="knopf" data-export="punkte">Punktwolke PLY</button><button type="button" class="knopf" id="pg-mass-csv">Maße CSV</button></div>
             <p class="hilfe">Koordinaten in Metern (bei Maßstab aus GPS oder Referenz), x nach Osten, y nach Norden, z Höhe über Gelände. GLB mit y nach oben. OBJ und GLB enthalten die Fototextur, PLY und STL nur Farbe bzw. Form.</p>
             <h3>Netz neu berechnen</h3>
-            <div class="pg-knoepfe"><label>Feinheit <select id="pg-aufloesung"><option value="3">grob (3 Mio. Voxel)</option><option value="10" selected>mittel (10 Mio.)</option><option value="24">fein (24 Mio.)</option><option value="48">sehr fein (48 Mio., viel Speicher)</option></select></label><label>Glättung <select id="pg-glatt"><option value="0">keine</option><option value="2" selected>leicht</option><option value="5">stark</option></select></label></div>
+            <div class="pg-knoepfe"><label>Feinheit <select id="pg-aufloesung"><option value="4">grob (4 Mio. Voxel)</option><option value="16" selected>mittel (16 Mio.)</option><option value="32">fein (32 Mio.)</option><option value="56">sehr fein (56 Mio., viel Speicher)</option></select></label><label>Glättung <select id="pg-glatt"><option value="0">keine</option><option value="1" selected>leicht</option><option value="5">stark</option></select></label></div>
             <div class="pg-schieber"><span>Bereich</span><span>von</span><span>bis</span>
               <span>Ost–West</span><input type="range" id="pg-x0" min="0" max="100" value="0" aria-label="Bereich x von"><input type="range" id="pg-x1" min="0" max="100" value="100" aria-label="Bereich x bis">
               <span>Süd–Nord</span><input type="range" id="pg-y0" min="0" max="100" value="0" aria-label="Bereich y von"><input type="range" id="pg-y1" min="0" max="100" value="100" aria-label="Bereich y bis">
@@ -226,9 +242,9 @@
     const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
     const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 2 : n, minimumFractionDigits: 0 }); };
     const STUFEN = {
-      schnell: { name: 'Schnell', feat: 1000, nMax: 2500, grob: 300, dicht: 360, ebenen: 48, quellen: 2, budget: 3, atlas: 2048 },
-      normal: { name: 'Normal', feat: 1400, nMax: 4000, grob: 400, dicht: 640, ebenen: 80, quellen: 3, budget: 10, atlas: 4096 },
-      hoch: { name: 'Hoch', feat: 2000, nMax: 6000, grob: 500, dicht: 800, ebenen: 96, quellen: 4, budget: 24, atlas: 8192 }
+      schnell: { name: 'Schnell', feat: 1000, nMax: 2500, grob: 300, dicht: 360, ebenen: 48, quellen: 2, budget: 4, atlas: 2048 },
+      normal: { name: 'Normal', feat: 1400, nMax: 4000, grob: 400, dicht: 640, ebenen: 80, quellen: 3, budget: 16, atlas: 4096 },
+      hoch: { name: 'Hoch', feat: 2000, nMax: 6000, grob: 500, dicht: 800, ebenen: 96, quellen: 4, budget: 32, atlas: 8192 }
     };
     const MAX_BILDER = 200;
 
@@ -801,7 +817,19 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         const o = y * w + x; farbe[3 * o] = r / n; farbe[3 * o + 1] = gg / n; farbe[3 * o + 2] = b / n;
         if (puf.length * 2 >= s * s) { puf.sort(function (p, q) { return p - q; }); tiefe[o] = puf[puf.length >> 1]; }
       }
-      return { w: w, h: h, f: a.f / s, cx: (a.cx + 0.5) / s - 0.5, cy: (a.cy + 0.5) / s - 0.5, tiefe: tiefe, farbe: farbe };
+      return blickGewicht({ w: w, h: h, f: a.f / s, cx: (a.cx + 0.5) / s - 0.5, cy: (a.cy + 0.5) / s - 0.5, tiefe: tiefe, farbe: farbe });
+    }
+    // Gewicht je Tiefenpixel: Flächen, die die Kamera streifend sieht, sind ungenau (cos² des Winkels zwischen Sehstrahl und Flächennormale)
+    function blickGewicht(a) {
+      const w = a.w, h = a.h, T = a.tiefe, g = new Float32Array(w * h);
+      const P = function (x, y) { const d = T[y * w + x]; return d ? [(x - a.cx) / a.f * d, (y - a.cy) / a.f * d, d] : null; };
+      for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
+        const i = y * w + x; if (!T[i]) continue;
+        const l = P(x - 1, y), r = P(x + 1, y), o = P(x, y - 1), u = P(x, y + 1); if (!l || !r || !o || !u) { g[i] = 0.3; continue; }
+        const n = v3kreuz(v3sub(r, l), v3sub(u, o)), p = P(x, y), c = Math.abs(v3dot(n, p)) / ((v3len(n) * v3len(p)) || 1);
+        g[i] = Math.max(0.05, c * c);
+      }
+      a.gew = g; return a;
     }
     // Oberfläche aus den geprüften Tiefenkarten (in Anzeige-Koordinaten, Bereich aus Punktwolke oder Zuschnitt)
     function netzBerechnen(opt) { return lauf(function* () {
@@ -821,8 +849,8 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       rek.netzBereich = { lo: lo, hi: hi };
       // Ansichten ins Anzeige-System: X_sfm = Qᵀ (X_anz − c) / s
       const Qt = m3t(T.Q), ansichten = rek.ansichten.map(function (a) {
-        const R = m3(a.R, Qt).map(function (x) { return x / T.s; }), t = v3sub(a.t, m3v(R, T.c)), k = verkleinert(a, 512);
-        return { w: k.w, h: k.h, f: k.f, cx: k.cx, cy: k.cy, R: R, t: t, tiefe: k.tiefe, farbe: k.farbe };
+        const R = m3(a.R, Qt).map(function (x) { return x / T.s; }), t = v3sub(a.t, m3v(R, T.c)), k = verkleinert(a, 640);
+        return { w: k.w, h: k.h, f: k.f, cx: k.cx, cy: k.cy, R: R, t: t, tiefe: k.tiefe, farbe: k.farbe, gew: k.gew || blickGewicht(k).gew };
       });
       // Gewicht je Ansicht: nahe Ansichten (feinere Tiefen) zählen mehr
       const dichte = []; ansichten.forEach(function (a) { for (let k = 0; k < a.tiefe.length; k += 97) if (a.tiefe[k]) dichte.push(a.f / a.tiefe[k]); });
@@ -839,7 +867,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
           fertig++; schrittSetzen('netz', 0.8 * fertig / scheiben.length, 'Volumen ' + g.nx + ' × ' + g.ny + ' × ' + g.nz);
         });
       });
-      const m = yield auftrag({ art: 'netz', g: g, T: Tv, W: Wv, F: Fv, minW: 0.5, anteil: 0.02, glatt: opt.glatt === undefined ? 2 : opt.glatt }, [Tv.buffer, Wv.buffer, Fv.buffer], function (x) { if (x.text) schrittSetzen('netz', 0.9, x.text); });
+      const m = yield auftrag({ art: 'netz', g: g, T: Tv, W: Wv, F: Fv, minW: 0.5, anteil: 0.02, glatt: opt.glatt === undefined ? 1 : opt.glatt }, [Tv.buffer, Wv.buffer, Fv.buffer], function (x) { if (x.text) schrittSetzen('netz', 0.9, x.text); });
       // zurück ins Rekonstruktions-System speichern
       const Qt2 = m3t(T.Q), P = m.pos;
       for (let k = 0; k < P.length; k += 3) { const X = m3v(Qt2, [(P[k] - T.c[0]) / T.s, (P[k + 1] - T.c[1]) / T.s, (P[k + 2] - T.c[2]) / T.s]); P[k] = X[0]; P[k + 1] = X[1]; P[k + 2] = X[2]; }
@@ -945,13 +973,16 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         aus(progP);
         // Linien im Anzeige-System
         if (linien.length) {
+          [true, false].forEach(function (mitTiefe) {
           const p = [], c = [];
-          linien.forEach(function (l) { if (l.nurKamera && !sicht.kameras) return; for (let k = 0; k + 1 < l.pts.length; k++) { p.push(l.pts[k][0], l.pts[k][1], l.pts[k][2], l.pts[k + 1][0], l.pts[k + 1][1], l.pts[k + 1][2]); c.push(l.f[0], l.f[1], l.f[2], l.f[0], l.f[1], l.f[2]); } });
+          linien.forEach(function (l) { if ((l.nurKamera && !sicht.kameras) || !!l.tiefe !== mitTiefe) return; for (let k = 0; k + 1 < l.pts.length; k++) { p.push(l.pts[k][0], l.pts[k][1], l.pts[k][2], l.pts[k + 1][0], l.pts[k + 1][1], l.pts[k + 1][2]); c.push(l.f[0], l.f[1], l.f[2], l.f[0], l.f[1], l.f[2]); } });
           if (p.length) {
             const bp = puffer(new Float32Array(p)), bc = puffer(new Float32Array(c));
             gl.useProgram(progL); gl.uniformMatrix4fv(gl.getUniformLocation(progL, 'mvp'), false, VP); gl.disable(gl.DEPTH_TEST);
+            if (mitTiefe) gl.enable(gl.DEPTH_TEST);
             attrib(progL, 'p', bp, 3); attrib(progL, 'c', bc, 3); gl.drawArrays(gl.LINES, 0, p.length / 3); aus(progL); gl.deleteBuffer(bp); gl.deleteBuffer(bc); gl.enable(gl.DEPTH_TEST);
           }
+          });
         }
         // Beschriftungen und Marken
         const x = ov.getContext('2d'); x.clearRect(0, 0, ov.width, ov.height);
@@ -1112,7 +1143,40 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
     function einheit() { return rek && rek.massstab ? 'm' : 'E'; }
     function laengeText(v) { if (!rek || !rek.massstab) return zahl(v, 3) + ' E'; return Math.abs(v) < 1 ? zahl(v * 100, 1) + ' cm' : zahl(v, 3) + ' m'; }
     function flaecheText(a) { return rek && rek.massstab ? zahl(a, 2) + ' m²' : zahl(a, 2) + ' E²'; }
-    function transformGeaendert() { rek.Tver++; ansicht.modellSetzen(rek.T); werkzeugeZeichnen(); infoZeigen(); }
+    function transformGeaendert(vonHand) {
+      if (!vonHand) { rek.Tvorher = null; rek.lageKorr = null; lageFelder(); } // neue Grundlage durch ein Werkzeug
+      rek.Tver++; ansicht.modellSetzen(rek.T); werkzeugZeichnen(); messListe(); dachListe(); infoZeigen();
+    }
+    // ---------- Lage von Hand korrigieren: kippen, drehen, Höhe ----------
+    const LAGE = { nick: [1, 0, 0], roll: [0, -1, 0], gier: [0, 0, 1] }; // positive Werte: Nordseite hoch, Ostseite hoch, gegen den Uhrzeigersinn
+    function tKopie(T) { return { Q: T.Q.slice(), s: T.s, c: T.c.slice() }; }
+    function lageAendern(art, wert) {
+      if (!rek || !rek.T || !isFinite(wert) || !wert) return;
+      if (!rek.Tvorher) { rek.Tvorher = tKopie(rek.T); rek.lageKorr = { nick: 0, roll: 0, gier: 0, dz: 0 }; }
+      if (art === 'dz') { rek.T.c[2] += wert; }
+      else {
+        const R = rodrigues(v3mal(LAGE[art], wert * Math.PI / 180)), m = ansicht.cam.ziel.slice(); // um den Blickpunkt
+        rek.T.Q = m3(R, rek.T.Q); rek.T.c = v3add(m3v(R, v3sub(rek.T.c, m)), m);
+      }
+      rek.lageKorr[art] = Math.round((rek.lageKorr[art] + wert) * 1000) / 1000;
+      lageFelder(); transformGeaendert(true);
+    }
+    function lageFelder() {
+      const k = rek && rek.lageKorr || { nick: 0, roll: 0, gier: 0, dz: 0 };
+      ['nick', 'roll', 'gier', 'dz'].forEach(function (a) { const e = $('pg-lage-' + a); if (e && document.activeElement !== e) e.value = zahl(k[a], a === 'dz' ? 3 : 2); });
+      $('pg-lage-zurueck').disabled = !(rek && rek.Tvorher);
+    }
+    document.querySelectorAll('[data-lage]').forEach(function (b) { b.addEventListener('click', function () { lageAendern(b.getAttribute('data-lage'), Number(b.getAttribute('data-schritt'))); }); });
+    ['nick', 'roll', 'gier', 'dz'].forEach(function (a) {
+      $('pg-lage-' + a).addEventListener('change', function () {
+        const v = Number(String(this.value).replace(/\./g, '').replace(',', '.')), alt = rek && rek.lageKorr ? rek.lageKorr[a] : 0;
+        if (!isFinite(v) || Math.abs(v) > (a === 'dz' ? 1000 : 360)) { lageFelder(); return; }
+        lageAendern(a, v - alt); lageFelder();
+      });
+    });
+    $('pg-lage-zurueck').addEventListener('click', function () {
+      if (!rek || !rek.Tvorher) return; rek.T = tKopie(rek.Tvorher); rek.Tvorher = null; rek.lageKorr = null; lageFelder(); transformGeaendert(true); werkzeugHinweis('Lage zurückgesetzt.');
+    });
 
     // ---------- Werkzeuge in der Ansicht ----------
     const messungen = [], daecher = [];
@@ -1268,6 +1332,15 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       });
       if (werkzeug) werkzeug.punkte.forEach(function (p, i) { const q = anz(p); mk.push({ p: q, f: '#F08C00', r: 6 }); if (i) lin.push({ pts: [anz(werkzeug.punkte[i - 1]), q], f: [0.94, 0.55, 0] }); });
       if (rek.zuschnitt) { const lo = rek.zuschnitt.lo, hi = rek.zuschnitt.hi, k = function (x, y, z) { return [x ? hi[0] : lo[0], y ? hi[1] : lo[1], z ? hi[2] : lo[2]]; }; const f = [0.5, 0.5, 0.95]; [[0, 0], [1, 0], [1, 1], [0, 1]].forEach(function (q) { lin.push({ pts: [k(q[0], q[1], 0), k(q[0], q[1], 1)], f: f }); }); [0, 1].forEach(function (z) { lin.push({ pts: [k(0, 0, z), k(1, 0, z), k(1, 1, z), k(0, 1, z), k(0, 0, z)], f: f }); }); }
+      if (ansicht.sicht.raster && rek.vollBereich) { // Bodenraster auf Höhe 0 zum Ausrichten
+        const lo = rek.vollBereich.lo, hi = rek.vollBereich.hi, aus = Math.max(hi[0] - lo[0], hi[1] - lo[1]), roh = aus / 12, st = Math.pow(10, Math.floor(Math.log10(roh || 1))), sch2 = roh / st > 5 ? 5 * st : roh / st > 2 ? 2 * st : st;
+        const x0 = Math.floor(lo[0] / sch2) * sch2, x1 = Math.ceil(hi[0] / sch2) * sch2, y0 = Math.floor(lo[1] / sch2) * sch2, y1 = Math.ceil(hi[1] / sch2) * sch2, f = [0.45, 0.6, 0.85];
+        if ((x1 - x0) / sch2 < 80 && (y1 - y0) / sch2 < 80) {
+          for (let x = x0; x <= x1 + 1e-9; x += sch2) lin.push({ pts: [[x, y0, 0], [x, y1, 0]], f: f, tiefe: true });
+          for (let y = y0; y <= y1 + 1e-9; y += sch2) lin.push({ pts: [[x0, y, 0], [x1, y, 0]], f: f, tiefe: true });
+          sch.push({ p: [x1, y0, 0], t: 'Raster ' + laengeText(sch2), hg: 'rgba(54,79,199,.85)' });
+        }
+      }
       ansicht.linienSetzen(lin); ansicht.markenSetzen(mk, sch);
     }
     function messListe() {
@@ -1655,7 +1728,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         ansicht.einpassen([quantil(x, 0.05), quantil(y, 0.05), quantil(z, 0.05)], [quantil(x, 0.95), quantil(y, 0.95), quantil(z, 0.95)]);
         ersteAnsicht = stand === 'duenn';
       }
-      infoZeigen(); messListe(); dachListe(); werkzeugZeichnen(); zuschnittFelder();
+      zuschnittFelder(); infoZeigen(); messListe(); dachListe(); werkzeugZeichnen(); lageFelder();
     }
     function infoZeigen() {
       if (!rek || !rek.sfm) return;
@@ -1670,8 +1743,8 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
     }
     $('pg-nord').addEventListener('change', function () { const v = Number(String(this.value).replace(',', '.')); if (isFinite(v) && rek) { rek.nordKorr = v; dachListe(); } });
     // Ansicht-Schalter
-    [['pg-sicht-kameras', 'kameras'], ['pg-sicht-duenn', 'duenn'], ['pg-sicht-dicht', 'dicht'], ['pg-sicht-netz', 'netz'], ['pg-sicht-grau', 'grau'], ['pg-sicht-textur', 'textur']].forEach(function (z) {
-      $(z[0]).addEventListener('change', function () { ansicht.sicht[z[1]] = this.checked; ansicht.zeichnen(); });
+    [['pg-sicht-kameras', 'kameras'], ['pg-sicht-duenn', 'duenn'], ['pg-sicht-dicht', 'dicht'], ['pg-sicht-netz', 'netz'], ['pg-sicht-grau', 'grau'], ['pg-sicht-textur', 'textur'], ['pg-sicht-raster', 'raster']].forEach(function (z) {
+      $(z[0]).addEventListener('change', function () { ansicht.sicht[z[1]] = this.checked; if (z[1] === 'raster') werkzeugZeichnen(); ansicht.zeichnen(); });
     });
     $('pg-groesse').addEventListener('input', function () { ansicht.punktGroesse(Number(this.value) || 2); });
     $('pg-blick-oben').addEventListener('click', function () { ansicht.blick(ansicht.cam.gier, 1.55); });
