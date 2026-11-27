@@ -1,4 +1,4 @@
-/* Arbeitsfaden der Photogrammetrie (photogrammetrie.html): Merkmale, Zuordnung, Kameraausrichtung, Tiefenkarten, Netz */
+/* Arbeitsfaden der Photogrammetrie (photogrammetrie.html): Merkmale, Zuordnung, Kameraausrichtung, Tiefenkarten, Netz, Textur */
 'use strict';
 // ---------- Lineare Algebra (Zeilen-Matrizen als flache Arrays) ----------
 function m3(a, b) { // 3x3 · 3x3
@@ -724,15 +724,15 @@ function tiefenkarte(ref, quellen, opt, melden) {
     for (let i = 0; i < n; i++) { const x = st.rx[i], y = st.ry[i]; A[3 * i] = rel.R[0] * x + rel.R[1] * y + rel.R[2]; A[3 * i + 1] = rel.R[3] * x + rel.R[4] * y + rel.R[5]; A[3 * i + 2] = rel.R[6] * x + rel.R[7] * y + rel.R[8]; }
     return { q: q, A: A, t: rel.t };
   });
-  const best = new Float32Array(n).fill(9), bestIdx = new Int16Array(n).fill(-1), vor = new Float32Array(n).fill(9), nach = new Float32Array(n).fill(9), letzte = new Float32Array(n).fill(9);
   const Wb = new Float32Array(n), ok = new Uint8Array(n), WW = new Float32Array(n), RW = new Float32Array(n), Sw = new Float32Array(n), Sww = new Float32Array(n), Srw = new Float32Array(n), okS = new Float32Array(n);
   const kosten = []; for (let s = 0; s < nq; s++) kosten.push(new Float32Array(n));
-  const aktuell = new Float32Array(n), inv0 = 1 / opt.dmax, inv1 = 1 / opt.dmin;
-  for (let d = 0; d < D; d++) {
-    const tiefe = 1 / (inv0 + (inv1 - inv0) * d / (D - 1));
+  const inv0 = 1 / opt.dmax, inv1 = 1 / opt.dmin, tiefeVon = function (idx) { return 1 / (inv0 + (inv1 - inv0) * idx / (D - 1)); };
+  // NCC-Kosten für eine Tiefe je Pixel (tz[i] = 0: kein Wert); Fenster folgt der Tiefe der Nachbarpixel
+  function kostenFuer(tz, aus) {
     vorber.forEach(function (v, s) {
       const q = v.q, qw = q.w, qh = q.h, B = q.grau, A = v.A, t = v.t;
       for (let i = 0; i < n; i++) {
+        const tiefe = tz[i]; if (!tiefe) { ok[i] = 0; Wb[i] = 0; continue; }
         const X = tiefe * A[3 * i] + t[0], Y = tiefe * A[3 * i + 1] + t[1], Z = tiefe * A[3 * i + 2] + t[2];
         if (Z <= 1e-6) { ok[i] = 0; Wb[i] = 0; continue; }
         const u = q.f * X / Z + q.cx, vv = q.f * Y / Z + q.cy;
@@ -751,25 +751,54 @@ function tiefenkarte(ref, quellen, opt, melden) {
     });
     // beste K Quellen mitteln (robust gegen Verdeckung)
     for (let i = 0; i < n; i++) {
-      let c;
-      if (nq === 1) c = kosten[0][i];
-      else { let a = 9, b = 9, e = 9; for (let s = 0; s < nq; s++) { const v = kosten[s][i]; if (v < a) { e = b; b = a; a = v; } else if (v < b) { e = b; b = v; } else if (v < e) e = v; } c = K === 1 ? a : K === 2 ? (a + b) / 2 : (a + b + e) / 3; }
-      aktuell[i] = c;
+      if (nq === 1) { aus[i] = kosten[0][i]; continue; }
+      let a = 9, b = 9, e = 9; for (let s = 0; s < nq; s++) { const v = kosten[s][i]; if (v < a) { e = b; b = a; a = v; } else if (v < b) { e = b; b = v; } else if (v < e) e = v; }
+      aus[i] = K === 1 ? a : K === 2 ? (a + b) / 2 : (a + b + e) / 3;
+    }
+  }
+  const best = new Float32Array(n).fill(9), bestIdx = new Int16Array(n).fill(-1), vor = new Float32Array(n).fill(9), nach = new Float32Array(n).fill(9), letzte = new Float32Array(n).fill(9);
+  const aktuell = new Float32Array(n), tz = new Float32Array(n);
+  const schritte = D + 18;
+  for (let d = 0; d < D; d++) {
+    tz.fill(tiefeVon(d)); kostenFuer(tz, aktuell);
+    for (let i = 0; i < n; i++) {
+      const c = aktuell[i];
       if (c < best[i]) { best[i] = c; bestIdx[i] = d; vor[i] = letzte[i]; nach[i] = 9; }
       else if (bestIdx[i] === d - 1) nach[i] = c;
       letzte[i] = c;
     }
-    if (melden && d % 8 === 7) melden((d + 1) / D);
+    if (melden && d % 8 === 7) melden((d + 1) / schritte);
   }
-  const tiefe = new Float32Array(n), guete = new Float32Array(n);
+  // grobe Lage je Pixel (Ebenenindex mit Parabel)
+  const lage = new Float32Array(n).fill(-1);
   const minVar = (opt.textur || 4) * (opt.textur || 4);
   for (let i = 0; i < n; i++) {
-    const k = bestIdx[i]; if (k < 0 || best[i] > (opt.maxKosten || 0.45) || varR[i] / nf[i] < minVar) continue;
+    const k = bestIdx[i]; if (k <= 0 || k >= D - 1 || best[i] > 0.75 || varR[i] / nf[i] < minVar) continue;
     let off = 0; const a = vor[i], c = nach[i], b = best[i];
-    if (k > 0 && k < D - 1 && a < 9 && c < 9) { const den = a - 2 * b + c; if (den > 1e-9) off = Math.max(-0.5, Math.min(0.5, 0.5 * (a - c) / den)); }
-    else if (k === 0 || k === D - 1) continue; // am Rand des Suchbereichs: unsicher
-    tiefe[i] = 1 / (inv0 + (inv1 - inv0) * (k + off) / (D - 1)); guete[i] = 1 - b;
+    if (a < 9 && c < 9) { const den = a - 2 * b + c; if (den > 1e-9) off = Math.max(-0.5, Math.min(0.5, 0.5 * (a - c) / den)); }
+    lage[i] = k + off;
   }
+  // Verfeinerung: zweimal 9 Lagen um den aktuellen Wert, die Fenster folgen dabei der geschätzten Fläche
+  // Pixel ohne Wert bekommen ihre beste grobe Ebene, damit die Fenster am Rand gültiger Bereiche voll bleiben
+  const alle = new Float32Array(n); for (let i = 0; i < n; i++) alle[i] = lage[i] >= 0 ? lage[i] : bestIdx[i] >= 0 ? bestIdx[i] : (D - 1) / 2;
+  const kb = new Float32Array(n), werte = []; for (let k = 0; k < 9; k++) werte.push(new Float32Array(n));
+  [1, 0.25].forEach(function (weite, runde) {
+    for (let k = 0; k < 9; k++) {
+      const dl = (k - 4) / 4 * weite;
+      for (let i = 0; i < n; i++) tz[i] = tiefeVon(Math.max(0, Math.min(D - 1, alle[i] + (lage[i] >= 0 ? dl : 0))));
+      kostenFuer(tz, werte[k]);
+      if (melden) melden((D + runde * 9 + k + 1) / schritte);
+    }
+    for (let i = 0; i < n; i++) {
+      if (lage[i] < 0) continue;
+      let bk = 4; for (let k = 0; k < 9; k++) if (werte[k][i] < werte[bk][i]) bk = k;
+      let off = 0;
+      if (bk > 0 && bk < 8) { const a = werte[bk - 1][i], b = werte[bk][i], c = werte[bk + 1][i], den = a - 2 * b + c; if (den > 1e-9) off = Math.max(-0.5, Math.min(0.5, 0.5 * (a - c) / den)); }
+      lage[i] = Math.max(0, Math.min(D - 1, lage[i] + ((bk - 4) + off) / 4 * weite)); alle[i] = lage[i]; kb[i] = werte[bk][i];
+    }
+  });
+  const tiefe = new Float32Array(n), guete = new Float32Array(n), maxK = opt.maxKosten || 0.45;
+  for (let i = 0; i < n; i++) { if (lage[i] < 0 || kb[i] > maxK) continue; tiefe[i] = tiefeVon(lage[i]); guete[i] = 1 - kb[i]; }
   // 3x3-Median gegen Ausreißer
   const gef = new Float32Array(n), puf = [];
   for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
@@ -802,7 +831,7 @@ function tiefePruefen(ref, nachbarn, minK, tol) {
 }
 // ---------- Oberfläche: Tiefenkarten in ein Volumen verrechnen (TSDF) und Dreiecksnetz erzeugen ----------
 // g: { o:[x,y,z], v: Voxelgröße, nx, ny, nz } im Anzeige-System; ansichten: Tiefenkarten mit R, t (Anzeige → Kamera, Kameraeinheiten), skala s
-function tsdfScheibe(g, zA, zB, ansichten, trunkAnz, skala) {
+function tsdfScheibe(g, zA, zB, ansichten, trunkAnz, skala, qref) {
   const nx = g.nx, ny = g.ny, nzS = zB - zA, N = nx * ny * nzS, T = new Float32Array(N), W = new Float32Array(N), Fr = new Float32Array(N), Fg = new Float32Array(N), Fb = new Float32Array(N), Cn = new Float32Array(N);
   const trunk = trunkAnz / skala;
   ansichten.forEach(function (a) {
@@ -820,7 +849,7 @@ function tsdfScheibe(g, zA, zB, ansichten, trunkAnz, skala) {
           if (u < 0 || v < 0 || u >= w || v >= h) continue;
           const p = v * w + u, d = tf[p]; if (!d) continue;
           const sdf = d - a2; if (sdf < -trunk) continue;
-          const wert = Math.min(1, sdf / trunk), i = basis + x, ww = sdf > trunk ? 0.3 : 1;
+          const q = f / (a2 * qref), wert = Math.min(1, sdf / trunk), i = basis + x, ww = (sdf > trunk ? 0.3 : 1) * Math.max(0.15, Math.min(3, q * q));
           T[i] += wert * ww; W[i] += ww;
           if (sdf < trunk) { Fr[i] += fa[3 * p]; Fg[i] += fa[3 * p + 1]; Fb[i] += fa[3 * p + 2]; Cn[i]++; }
         }
@@ -925,6 +954,67 @@ function netzAufraeumen(m, anteil, glatt) {
   for (let i = 0; i < n; i++) { const l = Math.hypot(N[3 * i], N[3 * i + 1], N[3 * i + 2]) || 1; N[3 * i] /= l; N[3 * i + 1] /= l; N[3 * i + 2] /= l; }
   return { pos: P, farbe: Uint8Array.from(farbe), dreiecke: D, normalen: N };
 }
+// ---------- Textur: welche Ansicht sieht welches Dreieck am besten ----------
+// Netz einmal ablegen: Schwerpunkte und Normalen der Dreiecke
+function netzVorbereiten(pos, dreiecke) {
+  const nT = dreiecke.length / 3, S = new Float32Array(nT * 3), N = new Float32Array(nT * 3);
+  for (let t = 0; t < nT; t++) {
+    const a = 3 * dreiecke[3 * t], b = 3 * dreiecke[3 * t + 1], c = 3 * dreiecke[3 * t + 2];
+    const e1 = [pos[b] - pos[a], pos[b + 1] - pos[a + 1], pos[b + 2] - pos[a + 2]], e2 = [pos[c] - pos[a], pos[c + 1] - pos[a + 1], pos[c + 2] - pos[a + 2]], q = v3kreuz(e1, e2), l = v3len(q) || 1;
+    for (let k = 0; k < 3; k++) { S[3 * t + k] = (pos[a + k] + pos[b + k] + pos[c + k]) / 3; N[3 * t + k] = q[k] / l; }
+  }
+  return { pos: pos, dreiecke: dreiecke, S: S, N: N, nT: nT };
+}
+// Für eine Liste von Ansichten: je Dreieck die drei besten (Ansicht, Wert); Sichtbarkeit über einen kleinen Tiefenpuffer
+function texturSicht(netz, ansichten) {
+  const P = netz.pos, D = netz.dreiecke, nV = P.length / 3, nT = netz.nT;
+  const bi = [new Int32Array(nT).fill(-1), new Int32Array(nT).fill(-1), new Int32Array(nT).fill(-1)], bw = [new Float32Array(nT), new Float32Array(nT), new Float32Array(nT)];
+  const U = new Float32Array(nV), V = new Float32Array(nV), Z = new Float32Array(nV);
+  ansichten.forEach(function (a) {
+    const R = a.R, t = a.t, f = a.f, k1 = a.k1 || 0, w = a.w, h = a.h, C = v3mal(m3v(m3t(R), t), -1);
+    const zs = Math.min(1, 512 / w), ZW = Math.max(8, Math.round(w * zs)), ZH = Math.max(8, Math.round(h * zs)), zb = new Float32Array(ZW * ZH).fill(Infinity);
+    for (let i = 0; i < nV; i++) {
+      const x = P[3 * i], y = P[3 * i + 1], z = P[3 * i + 2];
+      const X = R[0] * x + R[1] * y + R[2] * z + t[0], Y = R[3] * x + R[4] * y + R[5] * z + t[1], W = R[6] * x + R[7] * y + R[8] * z + t[2];
+      Z[i] = W; if (W <= 1e-9) continue;
+      const xn = X / W, yn = Y / W, d = 1 + k1 * (xn * xn + yn * yn);
+      U[i] = f * xn * d + a.cx; V[i] = f * yn * d + a.cy;
+    }
+    // Tiefenpuffer füllen
+    for (let tr = 0; tr < nT; tr++) {
+      const i0 = D[3 * tr], i1 = D[3 * tr + 1], i2 = D[3 * tr + 2];
+      if (Z[i0] <= 1e-9 || Z[i1] <= 1e-9 || Z[i2] <= 1e-9) continue;
+      const x0 = U[i0] * zs, y0 = V[i0] * zs, x1 = U[i1] * zs, y1 = V[i1] * zs, x2 = U[i2] * zs, y2 = V[i2] * zs;
+      let xa = Math.max(0, Math.floor(Math.min(x0, x1, x2))), xb = Math.min(ZW - 1, Math.ceil(Math.max(x0, x1, x2))), ya = Math.max(0, Math.floor(Math.min(y0, y1, y2))), yb = Math.min(ZH - 1, Math.ceil(Math.max(y0, y1, y2)));
+      if (xa > xb || ya > yb) continue;
+      const den = (y1 - y2) * (x0 - x2) + (x2 - x1) * (y0 - y2); if (Math.abs(den) < 1e-12) continue;
+      if ((xb - xa) * (yb - ya) > 40000) continue; // riesige Dreiecke dicht vor der Kamera
+      for (let py = ya; py <= yb; py++) for (let px = xa; px <= xb; px++) {
+        const sx = px + 0.5, sy = py + 0.5, l0 = ((y1 - y2) * (sx - x2) + (x2 - x1) * (sy - y2)) / den, l1 = ((y2 - y0) * (sx - x2) + (x0 - x2) * (sy - y2)) / den, l2 = 1 - l0 - l1;
+        if (l0 < -0.01 || l1 < -0.01 || l2 < -0.01) continue;
+        const zz = l0 * Z[i0] + l1 * Z[i1] + l2 * Z[i2], k = py * ZW + px; if (zz < zb[k]) zb[k] = zz;
+      }
+    }
+    // Wertung je Dreieck
+    const rand = 2;
+    for (let tr = 0; tr < nT; tr++) {
+      const i0 = D[3 * tr], i1 = D[3 * tr + 1], i2 = D[3 * tr + 2];
+      if (Z[i0] <= 1e-9 || Z[i1] <= 1e-9 || Z[i2] <= 1e-9) continue;
+      if (Math.min(U[i0], U[i1], U[i2]) < rand || Math.min(V[i0], V[i1], V[i2]) < rand || Math.max(U[i0], U[i1], U[i2]) > w - 1 - rand || Math.max(V[i0], V[i1], V[i2]) > h - 1 - rand) continue;
+      const sx = netz.S[3 * tr], sy = netz.S[3 * tr + 1], sz = netz.S[3 * tr + 2], dx = C[0] - sx, dy = C[1] - sy, dz = C[2] - sz, dl = Math.hypot(dx, dy, dz) || 1;
+      const cos = (netz.N[3 * tr] * dx + netz.N[3 * tr + 1] * dy + netz.N[3 * tr + 2] * dz) / dl;
+      if (cos < 0.2) continue;
+      const zc = (Z[i0] + Z[i1] + Z[i2]) / 3, cu = Math.min(ZW - 1, Math.max(0, Math.floor((U[i0] + U[i1] + U[i2]) / 3 * zs))), cv = Math.min(ZH - 1, Math.max(0, Math.floor((V[i0] + V[i1] + V[i2]) / 3 * zs)));
+      if (zc > zb[cv * ZW + cu] * 1.015 + 1e-9) continue; // verdeckt
+      const q = f / zc, wert = cos * q * q;
+      // in die Liste der drei besten einsortieren
+      if (wert > bw[0][tr]) { bw[2][tr] = bw[1][tr]; bi[2][tr] = bi[1][tr]; bw[1][tr] = bw[0][tr]; bi[1][tr] = bi[0][tr]; bw[0][tr] = wert; bi[0][tr] = a.i; }
+      else if (wert > bw[1][tr]) { bw[2][tr] = bw[1][tr]; bi[2][tr] = bi[1][tr]; bw[1][tr] = wert; bi[1][tr] = a.i; }
+      else if (wert > bw[2][tr]) { bw[2][tr] = wert; bi[2][tr] = a.i; }
+    }
+  });
+  return { i0: bi[0], i1: bi[1], i2: bi[2], w0: bw[0], w1: bw[1], w2: bw[2] };
+}
 // ---------- Arbeitsfaden: Aufträge entgegennehmen ----------
 const ablage = { merkmale: {}, K: {} };
 self.onmessage = function (ev) {
@@ -957,8 +1047,14 @@ self.onmessage = function (ev) {
       erg = tiefenkarte(a.ref, a.quellen, a.opt, melden); transfer = [erg.tiefe.buffer, erg.guete.buffer];
     } else if (a.art === 'pruefen') {
       erg = tiefePruefen(a.ref, a.nachbarn, a.minK, a.tol); transfer = [erg.tiefe.buffer, erg.zaehl.buffer];
+    } else if (a.art === 'netzAblegen') {
+      ablage.netz = netzVorbereiten(a.pos, a.dreiecke); erg = true;
+    } else if (a.art === 'textursicht') {
+      erg = texturSicht(ablage.netz, a.ansichten); transfer = [erg.i0.buffer, erg.i1.buffer, erg.i2.buffer, erg.w0.buffer, erg.w1.buffer, erg.w2.buffer];
+    } else if (a.art === 'ansichten') {
+      ablage.ansichten = a.ansichten; erg = true;
     } else if (a.art === 'tsdf') {
-      erg = tsdfScheibe(a.g, a.zA, a.zB, a.ansichten, a.trunk, a.skala); transfer = [erg.T.buffer, erg.W.buffer, erg.F.buffer];
+      erg = tsdfScheibe(a.g, a.zA, a.zB, ablage.ansichten, a.trunk, a.skala, a.qref || 1); transfer = [erg.T.buffer, erg.W.buffer, erg.F.buffer];
     } else if (a.art === 'netz') {
       const roh = netzAusVolumen(a.g, a.T, a.W, a.F, a.minW);
       melden({ text: (roh.dreiecke.length / 3) + ' Dreiecke, räume auf …' });

@@ -86,7 +86,7 @@
   <main class="seite">
     <section class="tafel">
       <h1><span class="unterstrichen">Photogrammetrie</span>: 3D-Modell aus Fotos</h1>
-      <p>Fotos eines Hauses, Daches oder Gegenstands laden – das Programm sucht gleiche Punkte in den Bildern, berechnet daraus die Lage jeder Kamera, eine dichte Punktwolke und eine farbige Oberfläche. Mit GPS aus Drohnen- oder Handyfotos oder einer gemessenen Referenzstrecke hat das Modell echte Maße: Strecken messen, Dachflächen mit Neigung, Ausrichtung und Hindernissen erfassen und direkt an den PV-Dachplaner oder als JSON an Auslegungsrechner für Montagesysteme geben.</p>
+      <p>Fotos eines Hauses, Daches oder Gegenstands laden – das Programm sucht gleiche Punkte in den Bildern, berechnet daraus die Lage jeder Kamera, eine dichte Punktwolke und eine Oberfläche mit Fototextur in voller Fotoauflösung. Mit GPS aus Drohnen- oder Handyfotos oder einer gemessenen Referenzstrecke hat das Modell echte Maße: Strecken messen, Dachflächen mit Neigung, Ausrichtung und Hindernissen erfassen und direkt an den PV-Dachplaner oder als JSON an Auslegungsrechner für Montagesysteme geben.</p>
       <p class="hilfe">Alles läuft in diesem Browser. Die Fotos werden nicht hochgeladen. Rechenzeit je nach Gerät und Fotozahl: einige Sekunden bis einige Minuten.</p>
     </section>
 
@@ -128,6 +128,7 @@
       </div>
       <div class="pg-sicht">
         <label><input type="checkbox" id="pg-sicht-netz" checked> Netz</label>
+        <label><input type="checkbox" id="pg-sicht-textur" checked> Fototextur</label>
         <label><input type="checkbox" id="pg-sicht-dicht" checked> dichte Punkte</label>
         <label><input type="checkbox" id="pg-sicht-duenn"> Verknüpfungspunkte</label>
         <label><input type="checkbox" id="pg-sicht-kameras" checked> Kameras</label>
@@ -163,10 +164,10 @@
             <div class="pg-knoepfe"><label>Breitengrad <input type="text" id="pg-lat" inputmode="decimal"></label><label>Längengrad <input type="text" id="pg-lng" inputmode="decimal"></label></div>
           </div>
           <div class="pg-tafel" id="pg-tafel-export" hidden>
-            <div class="pg-knoepfe"><button type="button" class="knopf" data-export="obj">Netz OBJ</button><button type="button" class="knopf" data-export="ply">Netz PLY</button><button type="button" class="knopf" data-export="stl">Netz STL</button><button type="button" class="knopf" data-export="glb">Netz GLB</button><button type="button" class="knopf" data-export="punkte">Punktwolke PLY</button><button type="button" class="knopf" id="pg-mass-csv">Maße CSV</button></div>
-            <p class="hilfe">Koordinaten in Metern (bei Maßstab aus GPS oder Referenz), x nach Osten, y nach Norden, z Höhe über Gelände. GLB mit y nach oben.</p>
+            <div class="pg-knoepfe"><button type="button" class="knopf" data-export="obj">Netz OBJ (mit Textur als ZIP)</button><button type="button" class="knopf" data-export="ply">Netz PLY</button><button type="button" class="knopf" data-export="stl">Netz STL</button><button type="button" class="knopf" data-export="glb">Netz GLB mit Textur</button><button type="button" class="knopf" data-export="punkte">Punktwolke PLY</button><button type="button" class="knopf" id="pg-mass-csv">Maße CSV</button></div>
+            <p class="hilfe">Koordinaten in Metern (bei Maßstab aus GPS oder Referenz), x nach Osten, y nach Norden, z Höhe über Gelände. GLB mit y nach oben. OBJ und GLB enthalten die Fototextur, PLY und STL nur Farbe bzw. Form.</p>
             <h3>Netz neu berechnen</h3>
-            <div class="pg-knoepfe"><label>Auflösung <select id="pg-aufloesung"><option value="128">grob (128)</option><option value="192" selected>mittel (192)</option><option value="256">fein (256)</option><option value="320">sehr fein (320)</option></select></label><label>Glättung <select id="pg-glatt"><option value="0">keine</option><option value="2" selected>leicht</option><option value="5">stark</option></select></label></div>
+            <div class="pg-knoepfe"><label>Feinheit <select id="pg-aufloesung"><option value="3">grob (3 Mio. Voxel)</option><option value="10" selected>mittel (10 Mio.)</option><option value="24">fein (24 Mio.)</option><option value="48">sehr fein (48 Mio., viel Speicher)</option></select></label><label>Glättung <select id="pg-glatt"><option value="0">keine</option><option value="2" selected>leicht</option><option value="5">stark</option></select></label></div>
             <div class="pg-schieber"><span>Bereich</span><span>von</span><span>bis</span>
               <span>Ost–West</span><input type="range" id="pg-x0" min="0" max="100" value="0" aria-label="Bereich x von"><input type="range" id="pg-x1" min="0" max="100" value="100" aria-label="Bereich x bis">
               <span>Süd–Nord</span><input type="range" id="pg-y0" min="0" max="100" value="0" aria-label="Bereich y von"><input type="range" id="pg-y1" min="0" max="100" value="100" aria-label="Bereich y bis">
@@ -208,7 +209,8 @@
         <details><summary>Warum werden nicht alle Fotos ausgerichtet?</summary><p>Ein Foto braucht genug gemeinsame Punkte mit den anderen. Fehlende Überlappung, starke Unschärfe, Gegenlicht oder einfarbige Flächen verhindern das. Zusätzliche Fotos zwischen den Lücken helfen.</p></details>
         <details><summary>Werden meine Fotos hochgeladen?</summary><p>Nein. Alles läuft lokal im Browser, auch ohne Internet, wenn die Seite einmal geladen war.</p></details>
         <details><summary>Wie komme ich zum PV-Plan?</summary><p>Im Reiter „Dach und PV“ die Dachflächen und Hindernisse einzeichnen und „Im PV-Dachplaner öffnen“ wählen. Der Planer übernimmt Form, Neigung, Ausrichtung und Hindernisse. Alternativ entsteht eine JSON-Datei im Austauschformat für Auslegungsrechner von Montagesystemen.</p></details>
-        <details><summary>Welche Formate gibt es?</summary><p>Netze als OBJ (mit Eckfarben), PLY, STL für den 3D-Druck und GLB für Betrachter und 3D-Programme, die Punktwolke als PLY und alle Maße als CSV.</p></details>
+        <details><summary>Wie wird das Modell detailreicher?</summary><p>Qualität „Hoch“ wählen und mehr, nähere Fotos aufnehmen. Bei großen Aufnahmen (ganze Straße) unter „Export“ den Bereich auf das Gebäude begrenzen und das Netz neu berechnen: Die gleiche Voxelzahl verteilt sich dann auf die kleinere Fläche. Die Textur kommt immer aus den Originalfotos, je Dreieck aus dem Foto mit der nächsten, möglichst senkrechten Sicht.</p></details>
+        <details><summary>Welche Formate gibt es?</summary><p>Netze als OBJ mit Fototextur (ZIP mit OBJ, MTL und JPG), GLB mit eingebetteter Textur für Betrachter und 3D-Programme, PLY mit Eckfarben und STL für den 3D-Druck, die Punktwolke als PLY und alle Maße als CSV.</p></details>
         <details><summary>Was ist das Beispiel?</summary><p>Ein künstlich gerendertes Haus mit Satteldach (38°), Dachfenstern, Schornstein und Garage, aufgenommen von einer gedachten Drohne mit GPS. Damit lässt sich der ganze Ablauf ohne eigene Fotos ausprobieren und das Ergebnis mit den bekannten Maßen vergleichen.</p></details>
       </div>
     </section>
@@ -224,9 +226,9 @@
     const kn = function (tag, klasse, txt) { const e = document.createElement(tag); if (klasse) e.className = klasse; if (txt !== undefined) e.textContent = txt; return e; };
     const zahl = function (v, n) { return Number(v).toLocaleString('de-DE', { maximumFractionDigits: n === undefined ? 2 : n, minimumFractionDigits: 0 }); };
     const STUFEN = {
-      schnell: { name: 'Schnell', feat: 1000, nMax: 2500, grob: 300, dicht: 360, ebenen: 48, quellen: 2, voxel: 128 },
-      normal: { name: 'Normal', feat: 1400, nMax: 4000, grob: 400, dicht: 480, ebenen: 64, quellen: 3, voxel: 192 },
-      hoch: { name: 'Hoch', feat: 2000, nMax: 6000, grob: 500, dicht: 640, ebenen: 96, quellen: 4, voxel: 256 }
+      schnell: { name: 'Schnell', feat: 1000, nMax: 2500, grob: 300, dicht: 360, ebenen: 48, quellen: 2, budget: 3, atlas: 2048 },
+      normal: { name: 'Normal', feat: 1400, nMax: 4000, grob: 400, dicht: 640, ebenen: 80, quellen: 3, budget: 10, atlas: 4096 },
+      hoch: { name: 'Hoch', feat: 2000, nMax: 6000, grob: 500, dicht: 800, ebenen: 96, quellen: 4, budget: 24, atlas: 8192 }
     };
     const MAX_BILDER = 200;
 
@@ -463,7 +465,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
     }
     const fotos = []; // { name, datei | canvas, exif, w0, h0, thumb }
     let rek = null; // Ergebnis der Rekonstruktion
-    const SCHRITTE = [['merkmale', 'Merkmale finden'], ['paare', 'Bildpaare zuordnen'], ['kameras', 'Kameras ausrichten und Bündelausgleich'], ['tiefe', 'Tiefenkarten'], ['pruefen', 'Tiefen gegenseitig prüfen'], ['netz', 'Oberfläche erzeugen']];
+    const SCHRITTE = [['merkmale', 'Merkmale finden'], ['paare', 'Bildpaare zuordnen'], ['kameras', 'Kameras ausrichten und Bündelausgleich'], ['tiefe', 'Tiefenkarten'], ['pruefen', 'Tiefen gegenseitig prüfen'], ['netz', 'Oberfläche erzeugen'], ['textur', 'Textur aus den Fotos']];
     function schrittSetzen(k, anteil, text) {
       const li = document.querySelector('#pg-schritte [data-schritt="' + k + '"]'); if (!li) return;
       li.className = anteil >= 1 ? 'fertig' : anteil > 0 || text ? 'laeuft' : '';
@@ -547,7 +549,172 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       yield dichtBerechnen(st);
       // 5 Netz
       yield netzBerechnen();
+      // 6 Textur
+      yield texturBerechnen();
       protokoll('Fertig nach ' + Math.round((Date.now() - t0) / 1000) + ' s');
+    }); }
+    // ---------- Textur aus den Originalfotos ----------
+    // Je Dreieck die Ansicht mit der feinsten, möglichst senkrechten Sicht; zusammenhängende Stücke werden aus dem Foto in einen Atlas kopiert.
+    function texturBerechnen() { return lauf(function* () {
+      const m = rek.netz; rek.textur = null; ansicht.texturSetzen(null);
+      if (!m || !m.dreiecke.length) return;
+      schrittSetzen('textur', 0.01, 'Sichtbarkeit');
+      const nT = m.dreiecke.length / 3, nV = m.pos.length / 3, N = fotos.length;
+      const reg = []; for (let i = 0; i < N; i++) if (kamera(i).reg) reg.push(i);
+      const kam = {}; reg.forEach(function (i) { const fb = rek.bilder[i], gr = rek.sfm.gruppen[fb.gruppe], k = kamera(i); kam[i] = { i: i, R: k.R, t: k.t, f: gr.f, k1: gr.k1 || 0, cx: fb.cx, cy: fb.cy, w: fb.w, h: fb.h }; });
+      yield anAlle({ art: 'netzAblegen', pos: m.pos, dreiecke: m.dreiecke });
+      const pakete = []; for (let k = 0; k < reg.length; k += 3) pakete.push(reg.slice(k, k + 3));
+      const B = [new Int32Array(nT).fill(-1), new Int32Array(nT).fill(-1), new Int32Array(nT).fill(-1)], BW = [new Float32Array(nT), new Float32Array(nT), new Float32Array(nT)];
+      let fertig = 0;
+      yield parallel(pakete, function (pk) {
+        return auftrag({ art: 'textursicht', ansichten: pk.map(function (i) { return kam[i]; }) }).then(function (r) {
+          const li = [r.i0, r.i1, r.i2], lw = [r.w0, r.w1, r.w2];
+          for (let t = 0; t < nT; t++) for (let q = 0; q < 3; q++) {
+            const w = lw[q][t]; if (!(w > BW[2][t])) break;
+            const v = li[q][t];
+            if (w > BW[0][t]) { BW[2][t] = BW[1][t]; B[2][t] = B[1][t]; BW[1][t] = BW[0][t]; B[1][t] = B[0][t]; BW[0][t] = w; B[0][t] = v; }
+            else if (w > BW[1][t]) { BW[2][t] = BW[1][t]; B[2][t] = B[1][t]; BW[1][t] = w; B[1][t] = v; }
+            else { BW[2][t] = w; B[2][t] = v; }
+          }
+          fertig++; schrittSetzen('textur', 0.6 * fertig / pakete.length, 'Sichtbarkeit ' + Math.min(reg.length, fertig * 3) + ' von ' + reg.length);
+        });
+      });
+      // Nachbarn über gemeinsame Kanten
+      const D = m.dreiecke, kanten = new Map(), nb = new Int32Array(nT * 3).fill(-1);
+      for (let t = 0; t < nT; t++) for (let k = 0; k < 3; k++) {
+        const a = D[3 * t + k], b = D[3 * t + (k + 1) % 3], key = a < b ? a * nV + b : b * nV + a, o = kanten.get(key);
+        if (o === undefined) kanten.set(key, 3 * t + k); else { nb[3 * t + k] = Math.floor(o / 3); nb[o] = t; }
+      }
+      kanten.clear();
+      // Wahl glätten (ICM): Güte der Ansicht gegen Wechsel zum Nachbarn abwägen – weniger, größere Stücke, weniger Nähte
+      const lab = Int32Array.from(B[0]), lam = 0.7;
+      for (let it = 0; it < 10; it++) {
+        let wechsel = 0;
+        for (let t = 0; t < nT; t++) {
+          if (B[0][t] < 0) continue;
+          let bestL = lab[t], bestE = Infinity;
+          for (let q = 0; q < 3; q++) {
+            const c = B[q][t]; if (c < 0) break;
+            let e = Math.log(BW[0][t] / BW[q][t]);
+            for (let k = 0; k < 3; k++) { const v = nb[3 * t + k]; if (v >= 0 && lab[v] !== c) e += lam; }
+            if (e < bestE - 1e-9) { bestE = e; bestL = c; }
+          }
+          if (bestL !== lab[t]) { lab[t] = bestL; wechsel++; }
+        }
+        if (!wechsel) break;
+      }
+      // kleine Stücke und Dreiecke ohne Ansicht dem größten angrenzenden Stück zuschlagen, wenn dessen Foto sie von vorn zeigt
+      const Pm = m.pos, zentren = {};
+      reg.forEach(function (i) { const k = kam[i]; zentren[i] = v3mal(m3v(m3t(k.R), k.t), -1); });
+      function zeigt(t, c) {
+        const k = kam[c], R = k.R, tt = k.t, a = 3 * D[3 * t], b = 3 * D[3 * t + 1], cc = 3 * D[3 * t + 2];
+        for (let e = 0; e < 3; e++) {
+          const v = 3 * D[3 * t + e], X = R[0] * Pm[v] + R[1] * Pm[v + 1] + R[2] * Pm[v + 2] + tt[0], Y = R[3] * Pm[v] + R[4] * Pm[v + 1] + R[5] * Pm[v + 2] + tt[1], Z = R[6] * Pm[v] + R[7] * Pm[v + 1] + R[8] * Pm[v + 2] + tt[2];
+          if (Z <= 1e-9) return false; const xn = X / Z, yn = Y / Z, d = 1 + k.k1 * (xn * xn + yn * yn), u = k.f * xn * d + k.cx, w = k.f * yn * d + k.cy;
+          if (u < 1 || w < 1 || u > k.w - 2 || w > k.h - 2) return false;
+        }
+        const nrm = v3kreuz([Pm[b] - Pm[a], Pm[b + 1] - Pm[a + 1], Pm[b + 2] - Pm[a + 2]], [Pm[cc] - Pm[a], Pm[cc + 1] - Pm[a + 1], Pm[cc + 2] - Pm[a + 2]]), C = zentren[c];
+        return v3dot(nrm, v3sub(C, [Pm[a], Pm[a + 1], Pm[a + 2]])) > 0;
+      }
+      for (let runde = 0; runde < 3; runde++) {
+        const st = new Int32Array(nT).fill(-1), gr = [], stp = [];
+        for (let t = 0; t < nT; t++) {
+          if (st[t] >= 0) continue; const id = gr.length; let n = 0; st[t] = id; stp.push(t);
+          while (stp.length) { const u = stp.pop(); n++; for (let k = 0; k < 3; k++) { const v = nb[3 * u + k]; if (v >= 0 && st[v] < 0 && lab[v] === lab[t]) { st[v] = id; stp.push(v); } } }
+          gr.push(n);
+        }
+        let geaendert = 0;
+        const liste = []; for (let t = 0; t < nT; t++) if (gr[st[t]] < 30 || lab[t] < 0) liste.push(t);
+        // je kleinem Stück: angrenzende Ansichten nach Größe des Nachbarstücks
+        const proStueck = new Map(); liste.forEach(function (t) { const id = st[t]; let l = proStueck.get(id); if (!l) { l = []; proStueck.set(id, l); } l.push(t); });
+        proStueck.forEach(function (tris) {
+          const kand = new Map();
+          tris.forEach(function (t) { for (let k = 0; k < 3; k++) { const v = nb[3 * t + k]; if (v < 0 || st[v] === st[t] || lab[v] < 0) continue; kand.set(lab[v], Math.max(kand.get(lab[v]) || 0, gr[st[v]])); } });
+          const ks = []; kand.forEach(function (g, c) { if (g > tris.length) ks.push([c, g]); }); ks.sort(function (x, y) { return y[1] - x[1]; });
+          for (let q = 0; q < ks.length; q++) { const c = ks[q][0]; if (tris.every(function (t) { return zeigt(t, c); })) { tris.forEach(function (t) { lab[t] = c; }); geaendert++; break; } }
+        });
+        if (!geaendert) break;
+      }
+      schrittSetzen('textur', 0.65, 'Stücke bilden');
+      // zusammenhängende Stücke gleicher Ansicht
+      const stueck = new Int32Array(nT).fill(-1), stuecke = [], stapel = [];
+      for (let t = 0; t < nT; t++) {
+        if (stueck[t] >= 0 || lab[t] < 0) continue;
+        const s = { i: lab[t], dr: [] }; stueck[t] = stuecke.length; stapel.push(t);
+        while (stapel.length) { const u = stapel.pop(); s.dr.push(u); for (let k = 0; k < 3; k++) { const v = nb[3 * u + k]; if (v >= 0 && stueck[v] < 0 && lab[v] === s.i) { stueck[v] = stueck[t]; stapel.push(v); } } }
+        stuecke.push(s);
+      }
+      // Projektion in Originalpixel, Rechteck je Stück
+      const P = m.pos, rand = 3;
+      stuecke.forEach(function (s) {
+        const k = kam[s.i], sk = (fotos[s.i].w0 || k.w) / k.w, R = k.R, tt = k.t;
+        let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity; const uv = new Float32Array(s.dr.length * 6);
+        s.dr.forEach(function (t, j) {
+          for (let e = 0; e < 3; e++) {
+            const v = 3 * D[3 * t + e], X = R[0] * P[v] + R[1] * P[v + 1] + R[2] * P[v + 2] + tt[0], Y = R[3] * P[v] + R[4] * P[v + 1] + R[5] * P[v + 2] + tt[1], Z = R[6] * P[v] + R[7] * P[v + 1] + R[8] * P[v + 2] + tt[2];
+            const xn = X / Z, yn = Y / Z, d = 1 + k.k1 * (xn * xn + yn * yn), u = ((k.f * xn * d + k.cx) + 0.5) * sk - 0.5, w = ((k.f * yn * d + k.cy) + 0.5) * sk - 0.5;
+            uv[6 * j + 2 * e] = u; uv[6 * j + 2 * e + 1] = w;
+            if (u < x0) x0 = u; if (u > x1) x1 = u; if (w < y0) y0 = w; if (w > y1) y1 = w;
+          }
+        });
+        s.uv = uv; s.sx = Math.floor(x0) - rand; s.sy = Math.floor(y0) - rand; s.sw = Math.ceil(x1) + rand - s.sx; s.sh = Math.ceil(y1) + rand - s.sy;
+      });
+      // Atlas packen (Regale), Maßstab so, dass alles hineinpasst
+      const maxT = ansicht.maxTextur(), A = Math.min(maxT, rek.stufe.atlas || 4096);
+      let flaeche = 0; stuecke.forEach(function (s) { flaeche += s.sw * s.sh; });
+      const ohne = []; for (let t = 0; t < nT; t++) if (lab[t] < 0) ohne.push(t);
+      const reihe = stuecke.map(function (s, k) { return k; }).sort(function (a, b) { return stuecke[b].sh - stuecke[a].sh; });
+      let sig = Math.min(1, Math.sqrt(0.82 * A * (A - 70) / Math.max(1, flaeche))), passt = false;
+      for (let versuch = 0; versuch < 40 && !passt; versuch++) {
+        let x = 0, y = 70, zeile = 0; passt = true;
+        for (let r = 0; r < reihe.length; r++) {
+          const s = stuecke[reihe[r]], w = Math.ceil(s.sw * sig) + 2, h = Math.ceil(s.sh * sig) + 2;
+          if (w > A) { passt = false; break; }
+          if (x + w > A) { x = 0; y += zeile; zeile = 0; }
+          if (y + h > A) { passt = false; break; }
+          s.dx = x + 1; s.dy = y + 1; x += w; if (h > zeile) zeile = h;
+        }
+        if (!passt) sig *= 0.93;
+      }
+      schrittSetzen('textur', 0.7, 'Fotos kopieren');
+      const atlas = document.createElement('canvas'); atlas.width = A; atlas.height = A;
+      const cx = atlas.getContext('2d'); cx.fillStyle = '#808080'; cx.fillRect(0, 0, A, A); cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high';
+      // Farbtafel (64 × 64) für Dreiecke ohne Ansicht: Farbe aus den Ecken, 4 Bit je Kanal
+      for (let k = 0; k < 4096; k++) { cx.fillStyle = 'rgb(' + ((k >> 8) * 17) + ',' + (((k >> 4) & 15) * 17) + ',' + ((k & 15) * 17) + ')'; cx.fillRect(k & 63, k >> 6, 1, 1); }
+      const proBild = {}; stuecke.forEach(function (s) { (proBild[s.i] = proBild[s.i] || []).push(s); });
+      const bilderListe = Object.keys(proBild); let kopiert = 0;
+      for (let b = 0; b < bilderListe.length; b++) {
+        const i = Number(bilderListe[b]), bild = yield bildLaden(fotos[i]);
+        proBild[i].forEach(function (s) {
+          const sx = Math.max(0, s.sx), sy = Math.max(0, s.sy), ex = Math.min(bild.width, s.sx + s.sw), ey = Math.min(bild.height, s.sy + s.sh);
+          if (ex > sx && ey > sy) cx.drawImage(bild, sx, sy, ex - sx, ey - sy, s.dx + (sx - s.sx) * sig, s.dy + (sy - s.sy) * sig, (ex - sx) * sig, (ey - sy) * sig);
+        });
+        if (bild.close) bild.close();
+        kopiert++; schrittSetzen('textur', 0.7 + 0.28 * kopiert / bilderListe.length, 'Fotos kopieren ' + kopiert + ' von ' + bilderListe.length);
+      }
+      // Ecken je Stück vervielfachen (eigene Texturkoordinaten)
+      const nEcken = nT * 3, pos = new Float32Array(nEcken * 3), nor = new Float32Array(nEcken * 3), uvs = new Float32Array(nEcken * 2), idx = new Uint32Array(nEcken);
+      let o = 0;
+      const setze = function (v, u, w) { pos[3 * o] = P[3 * v]; pos[3 * o + 1] = P[3 * v + 1]; pos[3 * o + 2] = P[3 * v + 2]; nor[3 * o] = m.normalen[3 * v]; nor[3 * o + 1] = m.normalen[3 * v + 1]; nor[3 * o + 2] = m.normalen[3 * v + 2]; uvs[2 * o] = u / A; uvs[2 * o + 1] = w / A; idx[o] = o; o++; };
+      stuecke.forEach(function (s) { s.dr.forEach(function (t, j) { for (let e = 0; e < 3; e++) setze(D[3 * t + e], s.dx + (s.uv[6 * j + 2 * e] - s.sx) * sig, s.dy + (s.uv[6 * j + 2 * e + 1] - s.sy) * sig); }); });
+      ohne.forEach(function (t) {
+        let r = 0, g = 0, bb = 0; for (let e = 0; e < 3; e++) { const v = D[3 * t + e]; r += m.farbe[3 * v]; g += m.farbe[3 * v + 1]; bb += m.farbe[3 * v + 2]; }
+        const k = (Math.round(r / 3 / 17) << 8) | (Math.round(g / 3 / 17) << 4) | Math.round(bb / 3 / 17);
+        for (let e = 0; e < 3; e++) setze(D[3 * t + e], (k & 63) + 0.5, (k >> 6) + 0.5);
+      });
+      // gemeinsame Ecken innerhalb eines Stücks wieder zusammenlegen (gleiche Lage und gleiche Texturkoordinate)
+      const zus = new Map(), neu = new Int32Array(nEcken), pp = [], nn = [], uu = [];
+      for (let k = 0; k < nEcken; k++) {
+        const key = pos[3 * k] + ',' + pos[3 * k + 1] + ',' + pos[3 * k + 2] + ',' + uvs[2 * k] + ',' + uvs[2 * k + 1], z = zus.get(key);
+        if (z !== undefined) { neu[k] = z; continue; }
+        const j = pp.length / 3; zus.set(key, j); neu[k] = j; pp.push(pos[3 * k], pos[3 * k + 1], pos[3 * k + 2]); nn.push(nor[3 * k], nor[3 * k + 1], nor[3 * k + 2]); uu.push(uvs[2 * k], uvs[2 * k + 1]);
+      }
+      rek.textur = { pos: Float32Array.from(pp), normalen: Float32Array.from(nn), uv: Float32Array.from(uu), dreiecke: Uint32Array.from(neu), bild: atlas, A: A };
+      ansicht.texturSetzen(rek.textur);
+      const aufl = sig >= 1 ? 'volle Fotoauflösung' : Math.round(sig * 100) + ' % der Fotoauflösung';
+      schrittSetzen('textur', 1, stuecke.length + ' Stücke, ' + aufl);
+      protokoll('Textur: ' + A + ' × ' + A + ' px, ' + stuecke.length + ' Stücke aus ' + bilderListe.length + ' Fotos, ' + aufl + (ohne.length ? ', ' + ohne.length + ' Dreiecke ohne Foto' : ''));
+      ergebnisZeigen('textur');
     }); }
     // Kamera i im Rekonstruktions-System
     function kamera(i) { return rek.sfm.kameras[i]; }
@@ -624,10 +791,22 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       bodenSchaetzen();
       ergebnisZeigen('dicht');
     }); }
+    // Tiefen- und Farbkarte auf höchstens maxB Pixel Breite verkleinern (für das Volumen)
+    function verkleinert(a, maxB) {
+      const s = Math.ceil(a.w / maxB); if (s <= 1) return a;
+      const w = Math.floor(a.w / s), h = Math.floor(a.h / s), tiefe = new Float32Array(w * h), farbe = new Uint8Array(w * h * 3), puf = [];
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        puf.length = 0; let r = 0, gg = 0, b = 0, n = 0;
+        for (let dy = 0; dy < s; dy++) for (let dx = 0; dx < s; dx++) { const k = (y * s + dy) * a.w + x * s + dx, d = a.tiefe[k]; if (d) puf.push(d); r += a.farbe[3 * k]; gg += a.farbe[3 * k + 1]; b += a.farbe[3 * k + 2]; n++; }
+        const o = y * w + x; farbe[3 * o] = r / n; farbe[3 * o + 1] = gg / n; farbe[3 * o + 2] = b / n;
+        if (puf.length * 2 >= s * s) { puf.sort(function (p, q) { return p - q; }); tiefe[o] = puf[puf.length >> 1]; }
+      }
+      return { w: w, h: h, f: a.f / s, cx: (a.cx + 0.5) / s - 0.5, cy: (a.cy + 0.5) / s - 0.5, tiefe: tiefe, farbe: farbe };
+    }
     // Oberfläche aus den geprüften Tiefenkarten (in Anzeige-Koordinaten, Bereich aus Punktwolke oder Zuschnitt)
     function netzBerechnen(opt) { return lauf(function* () {
       opt = opt || {};
-      const st = rek.stufe, T = rek.T, res = opt.voxel || st.voxel;
+      const st = rek.stufe, T = rek.T, budget = (opt.budget || st.budget) * 1e6;
       schrittSetzen('netz', 0.01, 'Volumen aufbauen');
       const A = anzeigePunkte(rek.dicht.pos), n = A.length / 3;
       const bx = [], by = [], bz = []; for (let k = 0; k < n; k += Math.max(1, Math.floor(n / 200000))) { bx.push(A[3 * k]); by.push(A[3 * k + 1]); bz.push(A[3 * k + 2]); }
@@ -635,20 +814,27 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       if (rek.zuschnitt) { lo = rek.zuschnitt.lo.slice(); hi = rek.zuschnitt.hi.slice(); }
       const rand = 0.04 * Math.max(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]);
       lo = v3sub(lo, [rand, rand, rand]); hi = v3add(hi, [rand, rand, rand]);
-      const ausd = Math.max(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]), v = ausd / res;
+      // Voxelgröße aus dem Speicherbudget (flache Gelände bekommen so feinere Voxel)
+      const ausd = Math.max(hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2]), vol = Math.max(1e-12, (hi[0] - lo[0]) * (hi[1] - lo[1]) * (hi[2] - lo[2]));
+      const v = Math.max(Math.cbrt(vol / budget), ausd / 1400);
       const g = { o: lo, v: v, nx: Math.ceil((hi[0] - lo[0]) / v), ny: Math.ceil((hi[1] - lo[1]) / v), nz: Math.ceil((hi[2] - lo[2]) / v) };
       rek.netzBereich = { lo: lo, hi: hi };
       // Ansichten ins Anzeige-System: X_sfm = Qᵀ (X_anz − c) / s
       const Qt = m3t(T.Q), ansichten = rek.ansichten.map(function (a) {
-        const R = m3(a.R, Qt).map(function (x) { return x / T.s; }), t = v3sub(a.t, m3v(R, T.c));
-        return { w: a.w, h: a.h, f: a.f, cx: a.cx, cy: a.cy, R: R, t: t, tiefe: a.tiefe, farbe: a.farbe };
+        const R = m3(a.R, Qt).map(function (x) { return x / T.s; }), t = v3sub(a.t, m3v(R, T.c)), k = verkleinert(a, 512);
+        return { w: k.w, h: k.h, f: k.f, cx: k.cx, cy: k.cy, R: R, t: t, tiefe: k.tiefe, farbe: k.farbe };
       });
+      // Gewicht je Ansicht: nahe Ansichten (feinere Tiefen) zählen mehr
+      const dichte = []; ansichten.forEach(function (a) { for (let k = 0; k < a.tiefe.length; k += 97) if (a.tiefe[k]) dichte.push(a.f / a.tiefe[k]); });
+      const qref = dichte.length ? median(dichte) : 1;
+      // Ansichten einmal je Arbeitsfaden ablegen statt mit jedem Auftrag zu kopieren
+      yield anAlle({ art: 'ansichten', ansichten: ansichten });
       const scheiben = [], dz = Math.ceil(g.nz / (werker.length * 2));
       for (let z = 0; z < g.nz; z += dz) scheiben.push([z, Math.min(g.nz, z + dz)]);
       const Tv = new Float32Array(g.nx * g.ny * g.nz), Wv = new Float32Array(Tv.length), Fv = new Uint8Array(Tv.length * 3);
       let fertig = 0;
       yield parallel(scheiben, function (sc) {
-        return auftrag({ art: 'tsdf', g: g, zA: sc[0], zB: sc[1], ansichten: ansichten, trunk: v * 3, skala: T.s }).then(function (r) {
+        return auftrag({ art: 'tsdf', g: g, zA: sc[0], zB: sc[1], trunk: v * 3, skala: T.s, qref: qref }).then(function (r) {
           const o = sc[0] * g.nx * g.ny; Tv.set(r.T, o); Wv.set(r.W, o); Fv.set(r.F, o * 3);
           fertig++; schrittSetzen('netz', 0.8 * fertig / scheiben.length, 'Volumen ' + g.nx + ' × ' + g.ny + ' × ' + g.nz);
         });
@@ -658,9 +844,9 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       const Qt2 = m3t(T.Q), P = m.pos;
       for (let k = 0; k < P.length; k += 3) { const X = m3v(Qt2, [(P[k] - T.c[0]) / T.s, (P[k + 1] - T.c[1]) / T.s, (P[k + 2] - T.c[2]) / T.s]); P[k] = X[0]; P[k + 1] = X[1]; P[k + 2] = X[2]; }
       const N2 = m.normalen; for (let k = 0; k < N2.length; k += 3) { const X = m3v(Qt2, [N2[k], N2[k + 1], N2[k + 2]]); N2[k] = X[0]; N2[k + 1] = X[1]; N2[k + 2] = X[2]; }
-      rek.netz = m;
+      rek.netz = m; rek.netzVoxel = v; rek.textur = null; ansicht.texturSetzen(null);
       schrittSetzen('netz', 1, zahl(m.dreiecke.length / 3, 0) + ' Dreiecke');
-      protokoll('Netz: ' + zahl(m.dreiecke.length / 3, 0) + ' Dreiecke, Voxelgröße ' + laengeText(v));
+      protokoll('Netz: ' + zahl(m.dreiecke.length / 3, 0) + ' Dreiecke, Voxelgröße ' + laengeText(v) + ', Volumen ' + g.nx + ' × ' + g.ny + ' × ' + g.nz);
       ergebnisZeigen('netz');
     }); }
     // ---------- 3D-Ansicht (WebGL, Z nach oben) ----------
@@ -670,19 +856,22 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       try { gl = cv.getContext('webgl2', { antialias: true, preserveDrawingBuffer: true }); gl2 = !!gl; } catch (e) { gl = null; }
       if (!gl) { try { gl = cv.getContext('webgl', { antialias: true, preserveDrawingBuffer: true }); uint32 = !!(gl && gl.getExtension('OES_element_index_uint')); } catch (e) { gl = null; } }
       const cam = { ziel: [0, 0, 0], gier: -0.6, nick: 0.5, abst: 30, fov: 50 };
-      const ebenen = { punkteD: null, punkteS: null, netz: null };
-      let modell = new Float32Array(16), normMat = new Float32Array(9), mvp = new Float32Array(16), linien = [], marken = [], schrift = [], dpr = 1, punktGroesse = 2, sicht = { kameras: true, duenn: false, dicht: true, netz: true, grau: false };
+      const ebenen = { punkteD: null, punkteS: null, netz: null, textur: null };
+      let modell = new Float32Array(16), normMat = new Float32Array(9), mvp = new Float32Array(16), linien = [], marken = [], schrift = [], dpr = 1, punktGroesse = 2, sicht = { kameras: true, duenn: false, dicht: true, netz: true, grau: false, textur: true };
       function shader(vs, fs) {
         const p = gl.createProgram();
         [[gl.VERTEX_SHADER, vs], [gl.FRAGMENT_SHADER, fs]].forEach(function (s) { const sh = gl.createShader(s[0]); gl.shaderSource(sh, s[1]); gl.compileShader(sh); if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(sh)); gl.attachShader(p, sh); });
         gl.linkProgram(p); if (!gl.getProgramParameter(p, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(p)); return p;
       }
-      let progP = null, progN = null, progL = null;
+      let progP = null, progN = null, progL = null, progT = null;
       if (gl) {
         progP = shader('attribute vec3 p; attribute vec3 c; uniform mat4 mvp; uniform float g; varying vec3 vc; void main(){ gl_Position = mvp * vec4(p,1.0); gl_PointSize = g; vc = c; }',
           'precision mediump float; varying vec3 vc; void main(){ gl_FragColor = vec4(vc,1.0); }');
         progN = shader('attribute vec3 p; attribute vec3 n; attribute vec3 c; uniform mat4 mvp; uniform mat3 nm; varying vec3 vn; varying vec3 vc; void main(){ gl_Position = mvp * vec4(p,1.0); vn = nm * n; vc = c; }',
           'precision mediump float; varying vec3 vn; varying vec3 vc; uniform float grau; void main(){ vec3 n = normalize(vn); float l = 0.38 + 0.5*max(dot(n, normalize(vec3(0.35,-0.45,0.82))),0.0) + 0.17*max(dot(n, normalize(vec3(-0.5,0.6,0.3))),0.0); vec3 f = mix(vc, vec3(0.78), grau); gl_FragColor = vec4(f*(grau>0.5?l:0.55+0.5*l),1.0); }');
+        // texturiertes Netz: Licht steckt schon in den Fotos, daher nur leichte Schattierung
+        progT = shader('attribute vec3 p; attribute vec3 n; attribute vec2 uv; uniform mat4 mvp; uniform mat3 nm; varying vec3 vn; varying vec2 vu; void main(){ gl_Position = mvp * vec4(p,1.0); vn = nm * n; vu = uv; }',
+          'precision mediump float; varying vec3 vn; varying vec2 vu; uniform sampler2D bild; void main(){ vec3 n = normalize(vn); float l = 0.9 + 0.1*max(dot(n, normalize(vec3(0.35,-0.45,0.82))),0.0); gl_FragColor = vec4(texture2D(bild, vu).rgb*l,1.0); }');
         progL = shader('attribute vec3 p; attribute vec3 c; uniform mat4 mvp; varying vec3 vc; void main(){ gl_Position = mvp * vec4(p,1.0); vc = c; }',
           'precision mediump float; varying vec3 vc; void main(){ gl_FragColor = vec4(vc,1.0); }');
       }
@@ -698,6 +887,22 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         let idx = m.dreiecke;
         if (!uint32) idx = Uint16Array.from(m.dreiecke.subarray(0, Math.min(m.dreiecke.length, 65535 * 3)).filter(function (v) { return v < 65535; }));
         ebenen.netz = { p: puffer(m.pos), n: puffer(m.normalen), c: puffer(farbenFloat(m.farbe)), i: puffer(idx, gl.ELEMENT_ARRAY_BUFFER), anz: idx.length, typ: uint32 ? gl.UNSIGNED_INT : gl.UNSIGNED_SHORT };
+        zeichnen();
+      }
+      function texturSetzen(t) {
+        if (!gl) return;
+        if (ebenen.textur) { ['p', 'n', 'u', 'i'].forEach(function (k) { gl.deleteBuffer(ebenen.textur[k]); }); gl.deleteTexture(ebenen.textur.tex); ebenen.textur = null; }
+        if (!t || !t.dreiecke.length) { zeichnen(); return; }
+        let idx = t.dreiecke;
+        if (!uint32) idx = Uint16Array.from(t.dreiecke.subarray(0, Math.min(t.dreiecke.length, 65535 * 3)).filter(function (v) { return v < 65535; }));
+        const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, t.bild);
+        gl.generateMipmap(gl.TEXTURE_2D);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        const an = gl.getExtension('EXT_texture_filter_anisotropic') || gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic'); if (an) gl.texParameterf(gl.TEXTURE_2D, an.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(8, gl.getParameter(an.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
+        ebenen.textur = { p: puffer(t.pos), n: puffer(t.normalen), u: puffer(t.uv), i: puffer(idx, gl.ELEMENT_ARRAY_BUFFER), anz: idx.length, typ: uint32 ? gl.UNSIGNED_INT : gl.UNSIGNED_SHORT, tex: tex };
         zeichnen();
       }
       function modellSetzen(T) { // Rekonstruktion → Anzeige: s·Q·X + c
@@ -717,7 +922,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       }
       function groesse() { dpr = Math.min(2, window.devicePixelRatio || 1); const r = cv.getBoundingClientRect(); cv.width = Math.max(1, Math.round(r.width * dpr)); cv.height = Math.max(1, Math.round(r.height * dpr)); ov.width = cv.width; ov.height = cv.height; zeichnen(); }
       function attrib(prog, name, buf, n) { const l = gl.getAttribLocation(prog, name); if (l < 0) return; gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.enableVertexAttribArray(l); gl.vertexAttribPointer(l, n, gl.FLOAT, false, 0, 0); }
-      function aus(prog) { ['p', 'c', 'n'].forEach(function (a) { const l = gl.getAttribLocation(prog, a); if (l >= 0) gl.disableVertexAttribArray(l); }); }
+      function aus(prog) { ['p', 'c', 'n', 'uv'].forEach(function (a) { const l = gl.getAttribLocation(prog, a); if (l >= 0) gl.disableVertexAttribArray(l); }); }
       let geplant = false;
       function zeichnen() { if (geplant) return; geplant = true; requestAnimationFrame(function () { geplant = false; jetzt(); }); }
       function jetzt() {
@@ -725,7 +930,12 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         const dunkel = window.Thema ? Thema.aktuell() === 'dunkel' : false;
         gl.viewport(0, 0, cv.width, cv.height); gl.clearColor(dunkel ? 0.08 : 0.93, dunkel ? 0.09 : 0.94, dunkel ? 0.1 : 0.95, 1); gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); gl.enable(gl.DEPTH_TEST);
         const VP = vp(); mvp = mal(VP, modell);
-        if (ebenen.netz && sicht.netz) {
+        if (ebenen.textur && sicht.netz && sicht.textur && !sicht.grau) {
+          gl.useProgram(progT); gl.uniformMatrix4fv(gl.getUniformLocation(progT, 'mvp'), false, mvp); gl.uniformMatrix3fv(gl.getUniformLocation(progT, 'nm'), false, normMat);
+          gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, ebenen.textur.tex); gl.uniform1i(gl.getUniformLocation(progT, 'bild'), 0);
+          attrib(progT, 'p', ebenen.textur.p, 3); attrib(progT, 'n', ebenen.textur.n, 3); attrib(progT, 'uv', ebenen.textur.u, 2);
+          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebenen.textur.i); gl.drawElements(gl.TRIANGLES, ebenen.textur.anz, ebenen.textur.typ, 0); aus(progT);
+        } else if (ebenen.netz && sicht.netz) {
           gl.useProgram(progN); gl.uniformMatrix4fv(gl.getUniformLocation(progN, 'mvp'), false, mvp); gl.uniformMatrix3fv(gl.getUniformLocation(progN, 'nm'), false, normMat); gl.uniform1f(gl.getUniformLocation(progN, 'grau'), sicht.grau ? 1 : 0);
           attrib(progN, 'p', ebenen.netz.p, 3); attrib(progN, 'n', ebenen.netz.n, 3); attrib(progN, 'c', ebenen.netz.c, 3);
           gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebenen.netz.i); gl.drawElements(gl.TRIANGLES, ebenen.netz.anz, ebenen.netz.typ, 0); aus(progN);
@@ -820,7 +1030,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       window.addEventListener('resize', groesse);
       document.addEventListener('themawechsel', zeichnen);
       const api = {
-        gl: !!gl, cam: cam, sicht: sicht, groesse: groesse, zeichnen: zeichnen, punkteSetzen: punkteSetzen, netzSetzen: netzSetzen, modellSetzen: modellSetzen, picken: picken,
+        gl: !!gl, cam: cam, sicht: sicht, groesse: groesse, zeichnen: zeichnen, punkteSetzen: punkteSetzen, netzSetzen: netzSetzen, texturSetzen: texturSetzen, maxTextur: function () { return gl ? gl.getParameter(gl.MAX_TEXTURE_SIZE) : 2048; }, modellSetzen: modellSetzen, picken: picken,
         linienSetzen: function (l) { linien = l; zeichnen(); }, markenSetzen: function (m, s) { marken = m; schrift = s; zeichnen(); },
         punktGroesse: function (g) { punktGroesse = g; zeichnen(); },
         einpassen: function (lo, hi) { cam.ziel = v3mal(v3add(lo, hi), 0.5); cam.abst = Math.max(1e-3, v3len(v3sub(hi, lo)) * 1.1 * Math.max(1, Math.min(2.2, cv.height / Math.max(1, cv.width)))); zeichnen(); },
@@ -1026,7 +1236,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       werkzeug = null; dachListe(); werkzeugZeichnen(); werkzeugStatus();
     }
     $('pg-dach-schliessen').addEventListener('click', dachFertig);
-    if (window.PG_DEBUG) window.PG_TEST = { starten: werkzeugStarten, klick: function (p) { const T = rek.T, c = ansicht.nachClient(v3mal(m3v(m3t(T.Q), v3sub(p, T.c)), 1 / T.s)); ansicht.beiKlick(c[0], c[1]); return c; }, daecher: daecher, dachFertig: dachFertig, rek: function () { return rek; } };
+    if (window.PG_DEBUG) window.PG_TEST = { ansicht: ansicht, starten: werkzeugStarten, klick: function (p) { const T = rek.T, c = ansicht.nachClient(v3mal(m3v(m3t(T.Q), v3sub(p, T.c)), 1 / T.s)); ansicht.beiKlick(c[0], c[1]); return c; }, daecher: daecher, dachFertig: dachFertig, rek: function () { return rek; } };
     $('pg-hind-fertig').addEventListener('click', function () {
       const w = werkzeug; if (!w || w.art !== 'hindernis' || w.punkte.length < 2) return;
       w.dach.hindernisse.push({ typ: w.typ, ecken: w.punkte.slice() }); werkzeug = null; dachListe(); werkzeugZeichnen(); werkzeugStatus();
@@ -1112,6 +1322,47 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       for (let k = 0; k < N.length; k += 3) { const n = m3v(Q, [m.normalen[k], m.normalen[k + 1], m.normalen[k + 2]]); N[k] = n[0]; N[k + 1] = n[1]; N[k + 2] = n[2]; }
       return { pos: P, normalen: N, farbe: m.farbe, dreiecke: m.dreiecke };
     }
+    function texturAnz() { // texturiertes Netz in Anzeige-Koordinaten
+      const t = rek.textur, P = anzeigePunkte(t.pos), Q = rek.T.Q, N = new Float32Array(t.normalen.length);
+      for (let k = 0; k < N.length; k += 3) { const n = m3v(Q, [t.normalen[k], t.normalen[k + 1], t.normalen[k + 2]]); N[k] = n[0]; N[k + 1] = n[1]; N[k + 2] = n[2]; }
+      return { pos: P, normalen: N, uv: t.uv, dreiecke: t.dreiecke };
+    }
+    function jpegBytes(canvas) {
+      return new Promise(function (ja, nein) {
+        canvas.toBlob(function (b) {
+          if (!b) { nein(new Error('Textur nicht speicherbar')); return; }
+          const r = new FileReader(); r.onload = function () { ja(new Uint8Array(r.result)); }; r.onerror = function () { nein(new Error('Textur nicht lesbar')); }; r.readAsArrayBuffer(b);
+        }, 'image/jpeg', 0.9);
+      });
+    }
+    // ZIP ohne Kompression (Dateien liegen nebeneinander: OBJ, MTL, Bild)
+    const CRC = (function () { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+    function crc32(u8) { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 255] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+    const DOSDATUM = (function () { const d = new Date(); return ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate(); })();
+    function zip(dateien) {
+      const teile = [], zentral = []; let off = 0;
+      dateien.forEach(function (d) {
+        const name = new TextEncoder().encode(d.name), daten = d.daten, crc = crc32(daten), k = new DataView(new ArrayBuffer(30));
+        k.setUint32(0, 0x04034b50, true); k.setUint16(4, 20, true); k.setUint16(6, 0x0800, true); k.setUint16(8, 0, true); k.setUint16(12, DOSDATUM, true); k.setUint32(14, crc, true); k.setUint32(18, daten.length, true); k.setUint32(22, daten.length, true); k.setUint16(26, name.length, true);
+        teile.push(new Uint8Array(k.buffer), name, daten);
+        const z = new DataView(new ArrayBuffer(46));
+        z.setUint32(0, 0x02014b50, true); z.setUint16(4, 20, true); z.setUint16(6, 20, true); z.setUint16(8, 0x0800, true); z.setUint16(14, DOSDATUM, true); z.setUint32(16, crc, true); z.setUint32(20, daten.length, true); z.setUint32(24, daten.length, true); z.setUint16(28, name.length, true); z.setUint32(42, off, true);
+        zentral.push(new Uint8Array(z.buffer), name);
+        off += 30 + name.length + daten.length;
+      });
+      let zl = 0; zentral.forEach(function (z) { zl += z.length; });
+      const e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, dateien.length, true); e.setUint16(10, dateien.length, true); e.setUint32(12, zl, true); e.setUint32(16, off, true);
+      return new Blob(teile.concat(zentral, [new Uint8Array(e.buffer)]), { type: 'application/zip' });
+    }
+    function objTextur(t, basis) {
+      const z = ['# Photogrammetrie, Einheit ' + (rek.massstab ? 'Meter' : 'unskaliert') + ', Z nach oben', 'mtllib ' + basis + '.mtl', 'usemtl foto'];
+      const r = function (v) { return Math.round(v * 10000) / 10000; }, r6 = function (v) { return Math.round(v * 1e6) / 1e6; };
+      for (let i = 0; i < t.pos.length; i += 3) z.push('v ' + r(t.pos[i]) + ' ' + r(t.pos[i + 1]) + ' ' + r(t.pos[i + 2]));
+      for (let i = 0; i < t.uv.length; i += 2) z.push('vt ' + r6(t.uv[i]) + ' ' + r6(1 - t.uv[i + 1]));
+      for (let i = 0; i < t.normalen.length; i += 3) z.push('vn ' + r(t.normalen[i]) + ' ' + r(t.normalen[i + 1]) + ' ' + r(t.normalen[i + 2]));
+      for (let i = 0; i < t.dreiecke.length; i += 3) { const a = t.dreiecke[i] + 1, b = t.dreiecke[i + 1] + 1, c = t.dreiecke[i + 2] + 1; z.push('f ' + a + '/' + a + '/' + a + ' ' + b + '/' + b + '/' + b + ' ' + c + '/' + c + '/' + c); }
+      return z.join('\n') + '\n';
+    }
     function dateiname(endung) { return ($('pg-projekt').value.trim().replace(/[^\wäöüÄÖÜß.-]+/g, '_') || 'modell') + endung; }
     function plyPunkte(pos, farbe) {
       const n = pos.length / 3, kopf = 'ply\nformat binary_little_endian 1.0\ncomment Photogrammetrie, Einheit ' + (rek.massstab ? 'Meter' : 'unskaliert') + '\nelement vertex ' + n + '\nproperty float x\nproperty float y\nproperty float z\nproperty uchar red\nproperty uchar green\nproperty uchar blue\nend_header\n';
@@ -1146,22 +1397,24 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       }
       return buf;
     }
-    function glbNetz(m) { // glTF 2.0 binär, Y nach oben
-      const n = m.pos.length / 3, P = new Float32Array(n * 3), N = new Float32Array(n * 3), F = new Uint8Array(n * 4), I = m.dreiecke;
+    function glbNetz(m, jpeg) { // glTF 2.0 binär, Y nach oben; mit Textur, wenn jpeg und m.uv vorhanden
+      const n = m.pos.length / 3, P = new Float32Array(n * 3), N = new Float32Array(n * 3), F = new Uint8Array(n * 4), I = m.dreiecke, mitT = !!(jpeg && m.uv);
       const lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
       for (let i = 0; i < n; i++) {
         P[3 * i] = m.pos[3 * i]; P[3 * i + 1] = m.pos[3 * i + 2]; P[3 * i + 2] = -m.pos[3 * i + 1];
         N[3 * i] = m.normalen[3 * i]; N[3 * i + 1] = m.normalen[3 * i + 2]; N[3 * i + 2] = -m.normalen[3 * i + 1];
-        F[4 * i] = m.farbe[3 * i]; F[4 * i + 1] = m.farbe[3 * i + 1]; F[4 * i + 2] = m.farbe[3 * i + 2]; F[4 * i + 3] = 255;
+        if (!mitT) { F[4 * i] = m.farbe[3 * i]; F[4 * i + 1] = m.farbe[3 * i + 1]; F[4 * i + 2] = m.farbe[3 * i + 2]; F[4 * i + 3] = 255; }
         for (let c = 0; c < 3; c++) { lo[c] = Math.min(lo[c], P[3 * i + c]); hi[c] = Math.max(hi[c], P[3 * i + c]); }
       }
-      const teile = [P, N, F, I], off = []; let len = 0; teile.forEach(function (t) { off.push(len); len += Math.ceil(t.byteLength / 4) * 4; });
+      const teile = [P, N, mitT ? m.uv : F, I].concat(mitT ? [jpeg] : []), off = []; let len = 0; teile.forEach(function (t) { off.push(len); len += Math.ceil(t.byteLength / 4) * 4; });
       const json = {
         asset: { version: '2.0', generator: 'Photogrammetrie' }, scene: 0, scenes: [{ nodes: [0] }], nodes: [{ mesh: 0 }],
-        meshes: [{ primitives: [{ attributes: { POSITION: 0, NORMAL: 1, COLOR_0: 2 }, indices: 3, material: 0 }] }], materials: [{ pbrMetallicRoughness: { baseColorFactor: [1, 1, 1, 1], metallicFactor: 0, roughnessFactor: 1 } }],
-        buffers: [{ byteLength: len }], bufferViews: teile.map(function (t, i) { return { buffer: 0, byteOffset: off[i], byteLength: t.byteLength, target: i === 3 ? 34963 : 34962 }; }),
-        accessors: [{ bufferView: 0, componentType: 5126, count: n, type: 'VEC3', min: lo, max: hi }, { bufferView: 1, componentType: 5126, count: n, type: 'VEC3' }, { bufferView: 2, componentType: 5121, normalized: true, count: n, type: 'VEC4' }, { bufferView: 3, componentType: 5125, count: I.length, type: 'SCALAR' }]
+        meshes: [{ primitives: [{ attributes: mitT ? { POSITION: 0, NORMAL: 1, TEXCOORD_0: 2 } : { POSITION: 0, NORMAL: 1, COLOR_0: 2 }, indices: 3, material: 0 }] }],
+        materials: [mitT ? { pbrMetallicRoughness: { baseColorTexture: { index: 0 }, metallicFactor: 0, roughnessFactor: 1 }, extensions: { KHR_materials_unlit: {} } } : { pbrMetallicRoughness: { baseColorFactor: [1, 1, 1, 1], metallicFactor: 0, roughnessFactor: 1 } }],
+        buffers: [{ byteLength: len }], bufferViews: teile.map(function (t, i) { const b = { buffer: 0, byteOffset: off[i], byteLength: t.byteLength }; if (i < 4) b.target = i === 3 ? 34963 : 34962; return b; }),
+        accessors: [{ bufferView: 0, componentType: 5126, count: n, type: 'VEC3', min: lo, max: hi }, { bufferView: 1, componentType: 5126, count: n, type: 'VEC3' }, mitT ? { bufferView: 2, componentType: 5126, count: n, type: 'VEC2' } : { bufferView: 2, componentType: 5121, normalized: true, count: n, type: 'VEC4' }, { bufferView: 3, componentType: 5125, count: I.length, type: 'SCALAR' }]
       };
+      if (mitT) { json.extensionsUsed = ['KHR_materials_unlit']; json.images = [{ bufferView: 4, mimeType: 'image/jpeg' }]; json.textures = [{ source: 0, sampler: 0 }]; json.samplers = [{ magFilter: 9729, minFilter: 9987, wrapS: 33071, wrapT: 33071 }]; }
       let js = JSON.stringify(json); while (js.length % 4) js += ' ';
       const jb = new TextEncoder().encode(js), gesamt = 12 + 8 + jb.length + 8 + len, buf = new ArrayBuffer(gesamt), dv = new DataView(buf), u8 = new Uint8Array(buf);
       dv.setUint32(0, 0x46546C67, true); dv.setUint32(4, 2, true); dv.setUint32(8, gesamt, true);
@@ -1176,6 +1429,19 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         if (art === 'punkte') { const q = rek.dicht || { pos: rek.sfm.punkte, farbe: rek.sfm.farben }; speichern(dateiname('-punkte.ply'), plyPunkte(anzeigePunkte(q.pos), q.farbe)); return; }
         if (!rek.netz) { werkzeugHinweis('Es gibt noch kein Netz.'); return; }
         const m = netzAnz();
+        if (rek.textur && (art === 'obj' || art === 'glb')) {
+          werkzeugHinweis('Textur wird verpackt …');
+          jpegBytes(rek.textur.bild).then(function (jpg) {
+            const t = texturAnz();
+            if (art === 'glb') speichern(dateiname('.glb'), glbNetz(t, jpg), 'model/gltf-binary');
+            else {
+              const basis = dateiname(''), enc = new TextEncoder();
+              speichern(dateiname('-obj.zip'), zip([{ name: basis + '.obj', daten: enc.encode(objTextur(t, basis)) }, { name: basis + '.mtl', daten: enc.encode('newmtl foto\nKa 1 1 1\nKd 1 1 1\nKs 0 0 0\nillum 1\nmap_Kd ' + basis + '.jpg\n') }, { name: basis + '.jpg', daten: jpg }]));
+            }
+            werkzeugHinweis('');
+          }).catch(function (e) { werkzeugHinweis(String(e.message)); });
+          return;
+        }
         if (art === 'obj') speichern(dateiname('.obj'), objNetz(m), 'text/plain');
         else if (art === 'ply') speichern(dateiname('.ply'), plyNetz(m));
         else if (art === 'stl') speichern(dateiname('.stl'), stlNetz(m));
@@ -1395,7 +1661,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       if (!rek || !rek.sfm) return;
       const nReg = rek.sfm.kameras.filter(function (k) { return k.reg; }).length, tb = $('pg-info'); tb.textContent = '';
       [['Kameras', nReg + ' von ' + fotos.length + ' ausgerichtet'], ['Punkte', zahl(rek.sfm.punkte.length / 3, 0) + ' Verknüpfungspunkte' + (rek.dicht ? ', ' + zahl(rek.dicht.pos.length / 3, 0) + ' dichte Punkte' : '')],
-        ['Netz', rek.netz ? zahl(rek.netz.dreiecke.length / 3, 0) + ' Dreiecke' : '–'], ['Genauigkeit', 'Rückprojektionsfehler ' + zahl(rek.sfm.fehler, 2) + ' px'],
+        ['Netz', rek.netz ? zahl(rek.netz.dreiecke.length / 3, 0) + ' Dreiecke' + (rek.netzVoxel ? ', Voxel ' + laengeText(rek.netzVoxel) + (rek.massstab && rek.netzVoxel > 0.08 && !rek.zuschnitt ? ' (feiner: unter „Export“ den Bereich auf das Gebäude begrenzen und neu berechnen)' : '') : '') : '–'], ['Textur', rek.textur ? rek.textur.A + ' × ' + rek.textur.A + ' px aus den Fotos' : '–'], ['Genauigkeit', 'Rückprojektionsfehler ' + zahl(rek.sfm.fehler, 2) + ' px'],
         ['Maßstab', rek.massstab === 'gps' ? 'aus GPS der Fotos (Restfehler ' + zahl(rek.geo.rms, 2) + ' m bei ' + zahl(rek.geo.spann, 0) + ' m Ausdehnung)' : rek.massstab === 'referenz' ? 'aus Referenzstrecke ' + zahl(rek.refStrecke.l, 3) + ' m' : 'fehlt – Referenzstrecke setzen'],
         ['Norden', rek.nord ? 'aus GPS' : 'unbekannt – Richtung unten eingeben'], ['Gelände (Höhe 0)', rek.boden === 'gesetzt' ? 'von Hand gesetzt' : 'geschätzt (häufigste Höhe unten)']]
         .forEach(function (z) { const tr = kn('tr'); tr.append(kn('th', '', z[0]), kn('td', '', z[1])); tb.append(tr); });
@@ -1404,7 +1670,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
     }
     $('pg-nord').addEventListener('change', function () { const v = Number(String(this.value).replace(',', '.')); if (isFinite(v) && rek) { rek.nordKorr = v; dachListe(); } });
     // Ansicht-Schalter
-    [['pg-sicht-kameras', 'kameras'], ['pg-sicht-duenn', 'duenn'], ['pg-sicht-dicht', 'dicht'], ['pg-sicht-netz', 'netz'], ['pg-sicht-grau', 'grau']].forEach(function (z) {
+    [['pg-sicht-kameras', 'kameras'], ['pg-sicht-duenn', 'duenn'], ['pg-sicht-dicht', 'dicht'], ['pg-sicht-netz', 'netz'], ['pg-sicht-grau', 'grau'], ['pg-sicht-textur', 'textur']].forEach(function (z) {
       $(z[0]).addEventListener('change', function () { ansicht.sicht[z[1]] = this.checked; ansicht.zeichnen(); });
     });
     $('pg-groesse').addEventListener('input', function () { ansicht.punktGroesse(Number(this.value) || 2); });
@@ -1446,7 +1712,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       if (!rek || !rek.ansichten || laeuft) return;
       laeuft = true; this.disabled = true; werkerStarten(); abbruch = false; $('pg-fehler').hidden = true;
       const b = this;
-      netzBerechnen({ voxel: Number($('pg-aufloesung').value), glatt: Number($('pg-glatt').value) }).catch(function (e) { $('pg-fehler').hidden = false; $('pg-fehler').textContent = 'Netz nicht berechnet: ' + String(e.message).split('\n')[0]; })
+      netzBerechnen({ budget: Number($('pg-aufloesung').value), glatt: Number($('pg-glatt').value) }).then(function () { return texturBerechnen(); }).catch(function (e) { $('pg-fehler').hidden = false; $('pg-fehler').textContent = 'Netz nicht berechnet: ' + String(e.message).split('\n')[0]; })
         .then(function () { laeuft = false; b.disabled = false; werker.forEach(function (w) { w.w.terminate(); }); werker = []; });
     });
     // Liste der Schritte aufbauen
