@@ -1128,5 +1128,5 @@ self.onmessage = function (ev) {
       erg = netzAufraeumen(roh, a.anteil, a.glatt); transfer = [erg.pos.buffer, erg.farbe.buffer, erg.dreiecke.buffer, erg.normalen.buffer];
     } else throw new Error('unbekannter Auftrag ' + a.art);
     self.postMessage({ id: id, ergebnis: erg }, transfer);
-  } catch (e) { self.postMessage({ id: id, fehler: String(e && e.stack || e) }); }
+  } catch (e) { self.postMessage({ id: id, fehler: (e && e.message ? e.message : String(e)) + (e && e.stack ? '\n' + e.stack : '') }); }
 };

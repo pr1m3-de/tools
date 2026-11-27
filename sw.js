@@ -51,7 +51,7 @@ self.addEventListener('fetch', function (ev) {
     const frisch = fetch(anfrage).then(function (antwort) {
       if (antwort.ok) { const kopie = antwort.clone(); caches.open(SPEICHER).then(function (c) { c.put(anfrage, kopie); }); }
       return antwort;
-    }).catch(function () { return treffer; });
+    }).catch(function () { return treffer || caches.match(anfrage, { ignoreSearch: true }); }); // versionierte Adressen (?v=…) ohne Netz aus dem Speicher
     return treffer || frisch;
   }));
 });
