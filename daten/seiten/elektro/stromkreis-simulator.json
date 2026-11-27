@@ -47,9 +47,37 @@
     "Doppelwandler",
     "Netzvorrang",
     "4-polige Umschaltung",
-    "3-polige Umschaltung"
+    "3-polige Umschaltung",
+    "Selektiver Hauptleitungsschutzschalter",
+    "SH-Schalter",
+    "Brandschutzschalter",
+    "AFDD",
+    "Störlichtbogen",
+    "Motorschutzschalter",
+    "Überspannungsschutz",
+    "SPD",
+    "Schütz",
+    "Selbsthaltung",
+    "Zeitrelais",
+    "Treppenlichtzeitschalter",
+    "Stromstoßschalter",
+    "Wechselschaltung",
+    "Kreuzschaltung",
+    "Bewegungsmelder",
+    "Steckdose",
+    "Sicherheitstransformator",
+    "SELV",
+    "Trenntransformator",
+    "Schutztrennung",
+    "Schleifenimpedanz",
+    "Abschaltbedingung",
+    "Anlaufstrom",
+    "Leitertemperatur",
+    "Stromzange",
+    "RCM",
+    "Differenzstromüberwachung"
   ],
-  "text": "Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, FI und LS bis zum Verbraucher, mit Notstromspeicher, Netzumschaltbox (automatisch oder Hand, mit oder ohne N, Phasenbrücke, N-PE-Relais), Aggregat, Hybrid-Speicher und PV – Körperschluss, PEN-Bruch, N-Bruch, IT-Inselnetz, FI-Auslösung und Körperstrom.",
+  "text": "Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, SH-Schalter, FI, LS, Brandschutzschalter, Motorschutz und Überspannungsschutz bis zum Verbraucher, mit Schütz, Zeitrelais, Wechsel- und Kreuzschaltung, Transformator, Notstromspeicher, Netzumschaltbox, Aggregat, Hybrid-Speicher und PV – Körperschluss, PEN- und N-Bruch, Lichtbogen, Anlaufstrom, Leitertemperatur, Schleifenimpedanz, FI-Auslösung und Körperstrom.",
   "tex": "Z_S \\cdot I_a \\le U_0",
   "verwandt": [
     "elektro/netzsysteme.html",
@@ -182,6 +210,46 @@
         "Ein Hand-Umschalter I-0-II."
       ],
       "Bei allen anderen Lösungen gibt es eine Unterbrechung von Millisekunden bis Sekunden."
+    ],
+    [
+      "Warum erkennt ein LS einen Wackelkontakt mit Lichtbogen nicht?",
+      "Der Strom bleibt im Bereich des Laststroms; erst ein Brandschutzschalter (AFDD) erkennt das Muster des Lichtbogens.",
+      [
+        "Weil der Lichtbogen nur Gleichstrom führt.",
+        "Weil der LS nur auf Fehlerströme gegen Erde reagiert.",
+        "Weil der Lichtbogen die Spannung erhöht."
+      ],
+      "An der Klemmstelle entstehen dabei schnell 50 bis 100 W Wärme – genug für einen Brand."
+    ],
+    [
+      "Ein Messgerät ermittelt Zs = 2,2 Ω an einem Stromkreis mit B16. Ist die Abschaltbedingung erfüllt?",
+      "Nein, 230 V / 2,2 Ω ≈ 105 A, mit 2/3 bewertet 70 A – unter den nötigen 80 A.",
+      [
+        "Ja, 105 A sind mehr als 16 A.",
+        "Ja, weil der LS immer innerhalb 0,4 s auslöst.",
+        "Nein, weil Zs über 1 Ω nie zulässig ist."
+      ],
+      "Abhilfe: größerer Querschnitt, kürzere Leitung, kleinerer LS oder FI."
+    ],
+    [
+      "Warum löst ein B10 beim Einschalten eines Kompressors aus, ein C10 nicht?",
+      "Der Anlaufstrom liegt über dem 5-Fachen, aber unter dem 10-Fachen des Bemessungsstroms.",
+      [
+        "Weil der Kompressor einen Körperschluss hat.",
+        "Weil C-Automaten keinen Kurzschlussauslöser haben.",
+        "Weil B-Automaten nur für Licht zugelassen sind."
+      ],
+      "Für Motoren mit hohem Anlaufstrom gibt es C-, K- oder D-Charakteristik."
+    ],
+    [
+      "Schützt ein Überspannungsschutz (SPD) vor einem N-Bruch im Haus?",
+      "Nein, er begrenzt kurze Stoßspannungen gegen PE; die zeitweilige Überspannung zwischen L und N beim N-Bruch bleibt.",
+      [
+        "Ja, er schaltet die Anlage ab.",
+        "Ja, er leitet die Überspannung zur Erde ab.",
+        "Nur ein Typ 3 schützt davor."
+      ],
+      "Gegen Sternpunktverschiebung helfen nur ein intakter N bzw. PEN und gute Klemmstellen."
     ]
   ],
   "auchIn": [
