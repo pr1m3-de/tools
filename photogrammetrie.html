@@ -64,6 +64,7 @@
     .pg-knoepfe { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0; }
     .pg-knoepfe select, .pg-knoepfe input { padding: 7px 9px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--grund); color: var(--text); font: inherit; font-size: .92rem; }
     .pg-knoepfe input[type=text] { width: 110px; }
+    .pg-gesichert { margin: 10px 0; padding: 10px 12px; border-radius: var(--rund-klein); border: 1.5px solid var(--linie); background: var(--flaeche, transparent); }
     .pg-optionen { margin: 10px 0 4px; } .pg-optionen summary { cursor: pointer; font-weight: 600; }
     .pg-haken-liste { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 4px 16px; margin-top: 6px; font-size: .92rem; }
     .pg-haken-liste label { display: flex; gap: 7px; align-items: flex-start; } .pg-haken-liste input { margin-top: 3px; }
@@ -107,6 +108,7 @@
         <p class="hilfe" id="pg-foto-info"></p>
       </div>
       <div class="pg-fotos" id="pg-fotos"></div>
+      <div class="pg-gesichert" id="pg-gesichert" hidden><span id="pg-gesichert-text"></span> <span class="pg-knoepfe"><button type="button" class="knopf-haupt" id="pg-gesichert-laden">Laden und fortsetzen</button><button type="button" class="knopf" id="pg-gesichert-verwerfen">Verwerfen</button></span></div>
       <details class="pg-optionen" open><summary>Qualitätsoptionen</summary>
         <div class="pg-haken-liste">
           <label><input type="checkbox" id="pg-spitzen" checked> Spitzen und Zacken im Netz abflachen</label>
@@ -120,6 +122,7 @@
         <label>Projekt <input type="text" id="pg-projekt" maxlength="60" placeholder="Name"></label>
         <label>Qualität <select id="pg-stufe"><option value="schnell">Schnell</option><option value="normal" selected>Normal</option><option value="hoch">Hoch (langsam)</option><option value="hd">HD (sehr langsam, viel Speicher)</option></select></label>
         <button type="button" class="knopf-haupt" id="pg-start" disabled>3D-Modell berechnen</button>
+        <button type="button" class="knopf" id="pg-weiter" hidden>Berechnung fortsetzen</button>
         <button type="button" class="knopf" id="pg-leeren" hidden>Alle Fotos entfernen</button>
       </div>
     </section>
@@ -237,6 +240,7 @@
         <details><summary>Warum werden nicht alle Fotos ausgerichtet?</summary><p>Ein Foto braucht genug gemeinsame Punkte mit den anderen. Fehlende Überlappung, starke Unschärfe, Gegenlicht oder einfarbige Flächen verhindern das. Zusätzliche Fotos zwischen den Lücken helfen.</p></details>
         <details><summary>Werden meine Fotos hochgeladen?</summary><p>Nein. Alles läuft lokal im Browser, auch ohne Internet, wenn die Seite einmal geladen war.</p></details>
         <details><summary>Wie komme ich zum PV-Plan?</summary><p>Im Reiter „Dach und PV“ die Dachflächen und Hindernisse einzeichnen und „Im PV-Dachplaner öffnen“ wählen. Der Planer übernimmt Form, Neigung, Ausrichtung und Hindernisse. Alternativ entsteht eine JSON-Datei im Austauschformat für Auslegungsrechner von Montagesystemen.</p></details>
+        <details><summary>Kann ich eine Berechnung fortsetzen?</summary><p>Ja. Nach jedem Schritt und nach jeder Tiefenkarte wird der Zwischenstand im Speicher dieses Browsers abgelegt (IndexedDB) – auch die Fotos, sie verlassen das Gerät nicht. Nach einem Abbruch, Fehler oder Absturz des Tabs erscheint beim nächsten Öffnen „Gespeicherte Berechnung … Laden und fortsetzen“; fertige Schritte und Tiefenkarten werden übernommen. Mit „Verwerfen“ wird der Speicher geleert. Eine neue Berechnung ersetzt den alten Stand.</p></details>
         <details><summary>Was bewirken die Qualitätsoptionen?</summary><p>„Spitzen abflachen“ entfernt lange Fahnen-Dreiecke und lose Fetzen und zieht einzeln abstehende Ecken auf ihre Nachbarn zurück – Kanten des Gebäudes bleiben. Unscharfe Fotos (Verwacklung, Fokus daneben) erkennt das Programm an der Bildschärfe und nutzt sie nur noch zum Ausrichten. Die Helligkeit wird je Foto an den Mittelwert angepasst, damit in der Textur keine hellen und dunklen Flecken entstehen. Nachschärfen gleicht die Unschärfe aus, die beim Verkleinern der Fotos in den Atlas entsteht. „Löcher schließen“ füllt auch größere Lücken, kann aber an offenen Rändern Fahnen bilden. Der Haken bei „Spitzen“ wirkt sofort auf das fertige Netz.</p></details>
         <details><summary>Wie wird das Modell detailreicher?</summary><p>Qualität „Hoch“ oder „HD“ wählen (HD rechnet mit größeren Bildern und feinerem Volumen, braucht aber deutlich mehr Zeit und Speicher) und mehr, nähere Fotos aufnehmen. Bei großen Aufnahmen (ganze Straße) unter „Export“ den Bereich auf das Gebäude begrenzen und das Netz neu berechnen: Die gleiche Voxelzahl verteilt sich dann auf die kleinere Fläche. Die Textur kommt immer aus den Originalfotos, je Dreieck aus dem Foto mit der nächsten, möglichst senkrechten Sicht.</p></details>
         <details><summary>Welche Formate gibt es?</summary><p>Netze als OBJ mit Fototextur (ZIP mit OBJ, MTL und JPG), GLB mit eingebetteter Textur für Betrachter und 3D-Programme, PLY mit Eckfarben und STL für den 3D-Druck, die Punktwolke als PLY und alle Maße als CSV.</p></details>
@@ -263,7 +267,7 @@
     const MAX_BILDER = 200;
 
     // ---------- Arbeitsfäden ----------
-    const werkerUrl = 'assets/photogrammetrie-werker.js';
+    const werkerUrl = 'assets/photogrammetrie-werker.js?v=042faf10b2'; // Version passend zur Seite, damit nie ein alter Arbeitsfaden aus dem Zwischenspeicher läuft
     const anzahlWerker = Math.max(1, Math.min(6, (navigator.hardwareConcurrency || 2) - 1));
     let werker = [], auftragNr = 0, abbruch = false;
     function werkerStarten() {
@@ -486,6 +490,47 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
     const I3 = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     // ---------- Ablauf der Berechnung ----------
     // Ablauf mit Generatoren (ES2015): yield wartet auf ein Promise
+    // ---------- Zwischenstand im Browser speichern (IndexedDB), damit eine Berechnung fortgesetzt werden kann ----------
+    const DBNAME = 'photogrammetrie', REK_FELDER = ['stufe', 'bilder', 'merk', 'fertig', 'schluessel', 'paare', 'gruppen0', 'sfm', 'T', 'Tver', 'geo', 'massstab', 'nord', 'nordKorr', 'boden', 'netzRoh', 'netz', 'netzVoxel', 'lageKorr', 'Tvorher', 'refStrecke', 'zuschnitt', 'datum'];
+    let dbOffen = null, sicherKette = Promise.resolve(), sicherPlan = false;
+    function db() {
+      if (!dbOffen) dbOffen = new Promise(function (ja, nein) {
+        if (!window.indexedDB) { nein(new Error('kein IndexedDB')); return; }
+        const r = indexedDB.open(DBNAME, 1);
+        r.onupgradeneeded = function () { r.result.createObjectStore('stand'); };
+        r.onsuccess = function () { ja(r.result); }; r.onerror = function () { nein(r.error); };
+      });
+      return dbOffen;
+    }
+    function dbTun(art, schluessel, wert) {
+      return db().then(function (d) {
+        return new Promise(function (ja, nein) {
+          const tx = d.transaction('stand', art === 'get' ? 'readonly' : 'readwrite'), s = tx.objectStore('stand');
+          const r = art === 'get' ? s.get(schluessel) : art === 'del' ? s.clear() : s.put(wert, schluessel);
+          r.onsuccess = function () { ja(r.result); }; r.onerror = function () { nein(r.error); };
+        });
+      });
+    }
+    function fotosSichern() {
+      const l = fotos.map(function (f) { return { name: f.name, datei: f.datei, exif: f.exif }; });
+      return dbTun('put', 'fotos', l).catch(function () { return null; });
+    }
+    function sichern() { // höchstens ein Schreibvorgang gleichzeitig, schnelle Folgen zusammengefasst
+      if (!rek || !rek.fertig) return Promise.resolve();
+      if (sicherPlan) return sicherKette; sicherPlan = true;
+      sicherKette = sicherKette.then(function () {
+        sicherPlan = false; if (!rek || !rek.fertig) return null;
+        const o = {}; REK_FELDER.forEach(function (k) { if (rek[k] !== undefined) o[k] = rek[k]; }); o.tiefenIdx = Object.keys(rek.tiefenRoh || {}).map(Number);
+        if (rek.textur && rek.texturBlob) o.textur = { pos: rek.textur.pos, normalen: rek.textur.normalen, uv: rek.textur.uv, dreiecke: rek.textur.dreiecke, A: rek.textur.A, blob: rek.texturBlob };
+        o.werkzeuge = { messungen: messungen.slice(), daecher: daecher.map(function (d) { return { name: d.name, ecken: d.ecken, hindernisse: d.hindernisse }; }) };
+        const meta = { datum: rek.datum, gesichert: Date.now(), n: fotos.length, projekt: $('pg-projekt').value.slice(0, 60), stufe: rek.stufe.name, fertig: rek.fertig, tiefen: Object.keys(rek.tiefenRoh || {}).length };
+        return dbTun('put', 'rek', o).then(function () { return dbTun('put', 'meta', meta); });
+      }).catch(function (e) { protokoll('Zwischenstand konnte nicht gespeichert werden (' + (e && e.message || e) + ').'); });
+      return sicherKette;
+    }
+    function tiefeSichern(i, t) { // Tiefenkarten einzeln, damit nicht bei jeder Karte alles neu geschrieben wird
+      const r = rek; sicherKette = sicherKette.then(function () { if (r !== rek) return null; return dbTun('put', 'tiefe:' + i, t).then(function () { return dbTun('get', 'meta'); }).then(function (m) { if (m) { m.tiefen = Object.keys(rek.tiefenRoh).length; m.gesichert = Date.now(); return dbTun('put', 'meta', m); } return null; }); }).catch(function () { return null; });
+    }
     function lauf(gen) {
       const it = gen();
       return new Promise(function (ja, nein) {
@@ -507,27 +552,38 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       if (f.exif && f.exif.f35 > 5 && f.exif.f35 < 400) return f.exif.f35 / 36 * Math.max(w, h);
       return 0.85 * Math.max(w, h);
     }
-    function berechnen() { return lauf(function* () {
-      const st = STUFEN[$('pg-stufe').value] || STUFEN.normal, N = fotos.length;
+    function fotoSchluessel() { return fotos.length + '|' + fotos.map(function (f) { return f.name + ':' + (f.datei && f.datei.size || 0); }).join('|'); }
+    function berechnen(fortsetzen) { return lauf(function* () {
+      const N = fotos.length, neu = !fortsetzen || !rek || !rek.fertig || rek.schluessel !== fotoSchluessel();
+      const st = neu ? STUFEN[$('pg-stufe').value] || STUFEN.normal : rek.stufe;
       abbruch = false; werkerStarten();
       const t0 = Date.now();
-      document.querySelectorAll('#pg-schritte li').forEach(function (li) { li.className = ''; li.querySelector('i').style.width = '0'; li.querySelector('small').textContent = ''; });
-      $('pg-protokoll').textContent = '';
-      rek = { stufe: st, bilder: [], merk: [] };
-      // 1 Merkmale
-      schrittSetzen('merkmale', 0.01, '0 von ' + N);
-      yield parallel(fotos, function (f, i) {
+      if (neu) {
+        document.querySelectorAll('#pg-schritte li').forEach(function (li) { li.className = ''; li.querySelector('i').style.width = '0'; li.querySelector('small').textContent = ''; });
+        $('pg-protokoll').textContent = '';
+        rek = { stufe: st, bilder: [], merk: [], fertig: {}, schluessel: fotoSchluessel(), tiefenRoh: {}, datum: Date.now() };
+        yield dbTun('del').catch(function () { return null; }); yield fotosSichern();
+      } else protokoll('Setze die Berechnung fort (Qualität ' + st.name + ') – fertige Schritte werden übernommen.');
+      const uebernommen = function (k) { schrittSetzen(k, 1, 'übernommen'); };
+      // 1 Merkmale (auch teilweise fortsetzbar)
+      if (rek.fertig.merkmale) uebernommen('merkmale'); else {
+      const offen = fotos.map(function (f, i) { return i; }).filter(function (i) { return !rek.merk[i]; });
+      schrittSetzen('merkmale', 0.01, (N - offen.length) + ' von ' + N);
+      yield parallel(offen.map(function (i) { return fotos[i]; }), function (f, k) { const i = offen[k];
         return bildLaden(f).then(function (b) {
           f.w0 = b.width; f.h0 = b.height;
           const px = pixel(b, st.feat);
           if (b.close) b.close();
-          rek.bilder[i] = { w: px.w, h: px.h, cx: px.w / 2, cy: px.h / 2, f0: brennweitePx(f, px.w, px.h) };
+          rek.bilder[i] = { w: px.w, h: px.h, w0: b.width, h0: b.height, cx: px.w / 2, cy: px.h / 2, f0: brennweitePx(f, px.w, px.h) };
           return auftrag({ art: 'merkmale', rgba: px.rgba, w: px.w, h: px.h, nMax: st.nMax }, [px.rgba.buffer]);
         }).then(function (m) { rek.merk[i] = m; });
-      }, function (n) { schrittSetzen('merkmale', n / N, n + ' von ' + N); });
+      }, function (n) { schrittSetzen('merkmale', (N - offen.length + n) / N, (N - offen.length + n) + ' von ' + N); if (n % 10 === 0) sichern(); });
       const mm = rek.merk.map(function (m) { return m.n; });
       schaerfeBewerten();
       protokoll('Merkmale: im Mittel ' + Math.round(mm.reduce(function (a, b) { return a + b; }, 0) / N) + ' je Bild');
+      rek.fertig.merkmale = true; yield sichern(); }
+      schaerfeBewerten(true);
+      if (rek.fertig.paare) uebernommen('paare'); else {
       // Kameragruppen (gleiche Größe, Brennweite und Kamera teilen sich die inneren Werte)
       const gruppen = [], gIdx = {};
       rek.bilder.forEach(function (b, i) {
@@ -562,10 +618,12 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       protokoll('Paare: ' + paare.map(function (x) { return (x.i + 1) + '-' + (x.j + 1) + ':' + x.n; }).join(' '));
       if (paare.length < 1) throw new Error('Kein Bildpaar passt zusammen. Die Fotos brauchen mehr Überlappung (60 bis 80 %) und Struktur auf den Flächen.');
       schrittSetzen('paare', 1);
+      rek.paare = paare; rek.gruppen0 = gruppen; rek.fertig.paare = true; yield sichern(); }
       // 3 Kameras
+      if (rek.fertig.kameras) uebernommen('kameras'); else {
       schrittSetzen('kameras', 0.01, 'Startpaar suchen');
       const sfmE = yield auftrag({
-        art: 'sfm', gruppen: gruppen, paare: paare,
+        art: 'sfm', gruppen: rek.gruppen0, paare: rek.paare,
         bilder: rek.bilder.map(function (b, i) { const m = rek.merk[i]; return { n: m.n, x: m.x, y: m.y, farbe: m.farbe, cx: b.cx, cy: b.cy, gruppe: b.gruppe }; })
       }, null, function (m) { if (m.reg) schrittSetzen('kameras', Math.min(0.95, m.reg / N), m.reg + ' von ' + N + ' ausgerichtet'); if (m.text) protokoll(m.text); });
       if (sfmE.fehler && typeof sfmE.fehler === 'string') throw new Error(sfmE.fehler);
@@ -575,19 +633,21 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       protokoll('Kameras: ' + nReg + ' von ' + N + ', ' + (sfmE.punkte.length / 3) + ' Punkte, mittlerer Rückprojektionsfehler ' + zahl(sfmE.fehler, 2) + ' px, Brennweite ' + sfmE.gruppen.map(function (g) { return zahl(g.f, 0) + ' px'; }).join(', '));
       if (nReg < 3) throw new Error('Nur ' + nReg + ' Kameras ließen sich ausrichten. Mehr Fotos mit mehr Überlappung aufnehmen.');
       ausrichtungBerechnen();
+      rek.fertig.kameras = true; yield sichern(); }
       ergebnisZeigen('duenn');
-      // 4 Tiefenkarten
-      yield dichtBerechnen(st);
+      // 4 Tiefenkarten (schon berechnete Karten werden übernommen)
+      if (!rek.dicht) { yield dichtBerechnen(st); rek.fertig.tiefe = true; yield sichern(); }
       // 5 Netz
-      yield netzBerechnen();
+      if (!rek.netzRoh) { yield netzBerechnen(); rek.fertig.netz = true; yield sichern(); }
+      else if (!rek.netz) { rek.netz = yield spitzenAnwenden(); uebernommen('netz'); ergebnisZeigen('netz'); }
       // 6 Textur
-      yield texturBerechnen();
+      if (!rek.textur) { yield texturBerechnen(); rek.fertig.textur = true; yield sichern(); }
       protokoll('Fertig nach ' + Math.round((Date.now() - t0) / 1000) + ' s');
     }); }
     // ---------- Textur aus den Originalfotos ----------
     // Je Dreieck die Ansicht mit der feinsten, möglichst senkrechten Sicht; zusammenhängende Stücke werden aus dem Foto in einen Atlas kopiert.
     function texturBerechnen() { return lauf(function* () {
-      const m = rek.netz; rek.textur = null; ansicht.texturSetzen(null);
+      const m = rek.netz; rek.textur = null; rek.texturBlob = null; ansicht.texturSetzen(null);
       if (!m || !m.dreiecke.length) return;
       schrittSetzen('textur', 0.01, 'Sichtbarkeit');
       const nT = m.dreiecke.length / 3, nV = m.pos.length / 3, N = fotos.length;
@@ -675,10 +735,13 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         while (stapel.length) { const u = stapel.pop(); s.dr.push(u); for (let k = 0; k < 3; k++) { const v = nb[3 * u + k]; if (v >= 0 && stueck[v] < 0 && lab[v] === s.i) { stueck[v] = stueck[t]; stapel.push(v); } } }
         stuecke.push(s);
       }
+      // Originalgröße der Fotos (fehlt z. B. bei alten Zwischenständen)
+      const ohneGr = stuecke.map(function (q) { return q.i; }).filter(function (i, k, l) { return l.indexOf(i) === k && !fotos[i].w0 && !(rek.bilder[i] && rek.bilder[i].w0); });
+      for (let k = 0; k < ohneGr.length; k++) { const bi = yield bildLaden(fotos[ohneGr[k]]); fotos[ohneGr[k]].w0 = bi.width; fotos[ohneGr[k]].h0 = bi.height; if (bi.close) bi.close(); }
       // Projektion in Originalpixel, Rechteck je Stück
       const P = m.pos, rand = 3;
       stuecke.forEach(function (s) {
-        const k = kam[s.i], sk = (fotos[s.i].w0 || k.w) / k.w, R = k.R, tt = k.t;
+        const k = kam[s.i], sk = (fotos[s.i].w0 || rek.bilder[s.i].w0 || k.w) / k.w, R = k.R, tt = k.t;
         let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity; const uv = new Float32Array(s.dr.length * 6);
         s.dr.forEach(function (t, j) {
           for (let e = 0; e < 3; e++) {
@@ -756,6 +819,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         const j = pp.length / 3; zus.set(key, j); neu[k] = j; pp.push(pos[3 * k], pos[3 * k + 1], pos[3 * k + 2]); nn.push(nor[3 * k], nor[3 * k + 1], nor[3 * k + 2]); uu.push(uvs[2 * k], uvs[2 * k + 1]);
       }
       rek.textur = { pos: Float32Array.from(pp), normalen: Float32Array.from(nn), uv: Float32Array.from(uu), dreiecke: Uint32Array.from(neu), bild: atlas, A: A };
+      rek.texturBlob = yield new Promise(function (ja) { try { atlas.toBlob(function (bl) { ja(bl); }, 'image/jpeg', 0.92); } catch (e) { ja(null); } });
       ansicht.texturSetzen(rek.textur);
       const aufl = sig >= 1 ? 'volle Fotoauflösung' : Math.round(sig * 100) + ' % der Fotoauflösung';
       schrittSetzen('textur', 1, stuecke.length + ' Stücke, ' + aufl);
@@ -763,10 +827,10 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       ergebnisZeigen('textur');
     }); }
     // Unscharfe Fotos: unter 35 % der mittleren Schärfe (Verwacklung, Fokus daneben)
-    function schaerfeBewerten() {
+    function schaerfeBewerten(still) {
       const w = rek.merk.map(function (m) { return m.schaerfe || 0; }).filter(function (x) { return x > 0; }), med = w.length ? median(w) : 0;
       let n = 0; rek.merk.forEach(function (m, i) { fotos[i].schaerfe = med ? Math.min(2, (m.schaerfe || 0) / med) : 1; fotos[i].unscharf = fotos[i].schaerfe < 0.35; if (fotos[i].unscharf) n++; });
-      if (n) protokoll(n + (n === 1 ? ' Foto ist' : ' Fotos sind') + ' deutlich unschärfer als die anderen' + ($('pg-unscharf').checked ? ' – nur für die Ausrichtung genutzt, nicht für Tiefen und Textur.' : '.'));
+      if (n && !still) protokoll(n + (n === 1 ? ' Foto ist' : ' Fotos sind') + ' deutlich unschärfer als die anderen' + ($('pg-unscharf').checked ? ' – nur für die Ausrichtung genutzt, nicht für Tiefen und Textur.' : '.'));
     }
     function weglassen(i) { return $('pg-unscharf').checked && fotos[i].unscharf && fotos.filter(function (f) { return !f.unscharf; }).length >= 3; }
     // Kamera i im Rekonstruktions-System
@@ -813,9 +877,11 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       let fertig = 0;
       const tiefen = {};
       yield parallel(mitN, function (i) {
+        const alt = rek.tiefenRoh && rek.tiefenRoh[i];
+        if (alt && alt.length === ans[i].w * ans[i].h) { tiefen[i] = alt; fertig++; schrittSetzen('tiefe', fertig / mitN.length, fertig + ' von ' + mitN.length); return Promise.resolve(); }
         const ref = ans[i], quellen = nachbarn[i].slice(0, st.quellen).map(function (j) { const a = ans[j]; return { w: a.w, h: a.h, f: a.f, cx: a.cx, cy: a.cy, R: a.R, t: a.t, grau: a.grau }; });
         return auftrag({ art: 'tiefe', ref: { w: ref.w, h: ref.h, f: ref.f, cx: ref.cx, cy: ref.cy, R: ref.R, t: ref.t, grau: ref.grau }, quellen: quellen, opt: { dmin: bereich[i][0], dmax: bereich[i][1], ebenen: st.ebenen, beste: 2 } })
-          .then(function (r) { tiefen[i] = r.tiefe; fertig++; schrittSetzen('tiefe', fertig / mitN.length, fertig + ' von ' + mitN.length); });
+          .then(function (r) { tiefen[i] = r.tiefe; rek.tiefenRoh[i] = r.tiefe; fertig++; schrittSetzen('tiefe', fertig / mitN.length, fertig + ' von ' + mitN.length); tiefeSichern(i, r.tiefe); });
       });
       // gegenseitig prüfen
       schrittSetzen('pruefen', 0.01, '');
@@ -841,7 +907,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       rek.dicht = { pos: Float32Array.from(pos), farbe: Uint8Array.from(fa) };
       protokoll('Dichte Punktwolke: ' + zahl(pos.length / 3, 0) + ' Punkte aus ' + rek.ansichten.length + ' Tiefenkarten');
       if (pos.length < 300) throw new Error('Die Tiefenkarten enthalten zu wenige sichere Punkte – die Oberflächen brauchen mehr Struktur oder die Fotos mehr Überlappung.');
-      bodenSchaetzen();
+      if (!rek.fertig.tiefe && !rek.lageKorr && rek.boden !== 'gesetzt') bodenSchaetzen(); // beim Fortsetzen die gespeicherte Lage behalten
       ergebnisZeigen('dicht');
     }); }
     // Haken „Spitzen abflachen“: aus dem Rohnetz eine bereinigte Kopie im Arbeitsfaden
@@ -1750,16 +1816,68 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       }).catch(function (e) { b.disabled = false; b.textContent = 'Beispiel: Haus mit 36 Drohnenfotos'; werkzeugHinweis('Beispiel nicht möglich: ' + e.message); });
     });
     let laeuft = false;
-    $('pg-start').addEventListener('click', function () {
+    function weiterZeigen() { $('pg-weiter').hidden = laeuft || !(rek && rek.fertig && !rek.fertig.textur && rek.schluessel === fotoSchluessel()); }
+    function starten(fortsetzen) {
       if (laeuft || fotos.length < 8) return;
-      laeuft = true; $('pg-start').disabled = true; $('pg-abbruch').hidden = false; $('pg-lauf').hidden = false; $('pg-fehler').hidden = true;
-      messungen.length = 0; daecher.length = 0; werkzeug = null;
+      laeuft = true; $('pg-start').disabled = true; $('pg-weiter').hidden = true; $('pg-abbruch').hidden = false; $('pg-lauf').hidden = false; $('pg-fehler').hidden = true; $('pg-gesichert').hidden = true;
+      if (!fortsetzen) { messungen.length = 0; daecher.length = 0; }
+      werkzeug = null;
       $('pg-lauf').scrollIntoView({ behavior: 'smooth', block: 'start' });
-      berechnen().then(function () { fotosZeigen(); }).catch(function (e) {
+      berechnen(fortsetzen).then(function () { fotosZeigen(); }).catch(function (e) {
         const t = String(e && e.message || e);
         $('pg-fehler').hidden = false; $('pg-fehler').textContent = t === 'abgebrochen' ? 'Berechnung abgebrochen.' : 'Die Berechnung ist nicht gelungen: ' + t.split('\n')[0];
         if (rek && rek.sfm && rek.T) ergebnisZeigen('duenn');
-      }).then(function () { laeuft = false; $('pg-abbruch').hidden = true; fotosZeigen(); werker.forEach(function (w) { w.w.terminate(); }); werker = []; });
+      }).then(function () { laeuft = false; $('pg-abbruch').hidden = true; fotosZeigen(); weiterZeigen(); werker.forEach(function (w) { w.w.terminate(); }); werker = []; });
+    }
+    $('pg-start').addEventListener('click', function () { starten(false); });
+    $('pg-weiter').addEventListener('click', function () { starten(true); });
+    // Gespeicherten Zwischenstand anbieten (überlebt Neuladen und Abstürze des Tabs)
+    const SCHRITTNAME = { merkmale: 'Merkmale', paare: 'Bildpaare', kameras: 'Kameras', tiefe: 'Tiefenkarten', netz: 'Oberfläche', textur: 'Textur' };
+    function standText(m) {
+      const f = m.fertig || {}, fertig = ['merkmale', 'paare', 'kameras', 'tiefe', 'netz', 'textur'].filter(function (k) { return f[k]; });
+      if (fertig.length === 6) return 'vollständig';
+      return (fertig.length ? 'fertig bis ' + SCHRITTNAME[fertig[fertig.length - 1]] : 'begonnen') + (!f.tiefe && m.tiefen ? ', ' + m.tiefen + ' Tiefenkarten' : '');
+    }
+    function gesichertPruefen() {
+      dbTun('get', 'meta').then(function (m) {
+        if (!m || laeuft) return;
+        const d = new Date(m.gesichert || m.datum);
+        $('pg-gesichert-text').textContent = 'Gespeicherte Berechnung' + (m.projekt ? ' „' + m.projekt + '“' : '') + ' vom ' + d.toLocaleDateString('de-DE') + ', ' + d.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ': ' + m.n + ' Fotos, Qualität ' + m.stufe + ', ' + standText(m) + '.';
+        $('pg-gesichert').hidden = false;
+      }).catch(function () { /* ohne IndexedDB kein Fortsetzen nach dem Neuladen */ });
+    }
+    $('pg-gesichert-verwerfen').addEventListener('click', function () { dbTun('del').catch(function () { return null; }).then(function () { $('pg-gesichert').hidden = true; }); });
+    $('pg-gesichert-laden').addEventListener('click', function () {
+      if (laeuft) return; const knopf = this; knopf.disabled = true;
+      Promise.all([dbTun('get', 'fotos'), dbTun('get', 'rek'), dbTun('get', 'meta')]).then(function (x) {
+        const fl = x[0], o = x[1], m = x[2]; if (!fl || !o || !Array.isArray(fl)) throw new Error('Zwischenstand unvollständig');
+        fotos.forEach(function (f) { if (f.thumb) URL.revokeObjectURL(f.thumb); }); fotos.length = 0;
+        fl.forEach(function (f) { if (f && f.datei && typeof f.name === 'string') fotos.push({ name: f.name.slice(0, 80), datei: f.datei, exif: f.exif || {} }); });
+        if (m && m.projekt) $('pg-projekt').value = m.projekt;
+        rek = {}; Object.keys(o).forEach(function (k) { if (k !== 'werkzeuge' && k !== 'textur' && k !== 'tiefenIdx') rek[k] = o[k]; });
+        rek.tiefenRoh = {}; rek.schluessel = fotoSchluessel();
+        (rek.bilder || []).forEach(function (b, i) { if (b && fotos[i] && b.w0) { fotos[i].w0 = b.w0; fotos[i].h0 = b.h0; } });
+        const idx = []; for (let i = 0; i < fotos.length; i++) idx.push(i); // auch Karten, die nach dem letzten Gesamtstand gespeichert wurden
+        return Promise.all(idx.map(function (i) { return dbTun('get', 'tiefe:' + i).then(function (t) { if (t) rek.tiefenRoh[i] = t; }); })).then(function () {
+          if (!o.textur || !o.textur.blob || !window.createImageBitmap) return null;
+          return createImageBitmap(o.textur.blob).then(function (b) {
+            const c = document.createElement('canvas'); c.width = o.textur.A; c.height = o.textur.A; c.getContext('2d').drawImage(b, 0, 0); if (b.close) b.close();
+            rek.textur = { pos: o.textur.pos, normalen: o.textur.normalen, uv: o.textur.uv, dreiecke: o.textur.dreiecke, A: o.textur.A, bild: c }; rek.texturBlob = o.textur.blob;
+          });
+        }).then(function () {
+          messungen.length = 0; daecher.length = 0;
+          if (o.werkzeuge) { (o.werkzeuge.messungen || []).forEach(function (q) { messungen.push(q); }); (o.werkzeuge.daecher || []).forEach(function (q) { daecher.push({ name: q.name, ecken: q.ecken, hindernisse: q.hindernisse || [] }); }); }
+          fotosZeigen(); $('pg-gesichert').hidden = true; $('pg-lauf').hidden = false; $('pg-fehler').hidden = true;
+          document.querySelectorAll('#pg-schritte li').forEach(function (li) { li.className = ''; li.querySelector('i').style.width = '0'; li.querySelector('small').textContent = ''; });
+          ['merkmale', 'paare', 'kameras', 'tiefe', 'netz', 'textur'].forEach(function (k) { if (rek.fertig && rek.fertig[k]) schrittSetzen(k, 1, 'gespeichert'); });
+          if (rek.fertig && rek.fertig.tiefe) schrittSetzen('pruefen', 1, 'gespeichert');
+          if (rek.fertig && !rek.fertig.tiefe && Object.keys(rek.tiefenRoh).length) schrittSetzen('tiefe', 0.5, Object.keys(rek.tiefenRoh).length + ' gespeichert');
+          if (rek.sfm && rek.T) { ersteAnsicht = true; ergebnisZeigen(rek.netz ? 'netz' : 'duenn'); if (rek.textur) ansicht.texturSetzen(rek.textur); }
+          weiterZeigen();
+          werkzeugHinweis(rek.fertig && rek.fertig.textur ? 'Modell geladen. Für die dichte Punktwolke oder „Netz neu berechnen“ einmal „Berechnung fortsetzen“.' : 'Zwischenstand geladen – „Berechnung fortsetzen“ rechnet nur die fehlenden Schritte.');
+          if (rek.fertig && rek.fertig.textur) $('pg-weiter').hidden = false;
+        });
+      }).catch(function (e) { werkzeugHinweis('Zwischenstand nicht lesbar: ' + (e && e.message || e)); }).then(function () { knopf.disabled = false; });
     });
     $('pg-abbruch').addEventListener('click', function () { abbruch = true; werker.forEach(function (w) { w.w.terminate(); Object.keys(w.offen).forEach(function (k) { w.offen[k].nein(new Error('abgebrochen')); }); w.offen = {}; }); });
     let ersteAnsicht = true;
@@ -1833,7 +1951,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
     $('pg-spitzen').addEventListener('change', function () {
       if (!rek || !rek.netzRoh || laeuft) return;
       laeuft = true; werkerStarten(); abbruch = false; $('pg-fehler').hidden = true;
-      spitzenAnwenden().then(function (m) { rek.netz = m; schrittSetzen('netz', 1, zahl(m.dreiecke.length / 3, 0) + ' Dreiecke'); ergebnisZeigen('netz'); return texturBerechnen(); })
+      spitzenAnwenden().then(function (m) { rek.netz = m; schrittSetzen('netz', 1, zahl(m.dreiecke.length / 3, 0) + ' Dreiecke'); ergebnisZeigen('netz'); return texturBerechnen(); }).then(function () { return sichern(); })
         .catch(function (e) { $('pg-fehler').hidden = false; $('pg-fehler').textContent = 'Netz nicht bearbeitet: ' + String(e.message).split('\n')[0]; })
         .then(function () { laeuft = false; werker.forEach(function (w) { w.w.terminate(); }); werker = []; });
     });
@@ -1841,13 +1959,13 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       if (!rek || !rek.ansichten || laeuft) return;
       laeuft = true; this.disabled = true; werkerStarten(); abbruch = false; $('pg-fehler').hidden = true;
       const b = this;
-      netzBerechnen({ budget: Number($('pg-aufloesung').value), glatt: Number($('pg-glatt').value) }).then(function () { return texturBerechnen(); }).catch(function (e) { $('pg-fehler').hidden = false; $('pg-fehler').textContent = 'Netz nicht berechnet: ' + String(e.message).split('\n')[0]; })
+      netzBerechnen({ budget: Number($('pg-aufloesung').value), glatt: Number($('pg-glatt').value) }).then(function () { return texturBerechnen(); }).then(function () { return sichern(); }).catch(function (e) { $('pg-fehler').hidden = false; $('pg-fehler').textContent = 'Netz nicht berechnet: ' + String(e.message).split('\n')[0]; })
         .then(function () { laeuft = false; b.disabled = false; werker.forEach(function (w) { w.w.terminate(); }); werker = []; });
     });
     // Liste der Schritte aufbauen
     SCHRITTE.forEach(function (s) { const li = kn('li'); li.setAttribute('data-schritt', s[0]); const b = kn('span', 'pg-balken'); b.append(kn('i')); li.append(kn('b', '', s[1]), b, kn('small')); $('pg-schritte').append(li); });
     if (!ansicht.gl) { $('pg-start').disabled = true; $('pg-foto-info').textContent = 'Dieser Browser kann kein WebGL – die 3D-Ansicht ist nicht möglich.'; }
-    fotosZeigen();
+    fotosZeigen(); gesichertPruefen();
     document.querySelectorAll('#pg-wissen [data-tex]').forEach(function (e) { Formel.setze(e, e.getAttribute('data-tex'), true); });
   })();
   </script>
