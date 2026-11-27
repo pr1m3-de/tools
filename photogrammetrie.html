@@ -114,7 +114,8 @@
           <label><input type="checkbox" id="pg-spitzen" checked> Spitzen und Zacken im Netz abflachen</label>
           <label><input type="checkbox" id="pg-unscharf" checked> Unscharfe Fotos nicht für Tiefen und Textur nutzen</label>
           <label><input type="checkbox" id="pg-hell" checked> Helligkeit der Fotos in der Textur angleichen</label>
-          <label><input type="checkbox" id="pg-schaerfen" checked> Textur nachschärfen</label>
+          <label><input type="checkbox" id="pg-schaerfen"> Textur leicht nachschärfen</label>
+          <label class="pg-haken-wahl">Texturspeicher <select id="pg-texturspeicher"><option value="1">64 MB – 1 Seite</option><option value="4">256 MB – 4 Seiten</option><option value="8" selected>512 MB – 8 Seiten</option><option value="16">1 GB – 16 Seiten (gestochen scharf)</option><option value="32">2 GB – 32 Seiten (nur starke Grafik)</option></select></label>
           <label><input type="checkbox" id="pg-loecher"> Größere Löcher im Netz schließen</label>
         </div>
       </details>
@@ -241,7 +242,7 @@
         <details><summary>Werden meine Fotos hochgeladen?</summary><p>Nein. Alles läuft lokal im Browser, auch ohne Internet, wenn die Seite einmal geladen war.</p></details>
         <details><summary>Wie komme ich zum PV-Plan?</summary><p>Im Reiter „Dach und PV“ die Dachflächen und Hindernisse einzeichnen und „Im PV-Dachplaner öffnen“ wählen. Der Planer übernimmt Form, Neigung, Ausrichtung und Hindernisse. Alternativ entsteht eine JSON-Datei im Austauschformat für Auslegungsrechner von Montagesystemen.</p></details>
         <details><summary>Kann ich eine Berechnung fortsetzen?</summary><p>Ja. Nach jedem Schritt und nach jeder Tiefenkarte wird der Zwischenstand im Speicher dieses Browsers abgelegt (IndexedDB) – auch die Fotos, sie verlassen das Gerät nicht. Nach einem Abbruch, Fehler oder Absturz des Tabs erscheint beim nächsten Öffnen „Gespeicherte Berechnung … Laden und fortsetzen“; fertige Schritte und Tiefenkarten werden übernommen. Mit „Verwerfen“ wird der Speicher geleert. Eine neue Berechnung ersetzt den alten Stand.</p></details>
-        <details><summary>Was bewirken die Qualitätsoptionen?</summary><p>„Spitzen abflachen“ entfernt lange Fahnen-Dreiecke und lose Fetzen und zieht einzeln abstehende Ecken auf ihre Nachbarn zurück – Kanten des Gebäudes bleiben. Unscharfe Fotos (Verwacklung, Fokus daneben) erkennt das Programm an der Bildschärfe und nutzt sie nur noch zum Ausrichten. Die Helligkeit wird je Foto an den Mittelwert angepasst, damit in der Textur keine hellen und dunklen Flecken entstehen. Nachschärfen gleicht die Unschärfe aus, die beim Verkleinern der Fotos in den Atlas entsteht. „Löcher schließen“ füllt auch größere Lücken, kann aber an offenen Rändern Fahnen bilden. Der Haken bei „Spitzen“ wirkt sofort auf das fertige Netz.</p></details>
+        <details><summary>Was bewirken die Qualitätsoptionen?</summary><p>„Spitzen abflachen“ entfernt lange Fahnen-Dreiecke und lose Fetzen und zieht einzeln abstehende Ecken auf ihre Nachbarn zurück – Kanten des Gebäudes bleiben. Unscharfe Fotos (Verwacklung, Fokus daneben) erkennt das Programm an der Bildschärfe und nutzt sie nur noch zum Ausrichten. Die Helligkeit wird je Foto an den Mittelwert angepasst, damit in der Textur keine hellen und dunklen Flecken entstehen. Der Texturspeicher bestimmt die Schärfe: Reicht er für die volle Fotoauflösung, wird nichts verkleinert (Anzeige „volle Fotoauflösung“ im Protokoll); bei großen Aufnahmen 1 oder 2 GB wählen. Nachschärfen hebt Kanten leicht an. „Löcher schließen“ füllt auch größere Lücken, kann aber an offenen Rändern Fahnen bilden. Der Haken bei „Spitzen“ wirkt sofort auf das fertige Netz.</p></details>
         <details><summary>Wie wird das Modell detailreicher?</summary><p>Qualität „Hoch“ oder „HD“ wählen (HD rechnet mit größeren Bildern und feinerem Volumen, braucht aber deutlich mehr Zeit und Speicher) und mehr, nähere Fotos aufnehmen. Bei großen Aufnahmen (ganze Straße) unter „Export“ den Bereich auf das Gebäude begrenzen und das Netz neu berechnen: Die gleiche Voxelzahl verteilt sich dann auf die kleinere Fläche. Die Textur kommt immer aus den Originalfotos, je Dreieck aus dem Foto mit der nächsten, möglichst senkrechten Sicht.</p></details>
         <details><summary>Welche Formate gibt es?</summary><p>Netze als OBJ mit Fototextur (ZIP mit OBJ, MTL und JPG), GLB mit eingebetteter Textur für Betrachter und 3D-Programme, PLY mit Eckfarben und STL für den 3D-Druck, die Punktwolke als PLY und alle Maße als CSV.</p></details>
         <details><summary>Was ist das Beispiel?</summary><p>Ein künstlich gerendertes Haus mit Satteldach (38°), Dachfenstern, Schornstein und Garage, aufgenommen von einer gedachten Drohne mit GPS. Damit lässt sich der ganze Ablauf ohne eigene Fotos ausprobieren und das Ergebnis mit den bekannten Maßen vergleichen.</p></details>
@@ -521,7 +522,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       sicherKette = sicherKette.then(function () {
         sicherPlan = false; if (!rek || !rek.fertig) return null;
         const o = {}; REK_FELDER.forEach(function (k) { if (rek[k] !== undefined) o[k] = rek[k]; }); o.tiefenIdx = Object.keys(rek.tiefenRoh || {}).map(Number);
-        if (rek.textur && rek.texturBlob) o.textur = { pos: rek.textur.pos, normalen: rek.textur.normalen, uv: rek.textur.uv, dreiecke: rek.textur.dreiecke, A: rek.textur.A, blob: rek.texturBlob };
+        if (rek.textur && rek.texturBlobs && rek.texturBlobs.every(function (b) { return b; })) o.textur = { A: rek.textur.A, sig: rek.textur.sig, seiten: rek.textur.seiten.map(function (q, k) { return { pos: q.pos, normalen: q.normalen, uv: q.uv, dreiecke: q.dreiecke, blob: rek.texturBlobs[k] }; }) };
         o.werkzeuge = { messungen: messungen.slice(), daecher: daecher.map(function (d) { return { name: d.name, ecken: d.ecken, hindernisse: d.hindernisse }; }) };
         const meta = { datum: rek.datum, gesichert: Date.now(), n: fotos.length, projekt: $('pg-projekt').value.slice(0, 60), stufe: rek.stufe.name, fertig: rek.fertig, tiefen: Object.keys(rek.tiefenRoh || {}).length };
         return dbTun('put', 'rek', o).then(function () { return dbTun('put', 'meta', meta); });
@@ -647,7 +648,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
     // ---------- Textur aus den Originalfotos ----------
     // Je Dreieck die Ansicht mit der feinsten, möglichst senkrechten Sicht; zusammenhängende Stücke werden aus dem Foto in einen Atlas kopiert.
     function texturBerechnen() { return lauf(function* () {
-      const m = rek.netz; rek.textur = null; rek.texturBlob = null; ansicht.texturSetzen(null);
+      const m = rek.netz; rek.textur = null; rek.texturBlobs = null; ansicht.texturSetzen(null);
       if (!m || !m.dreiecke.length) return;
       schrittSetzen('textur', 0.01, 'Sichtbarkeit');
       const nT = m.dreiecke.length / 3, nV = m.pos.length / 3, N = fotos.length;
@@ -753,26 +754,32 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         });
         s.uv = uv; s.sx = Math.floor(x0) - rand; s.sy = Math.floor(y0) - rand; s.sw = Math.ceil(x1) + rand - s.sx; s.sh = Math.ceil(y1) + rand - s.sy;
       });
-      // Atlas packen (Regale), Maßstab so, dass alles hineinpasst
-      const maxT = ansicht.maxTextur(), A = Math.min(maxT, rek.stufe.atlas || 4096);
+      // Atlas packen (Regale auf mehreren Seiten), Maßstab so, dass alles in den gewählten Texturspeicher passt
+      const PS = Math.min(ansicht.maxTextur(), window.PG_DEBUG && window.PG_SEITE || 4096), maxSeiten = Math.max(1, Math.min(32, Number($('pg-texturspeicher').value) || 4));
       let flaeche = 0; stuecke.forEach(function (s) { flaeche += s.sw * s.sh; });
       const ohne = []; for (let t = 0; t < nT; t++) if (lab[t] < 0) ohne.push(t);
       const reihe = stuecke.map(function (s, k) { return k; }).sort(function (a, b) { return stuecke[b].sh - stuecke[a].sh; });
-      let sig = Math.min(1, Math.sqrt(0.82 * A * (A - 70) / Math.max(1, flaeche))), passt = false;
-      for (let versuch = 0; versuch < 40 && !passt; versuch++) {
-        let x = 0, y = 70, zeile = 0; passt = true;
+      let sig = Math.min(1, Math.sqrt(0.84 * maxSeiten * PS * PS / Math.max(1, flaeche + 70 * PS))), passt = false, nSeiten = 1;
+      for (let versuch = 0; versuch < 60 && !passt; versuch++) {
+        let seite = 0, x = 0, y = 70, zeile = 0; passt = true;
         for (let r = 0; r < reihe.length; r++) {
           const s = stuecke[reihe[r]], w = Math.ceil(s.sw * sig) + 2, h = Math.ceil(s.sh * sig) + 2;
-          if (w > A) { passt = false; break; }
-          if (x + w > A) { x = 0; y += zeile; zeile = 0; }
-          if (y + h > A) { passt = false; break; }
-          s.dx = x + 1; s.dy = y + 1; x += w; if (h > zeile) zeile = h;
+          if (w > PS || h > PS) { passt = false; break; }
+          if (x + w > PS) { x = 0; y += zeile; zeile = 0; }
+          if (y + h > PS) { seite++; x = 0; y = 0; zeile = 0; if (seite >= maxSeiten) { passt = false; break; } }
+          s.seite = seite; s.dx = x + 1; s.dy = y + 1; x += w; if (h > zeile) zeile = h;
         }
-        if (!passt) sig *= 0.93;
+        nSeiten = seite + 1;
+        if (!passt) sig *= 0.95;
       }
       schrittSetzen('textur', 0.7, 'Fotos kopieren');
-      const atlas = document.createElement('canvas'); atlas.width = A; atlas.height = A;
-      const cx = atlas.getContext('2d'); cx.fillStyle = '#808080'; cx.fillRect(0, 0, A, A); cx.imageSmoothingEnabled = true; cx.imageSmoothingQuality = 'high';
+      const seiten = [];
+      for (let k = 0; k < nSeiten; k++) {
+        const c = document.createElement('canvas'); c.width = PS; c.height = PS;
+        const g = c.getContext('2d'); g.fillStyle = '#808080'; g.fillRect(0, 0, PS, PS); g.imageSmoothingEnabled = true; g.imageSmoothingQuality = 'high';
+        seiten.push({ bild: c, cx: g });
+      }
+      const cx = seiten[0].cx;
       // Farbtafel (64 × 64) für Dreiecke ohne Ansicht: Farbe aus den Ecken, 4 Bit je Kanal
       for (let k = 0; k < 4096; k++) { cx.fillStyle = 'rgb(' + ((k >> 8) * 17) + ',' + (((k >> 4) & 15) * 17) + ',' + ((k & 15) * 17) + ')'; cx.fillRect(k & 63, k >> 6, 1, 1); }
       const proBild = {}; stuecke.forEach(function (s) { (proBild[s.i] = proBild[s.i] || []).push(s); });
@@ -788,42 +795,42 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       for (let b = 0; b < bilderListe.length; b++) {
         const i = Number(bilderListe[b]), bild = yield bildLaden(fotos[i]);
         proBild[i].forEach(function (s) {
-          const sx = Math.max(0, s.sx), sy = Math.max(0, s.sy), ex = Math.min(bild.width, s.sx + s.sw), ey = Math.min(bild.height, s.sy + s.sh);
-          cx.filter = angleichen && hell[i] ? 'brightness(' + Math.max(0.75, Math.min(1.33, hMed / hell[i])).toFixed(3) + ')' : 'none';
-          if (ex > sx && ey > sy) cx.drawImage(bild, sx, sy, ex - sx, ey - sy, s.dx + (sx - s.sx) * sig, s.dy + (sy - s.sy) * sig, (ex - sx) * sig, (ey - sy) * sig);
+          const g = seiten[s.seite].cx, sx = Math.max(0, s.sx), sy = Math.max(0, s.sy), ex = Math.min(bild.width, s.sx + s.sw), ey = Math.min(bild.height, s.sy + s.sh);
+          g.filter = angleichen && hell[i] ? 'brightness(' + Math.max(0.75, Math.min(1.33, hMed / hell[i])).toFixed(3) + ')' : 'none';
+          if (ex > sx && ey > sy) g.drawImage(bild, sx, sy, ex - sx, ey - sy, s.dx + (sx - s.sx) * sig, s.dy + (sy - s.sy) * sig, (ex - sx) * sig, (ey - sy) * sig);
         });
         if (bild.close) bild.close();
-        kopiert++; schrittSetzen('textur', 0.7 + 0.28 * kopiert / bilderListe.length, 'Fotos kopieren ' + kopiert + ' von ' + bilderListe.length);
+        kopiert++; schrittSetzen('textur', 0.7 + 0.26 * kopiert / bilderListe.length, 'Fotos kopieren ' + kopiert + ' von ' + bilderListe.length);
       }
-      cx.filter = 'none';
-      if ($('pg-schaerfen').checked) {
-        schrittSetzen('textur', 0.985, 'Textur nachschärfen');
-        const bd = cx.getImageData(0, 0, A, A), r = yield auftrag({ art: 'schaerfen', px: bd.data, w: A, h: A, staerke: sig < 0.8 ? 0.8 : 0.5 }, [bd.data.buffer]);
-        cx.putImageData(new ImageData(new Uint8ClampedArray(r.px.buffer), A, A), 0, 0);
+      seiten.forEach(function (q) { q.cx.filter = 'none'; });
+      if ($('pg-schaerfen').checked) { // leicht, sonst entstehen Säume und Körnung
+        for (let k = 0; k < seiten.length; k++) {
+          schrittSetzen('textur', 0.96 + 0.03 * k / seiten.length, 'Textur nachschärfen');
+          const bd = seiten[k].cx.getImageData(0, 0, PS, PS), r = yield auftrag({ art: 'schaerfen', px: bd.data, w: PS, h: PS, staerke: 0.35 }, [bd.data.buffer]);
+          seiten[k].cx.putImageData(new ImageData(new Uint8ClampedArray(r.px.buffer), PS, PS), 0, 0);
+        }
       }
-      // Ecken je Stück vervielfachen (eigene Texturkoordinaten)
-      const nEcken = nT * 3, pos = new Float32Array(nEcken * 3), nor = new Float32Array(nEcken * 3), uvs = new Float32Array(nEcken * 2), idx = new Uint32Array(nEcken);
-      let o = 0;
-      const setze = function (v, u, w) { pos[3 * o] = P[3 * v]; pos[3 * o + 1] = P[3 * v + 1]; pos[3 * o + 2] = P[3 * v + 2]; nor[3 * o] = m.normalen[3 * v]; nor[3 * o + 1] = m.normalen[3 * v + 1]; nor[3 * o + 2] = m.normalen[3 * v + 2]; uvs[2 * o] = u / A; uvs[2 * o + 1] = w / A; idx[o] = o; o++; };
-      stuecke.forEach(function (s) { s.dr.forEach(function (t, j) { for (let e = 0; e < 3; e++) setze(D[3 * t + e], s.dx + (s.uv[6 * j + 2 * e] - s.sx) * sig, s.dy + (s.uv[6 * j + 2 * e + 1] - s.sy) * sig); }); });
+      // Netz je Seite: Ecken je Stück mit eigenen Texturkoordinaten, gemeinsame Ecken gleicher Lage und Koordinate zusammenlegen
+      const teil = seiten.map(function () { return { pp: [], nn: [], uu: [], dd: [], zus: new Map() }; });
+      const setze = function (q, v, u, w) {
+        const key = v + ',' + u.toFixed(2) + ',' + w.toFixed(2); let z = q.zus.get(key);
+        if (z === undefined) { z = q.pp.length / 3; q.zus.set(key, z); q.pp.push(P3[3 * v], P3[3 * v + 1], P3[3 * v + 2]); q.nn.push(m.normalen[3 * v], m.normalen[3 * v + 1], m.normalen[3 * v + 2]); q.uu.push(u / PS, w / PS); }
+        q.dd.push(z);
+      };
+      const P3 = m.pos;
+      stuecke.forEach(function (s) { const q = teil[s.seite]; s.dr.forEach(function (t, j) { for (let e = 0; e < 3; e++) setze(q, D[3 * t + e], s.dx + (s.uv[6 * j + 2 * e] - s.sx) * sig, s.dy + (s.uv[6 * j + 2 * e + 1] - s.sy) * sig); }); });
       ohne.forEach(function (t) {
         let r = 0, g = 0, bb = 0; for (let e = 0; e < 3; e++) { const v = D[3 * t + e]; r += m.farbe[3 * v]; g += m.farbe[3 * v + 1]; bb += m.farbe[3 * v + 2]; }
         const k = (Math.round(r / 3 / 17) << 8) | (Math.round(g / 3 / 17) << 4) | Math.round(bb / 3 / 17);
-        for (let e = 0; e < 3; e++) setze(D[3 * t + e], (k & 63) + 0.5, (k >> 6) + 0.5);
+        for (let e = 0; e < 3; e++) setze(teil[0], D[3 * t + e], (k & 63) + 0.5, (k >> 6) + 0.5);
       });
-      // gemeinsame Ecken innerhalb eines Stücks wieder zusammenlegen (gleiche Lage und gleiche Texturkoordinate)
-      const zus = new Map(), neu = new Int32Array(nEcken), pp = [], nn = [], uu = [];
-      for (let k = 0; k < nEcken; k++) {
-        const key = pos[3 * k] + ',' + pos[3 * k + 1] + ',' + pos[3 * k + 2] + ',' + uvs[2 * k] + ',' + uvs[2 * k + 1], z = zus.get(key);
-        if (z !== undefined) { neu[k] = z; continue; }
-        const j = pp.length / 3; zus.set(key, j); neu[k] = j; pp.push(pos[3 * k], pos[3 * k + 1], pos[3 * k + 2]); nn.push(nor[3 * k], nor[3 * k + 1], nor[3 * k + 2]); uu.push(uvs[2 * k], uvs[2 * k + 1]);
-      }
-      rek.textur = { pos: Float32Array.from(pp), normalen: Float32Array.from(nn), uv: Float32Array.from(uu), dreiecke: Uint32Array.from(neu), bild: atlas, A: A };
-      rek.texturBlob = yield new Promise(function (ja) { try { atlas.toBlob(function (bl) { ja(bl); }, 'image/jpeg', 0.92); } catch (e) { ja(null); } });
+      rek.textur = { A: PS, sig: sig, seiten: teil.map(function (q, k) { return { pos: Float32Array.from(q.pp), normalen: Float32Array.from(q.nn), uv: Float32Array.from(q.uu), dreiecke: Uint32Array.from(q.dd), bild: seiten[k].bild }; }) };
+      rek.texturBlobs = [];
+      for (let k = 0; k < seiten.length; k++) rek.texturBlobs.push(yield new Promise(function (ja) { try { seiten[k].bild.toBlob(function (bl) { ja(bl); }, 'image/jpeg', 0.93); } catch (e) { ja(null); } }));
       ansicht.texturSetzen(rek.textur);
-      const aufl = sig >= 1 ? 'volle Fotoauflösung' : Math.round(sig * 100) + ' % der Fotoauflösung';
+      const aufl = sig >= 0.999 ? 'volle Fotoauflösung' : Math.round(sig * 100) + ' % der Fotoauflösung';
       schrittSetzen('textur', 1, stuecke.length + ' Stücke, ' + aufl);
-      protokoll('Textur: ' + A + ' × ' + A + ' px, ' + stuecke.length + ' Stücke aus ' + bilderListe.length + ' Fotos, ' + aufl + (ohne.length ? ', ' + ohne.length + ' Dreiecke ohne Foto' : ''));
+      protokoll('Textur: ' + nSeiten + ' × ' + PS + ' × ' + PS + ' px, ' + stuecke.length + ' Stücke aus ' + bilderListe.length + ' Fotos, ' + aufl + (sig < 0.999 ? ' – für mehr Schärfe den Texturspeicher erhöhen' : '') + (ohne.length ? ', ' + ohne.length + ' Dreiecke ohne Foto' : ''));
       ergebnisZeigen('textur');
     }); }
     // Unscharfe Fotos: unter 35 % der mittleren Schärfe (Verwacklung, Fokus daneben)
@@ -1031,20 +1038,23 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         ebenen.netz = { p: puffer(m.pos), n: puffer(m.normalen), c: puffer(farbenFloat(m.farbe)), i: puffer(idx, gl.ELEMENT_ARRAY_BUFFER), anz: idx.length, typ: uint32 ? gl.UNSIGNED_INT : gl.UNSIGNED_SHORT };
         zeichnen();
       }
-      function texturSetzen(t) {
+      function texturSetzen(t) { // t.seiten: je Seite Netzteil und Bild
         if (!gl) return;
-        if (ebenen.textur) { ['p', 'n', 'u', 'i'].forEach(function (k) { gl.deleteBuffer(ebenen.textur[k]); }); gl.deleteTexture(ebenen.textur.tex); ebenen.textur = null; }
-        if (!t || !t.dreiecke.length) { zeichnen(); return; }
-        let idx = t.dreiecke;
-        if (!uint32) idx = Uint16Array.from(t.dreiecke.subarray(0, Math.min(t.dreiecke.length, 65535 * 3)).filter(function (v) { return v < 65535; }));
-        const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
-        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, t.bild);
-        gl.generateMipmap(gl.TEXTURE_2D);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-        const an = gl.getExtension('EXT_texture_filter_anisotropic') || gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic'); if (an) gl.texParameterf(gl.TEXTURE_2D, an.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(8, gl.getParameter(an.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
-        ebenen.textur = { p: puffer(t.pos), n: puffer(t.normalen), u: puffer(t.uv), i: puffer(idx, gl.ELEMENT_ARRAY_BUFFER), anz: idx.length, typ: uint32 ? gl.UNSIGNED_INT : gl.UNSIGNED_SHORT, tex: tex };
+        if (ebenen.textur) { ebenen.textur.forEach(function (e) { ['p', 'n', 'u', 'i'].forEach(function (k) { gl.deleteBuffer(e[k]); }); gl.deleteTexture(e.tex); }); ebenen.textur = null; }
+        if (!t || !t.seiten || !t.seiten.length) { zeichnen(); return; }
+        const an = gl.getExtension('EXT_texture_filter_anisotropic') || gl.getExtension('WEBKIT_EXT_texture_filter_anisotropic');
+        ebenen.textur = t.seiten.filter(function (q) { return q.dreiecke.length; }).map(function (q) {
+          let idx = q.dreiecke;
+          if (!uint32) idx = Uint16Array.from(q.dreiecke.subarray(0, Math.min(q.dreiecke.length, 65535 * 3)).filter(function (v) { return v < 65535; }));
+          const tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+          gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, q.bild);
+          gl.generateMipmap(gl.TEXTURE_2D);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+          gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+          if (an) gl.texParameterf(gl.TEXTURE_2D, an.TEXTURE_MAX_ANISOTROPY_EXT, Math.min(16, gl.getParameter(an.MAX_TEXTURE_MAX_ANISOTROPY_EXT)));
+          return { p: puffer(q.pos), n: puffer(q.normalen), u: puffer(q.uv), i: puffer(idx, gl.ELEMENT_ARRAY_BUFFER), anz: idx.length, typ: uint32 ? gl.UNSIGNED_INT : gl.UNSIGNED_SHORT, tex: tex };
+        });
         zeichnen();
       }
       function modellSetzen(T) { // Rekonstruktion → Anzeige: s·Q·X + c
@@ -1074,9 +1084,13 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         const VP = vp(); mvp = mal(VP, modell);
         if (ebenen.textur && sicht.netz && sicht.textur && !sicht.grau) {
           gl.useProgram(progT); gl.uniformMatrix4fv(gl.getUniformLocation(progT, 'mvp'), false, mvp); gl.uniformMatrix3fv(gl.getUniformLocation(progT, 'nm'), false, normMat);
-          gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, ebenen.textur.tex); gl.uniform1i(gl.getUniformLocation(progT, 'bild'), 0);
-          attrib(progT, 'p', ebenen.textur.p, 3); attrib(progT, 'n', ebenen.textur.n, 3); attrib(progT, 'uv', ebenen.textur.u, 2);
-          gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ebenen.textur.i); gl.drawElements(gl.TRIANGLES, ebenen.textur.anz, ebenen.textur.typ, 0); aus(progT);
+          gl.uniform1i(gl.getUniformLocation(progT, 'bild'), 0);
+          ebenen.textur.forEach(function (e) {
+            gl.activeTexture(gl.TEXTURE0); gl.bindTexture(gl.TEXTURE_2D, e.tex);
+            attrib(progT, 'p', e.p, 3); attrib(progT, 'n', e.n, 3); attrib(progT, 'uv', e.u, 2);
+            gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, e.i); gl.drawElements(gl.TRIANGLES, e.anz, e.typ, 0);
+          });
+          aus(progT);
         } else if (ebenen.netz && sicht.netz) {
           gl.useProgram(progN); gl.uniformMatrix4fv(gl.getUniformLocation(progN, 'mvp'), false, mvp); gl.uniformMatrix3fv(gl.getUniformLocation(progN, 'nm'), false, normMat); gl.uniform1f(gl.getUniformLocation(progN, 'grau'), sicht.grau ? 1 : 0);
           attrib(progN, 'p', ebenen.netz.p, 3); attrib(progN, 'n', ebenen.netz.n, 3); attrib(progN, 'c', ebenen.netz.c, 3);
@@ -1509,10 +1523,42 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       for (let k = 0; k < N.length; k += 3) { const n = m3v(Q, [m.normalen[k], m.normalen[k + 1], m.normalen[k + 2]]); N[k] = n[0]; N[k + 1] = n[1]; N[k + 2] = n[2]; }
       return { pos: P, normalen: N, farbe: m.farbe, dreiecke: m.dreiecke };
     }
-    function texturAnz() { // texturiertes Netz in Anzeige-Koordinaten
-      const t = rek.textur, P = anzeigePunkte(t.pos), Q = rek.T.Q, N = new Float32Array(t.normalen.length);
-      for (let k = 0; k < N.length; k += 3) { const n = m3v(Q, [t.normalen[k], t.normalen[k + 1], t.normalen[k + 2]]); N[k] = n[0]; N[k + 1] = n[1]; N[k + 2] = n[2]; }
-      return { pos: P, normalen: N, uv: t.uv, dreiecke: t.dreiecke };
+    function texturAnz() { // texturierte Netzteile (je Texturseite) in Anzeige-Koordinaten
+      const Q = rek.T.Q;
+      return rek.textur.seiten.map(function (t) {
+        const P = anzeigePunkte(t.pos), N = new Float32Array(t.normalen.length);
+        for (let k = 0; k < N.length; k += 3) { const n = m3v(Q, [t.normalen[k], t.normalen[k + 1], t.normalen[k + 2]]); N[k] = n[0]; N[k + 1] = n[1]; N[k + 2] = n[2]; }
+        return { pos: P, normalen: N, uv: t.uv, dreiecke: t.dreiecke };
+      });
+    }
+    // GLB mit mehreren Texturseiten: je Seite ein Teil mit eigenem Material und Bild
+    function glbTextur(teile, jpgs) {
+      const daten = [], views = [], acc = [], prims = [], mats = [], imgs = [], texs = []; let len = 0;
+      const ablegen = function (arr, ziel) { const o = len; daten.push([arr, o]); len += Math.ceil(arr.byteLength / 4) * 4; const v = { buffer: 0, byteOffset: o, byteLength: arr.byteLength }; if (ziel) v.target = ziel; views.push(v); return views.length - 1; };
+      teile.forEach(function (m, k) {
+        const n = m.pos.length / 3, P = new Float32Array(n * 3), N = new Float32Array(n * 3), lo = [Infinity, Infinity, Infinity], hi = [-Infinity, -Infinity, -Infinity];
+        for (let i = 0; i < n; i++) {
+          P[3 * i] = m.pos[3 * i]; P[3 * i + 1] = m.pos[3 * i + 2]; P[3 * i + 2] = -m.pos[3 * i + 1];
+          N[3 * i] = m.normalen[3 * i]; N[3 * i + 1] = m.normalen[3 * i + 2]; N[3 * i + 2] = -m.normalen[3 * i + 1];
+          for (let c = 0; c < 3; c++) { lo[c] = Math.min(lo[c], P[3 * i + c]); hi[c] = Math.max(hi[c], P[3 * i + c]); }
+        }
+        if (!n) return;
+        const a0 = acc.length;
+        acc.push({ bufferView: ablegen(P, 34962), componentType: 5126, count: n, type: 'VEC3', min: lo, max: hi }, { bufferView: ablegen(N, 34962), componentType: 5126, count: n, type: 'VEC3' },
+          { bufferView: ablegen(m.uv, 34962), componentType: 5126, count: n, type: 'VEC2' }, { bufferView: ablegen(m.dreiecke, 34963), componentType: 5125, count: m.dreiecke.length, type: 'SCALAR' });
+        imgs.push({ bufferView: ablegen(jpgs[k]), mimeType: 'image/jpeg' }); texs.push({ source: imgs.length - 1, sampler: 0 });
+        mats.push({ pbrMetallicRoughness: { baseColorTexture: { index: texs.length - 1 }, metallicFactor: 0, roughnessFactor: 1 }, extensions: { KHR_materials_unlit: {} } });
+        prims.push({ attributes: { POSITION: a0, NORMAL: a0 + 1, TEXCOORD_0: a0 + 2 }, indices: a0 + 3, material: mats.length - 1 });
+      });
+      const json = { asset: { version: '2.0', generator: 'Photogrammetrie' }, scene: 0, scenes: [{ nodes: [0] }], nodes: [{ mesh: 0 }], meshes: [{ primitives: prims }], materials: mats, images: imgs, textures: texs,
+        samplers: [{ magFilter: 9729, minFilter: 9987, wrapS: 33071, wrapT: 33071 }], extensionsUsed: ['KHR_materials_unlit'], buffers: [{ byteLength: len }], bufferViews: views, accessors: acc };
+      let js = JSON.stringify(json); while (js.length % 4) js += ' ';
+      const jb = new TextEncoder().encode(js), gesamt = 12 + 8 + jb.length + 8 + len, buf = new ArrayBuffer(gesamt), dv = new DataView(buf), u8 = new Uint8Array(buf);
+      dv.setUint32(0, 0x46546C67, true); dv.setUint32(4, 2, true); dv.setUint32(8, gesamt, true);
+      dv.setUint32(12, jb.length, true); dv.setUint32(16, 0x4E4F534A, true); u8.set(jb, 20);
+      const b0 = 20 + jb.length; dv.setUint32(b0, len, true); dv.setUint32(b0 + 4, 0x004E4942, true);
+      daten.forEach(function (d) { u8.set(new Uint8Array(d[0].buffer, d[0].byteOffset, d[0].byteLength), b0 + 8 + d[1]); });
+      return buf;
     }
     function jpegBytes(canvas) {
       return new Promise(function (ja, nein) {
@@ -1541,13 +1587,19 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       const e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, dateien.length, true); e.setUint16(10, dateien.length, true); e.setUint32(12, zl, true); e.setUint32(16, off, true);
       return new Blob(teile.concat(zentral, [new Uint8Array(e.buffer)]), { type: 'application/zip' });
     }
-    function objTextur(t, basis) {
-      const z = ['# Photogrammetrie, Einheit ' + (rek.massstab ? 'Meter' : 'unskaliert') + ', Z nach oben', 'mtllib ' + basis + '.mtl', 'usemtl foto'];
+    function objTextur(teile, basis) {
+      const z = ['# Photogrammetrie, Einheit ' + (rek.massstab ? 'Meter' : 'unskaliert') + ', Z nach oben', 'mtllib ' + basis + '.mtl'];
       const r = function (v) { return Math.round(v * 10000) / 10000; }, r6 = function (v) { return Math.round(v * 1e6) / 1e6; };
-      for (let i = 0; i < t.pos.length; i += 3) z.push('v ' + r(t.pos[i]) + ' ' + r(t.pos[i + 1]) + ' ' + r(t.pos[i + 2]));
-      for (let i = 0; i < t.uv.length; i += 2) z.push('vt ' + r6(t.uv[i]) + ' ' + r6(1 - t.uv[i + 1]));
-      for (let i = 0; i < t.normalen.length; i += 3) z.push('vn ' + r(t.normalen[i]) + ' ' + r(t.normalen[i + 1]) + ' ' + r(t.normalen[i + 2]));
-      for (let i = 0; i < t.dreiecke.length; i += 3) { const a = t.dreiecke[i] + 1, b = t.dreiecke[i + 1] + 1, c = t.dreiecke[i + 2] + 1; z.push('f ' + a + '/' + a + '/' + a + ' ' + b + '/' + b + '/' + b + ' ' + c + '/' + c + '/' + c); }
+      let o = 1;
+      teile.forEach(function (t, k) {
+        if (!t.dreiecke.length) return;
+        for (let i = 0; i < t.pos.length; i += 3) z.push('v ' + r(t.pos[i]) + ' ' + r(t.pos[i + 1]) + ' ' + r(t.pos[i + 2]));
+        for (let i = 0; i < t.uv.length; i += 2) z.push('vt ' + r6(t.uv[i]) + ' ' + r6(1 - t.uv[i + 1]));
+        for (let i = 0; i < t.normalen.length; i += 3) z.push('vn ' + r(t.normalen[i]) + ' ' + r(t.normalen[i + 1]) + ' ' + r(t.normalen[i + 2]));
+        z.push('usemtl foto' + (k + 1));
+        for (let i = 0; i < t.dreiecke.length; i += 3) { const a = t.dreiecke[i] + o, b = t.dreiecke[i + 1] + o, c = t.dreiecke[i + 2] + o; z.push('f ' + a + '/' + a + '/' + a + ' ' + b + '/' + b + '/' + b + ' ' + c + '/' + c + '/' + c); }
+        o += t.pos.length / 3;
+      });
       return z.join('\n') + '\n';
     }
     function dateiname(endung) { return ($('pg-projekt').value.trim().replace(/[^\wäöüÄÖÜß.-]+/g, '_') || 'modell') + endung; }
@@ -1618,12 +1670,12 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         const m = netzAnz();
         if (rek.textur && (art === 'obj' || art === 'glb')) {
           werkzeugHinweis('Textur wird verpackt …');
-          jpegBytes(rek.textur.bild).then(function (jpg) {
+          Promise.all(rek.textur.seiten.map(function (q) { return jpegBytes(q.bild); })).then(function (jpgs) {
             const t = texturAnz();
-            if (art === 'glb') speichern(dateiname('.glb'), glbNetz(t, jpg), 'model/gltf-binary');
+            if (art === 'glb') speichern(dateiname('.glb'), glbTextur(t, jpgs), 'model/gltf-binary');
             else {
-              const basis = dateiname(''), enc = new TextEncoder();
-              speichern(dateiname('-obj.zip'), zip([{ name: basis + '.obj', daten: enc.encode(objTextur(t, basis)) }, { name: basis + '.mtl', daten: enc.encode('newmtl foto\nKa 1 1 1\nKd 1 1 1\nKs 0 0 0\nillum 1\nmap_Kd ' + basis + '.jpg\n') }, { name: basis + '.jpg', daten: jpg }]));
+              const basis = dateiname(''), enc = new TextEncoder(), mtl = jpgs.map(function (j, k) { return 'newmtl foto' + (k + 1) + '\nKa 1 1 1\nKd 1 1 1\nKs 0 0 0\nillum 1\nmap_Kd ' + basis + '-' + (k + 1) + '.jpg\n'; }).join('\n');
+              speichern(dateiname('-obj.zip'), zip([{ name: basis + '.obj', daten: enc.encode(objTextur(t, basis)) }, { name: basis + '.mtl', daten: enc.encode(mtl) }].concat(jpgs.map(function (j, k) { return { name: basis + '-' + (k + 1) + '.jpg', daten: j }; }))));
             }
             werkzeugHinweis('');
           }).catch(function (e) { werkzeugHinweis(String(e.message)); });
@@ -1859,10 +1911,12 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
         (rek.bilder || []).forEach(function (b, i) { if (b && fotos[i] && b.w0) { fotos[i].w0 = b.w0; fotos[i].h0 = b.h0; } });
         const idx = []; for (let i = 0; i < fotos.length; i++) idx.push(i); // auch Karten, die nach dem letzten Gesamtstand gespeichert wurden
         return Promise.all(idx.map(function (i) { return dbTun('get', 'tiefe:' + i).then(function (t) { if (t) rek.tiefenRoh[i] = t; }); })).then(function () {
-          if (!o.textur || !o.textur.blob || !window.createImageBitmap) return null;
-          return createImageBitmap(o.textur.blob).then(function (b) {
-            const c = document.createElement('canvas'); c.width = o.textur.A; c.height = o.textur.A; c.getContext('2d').drawImage(b, 0, 0); if (b.close) b.close();
-            rek.textur = { pos: o.textur.pos, normalen: o.textur.normalen, uv: o.textur.uv, dreiecke: o.textur.dreiecke, A: o.textur.A, bild: c }; rek.texturBlob = o.textur.blob;
+          if (!o.textur || !window.createImageBitmap) return null;
+          const sl = o.textur.seiten || (o.textur.blob ? [{ pos: o.textur.pos, normalen: o.textur.normalen, uv: o.textur.uv, dreiecke: o.textur.dreiecke, blob: o.textur.blob }] : []);
+          if (!sl.length || !sl.every(function (q) { return q.blob; })) return null;
+          return Promise.all(sl.map(function (q) { return createImageBitmap(q.blob).then(function (b) { const c = document.createElement('canvas'); c.width = o.textur.A; c.height = o.textur.A; c.getContext('2d').drawImage(b, 0, 0); if (b.close) b.close(); return c; }); })).then(function (cs) {
+            rek.textur = { A: o.textur.A, sig: o.textur.sig, seiten: sl.map(function (q, k) { return { pos: q.pos, normalen: q.normalen, uv: q.uv, dreiecke: q.dreiecke, bild: cs[k] }; }) };
+            rek.texturBlobs = sl.map(function (q) { return q.blob; });
           });
         }).then(function () {
           messungen.length = 0; daecher.length = 0;
@@ -1901,7 +1955,7 @@ function quantil(a, q) { if (!a.length) return 0; const s = Array.prototype.slic
       if (!rek || !rek.sfm) return;
       const nReg = rek.sfm.kameras.filter(function (k) { return k.reg; }).length, tb = $('pg-info'); tb.textContent = '';
       [['Kameras', nReg + ' von ' + fotos.length + ' ausgerichtet'], ['Punkte', zahl(rek.sfm.punkte.length / 3, 0) + ' Verknüpfungspunkte' + (rek.dicht ? ', ' + zahl(rek.dicht.pos.length / 3, 0) + ' dichte Punkte' : '')],
-        ['Netz', rek.netz ? zahl(rek.netz.dreiecke.length / 3, 0) + ' Dreiecke' + (rek.netzVoxel ? ', Voxel ' + laengeText(rek.netzVoxel) + (rek.massstab && rek.netzVoxel > 0.08 && !rek.zuschnitt ? ' (feiner: unter „Export“ den Bereich auf das Gebäude begrenzen und neu berechnen)' : '') : '') : '–'], ['Textur', rek.textur ? rek.textur.A + ' × ' + rek.textur.A + ' px aus den Fotos' : '–'], ['Genauigkeit', 'Rückprojektionsfehler ' + zahl(rek.sfm.fehler, 2) + ' px'],
+        ['Netz', rek.netz ? zahl(rek.netz.dreiecke.length / 3, 0) + ' Dreiecke' + (rek.netzVoxel ? ', Voxel ' + laengeText(rek.netzVoxel) + (rek.massstab && rek.netzVoxel > 0.08 && !rek.zuschnitt ? ' (feiner: unter „Export“ den Bereich auf das Gebäude begrenzen und neu berechnen)' : '') : '') : '–'], ['Textur', rek.textur ? rek.textur.seiten.length + ' × ' + rek.textur.A + ' px, ' + (rek.textur.sig >= 0.999 ? 'volle Fotoauflösung' : Math.round((rek.textur.sig || 0) * 100) + ' % der Fotoauflösung') : '–'], ['Genauigkeit', 'Rückprojektionsfehler ' + zahl(rek.sfm.fehler, 2) + ' px'],
         ['Maßstab', rek.massstab === 'gps' ? 'aus GPS der Fotos (Restfehler ' + zahl(rek.geo.rms, 2) + ' m bei ' + zahl(rek.geo.spann, 0) + ' m Ausdehnung)' : rek.massstab === 'referenz' ? 'aus Referenzstrecke ' + zahl(rek.refStrecke.l, 3) + ' m' : 'fehlt – Referenzstrecke setzen'],
         ['Norden', rek.nord ? 'aus GPS' : 'unbekannt – Richtung unten eingeben'], ['Gelände (Höhe 0)', rek.boden === 'gesetzt' ? 'von Hand gesetzt' : 'geschätzt (häufigste Höhe unten)']]
         .forEach(function (z) { const tr = kn('tr'); tr.append(kn('th', '', z[0]), kn('td', '', z[1])); tb.append(tr); });
