@@ -224,6 +224,26 @@ function merkmale(rgba, w, h, nMax, schwelle) {
   }
   return { n: n, x: Float32Array.from(xs), y: Float32Array.from(ys), ebene: Uint8Array.from(ls), winkel: Float32Array.from(ws), antwort: Float32Array.from(rs), d: D, farbe: farbe };
 }
+
+// Schärfe eines Bildes: Varianz des Laplace-Operators auf dem Grauwertbild (größer = schärfer)
+function schaerfeMass(rgba, w, h) {
+  const g = new Float32Array(w * h); for (let i = 0; i < w * h; i++) g[i] = 0.299 * rgba[4 * i] + 0.587 * rgba[4 * i + 1] + 0.114 * rgba[4 * i + 2];
+  let s = 0, s2 = 0, n = 0;
+  for (let y = 1; y < h - 1; y += 2) for (let x = 1; x < w - 1; x += 2) { const i = y * w + x, l = 4 * g[i] - g[i - 1] - g[i + 1] - g[i - w] - g[i + w]; s += l; s2 += l * l; n++; }
+  return n ? s2 / n - (s / n) * (s / n) : 0;
+}
+// Unscharfmaskierung (Radius 1 Pixel) auf RGBA-Daten
+function nachschaerfen(px, w, h, staerke) {
+  const q = new Uint8ClampedArray(px);
+  for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x++) {
+    const i = 4 * (y * w + x);
+    for (let c = 0; c < 3; c++) {
+      const m = (q[i + c - 4] + q[i + c + 4] + q[i + c - 4 * w] + q[i + c + 4 * w] + 4 * q[i + c]) / 8;
+      px[i + c] = q[i + c] + staerke * (q[i + c] - m);
+    }
+  }
+  return px;
+}
 // ---------- Zuordnen und Zwei-Bild-Geometrie ----------
 // gegenseitig beste Zuordnung mit Verhältnistest; ia/ib: Indexlisten oder null (alle)
 function zuordnen(A, B, ia, ib, verh, maxD) {
@@ -881,8 +901,8 @@ function lueckenFuellen(g, T, W, F, minW, runden) {
     for (let k = 0; k < neu.length; k += 5) { const i = neu[k]; T[i] = neu[k + 1]; W[i] = minW; F[3 * i] = neu[k + 2]; F[3 * i + 1] = neu[k + 3]; F[3 * i + 2] = neu[k + 4]; }
   }
 }
-function netzAusVolumen(g, T, W, F, minW) {
-  lueckenFuellen(g, T, W, F, minW, 4);
+function netzAusVolumen(g, T, W, F, minW, fuellen) {
+  lueckenFuellen(g, T, W, F, minW, fuellen || 4);
   const nx = g.nx, ny = g.ny, nz = g.nz, idx = function (x, y, z) { return (z * ny + y) * nx + x; };
   const kanten = new Map(), pos = [], farbe = [], dreiecke = [];
   const ecke = new Int32Array(8), wert = new Float32Array(8);
@@ -954,6 +974,49 @@ function netzAufraeumen(m, anteil, glatt) {
   for (let i = 0; i < n; i++) { const l = Math.hypot(N[3 * i], N[3 * i + 1], N[3 * i + 2]) || 1; N[3 * i] /= l; N[3 * i + 1] /= l; N[3 * i + 2] /= l; }
   return { pos: P, farbe: Uint8Array.from(farbe), dreiecke: D, normalen: N };
 }
+// Spitzen und Zacken abflachen: lange Fahnen-Dreiecke und lose Dreiecke entfernen, abstehende Ecken auf den Mittelpunkt ihrer Nachbarn ziehen
+function netzSpitzen(m) {
+  const P = Float32Array.from(m.pos), D = m.dreiecke, nV = P.length / 3, nT = D.length / 3;
+  const kante = function (a, b) { return Math.hypot(P[3 * a] - P[3 * b], P[3 * a + 1] - P[3 * b + 1], P[3 * a + 2] - P[3 * b + 2]); };
+  const probe = []; for (let t = 0; t < nT; t += Math.max(1, Math.floor(nT / 50000))) probe.push(kante(D[3 * t], D[3 * t + 1]));
+  probe.sort(function (a, b) { return a - b; }); const med = probe.length ? probe[probe.length >> 1] : 1;
+  const behalten = new Uint8Array(nT);
+  for (let t = 0; t < nT; t++) { const a = D[3 * t], b = D[3 * t + 1], c = D[3 * t + 2]; behalten[t] = Math.max(kante(a, b), kante(b, c), kante(c, a)) < 4 * med ? 1 : 0; }
+  // lose Dreiecke (höchstens ein Nachbar über eine Kante) zweimal abtragen
+  for (let r = 0; r < 2; r++) {
+    const kanten = new Map(), nb = new Uint8Array(nT);
+    for (let t = 0; t < nT; t++) { if (!behalten[t]) continue; for (let k = 0; k < 3; k++) { const a = D[3 * t + k], b = D[3 * t + (k + 1) % 3], key = a < b ? a * nV + b : b * nV + a; kanten.set(key, (kanten.get(key) || 0) + 1); } }
+    for (let t = 0; t < nT; t++) { if (!behalten[t]) continue; let n = 0; for (let k = 0; k < 3; k++) { const a = D[3 * t + k], b = D[3 * t + (k + 1) % 3], key = a < b ? a * nV + b : b * nV + a; if (kanten.get(key) > 1) n++; } nb[t] = n; }
+    for (let t = 0; t < nT; t++) if (behalten[t] && nb[t] <= 1) behalten[t] = 0;
+  }
+  // Nachbarn je Ecke (CSR)
+  const grad = new Int32Array(nV + 1);
+  for (let t = 0; t < nT; t++) if (behalten[t]) for (let k = 0; k < 3; k++) grad[D[3 * t + k] + 1] += 2;
+  for (let i = 0; i < nV; i++) grad[i + 1] += grad[i];
+  const nach = new Int32Array(grad[nV]), pos = grad.slice(0, nV);
+  for (let t = 0; t < nT; t++) if (behalten[t]) for (let k = 0; k < 3; k++) { const v = D[3 * t + k]; nach[pos[v]++] = D[3 * t + (k + 1) % 3]; nach[pos[v]++] = D[3 * t + (k + 2) % 3]; }
+  let gezogen = 0;
+  for (let r = 0; r < 3; r++) {
+    const Q = P.slice();
+    for (let v = 0; v < nV; v++) {
+      const a = grad[v], e = grad[v + 1], n = e - a; if (n < 6) continue;
+      let sx = 0, sy = 0, sz = 0, L = 0;
+      for (let k = a; k < e; k++) { const j = nach[k]; sx += Q[3 * j]; sy += Q[3 * j + 1]; sz += Q[3 * j + 2]; L += Math.hypot(Q[3 * j] - Q[3 * v], Q[3 * j + 1] - Q[3 * v + 1], Q[3 * j + 2] - Q[3 * v + 2]); }
+      sx /= n; sy /= n; sz /= n; L /= n;
+      const d = Math.hypot(sx - Q[3 * v], sy - Q[3 * v + 1], sz - Q[3 * v + 2]);
+      if (d > 0.7 * L) { P[3 * v] = sx; P[3 * v + 1] = sy; P[3 * v + 2] = sz; gezogen++; }
+    }
+  }
+  // kompakt neu aufbauen, danach kleine Inseln wie beim Aufräumen entfernen
+  const neu = new Int32Array(nV).fill(-1), p2 = [], f2 = [], d2 = [];
+  for (let t = 0; t < nT; t++) {
+    if (!behalten[t]) continue;
+    for (let k = 0; k < 3; k++) { const v = D[3 * t + k]; if (neu[v] < 0) { neu[v] = p2.length / 3; p2.push(P[3 * v], P[3 * v + 1], P[3 * v + 2]); f2.push(m.farbe[3 * v], m.farbe[3 * v + 1], m.farbe[3 * v + 2]); } d2.push(neu[v]); }
+  }
+  const erg = netzAufraeumen({ pos: Float32Array.from(p2), farbe: Uint8Array.from(f2), dreiecke: Uint32Array.from(d2) }, 0.005, 0);
+  erg.entfernt = nT - erg.dreiecke.length / 3; erg.gezogen = gezogen;
+  return erg;
+}
 // ---------- Textur: welche Ansicht sieht welches Dreieck am besten ----------
 // Netz einmal ablegen: Schwerpunkte und Normalen der Dreiecke
 function netzVorbereiten(pos, dreiecke) {
@@ -1023,7 +1086,7 @@ self.onmessage = function (ev) {
   try {
     let erg = null, transfer = [];
     if (a.art === 'merkmale') {
-      erg = merkmale(a.rgba, a.w, a.h, a.nMax, a.schwelle);
+      erg = merkmale(a.rgba, a.w, a.h, a.nMax, a.schwelle); erg.schaerfe = schaerfeMass(a.rgba, a.w, a.h);
       transfer = [erg.x.buffer, erg.y.buffer, erg.ebene.buffer, erg.winkel.buffer, erg.antwort.buffer, erg.d.buffer, erg.farbe.buffer];
     } else if (a.art === 'ablegen') {
       ablage.merkmale = a.merkmale; ablage.K = a.K; erg = true;
@@ -1051,12 +1114,16 @@ self.onmessage = function (ev) {
       ablage.netz = netzVorbereiten(a.pos, a.dreiecke); erg = true;
     } else if (a.art === 'textursicht') {
       erg = texturSicht(ablage.netz, a.ansichten); transfer = [erg.i0.buffer, erg.i1.buffer, erg.i2.buffer, erg.w0.buffer, erg.w1.buffer, erg.w2.buffer];
+    } else if (a.art === 'schaerfen') {
+      erg = { px: nachschaerfen(a.px, a.w, a.h, a.staerke) }; transfer = [erg.px.buffer];
+    } else if (a.art === 'spitzen') {
+      erg = netzSpitzen(a.m); transfer = [erg.pos.buffer, erg.farbe.buffer, erg.dreiecke.buffer, erg.normalen.buffer];
     } else if (a.art === 'ansichten') {
       ablage.ansichten = a.ansichten; erg = true;
     } else if (a.art === 'tsdf') {
       erg = tsdfScheibe(a.g, a.zA, a.zB, ablage.ansichten, a.trunk, a.skala, a.qref || 1); transfer = [erg.T.buffer, erg.W.buffer, erg.F.buffer];
     } else if (a.art === 'netz') {
-      const roh = netzAusVolumen(a.g, a.T, a.W, a.F, a.minW);
+      const roh = netzAusVolumen(a.g, a.T, a.W, a.F, a.minW, a.fuellen);
       melden({ text: (roh.dreiecke.length / 3) + ' Dreiecke, räume auf …' });
       erg = netzAufraeumen(roh, a.anteil, a.glatt); transfer = [erg.pos.buffer, erg.farbe.buffer, erg.dreiecke.buffer, erg.normalen.buffer];
     } else throw new Error('unbekannter Auftrag ' + a.art);
