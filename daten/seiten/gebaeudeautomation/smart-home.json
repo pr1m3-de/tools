@@ -1,6 +1,7 @@
 {
   "nr": 1090,
   "titel": "Gebäudeautomation und Smart Home",
+  "gruppe": "Smart Home",
   "bereich": "Gebäudeautomation",
   "themen": ["Smart Home", "Gebäudeautomation", "Automationspyramide", "zentral", "dezentral", "LON", "BACnet", "Modbus", "DALI", "M-Bus", "EnOcean", "Zigbee", "Z-Wave", "Thread", "Matter", "MQTT", "Home Assistant", "openHAB", "ioBroker", "Automation", "Wenn-Dann-Regel", "BACnet-Priorität", "Szene", "Taster", "Helfer", "CO2", "Wassermelder", "Verzögerung", "Simulator"],
   "text": "Gebäudeautomation und Smart Home verstehen und selbst bauen: Automationspyramide, zentrale und dezentrale Systeme, KNX, LON, BACnet, Modbus, DALI, EnOcean, Zigbee, Z-Wave, Thread und Matter, MQTT und Open-Source-Zentralen – mit Smart-Home-Simulator: eigene Räume, Geschosse und 18 Gerätearten, Wenn-Und-Dann-Regeln mit Verzögerung, Zeitraum, Sonne und Ereignisprotokoll, sowie BACnet-Prioritäten.",

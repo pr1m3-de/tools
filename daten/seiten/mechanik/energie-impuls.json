@@ -1,6 +1,7 @@
 {
   "nr": 1290,
   "titel": "Energie und Impuls: Stoß und Energieerhaltung",
+  "gruppe": "Bewegung und Energie",
   "bereich": "Mechanik",
   "auchIn": ["Physik"],
   "themen": ["Energie", "Impuls", "Impulserhaltung", "Energieerhaltung", "Stoß", "elastischer Stoß", "unelastischer Stoß", "Stoßzahl", "Bewegungsenergie", "Lageenergie", "kinetische Energie", "potentielle Energie", "schiefe Ebene", "Reibungsarbeit", "Kugelstoßpendel"],

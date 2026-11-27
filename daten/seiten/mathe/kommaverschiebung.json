@@ -1,7 +1,7 @@
 {
   "nr": 2,
   "titel": "Kommaverschiebung und Einheiten",
-  "gruppe": "Grundlagen",
+  "gruppe": "Größen und Einheiten",
   "bereich": "Mathematik",
   "themen": ["Kommaverschiebung", "Zehnerpotenzen", "Stellenwerttafel", "Einheiten umrechnen", "Länge", "Fläche", "Volumen", "Liter", "Masse", "kilo", "milli", "mikro", "Vorsätze"],
   "text": "Mal und geteilt durch 10, 100, 1000 oder 0,1: das Komma Stelle für Stelle verschieben, in der Stellenwerttafel zusehen und Längen, Flächen, Volumen, Massen und Vorsätze wie kilo und milli umrechnen.",

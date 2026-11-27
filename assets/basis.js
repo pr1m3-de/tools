@@ -468,17 +468,25 @@
       });
       liste.addEventListener('click', function (ev) { if (ev.target.closest && ev.target.closest('a')) schliessen(true); });
     }
-    function oeffnen(w) {
+    // Index einmal laden; gemeinsam für das Suchfenster und die Suche der Startseite
+    function indexLaden(w) {
+      if (w !== undefined) wurzel = w || '';
+      if (index) return Promise.resolve(true);
+      if (!laden) {
+        laden = fetch(wurzel + 'suchindex.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+          .then(function (roh) { index = vorbereiten(roh); laden = null; if (dlg && !dlg.hidden) zeigen(); return true; })
+          .catch(function () { laden = null; if (dlg && !dlg.hidden) zeigen(); return false; });
+      }
+      return laden;
+    }
+    function oeffnen(w, anfrage) {
       wurzel = w || '';
       if (!dlg) bauen();
       vorher = document.activeElement;
       dlg.hidden = false; document.documentElement.classList.add('suche-offen');
+      if (typeof anfrage === 'string') feld.value = anfrage.slice(0, 120);
       feld.focus(); feld.select();
-      if (!index && !laden) {
-        laden = fetch(wurzel + 'suchindex.json').then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-          .then(function (roh) { index = vorbereiten(roh); laden = null; zeigen(); })
-          .catch(function () { laden = null; zeigen(); });
-      }
+      indexLaden(wurzel);
       zeigen();
     }
     function schliessen(beimSprung) {
@@ -496,7 +504,14 @@
         ev.preventDefault(); k.click();
       }
     });
-    return { oeffnen: oeffnen, suchen: function (q) { return suchen(q).map(function (r) { return [r.s.pfad, r.s.titel, r.teile.map(function (t) { return t.text; })]; }); }, bereit: function () { return !!index; } };
+    // Treffer mit fertigen Links (für die Startseite): Seiten nach Güte, je Seite die passendsten Stellen
+    function treffer(q) {
+      return suchen(q).map(function (r) {
+        return { pfad: r.s.pfad, titel: r.s.titel, bereich: r.s.bereich, text: r.s.text, punkte: r.punkte, href: link(r.s),
+          teile: r.teile.map(function (t) { return { text: t.text, art: ART[t.art] || '', href: link(r.s, t) }; }) };
+      });
+    }
+    return { oeffnen: oeffnen, laden: indexLaden, treffer: treffer, norm: norm, suchen: function (q) { return suchen(q).map(function (r) { return [r.s.pfad, r.s.titel, r.teile.map(function (t) { return t.text; })]; }); }, bereit: function () { return !!index; } };
   })();
   window.Suche = Suche;
 

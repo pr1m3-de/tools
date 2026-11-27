@@ -1,6 +1,7 @@
 {
   "nr": 90,
   "titel": "Abwasser bemessen",
+  "gruppe": "Abwasser und Regen",
   "bereich": "Sanitärtechnik",
   "themen": ["Schmutzwasser", "Regenwasser", "Anschlusswerte", "Teilfüllung", "Gefälle", "Nennweite"],
   "text": "Schmutzwasserabfluss aus den Anschlusswerten, Regenabfluss von Dach und Hof, Grundleitung bemessen mit Füllungsgrad, Fließgeschwindigkeit und Mindestgefälle.",

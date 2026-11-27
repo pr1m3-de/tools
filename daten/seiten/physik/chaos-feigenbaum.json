@@ -1,6 +1,7 @@
 {
   "nr": 1200,
   "titel": "Chaos und Feigenbaum-Konstante",
+  "gruppe": "Komplexe Systeme",
   "bereich": "Physik",
   "themen": ["Chaos", "Chaostheorie", "Feigenbaum", "Feigenbaum-Konstante", "Feigenbaumdiagramm", "Bifurkation", "Periodenverdopplung", "logistische Gleichung", "Schmetterlingseffekt", "Ljapunow-Exponent", "Fixpunkt", "Attraktor", "Spinnwebdiagramm", "deterministisches Chaos", "Universalität", "Selbstähnlichkeit", "Fraktal", "Phasenübergang"],
   "text": "Logistische Gleichung zum Ausprobieren: Fixpunkte, Periodenverdopplung und Chaos im Feigenbaumdiagramm mit Zoom, Spinnwebdiagramm, Schmetterlingseffekt und Ljapunow-Exponent, die Feigenbaum-Konstanten δ und α – mit Rechner und Lernaufgaben.",

@@ -1,6 +1,7 @@
 {
   "nr": 1210,
   "titel": "Anhalteweg: Reaktionsweg und Bremsweg",
+  "gruppe": "Fahrzeuge und Antrieb",
   "bereich": "Mechanik",
   "auchIn": ["Physik"],
   "themen": ["Anhalteweg", "Reaktionsweg", "Bremsweg", "Reaktionszeit", "Bremsverzögerung", "Haftreibung", "Faustformel", "Gefahrbremsung", "Aufprallgeschwindigkeit", "Fahrbahn", "Glatteis", "Verkehr"],

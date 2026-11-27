@@ -1,6 +1,7 @@
 {
   "nr": 1180,
   "titel": "Sterne und Strahlung",
+  "gruppe": "Astronomie und Kosmos",
   "bereich": "Physik",
   "themen": ["Astronomie", "Sterne", "Stern", "Schwarzer Körper", "Planck", "Wien", "Wiensches Verschiebungsgesetz", "Stefan-Boltzmann", "Leuchtkraft", "Helligkeit", "Magnitude", "Parallaxe", "Parsec", "Lichtjahr", "Hertzsprung-Russell-Diagramm", "Spektralklasse", "Hauptreihe", "lebensfreundliche Zone"],
   "text": "Sterne berechnen: Farbe und Strahlungsmaximum (Wien), Leuchtkraft (Stefan-Boltzmann), Helligkeit und Entfernungsmodul, Parallaxe, Lebensdauer und lebensfreundliche Zone – mit Planck-Spektrum, Hertzsprung-Russell-Diagramm und Lernaufgaben.",

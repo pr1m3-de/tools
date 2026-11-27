@@ -1,6 +1,7 @@
 {
   "nr": 120,
   "titel": "Brandsimulation",
+  "gruppe": "Baulich und Löschen",
   "bereich": "Brandschutz",
   "themen": ["Flashover", "Rauch", "Sprinkler", "Rauchmelder", "Evakuierung", "Waldbrand", "Löschmittel", "Feuerwiderstand", "Explosionsgrenzen", "Rauchwarnmelder"],
   "text": "Raumbrand mit Rauchschicht und Flashover, Gebäudebrand mit Flucht und Feuerwehr, Waldbrand mit Wind und Funkenflug, Löschtrainer, Feuerwiderstand von Stahl, Holz und Beton sowie Gasexplosionen.",

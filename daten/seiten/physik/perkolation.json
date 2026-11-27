@@ -1,6 +1,7 @@
 {
   "nr": 1190,
   "titel": "Perkolation: Waldbrand und Perkolationsschwelle",
+  "gruppe": "Komplexe Systeme",
   "bereich": "Physik",
   "themen": ["Perkolation", "Perkolationstheorie", "Perkolationsschwelle", "kritische Dichte", "Waldbrand", "Waldbrandmodell", "Cluster", "Phasenübergang", "kritische Exponenten", "Korrelationslänge", "Fraktal", "fraktale Dimension", "Bethe-Gitter", "Monte-Carlo", "Zufall", "Herdenimmunität", "Universalität", "Selbstähnlichkeit"],
   "text": "Ab welcher Baumdichte brennt ein Wald ganz ab? Waldbrand-Simulation auf vier Gittern, Cluster in Farbe, Durchbruchkurve, Perkolationsschwellen, kritische Exponenten und fraktale Cluster – mit Rechner und Lernaufgaben.",

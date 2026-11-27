@@ -1,6 +1,7 @@
 {
   "nr": 130,
   "titel": "Gaubenwange bekleiden",
+  "gruppe": "Klempnerarbeiten",
   "bereich": "Dach und Klempnerei",
   "themen": ["Gaube", "Stehfalz", "Scharen", "Zuschnitt", "Winkel", "Blech", "Spiegeln", "PDF"],
   "text": "Gaubenoberkante, vordere Höhe, Scharbreite und Dachneigung eingeben: oberer Winkel, alle Scharen mit Zuschnittlängen, Versatz und Schrägmaß, Zeichnung für links und rechts, als PDF oder E-Mail für die Werkstatt.",

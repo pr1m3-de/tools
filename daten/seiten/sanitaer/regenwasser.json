@@ -1,6 +1,7 @@
 {
   "nr": 760,
   "titel": "Regenwassernutzung und Versickerung",
+  "gruppe": "Abwasser und Regen",
   "bereich": "Sanitärtechnik",
   "auchIn": ["Dach und Klempnerei"],
   "themen": ["Regenwasser", "Zisterne", "Speichergröße", "Versickerung", "Rigole", "Mulde", "DIN 1989", "DWA-A 138", "Regenspende", "Deckungsgrad"],

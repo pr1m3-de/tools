@@ -1,6 +1,7 @@
 {
   "nr": 380,
   "titel": "Gefährdungsbeurteilung",
+  "gruppe": "Protokolle",
   "bereich": "Werkzeuge",
   "auchIn": ["Arbeitsschutz"],
   "themen": ["Gefährdungsbeurteilung", "ArbSchG", "Arbeitsschutz", "Risikomatrix", "STOP-Prinzip", "DGUV", "Unterweisung"],

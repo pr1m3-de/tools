@@ -1,6 +1,7 @@
 {
   "nr": 1080,
   "titel": "KNX-Simulator: Programmieren und Fehlersuche",
+  "gruppe": "Bussysteme",
   "bereich": "Gebäudeautomation",
   "themen": ["KNX", "Simulator", "Gruppenadresse", "Kommunikationsobjekt", "Flags", "Telegramm", "Busmonitor", "Gruppenmonitor", "Programmiertaste", "physikalische Adresse programmieren", "Applikation laden", "Datenpunkttyp", "DPT", "Fehlersuche", "Taster", "Schaltaktor", "Dimmaktor", "Jalousieaktor", "Präsenzmelder", "Raumtemperaturregler"],
   "text": "KNX zum Ausprobieren: Gruppenadressen anlegen, Kommunikationsobjekte verknüpfen, Flags setzen, physikalische Adressen und Applikationen programmieren und Telegramme im Busmonitor Byte für Byte lesen – mit Fehlersuch-Aufgaben.",

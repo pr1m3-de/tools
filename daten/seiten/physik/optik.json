@@ -1,6 +1,7 @@
 {
   "nr": 1150,
   "titel": "Optik: Reflexion, Streuung und Brechung",
+  "gruppe": "Schwingungen und Licht",
   "bereich": "Physik",
   "themen": ["Optik", "Licht", "Reflexion", "Reflexionsgesetz", "Spiegel", "Spiegelbild", "Streuung", "diffuse Reflexion", "Brechung", "Lichtbrechung", "Brechungsgesetz", "Snellius", "Brechzahl", "Totalreflexion", "Grenzwinkel", "Lichtwellenleiter", "Lichtgeschwindigkeit"],
   "text": "Licht an Grenzflächen: Reflexionsgesetz und Spiegelbild, Streuung an rauen Flächen, Brechung nach Snellius mit Brechzahlen, Grenzwinkel und Totalreflexion im Lichtwellenleiter – mit Animationen zum Ziehen und Rechner in jede Richtung.",

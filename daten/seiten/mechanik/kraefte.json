@@ -1,6 +1,7 @@
 {
   "nr": 80,
   "titel": "Kräfte",
+  "gruppe": "Kräfte und Maschinen",
   "bereich": "Mechanik",
   "themen": ["Kräfte", "Kräfteparallelogramm", "Zerlegung", "Resultierende", "Schiefe Ebene"],
   "text": "Kräfte zusammensetzen und zerlegen: auf einer Wirkungslinie, rechtwinklig, unter beliebigem Winkel mit dem Kräfteparallelogramm und auf der schiefen Ebene, mit Rechenweg.",

@@ -1,6 +1,7 @@
 {
   "nr": 110,
   "titel": "Gasleitung bemessen",
+  "gruppe": "Gas",
   "bereich": "Sanitärtechnik",
   "themen": ["Gas", "TRGI", "Flüssiggas", "Fließdruck", "Druckverlust", "Strömungswächter", "Gaszähler", "Rohrnetz"],
   "text": "Rohrnetzberechnung für Gasleitungen nach TRGI und TRF: Teilstrecken, Belastung, Volumenstrom, Druckverlust mit Formstücken, Zähler, Strömungswächter, Höhenunterschied und Fließdruck an jedem Gerät, mit automatischer Bemessung.",

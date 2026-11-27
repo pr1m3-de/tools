@@ -1,6 +1,7 @@
 {
   "nr": 1160,
   "titel": "Aggregatzustände und Wärme",
+  "gruppe": "Wärme und Stoffe",
   "bereich": "Physik",
   "themen": ["Aggregatzustand", "Teilchenmodell", "fest", "flüssig", "gasförmig", "Schmelzen", "Erstarren", "Verdampfen", "Kondensieren", "Schmelzwärme", "Verdampfungswärme", "spezifische Wärmekapazität", "Erwärmungskurve", "Wärmemenge", "Siedepunkt", "Schmelzpunkt"],
   "text": "Teilchenmodell der Aggregatzustände in Bewegung und Erwärmungskurve: Wärme zum Erwärmen, Schmelzen und Verdampfen von Wasser, Aluminium und Blei, Heizdauer und Anteil der Umwandlungswärme – mit Abschnitten Schritt für Schritt.",

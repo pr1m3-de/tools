@@ -1,6 +1,7 @@
 {
   "nr": 320,
   "titel": "Projektmappe",
+  "gruppe": "Planen und Erfassen",
   "bereich": "Werkzeuge",
   "themen": ["Projekt", "Speichern", "Export", "Bauvorhaben", "Übersicht"],
   "text": "Alle gemerkten Eingaben als Projekt: Bauvorhaben benennen, Projekte speichern und wechseln, als Datei sichern oder weitergeben, Übersicht mit Links drucken.",

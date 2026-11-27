@@ -1,6 +1,7 @@
 {
   "nr": 1100,
   "titel": "SPS-Simulator: Strukturierter Text und Zyklus",
+  "gruppe": "Speicherprogrammierbar",
   "bereich": "Steuerungstechnik",
   "themen": ["SPS", "speicherprogrammierbare Steuerung", "IEC 61131-3", "Strukturierter Text", "ST", "KOP", "FUP", "AWL", "Ablaufsprache", "Zyklus", "Prozessabbild", "PAE", "PAA", "Öffner", "Schließer", "Drahtbruchsicherheit", "Selbsthaltung", "Wendeschützschaltung", "TON", "TOF", "TP", "CTU", "Zähler", "Flanke", "Schrittkette", "Analogwert", "4-20 mA", "Skalierung", "Merker", "Datentyp", "FUNCTION_BLOCK", "VAR_GLOBAL", "ARRAY", "Watchdog", "Forcen", "Mischbehälter", "Not-Halt"],
   "text": "SPS verstehen und programmieren: Aufbau, Zyklus mit Prozessabbild, Signale, Öffner und Schließer, Adressen, Datentypen und die Sprachen nach IEC 61131-3 – mit realistischem SPS-Simulator: Strukturierter Text mit eigenen Funktionsbausteinen, Funktionen, Feldern, globalen Variablen und AT-Adressen, Timer, Zähler, Watchdog, Forcen und Anlagenmodellen vom Motor bis zum Mischbehälter.",

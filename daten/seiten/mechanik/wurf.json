@@ -1,6 +1,7 @@
 {
   "nr": 1220,
   "titel": "Waagerechter und schräger Wurf",
+  "gruppe": "Bewegung und Energie",
   "bereich": "Mechanik",
   "auchIn": ["Physik"],
   "themen": ["Wurf", "waagerechter Wurf", "schräger Wurf", "Wurfparabel", "Wurfweite", "Flugzeit", "freier Fall", "Fallzeit", "Fallbeschleunigung", "Unabhängigkeitsprinzip", "Abwurfwinkel"],

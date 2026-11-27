@@ -1,6 +1,7 @@
 {
   "nr": 640,
   "titel": "Leiter und Gerüst",
+  "gruppe": "Absturz und Arbeitsmittel",
   "bereich": "Arbeitsschutz",
   "auchIn": ["Dach und Klempnerei"],
   "themen": ["Leiter", "Anstellwinkel", "Reibung", "Standsicherheit", "Gerüst", "Lastklasse", "Fahrgerüst", "TRBS 2121", "Seitenschutz", "Kippen"],

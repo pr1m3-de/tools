@@ -1,6 +1,7 @@
 {
   "nr": 740,
   "titel": "U-Wert und Schichtaufbau",
+  "gruppe": "Gebäude und Heizlast",
   "bereich": "Heizungstechnik",
   "auchIn": ["Dach und Klempnerei"],
   "themen": ["U-Wert", "Wärmedurchgang", "Dämmung", "Schichtaufbau", "Wärmeleitfähigkeit", "Glaser", "Tauwasser", "GEG", "Dämmstärke", "DIN EN ISO 6946"],

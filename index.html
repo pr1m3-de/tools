@@ -27,12 +27,6 @@
     .ansicht button svg { width: 16px; height: 16px; fill: currentColor; }
     .ansicht button[aria-pressed="true"] { background: var(--text); color: var(--grund); }
     @media (max-width: 560px) { .ansicht button span { display: none; } .ansicht button { padding: 8px 10px; } }
-    /* Handy: Bereiche in einer wischbaren Zeile statt vieler Zeilen */
-    @media (max-width: 700px) {
-      #reiter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 -18px; padding: 0 18px 2px; scroll-padding: 0 18px; scroll-snap-type: x proximity; -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent 100%); mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent 100%); }
-      #reiter::-webkit-scrollbar { display: none; }
-      #reiter button { flex: none; scroll-snap-align: start; padding: 6px 12px; font-size: .95rem; }
-    }
     .zuletzt { margin: 20px 0 0; }
     .zuletzt h2 { font-size: 1rem; font-family: var(--technik); color: var(--leise); margin: 0 0 8px; font-weight: 600; }
     .zuletzt-liste { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -48,13 +42,6 @@
     .zeile b { font-family: var(--technik); font-size: 1.02rem; font-weight: 600; }
     .zeile small { grid-column: 2; color: var(--leise); font-size: .86rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     @media (max-width: 700px) { .zeile small { display: none; } .zeile { padding-top: 11px; padding-bottom: 11px; } .zeilen { gap: 6px; } }
-    .bereich.klappbar { margin-top: 10px; }
-    .bereich.klappbar summary { list-style: none; cursor: pointer; }
-    .bereich.klappbar summary::-webkit-details-marker { display: none; }
-    .bereich.klappbar .bereich-kopf { padding: 10px 2px; }
-    .bereich.klappbar .bereich-kopf h2 { font-size: 1.2rem; }
-    .bereich.klappbar .bereich-kopf::after { content: ''; width: 9px; height: 9px; border-right: 2px solid var(--leise); border-bottom: 2px solid var(--leise); transform: rotate(45deg); margin: -4px 4px 0 2px; transition: transform .15s; }
-    .bereich.klappbar details[open] .bereich-kopf::after { transform: rotate(-135deg); margin-top: 4px; }
     .zeile-huelle .stern { top: 50%; bottom: auto; right: 8px; transform: translateY(-50%); width: 32px; height: 32px; }
     .mehr { display: flex; justify-content: center; margin: 12px 0 0; }
     .mehr button { border: 1px dashed var(--linie); background: none; color: var(--text); border-radius: 999px; padding: 8px 16px; font: inherit; font-family: var(--technik); cursor: pointer; }
@@ -70,10 +57,12 @@
     .reiter small { color: inherit; opacity: .65; font-size: .85rem; }
 
     .bereich { margin: 34px 0 0; }
-    .bereich-kopf { display: flex; align-items: center; gap: 12px; margin: 0 0 4px; padding-bottom: 8px; border-bottom: 1px solid var(--linie); }
+    .bereich-kopf { display: flex; align-items: center; gap: 12px; margin: 0 0 4px; padding-bottom: 10px; border-bottom: 1px solid var(--linie); }
+    .bereich-titel { min-width: 0; }
+    .bereich-titel p { margin: 2px 0 0; color: var(--leise); font-size: .92rem; }
     .bereich-kopf i { width: 14px; height: 14px; border-radius: 4px; background: var(--farbe); flex: none; }
     .bereich-kopf h2 { margin: 0; font-size: 1.55rem; }
-    .bereich-kopf span { color: var(--leise); margin-left: auto; font-size: .92rem; }
+    .bereich-kopf .anzahl { color: var(--leise); margin-left: auto; font-size: .92rem; white-space: nowrap; align-self: flex-start; padding-top: 6px; }
     .gruppe-titel { margin: 18px 0 10px; font-family: var(--technik); font-weight: 600; font-size: 1rem; color: var(--leise); letter-spacing: .02em; }
 
     .raster { grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); }
@@ -109,27 +98,73 @@
     .schnell b { font-family: var(--technik); font-size: 1.02rem; }
     .schnell small { color: var(--leise); font-size: .84rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     @media (max-width: 700px) { .schnell { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .schnell a { padding: 9px 12px; } }
-    .feld-titel { margin: 30px 0 10px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-    .feld-titel h2 { margin: 0; font-size: 1.35rem; }
+    .feld-b { margin: 28px 0 0; }
+    .feld-titel { margin: 0 0 12px; display: flex; align-items: baseline; gap: 4px 12px; flex-wrap: wrap; padding-left: 12px; border-left: 4px solid var(--farbe); }
+    .feld-titel h2 { margin: 0; font-size: 1.4rem; }
+    .feld-titel h2 button { all: unset; cursor: pointer; }
+    .feld-titel h2 button:hover { color: var(--farbe); }
+    .feld-titel h2 button:focus-visible { outline: 2px solid var(--farbe); outline-offset: 3px; border-radius: 4px; }
     .feld-titel span { color: var(--leise); font-size: .92rem; }
     .kacheln { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); gap: 12px; }
-    @media (max-width: 700px) { .kachel-b li:nth-child(3) { display: none; } }
-    .kachel-b { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 14px 16px 12px; border: 1px solid var(--linie); border-left: 5px solid var(--farbe); border-radius: var(--rund, 12px); background: var(--flaeche); min-width: 0; }
-    .kachel-b:hover { border-color: var(--leise); border-left-color: var(--farbe); }
+    .kachel-b { position: relative; display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border: 1px solid var(--linie); border-radius: var(--rund, 12px); background: var(--flaeche); background: linear-gradient(180deg, color-mix(in srgb, var(--farbe) 7%, var(--flaeche)) 0, var(--flaeche) 64px); min-width: 0; box-shadow: inset 0 3px 0 var(--farbe); transition: border-color .15s, transform .15s; }
+    .kachel-b:hover { border-color: color-mix(in srgb, var(--farbe) 45%, var(--linie)); transform: translateY(-1px); }
     .kachel-b > button { all: unset; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; align-items: baseline; }
     .kachel-b > button:focus-visible { outline: 2px solid var(--farbe); outline-offset: 4px; border-radius: 6px; }
+    .kachel-b > button:hover h3 { color: var(--farbe); }
     .kachel-b h3 { margin: 0; font-size: 1.12rem; hyphens: none; -webkit-hyphens: none; overflow-wrap: normal; word-break: normal; }
-    .kachel-b .zahl-b { font-family: var(--technik); color: var(--leise); font-size: .88rem; white-space: nowrap; }
-    .kachel-b .info-b { grid-column: 1 / -1; color: var(--leise); font-size: .9rem; }
-    .kachel-b ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
-    .kachel-b li a { display: block; padding: 4px 0; color: var(--text); text-decoration: none; font-size: .95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .kachel-b .zahl-b { font-family: var(--technik); color: var(--leise); font-size: .85rem; white-space: nowrap; }
+    .kachel-b .info-b { grid-column: 1 / -1; color: var(--leise); font-size: .88rem; }
+    .unter-b { display: flex; flex-wrap: wrap; gap: 6px; }
+    .unter-b button { display: inline-flex; align-items: center; gap: 6px; border: 1px solid color-mix(in srgb, var(--farbe) 30%, var(--linie)); background: color-mix(in srgb, var(--farbe) 8%, var(--flaeche)); color: var(--text); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: .86rem; cursor: pointer; }
+    .unter-b button:hover { border-color: var(--farbe); }
+    .unter-b small, .begriffe small { color: var(--leise); font-family: var(--technik); font-size: .78rem; }
+    .kachel-b ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; }
+    .kachel-b li a { display: block; padding: 3px 0; color: var(--text); text-decoration: none; font-size: .93rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
     .kachel-b li a::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--farbe); margin: 0 9px 2px 1px; vertical-align: middle; }
     .kachel-b li a:hover { color: var(--farbe); }
-    .kachel-b .alle-b { align-self: flex-start; border: 0; background: none; color: var(--farbe); font: inherit; font-family: var(--technik); font-size: .9rem; font-weight: 600; padding: 2px 0; cursor: pointer; }
-    .kachel-b .alle-b:hover { text-decoration: underline; }
     .neu-b { font-size: .7rem; font-family: var(--technik); font-weight: 700; color: #fff; background: var(--farbe); border-radius: 999px; padding: 1px 7px; margin-left: 6px; vertical-align: 2px; }
-    #reiter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; padding-bottom: 4px; }
-    #reiter button { flex: none; }
+    /* Navigation in zwei Ebenen: Themenfelder, darunter die Bereiche des Felds; je eine wischbare Zeile */
+    .werkzeug .reiter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; margin: 0 -4px; padding: 0 4px 2px; -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 24px), transparent 100%); mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 24px), transparent 100%); }
+    .werkzeug .reiter::-webkit-scrollbar { display: none; }
+    .werkzeug .reiter button { flex: none; }
+    .ebene1 { gap: 4px; padding: 4px !important; border: 1px solid var(--linie); border-radius: 999px; background: var(--flaeche); -webkit-mask-image: none !important; mask-image: none !important; margin: 0 !important; }
+    .ebene1 button { border: 0 !important; background: none !important; padding: 7px 14px; }
+    .ebene1 button:hover { background: var(--grund) !important; }
+    .ebene1 button[aria-pressed="true"] { background: var(--text) !important; color: var(--grund); }
+    .ebene2 { gap: 6px; }
+    .ebene2 button { padding: 5px 12px; font-size: .93rem; }
+    .ebene2[hidden] { display: none; }
+    @media (max-width: 700px) { .ebene1 button { padding: 6px 11px; font-size: .95rem; } }
+    /* Pfadleiste */
+    .pfad { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 14px 0 0; font-family: var(--technik); font-size: .92rem; color: var(--leise); }
+    .pfad button { border: 0; background: none; padding: 2px 0; color: var(--leise); font: inherit; cursor: pointer; text-decoration: underline; text-decoration-color: var(--linie); text-underline-offset: 3px; }
+    .pfad button:hover { color: var(--text); }
+    .pfad b { color: var(--text); font-weight: 600; }
+    .pfad .trenner { opacity: .6; }
+    .unter-reiter { margin: 12px 0 4px; }
+    @media (max-width: 700px) { .unter-reiter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-right: -18px; padding-right: 18px; } .unter-reiter::-webkit-scrollbar { display: none; } .unter-reiter button { flex: none; } .bereich-kopf .bereich-titel p { font-size: .86rem; } }
+    .unter-reiter button { padding: 5px 12px; font-size: .93rem; }
+    .karte .ort { font-family: var(--technik); font-size: .78rem; letter-spacing: .02em; color: var(--farbe); font-weight: 600; text-transform: uppercase; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    /* Suche: Seiten zuerst, Begriffe und Stellen als Nebenantworten */
+    .such-kopf { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin: 18px 0 8px; }
+    .such-kopf h2 { margin: 0; font-size: 1.3rem; }
+    .such-kopf .umfang { color: var(--leise); font-size: .92rem; }
+    .such-kopf button, .stellen-kopf button { border: 0; background: none; padding: 0; color: var(--text); font: inherit; font-size: .92rem; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+    .neben-titel { font-family: var(--technik); font-size: .8rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--leise); margin: 0; }
+    .begriffe { display: flex; gap: 6px; align-items: center; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin: 0 0 14px; padding-bottom: 2px; }
+    .begriffe::-webkit-scrollbar { display: none; }
+    .begriffe .neben-titel { flex: none; margin-right: 4px; }
+    .begriffe button { flex: none; display: inline-flex; align-items: center; gap: 6px; border: 1px dashed var(--linie); background: none; color: var(--text); border-radius: 999px; padding: 4px 11px; font: inherit; font-size: .88rem; cursor: pointer; }
+    .begriffe button:hover { border-style: solid; border-color: var(--leise); }
+    .stellen { margin: 28px 0 0; padding: 14px 16px; border: 1px solid var(--linie); border-radius: var(--rund, 12px); background: var(--flaeche); }
+    .stellen-kopf { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 12px; margin-bottom: 8px; }
+    .stellen ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); gap: 2px 18px; }
+    .stellen a { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 10px; align-items: baseline; padding: 7px 4px; border-bottom: 1px solid var(--linie); color: var(--text); text-decoration: none; }
+    .stellen a:hover .stelle { color: var(--farbe); }
+    .stellen .art { font-family: var(--technik); font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--farbe); min-width: 74px; }
+    .stellen .stelle { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .95rem; }
+    .stellen small { grid-column: 2; color: var(--leise); font-size: .82rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    @media (max-width: 700px) { .stellen .art { min-width: 0; } .stellen { padding: 12px; } }
   </style>
 </head>
 
@@ -151,13 +186,14 @@
 
     <div class="werkzeug" id="bereiche">
       <div class="such-zeile">
-        <input type="search" id="suchfeld" placeholder="Suchen, z. B. Spannungsfall, Legionellen, Kräfte" aria-label="Seiten durchsuchen">
+        <input type="search" id="suchfeld" placeholder="Seite suchen, z. B. Spannungsfall, Brüche, Legionellen" aria-label="Seiten durchsuchen" autocomplete="off" enterkeyhint="search">
         <div class="ansicht" role="group" aria-label="Darstellung">
           <button type="button" data-ansicht="karten" aria-pressed="true" title="Große Karten mit Formel"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="2" width="7" height="7" rx="1.5"/><rect x="11" y="2" width="7" height="7" rx="1.5"/><rect x="2" y="11" width="7" height="7" rx="1.5"/><rect x="11" y="11" width="7" height="7" rx="1.5"/></svg><span>Karten</span></button>
           <button type="button" data-ansicht="liste" aria-pressed="false" title="Kompakte Liste"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="16" height="3" rx="1.5"/><rect x="2" y="8.5" width="16" height="3" rx="1.5"/><rect x="2" y="14" width="16" height="3" rx="1.5"/></svg><span>Liste</span></button>
         </div>
       </div>
-      <div class="reiter" id="reiter" role="group" aria-label="Bereich wählen"></div>
+      <div class="reiter ebene1" id="felder" role="group" aria-label="Themenfeld wählen"></div>
+      <div class="reiter ebene2" id="reiter" role="group" aria-label="Bereich wählen" hidden></div>
     </div>
 
     <div id="liste"></div>
@@ -190,14 +226,14 @@
       // wird von werkzeuge/bauen.js aus daten/seiten/**/*.json gefüllt
     ];
 
-    // Reihenfolge und Farben der Bereiche; Untergruppen in dieser Reihenfolge
+    // Reihenfolge und Farben der Bereiche
     const BEREICHE = { 'Elektrotechnik': '#2B7BB9', 'Gebäudeautomation': '#9333EA', 'Steuerungstechnik': '#0E7C86', 'IT und Netzwerk': '#3B5BDB', 'Heizungstechnik': '#C2410C', 'Sanitärtechnik': '#0E6B6A', 'Dach und Klempnerei': '#A0785A', 'Mathematik': '#5C940D', 'Physik': '#C2255C', 'Mechanik': '#6E6FA6', 'Brandschutz': '#E4572E', 'Arbeitsschutz': '#2F9E44', 'Geld und Kalkulation': '#A16207', 'Werkzeuge': '#6B7785' };
-    // Themenfelder der Übersicht: Name, Untertitel, Bereiche; nicht genannte Bereiche landen unter „Weitere“
+    // Gliederung: Überthema (Themenfeld) → Bereich → Unterthema (Feld „gruppe“ der Seite)
     const FELDER = [
-      ['Elektro und Automation', 'Installation, Schutz, Energie, Netzwerk', ['Elektrotechnik', 'Gebäudeautomation', 'Steuerungstechnik', 'IT und Netzwerk']],
-      ['Haustechnik und Bau', 'Heizung, Wasser, Dach', ['Heizungstechnik', 'Sanitärtechnik', 'Dach und Klempnerei']],
-      ['Grundlagen', 'Rechnen, Physik, Kräfte', ['Mathematik', 'Physik', 'Mechanik']],
-      ['Sicherheit und Betrieb', 'Brand- und Arbeitsschutz, Kalkulation, Werkzeuge', ['Brandschutz', 'Arbeitsschutz', 'Geld und Kalkulation', 'Werkzeuge']]
+      ['Elektro und Automation', 'Installation, Schutz, Energie, Netzwerk', ['Elektrotechnik', 'Gebäudeautomation', 'Steuerungstechnik', 'IT und Netzwerk'], '#2B7BB9'],
+      ['Haustechnik und Bau', 'Heizung, Wasser, Dach', ['Heizungstechnik', 'Sanitärtechnik', 'Dach und Klempnerei'], '#C2410C'],
+      ['Grundlagen', 'Rechnen, Physik, Kräfte', ['Mathematik', 'Physik', 'Mechanik'], '#5C940D'],
+      ['Sicherheit und Betrieb', 'Brand- und Arbeitsschutz, Kalkulation, Werkzeuge', ['Brandschutz', 'Arbeitsschutz', 'Geld und Kalkulation', 'Werkzeuge'], '#E4572E']
     ];
     const INFO = {
       'Elektrotechnik': 'Leitungen, Schutzmaßnahmen, PV, Speicher und Maschinen',
@@ -215,21 +251,42 @@
       'Geld und Kalkulation': 'Stundensatz, Angebot, Kredit und Amortisation',
       'Werkzeuge': 'Projektmappe, Prüfprotokolle, Simulatoren und Planer'
     };
-    const GRUPPEN = ['Grundlagen', 'Installation und Schutz', 'Energie und Photovoltaik'];
     const NEU = ['Mathematik'];
+    const AUS_ANDEREN = 'Aus anderen Bereichen';
     const farbe = function (b) { return BEREICHE[b] || 'var(--leise)'; };
+    const $ = function (id) { return document.getElementById(id); };
+    function knoten(tag, klasse, text) { const k = document.createElement(tag); if (klasse) k.className = klasse; if (text !== undefined) k.textContent = text; return k; }
+    const seitenText = function (n) { return n + (n === 1 ? ' Seite' : ' Seiten'); };
 
     // Gehört ein Eintrag zu einem Bereich (eigener Bereich oder zusätzlich über auchIn)?
     function imBereich(e, b) { return e.bereich === b || (e.auchIn || []).indexOf(b) >= 0; }
-    // Untergruppe nur im eigenen Bereich; in weiteren Bereichen ohne Untergruppe
-    function gruppeIn(e, b) { return e.bereich === b ? (e.gruppe || '') : ''; }
+    // Unterthema im eigenen Bereich; in weiteren Bereichen unter „Aus anderen Bereichen“
+    function gruppeIn(e, b) { return e.bereich === b ? (e.gruppe || '') : AUS_ANDEREN; }
     const bereiche = [];
     Object.keys(BEREICHE).concat(eintraege.map(function (e) { return e.bereich; })).forEach(function (b) {
       if (bereiche.indexOf(b) < 0 && eintraege.some(function (e) { return imBereich(e, b); })) bereiche.push(b);
     });
+    // Themenfelder mit vorhandenen Bereichen; nicht zugeordnete landen unter „Weitere“
+    const felder = FELDER.map(function (f) { return { name: f[0], info: f[1], farbe: f[3], bereiche: f[2].filter(function (b) { return bereiche.indexOf(b) >= 0; }) }; }).filter(function (f) { return f.bereiche.length; });
+    (function () {
+      const genannt = [].concat.apply([], felder.map(function (f) { return f.bereiche; }));
+      const rest = bereiche.filter(function (b) { return genannt.indexOf(b) < 0; });
+      if (rest.length) felder.push({ name: 'Weitere', info: '', farbe: '#6B7785', bereiche: rest });
+    })();
+    function feldDaten(name) { return felder.filter(function (f) { return f.name === name; })[0] || null; }
+    function feldVon(b) { const f = felder.filter(function (x) { return x.bereiche.indexOf(b) >= 0; })[0]; return f ? f.name : ''; }
+    function imFeld(e, name) { const f = feldDaten(name); return !!f && f.bereiche.some(function (b) { return imBereich(e, b); }); }
+    // Unterthemen eines Bereichs in Reihenfolge des ersten Auftretens: [[Name, Anzahl], …]; leer = ohne Gliederung
+    function unterthemen(b, liste) {
+      const n = {}, folge = [];
+      (liste || eintraege).forEach(function (e) { if (!imBereich(e, b)) return; const g = gruppeIn(e, b); if (!(g in n)) { n[g] = 0; folge.push(g); } n[g]++; });
+      folge.sort(function (x, y) { return (x === AUS_ANDEREN) - (y === AUS_ANDEREN) || (x === '') - (y === '') || (y === 'Grundlagen') - (x === 'Grundlagen'); });
+      const eigene = folge.filter(function (g) { return g && g !== AUS_ANDEREN; });
+      return eigene.length >= 2 ? folge.map(function (g) { return [g || 'Weitere', n[g], g]; }) : [];
+    }
 
     // Favoriten: Pfade aus basis.js, nur solche, die es (noch) gibt; in der Reihenfolge des Merkens
-    const FAV = '\u2605';   // eigener Reiter-Wert für „Favoriten“
+    const FAV = '★';   // eigener Wert für „Favoriten“
     const FAV_AUSWAHL = 'uebersicht-auswahl';
     function favoriten() {
       const liste = window.Favoriten ? window.Favoriten.liste() : [];
@@ -252,46 +309,85 @@
       });
     });
     ansichtZeigen();
-    // Schatten unter der Suchleiste, sobald sie oben klebt
-    const leiste = document.getElementById('bereiche');
+    // Schatten unter der Leiste, sobald sie oben klebt
+    const leiste = $('bereiche');
     const kleben = function () { leiste.classList.toggle('klebt', leiste.getBoundingClientRect().top <= 0.5 && window.scrollY > 40); };
     window.addEventListener('scroll', kleben, { passive: true });
 
-    let auswahl = '';
-    try { if (sessionStorage.getItem(FAV_AUSWAHL) === FAV) auswahl = FAV; } catch (x) { /* ohne Speicher */ }
+    // Zustand: Themenfeld (oder Favoriten), Bereich, Unterthema
+    let feld = '', bereich = '', unter = '';
+    try { if (sessionStorage.getItem(FAV_AUSWAHL) === FAV) feld = FAV; } catch (x) { /* ohne Speicher */ }
+    const suchfeld = $('suchfeld');
+    const anfrage = function () { return suchfeld.value.trim().slice(0, 120); };
+
     // Kennzahlen im Kopf (nur Zahlen, daher innerHTML unbedenklich)
-    document.getElementById('kennzahlen').innerHTML = '<span><b>' + eintraege.length + '</b> Seiten</span><span><b>' + bereiche.length + '</b> Bereiche</span><span><b>' + FELDER.length + '</b> Themenfelder</span><span>läuft offline</span>';
-    const reiter = document.getElementById('reiter');
-    function reiterBauen() {
+    $('kennzahlen').innerHTML = '<span><b>' + eintraege.length + '</b> Seiten</span><span><b>' + felder.length + '</b> Themenfelder</span><span><b>' + bereiche.length + '</b> Bereiche</span><span>läuft offline</span>';
+
+    // ---------- Navigation: Ebene 1 Themenfelder, Ebene 2 Bereiche des Themenfelds ----------
+    const ebene1 = $('felder'), reiter = $('reiter');
+    function knopf(text, anzahl, aktiv, f, klick, vorne) {
+      const k = knoten('button'); k.type = 'button';
+      if (f) k.style.setProperty('--farbe', f);
+      if (vorne) k.append(vorne);
+      k.append(knoten('span', '', text));
+      if (anzahl !== undefined) k.append(knoten('small', '', String(anzahl)));
+      k.setAttribute('aria-pressed', String(!!aktiv));
+      k.addEventListener('click', klick);
+      return k;
+    }
+    function punkt() { const i = knoten('i'); i.setAttribute('aria-hidden', 'true'); return i; }
+    function navBauen() {
+      ebene1.innerHTML = '';
+      ebene1.append(knopf('Alles', eintraege.length, !feld, '', function () { setze('', '', '', true); }));
+      felder.forEach(function (f) {
+        const n = eintraege.filter(function (e) { return imFeld(e, f.name); }).length;
+        ebene1.append(knopf(f.name, n, feld === f.name, f.farbe, function () { setze(f.name, '', '', true); }, punkt()));
+      });
+      const stern = knoten('b', 'fav-zeichen', '★'); stern.setAttribute('aria-hidden', 'true');
+      ebene1.append(knopf('Favoriten', favoriten().length, feld === FAV, '', function () { setze(FAV, '', '', true); }, stern));
+      // Ebene 2: Bereiche des gewählten Themenfelds
       reiter.innerHTML = '';
-      [''].concat([FAV], bereiche).forEach(function (b) {
-        const k = document.createElement('button');
-        k.type = 'button';
-        k.style.setProperty('--farbe', b && b !== FAV ? farbe(b) : 'var(--leise)');
-        const anzahl = b === FAV ? favoriten().length : b ? eintraege.filter(function (e) { return imBereich(e, b); }).length : eintraege.length;
-        k.innerHTML = (b === FAV ? '<b class="fav-zeichen" aria-hidden="true">\u2605</b>' : b ? '<i aria-hidden="true"></i>' : '') + '<span></span> <small>' + anzahl + '</small>';
-        k.querySelector('span').textContent = b === FAV ? 'Favoriten' : b || 'Alle';
-        k.setAttribute('aria-pressed', String(b === auswahl));
-        k.addEventListener('click', function () { waehle(b, true); });
-        reiter.append(k);
+      const fd = feld && feld !== FAV ? feldDaten(feld) : null;
+      reiter.hidden = !fd;
+      if (fd) {
+        reiter.append(knopf('Alle in ' + fd.name, undefined, !bereich, fd.farbe, function () { setze(fd.name, '', '', true); }));
+        fd.bereiche.forEach(function (b) {
+          reiter.append(knopf(b, eintraege.filter(function (e) { return imBereich(e, b); }).length, bereich === b, farbe(b), function () { setze(fd.name, b, '', true); }, punkt()));
+        });
+      }
+      [ebene1, reiter].forEach(function (z) {
+        const a = z.querySelector('[aria-pressed="true"]');
+        if (a && z.scrollWidth > z.clientWidth) z.scrollLeft = Math.max(0, a.offsetLeft - z.clientWidth / 2 + a.offsetWidth / 2);
       });
     }
-    reiterBauen();
 
-    document.getElementById('suchfeld').addEventListener('input', zeigen);
-
-    function passt(e) {
-      const suche = document.getElementById('suchfeld').value.trim().toLowerCase();
-      const alles = [e.titel, e.text, e.bereich, e.gruppe || ''].concat(e.auchIn || []).concat(e.themen).join(' ').toLowerCase();
-      return (!auswahl || (auswahl === FAV ? istFavorit(e) : imBereich(e, auswahl))) && (!suche || suche.split(/\s+/).every(function (w) { return alles.indexOf(w) >= 0; }));
+    // Auswahl setzen: Navigation, Adresse (#thema=… / #bereich=…&unter=…) und Inhalt nachziehen
+    function setze(f, b, u, scrollen) {
+      if (b) f = feldVon(b) || f;
+      feld = f; bereich = b; unter = u;
+      try { sessionStorage.setItem(FAV_AUSWAHL, feld === FAV ? FAV : ''); } catch (x) { /* ohne Speicher */ }
+      const h = b ? '#bereich=' + encodeURIComponent(b) + (u ? '&unter=' + encodeURIComponent(u) : '') : f && f !== FAV ? '#thema=' + encodeURIComponent(f) : '';
+      try { if (history.replaceState) history.replaceState(null, '', location.pathname + location.search + h); } catch (x) { /* egal */ }
+      navBauen(); zeigen();
+      if (scrollen) { const y = $('liste').getBoundingClientRect().top + window.scrollY - leiste.offsetHeight - 8; if (window.scrollY > y || scrollen === 'immer') window.scrollTo(0, Math.max(0, y)); }
+    }
+    function ausAdresse() {
+      const teil = function (name) { const m = new RegExp('[#&]' + name + '=([^&]+)').exec(location.hash); if (!m) return ''; try { return decodeURIComponent(m[1]); } catch (x) { return ''; } };
+      const b = teil('bereich'), t = teil('thema');
+      if (b && bereiche.indexOf(b) >= 0) {
+        const u = teil('unter'), gr = unterthemen(b).map(function (x) { return x[2]; });
+        feld = feldVon(b); bereich = b; unter = gr.indexOf(u) >= 0 ? u : ''; return true;
+      }
+      if (t && feldDaten(t)) { feld = t; bereich = ''; unter = ''; return true; }
+      return false;
     }
 
+    // ---------- Bausteine: Karten, Zeilen, Stern ----------
     function stern(e) {
-      const st = document.createElement('button');
+      const st = knoten('button', 'stern');
       st.type = 'button';
-      st.className = 'stern';
       st.setAttribute('data-pfad', e.pfad);
-      st.innerHTML = window.Favoriten ? window.Favoriten.stern : '\u2605';
+      st.innerHTML = window.Favoriten ? window.Favoriten.stern : '★';
       const an = istFavorit(e);
       st.setAttribute('aria-pressed', String(an));
       st.setAttribute('aria-label', (an ? 'Aus den Favoriten entfernen: ' : 'Zu den Favoriten: ') + e.titel);
@@ -300,39 +396,35 @@
       return st;
     }
     function zeile(e) {
-      const a = document.createElement('a');
-      a.className = 'zeile'; a.href = e.pfad; a.style.setProperty('--farbe', farbe(e.bereich));
-      const i = document.createElement('i'); i.setAttribute('aria-hidden', 'true');
-      const b = document.createElement('b'); b.textContent = e.titel;
-      const k = document.createElement('small'); k.textContent = e.text;
-      a.append(i, b, k);
-      const huelle = document.createElement('div'); huelle.className = 'zeile-huelle';
+      const a = knoten('a', 'zeile'); a.href = e.pfad; a.style.setProperty('--farbe', farbe(e.bereich));
+      a.append(punkt(), knoten('b', '', e.titel), knoten('small', '', e.text));
+      const huelle = knoten('div', 'zeile-huelle');
       huelle.append(a, stern(e));
       return huelle;
     }
-    // Behälter je nach Darstellung
-    function behaelter() { const d = document.createElement('div'); d.className = ansicht === 'liste' ? 'zeilen' : 'raster'; return d; }
-    function eintrag(e) { return ansicht === 'liste' ? zeile(e) : karte(e); }
-
     function karte(e) {
-      const a = document.createElement('a');
-      a.className = 'karte';
-      a.href = e.pfad;
+      const a = knoten('a', 'karte'); a.href = e.pfad;
       a.style.setProperty('--farbe', farbe(e.bereich));
-      if (e.tex) {
-        const bild = document.createElement('div');
-        bild.className = 'formelbild';
-        Formel.setze(bild, e.tex, true);
-        a.append(bild);
-      }
-      const h = document.createElement('h3'); h.textContent = e.titel;
-      const p = document.createElement('p'); p.textContent = e.text;
-      const w = document.createElement('div'); w.className = 'stichworte'; w.textContent = e.themen.slice(0, 3).join(' · ');
-      a.append(h, p, w);
-      const huelle = document.createElement('div');
-      huelle.className = 'karte-huelle';
+      if (e.tex) { const bild = knoten('div', 'formelbild'); Formel.setze(bild, e.tex, true); a.append(bild); }
+      const ort = knoten('div', 'ort', e.bereich + (e.gruppe ? ' · ' + e.gruppe : ''));
+      a.append(ort, knoten('h3', '', e.titel), knoten('p', '', e.text), knoten('div', 'stichworte', e.themen.slice(0, 3).join(' · ')));
+      const huelle = knoten('div', 'karte-huelle');
       huelle.append(a, stern(e));
       return huelle;
+    }
+    function behaelter() { return knoten('div', ansicht === 'liste' ? 'zeilen' : 'raster'); }
+    function eintrag(e) { return ansicht === 'liste' ? zeile(e) : karte(e); }
+    function abschnittBauen(titel, f, anzahl, klasse, info) {
+      const abschnitt = knoten('section', 'bereich' + (klasse ? ' ' + klasse : ''));
+      abschnitt.style.setProperty('--farbe', f);
+      const kopf = knoten('div', 'bereich-kopf');
+      const t = knoten('div', 'bereich-titel');
+      t.append(knoten('h2', '', titel));
+      if (info) t.append(knoten('p', '', info));
+      const i = punkt();
+      kopf.append(i, t, knoten('span', 'anzahl', seitenText(anzahl)));
+      abschnitt.append(kopf);
+      return abschnitt;
     }
 
     // Nach jeder Änderung (auch aus einem anderen Tab) neu zeichnen; der Fokus bleibt auf dem Stern
@@ -340,169 +432,277 @@
       const fokus = document.activeElement && document.activeElement.getAttribute ? document.activeElement.getAttribute('data-pfad') : null;
       const imBereichFokus = document.activeElement && document.activeElement.closest ? document.activeElement.closest('section.bereich') : null;
       const favAbschnitt = !!(imBereichFokus && imBereichFokus.classList.contains('favoriten'));
-      reiterBauen();
+      navBauen();
       zeigen();
       if (fokus) {
         const alle = Array.prototype.slice.call(document.querySelectorAll('.stern'));
         const ziel = alle.filter(function (k) { return k.getAttribute('data-pfad') === fokus && !!k.closest('section.favoriten') === favAbschnitt; })[0] ||
           alle.filter(function (k) { return k.getAttribute('data-pfad') === fokus; })[0];
-        if (ziel) ziel.focus(); else if (reiter.querySelector('[aria-pressed="true"]')) reiter.querySelector('[aria-pressed="true"]').focus();
+        if (ziel) ziel.focus(); else if (ebene1.querySelector('[aria-pressed="true"]')) ebene1.querySelector('[aria-pressed="true"]').focus();
       }
     });
 
-    function abschnittBauen(titel, f, liste, klasse) {
-      const abschnitt = document.createElement('section');
-      abschnitt.className = 'bereich' + (klasse ? ' ' + klasse : '');
-      abschnitt.style.setProperty('--farbe', f);
-      const kopf = document.createElement('div');
-      kopf.className = 'bereich-kopf';
-      kopf.innerHTML = '<i aria-hidden="true"></i><h2></h2><span></span>';
-      kopf.querySelector('h2').textContent = titel;
-      kopf.querySelector('span').textContent = liste.length + (liste.length === 1 ? ' Seite' : ' Seiten');
-      abschnitt.append(kopf);
-      return abschnitt;
-    }
-    function favoritenZeigen(ziel, mitHinweis) {
-      const liste = favoriten().filter(passt);
-      if (!liste.length) return false;
-      const abschnitt = abschnittBauen('Favoriten', '#F2A541', liste, 'favoriten');
-      const raster = behaelter();
-      raster.style.marginTop = '14px';
-      liste.forEach(function (e) { raster.append(eintrag(e)); });
-      abschnitt.append(raster);
-      if (mitHinweis) { const t = document.createElement('p'); t.className = 'fav-hinweis'; t.textContent = 'Nur in diesem Browser gespeichert. Stern antippen, um eine Seite zu entfernen.'; abschnitt.append(t); }
-      ziel.append(abschnitt);
-      return true;
+    // ---------- Pfadleiste: Übersicht › Themenfeld › Bereich › Unterthema ----------
+    function pfadZeigen(ziel) {
+      if (!feld || feld === FAV) return;
+      const nav = knoten('nav', 'pfad'); nav.setAttribute('aria-label', 'Sie sind hier');
+      const stufen = [['Übersicht', function () { setze('', '', '', true); }], [feld, function () { setze(feld, '', '', true); }]];
+      if (bereich) stufen.push([bereich, function () { setze(feld, bereich, '', true); }]);
+      if (unter) stufen.push([unter === AUS_ANDEREN ? AUS_ANDEREN : unter, null]);
+      stufen.forEach(function (s, i) {
+        if (i) nav.append(knoten('span', 'trenner', '›'));
+        if (i === stufen.length - 1) { const b = knoten('b', '', s[0]); b.setAttribute('aria-current', 'page'); nav.append(b); }
+        else { const k = knoten('button', '', s[0]); k.type = 'button'; k.addEventListener('click', s[1]); nav.append(k); }
+      });
+      ziel.append(nav);
     }
 
-    const schmal = function () { return !!(window.matchMedia && window.matchMedia('(max-width: 700px)').matches); };
-    let offen = [];
-    try { const o = JSON.parse(sessionStorage.getItem('uebersicht-offen') || '[]'); if (Array.isArray(o)) offen = o.filter(function (x) { return typeof x === 'string'; }).slice(0, 30); } catch (x) { offen = []; }
-    const VORSCHAU = window.matchMedia && window.matchMedia('(max-width: 700px)').matches ? 2 : 4;
+    // ---------- Übersicht ----------
     function zuletztZeigen(ziel) {
       const liste = (window.Zuletzt ? window.Zuletzt.liste() : []).map(function (p) { return eintraege.filter(function (e) { return e.pfad === p; })[0]; }).filter(Boolean).slice(0, 6);
       if (!liste.length) return;
-      const ab = document.createElement('section'); ab.className = 'zuletzt'; ab.setAttribute('aria-label', 'Zuletzt geöffnet');
-      const h = document.createElement('h2'); h.textContent = 'Zuletzt geöffnet';
-      const l = document.createElement('div'); l.className = 'zuletzt-liste';
-      liste.forEach(function (e) { const a = document.createElement('a'); a.href = e.pfad; a.style.setProperty('--farbe', farbe(e.bereich)); const sp = document.createElement('span'); sp.textContent = e.titel; a.append(sp); l.append(a); });
-      ab.append(h, l); ziel.append(ab);
+      const ab = knoten('section', 'zuletzt'); ab.setAttribute('aria-label', 'Zuletzt geöffnet');
+      const l = knoten('div', 'zuletzt-liste');
+      liste.forEach(function (e) { const a = knoten('a'); a.href = e.pfad; a.style.setProperty('--farbe', farbe(e.bereich)); a.append(knoten('span', '', e.titel)); l.append(a); });
+      ab.append(knoten('h2', '', 'Zuletzt geöffnet'), l); ziel.append(ab);
     }
-    // Bereich wählen: Reiter, Adresse (#bereich=…) und Ansicht nachziehen
-    function waehle(b, scrollen) {
-      auswahl = b;
-      try { sessionStorage.setItem(FAV_AUSWAHL, auswahl === FAV ? FAV : ''); } catch (x) { /* ohne Speicher */ }
-      try { if (history.replaceState) history.replaceState(null, '', location.pathname + location.search + (b && b !== FAV ? '#bereich=' + encodeURIComponent(b) : '')); } catch (x) { /* egal */ }
-      reiterBauen(); zeigen();
-      const aktiv = reiter.querySelector('[aria-pressed="true"]');
-      if (aktiv && aktiv.scrollIntoView) { try { aktiv.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (x) { /* alt */ } }
-      if (scrollen) { const y = document.getElementById('liste').getBoundingClientRect().top + window.scrollY - leiste.offsetHeight - 8; if (window.scrollY > y || scrollen === 'immer') window.scrollTo(0, Math.max(0, y)); }
+    function favoritenZeigen(ziel, mitHinweis) {
+      const liste = favoriten();
+      if (!liste.length) return false;
+      const abschnitt = abschnittBauen('Favoriten', '#F2A541', liste.length, 'favoriten');
+      const raster = behaelter(); raster.style.marginTop = '14px';
+      liste.forEach(function (e) { raster.append(eintrag(e)); });
+      abschnitt.append(raster);
+      if (mitHinweis) abschnitt.append(knoten('p', 'fav-hinweis', 'Nur in diesem Browser gespeichert. Stern antippen, um eine Seite zu entfernen.'));
+      ziel.append(abschnitt);
+      return true;
     }
-    function ausAdresse() {
-      const m = /^#bereich=([^&]+)/.exec(location.hash);
-      if (!m) return false;
-      let b = ''; try { b = decodeURIComponent(m[1]); } catch (x) { b = ''; }
-      if (bereiche.indexOf(b) < 0) return false;
-      auswahl = b; return true;
+    // Kachel eines Bereichs: Kopf (öffnet den Bereich), Unterthemen oder drei Beispielseiten
+    function kachel(b) {
+      const liste = eintraege.filter(function (e) { return imBereich(e, b); });
+      const k = knoten('section', 'kachel-b'); k.style.setProperty('--farbe', farbe(b));
+      const kopf = knoten('button'); kopf.type = 'button'; kopf.title = 'Alle Seiten in ' + b + ' zeigen';
+      const h3 = knoten('h3', '', b);
+      if (NEU.indexOf(b) >= 0) h3.append(knoten('span', 'neu-b', 'neu'));
+      kopf.append(h3, knoten('span', 'zahl-b', seitenText(liste.length)), knoten('span', 'info-b', INFO[b] || ''));
+      kopf.addEventListener('click', function () { setze(feldVon(b), b, '', 'immer'); });
+      k.append(kopf);
+      const gr = unterthemen(b).filter(function (g) { return g[2] !== AUS_ANDEREN; });
+      if (gr.length) {
+        const u = knoten('div', 'unter-b'); u.setAttribute('aria-label', 'Unterthemen');
+        gr.forEach(function (g) {
+          const c = knoten('button', '', g[0]); c.type = 'button';
+          c.append(knoten('small', '', String(g[1])));
+          c.addEventListener('click', function () { setze(feldVon(b), b, g[2], 'immer'); });
+          u.append(c);
+        });
+        k.append(u);
+      } else {
+        const ul = knoten('ul');
+        liste.slice(0, 3).forEach(function (e) { const li = knoten('li'), a = knoten('a', '', e.titel); a.href = e.pfad; a.title = e.text; li.append(a); ul.append(li); });
+        k.append(ul);
+      }
+      return k;
     }
-    function kachelnZeigen(ziel) {
-      const felder = FELDER.map(function (f) { return [f[0], f[1], f[2].filter(function (b) { return bereiche.indexOf(b) >= 0; })]; });
-      const genannt = [].concat.apply([], felder.map(function (f) { return f[2]; }));
-      const rest = bereiche.filter(function (b) { return genannt.indexOf(b) < 0; });
-      if (rest.length) felder.push(['Weitere', '', rest]);
+    function felderZeigen(ziel, nur) {
       felder.forEach(function (f) {
-        if (!f[2].length) return;
-        const kopf = document.createElement('div'); kopf.className = 'feld-titel';
-        const h = document.createElement('h2'); h.textContent = f[0];
-        const u = document.createElement('span'); u.textContent = f[1];
-        kopf.append(h, u); ziel.append(kopf);
-        const raster = document.createElement('div'); raster.className = 'kacheln';
-        f[2].forEach(function (b) {
-          const liste = eintraege.filter(function (e) { return imBereich(e, b); });
-          const k = document.createElement('section'); k.className = 'kachel-b'; k.style.setProperty('--farbe', farbe(b));
-          const knopf = document.createElement('button'); knopf.type = 'button'; knopf.title = 'Alle Seiten in ' + b + ' zeigen';
-          const h3 = document.createElement('h3'); h3.textContent = b;
-          if (NEU.indexOf(b) >= 0) { const n = document.createElement('span'); n.className = 'neu-b'; n.textContent = 'neu'; h3.append(n); }
-          const z = document.createElement('span'); z.className = 'zahl-b'; z.textContent = liste.length + (liste.length === 1 ? ' Seite' : ' Seiten');
-          const i = document.createElement('span'); i.className = 'info-b'; i.textContent = INFO[b] || '';
-          knopf.append(h3, z, i);
-          knopf.addEventListener('click', function () { waehle(b, 'immer'); });
-          const ul = document.createElement('ul');
-          liste.slice(0, 3).forEach(function (e) { const li = document.createElement('li'), a = document.createElement('a'); a.href = e.pfad; a.textContent = e.titel; a.title = e.text; li.append(a); ul.append(li); });
-          k.append(knopf, ul);
-          if (liste.length > 3) { const alle = document.createElement('button'); alle.type = 'button'; alle.className = 'alle-b'; alle.textContent = 'Alle ' + liste.length + ' zeigen →'; alle.addEventListener('click', function () { waehle(b, 'immer'); }); k.append(alle); }
-          raster.append(k);
+        if (nur && f.name !== nur) return;
+        const sek = knoten('section', 'feld-b'); sek.style.setProperty('--farbe', f.farbe);
+        const kopf = knoten('div', 'feld-titel');
+        const h = knoten('h2');
+        if (nur) h.textContent = f.name;
+        else { const k = knoten('button', '', f.name); k.type = 'button'; k.title = 'Nur ' + f.name + ' zeigen'; k.addEventListener('click', function () { setze(f.name, '', '', 'immer'); }); h.append(k); }
+        kopf.append(h, knoten('span', '', f.info));
+        const raster = knoten('div', 'kacheln');
+        f.bereiche.forEach(function (b) { raster.append(kachel(b)); });
+        sek.append(kopf, raster);
+        ziel.append(sek);
+      });
+    }
+
+    // ---------- Bereich mit Unterthemen ----------
+    function bereichZeigen(ziel, b, mitFilter) {
+      const liste = eintraege.filter(function (e) { return imBereich(e, b); });
+      const abschnitt = abschnittBauen(b, farbe(b), liste.length, '', INFO[b]);
+      const gr = unterthemen(b);
+      if (gr.length && mitFilter) {
+        const u = knoten('div', 'unter-reiter reiter'); u.setAttribute('role', 'group'); u.setAttribute('aria-label', 'Unterthema wählen');
+        u.append(knopf('Alle', liste.length, !unter, farbe(b), function () { setze(feld, b, '', false); }));
+        gr.forEach(function (g) { u.append(knopf(g[0], g[1], unter === g[2], farbe(b), function () { setze(feld, b, g[2], false); })); });
+        abschnitt.append(u);
+      }
+      const gruppen = gr.length ? gr.map(function (g) { return g[2]; }) : [null];
+      gruppen.forEach(function (g) {
+        if (mitFilter && unter && g !== unter) return;
+        const teil = liste.filter(function (e) { return g === null || gruppeIn(e, b) === g; });
+        if (!teil.length) return;
+        if (g !== null) abschnitt.append(knoten('div', 'gruppe-titel', g || 'Weitere'));
+        const raster = behaelter();
+        if (g === null) raster.style.marginTop = '14px';
+        teil.forEach(function (e) { raster.append(eintrag(e)); });
+        abschnitt.append(raster);
+      });
+      ziel.append(abschnitt);
+    }
+
+    // ---------- Suche: zuerst Seiten, dann passende Begriffe und Stellen in den Seiten ----------
+    const norm = function (t) { return window.Suche ? window.Suche.norm(t) : String(t).toLowerCase(); };
+    function imUmfang(e) {
+      if (feld === FAV) return istFavorit(e);
+      if (bereich) return imBereich(e, bereich) && (!unter || gruppeIn(e, bereich) === unter);
+      if (feld) return imFeld(e, feld);
+      return true;
+    }
+    function umfangName() { return feld === FAV ? 'Favoriten' : unter ? bereich + ' › ' + unter : bereich || feld; }
+    // einfache Wertung ohne Index (sofort verfügbar; Titel vor Stichwörtern vor Text)
+    function lokal(q, liste) {
+      const w = norm(q).split(' ').filter(Boolean);
+      if (!w.length) return [];
+      return liste.map(function (e) {
+        const t = ' ' + norm(e.titel) + ' ', s = ' ' + norm(e.themen.join(' ') + ' ' + e.bereich + ' ' + (e.gruppe || '') + ' ' + (e.auchIn || []).join(' ')) + ' ', x = ' ' + norm(e.text) + ' ';
+        let summe = 0;
+        for (let i = 0; i < w.length; i++) {
+          const g = function (h) { return h.indexOf(' ' + w[i] + ' ') >= 0 ? 3 : w[i].length <= 2 ? 0 : h.indexOf(' ' + w[i]) >= 0 ? 2 : w[i].length > 3 && h.indexOf(w[i]) >= 0 ? 0.5 : 0; };
+          const p = Math.max(10 * g(t), 6 * g(s), 3 * g(x));
+          if (!p) return null;
+          summe += p;
+        }
+        return [summe, e];
+      }).filter(Boolean).sort(function (a, b) { return b[0] - a[0]; });
+    }
+    // Begriffe aus Stichwörtern und Unterthemen, die alle Suchwörter enthalten
+    function begriffe(q, liste) {
+      const w = norm(q).split(' ').filter(Boolean), nq = w.join(' ');
+      if (!w.length) return [];
+      const zahl = {}, name = {};
+      liste.forEach(function (e) {
+        e.themen.concat(e.gruppe ? [e.gruppe] : []).forEach(function (b) {
+          const n = norm(b);
+          if (n === nq || !w.every(function (x) { return x.length <= 2 ? (' ' + n + ' ').indexOf(' ' + x + ' ') >= 0 : (' ' + n).indexOf(' ' + x) >= 0 || (x.length > 3 && n.indexOf(x) >= 0); })) return;
+          zahl[n] = (zahl[n] || 0) + 1; if (!name[n]) name[n] = b;
         });
+      });
+      return Object.keys(zahl).sort(function (a, b) {
+        const va = a.indexOf(w[0]) === 0 ? 1 : 0, vb = b.indexOf(w[0]) === 0 ? 1 : 0;
+        return vb - va || zahl[b] - zahl[a] || a.length - b.length;
+      }).slice(0, 10).map(function (n) { return [name[n], zahl[n]]; });
+    }
+    const ERSTE = window.matchMedia && window.matchMedia('(max-width: 700px)').matches ? 6 : 12;   // so viele Seiten sofort, der Rest auf Wunsch
+    let alleTreffer = false;
+    let indexStand = 'nein';   // nein, laedt, da, fehlt
+    function indexHolen() {
+      if (indexStand !== 'nein' || !window.Suche || !window.Suche.laden) return;
+      indexStand = 'laedt';
+      window.Suche.laden('').then(function (ok) { indexStand = ok ? 'da' : 'fehlt'; if (anfrage()) zeigen(); });
+    }
+    function sucheZeigen(ziel, q) {
+      const umfang = eintraege.filter(imUmfang);
+      const wert = lokal(q, umfang);
+      let seiten = wert.map(function (x) { return x[1]; }), stellen = [];
+      if (indexStand === 'da') {
+        const nachPfad = {};
+        umfang.forEach(function (e) { nachPfad[e.pfad] = e; });
+        const r = window.Suche.treffer(q), punkte = {};
+        // Reihenfolge: Titel und Stichwörter zählen doppelt, dazu die Güte aus dem Index (Synonyme, Inhalt)
+        wert.forEach(function (x) { punkte[x[1].pfad] = 2 * x[0]; });
+        r.forEach(function (t) { if (nachPfad[t.pfad]) punkte[t.pfad] = (punkte[t.pfad] || 0) + t.punkte; });
+        seiten = Object.keys(punkte).sort(function (a, b) { return punkte[b] - punkte[a]; }).map(function (p) { return nachPfad[p]; });
+        r.forEach(function (t) {
+          const blatt = t.pfad.indexOf('lernen.html#blatt=') === 0;
+          if (blatt ? feld : !nachPfad[t.pfad]) return;
+          if (blatt) stellen.push({ text: t.titel, art: 'Aufgabenblatt', href: t.href, seite: 'Lernen', farbe: farbe(t.bereich) });
+          else t.teile.forEach(function (s) { stellen.push({ text: s.text, art: s.art, href: s.href, seite: t.titel, farbe: farbe(t.bereich) }); });
+        });
+        stellen = stellen.slice(0, 12);
+      } else indexHolen();
+
+      const kopf = knoten('div', 'such-kopf');
+      const h = knoten('h2', '', seiten.length ? seitenText(seiten.length) + ' zu „' + q + '“' : 'Keine Seite zu „' + q + '“');
+      kopf.append(h);
+      if (feld) {
+        const u = knoten('span', 'umfang', 'in ' + umfangName());
+        const alle = knoten('button', '', 'überall suchen'); alle.type = 'button';
+        alle.addEventListener('click', function () { setze('', '', '', false); });
+        kopf.append(u, alle);
+      }
+      ziel.append(kopf);
+      // Nebenantwort 1: Begriffe zum Eingrenzen (eine Zeile)
+      const bg = begriffe(q, umfang);
+      if (bg.length) {
+        const z = knoten('div', 'begriffe'); z.setAttribute('aria-label', 'Passende Begriffe');
+        z.append(knoten('span', 'neben-titel', 'Begriffe'));
+        bg.forEach(function (b) {
+          const c = knoten('button', '', b[0]); c.type = 'button';
+          if (b[1] > 1) c.append(knoten('small', '', String(b[1])));
+          c.addEventListener('click', function () { suchfeld.value = b[0]; zeigen(); suchfeld.focus(); });
+          z.append(c);
+        });
+        ziel.append(z);
+      }
+      // Hauptantwort: die Seiten
+      if (seiten.length) {
+        const raster = behaelter(); raster.classList.add('treffer-seiten');
+        const grenze = alleTreffer || seiten.length <= ERSTE + 2 ? seiten.length : ERSTE;
+        seiten.slice(0, grenze).forEach(function (e) { raster.append(eintrag(e)); });
         ziel.append(raster);
-      });
+        if (grenze < seiten.length) {
+          const m = knoten('div', 'mehr'), k = knoten('button', '', 'Alle ' + seiten.length + ' Seiten zeigen'); k.type = 'button';
+          k.addEventListener('click', function () { alleTreffer = true; zeigen(); });
+          m.append(k); ziel.append(m);
+        }
+      } else ziel.append(knoten('p', 'leer', indexStand === 'laedt' ? 'Suche auch in den Inhalten der Seiten …' : 'Nichts gefunden. Anderes oder kürzeres Wort versuchen' + (feld ? ' oder überall suchen.' : '.')));
+      // Nebenantwort 2: Stellen in den Seiten (Abschnitte, Formeln, Fragen, Aufgabenblätter)
+      if (stellen.length) {
+        const sek = knoten('section', 'stellen');
+        const t = knoten('div', 'stellen-kopf');
+        t.append(knoten('h3', 'neben-titel', 'Auch in den Seiten gefunden'));
+        const mehr = knoten('button', '', 'Alle Stellen in der Stichwortsuche'); mehr.type = 'button';
+        mehr.addEventListener('click', function () { if (window.Suche) window.Suche.oeffnen('', q); });
+        t.append(mehr);
+        const ul = knoten('ul');
+        stellen.forEach(function (s) {
+          const li = knoten('li'), a = knoten('a'); a.href = s.href; a.style.setProperty('--farbe', s.farbe);
+          a.append(knoten('span', 'art', s.art), knoten('span', 'stelle', s.text), knoten('small', '', s.seite));
+          li.append(a); ul.append(li);
+        });
+        sek.append(t, ul);
+        ziel.append(sek);
+      }
     }
+
+    // ---------- Inhalt zeichnen ----------
     function zeigen() {
-      const ziel = document.getElementById('liste');
+      const ziel = $('liste');
       ziel.innerHTML = '';
-      const suche = document.getElementById('suchfeld').value.trim();
-      if (auswahl === FAV) {
-        if (!favoritenZeigen(ziel, true)) {
-          ziel.innerHTML = favoriten().length
-            ? '<p class="leer">Keiner deiner Favoriten passt zur Suche.</p>'
-            : '<p class="leer">Noch keine Favoriten. Tippe auf den Stern unten rechts an einer Karte oder oben auf einer Seite, um sie hier zu sammeln.</p>';
-        }
+      const q = anfrage();
+      if (q) { sucheZeigen(ziel, q); return; }
+      if (feld === FAV) {
+        if (!favoritenZeigen(ziel, true)) ziel.append(knoten('p', 'leer', 'Noch keine Favoriten. Tippe auf den Stern an einer Karte oder oben auf einer Seite, um sie hier zu sammeln.'));
         return;
       }
-      const treffer = eintraege.filter(passt);
-      if (!treffer.length) {
-        ziel.innerHTML = '<p class="leer">Nichts gefunden. Anderen Begriff versuchen oder „Alle“ wählen.</p>';
+      pfadZeigen(ziel);
+      if (!feld) { zuletztZeigen(ziel); favoritenZeigen(ziel, false); felderZeigen(ziel, ''); return; }
+      if (!bereich) {
+        const fd = feldDaten(feld);
+        felderZeigen(ziel, feld);
+        fd.bereiche.forEach(function (b) { bereichZeigen(ziel, b, false); });
         return;
       }
-      const uebersicht = !auswahl && !suche;
-      // Übersicht: zuletzt geöffnet, Favoriten, dann alle Bereiche als Kacheln nach Themenfeldern
-      if (uebersicht) { zuletztZeigen(ziel); favoritenZeigen(ziel, false); kachelnZeigen(ziel); return; }
-      bereiche.forEach(function (b) {
-        if (auswahl && b !== auswahl) return;   // gewählter Reiter: nur dieser Bereich
-        const liste = treffer.filter(function (e) { return imBereich(e, b); });
-        if (!liste.length) return;
-        const abschnitt = abschnittBauen(b, farbe(b), liste);
-        // Untergruppen, falls vorhanden; sonst ein Raster
-        const gruppen = [];
-        GRUPPEN.concat(liste.map(function (e) { return gruppeIn(e, b); })).forEach(function (gr) {
-          if (gruppen.indexOf(gr) < 0 && liste.some(function (e) { return gruppeIn(e, b) === gr; })) gruppen.push(gr);
-        });
-        // Übersicht mit Karten: je Bereich nur eine Vorschau, der Rest über „Alle zeigen“
-        if (uebersicht && ansicht === 'karten' && liste.length > VORSCHAU) {
-          const raster = behaelter(); raster.style.marginTop = '14px';
-          gruppen.forEach(function (gr) { liste.filter(function (e) { return gruppeIn(e, b) === gr; }).forEach(function (e) { if (raster.childNodes.length < VORSCHAU) raster.append(eintrag(e)); }); });
-          abschnitt.append(raster);
-          const mehr = document.createElement('div'), k = document.createElement('button');
-          mehr.className = 'mehr'; k.type = 'button'; k.textContent = 'Alle ' + liste.length + ' Seiten in ' + b + ' zeigen';
-          k.addEventListener('click', function () { waehle(b, 'immer'); });
-          mehr.append(k); abschnitt.append(mehr);
-          ziel.append(abschnitt);
-          return;
-        }
-        gruppen.forEach(function (gr) {
-          if (gr && gruppen.length > 1) {
-            const t = document.createElement('div'); t.className = 'gruppe-titel'; t.textContent = gr;
-            abschnitt.append(t);
-          }
-          const raster = behaelter();
-          liste.filter(function (e) { return gruppeIn(e, b) === gr; }).forEach(function (e) { raster.append(eintrag(e)); });
-          abschnitt.append(raster);
-        });
-        // Handy, Liste, Übersicht: Bereiche zum Aufklappen, damit die Seite kurz bleibt
-        if (uebersicht && ansicht === 'liste' && schmal()) {
-          const kopf = abschnitt.firstChild, det = document.createElement('details'), sum = document.createElement('summary');
-          det.open = offen.indexOf(b) >= 0;
-          det.addEventListener('toggle', function () { offen = offen.filter(function (x) { return x !== b; }); if (det.open) offen.push(b); try { sessionStorage.setItem('uebersicht-offen', JSON.stringify(offen)); } catch (x) { /* egal */ } });
-          sum.append(kopf);
-          while (abschnitt.firstChild) det.append(abschnitt.firstChild);
-          det.insertBefore(sum, det.firstChild);
-          abschnitt.append(det); abschnitt.classList.add('klappbar');
-        }
-        ziel.append(abschnitt);
-      });
+      bereichZeigen(ziel, bereich, true);
     }
-    ausAdresse(); reiterBauen();
+
+    let warte = 0;
+    suchfeld.addEventListener('input', function () { alleTreffer = false; clearTimeout(warte); warte = setTimeout(zeigen, 90); if (anfrage().length >= 2) indexHolen(); });
+    suchfeld.addEventListener('focus', indexHolen);
+    suchfeld.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') { const a = $('liste').querySelector('.treffer-seiten a'); if (a) { ev.preventDefault(); location.href = a.href; } }
+      else if (ev.key === 'Escape' && suchfeld.value) { ev.preventDefault(); suchfeld.value = ''; zeigen(); }
+    });
+
+    ausAdresse();
+    navBauen();
     zeigen();
-    window.addEventListener('hashchange', function () { if (ausAdresse()) { reiterBauen(); zeigen(); } else if (location.hash === '#bereiche' && auswahl && auswahl !== FAV) { auswahl = ''; reiterBauen(); zeigen(); } });
+    window.addEventListener('hashchange', function () { if (ausAdresse()) { navBauen(); zeigen(); } else if (location.hash === '#bereiche' && feld && feld !== FAV) { setze('', '', '', false); } });
   })();
   </script>
 </body>

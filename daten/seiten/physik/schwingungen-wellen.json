@@ -1,6 +1,7 @@
 {
   "nr": 1280,
   "titel": "Schwingungen und Wellen: Pendel, Resonanz, Schall und Doppler",
+  "gruppe": "Schwingungen und Licht",
   "bereich": "Physik",
   "themen": ["Schwingung", "Federpendel", "Fadenpendel", "Periodendauer", "Frequenz", "Amplitude", "Dämpfung", "Resonanz", "Eigenfrequenz", "Welle", "Wellenlänge", "Querwelle", "Längswelle", "Schall", "Schallgeschwindigkeit", "Doppler-Effekt", "Machzahl", "Überschall"],
   "text": "Federpendel und Fadenpendel mit Dämpfung, Resonanzkurve, Quer- und Längswellen, Schallgeschwindigkeit und Wellenlänge in verschiedenen Stoffen und der Doppler-Effekt bis zum Überschallknall – mit Animationen und Lernaufgaben.",

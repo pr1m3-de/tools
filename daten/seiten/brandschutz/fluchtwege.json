@@ -1,6 +1,7 @@
 {
   "nr": 770,
   "titel": "Flucht- und Rettungswege",
+  "gruppe": "Baulich und Löschen",
   "bereich": "Brandschutz",
   "auchIn": ["Arbeitsschutz"],
   "themen": ["Fluchtweg", "Rettungsweg", "Notausgang", "ASR A2.3", "Fluchtweglänge", "Fluchtwegbreite", "Räumungszeit", "Evakuierung", "Türbreite", "zweiter Fluchtweg"],

@@ -1,7 +1,7 @@
 {
   "nr": 3,
   "titel": "Dezimalzahlen",
-  "gruppe": "Grundlagen",
+  "gruppe": "Zahlen und Rechnen",
   "bereich": "Mathematik",
   "themen": ["Dezimalzahlen", "Kommazahlen", "schriftlich addieren", "schriftlich multiplizieren", "schriftlich dividieren", "Runden", "Periode", "Zahlenstrahl", "Stellenwerte"],
   "text": "Dezimalzahlen addieren, subtrahieren, multiplizieren, dividieren, runden und vergleichen – exakt ohne Rundungsfehler, schriftlich mit Komma unter Komma, als Bruch und auf dem Zahlenstrahl mit Lupe.",
