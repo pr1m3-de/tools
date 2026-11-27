@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stromkreis-Simulator: Hausinstallation ab HAK mit Notstrom und PV – Formeln &amp; Rechner</title>
-  <meta name="description" content="Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, FI und LS bis zum Verbraucher, mit Notstromspeicher, Netzumschaltbox (automatisch oder Hand, mit oder ohne N, Phasenbrücke, N-PE-Relais), Aggregat, Hybrid-Speicher und PV – Körperschluss, PEN-Bruch, N-Bruch, IT-Inselnetz, FI-Auslösung und Körperstrom.">
+  <meta name="description" content="Stromkreise Ader für Ader aufbauen und realistisch simulieren: vom Ortsnetz über HAK, Zähler, SH-Schalter, FI, LS, Brandschutzschalter, Motorschutz und Überspannungsschutz bis zum Verbraucher, mit Schütz, Zeitrelais, Wechsel- und Kreuzschaltung, Transformator, Notstromspeicher, Netzumschaltbox, Aggregat, Hybrid-Speicher und PV – Körperschluss, PEN- und N-Bruch, Lichtbogen, Anlaufstrom, Leitertemperatur, Schleifenimpedanz, FI-Auslösung und Körperstrom.">
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="../manifest.webmanifest">
@@ -202,6 +202,11 @@
         <article class="wissen-karte" style="--farbe:#B5179E"><h3>Mit oder ohne N schalten</h3><p>4-polig (N mitgeschaltet) trennt das Hausnetz vollständig vom Netz; die N-PE-Brücke kommt dann in den Speicher oder als Relais in die Box. 3-polig (N durchverbunden) erdet das Inselnetz über den Hausanschluss – dann darf die Quelle keine eigene N-PE-Brücke haben. Was zulässig ist, legt der Hersteller zusammen mit DIN VDE 0100-551 fest.</p></article>
         <article class="wissen-karte" style="--farbe:#F08C00"><h3>Phasenbrücke und Lastabwurf</h3><p>Mit einem 1-phasigen Speicher lassen sich im Notstrombetrieb alle drei Phasen des Hauses aus einer Phase versorgen. Drehstrommotoren laufen dann nicht, Herd und Durchlauferhitzer würden den Speicher überlasten. Ein Lastabwurf-Schütz trennt solche Verbraucher, sobald Notstrombetrieb ist.</p></article>
         <article class="wissen-karte" style="--farbe:#495057"><h3>Isolationswächter</h3><p>Im Inselnetz ohne N-PE-Brücke meldet erst der Isolationswächter den ersten Fehler – er misst den Widerstand zwischen den aktiven Leitern und PE. Bleibt der Fehler unbemerkt, wird der zweite Fehler an einem anderen Leiter zum Kurzschluss über den Schutzleiter.</p></article>
+        <article class="wissen-karte" style="--farbe:#C2255C"><h3>Brandschutzschalter</h3><p>Ein Wackelkontakt zieht einen Lichtbogen in Reihe zum Verbraucher. Der Strom bleibt normal, LS und FI merken nichts – an der Klemme entstehen aber 50 bis 100 W Wärme. Der AFDD erkennt den Lichtbogen und schaltet je nach Strom in 0,12 bis 1 s ab.</p></article>
+        <article class="wissen-karte" style="--farbe:#1971C2"><h3>Anlaufstrom und Charakteristik</h3><p>Motoren ziehen beim Anlauf das 5- bis 8-Fache ihres Nennstroms. Liegt der Spitzenwert über der Schwelle des Kurzschlussauslösers (B: 5 × In), schaltet der LS beim Einschalten ab. Dafür gibt es C, K und D – oder einen Motorschutzschalter, der auf den Motornennstrom eingestellt wird.</p></article>
+        <article class="wissen-karte" style="--farbe:#E8590C"><h3>Leitertemperatur</h3><p>Bei der Belastbarkeit I<sub>z</sub> erreicht eine PVC-Ader dauerhaft 70 °C. Die Temperatur steigt mit dem Quadrat des Stroms: beim 1,45-Fachen rund 115 °C, ab dem 1,8-Fachen über 160 °C – dort zersetzt sich die Isolierung. Ein Kurzschluss erhitzt die Ader in Sekundenbruchteilen.</p></article>
+        <article class="wissen-karte" style="--farbe:#5F3DC4"><h3>Schütz und Selbsthaltung</h3><p>Ein Schütz schaltet mit kleinem Steuerstrom große Lasten. Der Hilfskontakt 13–14 parallel zum EIN-Taster hält die Spule nach dem Loslassen. Der AUS-Taster als Öffner unterbricht die Haltung; nach Spannungsausfall läuft der Motor nicht von selbst wieder an.</p></article>
+        <article class="wissen-karte" style="--farbe:#0B7285"><h3>SELV und Schutztrennung</h3><p>Ein Sicherheitstransformator liefert höchstens 50 V ohne Verbindung zur Erde – Berühren ist ungefährlich. Ein Trenntransformator 230/230 V trennt den Verbraucher galvanisch vom Netz: Wer einen Leiter berührt, schließt keinen Stromkreis, solange nur ein Gerät angeschlossen ist.</p></article>
         <article class="wissen-karte" style="--farbe:#2F9E44"><h3>Zeiten abstimmen</h3><p>Speicher, Box und PV-Wechselrichter haben eigene Zeiten. Schaltet der Speicher seinen Ausgang nach Netzwiederkehr früher ab als die Box zurückschaltet, wird das Haus dunkel. Startet ein Aggregat erst nach dem Umschalten, verlängert sich die Unterbrechung um die Anlaufzeit.</p></article>
       </div>
     </section>
@@ -232,6 +237,9 @@
         <li><h3>Fehlerstrom im TT-System</h3><div data-tex="I_F = \frac{U_0}{R_A + R_B + R_L}" title="Fehlerstrom im TT-System"></div><p>Der Strom muss durch Anlagenerder R_A und Betriebserder R_B.</p></li>
         <li><h3>Berührungsspannung</h3><div data-tex="U_B = I_K \cdot R_K" title="Berührungsspannung"></div><p>Körperstrom mal Körperwiderstand (rund 1 kΩ).</p></li>
         <li><h3>Differenzstrom am FI</h3><div data-tex="I_\Delta = \left|\underline{I}_{L1} + \underline{I}_{L2} + \underline{I}_{L3} + \underline{I}_N\right|" title="Differenzstrom am FI"></div><p>Zeigersumme aller Ströme durch den FI; was über PE oder Erde zurückfließt, fehlt in der Summe.</p></li>
+        <li><h3>Leitertemperatur im Dauerbetrieb</h3><div data-tex="\vartheta = 30\,\text{°C} + 40\,\text{K} \cdot \left(\frac{I}{I_z}\right)^2" title="Leitertemperatur im Dauerbetrieb"></div><p>PVC-Leiter bei 30 °C Umgebung: 70 °C bei der Belastbarkeit I<sub>z</sub>, über 160 °C wird die Isolierung zerstört.</p></li>
+        <li><h3>Kurzschlussfestigkeit einer Ader</h3><div data-tex="t = \left(\frac{k \cdot S}{I}\right)^2" title="Kurzschlussfestigkeit einer Ader"></div><p>Zulässige Dauer eines Kurzschlussstroms I bei Querschnitt S; k = 115 A·√s/mm² für Kupfer mit PVC.</p></li>
+        <li><h3>Kurzschlussstrom aus der Schleifenimpedanz</h3><div data-tex="I_{k,\min} = \frac{2}{3} \cdot \frac{U_0}{Z_S} \ge I_a" title="Kurzschlussstrom aus der Schleifenimpedanz"></div><p>Bewertung nach DIN VDE 0100-600: Der mit 2/3 bewertete Strom muss den Abschaltstrom des Schutzorgans erreichen.</p></li>
         <li><h3>Leiterwiderstand</h3><div data-tex="R = \frac{\rho \cdot l}{A}" title="Leiterwiderstand"></div><p>Kupfer bei 20 °C: ρ = 0,0178 Ω·mm²/m.</p></li>
         <li><h3>Kurzschlussstrom eines Wechselrichters</h3><div data-tex="I_k \approx k \cdot \frac{P_n}{U_0}" title="Kurzschlussstrom eines Wechselrichters"></div><p>k meist 1,5 bis 2 – oft zu wenig für die magnetische Auslösung eines LS.</p></li>
         <li><h3>Sternpunktverschiebung</h3><div data-tex="\underline{U}_{NN'} = \frac{\sum \underline{U}_i \underline{Y}_i}{\sum \underline{Y}_i}" title="Sternpunktverschiebung bei N-Bruch"></div><p>Bei fehlendem N stellt sich der Sternpunkt nach den Leitwerten der Lasten ein.</p></li>
@@ -249,8 +257,10 @@
         <details><summary>Automatik oder Handumschaltung?</summary><p>Die Automatik schaltet ohne Zutun um und zurück. Bei „Rückschalten von Hand“ bleibt das Haus nach Netzwiederkehr auf Notstrom, bis jemand quittiert – praktisch, wenn das Netz unruhig ist. Der reine Handbetrieb mit Wahlschalter I-0-II ist am einfachsten, verlangt aber, dass jemand da ist.</p></details>
         <details><summary>Warum schaltet die Box bei Ausfall nur einer Phase um?</summary><p>Fällt nur eine Phase aus, laufen Drehstrommotoren unrund und Geräte an dieser Phase stehen. Mit der Überwachung „jede Phase“ schaltet die Box schon dann um. Mit „nur L1“ merkt sie den Ausfall von L2 oder L3 nicht.</p></details>
         <details><summary>Was ist der Unterschied zwischen Notstrom und Ersatzstrom?</summary><p>Umgangssprachlich wird beides gleich benutzt. Bei einer Unterbrechung von einigen Sekunden spricht man von Ersatzstrom oder Netzersatz, unterbrechungsfrei ist nur ein Online-Speicher oder eine USV. Im Simulator zeigt das Protokoll die genaue Unterbrechung.</p></details>
-        <details><summary>Was passiert, wenn ich Außenleiter direkt verbinde?</summary><p>Das ist ein Kurzschluss. Liegt er hinter einer Sicherung oder einem LS, schaltet dieser ab. Liegt er davor – etwa direkt am Ortsnetz –, muss die Abgangssicherung im Ortsnetz auslösen. Ist sie zu träge für den Querschnitt, erwärmt sich die Ader nach der adiabatischen Kurzschlussfestigkeit (k = 115 für Kupfer mit PVC) und brennt durch. Auch eine überlastete Ader ohne passenden Schutz brennt nach einiger Zeit durch – im Protokoll steht dann „Brandgefahr“.</p></details>
-        <details><summary>Wie genau ist die Simulation?</summary><p>Spannungen und Ströme werden mit komplexer Knotenanalyse bei 50 Hz berechnet. Verbraucher sind feste Impedanzen, Anlaufströme und Oberschwingungen fehlen. Die Kennlinien von LS, Sicherung, FI und Wechselrichter sind Näherungen typischer Werte – echte Geräte streuen innerhalb der Normgrenzen.</p></details>
+        <details><summary>Was passiert, wenn ich Außenleiter direkt verbinde?</summary><p>Das ist ein Kurzschluss. Liegt er hinter einer Sicherung oder einem LS, schaltet dieser ab. Liegt er davor – etwa direkt am Ortsnetz –, muss die Abgangssicherung im Ortsnetz auslösen. Ist sie zu träge für den Querschnitt, erwärmt sich die Ader nach der adiabatischen Kurzschlussfestigkeit (k = 115 für Kupfer mit PVC) und brennt durch. Auch eine stark überlastete Ader ohne passenden Schutz wird immer heißer: über 90 °C meldet das Protokoll Überhitzung, über 160 °C brennt sie durch („Brandgefahr“). Die aktuelle Leitertemperatur steht bei jeder Ader.</p></details>
+        <details><summary>Wie genau ist die Simulation?</summary><p>Spannungen und Ströme werden mit komplexer Knotenanalyse bei 50 Hz berechnet. Verbraucher sind feste Impedanzen; Motoren ziehen beim Anlauf für die eingestellte Zeit ein Vielfaches ihres Stroms. Oberschwingungen, Gleichfehlerströme und Stoßspannungen im Mikrosekundenbereich fehlen. Die Kennlinien von LS, Sicherung, Motorschutz, FI, AFDD und Wechselrichter sind Näherungen typischer Werte – echte Geräte streuen innerhalb der Normgrenzen. Kurzschlussauslöser sind mit der sicheren Auslöseschwelle (B 5 ×, C 10 ×, D 20 × In) gerechnet.</p></details>
+        <details><summary>Welche Bauteile gibt es?</summary><p>Einspeisung: Ortsnetz, Notstromquelle (Wechselrichter oder Aggregat), Hybrid-Wechselrichter, Notstromspeicher, PV-Wechselrichter, Transformator. Verteilung: HAK, Zähler, Klemmschienen, Erder, Steckdosen. Schutz: Schmelzsicherung, LS (Z, B, C, K, D), SH-Schalter, FI (auch selektiv und RCM), FI/LS, Brandschutzschalter, Motorschutzschalter, Überspannungsschutz. Schalten: Haupt- und Trennschalter, Umschalter, Netzumschaltbox, Lastabwurf, Schütz, Zeitrelais, Treppenlicht- und Stromstoßschalter, Aus-, Wechsel- und Kreuzschalter, Taster, Bewegungsmelder. Prüfen: Person, Spannungsmesser, Stromzange, Schleifenimpedanz-Messgerät, Isolationswächter und Fehlerstellen für Kurzschluss, Lichtbogen und Wackelkontakt.</p></details>
+        <details><summary>Wie misst das Schleifenimpedanz-Messgerät?</summary><p>Es bestimmt die Impedanz zwischen L und PE (Zs) und zwischen L und N (Zi) aus der ganzen Anlage einschließlich Ortsnetz. Der Kurzschlussstrom U0 / Zs wird für die Bewertung mit 2/3 multipliziert (Erwärmung der Leiter, Messunsicherheit) und mit dem Abschaltstrom des gewählten Schutzorgans verglichen.</p></details>
         <details><summary>Kann ich meinen Aufbau speichern?</summary><p>Er wird automatisch auf diesem Gerät gespeichert. Mit „Link teilen“ entsteht ein Link, der den ganzen Aufbau enthält. Er wird nicht an einen Server geschickt.</p></details>
       </div>
     </section>
@@ -355,7 +365,11 @@
     const KENN_LS = [[1.13, Infinity], [1.45, 1800], [2, 120], [2.55, 30], [3, 15], [4, 6], [5, 3.5], [8, 1.2], [15, 0.6]];
     const KENN_GG = [[1.25, Infinity], [1.6, 3600], [2, 400], [2.5, 100], [3, 40], [4, 10], [5, 4], [6, 0.8], [7, 0.4], [10, 0.1], [15, 0.02], [20, 0.01]];
     const KENN_WR = [[1.05, Infinity], [1.2, 60], [1.5, 10], [2, 2], [3, 0.5]];
-    const MAGNET = { B: 5, C: 10, D: 20 };
+    // Motorschutzschalter, Auslöseklasse 10 (DIN EN 60947-4-1): 7,2 × Ir in 4 bis 10 s
+    const KENN_MS = [[1.05, Infinity], [1.2, 1200], [1.5, 150], [2, 50], [3, 20], [4, 12], [7.2, 6], [10, 3.5], [12, 2.5]];
+    // Sofortauslöser (sicher auslösend): Z 3, B 5, C 10, K 14, D 20 × In; E (selektiver Hauptleitungsschutzschalter) verzögert
+    const MAGNET = { Z: 3, B: 5, C: 10, K: 14, D: 20, E: 5, MS: 13 };
+    const MAGNET_ZEIT = { E: 0.15 };
     function kurve(tab, x) {
       if (!(x > tab[0][0])) return Infinity;
       for (let i = 1; i < tab.length; i++) {
@@ -370,8 +384,8 @@
     function ausloesezeit(I, In, art) {
       const x = I / In;
       if (art === 'gG') return kurve(KENN_GG, x);
-      let t = kurve(KENN_LS, x);
-      if (x >= MAGNET[art]) t = Math.min(t, 0.01);
+      let t = art === 'MS' ? kurve(KENN_MS, x) : kurve(KENN_LS, x);
+      if (x >= MAGNET[art]) t = Math.min(t, MAGNET_ZEIT[art] || 0.01);
       return t;
     }
     // Körperstrom nach IEC 60479-1 (Näherung): Grenzkurven b (Loslassen) und c1 (Herzkammerflimmern möglich)
@@ -411,7 +425,7 @@
       let p = 0; (t.z.el || []).forEach(function (e) { if (e && e.U !== undefined) p += C.mul(uk(e.a, t.z.nKl), C.kon(e.Ist))[0]; }); return p;
     }
     function pqStrom(z, p, P, ua) { // Konstantleistung: Strom aus Spannung, gedämpft
-      const um = C.betrag(ua); if (um < 20) { const alt = z.pq[p]; z.pq[p] = [0, 0]; return C.betrag(alt) > 0.01; }
+      const um = C.betrag(ua); if (um < 20 || um > 1.3 * UN) { const alt = z.pq[p]; z.pq[p] = [0, 0]; return C.betrag(alt) > 0.01; } // ohne Netz oder bei Überspannung speist kein Wechselrichter
       let neu = C.kon(C.div([P, 0], ua)); const imax = 1.5 * Math.abs(P) / UN + 0.01; if (C.betrag(neu) > imax) neu = C.mal(neu, imax / C.betrag(neu)); // Wechselrichter begrenzen den Strom
       const alt = z.pq[p] || [0, 0], d = C.betrag(C.sub(neu, alt));
       z.pq[p] = neu;
@@ -433,14 +447,25 @@
     function quellenP(t) { let p = 0; t.z.q.forEach(function (e) { if (e && e.U) p += C.mul(e.U, C.kon(e.Ist))[0]; }); return p; }
 
     // ---------- Bauteile ----------
+    // Vorlagen: [Name, Leistung, cos φ, Schutzklasse bzw. Schaltung, Zusätze {un, anl, tan, blind}]
     const VORLAGEN1 = {
-      wk: ['Wasserkocher', 2000, 1, 'I'], hz: ['Heizlüfter', 2000, 1, 'I'], lampe: ['Lampe', 60, 1, 'I'], wm: ['Waschmaschine', 2200, 0.9, 'I'],
-      ks: ['Kühlschrank', 150, 0.7, 'I'], pc: ['Laptop-Netzteil', 65, 0.95, 'II'], frei: ['Verbraucher', 1000, 1, 'I']
+      wk: ['Wasserkocher', 2000, 1, 'I'], hz: ['Heizlüfter', 2000, 1, 'I'], lampe: ['Glühlampe', 60, 1, 'I'], led: ['LED-Lampe', 8, 0.9, 'II'],
+      wm: ['Waschmaschine', 2200, 0.9, 'I', { anl: 3, tan: 0.5 }], ks: ['Kühlschrank', 150, 0.7, 'I', { anl: 6, tan: 0.4 }], gs: ['Geschirrspüler', 2100, 0.95, 'I'],
+      tr: ['Wäschetrockner', 2600, 0.95, 'I'], ofen: ['Backofen', 3500, 1, 'I'], mw: ['Mikrowelle', 1300, 0.92, 'I'], tv: ['Fernseher', 120, 0.95, 'II'],
+      pc: ['Laptop-Netzteil', 65, 0.95, 'II'], sauger: ['Staubsauger', 900, 0.95, 'II', { anl: 4, tan: 0.3 }], bohr: ['Bohrmaschine', 800, 0.9, 'II', { anl: 5, tan: 0.3 }],
+      kompr: ['Kompressor 1~', 1500, 0.8, 'I', { anl: 7, tan: 1.5 }], klima: ['Klimagerät', 1000, 0.9, 'I', { anl: 3, tan: 1 }], auto: ['E-Auto am Notladekabel', 2300, 0.99, 'I'],
+      halogen: ['Halogenlampe 12 V', 50, 1, 'II', { un: 12 }], ledband: ['LED-Streifen 24 V', 60, 1, 'II', { un: 24 }], kond: ['Kondensator 500 var', 5, 0.01, 'I', { blind: 'kap' }],
+      frei: ['Verbraucher', 1000, 1, 'I']
     };
     const VORLAGEN3 = {
-      motor: ['Motor', 4000, 0.85, 'dreieck'], dlh: ['Durchlauferhitzer', 21000, 1, 'dreieck'], wb: ['Wallbox', 11000, 0.99, 'stern_n'],
-      herd: ['Herd', 6000, 1, 'stern_n'], frei: ['Drehstromverbraucher', 3000, 0.9, 'stern_n']
+      motor: ['Motor', 4000, 0.85, 'dreieck', { anl: 6, tan: 2 }], wp: ['Wärmepumpe', 3500, 0.88, 'dreieck', { anl: 4, tan: 1 }], kreis: ['Kreissäge', 3000, 0.82, 'dreieck', { anl: 7, tan: 3 }],
+      dlh: ['Durchlauferhitzer', 21000, 1, 'dreieck'], wb: ['Wallbox', 11000, 0.99, 'stern_n'], herd: ['Herd', 6000, 1, 'stern_n'], sauna: ['Saunaofen', 9000, 1, 'stern_n'],
+      frei: ['Drehstromverbraucher', 3000, 0.9, 'stern_n']
     };
+    function vorlageSetzen(t, v) {
+      t.par.p = v[1]; t.par.cos = v[2]; if (t.typ === 'last') t.par.sk = v[3]; else t.par.sch = v[3];
+      const x = v[4] || {}; if (t.typ === 'last') t.par.un = x.un || 230; t.par.anl = x.anl || 1; t.par.tan = x.tan || 1; t.par.blind = x.blind || 'ind';
+    }
     const TYP = {};
     TYP.netz = {
       name: 'Ortsnetz-Transformator', kurz: 'Ortsnetz', kat: 'Einspeisung', icon: 'M4 7h16M4 12h16M4 17h16M7 4v16M17 4v16',
@@ -448,6 +473,7 @@
         { k: 'system', name: 'Netzform', werte: [['TN', 'TN (PEN vom Netz)'], ['TT', 'TT (N vom Netz, eigener Erder)']], std: 'TN' },
         { k: 'un', name: 'Spannung L–N', e: 'V', min: 200, max: 250, std: 230 },
         { k: 'zs', name: 'Netzimpedanz je Außenleiter', e: 'Ω', min: 0.01, max: 5, std: 0.2 },
+        { k: 'zn', name: 'Netzimpedanz PEN bzw. N', e: 'Ω', min: 0.005, max: 5, std: 0.1 },
         { k: 'rb', name: 'Betriebserder R_B', e: 'Ω', min: 0.1, max: 100, std: 2 },
         { k: 'nh', name: 'Abgangssicherung im Ortsnetz (gG)', e: 'A', werte: [[160, '160 A'], [250, '250 A'], [400, '400 A'], [630, '630 A']], std: 250 }
       ],
@@ -456,7 +482,7 @@
       init: function (t) { t.z.q = [null, null, null]; },
       modell: function (t, M) {
         const S = ik(t, 'S'), n = t.par.system === 'TT' ? 'N' : 'PEN';
-        M.V(S, kl(t, n)); M.R(S, 'E', t.par.rb, 0);
+        M.R(S, kl(t, n), t.par.zn * 0.8, t.par.zn * 0.6); M.R(S, 'E', t.par.rb, 0);
         t.z.q = [null, null, null];
         if (t.st.ein) ['L1', 'L2', 'L3'].forEach(function (L, p) { if (t.st.f[p]) t.z.q[p] = M.Q(kl(t, L), S, C.polar(t.par.un, PHASE[p]), [t.par.zs * 0.8, t.par.zs * 0.6]); });
       },
@@ -525,33 +551,41 @@
           if (!t.st.ein) return [];
           const l = [];
           if (ls) t.z.el.forEach(function (e, p) { if (e) l.push({ I: C.betrag(e.Ist), In: t.par.in, art: t.par.kenn, p: p }); });
-          if (fi) l.push({ fi: true, I: t.z.diff, idn: t.par.idn / 1000, s: t.par.art === 'S' });
-          return l;
+          if (fi && t.par.art !== 'M') l.push({ fi: true, I: t.z.diff, idn: t.par.idn / 1000, s: t.par.art === 'S' });
+          return TYP[t.typ].zusatzSchutz ? l.concat(TYP[t.typ].zusatzSchutz(t)) : l;
         },
         ausloesen: function (t, p, s) {
           t.st.ein = false; t.z.test = false; t.z.ausgeloest = true;
-          if (s.fi) log(name(t) + ': FI löst aus – Fehlerstrom ' + fI(s.I) + ' (I∆n ' + t.par.idn + ' mA).', 'aus');
-          else log(name(t) + ': LS ' + t.par.kenn + t.par.in + ' löst aus – ' + fI(s.I) + ' = ' + zahl(s.I / t.par.in, 1) + ' × In, ' + (s.I / t.par.in >= MAGNET[t.par.kenn] ? 'Kurzschlussauslöser (magnetisch).' : 'Überlastauslöser (thermisch).'), 'aus');
+          if (s.text) log(name(t) + ': ' + s.text, 'aus');
+          else if (s.fi) log(name(t) + ': FI löst aus – Fehlerstrom ' + fI(s.I) + ' (I∆n ' + t.par.idn + ' mA).', 'aus');
+          else log(name(t) + ': ' + TYP[t.typ].kurz + ' ' + (t.par.kenn === 'MS' ? 'Ir ' + zahl(t.par.in) + ' A' : t.par.kenn + t.par.in) + ' löst aus – ' + fI(s.I) + ' = ' + zahl(s.I / t.par.in, 1) + ' × ' + (t.par.kenn === 'MS' ? 'Ir' : 'In') + ', ' + (s.I / t.par.in >= MAGNET[t.par.kenn] ? (t.par.kenn === 'E' ? 'Kurzschluss, selektiv verzögert.' : 'Kurzschlussauslöser (magnetisch).') : 'Überlastauslöser (thermisch).'), 'aus');
         },
         status: function (t) {
-          const tx = (ls ? t.par.kenn + t.par.in : '') + (fi ? (ls ? ' · ' : '') + t.par.idn + ' mA' + (t.par.art === 'S' ? ' S' : '') : '');
+          const tx = (ls ? (t.par.kenn === 'MS' ? 'Ir ' + zahl(t.par.in) + ' A' : t.par.kenn + t.par.in) : '') + (fi ? (ls ? ' · ' : '') + t.par.idn + ' mA' + (t.par.art === 'S' ? ' S' : t.par.art === 'M' ? ' RCM' : '') : '') + (TYP[t.typ].zusatzText ? TYP[t.typ].zusatzText(t) : '');
           if (!t.st.ein) return [tx, t.z.ausgeloest ? 'ausgelöst' : 'aus', t.z.ausgeloest ? 'fehler' : ''];
+          if (fi && t.par.art === 'M' && t.z.alarm) return [tx, 'Alarm: I∆ ' + fI(t.z.diff), 'fehler'];
           return [tx, (fi ? 'I∆ ' + fI(t.z.diff) + ' · ' : '') + fI(t.z.imax), 'gut'];
         },
         werte: function (t) {
           const r = []; POL[t.par.pole].forEach(function (x, p) { const e = t.z.el[p]; r.push(['Pol ' + x, e ? fI(C.betrag(e.Ist)) : 'offen']); });
-          if (fi) r.push(['Differenzstrom', fI(t.z.diff || 0) + ' (löst ab ca. ' + Math.round(t.par.idn * 0.7) + ' mA aus)']);
+          if (fi) r.push(['Differenzstrom', fI(t.z.diff || 0) + (t.par.art === 'M' ? ' (meldet ab ' + Math.round(t.par.idn * 0.5) + ' mA, schaltet nicht ab)' : ' (löst ab ca. ' + Math.round(t.par.idn * 0.7) + ' mA aus)')]);
           if (ls) r.push(['Erwärmung (thermischer Auslöser)', Math.round(Math.max.apply(null, [0].concat(Object.keys(t.z.wmap || {}).filter(function (k) { return k !== 'fi'; }).map(function (k) { return t.z.wmap[k]; }))) * 100) + ' %']);
           return r;
         },
         aktion: function (t) { return [t.st.ein ? 'Ausschalten' : 'Einschalten', function () { t.st.ein = !t.st.ein; t.z.ausgeloest = false; t.z.wmap = {}; log(name(t) + (t.st.ein ? ' eingeschaltet.' : ' ausgeschaltet.')); }]; },
         aktionen: fi ? function (t) { return t.st.ein ? [['Prüftaste T drücken', function () { t.z.test = true; t.z.testBis = G.T + 0.3; log(name(t) + ': Prüftaste gedrückt.'); }]] : []; } : null,
-        ereignisse: fi ? function (t) { return t.z.test ? [{ dt: Math.max(0, t.z.testBis - G.T), tun: function () { t.z.test = false; } }] : []; } : null
+        ereignisse: fi ? function (t) { return t.z.test ? [{ dt: Math.max(0, t.z.testBis - G.T), tun: function () { t.z.test = false; } }] : []; } : null,
+        plan: fi ? function (t) { // RCM: nur Meldung
+          const z = t.z; if (t.par.art !== 'M' || !t.st.ein) return null;
+          if (!z.alarm && z.diff >= 0.5 * t.par.idn / 1000) return { id: 'alarm', dauer: 0.5, tun: function () { z.alarm = true; log(name(t) + ': Differenzstrom ' + fI(z.diff) + ' – Meldung, die Anlage bleibt eingeschaltet.', 'gefahr'); } };
+          if (z.alarm && z.diff < 0.3 * t.par.idn / 1000) return { id: 'ruhe', dauer: 1, tun: function () { z.alarm = false; log(name(t) + ': Differenzstrom wieder unter der Meldeschwelle.'); } };
+          return null;
+        } : null
       };
     }
     function mischen(a, b) { Object.keys(b).forEach(function (k) { if (b[k] !== null && b[k] !== undefined) a[k] = b[k]; }); return a; }
     const IN_LS = [[6, '6 A'], [10, '10 A'], [13, '13 A'], [16, '16 A'], [20, '20 A'], [25, '25 A'], [32, '32 A'], [40, '40 A'], [50, '50 A'], [63, '63 A']];
-    const KENN = { k: 'kenn', name: 'Auslösecharakteristik', werte: [['B', 'B (5 × In)'], ['C', 'C (10 × In)'], ['D', 'D (20 × In)']], std: 'B' };
+    const KENN = { k: 'kenn', name: 'Auslösecharakteristik', werte: [['Z', 'Z (3 × In, Elektronik)'], ['B', 'B (5 × In)'], ['C', 'C (10 × In)'], ['K', 'K (14 × In, Motoren)'], ['D', 'D (20 × In)']], std: 'B' };
     const IDN = { k: 'idn', name: 'Bemessungsdifferenzstrom I∆n', e: 'mA', werte: [[10, '10 mA'], [30, '30 mA'], [100, '100 mA'], [300, '300 mA'], [500, '500 mA']], std: 30 };
     const FIART = { k: 'art', name: 'Ausführung', werte: [['A', 'Typ A, unverzögert'], ['S', 'Typ A, selektiv (S)']], std: 'A' };
     TYP.ls = mischen({
@@ -563,7 +597,7 @@
     }, lsTyp(false, true));
     TYP.fi = mischen({
       name: 'Fehlerstrom-Schutzschalter (FI/RCD)', kurz: 'FI', kat: 'Schutz', icon: 'M5 4h14v16H5zM9 15l3-6 3 6zM8 18h8',
-      par: [{ k: 'pole', name: 'Pole', werte: [[2, '2-polig (L, N)'], [4, '4-polig (L1, L2, L3, N)']], std: 4 }, IDN, FIART],
+      par: [{ k: 'pole', name: 'Pole', werte: [[2, '2-polig (L, N)'], [4, '4-polig (L1, L2, L3, N)']], std: 4 }, IDN, { k: 'art', name: 'Ausführung', werte: FIART.werte.concat([['M', 'Differenzstrom-Überwachung (RCM): meldet nur']]), std: 'A' }],
       st: { ein: true },
       klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
       init: function (t) { t.z.el = []; t.z.w = []; t.z.diff = 0; }
@@ -578,14 +612,15 @@
     TYP.sicherung = {
       name: 'Schmelzsicherung gG', kurz: 'Sicherung', kat: 'Schutz', icon: 'M8 3h8v18H8zM12 3v18',
       par: [{ k: 'pole', name: 'Pole', werte: [[1, '1-polig (L)'], [3, '3-polig']], std: 1 }, { k: 'in', name: 'Bemessungsstrom', e: 'A', werte: [[10, '10 A'], [16, '16 A'], [20, '20 A'], [25, '25 A'], [35, '35 A'], [50, '50 A'], [63, '63 A']], std: 16 }],
-      st: { f: [1, 1, 1] },
+      st: { f: [1, 1, 1], ein: true },
       klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
       init: function (t) { t.z.el = []; t.z.w = []; },
-      modell: function (t, M) { t.z.el = POL[t.par.pole].map(function (x, p) { return t.st.f[p] ? M.R(kl(t, 'e' + x), kl(t, 'a' + x), 0.008, 0) : null; }); },
+      modell: function (t, M) { t.z.el = POL[t.par.pole].map(function (x, p) { return t.st.f[p] && t.st.ein ? M.R(kl(t, 'e' + x), kl(t, 'a' + x), 0.008, 0) : null; }); },
+      aktionen: function (t) { return [[t.st.ein ? 'Sicherungseinsatz herausnehmen' : 'Sicherungseinsatz einsetzen', function () { t.st.ein = !t.st.ein; log(name(t) + (t.st.ein ? ': Einsatz eingesetzt.' : ': Einsatz herausgenommen – Stromkreis freigeschaltet.')); }]]; },
       schutz: function (t) { return t.z.el.map(function (e, p) { return e ? { I: C.betrag(e.Ist), In: t.par.in, art: 'gG', p: p } : null; }); },
       ausloesen: function (t, p, s) { t.st.f[p] = 0; log(name(t) + ': Sicherung ' + t.par.in + ' A ' + POL[t.par.pole][p] + ' schmilzt bei ' + fI(s.I) + '.', 'aus'); },
-      status: function (t) { const weg = POL[t.par.pole].filter(function (x, p) { return !t.st.f[p]; }); return [t.par.in + ' A gG', weg.length ? 'ausgelöst: ' + weg.join(', ') : fI(Math.max.apply(null, [0].concat(t.z.el.map(function (e) { return e ? C.betrag(e.Ist) : 0; })))), weg.length ? 'fehler' : 'gut']; },
-      werte: function (t) { return POL[t.par.pole].map(function (x, p) { const e = t.z.el[p]; return [x, e ? fI(C.betrag(e.Ist)) : 'ausgelöst']; }); },
+      status: function (t) { const weg = POL[t.par.pole].filter(function (x, p) { return !t.st.f[p]; }); if (!t.st.ein) return [t.par.in + ' A gG', 'Einsatz herausgenommen', '']; return [t.par.in + ' A gG', weg.length ? 'ausgelöst: ' + weg.join(', ') : fI(Math.max.apply(null, [0].concat(t.z.el.map(function (e) { return e ? C.betrag(e.Ist) : 0; })))), weg.length ? 'fehler' : 'gut']; },
+      werte: function (t) { return POL[t.par.pole].map(function (x, p) { const e = t.z.el[p]; return [x, e ? fI(C.betrag(e.Ist)) : t.st.ein ? 'ausgelöst' : 'herausgenommen']; }); },
       aktion: function (t) { return t.st.f.slice(0, POL[t.par.pole].length).indexOf(0) >= 0 ? ['Ersetzen', function () { t.st.f = [1, 1, 1]; t.z.wmap = {}; log(name(t) + ': Sicherung ersetzt.'); }] : null; }
     };
     TYP.schalter = {
@@ -966,7 +1001,8 @@
       name: 'PV-Wechselrichter (netzgekoppelt)', kurz: 'PV-WR', kat: 'Einspeisung', icon: 'M3 14h18l-3-8H6zM9 6l-1 8M15 6l1 8M4 10h16M12 17v3',
       par: [
         { k: 'ph', name: 'Phasen', werte: [[1, '1-phasig'], [3, '3-phasig']], std: 3 },
-        { k: 'kwp', name: 'PV-Leistung', e: 'kWp', min: 0.3, max: 100, std: 5 },
+        { k: 'kwp', name: 'PV-Leistung', e: 'kWp', min: 0.1, max: 100, std: 5 },
+        { k: 'pac', name: 'Wechselrichter-Nennleistung AC', e: 'kW', min: 0.1, max: 100, std: 30 },
         { k: 'tzu', name: 'Zuschalten nach gültiger Netzspannung', e: 's', werte: [[5, '5 s (Test)'], [30, '30 s'], [60, '60 s (üblich)']], std: 60 }
       ],
       st: {},
@@ -976,10 +1012,11 @@
       messen0: function (t) { t.z.uOk = LEITER(t.par.ph).every(function (x) { const u = uBetrag(kl(t, x), kl(t, 'N')); return u > 0.8 * UN && u < 1.15 * UN; }); },
       nach: function (t) {
         if (!t.z.verbunden) return false;
-        const L = LEITER(t.par.ph), P = t.par.kwp * 1000 * G.sonne * 0.96 * G.pvFaktor; let neu = false;
+        const L = LEITER(t.par.ph), P = TYP.pvwr.pdc(t) * G.pvFaktor; let neu = false;
         L.forEach(function (x, p) { if (pqStrom(t.z, p, P / L.length, uk(kl(t, x), kl(t, 'N')))) neu = true; });
         return neu;
       },
+      pdc: function (t) { return Math.min(t.par.kwp * 1000 * G.sonne * 0.96, t.par.pac * 1000); },
       messen: function (t) { let P = 0; t.z.iq.forEach(function (e) { P += C.mul(e.U, C.kon(e.Ist))[0]; }); t.z.P = P; },
       plan: function (t) {
         const z = t.z;
@@ -992,35 +1029,59 @@
         return ['speist ' + fP(t.z.P || 0), G.pvFaktor < 0.99 ? 'abgeregelt (' + Math.round(G.pvFaktor * 100) + ' %)' : 'Sonne ' + Math.round(G.sonne * 100) + ' %', 'gut'];
       }
     };
+    // Verbraucher: Konstantimpedanz bei Bemessungsspannung; Motoren ziehen beim Anlauf ein Vielfaches des Nennstroms (cos φ ≈ 0,35)
+    const ANLAUF = [{ k: 'anl', name: 'Anlaufstrom (Vielfaches des Nennstroms)', e: '×', min: 1, max: 10, std: 1 }, { k: 'tan', name: 'Anlaufzeit', e: 's', min: 0.05, max: 30, std: 1 },
+      { k: 'blind', name: 'Blindleistung', werte: [['ind', 'induktiv (Motoren, Vorschaltgeräte)'], ['kap', 'kapazitiv (Kondensator, Netzteile mit Filter)']], std: 'ind' }];
+    function lastZ(t, un, anteil) { // Impedanz je Strang
+      const cos = t.par.cos, zb = un * un * cos / anteil, sin = Math.sqrt(Math.max(0, 1 - cos * cos)) * (t.par.blind === 'kap' ? -1 : 1);
+      if (t.z.anlauf && t.par.anl > 1) { const zm = zb / t.par.anl; return [zm * 0.35, zm * 0.937 * (t.par.blind === 'kap' ? -1 : 1)]; }
+      return [zb * cos, zb * sin];
+    }
+    function anlaufPlan(t, Ux, Un) { // Anlauf erkennen: Spannung kommt (wieder) oder Gerät wird eingeschaltet
+      const z = t.z; if (t.par.anl <= 1 || z.kaputt || !t.st.ein) { z.lief = false; z.anlauf = false; return null; }
+      if (Ux < 0.5 * Un) { if (z.lief || z.anlauf) { z.lief = false; z.anlauf = false; } return null; }
+      if (!z.lief) return { id: 'anlauf', dauer: 0, tun: function () { z.lief = true; z.anlauf = true; z.anlaufSeit = G.T; } };
+      if (z.anlauf) return { id: 'hochgelaufen', rest: true, dauer: Math.max(0, z.anlaufSeit + t.par.tan - G.T), tun: function () { z.anlauf = false; } };
+      return null;
+    }
     TYP.last = {
       name: 'Verbraucher 1~ (Steckdose oder fest)', kurz: 'Verbraucher', kat: 'Verbraucher', icon: 'M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5V16h8v-2.5A6 6 0 0 0 12 3z',
       par: [
-        { k: 'vorlage', name: 'Gerät', werte: Object.keys(VORLAGEN1).map(function (k) { return [k, VORLAGEN1[k][0] + (k === 'frei' ? '' : ' ' + fP(VORLAGEN1[k][1]))]; }), std: 'wk', vorlage: VORLAGEN1 },
-        { k: 'p', name: 'Leistung bei 230 V', e: 'W', min: 1, max: 15000, std: 2000 },
-        { k: 'cos', name: 'Leistungsfaktor cos φ', e: '', min: 0.2, max: 1, std: 1 },
+        { k: 'vorlage', name: 'Gerät', werte: Object.keys(VORLAGEN1).map(function (k) { return [k, VORLAGEN1[k][0] + (k === 'frei' || k === 'kond' ? '' : ' ' + fP(VORLAGEN1[k][1]))]; }), std: 'wk', vorlage: VORLAGEN1 },
+        { k: 'un', name: 'Bemessungsspannung', e: 'V', werte: [[230, '230 V'], [24, '24 V (SELV)'], [12, '12 V (SELV)']], std: 230 },
+        { k: 'p', name: 'Leistung bei Bemessungsspannung', e: 'W', min: 1, max: 15000, std: 2000 },
+        { k: 'cos', name: 'Leistungsfaktor cos φ', e: '', min: 0.01, max: 1, std: 1 },
         { k: 'sk', name: 'Schutzklasse', werte: [['I', 'I (Schutzleiter am Gehäuse)'], ['II', 'II (schutzisoliert)']], std: 'I' },
         { k: 'rks', name: 'Widerstand des Körperschlusses', e: 'Ω', min: 0.01, max: 100000, std: 0.5 }
-      ],
+      ].concat(ANLAUF),
       st: { ein: true, ks: false },
       klemmen: function (t) { return { o: [['L', 'L'], ['N', 'N']].concat(t.par.sk === 'I' ? [['PE', 'PE']] : []), u: [['G', 'Gehäuse']] }; },
-      init: function (t) { t.z.el = null; t.z.kaputt = false; t.z.U = 0; t.z.P = 0; },
+      init: function (t) { t.z.el = null; t.z.kaputt = false; t.z.U = 0; t.z.P = 0; t.z.lief = false; t.z.anlauf = false; },
       modell: function (t, M) {
         if (t.par.sk === 'I') M.V(kl(t, 'PE'), kl(t, 'G'));
         t.z.el = null;
-        if (t.st.ein && !t.z.kaputt) { const zb = UN * UN * t.par.cos / t.par.p, s = Math.sqrt(1 - t.par.cos * t.par.cos); t.z.el = M.R(kl(t, 'L'), kl(t, 'N'), zb * t.par.cos, zb * s); }
+        if (t.st.ein && !t.z.kaputt) { const z = lastZ(t, t.par.un, t.par.p); t.z.el = M.R(kl(t, 'L'), kl(t, 'N'), z[0], z[1]); }
         t.z.ksEl = t.st.ks ? M.R(kl(t, 'L'), kl(t, 'G'), t.par.rks, 0) : null;
       },
-      messen: function (t) { t.z.U = uBetrag(kl(t, 'L'), kl(t, 'N')); t.z.P = t.z.el ? C.mul(t.z.el.U, C.kon(t.z.el.Ist))[0] : 0; t.z.UG = uBetrag(kl(t, 'G')); },
-      plan: function (t) { if (!t.z.kaputt && t.z.el && t.z.U > 270) return { id: 'kaputt', dauer: t.z.U > 350 ? 0.05 : 2, tun: function () { t.z.kaputt = true; log(name(t) + ': durch Überspannung zerstört (' + fU(t.z.U) + ' statt 230 V).', 'gefahr'); } }; return null; },
+      messen: function (t) { t.z.U = uBetrag(kl(t, 'L'), kl(t, 'N')); t.z.P = t.z.el ? C.mul(t.z.el.U, C.kon(t.z.el.Ist))[0] : 0; t.z.UG = uBetrag(kl(t, 'G')); t.z.I = t.z.el ? C.betrag(t.z.el.Ist) : 0; },
+      plan: function (t) {
+        const un = t.par.un;
+        if (!t.z.kaputt && t.z.el && t.z.U > 1.17 * un) return { id: 'kaputt', dauer: t.z.U > 1.5 * un ? 0.05 : 2, tun: function () { t.z.kaputt = true; t.z.anlauf = false; log(name(t) + ': durch Überspannung zerstört (' + fU(t.z.U) + ' statt ' + un + ' V).', 'gefahr'); } };
+        return anlaufPlan(t, t.z.U, un);
+      },
       status: function (t) {
-        const z = t.z;
+        const z = t.z, un = t.par.un;
         if (z.kaputt) return ['zerstört', 'Überspannung', 'fehler'];
         const g = t.st.ks ? 'Körperschluss! Gehäuse ' + fU(z.UG) : '';
         if (!t.st.ein) return ['aus', g || fU(z.U) + ' am Anschluss', g ? 'fehler' : ''];
-        if (z.U < 20) return ['keine Spannung', g || ' ', g ? 'fehler' : ''];
-        return [fP(z.P) + ' · ' + fU(z.U), g || (z.U > 253 ? 'Überspannung!' : z.U < 207 ? 'Unterspannung' : 'läuft'), g || z.U > 253 ? 'fehler' : z.U < 207 ? 'warn' : 'gut'];
+        if (z.U < 0.1 * un) return ['keine Spannung', g || ' ', g ? 'fehler' : ''];
+        if (z.anlauf) return ['Anlauf ' + fI(z.I), g || 'Anlaufstrom ' + zahl(t.par.anl, 1) + ' × In', g ? 'fehler' : 'warn'];
+        return [fP(z.P) + ' · ' + fU(z.U), g || (z.U > 1.1 * un ? 'Überspannung!' : z.U < 0.9 * un ? 'Unterspannung' : 'läuft'), g || z.U > 1.1 * un ? 'fehler' : z.U < 0.9 * un ? 'warn' : 'gut'];
       },
-      werte: function (t) { return [['Spannung L–N', fU(t.z.U)], ['Strom', t.z.el ? fI(C.betrag(t.z.el.Ist)) : '–'], ['Gehäuse gegen Erde', fU(t.z.UG || 0)]].concat(t.z.ksEl ? [['Strom im Körperschluss', fI(C.betrag(t.z.ksEl.Ist))]] : []); },
+      werte: function (t) {
+        const S = t.z.el ? C.mul(t.z.el.U, C.kon(t.z.el.Ist)) : [0, 0];
+        return [['Spannung L–N', fU(t.z.U)], ['Strom', t.z.el ? fI(C.betrag(t.z.el.Ist)) : '–'], ['Wirk- und Blindleistung', fP(S[0]) + ', ' + zahl(S[1], 0) + ' var'], ['Gehäuse gegen Erde', fU(t.z.UG || 0)]].concat(t.z.ksEl ? [['Strom im Körperschluss', fI(C.betrag(t.z.ksEl.Ist))]] : []);
+      },
       aktion: function (t) { return [t.st.ein ? 'Aus' : 'Ein', function () { t.st.ein = !t.st.ein; log(name(t) + (t.st.ein ? ' eingeschaltet.' : ' ausgeschaltet.')); }]; },
       aktionen: function (t) { const l = [[t.st.ks ? 'Körperschluss beheben' : 'Körperschluss (L an Gehäuse)', function () { t.st.ks = !t.st.ks; log(name(t) + ': ' + (t.st.ks ? 'Körperschluss – Außenleiter berührt das Gehäuse.' : 'Körperschluss behoben.'), t.st.ks ? 'gefahr' : 'info'); }]]; if (t.z.kaputt) l.push(['Gerät ersetzen', function () { t.z.kaputt = false; }]); return l; }
     };
@@ -1032,31 +1093,37 @@
         { k: 'cos', name: 'Leistungsfaktor cos φ', e: '', min: 0.2, max: 1, std: 0.85 },
         { k: 'sch', name: 'Schaltung', werte: [['dreieck', 'Dreieck (ohne N)'], ['stern', 'Stern ohne N'], ['stern_n', 'Stern mit N (3 einzelne Lasten)']], std: 'dreieck' },
         { k: 'rks', name: 'Widerstand des Körperschlusses', e: 'Ω', min: 0.01, max: 100000, std: 0.5 }
-      ],
+      ].concat(ANLAUF),
       st: { ein: true, ks: false },
       klemmen: function () { return { o: [['L1', 'L1'], ['L2', 'L2'], ['L3', 'L3'], ['N', 'N'], ['PE', 'PE']], u: [['G', 'Gehäuse']] }; },
-      init: function (t) { t.z.el = []; t.z.kaputt = false; t.z.u = [0, 0, 0]; t.z.P = 0; },
+      init: function (t) { t.z.el = []; t.z.kaputt = false; t.z.u = [0, 0, 0]; t.z.P = 0; t.z.lief = false; t.z.anlauf = false; },
       modell: function (t, M) {
         M.V(kl(t, 'PE'), kl(t, 'G')); t.z.el = [];
         const L = ['L1', 'L2', 'L3'];
         if (t.st.ein && !t.z.kaputt) {
-          const s = Math.sqrt(1 - t.par.cos * t.par.cos), dr = t.par.sch === 'dreieck', zb = (dr ? 400 * 400 : UN * UN) * t.par.cos / (t.par.p / 3);
+          const dr = t.par.sch === 'dreieck', z = lastZ(t, dr ? UN * Math.sqrt(3) : UN, t.par.p / 3);
           const S = t.par.sch === 'stern_n' ? kl(t, 'N') : ik(t, 'S');
-          L.forEach(function (x, p) { t.z.el.push(dr ? M.R(kl(t, x), kl(t, L[(p + 1) % 3]), zb * t.par.cos, zb * s) : M.R(kl(t, x), S, zb * t.par.cos, zb * s)); });
+          L.forEach(function (x, p) { t.z.el.push(dr ? M.R(kl(t, x), kl(t, L[(p + 1) % 3]), z[0], z[1]) : M.R(kl(t, x), S, z[0], z[1])); });
         }
         t.z.ksEl = t.st.ks ? M.R(kl(t, 'L1'), kl(t, 'G'), t.par.rks, 0) : null;
       },
       messen: function (t) {
         const z = t.z; z.u = z.el.map(function (e) { return C.betrag(e.U); }); z.P = 0; z.el.forEach(function (e) { z.P += C.mul(e.U, C.kon(e.Ist))[0]; });
-        z.UG = uBetrag(kl(t, 'G')); z.un = t.par.sch === 'dreieck' ? 400 : UN;
+        z.UG = uBetrag(kl(t, 'G')); z.un = t.par.sch === 'dreieck' ? Math.round(UN * Math.sqrt(3)) : UN;
+        z.I = !z.el.length ? 0 : t.par.sch === 'dreieck' ? Math.max.apply(null, [0, 1, 2].map(function (p) { return C.betrag(C.sub(z.el[p].Ist, z.el[(p + 2) % 3].Ist)); })) : Math.max.apply(null, z.el.map(function (e) { return C.betrag(e.Ist); })); // Leiterstrom
       },
-      plan: function (t) { const m = Math.max.apply(null, [0].concat(t.z.u)) / t.z.un; if (!t.z.kaputt && t.z.el.length && m > 1.17) return { id: 'kaputt', dauer: m > 1.5 ? 0.05 : 2, tun: function () { t.z.kaputt = true; log(name(t) + ': durch Überspannung zerstört (' + fU(m * t.z.un) + ').', 'gefahr'); } }; return null; },
+      plan: function (t) {
+        const m = Math.max.apply(null, [0].concat(t.z.u)) / t.z.un;
+        if (!t.z.kaputt && t.z.el.length && m > 1.17) return { id: 'kaputt', dauer: m > 1.5 ? 0.05 : 2, tun: function () { t.z.kaputt = true; t.z.anlauf = false; log(name(t) + ': durch Überspannung zerstört (' + fU(m * t.z.un) + ').', 'gefahr'); } };
+        return anlaufPlan(t, Math.min.apply(null, t.z.u.length ? t.z.u : [0]), t.z.un || UN);
+      },
       status: function (t) {
         const z = t.z, g = t.st.ks ? 'Körperschluss! Gehäuse ' + fU(z.UG) : '';
         if (z.kaputt) return ['zerstört', 'Überspannung', 'fehler'];
         if (!t.st.ein) return ['aus', g || ' ', g ? 'fehler' : ''];
         const mi = Math.min.apply(null, z.u.length ? z.u : [0]), ma = Math.max.apply(null, z.u.length ? z.u : [0]);
         if (ma < 20) return ['keine Spannung', g || ' ', g ? 'fehler' : ''];
+        if (z.anlauf) return ['Anlauf ' + fI(z.I), g || 'Anlaufstrom ' + zahl(t.par.anl, 1) + ' × In', g ? 'fehler' : 'warn'];
         const unsym = ma - mi > 0.1 * z.un;
         return [fP(z.P), g || (unsym ? 'unsymmetrisch ' + fU(mi) + '–' + fU(ma) : mi < 0.85 * z.un ? 'Phase fehlt / Unterspannung' : z.un + ' V je Strang'), g || unsym || mi < 0.85 * z.un ? 'fehler' : 'gut'];
       },
@@ -1135,15 +1202,303 @@
       status: function (t) { return [fU(t.z.el && t.z.el.U ? C.betrag(t.z.el.U) : 0), 'Innenwiderstand 10 MΩ', '']; }
     };
     TYP.fehler = {
-      name: 'Fehlerstelle (Kurz- oder Erdschluss)', kurz: 'Fehler', kat: 'Prüfen', icon: 'M13 3 6 14h5l-1 7 8-11h-5z',
-      par: [{ k: 'rf', name: 'Fehlerwiderstand', e: 'Ω', min: 0.001, max: 100000, std: 0.05 }],
+      name: 'Fehlerstelle (Kurzschluss, Erdschluss, Lichtbogen, Wackelkontakt)', kurz: 'Fehler', kat: 'Prüfen', icon: 'M13 3 6 14h5l-1 7 8-11h-5z',
+      par: [
+        { k: 'art', name: 'Art', werte: [['kurz', 'Kurz- oder Erdschluss zwischen a und b'], ['lbp', 'Störlichtbogen zwischen a und b (parallel)'], ['lbs', 'Wackelkontakt in der Leitung a–b (Reihe, Lichtbogen)']], std: 'kurz' },
+        { k: 'rf', name: 'Fehler- bzw. Übergangswiderstand', e: 'Ω', min: 0.001, max: 100000, std: 0.05 }
+      ],
       st: { aktiv: false },
       klemmen: function () { return { o: [['a', 'a']], u: [['b', 'b']] }; },
-      init: function (t) { t.z.el = null; },
-      modell: function (t, M) { t.z.el = t.st.aktiv ? M.R(kl(t, 'a'), kl(t, 'b'), t.par.rf, 0) : null; },
-      status: function (t) { return t.st.aktiv ? ['Fehler aktiv', fI(t.z.el ? C.betrag(t.z.el.Ist) : 0), 'fehler'] : ['kein Fehler', zahl(t.par.rf, 3) + ' Ω, wenn aktiv', '']; },
-      aktion: function (t) { return [t.st.aktiv ? 'Beheben' : 'Auslösen', function () { t.st.aktiv = !t.st.aktiv; log(name(t) + (t.st.aktiv ? ': Fehler tritt auf (' + zahl(t.par.rf, 3) + ' Ω).' : ': Fehler behoben.'), t.st.aktiv ? 'gefahr' : 'info'); }]; }
+      init: function (t) { t.z.el = null; t.z.verbrannt = false; },
+      modell: function (t, M) {
+        t.z.el = null; const lb = t.par.art !== 'kurz';
+        if (M.lbTest === t.id) { M.mess = true; M.I(kl(t, 'a'), kl(t, 'b'), [1, 0]); return; } // Prüfstrom für die Lichtbogenerkennung
+        if (t.par.art === 'lbs') { if (!t.z.verbrannt) t.z.el = M.R(kl(t, 'a'), kl(t, 'b'), t.st.aktiv ? Math.max(0.3, t.par.rf) : 0.001, 0); return; }
+        if (t.st.aktiv) t.z.el = M.R(kl(t, 'a'), kl(t, 'b'), lb ? Math.max(0.3, t.par.rf) : t.par.rf, 0);
+      },
+      messen: function (t) { const z = t.z; z.I = z.el ? C.betrag(z.el.Ist) : 0; z.P = z.el ? z.I * z.I * z.el.z[0] : 0; z.bogen = t.par.art !== 'kurz' && t.st.aktiv && z.I > 1; },
+      plan: function (t) {
+        const z = t.z; if (t.par.art !== 'lbs' || !t.st.aktiv || z.verbrannt || z.P < 15) return null;
+        return { id: 'brand', dauer: Math.max(3, 4000 / z.P), tun: function () { z.verbrannt = true; log(name(t) + ': Die Klemmstelle verschmort (' + fP(z.P) + ' Verlustleistung) und brennt ab – Brandgefahr, kein LS hat abgeschaltet!', 'gefahr'); } };
+      },
+      status: function (t) {
+        const z = t.z;
+        if (z.verbrannt) return ['abgebrannt', 'Leitung unterbrochen', 'fehler'];
+        if (!t.st.aktiv) return ['kein Fehler', t.par.art === 'lbs' ? 'Klemmstelle in Ordnung' : zahl(t.par.rf, 3) + ' Ω, wenn aktiv', ''];
+        if (t.par.art === 'kurz') return ['Fehler aktiv', fI(z.I), 'fehler'];
+        return [z.bogen ? 'Lichtbogen ' + fI(z.I) : 'Lichtbogen (kein Strom)', t.par.art === 'lbs' ? 'Übergang ' + fP(z.P) + ' Wärme' : 'Bogenspannung ' + fU(z.I * Math.max(0.3, t.par.rf)), 'fehler'];
+      },
+      werte: function (t) { return [['Strom', fI(t.z.I || 0)], ['Leistung an der Fehlerstelle', fP(t.z.P || 0)]]; },
+      aktion: function (t) { return [t.st.aktiv ? 'Beheben' : 'Auslösen', function () { t.st.aktiv = !t.st.aktiv; t.z.verbrannt = false; log(name(t) + (t.st.aktiv ? ': ' + { kurz: 'Fehler tritt auf (' + zahl(t.par.rf, 3) + ' Ω).', lbp: 'Störlichtbogen zwischen den Leitern.', lbs: 'Wackelkontakt – an der Klemmstelle bildet sich ein Lichtbogen.' }[t.par.art] : ': Fehler behoben.'), t.st.aktiv ? 'gefahr' : 'info'); }]; }
     };
+
+    // ---------- Weitere Schutzorgane ----------
+    TYP.sh = mischen({
+      name: 'Selektiver Hauptleitungsschutzschalter (SH)', kurz: 'SH', kat: 'Schutz', icon: 'M4 4h16v16H4zM8 9h8M12 9v8M9 14l3 3 3-3',
+      par: [{ k: 'pole', name: 'Pole', werte: [[3, '3-polig'], [4, '3+N']], std: 3 }, { k: 'kenn', name: 'Kennlinie', werte: [['E', 'E (selektiv: Kurzschluss verzögert 150 ms)']], std: 'E' },
+        { k: 'in', name: 'Bemessungsstrom In', e: 'A', werte: [[35, '35 A'], [40, '40 A'], [50, '50 A'], [63, '63 A'], [80, '80 A'], [100, '100 A']], std: 50 }],
+      st: { ein: true },
+      klemmen: function (t) { return { o: pole(t.par.pole, 'e'), u: pole(t.par.pole, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.w = []; }
+    }, lsTyp(false, true));
+    TYP.motorschutz = mischen({
+      name: 'Motorschutzschalter', kurz: 'Motorschutz', kat: 'Schutz', icon: 'M5 4h14v16H5zM12 8a4 4 0 1 0 0.01 0M10 14v-4l2 2 2-2v4',
+      par: [{ k: 'pole', name: 'Pole', werte: [[3, '3-polig']], std: 3 }, { k: 'kenn', name: 'Auslöser', werte: [['MS', 'Klasse 10, Sofortauslöser 13 × Ir']], std: 'MS' },
+        { k: 'in', name: 'Einstellstrom Ir (auf Motornennstrom)', e: 'A', min: 0.1, max: 63, std: 8 }],
+      st: { ein: true },
+      klemmen: function (t) { return { o: pole(3, 'e'), u: pole(3, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.w = []; },
+      // Phasenausfallempfindlichkeit: fehlt der Strom in einem Pol, schaltet er nach wenigen Sekunden ab
+      zusatzSchutz: function (t) {
+        const I = t.z.el.map(function (e) { return e ? C.betrag(e.Ist) : 0; }), ma = Math.max.apply(null, [0].concat(I)), mi = Math.min.apply(null, I.length === 3 ? I : [0]);
+        return ma > 0.3 * t.par.in && mi < 0.15 * ma ? [{ p: 'ph', fest: 4, I: ma, text: 'Phasenausfall erkannt (ein Pol nahezu stromlos) – Motor geschützt, schaltet ab.' }] : [];
+      }
+    }, lsTyp(false, true));
+    function lbZeit(I) { // Abschaltzeiten AFDD nach DIN EN 62606 (Störlichtbogen in Reihe)
+      const tab = [[2.5, 1], [5, 0.5], [10, 0.25], [16, 0.15], [32, 0.12], [63, 0.12]];
+      if (I <= 2.5) return 1; for (let i = 1; i < tab.length; i++) if (I <= tab[i][0]) { const a = tab[i - 1], b = tab[i]; return a[1] + (b[1] - a[1]) * (I - a[0]) / (b[0] - a[0]); }
+      return 0.12;
+    }
+    TYP.afdd = mischen({
+      name: 'Brandschutzschalter (AFDD mit LS)', kurz: 'AFDD', kat: 'Schutz', icon: 'M5 4h14v16H5zM12 7c2 3-2 4 0 7 1-1 2-2 1-4M9 17h6',
+      par: [{ k: 'pole', name: 'Pole', werte: [[2, '1+N']], std: 2 }, { k: 'kenn', name: 'Auslösecharakteristik', werte: [['B', 'B (5 × In)'], ['C', 'C (10 × In)']], std: 'B' }, { k: 'in', name: 'Bemessungsstrom In', e: 'A', werte: IN_LS.slice(0, 7), std: 16 }],
+      st: { ein: true },
+      klemmen: function (t) { return { o: pole(2, 'e'), u: pole(2, 'a') }; },
+      init: function (t) { t.z.el = []; t.z.w = []; t.z.lb = 0; },
+      zusatzSchutz: function (t) { return t.z.lb > 2.5 ? [{ p: 'lb', fest: lbZeit(t.z.lb), I: t.z.lb, text: 'Störlichtbogen erkannt (' + fI(t.z.lb) + ') – schaltet ab, bevor es brennt.' }] : []; },
+      zusatzText: function (t) { return t.z.lb > 2.5 ? ' · Lichtbogen!' : ''; }
+    }, lsTyp(false, true));
+    TYP.spd = {
+      name: 'Überspannungsschutz (SPD Typ 1, 2 oder 3)', kurz: 'Überspannungsschutz', kat: 'Schutz', icon: 'M12 3v5M12 16v5M9 8h6v8H9zM12 8l-2 4h4l-2 4',
+      par: [
+        { k: 'typ', name: 'Typ', werte: [['1', 'Typ 1+2 (Blitzstrom, Hauptverteiler)'], ['2', 'Typ 2 (Unterverteilung)'], ['3', 'Typ 3 (Geräteschutz)']], std: '2' },
+        { k: 'sys', name: 'Schaltung', werte: [['3n', '3+1: L1, L2, L3, N gegen PE'], ['1n', '1+1: L, N gegen PE']], std: '3n' },
+        { k: 'uc', name: 'Höchste Dauerspannung Uc', e: 'V', werte: [[255, '255 V'], [275, '275 V'], [320, '320 V'], [440, '440 V']], std: 275 }
+      ],
+      st: { defekt: false },
+      klemmen: function (t) { return { o: (t.par.sys === '3n' ? [['L1', 'L1'], ['L2', 'L2'], ['L3', 'L3']] : [['L', 'L']]).concat([['N', 'N'], ['PE', 'PE']]), u: [] }; },
+      init: function (t) { t.z.leit = {}; t.z.el = {}; t.z.u = {}; },
+      pfade: function (t) { return (t.par.sys === '3n' ? ['L1', 'L2', 'L3'] : ['L']).concat(['N']); },
+      modell: function (t, M) {
+        const z = t.z; z.el = {};
+        if (t.st.defekt) return;
+        TYP.spd.pfade(t).forEach(function (x) { z.el[x] = z.leit[x] ? M.R(kl(t, x), kl(t, 'PE'), 2, 0) : M.R(kl(t, x), kl(t, 'PE'), 2e6, 0); });
+      },
+      messen: function (t) { const z = t.z; TYP.spd.pfade(t).forEach(function (x) { z.u[x] = uBetrag(kl(t, x), kl(t, 'PE')); }); z.umax = Math.max.apply(null, [0].concat(Object.keys(z.u).map(function (k) { return z.u[k]; }))); },
+      plan: function (t) {
+        const z = t.z, uc = t.par.uc; if (t.st.defekt) return null;
+        const leitend = Object.keys(z.leit).filter(function (k) { return z.leit[k]; });
+        if (leitend.length) return { id: 'ab', dauer: 0.2, tun: function () { t.st.defekt = true; z.leit = {}; log(name(t) + ': Varistor leitet, die thermische Abtrennvorrichtung trennt ihn ab (Anzeige rot) – Ableiter tauschen.', 'aus'); } };
+        const hoch = TYP.spd.pfade(t).filter(function (x) { return z.u[x] > 1.45 * uc; });
+        if (hoch.length) return { id: 'leit', dauer: 0.001, tun: function () { hoch.forEach(function (x) { z.leit[x] = true; }); log(name(t) + ': ' + fU(z.umax) + ' gegen PE – weit über Uc ' + uc + ' V, der Varistor wird leitend.', 'gefahr'); } };
+        const tov = TYP.spd.pfade(t).filter(function (x) { return z.u[x] > 1.1 * uc; });
+        if (tov.length) return { id: 'tov', dauer: 30, tun: function () { t.st.defekt = true; log(name(t) + ': zeitweilige Überspannung ' + fU(z.umax) + ' (über Uc ' + uc + ' V) – Varistor überhitzt, Abtrennvorrichtung hat ausgelöst. Gegen solche Netzfehler hilft ein Überspannungsschutz nicht.', 'aus'); } };
+        return null;
+      },
+      status: function (t) { const z = t.z; if (t.st.defekt) return ['abgetrennt', 'Anzeige rot – tauschen', 'fehler']; return ['Typ ' + (t.par.typ === '1' ? '1+2' : t.par.typ) + ' · Uc ' + t.par.uc + ' V', 'max. ' + fU(z.umax || 0) + ' gegen PE', (z.umax || 0) > t.par.uc ? 'warn' : 'gut']; },
+      werte: function (t) { return TYP.spd.pfade(t).map(function (x) { return [x + ' – PE', fU(t.z.u[x] || 0) + (t.z.leit[x] ? ', leitet' : '')]; }); },
+      aktionen: function (t) { return t.st.defekt ? [['Ableiter tauschen', function () { t.st.defekt = false; t.z.leit = {}; log(name(t) + ': Schutzmodule getauscht.'); }]] : [['Blitzeinschlag in der Nähe (Stoßspannung)', function () { log(name(t) + ': Stoßspannung – der Ableiter begrenzt sie für Mikrosekunden auf den Schutzpegel und bleibt in Ordnung.' + (t.par.typ === '3' ? ' Ein Typ 3 allein ohne vorgeschalteten Typ 2 würde dabei überlastet.' : ''), 'gut'); }]]; }
+    };
+
+    // ---------- Transformator (Trenn-, Sicherheits-, Steuertransformator) ----------
+    const TRAFO = { trenn: [230, 230, 'Trenntransformator 230/230 V'], s24: [230, 24, 'Sicherheitstransformator 230/24 V'], s12: [230, 12, 'Sicherheitstransformator 230/12 V'], steuer: [400, 230, 'Steuertransformator 400/230 V'] };
+    const KENN_TR = [[1.1, Infinity], [1.3, 1800], [1.6, 300], [2, 60], [3, 10], [5, 3]];
+    TYP.trafo = {
+      name: 'Transformator (Trenn-, Sicherheits-, Steuertrafo)', kurz: 'Trafo', kat: 'Einspeisung', icon: 'M7 4v16M17 4v16M10 7a2 2 0 0 1 0 4a2 2 0 0 1 0 4M14 7a2 2 0 0 0 0 4a2 2 0 0 0 0 4',
+      par: [
+        { k: 'art', name: 'Art', werte: Object.keys(TRAFO).map(function (k) { return [k, TRAFO[k][2]]; }), std: 's24' },
+        { k: 'sn', name: 'Bemessungsleistung', e: 'VA', min: 10, max: 25000, std: 300 },
+        { k: 'uk', name: 'Kurzschlussspannung uk', e: '%', min: 2, max: 30, std: 8 }
+      ],
+      st: {},
+      klemmen: function (t) {
+        const pri = t.par.art === 'steuer' ? [['pL1', 'L1', 'primär'], ['pL2', 'L2', 'primär']] : [['pL', 'L', 'primär'], ['pN', 'N', 'primär']];
+        return { o: pri.concat([['PE', 'PE', 'primär']]), u: [['s1', '1', 'sekundär'], ['s2', '2', 'sekundär']] };
+      },
+      init: function (t) { t.z.E = [0, 0]; t.z.Ip = [0, 0]; t.z.q = null; t.z.x = 0; },
+      pk: function (t) { return t.par.art === 'steuer' ? ['pL1', 'pL2'] : ['pL', 'pN']; },
+      modell: function (t, M, ohnePQ) {
+        const z = t.z, d = TRAFO[t.par.art], k = TYP.trafo.pk(t), Zk = t.par.uk / 100 * d[1] * d[1] / t.par.sn;
+        M.R(kl(t, k[0]), kl(t, k[1]), d[0] * d[0] / (0.03 * t.par.sn) * 0.3, d[0] * d[0] / (0.03 * t.par.sn) * 0.95); // Leerlauf: rund 3 % Magnetisierungsstrom, überwiegend induktiv
+        z.q = null; z.iq = null;
+        if (z.aus) return;
+        z.q = M.Q(kl(t, 's1'), kl(t, 's2'), z.E, [Zk * 0.6, Zk * 0.8]);
+        if (!ohnePQ) z.iq = M.I(kl(t, k[1]), kl(t, k[0]), z.Ip); // Primärstrom = Sekundärstrom / Übersetzung
+      },
+      nach: function (t) {
+        const z = t.z, d = TRAFO[t.par.art], k = TYP.trafo.pk(t), n = d[1] / d[0];
+        const E = C.mal(uk(kl(t, k[0]), kl(t, k[1])), n), Ip = z.q ? C.mal(z.q.Ist, n) : [0, 0];
+        const neu = C.betrag(C.sub(E, z.E)) > 0.002 * d[1] + 0.01 || C.betrag(C.sub(Ip, z.Ip)) > 0.002 * C.betrag(Ip) + 0.002;
+        z.E = E; z.Ip = Ip; return neu;
+      },
+      messen: function (t) { const z = t.z, d = TRAFO[t.par.art]; z.I2 = z.q ? C.betrag(z.q.Ist) : 0; z.x = z.I2 / (t.par.sn / d[1]); z.U2 = z.q ? C.betrag(z.q.U) : 0; },
+      schutz: function (t) { return t.z.q && t.z.x > 1.1 ? [{ wr: true, tab: KENN_TR, x: t.z.x }] : []; },
+      ausloesen: function (t) { t.z.aus = true; log(name(t) + ': Temperatursicherung im Transformator spricht an (Überlast ' + Math.round(t.z.x * 100) + ' %).', 'aus'); },
+      status: function (t) { const z = t.z, d = TRAFO[t.par.art]; if (z.aus) return ['abgeschaltet', 'Temperatursicherung', 'fehler']; return [d[0] + '/' + d[1] + ' V · ' + t.par.sn + ' VA', 'sekundär ' + fU(z.U2 || 0) + ' · ' + Math.round((z.x || 0) * 100) + ' %', z.x > 1 ? 'fehler' : 'gut']; },
+      werte: function (t) { const z = t.z, d = TRAFO[t.par.art]; return [['Sekundärspannung', fU(z.U2 || 0)], ['Sekundärstrom', fI(z.q ? C.betrag(z.q.Ist) : 0) + ' (Nennstrom ' + fI(t.par.sn / d[1]) + ')'], ['Kurzschlussstrom sekundär', fI(t.par.sn / d[1] / (t.par.uk / 100))], ['Sekundärkreis', 'nicht geerdet – ' + (d[1] <= 50 ? 'SELV (Schutzkleinspannung)' : 'Schutztrennung, nur ein Verbraucher')]]; },
+      aktion: function (t) { return t.z.aus ? ['Abkühlen lassen, wieder ein', function () { t.z.aus = false; t.z.wmap = {}; log(name(t) + ': wieder eingeschaltet.'); }] : null; }
+    };
+
+    // ---------- Steuern: Schütz, Zeitrelais, Stromstoßschalter, Schalter, Taster, Bewegungsmelder ----------
+    const FKT = { schuetz: 'Schütz', ein: 'Zeitrelais ansprechverzögert', aus: 'Zeitrelais rückfallverzögert', treppe: 'Treppenlichtzeitschalter', stoss: 'Stromstoßschalter' };
+    TYP.schuetz = {
+      name: 'Schütz, Zeitrelais, Treppenlicht- und Stromstoßschalter', kurz: 'Schütz', kat: 'Schalten', icon: 'M4 5h16v14H4zM8 9h8v6H8zM4 12h4M16 12h4',
+      par: [
+        { k: 'fkt', name: 'Funktion', werte: Object.keys(FKT).map(function (k) { return [k, FKT[k]]; }), std: 'schuetz' },
+        { k: 'us', name: 'Spulenspannung', e: 'V', werte: [[230, '230 V AC'], [24, '24 V AC']], std: 230 },
+        { k: 'tz', name: 'Zeit (Zeitrelais, Treppenlicht)', e: 's', min: 0.1, max: 3600, std: 10 }
+      ],
+      st: { zu: false },
+      klemmen: function () {
+        return { o: [['A1', 'A1', 'Spule'], ['A2', 'A2', 'Spule'], ['1', 'L1', 'Haupt'], ['3', 'L2', 'Haupt'], ['5', 'L3', 'Haupt'], ['13', '13', 'Hilfs'], ['21', '21', 'Hilfs']],
+          u: [['2', 'L1', 'Haupt'], ['4', 'L2', 'Haupt'], ['6', 'L3', 'Haupt'], ['14', '14', 'Hilfs'], ['22', '22', 'Hilfs']] };
+      },
+      init: function (t) { t.z.us = 0; t.z.spule = false; t.z.flanke = false; },
+      modell: function (t, M) {
+        M.R(kl(t, 'A1'), kl(t, 'A2'), t.par.us * t.par.us / 8, t.par.us * t.par.us / 8 * 0.5); // Spule rund 8 VA
+        if (t.st.zu) [['1', '2'], ['3', '4'], ['5', '6'], ['13', '14']].forEach(function (k) { M.R(kl(t, k[0]), kl(t, k[1]), 0.003, 0); });
+        else M.R(kl(t, '21'), kl(t, '22'), 0.003, 0);
+      },
+      messen: function (t) { const z = t.z; z.us = uBetrag(kl(t, 'A1'), kl(t, 'A2')); z.spule = z.us >= 0.85 * t.par.us || (z.spule && z.us > 0.5 * t.par.us); },
+      plan: function (t) {
+        const z = t.z, f = t.par.fkt, an = z.spule, zu = t.st.zu, l = [];
+        const schalt = function (id, dauer, wert, text) { l.push({ id: id, dauer: dauer, tun: function () { t.st.zu = wert; if (text) log(name(t) + ': ' + text); } }); };
+        if (f === 'schuetz' || f === 'ein' || f === 'aus') {
+          if (an && !zu) schalt('an', f === 'ein' ? t.par.tz : 0.02, true, f === 'ein' ? 'Zeit abgelaufen – Kontakte schließen.' : '');
+          if (!an && zu) schalt('ab', f === 'aus' ? t.par.tz : 0.015, false, f === 'aus' ? 'Rückfallzeit abgelaufen – Kontakte öffnen.' : '');
+        } else {
+          if (an && !z.flanke) l.push({ id: 'flanke', dauer: 0.02, tun: function () { z.flanke = true; if (f === 'stoss') { t.st.zu = !t.st.zu; } else { t.st.zu = true; z.start = G.T; } } });
+          if (!an && z.flanke) l.push({ id: 'los', dauer: 0.01, tun: function () { z.flanke = false; } });
+          if (f === 'treppe' && zu) l.push({ id: 'zeit', rest: true, dauer: Math.max(0, (z.start === undefined ? G.T : z.start) + t.par.tz - G.T), tun: function () { if (z.spule) { z.start = G.T; return; } t.st.zu = false; log(name(t) + ': Zeit abgelaufen – Licht aus.'); } });
+        }
+        l.sort(function (a, b) { return a.dauer - b.dauer; });
+        return l[0] || null;
+      },
+      status: function (t) { const z = t.z; return [FKT[t.par.fkt] + (t.st.zu ? ' · EIN' : ' · aus'), 'Spule ' + fU(z.us || 0) + (z.spule ? ' (angezogen)' : ''), t.st.zu ? 'gut' : '']; },
+      werte: function (t) { return [['Spulenspannung', fU(t.z.us || 0) + ' von ' + t.par.us + ' V'], ['Hauptkontakte 1–2, 3–4, 5–6 und 13–14', t.st.zu ? 'geschlossen' : 'offen'], ['Öffner 21–22', t.st.zu ? 'offen' : 'geschlossen']]; },
+      aktionen: function (t) { return [['Von Hand betätigen (Prüfung)', function () { t.st.zu = !t.st.zu; log(name(t) + ': von Hand ' + (t.st.zu ? 'eingeschaltet.' : 'ausgeschaltet.')); }]]; }
+    };
+    const SCHALTER = { aus: 'Ausschalter', wechsel: 'Wechselschalter', kreuz: 'Kreuzschalter', taster: 'Taster (Schließer)', oeffner: 'Taster (Öffner)' };
+    TYP.lichtschalter = {
+      name: 'Installationsschalter und Taster', kurz: 'Lichtschalter', kat: 'Schalten', icon: 'M6 4h12v16H6zM10 8h4v8h-4z',
+      par: [{ k: 'art', name: 'Art', werte: Object.keys(SCHALTER).map(function (k) { return [k, SCHALTER[k]]; }), std: 'aus' }],
+      st: { ein: false },
+      klemmen: function (t) {
+        const a = t.par.art;
+        if (a === 'wechsel') return { o: [['e', 'L']], u: [['a1', '1'], ['a2', '2']] };
+        if (a === 'kreuz') return { o: [['e1', '1'], ['e2', '2']], u: [['a1', '1'], ['a2', '2']] };
+        return { o: [['e', 'L']], u: [['a', '↓']] };
+      },
+      init: function (t) { t.z.gedrueckt = false; },
+      zu: function (t) { const a = t.par.art, d = t.z.gedrueckt || t.st.ein; return a === 'oeffner' ? !d : d; },
+      modell: function (t, M) {
+        const a = t.par.art, r = function (x, y) { M.R(kl(t, x), kl(t, y), 0.005, 0); };
+        if (a === 'wechsel') r('e', t.st.ein ? 'a2' : 'a1');
+        else if (a === 'kreuz') { if (t.st.ein) { r('e1', 'a2'); r('e2', 'a1'); } else { r('e1', 'a1'); r('e2', 'a2'); } }
+        else if (TYP.lichtschalter.zu(t)) r('e', 'a');
+      },
+      ereignisse: function (t) { return t.z.gedrueckt ? [{ dt: Math.max(0, t.z.bis - G.T), tun: function () { t.z.gedrueckt = false; } }] : []; },
+      status: function (t) {
+        const a = t.par.art;
+        if (a === 'wechsel') return [SCHALTER[a], 'Stellung ' + (t.st.ein ? '2' : '1'), ''];
+        if (a === 'kreuz') return [SCHALTER[a], t.st.ein ? 'gekreuzt' : 'durchgehend', ''];
+        return [SCHALTER[a], TYP.lichtschalter.zu(t) ? 'geschlossen' : 'offen', TYP.lichtschalter.zu(t) ? 'gut' : ''];
+      },
+      aktion: function (t) {
+        const a = t.par.art;
+        if (a === 'taster' || a === 'oeffner') return ['Kurz drücken', function () { t.z.gedrueckt = true; t.z.bis = G.T + 0.3; log(name(t) + ' gedrückt.'); }];
+        return [a === 'aus' ? (t.st.ein ? 'Aus' : 'Ein') : 'Umschalten', function () { t.st.ein = !t.st.ein; log(name(t) + ' geschaltet.'); }];
+      },
+      aktionen: function (t) { return t.par.art === 'taster' || t.par.art === 'oeffner' ? [[t.st.ein ? 'Loslassen' : 'Gedrückt halten', function () { t.st.ein = !t.st.ein; log(name(t) + (t.st.ein ? ' wird gedrückt gehalten.' : ' losgelassen.')); }]] : []; }
+    };
+    TYP.bewegung = {
+      name: 'Bewegungsmelder', kurz: 'Bewegungsmelder', kat: 'Schalten', icon: 'M12 13a3 3 0 1 0 0.01 0M6 8a8 8 0 0 1 12 0M8.5 10.5a4.5 4.5 0 0 1 7 0',
+      par: [{ k: 'tn', name: 'Nachlaufzeit', e: 's', min: 1, max: 1800, std: 30 }],
+      st: { ein: false },
+      klemmen: function () { return { o: [['L', 'L'], ['N', 'N']], u: [['a', '↓']] }; },
+      init: function (t) { t.z.bis = -1; t.z.U = 0; },
+      an: function (t) { return t.z.U > 180 && (t.st.ein || G.T < t.z.bis); },
+      modell: function (t, M) { M.R(kl(t, 'L'), kl(t, 'N'), 1e5, 0); if (TYP.bewegung.an(t)) M.R(kl(t, 'L'), kl(t, 'a'), 0.01, 0); },
+      messen0: function (t) { t.z.U = uBetrag(kl(t, 'L'), kl(t, 'N')); },
+      messen: function (t) { t.z.U = uBetrag(kl(t, 'L'), kl(t, 'N')); },
+      ereignisse: function (t) { return t.z.bis > G.T ? [{ dt: t.z.bis - G.T, tun: function () { log(name(t) + ': keine Bewegung mehr – aus.'); } }] : []; },
+      status: function (t) { return [TYP.bewegung.an(t) ? 'EIN' : 'aus', t.st.ein ? 'Dauerlicht' : t.z.bis > G.T ? 'noch ' + fT(t.z.bis - G.T) : t.z.U > 180 ? 'wartet' : 'keine Versorgung', TYP.bewegung.an(t) ? 'gut' : '']; },
+      aktion: function (t) { return ['Bewegung', function () { t.z.bis = G.T + t.par.tn; log(name(t) + ': Bewegung erkannt.'); }]; },
+      aktionen: function (t) { return [[t.st.ein ? 'Automatik' : 'Dauer-Ein', function () { t.st.ein = !t.st.ein; }]]; }
+    };
+
+    // ---------- Steckvorrichtungen ----------
+    const DOSE = { schuko: ['Schutzkontaktsteckdose 230 V', 16], cee16: ['CEE-Steckdose 16 A 400 V', 16], cee32: ['CEE-Steckdose 32 A 400 V', 32] };
+    TYP.steckdose = {
+      name: 'Steckdose mit Stecker', kurz: 'Steckdose', kat: 'Verteilung', icon: 'M5 5h14v14H5zM9 10v3M15 10v3M12 16v1',
+      par: [{ k: 'art', name: 'Art', werte: Object.keys(DOSE).map(function (k) { return [k, DOSE[k][0]]; }), std: 'schuko' }],
+      st: { ein: true, gedreht: false },
+      leiter: function (t) { return t.par.art === 'schuko' ? ['L', 'N'] : ['L1', 'L2', 'L3', 'N']; },
+      klemmen: function (t) { const l = TYP.steckdose.leiter(t).concat(['PE']); return { o: l.map(function (x) { return ['d' + x, x, 'Steckdose']; }), u: l.map(function (x) { return ['s' + x, x, 'Stecker']; }) }; },
+      init: function (t) { t.z.el = []; },
+      modell: function (t, M) {
+        t.z.el = []; if (!t.st.ein) return;
+        const dreh = t.par.art === 'schuko' && t.st.gedreht;
+        TYP.steckdose.leiter(t).forEach(function (x) { t.z.el.push(M.R(kl(t, 'd' + x), kl(t, 's' + (dreh ? (x === 'L' ? 'N' : 'L') : x)), 0.004, 0)); });
+        M.R(kl(t, 'dPE'), kl(t, 'sPE'), 0.004, 0); // Schutzkontakt eilt vor
+      },
+      messen: function (t) { t.z.I = Math.max.apply(null, [0].concat(t.z.el.map(function (e) { return C.betrag(e.Ist); }))); },
+      status: function (t) {
+        if (!t.st.ein) return [DOSE[t.par.art][0].split(' ')[0], 'Stecker gezogen', ''];
+        const In = DOSE[t.par.art][1];
+        return [(t.z.I > 0.001 ? fI(t.z.I) : 'kein Strom') + (t.st.gedreht ? ' · gedreht' : ''), t.z.I > In ? 'überlastet (max. ' + In + ' A)!' : t.par.art === 'schuko' && t.z.I > 10 ? 'Dauerlast über 10 A – Steckdose wird warm' : 'gesteckt', t.z.I > In ? 'fehler' : t.par.art === 'schuko' && t.z.I > 10 ? 'warn' : 'gut'];
+      },
+      aktion: function (t) { return [t.st.ein ? 'Stecker ziehen' : 'Stecker stecken', function () { t.st.ein = !t.st.ein; log(name(t) + (t.st.ein ? ': Stecker gesteckt' + (t.st.gedreht ? ' (gedreht: L und N getauscht).' : '.') : ': Stecker gezogen.')); }]; },
+      aktionen: function (t) { return t.par.art === 'schuko' ? [['Stecker drehen (L und N tauschen)', function () { t.st.gedreht = !t.st.gedreht; log(name(t) + ': Stecker ' + (t.st.gedreht ? 'gedreht eingesteckt – L und N sind getauscht.' : 'wieder richtig herum.')); }]] : []; }
+    };
+
+    // ---------- Messen ----------
+    TYP.zange = {
+      name: 'Stromzange (auch Differenzstrom)', kurz: 'Stromzange', kat: 'Prüfen', icon: 'M7 12a5 5 0 1 0 10 0a5 5 0 1 0-10 0M12 3v4M12 17v4',
+      par: [{ k: 'n', name: 'Umfasst', werte: [[1, '1 Leiter'], [2, 'L und N (Differenzstrom)'], [4, 'L1, L2, L3, N (Differenzstrom)']], std: 1 }],
+      st: {},
+      leiter: function (t) { return Number(t.par.n) === 1 ? ['x'] : Number(t.par.n) === 2 ? ['L', 'N'] : ['L1', 'L2', 'L3', 'N']; },
+      klemmen: function (t) { return { o: TYP.zange.leiter(t).map(function (x) { return ['e' + x, x === 'x' ? '→' : x]; }), u: TYP.zange.leiter(t).map(function (x) { return ['a' + x, x === 'x' ? '→' : x]; }) }; },
+      init: function (t) { t.z.el = []; },
+      modell: function (t, M) { t.z.el = TYP.zange.leiter(t).map(function (x) { return M.R(kl(t, 'e' + x), kl(t, 'a' + x), 0.0001, 0); }); },
+      messen: function (t) { let s = [0, 0]; t.z.el.forEach(function (e) { s = C.add(s, e.Ist); }); t.z.I = C.betrag(s); },
+      status: function (t) { return [fI(t.z.I || 0), Number(t.par.n) === 1 ? 'Strom' : 'Differenzstrom (Ableitstrom)', '']; },
+      werte: function (t) { return t.z.el.map(function (e, p) { return [TYP.zange.leiter(t)[p] === 'x' ? 'Leiter' : TYP.zange.leiter(t)[p], fI(C.betrag(e.Ist))]; }).concat(Number(t.par.n) > 1 ? [['Summe (Differenzstrom)', fI(t.z.I || 0)]] : []); }
+    };
+    const PRUEF = [['B6', 'B 6 A'], ['B10', 'B 10 A'], ['B13', 'B 13 A'], ['B16', 'B 16 A'], ['B20', 'B 20 A'], ['B25', 'B 25 A'], ['B32', 'B 32 A'], ['C10', 'C 10 A'], ['C16', 'C 16 A'], ['C20', 'C 20 A'], ['C32', 'C 32 A'], ['D16', 'D 16 A'],
+      ['gG16', 'gG 16 A'], ['gG20', 'gG 20 A'], ['gG25', 'gG 25 A'], ['gG35', 'gG 35 A'], ['gG50', 'gG 50 A'], ['gG63', 'gG 63 A']];
+    function abschaltstrom(org, tmax) { // Ia: Strom, bei dem das Schutzorgan sicher innerhalb tmax abschaltet
+      const art = org.replace(/\d+/g, ''), In = Number(org.replace(/\D+/g, ''));
+      if (art !== 'gG') return MAGNET[art] * In;
+      let a = 1.3, b = 100; for (let i = 0; i < 60; i++) { const m = (a + b) / 2; if (kurve(KENN_GG, m) > tmax) a = m; else b = m; } return b * In;
+    }
+    TYP.schleife = {
+      name: 'Schleifenimpedanz-Messgerät (Zs, Ik)', kurz: 'Schleifenmessung', kat: 'Prüfen', icon: 'M4 6h16v12H4zM8 12a4 4 0 0 0 8 0M12 8v4',
+      par: [{ k: 'org', name: 'Vorgeschaltetes Schutzorgan', werte: PRUEF, std: 'B16' },
+        { k: 'tmax', name: 'Geforderte Abschaltzeit', e: 's', werte: [[0.4, '0,4 s (TN, Endstromkreis bis 63 A)'], [5, '5 s (TN, Verteiler)'], [0.2, '0,2 s (TT, Endstromkreis)']], std: 0.4 }],
+      st: {},
+      klemmen: function () { return { o: [['L', 'L'], ['N', 'N'], ['PE', 'PE']], u: [] }; },
+      init: function (t) { t.z.zs = null; t.z.zi = null; },
+      modell: function (t, M) { if (M.ohneQuellen && M.schleife && M.schleife.id === t.id) { M.mess = true; M.I(kl(t, M.schleife.gegen), kl(t, 'L'), [1, 0]); } },
+      messen: function (t) { t.z.u0 = C.betrag(uk(kl(t, 'L'), kl(t, 'PE'))); t.z.uLN = C.betrag(uk(kl(t, 'L'), kl(t, 'N'))); },
+      bewertung: function (t) {
+        const z = t.z; if (z.zs === null || z.u0 < 50) return null;
+        const ik = z.u0 / z.zs, ikmin = ik * 2 / 3, ia = abschaltstrom(t.par.org, t.par.tmax);
+        return { ik: ik, ikmin: ikmin, ia: ia, ok: ikmin >= ia };
+      },
+      status: function (t) {
+        const b = TYP.schleife.bewertung(t), z = t.z;
+        if (!b) return ['keine Spannung L–PE', 'Messung nicht möglich', ''];
+        return ['Zs ' + zahl(z.zs, 2) + ' Ω · Ik ' + fI(b.ik), b.ok ? 'Abschaltbedingung erfüllt' : 'NICHT erfüllt (Ia ' + fI(b.ia) + ')', b.ok ? 'gut' : 'fehler'];
+      },
+      werte: function (t) {
+        const b = TYP.schleife.bewertung(t), z = t.z; if (!b) return [['Messung', 'keine Spannung zwischen L und PE']];
+        return [['Spannung L–PE (U0)', fU(z.u0)], ['Schleifenimpedanz L–PE (Zs)', zahl(z.zs, 3) + ' Ω'], ['Netzinnenimpedanz L–N (Zi)', z.zi === null ? '–' : zahl(z.zi, 3) + ' Ω'],
+          ['Kurzschlussstrom L–PE', fI(b.ik) + ' (bewertet mit 2/3: ' + fI(b.ikmin) + ')'], ['Kurzschlussstrom L–N', z.zi ? fI(z.uLN / z.zi) : '–'], ['Nötig für ' + t.par.org + ' in ' + zahl(t.par.tmax) + ' s', fI(b.ia)],
+          ['Ergebnis (DIN VDE 0100-600)', b.ok ? 'erfüllt' : 'nicht erfüllt – größerer Querschnitt, kürzere Leitung, anderes Schutzorgan oder FI']];
+      }
+    };
+
     TYP.notiz = {
       name: 'Notiz', kurz: 'Notiz', kat: 'Prüfen', icon: 'M5 4h14v16H5zM8 8h8M8 12h8M8 16h5',
       par: [], st: {},
@@ -1182,7 +1537,7 @@
       let M = netzBauen(true); G.R = M.loesen();
       teile.forEach(function (t) { if (TYP[t.typ].messen0) TYP[t.typ].messen0(t); });
       G.pvNenn = 0;
-      teile.forEach(function (t) { if (t.typ === 'pvwr' && t.z.verbunden) G.pvNenn += t.par.kwp * 1000 * G.sonne * 0.96; });
+      teile.forEach(function (t) { if (t.typ === 'pvwr' && t.z.verbunden) G.pvNenn += TYP.pvwr.pdc(t); });
       for (let it = 0; it < 14; it++) {
         M = netzBauen(false); G.R = M.loesen();
         let neu = false;
@@ -1197,14 +1552,29 @@
         a._I = a._el ? C.betrag(a._el.Ist) : 0;
         if (a._el) { const ua = G.R.u(a.a) || [0, 0], p = C.mul(ua, C.kon(a._el.Ist))[0]; a._dir = C.betrag(ua) > 50 ? (p >= 0 ? 1 : -1) : (a._el.Ist[0] >= 0 ? 1 : -1); }
       });
-      const isos = teile.filter(function (t) { return t.typ === 'iso'; });
-      isos.forEach(function (t) {
-        const alt = G.R; const MI = new Netzwerk(); MI.ohneQuellen = true; MI.isoId = t.id;
+      // Messungen mit abgeschalteten Quellen (Überlagerung): Isolationswächter, Schleifenimpedanz, Lichtbogenerkennung
+      let messungen = 0;
+      const messNetz = function (opt) {
+        const MI = new Netzwerk(); MI.ohneQuellen = true; Object.keys(opt).forEach(function (k) { MI[k] = opt[k]; });
         teile.forEach(function (x) { klemmenListe(x).forEach(function (e) { MI.knoten(kl(x, e[0])); }); TYP[x.typ].modell(x, MI, true); });
         adern.forEach(function (a) { if (!a.offen) MI.R(a.a, a.b, 0.0178 * a.l / a.q, 0.00008 * a.l); });
-        TYP.iso.isoMessen(t, MI.loesen()); G.R = alt;
+        messungen++; return MI.loesen();
+      };
+      teile.forEach(function (t) { if (t.typ === 'iso') TYP.iso.isoMessen(t, messNetz({ isoId: t.id })); });
+      teile.forEach(function (t) {
+        if (t.typ !== 'schleife') return;
+        if (!(t.z.u0 > 50)) { t.z.zs = null; t.z.zi = null; return; }
+        const z = function (gegen) { const R = messNetz({ schleife: { id: t.id, gegen: gegen } }); return C.betrag(C.sub(R.u(kl(t, gegen)) || [0, 0], R.u(kl(t, 'L')) || [0, 0])); };
+        t.z.zs = z('PE'); t.z.zi = t.z.uLN > 50 ? z('N') : null;
       });
-      if (isos.length) { M = netzBauen(false); G.R = M.loesen(); } // Elementbezüge der Bauteile wieder auf die Hauptlösung setzen
+      const afdds = teile.filter(function (t) { return t.typ === 'afdd'; });
+      afdds.forEach(function (t) { t.z.lb = 0; });
+      if (afdds.length) teile.forEach(function (f) {
+        if (f.typ !== 'fehler' || !f.z.bogen) return;
+        const Ib = f.z.I; messNetz({ lbTest: f.id });
+        afdds.forEach(function (a) { const I = Math.max.apply(null, [0].concat(a.z.el.map(function (e) { return e && e.Ist ? C.betrag(e.Ist) : 0; }))); if (I > 0.3) a.z.lb = Math.max(a.z.lb, Ib); });
+      });
+      if (messungen) { M = netzBauen(false); G.R = M.loesen(); } // Elementbezüge der Bauteile wieder auf die Hauptlösung setzen
       G.netz = M; schmutzig = false;
     }
 
@@ -1213,17 +1583,23 @@
     function sKey(s) { return s.fi ? 'fi' : s.wr ? 'wr' : 'p' + s.p; }
     function sZeit(s) {
       if (s.fi) return s.I >= 0.7 * s.idn ? (s.s ? (s.I >= 5 * s.idn ? 0.06 : 0.2) : (s.I >= 5 * s.idn ? 0.015 : 0.03)) : Infinity;
-      if (s.wr) { let tt = kurve(KENN_WR, s.x); if (s.begrenzt) tt = Math.min(tt, s.agg ? 3 : 0.3); return tt; }
+      if (s.fest !== undefined) return s.fest;
+      if (s.wr) { let tt = kurve(s.tab || KENN_WR, s.x); if (s.begrenzt) tt = Math.min(tt, s.agg ? 3 : 0.3); return tt; }
       return s.In > 0 ? ausloesezeit(s.I, s.In, s.art) : Infinity;
     }
-    // Ader ohne passenden Schutz: Erwärmung, bei Kurzschluss adiabatisch (k = 115 für Cu/PVC), bei Überlast langsamer
-    function aderZeit(a) {
-      if (!a._el || !(a._I > IZ[a.q] * 1.45)) return Infinity;
-      const ad = Math.pow(115 * a.q / a._I, 2), ue = 600 * Math.pow(IZ[a.q] / a._I, 4);
-      return Math.max(ad, ue);
+    // Leitertemperatur (Cu/PVC, 30 °C Umgebung): bei Iz 70 °C im Dauerbetrieb; Erwärmung aus der Wärmekapazität des Kupfers,
+    // passend zu k = 115 A·√s/mm² (70 → 160 °C adiabatisch). Ab 160 °C zersetzt sich die PVC-Isolierung: Brandgefahr.
+    const T_UMG = 30, T_DAUER = 70, T_BRAND = 160;
+    function aderTau(a) { return 40 * 115 * 115 * a.q * a.q / (90 * IZ[a.q] * IZ[a.q]); }
+    function aderEnd(a) { return T_UMG + (T_DAUER - T_UMG) * Math.pow((a._el ? a._I : 0) / IZ[a.q], 2); }
+    function aderZeit(a) { // Zeit bis zur Brandtemperatur
+      const th = a._th === undefined ? T_UMG : a._th, te = aderEnd(a);
+      if (!a._el || te <= T_BRAND) return Infinity;
+      if (th >= T_BRAND) return 0;
+      return aderTau(a) * Math.log((te - th) / (te - T_BRAND));
     }
     function fortschreiben(dt) {
-      adern.forEach(function (a) { const tt = aderZeit(a); a._w = isFinite(tt) ? (a._w || 0) + dt / tt : Math.max(0, (a._w || 0) - dt / 300); });
+      adern.forEach(function (a) { const th = a._th === undefined ? T_UMG : a._th, te = aderEnd(a); a._th = te + (th - te) * Math.exp(-dt / aderTau(a)); });
       teile.forEach(function (t) {
         const T = TYP[t.typ], z = t.z; z.wmap = z.wmap || {};
         z.smax = z.smax || {};
@@ -1259,9 +1635,12 @@
           if (T.ereignisse) T.ereignisse(t).forEach(function (e) { if (!best || e.dt < best.dt) best = e; });
         });
         adern.forEach(function (a) {
-          const tt = aderZeit(a); if (!isFinite(tt)) return;
-          const dt = Math.max(0, (1 - (a._w || 0)) * tt);
-          if (!best || dt < best.dt) best = { dt: dt, tun: function () { const I = a._I; a.offen = true; a._w = 0; a._brand = true; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + ' (' + zahl(a.q) + ' mm²): ' + fI(I) + ' = ' + zahl(I / IZ[a.q], 1) + ' × Belastbarkeit – kein Schutzorgan schaltet rechtzeitig ab, die Ader glüht und brennt durch. Brandgefahr!', 'gefahr'); speichern(); zeichnen(); } };
+          // Warnung, sobald die Ader dauerhaft über 90 °C kommt (PVC altert stark)
+          const th = a._th === undefined ? T_UMG : a._th, te = aderEnd(a);
+          if (a._el && te > 90 && th < 90 && !a._warn) { const dw = aderTau(a) * Math.log((te - th) / (te - 90)); if (!best || dw < best.dt) best = { dt: dw, tun: function () { a._warn = true; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + ' (' + zahl(a.q) + ' mm²): ' + fI(a._I) + ' bei ' + zahl(IZ[a.q]) + ' A Belastbarkeit – über 90 °C, die Isolierung überhitzt.', 'gefahr'); } }; }
+          if (a._warn && th < 70) a._warn = false;
+          const dt = aderZeit(a); if (!isFinite(dt)) return;
+          if (!best || dt < best.dt) best = { dt: dt, tun: function () { const I = a._I; a.offen = true; a._th = T_UMG; a._brand = true; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + ' (' + zahl(a.q) + ' mm²): ' + fI(I) + ' = ' + zahl(I / IZ[a.q], 1) + ' × Belastbarkeit – über ' + T_BRAND + ' °C, kein Schutzorgan schaltet rechtzeitig ab: Isolierung verschmort, die Ader brennt durch. Brandgefahr!', 'gefahr'); speichern(); zeichnen(); } };
         });
         const feuern = best && best.dt <= rest, schritt = feuern ? best.dt : rest;
         if (schritt > 0) fortschreiben(schritt);
@@ -1472,6 +1851,7 @@
       if (teile.length >= MAX_TEILE) { hinweis('Höchstens ' + MAX_TEILE + ' Bauteile.'); return null; }
       const T = TYP[typ], t = { id: 't' + (P.nr++), typ: typ, x: Math.round(x / 10) * 10, y: Math.round(y / 10) * 10, name: '', par: {}, st: JSON.parse(JSON.stringify(T.st || {})) };
       T.par.forEach(function (p) { t.par[p.k] = p.std; });
+      T.par.forEach(function (p) { if (p.vorlage && p.vorlage[p.std]) vorlageSetzen(t, p.vorlage[p.std]); });
       zInit(t); teile.push(t); return t;
     }
     function auswahlLoeschen() {
@@ -1527,7 +1907,7 @@
             let v = p.werte ? p.werte.filter(function (w) { return String(w[0]) === e.value; })[0] : null;
             if (p.werte) { if (!v) return; v = v[0]; } else { v = Number(String(e.value).replace(',', '.')); if (!isFinite(v)) { e.value = t.par[p.k]; return; } v = Math.min(p.max, Math.max(p.min, v)); e.value = v; }
             merke(); t.par[p.k] = v;
-            if (p.vorlage && p.vorlage[v]) { const vl = p.vorlage[v]; t.par.p = vl[1]; t.par.cos = vl[2]; if (t.typ === 'last') t.par.sk = vl[3]; else t.par.sch = vl[3]; }
+            if (p.vorlage && p.vorlage[v]) vorlageSetzen(t, p.vorlage[v]);
             parGeaendert(t); panelZeigen();
           });
           l.append(e); f.append(l);
@@ -1574,7 +1954,7 @@
       box.append(f);
       const kn0 = kn('div', 'sk-knoepfe');
       const ub = kn('button', a.offen ? 'knopf-haupt' : 'knopf', a.offen ? (a._brand ? 'Ader ersetzen' : 'Wieder verbinden') : 'Unterbrechen (Aderbruch)'); ub.type = 'button';
-      ub.addEventListener('click', function () { G.T0 = G.T; a.offen = !a.offen; a._brand = false; a._w = 0; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + (a.offen ? ' unterbrochen.' : ' wieder verbunden.'), a.offen ? 'gefahr' : 'info'); schmutzig = true; speichern(); zeichnen(); panelZeigen(); protokollZeigen(); });
+      ub.addEventListener('click', function () { G.T0 = G.T; a.offen = !a.offen; a._brand = false; a._th = T_UMG; log('Ader ' + klemmName(a.a) + ' → ' + klemmName(a.b) + (a.offen ? ' unterbrochen.' : ' wieder verbunden.'), a.offen ? 'gefahr' : 'info'); schmutzig = true; speichern(); zeichnen(); panelZeigen(); protokollZeigen(); });
       const lo = kn('button', 'knopf', 'Löschen'); lo.type = 'button'; lo.addEventListener('click', auswahlLoeschen);
       kn0.append(ub, lo); box.append(kn0);
       panelWerteEl = kn('div', 'sk-werte'); box.append(panelWerteEl); aderWerte();
@@ -1583,7 +1963,7 @@
       if (!panelWerteEl || !auswahl || auswahl.art !== 'ader') return;
       const a = aderVon(auswahl.id); if (!a) return;
       const R = 0.0178 * a.l / a.q, I = a._I || 0, tb = kn('table', 'sk-tabelle');
-      [['Strom', a.offen ? 'unterbrochen' : fI(I)], ['Widerstand', zahl(R * 1000, 1) + ' mΩ'], ['Spannungsfall', fU(I * R)], ['Belastbarkeit (Näherung)', IZ[a.q] + ' A' + (I > IZ[a.q] ? ' – überlastet!' : ' (' + Math.round(I / IZ[a.q] * 100) + ' %)')], ['Spannung über der Unterbrechung', a.offen ? fU(C.betrag(uk(a.a, a.b))) : '–']].forEach(function (z) { const tr = kn('tr'); tr.append(kn('th', '', z[0]), kn('td', '', z[1])); tb.append(tr); });
+      [['Strom', a.offen ? 'unterbrochen' : fI(I)], ['Widerstand', zahl(R * 1000, 1) + ' mΩ'], ['Spannungsfall', fU(I * R)], ['Belastbarkeit (Näherung)', IZ[a.q] + ' A' + (I > IZ[a.q] ? ' – überlastet!' : ' (' + Math.round(I / IZ[a.q] * 100) + ' %)')], ['Leitertemperatur', a.offen ? '–' : Math.round(a._th === undefined ? T_UMG : a._th) + ' °C (Dauer ' + Math.round(aderEnd(a)) + ' °C, zulässig 70 °C)'], ['Spannung über der Unterbrechung', a.offen ? fU(C.betrag(uk(a.a, a.b))) : '–']].forEach(function (z) { const tr = kn('tr'); tr.append(kn('th', '', z[0]), kn('td', '', z[1])); tb.append(tr); });
       panelWerteEl.textContent = ''; panelWerteEl.append(kn('h4', '', 'Messwerte'), tb);
     }
 
@@ -1701,7 +2081,7 @@
         const t = { id: 't' + (d.nr++), typ: typ, x: x, y: y, name: nm || '', par: {}, st: JSON.parse(JSON.stringify(TYP[typ].st || {})) };
         TYP[typ].par.forEach(function (p) { t.par[p.k] = p.std; }); Object.keys(par || {}).forEach(function (k) { t.par[k] = par[k]; }); Object.keys(st || {}).forEach(function (k) { t.st[k] = st[k]; });
         const vl = TYP[typ].par.filter(function (p) { return p.vorlage; })[0];
-        if (vl && par && par[vl.k] && !('p' in par)) { const v = vl.vorlage[par[vl.k]]; t.par.p = v[1]; t.par.cos = v[2]; if (typ === 'last') t.par.sk = v[3]; else t.par.sch = v[3]; }
+        if (vl && par && par[vl.k] && !('p' in par)) { vorlageSetzen(t, vl.vorlage[par[vl.k]]); Object.keys(par).forEach(function (k) { t.par[k] = par[k]; }); }
         d.teile.push(t); return t.id;
       };
       const A = function (a, ka, b, kb, f, q, l) {
@@ -1933,12 +2313,98 @@
           A(f1, 'aL', fe, 'a', 'L1', 2.5, 8); A(fe, 'b', wr, 'N', 'N', 2.5, 8);
           T('notiz', 260, 460, {}, null, 'Fehler auslösen: Der WR liefert höchstens 1,5 × 13 A ≈ 20 A, der B16 bräuchte 80 A – also schaltet der WR ab und alles ist dunkel. Am WR den Kurzschlussstrom auf 6 setzen: dann löst der LS aus. Abhilfe in der Praxis: kleinere LS, Kennlinie mit kleinem Auslösestrom oder ein WR mit hohem Kurzschlussstrom.');
         });
-      }, 'Notstrom mit Wechselrichter']
+      }, 'Notstrom mit Wechselrichter'],
+      licht: ['Lichtschaltungen: Wechsel- und Kreuzschaltung, Treppenlicht, Bewegungsmelder', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const f = T('ls', 0, 470, { in: 10 }, null, 'F1 Licht');
+          const w1 = T('lichtschalter', 0, 620, { art: 'wechsel' }, null, 'Flur unten'), kz = T('lichtschalter', 0, 770, { art: 'kreuz' }, null, 'Flur Mitte'), w2 = T('lichtschalter', 0, 920, { art: 'wechsel' }, null, 'Flur oben'), la = T('last', 0, 1070, { vorlage: 'led' }, null, 'Flurlicht');
+          A(h.z, 'aL1', f, 'eL', null, 1.5, 1); A(f, 'aL', w1, 'e', 'L1', 1.5, 6); A(w1, 'a1', kz, 'e1', 'L2', 1.5, 8); A(w1, 'a2', kz, 'e2', 'L2', 1.5, 8); A(kz, 'a1', w2, 'a1', 'L2', 1.5, 8); A(kz, 'a2', w2, 'a2', 'L2', 1.5, 8);
+          A(w2, 'e', la, 'L', 'L2', 1.5, 4); A(h.z, 'aN', la, 'N', 'N', 1.5, 20);
+          const ta = T('lichtschalter', 280, 620, { art: 'taster' }, null, 'Taster Treppe'), tl = T('schuetz', 280, 770, { fkt: 'treppe', tz: 30 }, null, 'Treppenlichtzeitschalter'), l2 = T('last', 280, 1070, { vorlage: 'lampe' }, null, 'Treppenlicht');
+          A(f, 'aL', ta, 'e', 'L1', 1.5, 6); A(ta, 'a', tl, 'A1', 'L2', 1.5, 6); A(tl, 'A2', h.z, 'aN', 'N', 1.5, 2); A(f, 'aL', tl, '1', 'L1', 1.5, 1); A(tl, '2', l2, 'L', 'L2', 1.5, 10); A(h.z, 'aN', l2, 'N', 'N', 1.5, 10);
+          const bm = T('bewegung', 620, 770, { tn: 20 }, null, 'Bewegungsmelder'), l3 = T('last', 620, 1070, { vorlage: 'led' }, null, 'Hoflicht');
+          A(f, 'aL', bm, 'L', 'L1', 1.5, 12); A(h.z, 'aN', bm, 'N', 'N', 1.5, 12); A(bm, 'a', l3, 'L', 'L2', 1.5, 3); A(h.z, 'aN', l3, 'N', 'N', 1.5, 14);
+          T('notiz', 620, 470, {}, null, 'Jeden der drei Flurschalter antippen und „Umschalten“: Das Licht wechselt jedes Mal. Taster kurz drücken startet das Treppenlicht für 30 s, erneutes Drücken verlängert. Beim Bewegungsmelder „Bewegung“ antippen.');
+        });
+      }, 'Schalten und Steuern'],
+      motor: ['Motor mit Schütz, Selbsthaltung und Motorschutzschalter', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const ms = T('motorschutz', 0, 470, { in: 8 }, null, 'Q1 Motorschutz'), k = T('schuetz', 0, 640, {}, null, 'K1 Schütz'), mo = T('last3', 0, 820, { vorlage: 'motor' }, null, 'M1 Motor 4 kW');
+          const f2 = T('ls', 360, 470, { in: 6 }, null, 'F2 Steuerung'), s0 = T('lichtschalter', 360, 640, { art: 'oeffner' }, null, 'S0 AUS'), s1 = T('lichtschalter', 600, 640, { art: 'taster' }, null, 'S1 EIN');
+          L3(h.z, 'a', ms, 'e', 2.5, 4); A(ms, 'aL1', k, '1', 'L1', 2.5, 0.3); A(ms, 'aL2', k, '3', 'L2', 2.5, 0.3); A(ms, 'aL3', k, '5', 'L3', 2.5, 0.3);
+          A(k, '2', mo, 'L1', 'L1', 2.5, 15); A(k, '4', mo, 'L2', 'L2', 2.5, 15); A(k, '6', mo, 'L3', 'L3', 2.5, 15); A(h.pas, 'k4', mo, 'PE', 'PE', 2.5, 15);
+          A(h.z, 'aL1', f2, 'eL', null, 1.5, 4); A(f2, 'aL', s0, 'e', 'L1', 1.5, 1); A(s0, 'a', s1, 'e', 'L1', 1.5, 1); A(s1, 'a', k, 'A1', 'mess', 1.5, 1);
+          A(s0, 'a', k, '13', 'mess', 1.5, 1); A(k, '14', k, 'A1', 'mess', 1.5, 0.2); A(k, 'A2', h.z, 'aN', 'N', 1.5, 4);
+          T('notiz', 600, 820, {}, null, '„S1 EIN“ kurz drücken: Das Schütz zieht an und hält sich über 13–14 selbst. Der Motor zieht beim Anlauf das 6-Fache seines Nennstroms. „S0 AUS“ unterbricht die Selbsthaltung. Danach eine Außenleiter-Ader zum Motor unterbrechen: Der Motorschutzschalter erkennt den Phasenausfall.');
+        });
+      }, 'Schalten und Steuern'],
+      anlauf: ['Anlaufstrom: Kompressor an B10 und C10, Steckdose und Stecker', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const b = T('ls', 0, 470, { in: 10, kenn: 'B' }, null, 'F1 B10'), c = T('ls', 300, 470, { in: 10, kenn: 'C' }, null, 'F2 C10');
+          const d1 = T('steckdose', 0, 620, {}, null, 'Steckdose 1'), d2 = T('steckdose', 300, 620, {}, null, 'Steckdose 2');
+          const k1 = T('last', 0, 790, { vorlage: 'kompr' }, { ein: false }, 'Kompressor 1'), k2 = T('last', 300, 790, { vorlage: 'kompr' }, { ein: false }, 'Kompressor 2');
+          A(h.z, 'aL1', b, 'eL', null, 2.5, 1); A(b, 'aL', d1, 'dL', 'L1', 2.5, 15); A(h.z, 'aN', d1, 'dN', 'N', 2.5, 15); A(h.pas, 'k4', d1, 'dPE', 'PE', 2.5, 15);
+          A(d1, 'sL', k1, 'L', 'L1', 1.5, 3); A(d1, 'sN', k1, 'N', 'N', 1.5, 3); A(d1, 'sPE', k1, 'PE', 'PE', 1.5, 3);
+          A(h.z, 'aL2', c, 'eL', null, 2.5, 1); A(c, 'aL', d2, 'dL', 'L2', 2.5, 15); A(h.z, 'aN', d2, 'dN', 'N', 2.5, 15); A(h.pas, 'k5', d2, 'dPE', 'PE', 2.5, 15);
+          A(d2, 'sL', k2, 'L', 'L2', 1.5, 3); A(d2, 'sN', k2, 'N', 'N', 1.5, 3); A(d2, 'sPE', k2, 'PE', 'PE', 1.5, 3);
+          T('notiz', 620, 470, {}, null, 'Beide Kompressoren einschalten: Der Anlaufstrom (7 × Nennstrom) überschreitet die 5-fache Schwelle des B10, nicht aber die 10-fache des C10. Mit „Stecker drehen“ liegt der Schalter des Geräts im N – nach dem Ausschalten bleibt das Gerät innen unter Spannung.');
+        });
+      }, 'Schutz und Messen'],
+      schleife: ['Schleifenimpedanz messen: Abschaltbedingung erfüllt oder nicht', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const f1 = T('ls', 0, 470, { in: 16 }, null, 'F1 B16'), f2 = T('ls', 300, 470, { in: 16 }, null, 'F2 B16');
+          const m1 = T('schleife', 0, 640, { org: 'B16' }, null, 'Küche 2,5 mm² 18 m'), m2 = T('schleife', 300, 640, { org: 'B16' }, null, 'Garage 1,5 mm² 80 m');
+          A(h.z, 'aL1', f1, 'eL', null, 2.5, 1); A(f1, 'aL', m1, 'L', 'L1', 2.5, 18); A(h.z, 'aN', m1, 'N', 'N', 2.5, 18); A(h.pas, 'k4', m1, 'PE', 'PE', 2.5, 18);
+          A(h.z, 'aL2', f2, 'eL', null, 1.5, 1); A(f2, 'aL', m2, 'L', 'L2', 1.5, 80); A(h.z, 'aN', m2, 'N', 'N', 1.5, 80); A(h.pas, 'k5', m2, 'PE', 'PE', 1.5, 80);
+          T('notiz', 620, 470, {}, null, 'Das Messgerät bestimmt Zs zwischen L und PE und bewertet den Kurzschlussstrom mit 2/3 (Temperatur, Messfehler). Die lange 1,5-mm²-Leitung schafft die 80 A für B16 nicht – Querschnitt oder Länge der Ader ändern und neu ablesen.');
+        });
+      }, 'Schutz und Messen'],
+      afdd: ['Wackelkontakt: Brandschutzschalter (AFDD) gegen LS', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const f1 = T('afdd', 0, 470, { in: 16 }, null, 'F1 AFDD'), f2 = T('ls', 300, 470, { in: 16 }, null, 'F2 LS');
+          const w1 = T('fehler', 0, 620, { art: 'lbs', rf: 1.5 }, null, 'Klemme 1'), w2 = T('fehler', 300, 620, { art: 'lbs', rf: 1.5 }, null, 'Klemme 2');
+          const l1 = T('last', 0, 770, { vorlage: 'hz' }, null, 'Heizlüfter 1'), l2 = T('last', 300, 770, { vorlage: 'hz' }, null, 'Heizlüfter 2');
+          A(h.z, 'aL1', f1, 'eL', null, 2.5, 1); A(h.z, 'aN', f1, 'eN', 'N', 2.5, 1); A(f1, 'aL', w1, 'a', 'L1', 2.5, 8); A(w1, 'b', l1, 'L', 'L1', 2.5, 4); A(f1, 'aN', l1, 'N', 'N', 2.5, 12); A(h.pas, 'k4', l1, 'PE', 'PE', 2.5, 12);
+          A(h.z, 'aL2', f2, 'eL', null, 2.5, 1); A(f2, 'aL', w2, 'a', 'L2', 2.5, 8); A(w2, 'b', l2, 'L', 'L2', 2.5, 4); A(h.z, 'aN', l2, 'N', 'N', 2.5, 12); A(h.pas, 'k5', l2, 'PE', 'PE', 2.5, 12);
+          T('notiz', 620, 470, {}, null, 'Bei beiden Klemmstellen „Auslösen“: Der Wackelkontakt zieht einen Lichtbogen, der Strom bleibt unter 16 A. Der LS merkt nichts, die Klemme verschmort nach einiger Zeit. Der Brandschutzschalter erkennt den Lichtbogen und schaltet in Bruchteilen einer Sekunde ab.');
+        });
+      }, 'Schutz und Messen'],
+      spd: ['Überspannungsschutz und N-Unterbrechung im Haus', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN', 8);
+          const ns = T('schiene', 0, 470, { art: 'N', n: 4 }, null, 'N-Schiene'), spd = T('spd', 300, 470, {}, null, 'Überspannungsschutz');
+          const a1 = T('last', 0, 640, { vorlage: 'hz' }, null, 'Heizlüfter L1'), a2 = T('last', 220, 640, { vorlage: 'tv' }, null, 'Fernseher L2'), a3 = T('last', 440, 640, { vorlage: 'led' }, null, 'LED L3');
+          A(h.z, 'aN', ns, 'k1', 'N', 10, 1);
+          L3(h.z, 'a', spd, '', 4, 1); A(ns, 'k2', spd, 'N', 'N', 4, 1); A(h.pas, 'k4', spd, 'PE', 'PE', 4, 1);
+          A(h.z, 'aL1', a1, 'L', 'L1', 2.5, 8); A(ns, 'k3', a1, 'N', 'N', 2.5, 8); A(h.pas, 'k5', a1, 'PE', 'PE', 2.5, 8);
+          A(h.z, 'aL2', a2, 'L', 'L2', 2.5, 8); A(ns, 'k4', a2, 'N', 'N', 2.5, 8);
+          A(h.z, 'aL3', a3, 'L', 'L3', 2.5, 8); A(ns, 'k4', a3, 'N', 'N', 2.5, 8); A(h.pas, 'k6', a3, 'PE', 'PE', 2.5, 8);
+          T('notiz', 660, 470, {}, null, 'Am Überspannungsschutz „Blitzeinschlag“ ausprobieren. Dann die N-Ader vom Zähler zur N-Schiene unterbrechen: Der Sternpunkt verschiebt sich, Fernseher und LED bekommen fast 400 V und gehen kaputt. Der Ableiter misst gegen PE – dort bleibt es bei 230 V, gegen einen N-Bruch schützt er nicht.');
+        });
+      }, 'Schutz und Messen'],
+      trafo: ['Sicherheitstransformator (SELV) und Trenntransformator', function () {
+        return baue(function (T, A, L3) {
+          const h = hausanschluss(T, A, L3, 'TN');
+          const f1 = T('ls', 0, 470, { in: 6 }, null, 'F1'), f2 = T('ls', 360, 470, { in: 16 }, null, 'F2');
+          const tr = T('trafo', 0, 620, { art: 's12', sn: 105, uk: 10 }, null, 'Sicherheitstrafo 12 V'), h1 = T('last', 0, 790, { vorlage: 'halogen' }, null, 'Halogen 1'), h2 = T('last', 200, 790, { vorlage: 'halogen' }, null, 'Halogen 2');
+          const tt = T('trafo', 400, 620, { art: 'trenn', sn: 2000, uk: 4 }, null, 'Trenntrafo'), bo = T('last', 400, 790, { vorlage: 'bohr' }, null, 'Bohrmaschine'), m = T('mensch', 400, 960, {}, null, 'Person');
+          A(h.z, 'aL1', f1, 'eL', null, 1.5, 1); A(f1, 'aL', tr, 'pL', 'L1', 1.5, 3); A(h.z, 'aN', tr, 'pN', 'N', 1.5, 3); A(h.pas, 'k4', tr, 'PE', 'PE', 1.5, 3);
+          A(tr, 's1', h1, 'L', 'L2', 1.5, 3); A(tr, 's2', h1, 'N', 'N', 1.5, 3); A(tr, 's1', h2, 'L', 'L2', 1.5, 3); A(tr, 's2', h2, 'N', 'N', 1.5, 3);
+          A(h.z, 'aL2', f2, 'eL', null, 2.5, 1); A(f2, 'aL', tt, 'pL', 'L2', 2.5, 3); A(h.z, 'aN', tt, 'pN', 'N', 2.5, 3); A(h.pas, 'k5', tt, 'PE', 'PE', 2.5, 3);
+          A(tt, 's1', bo, 'L', 'L2', 1.5, 5); A(tt, 's2', bo, 'N', 'N', 1.5, 5); A(m, 'H', tt, 's1', 'mess', 1.5, 1);
+          T('notiz', 660, 620, {}, null, 'Die Person berührt einen Leiter hinter dem Trenntrafo: Es fließt kein nennenswerter Strom, weil der Sekundärkreis keine Verbindung zur Erde hat (Schutztrennung). Zum Vergleich die Kontaktleitung an eine Ader vor dem Trafo hängen. Am 12-V-Kreis ist jede Berührung ungefährlich.');
+        });
+      }, 'Schutz und Messen']
     };
     (function () {
       const s = $('sk-beispiel');
       const gruppen = {};
-      ['Grundlagen', 'Notstrom mit Speicher', 'Notstrom mit Wechselrichter', 'Notstrom mit Aggregat'].forEach(function (g) { const og = document.createElement('optgroup'); og.label = g; gruppen[g] = og; s.append(og); });
+      ['Grundlagen', 'Schutz und Messen', 'Schalten und Steuern', 'Notstrom mit Speicher', 'Notstrom mit Wechselrichter', 'Notstrom mit Aggregat'].forEach(function (g) { const og = document.createElement('optgroup'); og.label = g; gruppen[g] = og; s.append(og); });
       Object.keys(BEISPIELE).forEach(function (k) { const o = kn('option', '', BEISPIELE[k][0]); o.value = k; gruppen[BEISPIELE[k][2]].append(o); });
       s.addEventListener('change', function () {
         const b = BEISPIELE[s.value]; s.value = ''; if (!b) return;
@@ -2004,7 +2470,8 @@
     $('sk-reset').addEventListener('click', function () {
       teile.forEach(function (t) {
         if (t.st.f) t.st.f = [1, 1, 1];
-        if (['ls', 'fi', 'fils'].indexOf(t.typ) >= 0 && !t.st.ein) { t.st.ein = true; t.z.ausgeloest = false; }
+        if (['ls', 'fi', 'fils', 'sh', 'motorschutz', 'afdd'].indexOf(t.typ) >= 0 && !t.st.ein) { t.st.ein = true; t.z.ausgeloest = false; }
+        if (t.typ === 'trafo') t.z.aus = false;
         t.z.wmap = {}; if (t.z.stoerung) t.z.stoerung = null; if (t.z.lim) t.z.lim = [1, 1, 1]; if (t.z.kaputt) t.z.kaputt = false;
       });
       log('Alle Schutzorgane wieder eingeschaltet, Sicherungen ersetzt, Störungen quittiert.'); G.T0 = G.T; schmutzig = true; speichern(); aktualisieren(); panelZeigen(); protokollZeigen();
@@ -2042,6 +2509,7 @@
       laden(p); speichernJetzt(); vorherKnopf.zeigen();
       hinweis('Aufbau aus dem Link geladen.' + (gesichert ? ' Dein vorheriger ist gesichert.' : ''));
     }).catch(function () { hinweis('Der Link ist unvollständig oder beschädigt – es gilt der gespeicherte Aufbau.'); });
+    if (window.SK_TEST) window.SK = { TYP: TYP, baue: baue, hausanschluss: hausanschluss, BEISPIELE: BEISPIELE, laden: laden, simulieren: simulieren, loesen: loesen, G: G, C: C, kl: kl, uk: uk, teilVon: teilVon, teile: function () { return teile; }, adern: function () { return adern; }, protokoll: function () { return protokoll; }, leeren: function () { protokoll = []; } };
     Array.prototype.forEach.call(document.querySelectorAll('#sk-wissen [data-tex]'), function (e) { Formel.setze(e, e.getAttribute('data-tex'), true); });
   })();
   </script>
