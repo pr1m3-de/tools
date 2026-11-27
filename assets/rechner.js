@@ -139,7 +139,7 @@
 
     function zeigeWert(k) {
       const x = felder[k]; if (!x) return;
-      x.el.value = x.f.wahl ? String(e[k]) : String(Math.round(e[k] * 10000) / 10000).replace('.', ',');
+      x.el.value = x.f.wahl ? String(e[k]) : String(Math.abs(e[k]) > 0 && Math.abs(e[k]) < 0.01 ? Number(e[k].toPrecision(10)) : Math.round(e[k] * 1e8) / 1e8).replace('.', ',');   // kleine Werte nicht auf 0 runden
       x.zeile.classList.remove('widerspruch');
     }
     function einFeld(f, ziel) {
@@ -514,7 +514,9 @@
     }
     kB.addEventListener('click', function () { setze(L.beispiel || {}); });
     kL.addEventListener('click', function () { setze({}); });
-    function stellen(k, w) { return FD[k].n !== undefined ? FD[k].n : (Math.abs(w) >= 100 ? 0 : Math.abs(w) >= 10 ? 1 : Math.abs(w) >= 1 ? 2 : 3); }
+    // n: 'genau' zeigt bis zu 10 gültige Ziffern ohne Endnullen (für Umrechnungen mit Kommaverschiebung)
+    function stellen(k, w) { const n = FD[k].n; if (n === 'genau') return Math.min(12, Math.max(0, 9 - Math.floor(Math.log10(Math.abs(w) || 1)))); return n !== undefined ? n : (Math.abs(w) >= 100 ? 0 : Math.abs(w) >= 10 ? 1 : Math.abs(w) >= 1 ? 2 : 3); }
+    function zeigeZahl(k, w, tex) { const t = (tex ? tz : zahl)(w, stellen(k, w)); return FD[k].n === 'genau' && t.indexOf(',') >= 0 ? t.replace(/0+$/, '').replace(/,$/, '').replace(/\{,\}$/, '') : t; }
     function loesen() {
       const x = {}, q = {}, weg = [], wid = {};
       Object.keys(LW).forEach(function (k) { if (LW[k] !== null) { x[k] = LW[k]; q[k] = 'g'; } });
@@ -541,7 +543,7 @@
           x[k] = w; q[k] = 'b'; weiter = true;
           let tex = '';
           try { tex = G.weg ? G.weg(k, x) : ''; } catch (e) { tex = ''; }
-          weg.push([fd.name + (G.name ? ' (' + G.name + ')' : ''), tex || ((fd.tex || k) + ' = ' + E(tz(w, stellen(k, w)) + (fd.e ? '\\,\\text{' + fd.e.replace(/%/g, '\\%') + '}' : '')))]);
+          weg.push([fd.name + (G.name ? ' (' + G.name + ')' : ''), tex || ((fd.tex || k) + ' = ' + E(zeigeZahl(k, w, true) + (fd.e ? '\\,\\text{' + fd.e.replace(/%/g, '\\%').replace(/µ/g, '}\\mu\\text{').replace(/²/g, '}^2\\text{').replace(/³/g, '}^3\\text{') + '}' : '')))]);
         });
       }
       // Gleichungen, deren Größen alle feststehen, aber nicht zum Rechnen benutzt wurden: passen sie?
@@ -559,7 +561,7 @@
         const k = fd.k, el = LEL[k];
         el.z.className = 'feld' + (wid[k] ? ' widerspruch' : q[k] === 'g' ? ' gegeben' : q[k] === 'b' ? ' berechnet' : '');
         el.e.setAttribute('aria-invalid', wid[k] ? 'true' : 'false');
-        if (q[k] === 'b') el.e.value = zahl(x[k], stellen(k, x[k])).replace(/\s/g, ''); else if (q[k] !== 'g') el.e.value = '';
+        if (q[k] === 'b') el.e.value = zeigeZahl(k, x[k]).replace(/\s/g, ''); else if (q[k] !== 'g') el.e.value = '';
       });
       const n = Object.keys(wid).length;
       urt.textContent = n ? 'Widerspruch' : offen.length ? offen.length + ' offen' : 'vollständig';

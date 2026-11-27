@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bruchrechnen – Formeln &amp; Rechner</title>
+  <meta name="description" content="Brüche addieren, subtrahieren, multiplizieren, dividieren und vergleichen – mit Hauptnenner, Erweitern, Kürzen, gemischter Zahl, periodischer Dezimalzahl und animierten Bruchbildern.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Was ist der Hauptnenner?</summary><p>Der kleinste gemeinsame Nenner zweier Brüche, also das kleinste gemeinsame Vielfache (kgV) der Nenner. Bei 1/4 und 1/6 ist er 12, nicht 24. Mit dem Hauptnenner bleiben die Zahlen klein und das Kürzen am Ende fällt leichter.</p></details>
+        <details><summary>Warum teilt man durch einen Bruch, indem man mit dem Kehrwert malnimmt?</summary><p>Teilen fragt: Wie oft passt der zweite Bruch in den ersten? 3/4 : 1/8 heißt „wie viele Achtel stecken in drei Vierteln“ – sechs. Genau das liefert 3/4 · 8/1 = 6. Der Kehrwert dreht Zähler und Nenner um.</p></details>
+        <details><summary>Wann wird eine Dezimalzahl periodisch?</summary><p>Wenn der gekürzte Nenner einen anderen Primfaktor als 2 und 5 enthält. 3/8 = 0,375 endet, weil 8 = 2 · 2 · 2. 5/12 = 0,41666… ist periodisch, weil 12 den Faktor 3 enthält.</p></details>
+        <details><summary>Wo braucht man Brüche im Beruf?</summary><p>Bei Anteilen und Mischungen (1 : 3 Mörtel, Gefälle 1/50), Gewindesteigungen und Zollmaßen (3/8″, 1/2″), Übersetzungen von Zahnrädern und beim Aufteilen von Mengen oder Kosten.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const BLAU = '#2B7BB9', ORANGE = '#E8590C', GRUEN = '#2F9E44', LILA = '#7048E8';
+    const OP = { plus: '+', minus: '−', mal: '·', durch: ':', vergleich: '?' }, OPTEX = { plus: '+', minus: '-', mal: '\\cdot', durch: ':' };
+
+    // ---------- Bruchrechnung mit ganzen Zahlen ----------
+    function ggT(a, b) { a = Math.abs(a); b = Math.abs(b); while (b) { const t = a % b; a = b; b = t; } return a || 1; }
+    function kgV(a, b) { return a / ggT(a, b) * b; }
+    function gekuerzt(zz, nn) { if (nn < 0) { zz = -zz; nn = -nn; } const g = ggT(zz, nn); return { z: zz / g, n: nn / g, g: g }; }
+    // Bruch als TeX, mit Vorzeichen
+    function fr(zz, nn) { return (zz < 0 ? '-' : '') + '\\frac{' + Math.abs(zz) + '}{' + nn + '}'; }
+    // gemischte Zahl als TeX bzw. Text
+    function gemischtTex(zz, nn) {
+      const a = Math.abs(zz), g = Math.floor(a / nn), r = a % nn, v = zz < 0 ? '-' : '';
+      if (nn === 1) return v + a; if (!g) return fr(zz, nn); return v + g + (r ? '\\tfrac{' + r + '}{' + nn + '}' : '');
+    }
+    function gemischtText(zz, nn) {
+      const a = Math.abs(zz), g = Math.floor(a / nn), r = a % nn, v = zz < 0 ? '−' : '';
+      if (nn === 1) return v + a; if (!g) return v + r + '/' + nn; return v + g + (r ? ' ' + r + '/' + nn : '');
+    }
+    // Dezimalzahl mit Periode: schriftliche Division, Reste merken
+    function dezimal(zz, nn) {
+      const neg = zz < 0, a = Math.abs(zz), ganz = Math.floor(a / nn); let rest = a % nn;
+      const ziffern = [], gesehen = {}; let periodeAb = -1;
+      while (rest && ziffern.length < 60) {
+        if (gesehen[rest] !== undefined) { periodeAb = gesehen[rest]; break; }
+        gesehen[rest] = ziffern.length; rest *= 10; ziffern.push(Math.floor(rest / nn)); rest %= nn;
+      }
+      const vor = (periodeAb >= 0 ? ziffern.slice(0, periodeAb) : ziffern).join(''), per = periodeAb >= 0 ? ziffern.slice(periodeAb).join('') : '';
+      const abgeschnitten = !!rest && periodeAb < 0;
+      const ganzT = String(ganz).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      return {
+        text: (neg ? '−' : '') + ganzT + (vor || per ? ',' + vor + per.split('').map(function (c) { return c + '̅'; }).join('') : '') + (abgeschnitten ? '…' : ''),
+        tex: (neg ? '-' : '') + ganzT.replace(/ /g, '\\,') + (vor || per ? '{,}' + vor + (per ? '\\overline{' + per + '}' : '') : '') + (abgeschnitten ? '\\ldots' : ''),
+        periode: per, endlich: !per && !abgeschnitten, wert: (neg ? -1 : 1) * a / nn
+      };
+    }
+    // Eingabe → unechter Bruch
+    function unecht(vz, g, zz, nn) { return { z: (vz === 'minus' ? -1 : 1) * (g * nn + zz), n: nn }; }
+
+    R.seite({
+      titel: 'Bruchrechnen',
+      einleitung: 'Zwei Brüche oder gemischte Zahlen addieren, subtrahieren, multiplizieren, dividieren oder vergleichen. Der Rechenweg zeigt Hauptnenner, Erweitern und Kürzen; die Bilder zeigen, was dabei mit den Stücken passiert.',
+      hilfe: 'Gemischte Zahlen wie 2 ¾: Ganze 2, Zähler 3, Nenner 4. Für einen einfachen Bruch die Ganzen auf 0 lassen.',
+      gruppen: [
+        { titel: 'Erster Bruch', farbe: BLAU, felder: [
+          { k: 'v1', name: 'Vorzeichen', wahl: [['plus', '+ (positiv)'], ['minus', '− (negativ)']] },
+          { k: 'g1', tex: 'g_1', name: 'Ganze', min: 0, max: 999, ganz: true },
+          { k: 'z1', tex: 'z_1', name: 'Zähler', min: 0, max: 9999, ganz: true },
+          { k: 'n1', tex: 'n_1', name: 'Nenner', min: 1, max: 9999, ganz: true, hilfe: 'Der Nenner darf nicht 0 sein.' }
+        ] },
+        { titel: 'Rechenart', farbe: LILA, felder: [
+          { k: 'op', name: 'Rechnung', wahl: [['plus', 'addieren (+)'], ['minus', 'subtrahieren (−)'], ['mal', 'multiplizieren (·)'], ['durch', 'dividieren (:)'], ['vergleich', 'vergleichen (<, =, >)']] }
+        ] },
+        { titel: 'Zweiter Bruch', farbe: ORANGE, felder: [
+          { k: 'v2', name: 'Vorzeichen', wahl: [['plus', '+ (positiv)'], ['minus', '− (negativ)']] },
+          { k: 'g2', tex: 'g_2', name: 'Ganze', min: 0, max: 999, ganz: true },
+          { k: 'z2', tex: 'z_2', name: 'Zähler', min: 0, max: 9999, ganz: true },
+          { k: 'n2', tex: 'n_2', name: 'Nenner', min: 1, max: 9999, ganz: true }
+        ] }
+      ],
+      beispiel: { v1: 'plus', g1: 0, z1: 3, n1: 4, op: 'plus', v2: 'plus', g2: 0, z2: 2, n2: 3 },
+
+      rechne: function (e) {
+        const a = unecht(e.v1, e.g1, e.z1, e.n1), b = unecht(e.v2, e.g2, e.z2, e.n2), r = { a: a, b: b, op: e.op };
+        if (e.op === 'plus' || e.op === 'minus' || e.op === 'vergleich') {
+          r.H = kgV(a.n, b.n); r.k1 = r.H / a.n; r.k2 = r.H / b.n; r.za = a.z * r.k1; r.zb = b.z * r.k2;
+          if (e.op === 'vergleich') { r.zeichen = r.za < r.zb ? '<' : r.za > r.zb ? '>' : '='; r.diff = gekuerzt(r.za - r.zb, r.H); return r; }
+          r.roh = { z: e.op === 'plus' ? r.za + r.zb : r.za - r.zb, n: r.H };
+        } else if (e.op === 'mal') {
+          r.kk1 = ggT(a.z, b.n); r.kk2 = ggT(b.z, a.n);
+          r.roh = { z: a.z * b.z, n: a.n * b.n };
+        } else {
+          if (b.z === 0) { r.null = true; return r; }
+          r.kehr = { z: b.n * (b.z < 0 ? -1 : 1), n: Math.abs(b.z) };
+          r.roh = { z: a.z * r.kehr.z, n: a.n * r.kehr.n };
+        }
+        r.erg = gekuerzt(r.roh.z, r.roh.n);
+        r.dez = dezimal(r.erg.z, r.erg.n);
+        return r;
+      },
+
+      ergebnis: function (r, e, H) {
+        if (r.null) { H.urteil(false, 'nicht lösbar'); H.meldung('Durch null kann man nicht teilen: Der zweite Bruch ist 0.', true); return; }
+        const a = r.a, b = r.b;
+        if (e.op === 'vergleich') {
+          H.urteil(null, gemischtText(a.z, a.n) + ' ' + r.zeichen + ' ' + gemischtText(b.z, b.n));
+          H.kacheln([
+            [r.za + '/' + r.H + ' ' + r.zeichen + ' ' + r.zb + '/' + r.H, 'gleichnamig mit Hauptnenner ' + r.H, LILA],
+            [dezimal(a.z, a.n).text + ' ' + r.zeichen + ' ' + dezimal(b.z, b.n).text, 'als Dezimalzahlen', BLAU],
+            [gemischtText(Math.abs(r.diff.z), r.diff.n), 'Unterschied', ORANGE]
+          ]);
+          return;
+        }
+        const g = r.erg, d = r.dez;
+        H.urteil(null, gemischtText(g.z, g.n));
+        if (g.n > 1 && r.roh.n !== g.n) H.meldung('Gekürzt mit ' + (r.roh.n / g.n) + ': ' + r.roh.z + '/' + r.roh.n + ' = ' + g.z + '/' + g.n + '.');
+        if (e.n1 === 1 && e.n2 === 1) H.meldung('Beide Nenner sind 1 – das sind ganze Zahlen.');
+        H.kacheln([
+          [g.n === 1 ? String(g.z).replace('-', '−') : (g.z < 0 ? '−' : '') + Math.abs(g.z) + '/' + g.n, 'Ergebnis gekürzt', GRUEN],
+          [gemischtText(g.z, g.n), 'als gemischte Zahl', BLAU],
+          [d.text, d.periode ? 'Dezimalzahl, Periode ' + d.periode : d.endlich ? 'Dezimalzahl, endet' : 'Dezimalzahl (abgebrochen)', LILA],
+          [z(d.wert * 100, 2) + ' %', 'in Prozent', ORANGE]
+        ]);
+        const zeilen = [[gemischtText(a.z, a.n), a.z + '/' + a.n, dezimal(a.z, a.n).text], [gemischtText(b.z, b.n), b.z + '/' + b.n, dezimal(b.z, b.n).text], ['Ergebnis', g.z + '/' + g.n, d.text]];
+        H.tabelle('Die Zahlen in jeder Schreibweise', ['Zahl', 'unechter Bruch', 'Dezimalzahl'], zeilen.map(function (x) { return x.map(function (s) { return String(s).replace(/-/g, '−'); }); }), { zahl: [1, 2] });
+      },
+
+      weg: function (r, e) {
+        if (r.null) return [['Teilen durch null', '\\text{nicht definiert}']];
+        const a = r.a, b = r.b, w = [];
+        if (e.g1 || e.g2 || e.v1 === 'minus' || e.v2 === 'minus') {
+          const t = function (vz, g, zz, nn, x) { return (g ? (vz === 'minus' ? '-' : '') + g + '\\tfrac{' + zz + '}{' + nn + '} = ' + (vz === 'minus' ? '-' : '') + '\\frac{' + g + ' \\cdot ' + nn + ' + ' + zz + '}{' + nn + '} = ' : '') + fr(x.z, x.n); };
+          w.push(['In unechte Brüche umwandeln', t(e.v1, e.g1, e.z1, e.n1, a) + ', \\quad ' + t(e.v2, e.g2, e.z2, e.n2, b)]);
+        }
+        if (e.op === 'plus' || e.op === 'minus' || e.op === 'vergleich') {
+          w.push(['Hauptnenner (kleinstes gemeinsames Vielfaches)', '\\text{kgV}(' + a.n + ', ' + b.n + ') = ' + E(String(r.H))]);
+          w.push(['Erweitern', fr(a.z, a.n) + ' = \\frac{' + a.z + ' \\cdot ' + r.k1 + '}{' + a.n + ' \\cdot ' + r.k1 + '} = ' + fr(r.za, r.H) + ', \\quad ' + fr(b.z, b.n) + ' = \\frac{' + b.z + ' \\cdot ' + r.k2 + '}{' + b.n + ' \\cdot ' + r.k2 + '} = ' + fr(r.zb, r.H)]);
+          if (e.op === 'vergleich') { w.push(['Zähler vergleichen', fr(r.za, r.H) + ' ' + E(r.zeichen) + ' ' + fr(r.zb, r.H)]); return w; }
+          w.push(['Zähler ' + (e.op === 'plus' ? 'addieren' : 'subtrahieren'), '\\frac{' + r.za + (e.op === 'plus' ? ' + ' : ' - ') + (r.zb < 0 ? '(' + r.zb + ')' : r.zb) + '}{' + r.H + '} = ' + fr(r.roh.z, r.roh.n)]);
+        } else if (e.op === 'mal') {
+          if (r.kk1 > 1 || r.kk2 > 1) w.push(['Vorher über Kreuz kürzen (macht die Zahlen kleiner)', '\\text{ggT}(' + Math.abs(a.z) + ', ' + b.n + ') = ' + r.kk1 + ', \\quad \\text{ggT}(' + Math.abs(b.z) + ', ' + a.n + ') = ' + r.kk2]);
+          w.push(['Zähler mal Zähler, Nenner mal Nenner', fr(a.z, a.n) + ' \\cdot ' + fr(b.z, b.n) + ' = \\frac{' + a.z + ' \\cdot ' + (b.z < 0 ? '(' + b.z + ')' : b.z) + '}{' + a.n + ' \\cdot ' + b.n + '} = ' + fr(r.roh.z, r.roh.n)]);
+        } else {
+          w.push(['Mit dem Kehrwert malnehmen', fr(a.z, a.n) + ' : ' + fr(b.z, b.n) + ' = ' + fr(a.z, a.n) + ' \\cdot ' + fr(r.kehr.z, r.kehr.n) + ' = ' + fr(r.roh.z, r.roh.n)]);
+        }
+        const g = r.erg;
+        if (g.g > 1) w.push(['Kürzen mit dem größten gemeinsamen Teiler', '\\text{ggT}(' + Math.abs(r.roh.z) + ', ' + r.roh.n + ') = ' + g.g + ' \\;\\Rightarrow\\; \\frac{' + r.roh.z + ' : ' + g.g + '}{' + r.roh.n + ' : ' + g.g + '} = ' + E(fr(g.z, g.n))]);
+        else w.push(['Kürzen', fr(g.z, g.n) + ' \\text{ ist schon vollständig gekürzt}']);
+        if (Math.abs(g.z) >= g.n && g.n > 1) w.push(['Gemischte Zahl', fr(g.z, g.n) + ' = ' + E(gemischtTex(g.z, g.n))]);
+        w.push(['Als Dezimalzahl (Zähler durch Nenner)', Math.abs(g.z) + ' : ' + g.n + ' = ' + E(r.dez.tex)]);
+        return w;
+      },
+
+      // ---------- Löser: daraus macht der Lernbereich Aufgaben ----------
+      loeser: [
+        {
+          titel: 'Anteil vom Ganzen',
+          hilfe: 'Zum Beispiel: 3/4 von 200 € oder „wie viel ist das Ganze, wenn 2/5 genau 60 kg sind?“',
+          felder: [
+            { k: 'z', tex: 'z', name: 'Zähler', min: 1, max: 999, n: 0, fest: true },
+            { k: 'n', tex: 'n', name: 'Nenner', min: 1, max: 999, n: 0, fest: true },
+            { k: 'G', tex: 'G', name: 'Ganzes (Grundwert)', min: 0.01, max: 1e7, n: 2 },
+            { k: 'A', tex: 'A', name: 'Anteil', min: 0.0001, max: 1e7, n: 2 }
+          ],
+          beispiel: { z: 3, n: 4, G: 200 },
+          gleichungen: [
+            { name: 'Anteil', v: ['A', 'G', 'z', 'n'], f: function (x) { return [x.A, x.G * x.z / x.n]; },
+              loese: { A: function (x) { return x.G * x.z / x.n; }, G: function (x) { return x.A * x.n / x.z; } },
+              weg: function (k, x) { return k === 'A' ? 'A = G \\cdot \\frac{z}{n} = ' + tz(x.G, 2) + ' \\cdot \\frac{' + x.z + '}{' + x.n + '} = ' + E(tz(x.A, 2)) : 'G = A \\cdot \\frac{n}{z} = ' + tz(x.A, 2) + ' \\cdot \\frac{' + x.n + '}{' + x.z + '} = ' + E(tz(x.G, 2)); } }
+          ]
+        },
+        {
+          titel: 'Bruch, Dezimalzahl und Prozent',
+          hilfe: 'Zähler und Nenner eintragen – oder eine Dezimalzahl bzw. Prozentzahl.',
+          felder: [
+            { k: 'z', tex: 'z', name: 'Zähler', min: 1, max: 999, n: 0, fest: true },
+            { k: 'n', tex: 'n', name: 'Nenner', min: 1, max: 999, n: 0 },
+            { k: 'd', tex: 'd', name: 'Dezimalzahl', min: 0.0001, max: 1000, n: 4 },
+            { k: 'p', tex: 'p', name: 'Prozent', e: '%', min: 0.01, max: 100000, n: 2 }
+          ],
+          beispiel: { z: 3, n: 8 },
+          gleichungen: [
+            { name: 'Bruch als Dezimalzahl', v: ['d', 'z', 'n'], f: function (x) { return [x.d * x.n, x.z]; },
+              loese: { d: function (x) { return x.z / x.n; } },
+              weg: function (k, x) { return 'd = z : n = ' + x.z + ' : ' + x.n + ' = ' + E(tz(x.d, 4)); } },
+            { name: 'Dezimalzahl in Prozent', v: ['p', 'd'], f: function (x) { return [x.p, 100 * x.d]; },
+              loese: { p: function (x) { return 100 * x.d; }, d: function (x) { return x.p / 100; } },
+              weg: function (k, x) { return k === 'p' ? 'p = d \\cdot 100\\,\\% = ' + E(tz(x.p, 2) + '\\,\\%') : 'd = \\frac{p}{100\\,\\%} = ' + E(tz(x.d, 4)); } }
+          ]
+        },
+        {
+          titel: 'Erweitern und Kürzen',
+          hilfe: 'Ein Bruch z/n wird mit k erweitert zu Z/N. Rückwärts ist es Kürzen.',
+          felder: [
+            { k: 'z', tex: 'z', name: 'Zähler', min: 1, max: 999, n: 0 },
+            { k: 'n', tex: 'n', name: 'Nenner', min: 1, max: 999, n: 0 },
+            { k: 'k', tex: 'k', name: 'Faktor', min: 2, max: 100, n: 0 },
+            { k: 'Z', tex: 'Z', name: 'neuer Zähler', min: 1, max: 99999, n: 0 },
+            { k: 'N', tex: 'N', name: 'neuer Nenner', min: 1, max: 99999, n: 0 }
+          ],
+          beispiel: { z: 2, n: 3, k: 4 },
+          gleichungen: [
+            { name: 'Zähler erweitern', v: ['Z', 'z', 'k'], f: function (x) { return [x.Z, x.z * x.k]; },
+              loese: { Z: function (x) { return x.z * x.k; }, z: function (x) { return x.Z / x.k; }, k: function (x) { return x.Z / x.z; } } },
+            { name: 'Nenner erweitern', v: ['N', 'n', 'k'], f: function (x) { return [x.N, x.n * x.k]; },
+              loese: { N: function (x) { return x.n * x.k; }, n: function (x) { return x.N / x.k; }, k: function (x) { return x.N / x.n; } } }
+          ]
+        }
+      ],
+
+      sammlung: [
+        ['Gleichnamige Brüche addieren', '\\frac{a}{n} + \\frac{b}{n} = \\frac{a + b}{n}', 'nur die Zähler addieren, der Nenner bleibt'],
+        ['Ungleichnamige Brüche addieren', '\\frac{a}{b} + \\frac{c}{d} = \\frac{a \\cdot k_1 + c \\cdot k_2}{H}', 'H = kgV(b, d) ist der Hauptnenner, k₁ = H : b und k₂ = H : d'],
+        ['Brüche subtrahieren', '\\frac{a}{b} - \\frac{c}{d} = \\frac{a \\cdot k_1 - c \\cdot k_2}{H}', 'wie Addieren, nur die Zähler abziehen'],
+        ['Brüche multiplizieren', '\\frac{a}{b} \\cdot \\frac{c}{d} = \\frac{a \\cdot c}{b \\cdot d}', 'vorher über Kreuz kürzen hält die Zahlen klein'],
+        ['Brüche dividieren', '\\frac{a}{b} : \\frac{c}{d} = \\frac{a}{b} \\cdot \\frac{d}{c}', 'mit dem Kehrwert malnehmen; c darf nicht 0 sein'],
+        ['Erweitern', '\\frac{a}{b} = \\frac{a \\cdot k}{b \\cdot k}', 'der Wert bleibt gleich'],
+        ['Kürzen', '\\frac{a}{b} = \\frac{a : g}{b : g}, \\quad g = \\text{ggT}(a, b)', 'vollständig gekürzt mit dem größten gemeinsamen Teiler'],
+        ['Gemischte Zahl', 'g\\tfrac{a}{b} = \\frac{g \\cdot b + a}{b}', 'zum Rechnen immer in einen unechten Bruch umwandeln'],
+        ['Bruch als Dezimalzahl', '\\frac{a}{b} = a : b', 'endet nur, wenn der gekürzte Nenner nur die Primfaktoren 2 und 5 hat'],
+        ['Anteil vom Ganzen', 'A = G \\cdot \\frac{z}{n}', 'z. B. 3/4 von 200 € = 150 €'],
+        ['Bruch in Prozent', 'p = \\frac{z}{n} \\cdot 100\\,\\%', '1/4 = 25 %, 1/8 = 12,5 %, 1/3 ≈ 33,3 %']
+      ],
+      quellen: 'Rechenregeln nach den Bildungsstandards Mathematik (Sekundarstufe I). Gerechnet wird exakt mit ganzen Zahlen; Dezimalzahlen werden bis zu 60 Nachkommastellen auf eine Periode untersucht.',
+
+      // ---------- Bild: Bruchbilder mit Animation ----------
+      bild: {
+        titel: 'Bruchbilder', animiert: true,
+        label: 'Kreise und Streifen, die die Brüche als gefärbte Stücke zeigen',
+        hoehe: function (B) { return B < 520 ? 420 : 300; },
+        hinweis: function (r, e) {
+          if (r.null) return 'Durch null teilen geht nicht.';
+          if (e.op === 'plus' || e.op === 'minus') return 'Beide Brüche werden in ' + r.H + ' gleiche Stücke geteilt, dann werden die Stücke ' + (e.op === 'plus' ? 'zusammengelegt' : 'weggenommen') + '.';
+          if (e.op === 'mal') return 'Rechteck: ' + Math.abs(r.a.z) + '/' + r.a.n + ' der Breite mal ' + Math.abs(r.b.z) + '/' + r.b.n + ' der Höhe – die Überlappung ist das Ergebnis.';
+          if (e.op === 'durch') return 'Wie oft passt der zweite Streifen in den ersten? ' + gemischtText(r.erg.z, r.erg.n) + ' Mal.';
+          return 'Gleichnamig gemacht lassen sich die Stücke direkt vergleichen.';
+        },
+        zeichne: function (cx, B, Hh, t, r, e) {
+          const T = F('--text'), L = F('--leise'), schmal = B < 520;
+          if (r.null) { R.Z.text(cx, 'Durch 0 kann man nicht teilen.', B / 2, Hh / 2, 'center', 16, true, ORANGE); return; }
+          const zyk = 9000, p = (t % zyk) / zyk;   // Phase 0 … 1
+          // Kreis(e) für einen Bruch; teilung: Anzahl Linien je Ganzes, voll: Anzahl gefärbter Teile (in Teilung)
+          function kreise(x, y, rad, zz, nn, teilung, farbe, alphaNeu, max) {
+            const ganze = Math.max(1, Math.ceil(Math.abs(zz) / nn)), n = Math.min(ganze, max || 3);
+            const rr = n > 1 ? rad * (n > 2 ? 0.55 : 0.7) : rad, abst = rr * 2.15;
+            const x0 = x - (n - 1) * abst / 2, proTeil = teilung / nn;
+            let rest = Math.abs(zz) * proTeil;
+            for (let i = 0; i < n; i++) {
+              const cxp = x0 + i * abst, f = Math.min(teilung, rest); rest -= f;
+              cx.fillStyle = F('--flaeche'); cx.beginPath(); cx.arc(cxp, y, rr, 0, 2 * Math.PI); cx.fill();
+              if (f > 0) { cx.fillStyle = farbe; cx.globalAlpha = zz < 0 ? 0.45 : 0.85; cx.beginPath(); cx.moveTo(cxp, y); cx.arc(cxp, y, rr, -Math.PI / 2, -Math.PI / 2 + 2 * Math.PI * f / teilung); cx.closePath(); cx.fill(); cx.globalAlpha = 1; }
+              // Teilungslinien: grob (Nenner) kräftig, fein (Hauptnenner) eingeblendet
+              const linien = function (k, a, w) { if (k > 72 || a <= 0) return; cx.globalAlpha = a; cx.strokeStyle = T; cx.lineWidth = w; for (let j = 0; j < k; j++) { const wi = -Math.PI / 2 + 2 * Math.PI * j / k; cx.beginPath(); cx.moveTo(cxp, y); cx.lineTo(cxp + rr * Math.cos(wi), y + rr * Math.sin(wi)); cx.stroke(); } cx.globalAlpha = 1; };
+              linien(nn, 0.9, 1.4); if (teilung !== nn) linien(teilung, alphaNeu, 0.7);
+              cx.strokeStyle = T; cx.lineWidth = 2; cx.beginPath(); cx.arc(cxp, y, rr, 0, 2 * Math.PI); cx.stroke();
+            }
+            if (ganze > n) R.Z.text(cx, '… ' + ganze + ' Ganze', x, y + rad + 30, 'center', 12, false, L);
+          }
+          const lab = function (tex, x, y, f) { R.Z.text(cx, tex, x, y, 'center', 15, true, f || T); };
+          const a = r.a, b = r.b;
+          if (e.op === 'plus' || e.op === 'minus' || e.op === 'vergleich') {
+            const neu = Math.max(0, Math.min(1, (p - 0.2) / 0.2)), H = r.H;
+            const rad = schmal ? Math.min(62, B / 6) : Math.min(78, Hh / 3.2, B / 12);
+            const pos = schmal ? [[B * 0.27, 110], [B * 0.73, 110], [B / 2, 300]] : [[B * 0.16, Hh / 2 - 12], [B * 0.46, Hh / 2 - 12], [B * 0.8, Hh / 2 - 12]];
+            kreise(pos[0][0], pos[0][1], rad, a.z, a.n, H, BLAU, neu);
+            kreise(pos[1][0], pos[1][1], rad, b.z, b.n, H, ORANGE, neu);
+            lab(p < 0.25 ? gemischtText(a.z, a.n) : r.za + '/' + H, pos[0][0], pos[0][1] + rad + 18, BLAU);
+            lab(p < 0.25 ? gemischtText(b.z, b.n) : r.zb + '/' + H, pos[1][0], pos[1][1] + rad + 18, ORANGE);
+            R.Z.text(cx, e.op === 'vergleich' ? '?' : OP[e.op], schmal ? B / 2 : (pos[0][0] + pos[1][0]) / 2, pos[0][1], 'center', 26, true, T);
+            if (!schmal) R.Z.text(cx, '=', (pos[1][0] + pos[2][0]) / 2, pos[2][1], 'center', 26, true, T);
+            if (e.op === 'vergleich') {
+              if (p > 0.45) R.Z.text(cx, gemischtText(a.z, a.n) + '  ' + r.zeichen + '  ' + gemischtText(b.z, b.n), pos[2][0], pos[2][1], 'center', 22, true, LILA);
+            } else if (p > 0.45) {
+              const anteil = Math.min(1, (p - 0.45) / 0.3), zz = Math.round(r.roh.z * anteil);
+              kreise(pos[2][0], pos[2][1], rad, zz || (r.roh.z ? Math.sign(r.roh.z) * 0.0001 : 0), H, H, GRUEN, 1);
+              lab(p > 0.8 ? gemischtText(r.erg.z, r.erg.n) : zz + '/' + H, pos[2][0], pos[2][1] + rad + 18, GRUEN);
+            }
+            if (p > 0.2 && p < 0.45 && H <= 72) R.Z.text(cx, 'Hauptnenner ' + H + ': jedes Ganze in ' + H + ' Stücke teilen', B / 2, Hh - 14, 'center', 12, false, L);
+          } else if (e.op === 'mal') {
+            // Flächenmodell: Breite × Höhe
+            const s = Math.min(schmal ? B * 0.7 : Hh - 70, schmal ? 300 : 230), x0 = schmal ? (B - s) / 2 : B * 0.12, y0 = schmal ? 40 : (Hh - s) / 2;
+            const fa = Math.min(1, Math.abs(a.z) / a.n), fb = Math.min(1, Math.abs(b.z) / b.n), q = Math.min(1, p / 0.3), q2 = Math.max(0, Math.min(1, (p - 0.3) / 0.3));
+            cx.fillStyle = F('--flaeche'); cx.fillRect(x0, y0, s, s);
+            cx.fillStyle = BLAU; cx.globalAlpha = 0.35; cx.fillRect(x0, y0, s * fa * q, s); cx.globalAlpha = 1;
+            cx.fillStyle = ORANGE; cx.globalAlpha = 0.35; cx.fillRect(x0, y0 + s * (1 - fb * q2), s, s * fb * q2); cx.globalAlpha = 1;
+            if (p > 0.6) { cx.fillStyle = GRUEN; cx.globalAlpha = 0.75; cx.fillRect(x0, y0 + s * (1 - fb), s * fa, s * fb); cx.globalAlpha = 1; }
+            cx.strokeStyle = T; cx.lineWidth = 0.8;
+            if (a.n <= 40) for (let i = 1; i < a.n; i++) { cx.beginPath(); cx.moveTo(x0 + s * i / a.n, y0); cx.lineTo(x0 + s * i / a.n, y0 + s); cx.stroke(); }
+            if (b.n <= 40 && p > 0.3) for (let i = 1; i < b.n; i++) { cx.beginPath(); cx.moveTo(x0, y0 + s * i / b.n); cx.lineTo(x0 + s, y0 + s * i / b.n); cx.stroke(); }
+            cx.lineWidth = 2; cx.strokeRect(x0, y0, s, s);
+            R.Z.text(cx, gemischtText(a.z, a.n) + ' der Breite', x0 + s / 2, y0 + s + 16, 'center', 13, true, BLAU);
+            cx.save(); cx.translate(x0 - 14, y0 + s / 2); cx.rotate(-Math.PI / 2); R.Z.text(cx, gemischtText(b.z, b.n) + ' der Höhe', 0, 0, 'center', 13, true, ORANGE); cx.restore();
+            const tx = schmal ? B / 2 : x0 + s + (B - x0 - s) / 2, ty = schmal ? y0 + s + 50 : Hh / 2;
+            if (Math.abs(a.z) > a.n || Math.abs(b.z) > b.n) R.Z.text(cx, 'Bild zeigt höchstens ein Ganzes', tx, ty + 46, 'center', 11, false, L);
+            if (p > 0.6) {
+              R.Z.text(cx, gemischtText(a.z, a.n) + ' · ' + gemischtText(b.z, b.n), tx, ty - 22, 'center', 18, true, T);
+              R.Z.text(cx, '= ' + (r.roh.z + '/' + r.roh.n).replace('-', '−') + (r.erg.n !== r.roh.n ? ' = ' + gemischtText(r.erg.z, r.erg.n) : ''), tx, ty + 8, 'center', 18, true, GRUEN);
+            }
+          } else {
+            // Division: wie oft passt b in a? Streifenmodell
+            const va = Math.abs(a.z / a.n), vb = Math.abs(b.z / b.n), max = Math.max(va, vb, 1), x0 = 30, w = B - 60, s = w / max;
+            const y1 = schmal ? 90 : Hh * 0.32, y2 = y1 + 70;
+            R.Z.text(cx, gemischtText(a.z, a.n), x0, y1 - 22, 'left', 14, true, BLAU);
+            cx.fillStyle = BLAU; cx.globalAlpha = 0.75; cx.fillRect(x0, y1 - 10, va * s, 22); cx.globalAlpha = 1;
+            cx.strokeStyle = L; cx.lineWidth = 1; for (let g = 0; g <= Math.floor(max); g++) { cx.beginPath(); cx.moveTo(x0 + g * s, y1 - 16); cx.lineTo(x0 + g * s, y2 + 28); cx.stroke(); R.Z.text(cx, String(g), x0 + g * s, y2 + 40, 'center', 11, false, L); }
+            const n = va / vb, gezeigt = Math.min(n, (p / 0.7) * n);
+            for (let k = 0; k < Math.ceil(gezeigt) && k < 400; k++) {
+              const anteil = Math.min(1, gezeigt - k);
+              cx.fillStyle = k % 2 ? ORANGE : '#F59F00'; cx.globalAlpha = 0.85; cx.fillRect(x0 + k * vb * s, y2 - 10, vb * s * anteil, 22); cx.globalAlpha = 1;
+            }
+            R.Z.text(cx, 'Streifen der Länge ' + gemischtText(b.z, b.n) + ' hintereinander legen', x0, y2 - 24, 'left', 12, false, ORANGE);
+            if (p > 0.7) R.Z.text(cx, gemischtText(a.z, a.n) + ' : ' + gemischtText(b.z, b.n) + ' = ' + gemischtText(r.erg.z, r.erg.n) + ' Streifen', B / 2, Hh - 22, 'center', 17, true, GRUEN);
+          }
+        }
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

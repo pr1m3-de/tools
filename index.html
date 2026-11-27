@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Formeln &amp; Rechner</title>
-  <meta name="description" content="Formeln, Rechner und Simulationen für Elektrotechnik, Mechanik, Sanitär, Brandschutz und Dach: mit Rechenweg, Formelsammlung und Animation. Läuft offline im Browser.">
+  <meta name="description" content="Formeln, Rechner und Simulationen für Mathe, Elektrotechnik, Mechanik, Heizung, Sanitär, Brandschutz und Dach: mit Rechenweg, Formelsammlung, Animation und Lernbereich. Läuft offline im Browser.">
   <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="manifest.webmanifest">
@@ -96,6 +96,40 @@
     .fav-hinweis { color: var(--leise); margin: 6px 0 0; font-size: .92rem; }
 
     .leer { color: var(--leise); padding: 20px 0; }
+    /* Startseite: kompakter Kopf, Schnellzugriff, Bereichskacheln nach Themenfeldern */
+    .start-held { padding-bottom: 0; }
+    .start-held h1 { font-size: clamp(1.9rem, 5.2vw, 3.1rem); }
+    .start-held > p:not(.kennzahlen) { margin-top: 10px; }
+    .kennzahlen { display: flex; flex-wrap: wrap; gap: 6px 16px; margin: 12px 0 0; font-family: var(--technik); font-size: .95rem; color: var(--leise); }
+    .kennzahlen:empty { display: none; }
+    .kennzahlen b { color: var(--text); font-weight: 700; }
+    .schnell { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 18px 0 0; }
+    .schnell a { display: flex; flex-direction: column; gap: 2px; padding: 11px 14px; border: 1px solid var(--linie); border-radius: var(--rund-klein, 10px); background: var(--flaeche); color: var(--text); text-decoration: none; min-width: 0; transition: border-color .15s, transform .15s; }
+    .schnell a:hover { border-color: var(--leise); transform: translateY(-1px); }
+    .schnell b { font-family: var(--technik); font-size: 1.02rem; }
+    .schnell small { color: var(--leise); font-size: .84rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    @media (max-width: 700px) { .schnell { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; } .schnell a { padding: 9px 12px; } }
+    .feld-titel { margin: 30px 0 10px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .feld-titel h2 { margin: 0; font-size: 1.35rem; }
+    .feld-titel span { color: var(--leise); font-size: .92rem; }
+    .kacheln { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(250px, 100%), 1fr)); gap: 12px; }
+    @media (max-width: 700px) { .kachel-b li:nth-child(3) { display: none; } }
+    .kachel-b { position: relative; display: flex; flex-direction: column; gap: 8px; padding: 14px 16px 12px; border: 1px solid var(--linie); border-left: 5px solid var(--farbe); border-radius: var(--rund, 12px); background: var(--flaeche); min-width: 0; }
+    .kachel-b:hover { border-color: var(--leise); border-left-color: var(--farbe); }
+    .kachel-b > button { all: unset; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; align-items: baseline; }
+    .kachel-b > button:focus-visible { outline: 2px solid var(--farbe); outline-offset: 4px; border-radius: 6px; }
+    .kachel-b h3 { margin: 0; font-size: 1.12rem; hyphens: none; -webkit-hyphens: none; overflow-wrap: normal; word-break: normal; }
+    .kachel-b .zahl-b { font-family: var(--technik); color: var(--leise); font-size: .88rem; white-space: nowrap; }
+    .kachel-b .info-b { grid-column: 1 / -1; color: var(--leise); font-size: .9rem; }
+    .kachel-b ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+    .kachel-b li a { display: block; padding: 4px 0; color: var(--text); text-decoration: none; font-size: .95rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .kachel-b li a::before { content: ''; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--farbe); margin: 0 9px 2px 1px; vertical-align: middle; }
+    .kachel-b li a:hover { color: var(--farbe); }
+    .kachel-b .alle-b { align-self: flex-start; border: 0; background: none; color: var(--farbe); font: inherit; font-family: var(--technik); font-size: .9rem; font-weight: 600; padding: 2px 0; cursor: pointer; }
+    .kachel-b .alle-b:hover { text-decoration: underline; }
+    .neu-b { font-size: .7rem; font-family: var(--technik); font-weight: 700; color: #fff; background: var(--farbe); border-radius: 999px; padding: 1px 7px; margin-left: 6px; vertical-align: 2px; }
+    #reiter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; padding-bottom: 4px; }
+    #reiter button { flex: none; }
   </style>
 </head>
 
@@ -103,9 +137,16 @@
   <div id="seitenkopf" data-wurzel="" data-seite="start"></div>
 
   <main class="seite">
-    <section class="held">
+    <section class="held start-held">
       <h1><span class="unterstrichen">Formeln, Rechner und Simulationen</span></h1>
-      <p>Eine Sammlung zum Nachrechnen und Ausprobieren: Wert eintragen, zusehen, was passiert, und den Rechenweg Schritt für Schritt nachlesen. Alles läuft im Browser, auch ohne Internet.</p>
+      <p>Wert eintragen, zusehen, was passiert, und den Rechenweg Schritt für Schritt nachlesen. Alles läuft im Browser, auch ohne Internet.</p>
+      <p class="kennzahlen" id="kennzahlen"></p>
+      <nav class="schnell" aria-label="Schnellzugriff">
+        <a href="lernen.html#aufgaben"><b>Üben</b><small>Aufgaben aus allen Rechnern</small></a>
+        <a href="lernen.html#kopfrechnen"><b>Kopfrechnen</b><small>Tricks mit Training</small></a>
+        <a href="lernen.html#klassenarbeit"><b>Klassenarbeit</b><small>Prüfung mit Note</small></a>
+        <a href="projektmappe.html"><b>Projekte</b><small>Eigene Berechnungen sammeln</small></a>
+      </nav>
     </section>
 
     <div class="werkzeug" id="bereiche">
@@ -150,8 +191,32 @@
     ];
 
     // Reihenfolge und Farben der Bereiche; Untergruppen in dieser Reihenfolge
-    const BEREICHE = { 'Elektrotechnik': '#2B7BB9', 'Mechanik': '#6E6FA6', 'Sanitärtechnik': '#0E6B6A', 'Heizungstechnik': '#C2410C', 'Brandschutz': '#E4572E', 'Arbeitsschutz': '#2F9E44', 'Dach und Klempnerei': '#A0785A', 'IT und Netzwerk': '#3B5BDB', 'Geld und Kalkulation': '#A16207', 'Gebäudeautomation': '#9333EA', 'Steuerungstechnik': '#0E7C86', 'Physik': '#C2255C', 'Werkzeuge': '#6B7785' };
+    const BEREICHE = { 'Elektrotechnik': '#2B7BB9', 'Gebäudeautomation': '#9333EA', 'Steuerungstechnik': '#0E7C86', 'IT und Netzwerk': '#3B5BDB', 'Heizungstechnik': '#C2410C', 'Sanitärtechnik': '#0E6B6A', 'Dach und Klempnerei': '#A0785A', 'Mathematik': '#5C940D', 'Physik': '#C2255C', 'Mechanik': '#6E6FA6', 'Brandschutz': '#E4572E', 'Arbeitsschutz': '#2F9E44', 'Geld und Kalkulation': '#A16207', 'Werkzeuge': '#6B7785' };
+    // Themenfelder der Übersicht: Name, Untertitel, Bereiche; nicht genannte Bereiche landen unter „Weitere“
+    const FELDER = [
+      ['Elektro und Automation', 'Installation, Schutz, Energie, Netzwerk', ['Elektrotechnik', 'Gebäudeautomation', 'Steuerungstechnik', 'IT und Netzwerk']],
+      ['Haustechnik und Bau', 'Heizung, Wasser, Dach', ['Heizungstechnik', 'Sanitärtechnik', 'Dach und Klempnerei']],
+      ['Grundlagen', 'Rechnen, Physik, Kräfte', ['Mathematik', 'Physik', 'Mechanik']],
+      ['Sicherheit und Betrieb', 'Brand- und Arbeitsschutz, Kalkulation, Werkzeuge', ['Brandschutz', 'Arbeitsschutz', 'Geld und Kalkulation', 'Werkzeuge']]
+    ];
+    const INFO = {
+      'Elektrotechnik': 'Leitungen, Schutzmaßnahmen, PV, Speicher und Maschinen',
+      'Gebäudeautomation': 'Bussysteme planen, programmieren und simulieren',
+      'Steuerungstechnik': 'SPS, Logikmodule und Digitaltechnik',
+      'IT und Netzwerk': 'Subnetze, Datenraten, WLAN, Speicher und Sicherheit',
+      'Heizungstechnik': 'Heizlast, Abgleich, Wärmepumpe und Abgas',
+      'Sanitärtechnik': 'Trinkwasser, Abwasser, Gas und Regenwasser',
+      'Dach und Klempnerei': 'Sparren, Rinnen, Verwahrungen, Wind und Schnee',
+      'Mathematik': 'Brüche, Kommaverschiebung, Dezimalzahlen und Einheiten',
+      'Physik': 'Wärme, Optik, Atome, Sterne und Kosmos',
+      'Mechanik': 'Kräfte, Hebel, Schrauben und Bewegung',
+      'Brandschutz': 'Brandmelder, Fluchtwege, Löscher und Brandverlauf',
+      'Arbeitsschutz': 'Lasten, Lärm, Klima, Leitern und Gefahrstoffe',
+      'Geld und Kalkulation': 'Stundensatz, Angebot, Kredit und Amortisation',
+      'Werkzeuge': 'Projektmappe, Prüfprotokolle, Simulatoren und Planer'
+    };
     const GRUPPEN = ['Grundlagen', 'Installation und Schutz', 'Energie und Photovoltaik'];
+    const NEU = ['Mathematik'];
     const farbe = function (b) { return BEREICHE[b] || 'var(--leise)'; };
 
     // Gehört ein Eintrag zu einem Bereich (eigener Bereich oder zusätzlich über auchIn)?
@@ -194,6 +259,8 @@
 
     let auswahl = '';
     try { if (sessionStorage.getItem(FAV_AUSWAHL) === FAV) auswahl = FAV; } catch (x) { /* ohne Speicher */ }
+    // Kennzahlen im Kopf (nur Zahlen, daher innerHTML unbedenklich)
+    document.getElementById('kennzahlen').innerHTML = '<span><b>' + eintraege.length + '</b> Seiten</span><span><b>' + bereiche.length + '</b> Bereiche</span><span><b>' + FELDER.length + '</b> Themenfelder</span><span>läuft offline</span>';
     const reiter = document.getElementById('reiter');
     function reiterBauen() {
       reiter.innerHTML = '';
@@ -205,12 +272,7 @@
         k.innerHTML = (b === FAV ? '<b class="fav-zeichen" aria-hidden="true">\u2605</b>' : b ? '<i aria-hidden="true"></i>' : '') + '<span></span> <small>' + anzahl + '</small>';
         k.querySelector('span').textContent = b === FAV ? 'Favoriten' : b || 'Alle';
         k.setAttribute('aria-pressed', String(b === auswahl));
-        k.addEventListener('click', function () {
-          auswahl = b;
-          try { sessionStorage.setItem(FAV_AUSWAHL, auswahl === FAV ? FAV : ''); } catch (x) { /* ohne Speicher */ }
-          reiterBauen();
-          zeigen();
-        });
+        k.addEventListener('click', function () { waehle(b, true); });
         reiter.append(k);
       });
     }
@@ -326,6 +388,54 @@
       liste.forEach(function (e) { const a = document.createElement('a'); a.href = e.pfad; a.style.setProperty('--farbe', farbe(e.bereich)); const sp = document.createElement('span'); sp.textContent = e.titel; a.append(sp); l.append(a); });
       ab.append(h, l); ziel.append(ab);
     }
+    // Bereich wählen: Reiter, Adresse (#bereich=…) und Ansicht nachziehen
+    function waehle(b, scrollen) {
+      auswahl = b;
+      try { sessionStorage.setItem(FAV_AUSWAHL, auswahl === FAV ? FAV : ''); } catch (x) { /* ohne Speicher */ }
+      try { if (history.replaceState) history.replaceState(null, '', location.pathname + location.search + (b && b !== FAV ? '#bereich=' + encodeURIComponent(b) : '')); } catch (x) { /* egal */ }
+      reiterBauen(); zeigen();
+      const aktiv = reiter.querySelector('[aria-pressed="true"]');
+      if (aktiv && aktiv.scrollIntoView) { try { aktiv.scrollIntoView({ block: 'nearest', inline: 'center' }); } catch (x) { /* alt */ } }
+      if (scrollen) { const y = document.getElementById('liste').getBoundingClientRect().top + window.scrollY - leiste.offsetHeight - 8; if (window.scrollY > y || scrollen === 'immer') window.scrollTo(0, Math.max(0, y)); }
+    }
+    function ausAdresse() {
+      const m = /^#bereich=([^&]+)/.exec(location.hash);
+      if (!m) return false;
+      let b = ''; try { b = decodeURIComponent(m[1]); } catch (x) { b = ''; }
+      if (bereiche.indexOf(b) < 0) return false;
+      auswahl = b; return true;
+    }
+    function kachelnZeigen(ziel) {
+      const felder = FELDER.map(function (f) { return [f[0], f[1], f[2].filter(function (b) { return bereiche.indexOf(b) >= 0; })]; });
+      const genannt = [].concat.apply([], felder.map(function (f) { return f[2]; }));
+      const rest = bereiche.filter(function (b) { return genannt.indexOf(b) < 0; });
+      if (rest.length) felder.push(['Weitere', '', rest]);
+      felder.forEach(function (f) {
+        if (!f[2].length) return;
+        const kopf = document.createElement('div'); kopf.className = 'feld-titel';
+        const h = document.createElement('h2'); h.textContent = f[0];
+        const u = document.createElement('span'); u.textContent = f[1];
+        kopf.append(h, u); ziel.append(kopf);
+        const raster = document.createElement('div'); raster.className = 'kacheln';
+        f[2].forEach(function (b) {
+          const liste = eintraege.filter(function (e) { return imBereich(e, b); });
+          const k = document.createElement('section'); k.className = 'kachel-b'; k.style.setProperty('--farbe', farbe(b));
+          const knopf = document.createElement('button'); knopf.type = 'button'; knopf.title = 'Alle Seiten in ' + b + ' zeigen';
+          const h3 = document.createElement('h3'); h3.textContent = b;
+          if (NEU.indexOf(b) >= 0) { const n = document.createElement('span'); n.className = 'neu-b'; n.textContent = 'neu'; h3.append(n); }
+          const z = document.createElement('span'); z.className = 'zahl-b'; z.textContent = liste.length + (liste.length === 1 ? ' Seite' : ' Seiten');
+          const i = document.createElement('span'); i.className = 'info-b'; i.textContent = INFO[b] || '';
+          knopf.append(h3, z, i);
+          knopf.addEventListener('click', function () { waehle(b, 'immer'); });
+          const ul = document.createElement('ul');
+          liste.slice(0, 3).forEach(function (e) { const li = document.createElement('li'), a = document.createElement('a'); a.href = e.pfad; a.textContent = e.titel; a.title = e.text; li.append(a); ul.append(li); });
+          k.append(knopf, ul);
+          if (liste.length > 3) { const alle = document.createElement('button'); alle.type = 'button'; alle.className = 'alle-b'; alle.textContent = 'Alle ' + liste.length + ' zeigen →'; alle.addEventListener('click', function () { waehle(b, 'immer'); }); k.append(alle); }
+          raster.append(k);
+        });
+        ziel.append(raster);
+      });
+    }
     function zeigen() {
       const ziel = document.getElementById('liste');
       ziel.innerHTML = '';
@@ -344,7 +454,8 @@
         return;
       }
       const uebersicht = !auswahl && !suche;
-      if (uebersicht) { zuletztZeigen(ziel); favoritenZeigen(ziel, false); }   // Übersicht: zuletzt geöffnet und Favoriten zuerst
+      // Übersicht: zuletzt geöffnet, Favoriten, dann alle Bereiche als Kacheln nach Themenfeldern
+      if (uebersicht) { zuletztZeigen(ziel); favoritenZeigen(ziel, false); kachelnZeigen(ziel); return; }
       bereiche.forEach(function (b) {
         if (auswahl && b !== auswahl) return;   // gewählter Reiter: nur dieser Bereich
         const liste = treffer.filter(function (e) { return imBereich(e, b); });
@@ -362,7 +473,7 @@
           abschnitt.append(raster);
           const mehr = document.createElement('div'), k = document.createElement('button');
           mehr.className = 'mehr'; k.type = 'button'; k.textContent = 'Alle ' + liste.length + ' Seiten in ' + b + ' zeigen';
-          k.addEventListener('click', function () { auswahl = b; reiterBauen(); zeigen(); leiste.scrollIntoView({ block: 'start' }); });
+          k.addEventListener('click', function () { waehle(b, 'immer'); });
           mehr.append(k); abschnitt.append(mehr);
           ziel.append(abschnitt);
           return;
@@ -389,7 +500,9 @@
         ziel.append(abschnitt);
       });
     }
+    ausAdresse(); reiterBauen();
     zeigen();
+    window.addEventListener('hashchange', function () { if (ausAdresse()) { reiterBauen(); zeigen(); } else if (location.hash === '#bereiche' && auswahl && auswahl !== FAV) { auswahl = ''; reiterBauen(); zeigen(); } });
   })();
   </script>
 </body>

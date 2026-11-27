@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dezimalzahlen – Formeln &amp; Rechner</title>
+  <meta name="description" content="Dezimalzahlen addieren, subtrahieren, multiplizieren, dividieren, runden und vergleichen – exakt ohne Rundungsfehler, schriftlich mit Komma unter Komma, als Bruch und auf dem Zahlenstrahl mit Lupe.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Wie addiert man Dezimalzahlen schriftlich?</summary><p>Komma unter Komma schreiben, fehlende Stellen hinten mit Nullen auffüllen und wie gewohnt von rechts nach links rechnen. Das Komma im Ergebnis steht genau unter den anderen Kommas.</p></details>
+        <details><summary>Wo steht beim Malnehmen das Komma?</summary><p>Erst ohne Komma rechnen, dann die Nachkommastellen beider Zahlen zusammenzählen. So viele Stellen hat das Ergebnis hinter dem Komma: 1,25 · 0,4 → 125 · 4 = 500 → 3 Stellen → 0,500 = 0,5.</p></details>
+        <details><summary>Wie teilt man durch eine Kommazahl?</summary><p>Das Komma in beiden Zahlen um gleich viele Stellen nach rechts verschieben, bis der Teiler keine Nachkommastellen mehr hat. 7,5 : 0,25 wird zu 750 : 25 = 30. Das Ergebnis ändert sich dabei nicht.</p></details>
+        <details><summary>Warum ist 0,1 + 0,2 im Computer nicht genau 0,3?</summary><p>Computer speichern Zahlen meist im Zweiersystem, und 0,1 ist dort ein unendlicher Bruch – wie 1/3 im Zehnersystem. Dieser Rechner rechnet deshalb mit den Ziffern selbst und liefert exakt 0,3.</p></details>
+        <details><summary>Wie wird gerundet?</summary><p>Man schaut auf die erste Ziffer, die wegfällt: Ist sie 0 bis 4, wird abgerundet, bei 5 bis 9 aufgerundet (kaufmännisches Runden nach DIN 1333). 2,345 auf zwei Stellen ergibt 2,35.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const BLAU = '#2B7BB9', ORANGE = '#E8590C', GRUEN = '#2F9E44', LILA = '#7048E8';
+
+    // ---------- Ganze Zahlen beliebiger Länge als Ziffernfolge ----------
+    const ohne0 = function (a) { a = a.replace(/^0+/, ''); return a || '0'; };
+    function vgl(a, b) { a = ohne0(a); b = ohne0(b); return a.length !== b.length ? (a.length < b.length ? -1 : 1) : a < b ? -1 : a > b ? 1 : 0; }
+    function add(a, b) { let i = a.length - 1, j = b.length - 1, u = 0, s = ''; while (i >= 0 || j >= 0 || u) { const d = (i >= 0 ? +a[i--] : 0) + (j >= 0 ? +b[j--] : 0) + u; s = (d % 10) + s; u = d >= 10 ? 1 : 0; } return ohne0(s); }
+    function sub(a, b) { let i = a.length - 1, j = b.length - 1, u = 0, s = ''; while (i >= 0) { let d = +a[i--] - (j >= 0 ? +b[j--] : 0) - u; u = d < 0 ? 1 : 0; if (d < 0) d += 10; s = d + s; } return ohne0(s); }   // a ≥ b
+    function mul(a, b) {
+      const r = new Array(a.length + b.length).fill(0);
+      for (let i = a.length - 1; i >= 0; i--) for (let j = b.length - 1; j >= 0; j--) { const p = (+a[i]) * (+b[j]) + r[i + j + 1]; r[i + j + 1] = p % 10; r[i + j] += Math.floor(p / 10); }
+      return ohne0(r.join(''));
+    }
+    function teile(a, b) { // ganzzahlige Division, gibt [Quotient, Rest]
+      let rest = '0', q = '';
+      for (let i = 0; i < a.length; i++) { rest = ohne0(rest + a[i]); let d = 0; while (vgl(rest, b) >= 0) { rest = sub(rest, b); d++; } q += d; }
+      return [ohne0(q), rest];
+    }
+    const nullen = function (n) { return new Array(n + 1).join('0'); };
+
+    // ---------- Dezimalzahlen: { neg, i (alle Ziffern), s (Nachkommastellen) } ----------
+    function ausZahl(x) {
+      if (!isFinite(x) || x === 0) return { neg: false, i: '0', s: 0 };
+      const m = Math.abs(x).toExponential(13).split('e'), p = Number(m[1]), d = m[0].replace('.', '').replace(/0+$/, '') || '0';
+      const s = Math.max(0, d.length - 1 - p);
+      return { neg: x < 0, i: ohne0(d + nullen(Math.max(0, p - (d.length - 1)))), s: s };
+    }
+    function angleichen(a, b) { const s = Math.max(a.s, b.s); return [a.i + nullen(s - a.s), b.i + nullen(s - b.s), s]; }
+    function plus(a, b) {
+      const q = angleichen(a, b);
+      if (a.neg === b.neg) return { neg: a.neg, i: add(q[0], q[1]), s: q[2] };
+      const c = vgl(q[0], q[1]); if (c === 0) return { neg: false, i: '0', s: q[2] };
+      return c > 0 ? { neg: a.neg, i: sub(q[0], q[1]), s: q[2] } : { neg: b.neg, i: sub(q[1], q[0]), s: q[2] };
+    }
+    function minus(a, b) { return plus(a, { neg: !b.neg, i: b.i, s: b.s }); }
+    function mal(a, b) { const i = mul(a.i, b.i); return { neg: i !== '0' && a.neg !== b.neg, i: i, s: a.s + b.s }; }
+    function durch(a, b, max) { // mit Periode
+      const N = a.i + nullen(b.s), M = b.i + nullen(a.s);
+      const qr = teile(N, M), ganz = qr[0]; let rest = qr[1];
+      const ziff = [], gesehen = {}; let ab = -1;
+      while (rest !== '0' && ziff.length < (max || 30)) {
+        if (gesehen[rest] !== undefined) { ab = gesehen[rest]; break; }
+        gesehen[rest] = ziff.length; const t = teile(rest + '0', M); ziff.push(t[0]); rest = t[1];
+      }
+      return { neg: ganz + ziff.join('') !== ganz.replace(/./g, '0') && a.neg !== b.neg, ganz: ganz, vor: (ab >= 0 ? ziff.slice(0, ab) : ziff).join(''), per: ab >= 0 ? ziff.slice(ab).join('') : '', offen: rest !== '0' && ab < 0 };
+    }
+    function kuerzen(d) { // endliche Dezimalzahl → Nachkommastellen ohne Endnullen
+      let i = d.i, s = d.s; while (s > 0 && i.length > 1 && i[i.length - 1] === '0') { i = i.slice(0, -1); s--; }
+      if (i === '0') s = 0; return { neg: d.neg && i !== '0', i: i, s: s };
+    }
+    function teilen(d) { const i = d.i.length <= d.s ? nullen(d.s - d.i.length + 1) + d.i : d.i; return [i.slice(0, i.length - d.s), i.slice(i.length - d.s)]; }
+    function txt(d, tex, mitNullen) {
+      const k = mitNullen ? d : kuerzen(d), t = teilen(k), g = t[0].replace(/\B(?=(\d{3})+(?!\d))/g, tex ? '\\,' : '\u202f');
+      return (k.neg ? (tex ? '-' : '−') : '') + g + (t[1] ? (tex ? '{,}' : ',') + t[1] : '');
+    }
+    function zahlWert(d) { return (d.neg ? -1 : 1) * Number(teilen(d).join('.')); }
+    function runde(d, n) {
+      if (d.s <= n) return { neg: d.neg, i: d.i + nullen(n - d.s), s: n };
+      const weg = d.s - n, kopf = d.i.length > weg ? d.i.slice(0, d.i.length - weg) : '0', erste = d.i.length >= weg ? +d.i[d.i.length - weg] : 0;
+      const i = erste >= 5 ? add(kopf, '1') : ohne0(kopf);
+      return { neg: d.neg && i !== '0', i: i, s: n, erste: erste };
+    }
+    function periodeText(q, tex) {
+      const g = q.ganz.replace(/\B(?=(\d{3})+(?!\d))/g, tex ? '\\,' : '\u202f'), v = q.neg ? (tex ? '-' : '−') : '';
+      if (!q.vor && !q.per) return v + g;
+      if (tex) return v + g + '{,}' + q.vor + (q.per ? '\\overline{' + q.per + '}' : '') + (q.offen ? '\\ldots' : '');
+      return v + g + ',' + q.vor + q.per.split('').map(function (c) { return c + '\u0305'; }).join('') + (q.offen ? '…' : '');
+    }
+    // als Bruch (nur wenn die Zahlen klein genug für exaktes Kürzen sind)
+    function ggT(a, b) { while (b) { const t = a % b; a = b; b = t; } return a; }
+    function bruchVon(zaehler, nenner) {
+      if (zaehler.length > 15 || nenner.length > 15) return null;
+      const zz = Number(zaehler), nn = Number(nenner), g = ggT(zz, nn) || 1; return [zz / g, nn / g];
+    }
+    const STELLEN = ['Einer', 'Zehntel', 'Hundertstel', 'Tausendstel', 'Zehntausendstel', 'Hunderttausendstel', 'Millionstel'];
+
+    R.seite({
+      titel: 'Dezimalzahlen',
+      einleitung: 'Mit Kommazahlen rechnen wie auf dem Papier: Komma unter Komma beim Addieren, Nachkommastellen zählen beim Malnehmen, das Komma im Teiler wegschieben beim Dividieren. Dazu runden, vergleichen, als Bruch schreiben – exakt, ohne die Rundungsfehler, die Computer sonst machen.',
+      hilfe: 'Zahlen mit Komma eintragen, z. B. 12,5 und 3,75. Beim Runden zählt nur die erste Zahl.',
+      gruppen: [
+        { titel: 'Zahlen', farbe: BLAU, felder: [
+          { k: 'a', tex: 'a', name: 'erste Zahl', min: -1e9, max: 1e9 },
+          { k: 'op', name: 'Rechnung', wahl: [['plus', 'addieren (+)'], ['minus', 'subtrahieren (−)'], ['mal', 'multiplizieren (·)'], ['durch', 'dividieren (:)'], ['runden', 'runden'], ['vergleich', 'vergleichen (<, =, >)']] },
+          { k: 'b', tex: 'b', name: 'zweite Zahl', min: -1e9, max: 1e9, wenn: function (e) { return e.op !== 'runden'; } }
+        ] },
+        { titel: 'Ergebnis', farbe: GRUEN, felder: [
+          { k: 'n', name: 'Runden auf', wahl: [[0, 'ganze Zahl'], [1, '1 Nachkommastelle (Zehntel)'], [2, '2 Nachkommastellen (Hundertstel)'], [3, '3 Nachkommastellen (Tausendstel)'], [4, '4 Nachkommastellen'], [6, '6 Nachkommastellen']] }
+        ] }
+      ],
+      beispiel: { a: 12.5, op: 'plus', b: 3.75, n: 2 },
+
+      rechne: function (e) {
+        const a = ausZahl(e.a), b = ausZahl(e.b), r = { a: a, b: b, op: e.op };
+        if (e.op === 'plus') r.c = plus(a, b);
+        else if (e.op === 'minus') r.c = minus(a, b);
+        else if (e.op === 'mal') r.c = mal(a, b);
+        else if (e.op === 'durch') {
+          if (b.i === '0') { r.null = true; return r; }
+          r.q = durch(a, b, 40);
+          r.c = ausZahl(Number((r.q.neg ? '-' : '') + r.q.ganz + '.' + (r.q.vor + r.q.per + r.q.per + r.q.per).slice(0, 16)));
+          // für das Runden die Periode oft genug wiederholen
+          let nach = r.q.vor + r.q.per;
+          while (r.q.per && nach.length < 24) nach += r.q.per;
+          r.exakt = { neg: r.q.neg, i: ohne0(r.q.ganz + nach), s: nach.length };
+        } else if (e.op === 'runden') r.c = a;
+        else { const q = angleichen(a, b), wa = a.neg ? -1 : 1, wb = b.neg ? -1 : 1; let c = (a.neg !== b.neg) ? (a.neg ? -1 : 1) : vgl(q[0], q[1]) * (a.neg ? -1 : 1); if (q[0] === '0' && q[1] === '0') c = 0; r.vgl = c < 0 ? '<' : c > 0 ? '>' : '='; r.q2 = q; r.wa = wa; r.wb = wb; r.c = a; }
+        const basis = r.exakt || r.c;
+        r.gerundet = runde(basis, e.n);
+        r.wert = zahlWert(r.op === 'durch' ? r.c : r.c);
+        return r;
+      },
+
+      ergebnis: function (r, e, H) {
+        if (r.null) { H.urteil(false, 'nicht lösbar'); H.meldung('Durch null kann man nicht teilen.', true); return; }
+        const a = r.a, b = r.b;
+        if (e.op === 'vergleich') {
+          H.urteil(null, txt(a) + ' ' + r.vgl + ' ' + txt(b));
+          const s = r.q2[2];
+          H.kacheln([[txt(a, false, false) + ' ' + r.vgl + ' ' + txt(b), 'Vergleich', LILA], [txt({ neg: a.neg, i: r.q2[0], s: s }, false, true) + ' | ' + txt({ neg: b.neg, i: r.q2[1], s: s }, false, true), 'gleich viele Nachkommastellen', BLAU], [txt(minus(a, b)), 'Unterschied a − b', ORANGE]]);
+          return;
+        }
+        const ergT = r.q ? periodeText(r.q) : txt(r.c);
+        H.urteil(null, e.op === 'runden' ? txt(r.gerundet, false, true) : ergT);
+        if (r.q && r.q.per) H.meldung('Das Ergebnis ist periodisch: Die Ziffern ' + r.q.per + ' wiederholen sich endlos.');
+        if (r.q && r.q.offen) H.meldung('Das Ergebnis hat mehr als 40 Nachkommastellen – gezeigt ist der Anfang.');
+        const kach = [];
+        if (e.op !== 'runden') kach.push([ergT, 'exaktes Ergebnis', GRUEN]);
+        kach.push([txt(r.gerundet, false, true), 'gerundet auf ' + (e.n ? e.n + ' Nachkommastelle' + (e.n > 1 ? 'n' : '') : 'ganze Zahl'), BLAU]);
+        // als Bruch
+        let br = null;
+        if (r.q) { const p = r.q; if (!p.per && !p.offen) { const k = kuerzen({ neg: p.neg, i: ohne0(p.ganz + p.vor), s: p.vor.length }); br = bruchVon(k.i, '1' + nullen(k.s)); } else { const N = a.i + nullen(b.s), M = b.i + nullen(a.s); br = bruchVon(N, M); } if (br && r.q.neg) br[0] = -br[0]; }
+        else { const k = kuerzen(r.c); br = bruchVon(k.i, '1' + nullen(k.s)); if (br && k.neg) br[0] = -br[0]; }
+        if (br) kach.push([br[1] === 1 ? String(br[0]).replace('-', '−') : String(br[0]).replace('-', '−') + '/' + br[1], 'als gekürzter Bruch', LILA]);
+        const k = r.q ? null : kuerzen(r.c);
+        if (k) kach.push([String(k.s), k.s === 1 ? 'Nachkommastelle' : 'Nachkommastellen', ORANGE]);
+        H.kacheln(kach);
+        // Stellenwerte des (gerundeten) Ergebnisses
+        const g = kuerzen(r.op === 'runden' ? r.gerundet : r.q ? r.gerundet : r.c), t = teilen(g);
+        if (t[1].length && t[1].length <= 6) H.tabelle('Stellenwerte von ' + txt(g), ['Stelle', 'Ziffer', 'Wert'], [[STELLEN[0], t[0].slice(-1), t[0].slice(-1)]].concat(t[1].split('').map(function (c, i) { return [STELLEN[i + 1], c, c === '0' ? '0' : c + '/' + '1' + nullen(i + 1)]; })), { zahl: [1, 2] });
+      },
+
+      weg: function (r, e) {
+        if (r.null) return [['Teilen durch null', '\\text{nicht definiert}']];
+        const a = r.a, b = r.b, w = [];
+        if (e.op === 'plus' || e.op === 'minus') {
+          const s = Math.max(a.s, b.s), A = { neg: a.neg, i: a.i + nullen(s - a.s), s: s }, Bz = { neg: b.neg, i: b.i + nullen(s - b.s), s: s };
+          if (a.s !== b.s) w.push(['Nachkommastellen mit Nullen auffüllen', txt(a, true) + ' = ' + txt(A, true, true) + ', \\quad ' + txt(b, true) + ' = ' + txt(Bz, true, true)]);
+          w.push(['Komma unter Komma schreiben', '\\begin{array}{r} ' + txt(A, true, true) + ' \\\\ ' + (e.op === 'plus' ? '+\\;' : '-\\;') + (Bz.neg ? '(' + txt(Bz, true, true) + ')' : txt(Bz, true, true)) + ' \\\\ \\hline ' + txt({ neg: r.c.neg, i: r.c.i, s: s }, true, true) + ' \\end{array}']);
+          w.push(['Ergebnis', txt(a, true) + (e.op === 'plus' ? ' + ' : ' - ') + (b.neg ? '(' + txt(b, true) + ')' : txt(b, true)) + ' = ' + E(txt(r.c, true))]);
+        } else if (e.op === 'mal') {
+          w.push(['Ohne Komma rechnen', a.i + ' \\cdot ' + b.i + ' = ' + mul(a.i, b.i)]);
+          w.push(['Nachkommastellen zählen', a.s + ' + ' + b.s + ' = ' + (a.s + b.s) + '\\text{ Stellen}']);
+          w.push(['Komma setzen', txt(a, true) + ' \\cdot ' + (b.neg ? '(' + txt(b, true) + ')' : txt(b, true)) + ' = ' + (kuerzen(r.c).s !== r.c.s ? txt(r.c, true, true) + ' = ' : '') + E(txt(r.c, true))]);
+        } else if (e.op === 'durch') {
+          const N = { neg: a.neg, i: a.i, s: Math.max(0, a.s - b.s) }, nn = a.i + nullen(Math.max(0, b.s - a.s));
+          if (b.s) w.push(['Komma im Teiler weg: beide Zahlen um ' + b.s + (b.s === 1 ? ' Stelle' : ' Stellen') + ' verschieben', txt(a, true) + ' : ' + txt(b, true) + ' = ' + txt({ neg: a.neg, i: nn, s: N.s }, true) + ' : ' + txt({ neg: b.neg, i: b.i, s: 0 }, true)]);
+          const q = r.q;
+          w.push([q.per ? 'Schriftlich teilen, bis sich ein Rest wiederholt (Periode)' : 'Schriftlich teilen', '\\text{erst ' + q.ganz + (q.vor || q.per ? ', dann je Rest eine 0 anhängen' : '') + '}']);
+          w.push(['Ergebnis', txt(a, true) + ' : ' + txt(b, true) + ' = ' + E(periodeText(q, true))]);
+        } else if (e.op === 'runden') {
+          // erste wegfallende Ziffer
+        } else {
+          const s = r.q2[2];
+          w.push(['Gleich viele Nachkommastellen', txt({ neg: a.neg, i: r.q2[0], s: s }, true, true) + ' \\quad\\text{und}\\quad ' + txt({ neg: b.neg, i: r.q2[1], s: s }, true, true)]);
+          w.push(['Stelle für Stelle von links vergleichen', txt(a, true) + ' ' + E(r.vgl) + ' ' + txt(b, true)]);
+          return w;
+        }
+        const basis = r.exakt || r.c, gr = r.gerundet;
+        if (basis.s > e.n) {
+          const erste = basis.i.length >= basis.s - e.n ? basis.i[basis.i.length - (basis.s - e.n)] : '0';
+          w.push(['Runden auf ' + (e.n ? e.n + ' Nachkommastelle' + (e.n > 1 ? 'n' : '') : 'ganze Zahl'), '\\text{erste wegfallende Ziffer } ' + erste + ' \\Rightarrow \\text{' + (+erste >= 5 ? 'aufrunden' : 'abrunden') + '}: \\; ' + E(txt(gr, true, true))]);
+        } else w.push(['Runden', '\\text{nichts zu runden: } ' + E(txt(gr, true, true))]);
+        return w;
+      },
+
+      loeser: [
+        { titel: 'Summe und Differenz', hilfe: 'c = a + b: zwei der drei Zahlen eintragen.',
+          felder: [
+            { k: 'a', tex: 'a', name: 'erster Summand', min: -1e6, max: 1e6, n: 'genau' },
+            { k: 'b', tex: 'b', name: 'zweiter Summand', min: -1e6, max: 1e6, n: 'genau' },
+            { k: 'c', tex: 'c', name: 'Summe', min: -2e6, max: 2e6, n: 'genau' }
+          ],
+          beispiel: { a: 12.5, b: 3.75 },
+          gleichungen: [{ name: 'Summe', v: ['c', 'a', 'b'], f: function (x) { return [x.c, x.a + x.b]; },
+            loese: { c: function (x) { return zahlWert(plus(ausZahl(x.a), ausZahl(x.b))); }, a: function (x) { return zahlWert(minus(ausZahl(x.c), ausZahl(x.b))); }, b: function (x) { return zahlWert(minus(ausZahl(x.c), ausZahl(x.a))); } },
+            weg: function (k, x) { return k === 'c' ? 'c = a + b = ' + txt(ausZahl(x.a), true) + ' + ' + txt(ausZahl(x.b), true) + ' = ' + E(txt(ausZahl(x.c), true)) : k + ' = c - ' + (k === 'a' ? 'b' : 'a') + ' = ' + E(txt(ausZahl(x[k]), true)); } }]
+        },
+        { titel: 'Produkt und Quotient', hilfe: 'c = a · b: zwei der drei Zahlen eintragen.',
+          felder: [
+            { k: 'a', tex: 'a', name: 'erster Faktor', min: 0.001, max: 1e5, n: 'genau' },
+            { k: 'b', tex: 'b', name: 'zweiter Faktor', min: 0.001, max: 1e5, n: 'genau' },
+            { k: 'c', tex: 'c', name: 'Produkt', min: 1e-6, max: 1e10, n: 'genau' }
+          ],
+          beispiel: { a: 1.25, b: 0.4 },
+          gleichungen: [{ name: 'Produkt', v: ['c', 'a', 'b'], f: function (x) { return [x.c, x.a * x.b]; },
+            loese: { c: function (x) { return zahlWert(mal(ausZahl(x.a), ausZahl(x.b))); }, a: function (x) { return x.c / x.b; }, b: function (x) { return x.c / x.a; } },
+            weg: function (k, x) { return k === 'c' ? 'c = a \\cdot b = ' + E(txt(ausZahl(x.c), true)) : k + ' = \\frac{c}{' + (k === 'a' ? 'b' : 'a') + '} = ' + E(tz(x[k], 3)); } }]
+        },
+        { titel: 'Einkauf: Menge mal Preis', hilfe: 'Kosten K = Menge m · Preis je Einheit p, z. B. 12,5 m Kabel zu 0,89 € je Meter.',
+          felder: [
+            { k: 'm', tex: 'm', name: 'Menge', min: 0.01, max: 1e5, n: 2 },
+            { k: 'p', tex: 'p', name: 'Preis je Einheit', e: '€', min: 0.01, max: 1e5, n: 2 },
+            { k: 'K', tex: 'K', name: 'Kosten', e: '€', min: 0.0001, max: 1e10, n: 2 }
+          ],
+          beispiel: { m: 12.5, p: 0.89 },
+          gleichungen: [{ name: 'Kosten', v: ['K', 'm', 'p'], f: function (x) { return [x.K, x.m * x.p]; },
+            loese: { K: function (x) { return x.m * x.p; }, m: function (x) { return x.K / x.p; }, p: function (x) { return x.K / x.m; } },
+            weg: function (k, x) { return k === 'K' ? 'K = m \\cdot p = ' + tz(x.m, 2) + ' \\cdot ' + tz(x.p, 2) + '\\,\\text{€} = ' + E(tz(x.K, 2) + '\\,\\text{€}') : k + ' = \\frac{K}{' + (k === 'm' ? 'p' : 'm') + '} = ' + E(tz(x[k], 2)); } }]
+        }
+      ],
+
+      sammlung: [
+        ['Stellenwerte', '3{,}47 = 3 + \\frac{4}{10} + \\frac{7}{100}', 'Zehntel, Hundertstel, Tausendstel – jede Stelle ist ein Zehntel der Stelle davor'],
+        ['Addieren und Subtrahieren', '\\begin{array}{r} 12{,}50 \\\\ +\\;3{,}75 \\\\ \\hline 16{,}25 \\end{array}', 'Komma unter Komma, fehlende Stellen mit Nullen auffüllen'],
+        ['Multiplizieren', 'a \\cdot b:\\ \\text{Stellen}(a \\cdot b) = \\text{Stellen}(a) + \\text{Stellen}(b)', 'erst ohne Komma rechnen, dann Nachkommastellen zusammenzählen'],
+        ['Dividieren', 'a : b = (a \\cdot 10^k) : (b \\cdot 10^k)', 'k so wählen, dass der Teiler keine Nachkommastellen mehr hat'],
+        ['Runden', 'x_{\\text{gerundet}}:\\ \\text{erste wegfallende Ziffer } 0 \\ldots 4 \\text{ ab}, \\ 5 \\ldots 9 \\text{ auf}', 'kaufmännisches Runden nach DIN 1333'],
+        ['Endliche Dezimalzahl als Bruch', '0{,}375 = \\frac{375}{1000} = \\frac{3}{8}', 'so viele Nullen im Nenner wie Nachkommastellen, dann kürzen'],
+        ['Periodische Dezimalzahl als Bruch', '0{,}\\overline{3} = \\frac{3}{9} = \\frac{1}{3}, \\quad 0{,}\\overline{27} = \\frac{27}{99}', 'Periode durch so viele Neunen teilen, wie sie Ziffern hat'],
+        ['Kosten', 'K = m \\cdot p', 'Menge mal Preis je Einheit']
+      ],
+      quellen: 'Gerechnet wird exakt mit den Ziffern (beliebig lange ganze Zahlen); Division bis 40 Nachkommastellen mit Erkennung der Periode. Runden nach DIN 1333.',
+
+      bild: {
+        titel: 'Zahlenstrahl mit Lupe', animiert: true,
+        label: 'Zahlenstrahl mit den Zahlen und dem Ergebnis, darunter zwei vergrößerte Ausschnitte in Zehnteln und Hundertsteln',
+        hoehe: function () { return 330; },
+        hinweis: function (r) { return r.null ? '' : 'Unten die Lupe: Zwischen zwei Zehnteln liegen zehn Hundertstel.'; },
+        zeichne: function (cx, B, Hh, t, r, e) {
+          const T = F('--text'), L = F('--leise');
+          if (r.null) { R.Z.text(cx, 'Durch 0 kann man nicht teilen.', B / 2, Hh / 2, 'center', 16, true, ORANGE); return; }
+          const va = zahlWert(r.a), vb = zahlWert(r.b), vc = e.op === 'runden' || e.op === 'vergleich' ? va : r.wert;
+          const werte = [[va, 'a', BLAU]].concat(e.op === 'runden' ? [] : [[vb, 'b', ORANGE]]).concat(e.op === 'vergleich' || e.op === 'runden' ? [] : [[vc, '=', GRUEN]]);
+          // Zeile 1: Überblick mit passender Teilung
+          function strahl(y, lo, hi, schritt, markiert, titel, unterteilung) {
+            const x0 = 24, w = B - 48, X = function (v) { return x0 + (v - lo) / (hi - lo) * w; };
+            cx.strokeStyle = T; cx.lineWidth = 1.5; cx.beginPath(); cx.moveTo(x0, y); cx.lineTo(x0 + w, y); cx.stroke();
+            const n0 = Math.ceil(lo / schritt - 1e-9), n1 = Math.floor(hi / schritt + 1e-9);
+            for (let k = n0; k <= n1 && k - n0 < 200; k++) {
+              const v = k * schritt, gross = unterteilung && Math.abs(Math.round(v / (schritt * 10)) * schritt * 10 - v) < schritt / 100;
+              cx.beginPath(); cx.moveTo(X(v), y - (gross ? 9 : 5)); cx.lineTo(X(v), y + (gross ? 9 : 5)); cx.stroke();
+              if (!unterteilung || gross || (n1 - n0) <= 12) R.Z.text(cx, z(v, Math.max(0, -Math.floor(Math.log10(schritt) + 1e-9))), X(v), y + 20, 'center', 10, false, L);
+            }
+            R.Z.text(cx, titel, x0, y - 26, 'left', 11, true, L);
+            markiert.forEach(function (m) { if (m[0] < lo || m[0] > hi) return; cx.fillStyle = m[2]; cx.beginPath(); cx.moveTo(X(m[0]), y - 4); cx.lineTo(X(m[0]) - 6, y - 16); cx.lineTo(X(m[0]) + 6, y - 16); cx.closePath(); cx.fill(); R.Z.text(cx, m[1], X(m[0]), y - 22, 'center', 11, true, m[2]); });
+            return X;
+          }
+          let lo = Math.min.apply(null, werte.map(function (w) { return w[0]; }).concat([0])), hi = Math.max.apply(null, werte.map(function (w) { return w[0]; }).concat([0]));
+          if (hi - lo < 1) hi = lo + 1;
+          const sp = hi - lo, st = Math.pow(10, Math.floor(Math.log10(sp / 8 || 1))), st2 = sp / st > 40 ? st * 5 : sp / st > 16 ? st * 2 : st;
+          lo = Math.floor(lo / st2) * st2; hi = Math.ceil(hi / st2) * st2;
+          const X1 = strahl(52, lo, hi, st2, werte.map(function (w) { return [w[0], (w[1] === '=' ? 'Ergebnis ' : w[1] + ' = ') + z(w[0], Math.min(4, kuerzen(ausZahl(w[0])).s)), w[2]]; }), 'Überblick', false);
+          // Animation für + und −: Sprung von a um b
+          const zyk = 7000, p = (t % zyk) / zyk;
+          if ((e.op === 'plus' || e.op === 'minus') && p > 0.1) {
+            const f = Math.min(1, (p - 0.1) / 0.4), ziel = va + (vc - va) * f, xa = X1(va), xz = X1(ziel);
+            cx.strokeStyle = GRUEN; cx.lineWidth = 2.5; cx.beginPath(); cx.moveTo(xa, 52); cx.quadraticCurveTo((xa + xz) / 2, 52 - 40 * Math.sin(Math.PI * Math.min(1, f + 0.001)) - 10, xz, 52); cx.stroke();
+          }
+          // Lupe: Zehntel und Hundertstel um das Ergebnis
+          const zl = Math.floor(vc), l1 = zl, h1 = zl + 1;
+          const zoom = Math.min(1, Math.max(0, (p - 0.35) / 0.25));
+          if (zoom > 0) {
+            cx.globalAlpha = zoom;
+            strahl(150, l1, h1, 0.1, [[vc, e.op === 'runden' || e.op === 'vergleich' ? 'a' : 'Ergebnis', GRUEN]], 'Lupe 1: Zehntel zwischen ' + z(l1, 0) + ' und ' + z(h1, 0), false);
+            const z1 = Math.floor(vc * 10 + 1e-9) / 10;
+            if (zoom >= 1 && p > 0.6) {
+              cx.globalAlpha = Math.min(1, (p - 0.6) / 0.15);
+              strahl(250, z1, z1 + 0.1, 0.01, [[vc, z(vc, 4).replace(/0+$/, '').replace(/,$/, ''), GRUEN]], 'Lupe 2: Hundertstel zwischen ' + z(z1, 1) + ' und ' + z(z1 + 0.1, 1), false);
+            }
+            cx.globalAlpha = 1;
+          }
+        }
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

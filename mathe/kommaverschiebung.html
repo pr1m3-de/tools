@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kommaverschiebung und Einheiten – Formeln &amp; Rechner</title>
+  <meta name="description" content="Mal und geteilt durch 10, 100, 1000 oder 0,1: das Komma Stelle für Stelle verschieben, in der Stellenwerttafel zusehen und Längen, Flächen, Volumen, Massen und Vorsätze wie kilo und milli umrechnen.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <link rel="stylesheet" href="../assets/rechner.css">
+  <script src="../assets/basis.js"></script>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite" data-rechner data-merken>
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>In welche Richtung wandert das Komma?</summary><p>Beim Malnehmen mit 10, 100, 1000 wird die Zahl größer: das Komma wandert nach rechts, so viele Stellen, wie die Zehnerzahl Nullen hat. Beim Teilen wird sie kleiner: das Komma wandert nach links. Fehlen Stellen, werden Nullen ergänzt.</p></details>
+        <details><summary>Warum ist mal 0,1 dasselbe wie durch 10?</summary><p>0,1 ist ein Zehntel. Ein Zehntel von etwas ist das Gleiche wie das Ganze durch 10 geteilt. Deshalb wandert das Komma bei · 0,1 eine Stelle nach links, bei · 0,01 zwei Stellen.</p></details>
+        <details><summary>Warum sind es bei m² zwei Stellen und bei m³ drei?</summary><p>1 m = 10 dm, aber 1 m² = 10 dm · 10 dm = 100 dm² und 1 m³ = 10 · 10 · 10 dm³ = 1000 dm³. Bei Flächen wandert das Komma je Einheitenschritt zwei Stellen, bei Rauminhalten drei.</p></details>
+        <details><summary>Was bedeuten kilo, mega, milli und mikro?</summary><p>Es sind Abkürzungen für Zehnerpotenzen: kilo = 1000, mega = 1 000 000, giga = 10⁹, milli = 1/1000, mikro = 1/1 000 000, nano = 10⁻⁹. Von einem Vorsatz zum nächsten wandert das Komma drei Stellen.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="seitenfuss" data-wurzel="../"></div>
+
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/rechner.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    const R = Rechner, z = R.zahl, tz = R.tz, E = R.E, F = R.farbe;
+    const BLAU = '#2B7BB9', ORANGE = '#E8590C', GRUEN = '#2F9E44', LILA = '#7048E8';
+
+    // ---------- Zahlen als Ziffernfolge mit Kommastelle (exakt, ohne Rundungsfehler der Gleitkommazahlen) ----------
+    function zerlege(x) {
+      if (!isFinite(x) || x === 0) return { neg: false, d: '0', k: 1 };
+      const s = Math.abs(x).toExponential(13), m = s.split('e'), p = Number(m[1]);
+      const d = m[0].replace('.', '').replace(/0+$/, '') || '0';
+      return { neg: x < 0, d: d, k: p + 1 };   // k = Stellen vor dem Komma
+    }
+    function text(n, tex) {
+      const d = n.d, k = n.k; let ganz, nach;
+      if (k <= 0) { ganz = '0'; nach = new Array(-k + 1).join('0') + d; }
+      else if (k >= d.length) { ganz = d + new Array(k - d.length + 1).join('0'); nach = ''; }
+      else { ganz = d.slice(0, k); nach = d.slice(k); }
+      const g = ganz.replace(/\B(?=(\d{3})+(?!\d))/g, tex ? '\\,' : ' ');
+      return (n.neg && d !== '0' ? (tex ? '-' : '−') : '') + g + (nach ? (tex ? '{,}' : ',') + nach : '');
+    }
+    function verschiebe(n, k) { return { neg: n.neg, d: n.d, k: n.k + k }; }
+    function wert(n) { return (n.neg ? -1 : 1) * Number('0.' + n.d + 'e' + n.k); }
+    // ergänzte Nullen zählen (zwischen Ziffern und Komma)
+    function nullen(n) { return n.k > n.d.length ? n.k - n.d.length : n.k <= 0 ? -n.k + 1 : 0; }
+
+    // ---------- Einheiten: Zehnerexponent je Einheit ----------
+    const EINH = {
+      laenge: { name: 'Länge', e: [['mm', -3], ['cm', -2], ['dm', -1], ['m', 0], ['km', 3]], hinweis: 'je Schritt 1 Stelle (bei km 3)' },
+      flaeche: { name: 'Fläche', e: [['mm²', -6], ['cm²', -4], ['dm²', -2], ['m²', 0], ['a', 2], ['ha', 4], ['km²', 6]], hinweis: 'je Schritt 2 Stellen' },
+      volumen: { name: 'Rauminhalt', e: [['mm³', -9], ['cm³ = ml', -6], ['dm³ = l', -3], ['hl', -1], ['m³', 0]], hinweis: 'je Schritt 3 Stellen' },
+      masse: { name: 'Masse', e: [['mg', -6], ['g', -3], ['kg', 0], ['t', 3]], hinweis: 'je Schritt 3 Stellen' },
+      vorsatz: { name: 'Vorsätze (z. B. Watt, Volt, Ohm)', e: [['n (nano)', -9], ['µ (mikro)', -6], ['m (milli)', -3], ['– (Grundeinheit)', 0], ['k (kilo)', 3], ['M (mega)', 6], ['G (giga)', 9]], hinweis: 'je Vorsatz 3 Stellen' }
+    };
+    const felderEinheit = [];
+    Object.keys(EINH).forEach(function (g) {
+      const w = EINH[g].e.map(function (x) { return [x[0], x[0]]; });
+      felderEinheit.push({ k: 'von_' + g, name: 'von', wahl: w, wenn: function (e) { return e.modus === 'einheit' && e.groesse === g; } });
+      felderEinheit.push({ k: 'nach_' + g, name: 'nach', wahl: w, wenn: function (e) { return e.modus === 'einheit' && e.groesse === g; } });
+    });
+    function einhTex(n) { return n.split(' ')[0].replace(/µ/g, '}\\mu\\text{').replace(/²/g, '}^2\\text{').replace(/³/g, '}^3\\text{').replace(/–/g, ''); }
+    function exp(g, n) { const x = EINH[g].e.filter(function (q) { return q[0] === n; })[0]; return x ? x[1] : 0; }
+    const POT = [[1, '10'], [2, '100'], [3, '1000'], [4, '10 000'], [5, '100 000'], [6, '1 000 000'], [-1, '0,1'], [-2, '0,01'], [-3, '0,001']];
+    const potText = function (p) { return POT.filter(function (q) { return q[0] === p; })[0][1]; };
+    const potTex = function (p) { return potText(p).replace(',', '{,}').replace(/ /g, '\\,'); };
+
+    const beispiel = { modus: 'rechnen', x: 3.45, art: 'mal', p: 3, groesse: 'laenge' };
+    [['laenge', 'm', 'cm'], ['flaeche', 'm²', 'cm²'], ['volumen', 'dm³ = l', 'cm³ = ml'], ['masse', 'kg', 'g'], ['vorsatz', 'k (kilo)', '– (Grundeinheit)']].forEach(function (q) { beispiel['von_' + q[0]] = q[1]; beispiel['nach_' + q[0]] = q[2]; });
+    // Hochzahl als Zeichen: 10³, 10⁻²
+    const HOCH = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻' };
+    function hochZ(n) { return String(n).split('').map(function (c) { return HOCH[c] || c; }).join(''); }
+
+    R.seite({
+      titel: 'Kommaverschiebung und Einheiten',
+      einleitung: 'Eine Zahl mit 10, 100, 1000 oder 0,1 malnehmen oder durch sie teilen: Das Komma wandert, die Ziffern bleiben. In der Stellenwerttafel ist zu sehen, wie jede Ziffer ihren Platz wechselt. Dazu Einheiten umrechnen – von Millimeter bis Kilometer, von Quadratmeter bis Hektar, von Milliwatt bis Megawatt.',
+      hilfe: 'Zahl mit Komma eintragen, z. B. 3,45 oder 0,07. Beim Umrechnen von Einheiten wird nur die Zahl verschoben.',
+      gruppen: [
+        { titel: 'Zahl', farbe: BLAU, felder: [
+          { k: 'x', tex: 'x', name: 'Zahl', min: -1e12, max: 1e12 },
+          { k: 'modus', name: 'Aufgabe', wahl: [['rechnen', 'mit einer Zehnerzahl rechnen'], ['einheit', 'Einheit umrechnen']] }
+        ] },
+        { titel: 'Rechnung', farbe: LILA, felder: [
+          { k: 'art', name: 'Rechenart', wahl: [['mal', 'mal (·)'], ['durch', 'geteilt durch (:)']], wenn: function (e) { return e.modus === 'rechnen'; } },
+          { k: 'p', name: 'Zehnerzahl', wahl: POT, wenn: function (e) { return e.modus === 'rechnen'; } },
+          { k: 'groesse', name: 'Größe', wahl: Object.keys(EINH).map(function (g) { return [g, EINH[g].name]; }), wenn: function (e) { return e.modus === 'einheit'; } }
+        ].concat(felderEinheit) }
+      ],
+      beispiel: beispiel,
+
+      rechne: function (e) {
+        const r = { start: zerlege(e.x) };
+        if (e.modus === 'einheit') {
+          const g = e.groesse, a = e['von_' + g], b = e['nach_' + g];
+          r.einheit = true; r.von = a; r.nach = b; r.k = exp(g, a) - exp(g, b); r.gr = g;
+        } else r.k = (e.art === 'mal' ? 1 : -1) * e.p;
+        r.ziel = verschiebe(r.start, r.k);
+        r.xText = text(r.start); r.yText = text(r.ziel); r.y = wert(r.ziel);
+        r.nullenNeu = Math.max(0, nullen(r.ziel) - nullen(r.start));
+        return r;
+      },
+
+      ergebnis: function (r, e, H) {
+        const k = r.k, richtung = k > 0 ? 'nach rechts' : 'nach links', st = Math.abs(k) === 1 ? 'Stelle' : 'Stellen';
+        H.urteil(null, r.yText + (r.einheit ? ' ' + r.nach.split(' ')[0] : ''));
+        if (k === 0) H.meldung('Gleiche Einheit – die Zahl bleibt, wie sie ist.');
+        else H.meldung('Das Komma wandert ' + Math.abs(k) + ' ' + st + ' ' + richtung + (r.nullenNeu ? '; ' + r.nullenNeu + (r.nullenNeu === 1 ? ' Null wird' : ' Nullen werden') + ' ergänzt.' : '.'));
+        if (Math.abs(e.x) > 0 && Math.abs(r.y) > 1e15) H.meldung('Das Ergebnis ist sehr groß – in Zehnerpotenz-Schreibweise lesbarer.');
+        H.kacheln([
+          [r.xText + (r.einheit ? ' ' + r.von.split(' ')[0] : ''), 'Ausgangszahl', BLAU],
+          [(r.einheit ? 'Einheit wechseln' : (e.art === 'mal' ? '· ' : ': ') + potText(e.p)), k ? 'Komma ' + Math.abs(k) + ' ' + st + ' ' + richtung : 'keine Verschiebung', LILA],
+          [r.yText + (r.einheit ? ' ' + r.nach.split(' ')[0] : ''), 'Ergebnis', GRUEN],
+          [sci(r.ziel), 'als Zehnerpotenz', ORANGE]
+        ]);
+        if (r.einheit) {
+          const g = r.gr, l = EINH[g].e;
+          H.tabelle('Dieselbe Größe in allen Einheiten', ['Einheit', 'Wert'], l.map(function (q) { return [q[0], text(verschiebe(r.start, exp(g, r.von) - q[1]))]; }), { zahl: [1], klasse: function (i) { return l[i][0] === r.nach ? 'gewaehlt' : ''; } });
+          H.absatz(EINH[g].name + ': ' + EINH[g].hinweis + '.');
+        } else {
+          const pl = [-3, -2, -1, 1, 2, 3, 4, 5, 6];
+          H.tabelle('Dieselbe Zahl mit anderen Zehnerzahlen', ['Rechnung', 'Ergebnis'], pl.map(function (q) { return [(q > 0 ? '· ' : '· ') + potText(q), text(verschiebe(r.start, q))]; }), { zahl: [1], klasse: function (i) { return pl[i] === r.k ? 'gewaehlt' : ''; } });
+        }
+      },
+
+      weg: function (r, e) {
+        const k = r.k, w = [];
+        if (r.einheit) {
+          const g = r.gr, ea = exp(g, r.von), eb = exp(g, r.nach), ea0 = einhTex(r.von), eb0 = einhTex(r.nach);
+          w.push(['Umrechnungszahl', '1\\,\\text{' + ea0 + '} = 10^{' + (ea - eb) + '}\\,\\text{' + eb0 + '}']);
+          w.push(['Komma verschieben', text(r.start, true) + '\\,\\text{' + ea0 + '} \\cdot 10^{' + k + '} = ' + E(text(r.ziel, true) + '\\,\\text{' + eb0 + '}')]);
+        } else {
+          w.push(['Rechnung', text(r.start, true) + (e.art === 'mal' ? ' \\cdot ' : ' : ') + potTex(e.p) + ' = ' + text(r.start, true) + ' \\cdot 10^{' + k + '}']);
+          w.push(['Komma ' + Math.abs(k) + (Math.abs(k) === 1 ? ' Stelle ' : ' Stellen ') + (k > 0 ? 'nach rechts' : 'nach links'), '= ' + E(text(r.ziel, true))]);
+        }
+        if (r.nullenNeu) w.push(['Fehlende Stellen mit Nullen auffüllen', r.nullenNeu + '\\text{ Null' + (r.nullenNeu > 1 ? 'en' : '') + ' ergänzt}']);
+        w.push(['Zehnerpotenz-Schreibweise', text(r.ziel, true) + ' = ' + sciTex(r.ziel)]);
+        return w;
+      },
+
+      loeser: [
+        { titel: 'Mit Zehnerpotenzen rechnen', hilfe: 'y = x · 10^k: zwei Größen eintragen. k ist die Zahl der Stellen (negativ: nach links).',
+          felder: [
+            { k: 'x', tex: 'x', name: 'Zahl', min: 1e-9, max: 1e9, n: 'genau' },
+            { k: 'k', tex: 'k', name: 'Stellen (Exponent)', min: -9, max: 9, n: 0 },
+            { k: 'y', tex: 'y', name: 'Ergebnis', min: 1e-12, max: 1e15, n: 'genau' }
+          ],
+          beispiel: { x: 3.45, k: 3 },
+          gleichungen: [{ name: 'Kommaverschiebung', v: ['y', 'x', 'k'], f: function (q) { return [q.y, q.x * Math.pow(10, q.k)]; },
+            loese: { y: function (q) { return wert(verschiebe(zerlege(q.x), Math.round(q.k))); }, x: function (q) { return wert(verschiebe(zerlege(q.y), -Math.round(q.k))); }, k: function (q) { return Math.round(Math.log(q.y / q.x) / Math.LN10); } },
+            weg: function (k, q) { return k === 'k' ? 'k = \\lg\\frac{y}{x} = ' + E(String(q.k)) : 'y = x \\cdot 10^{k} \\Rightarrow ' + k + ' = ' + E(text(zerlege(q[k]), true)); } }]
+        },
+        { titel: 'Längen umrechnen', hilfe: 'Einen Wert eintragen, alle anderen Einheiten werden berechnet.',
+          felder: [
+            { k: 'mm', tex: 'l_{mm}', name: 'Millimeter', e: 'mm', min: 1e-6, max: 1e12, n: 'genau' },
+            { k: 'cm', tex: 'l_{cm}', name: 'Zentimeter', e: 'cm', min: 1e-7, max: 1e11, n: 'genau' },
+            { k: 'dm', tex: 'l_{dm}', name: 'Dezimeter', e: 'dm', min: 1e-8, max: 1e10, n: 'genau' },
+            { k: 'm', tex: 'l_{m}', name: 'Meter', e: 'm', min: 1e-9, max: 1e9, n: 'genau' },
+            { k: 'km', tex: 'l_{km}', name: 'Kilometer', e: 'km', min: 1e-12, max: 1e6, n: 'genau' }
+          ],
+          beispiel: { m: 2.5 },
+          gleichungen: [
+            { name: 'Meter in Millimeter', v: ['mm', 'm'], f: function (q) { return [q.mm, 1000 * q.m]; }, loese: { mm: function (q) { return 1000 * q.m; }, m: function (q) { return q.mm / 1000; } } },
+            { name: 'Meter in Zentimeter', v: ['cm', 'm'], f: function (q) { return [q.cm, 100 * q.m]; }, loese: { cm: function (q) { return 100 * q.m; }, m: function (q) { return q.cm / 100; } } },
+            { name: 'Meter in Dezimeter', v: ['dm', 'm'], f: function (q) { return [q.dm, 10 * q.m]; }, loese: { dm: function (q) { return 10 * q.m; }, m: function (q) { return q.dm / 10; } } },
+            { name: 'Meter in Kilometer', v: ['km', 'm'], f: function (q) { return [q.km * 1000, q.m]; }, loese: { km: function (q) { return q.m / 1000; }, m: function (q) { return q.km * 1000; } } }
+          ]
+        },
+        { titel: 'Flächen umrechnen', hilfe: 'Bei Flächen wandert das Komma je Schritt zwei Stellen.',
+          felder: [
+            { k: 'cm2', tex: 'A_{cm^2}', name: 'Quadratzentimeter', e: 'cm²', min: 1e-4, max: 1e14, n: 'genau' },
+            { k: 'dm2', tex: 'A_{dm^2}', name: 'Quadratdezimeter', e: 'dm²', min: 1e-6, max: 1e12, n: 'genau' },
+            { k: 'm2', tex: 'A_{m^2}', name: 'Quadratmeter', e: 'm²', min: 1e-8, max: 1e10, n: 'genau' },
+            { k: 'a', tex: 'A_{a}', name: 'Ar', e: 'a', min: 1e-10, max: 1e8, n: 'genau' },
+            { k: 'ha', tex: 'A_{ha}', name: 'Hektar', e: 'ha', min: 1e-12, max: 1e6, n: 'genau' }
+          ],
+          beispiel: { m2: 350 },
+          gleichungen: [
+            { name: 'm² in cm²', v: ['cm2', 'm2'], f: function (q) { return [q.cm2, 10000 * q.m2]; }, loese: { cm2: function (q) { return 10000 * q.m2; }, m2: function (q) { return q.cm2 / 10000; } } },
+            { name: 'm² in dm²', v: ['dm2', 'm2'], f: function (q) { return [q.dm2, 100 * q.m2]; }, loese: { dm2: function (q) { return 100 * q.m2; }, m2: function (q) { return q.dm2 / 100; } } },
+            { name: 'm² in Ar', v: ['a', 'm2'], f: function (q) { return [q.a * 100, q.m2]; }, loese: { a: function (q) { return q.m2 / 100; }, m2: function (q) { return q.a * 100; } } },
+            { name: 'm² in Hektar', v: ['ha', 'm2'], f: function (q) { return [q.ha * 10000, q.m2]; }, loese: { ha: function (q) { return q.m2 / 10000; }, m2: function (q) { return q.ha * 10000; } } }
+          ]
+        },
+        { titel: 'Rauminhalt und Liter umrechnen', hilfe: 'Bei Rauminhalten wandert das Komma je Schritt drei Stellen; 1 dm³ = 1 l.',
+          felder: [
+            { k: 'ml', tex: 'V_{ml}', name: 'Milliliter (cm³)', e: 'ml', min: 1e-3, max: 1e15, n: 'genau' },
+            { k: 'l', tex: 'V_{l}', name: 'Liter (dm³)', e: 'l', min: 1e-6, max: 1e12, n: 'genau' },
+            { k: 'hl', tex: 'V_{hl}', name: 'Hektoliter', e: 'hl', min: 1e-8, max: 1e10, n: 'genau' },
+            { k: 'm3', tex: 'V_{m^3}', name: 'Kubikmeter', e: 'm³', min: 1e-9, max: 1e9, n: 'genau' }
+          ],
+          beispiel: { l: 750 },
+          gleichungen: [
+            { name: 'Liter in Milliliter', v: ['ml', 'l'], f: function (q) { return [q.ml, 1000 * q.l]; }, loese: { ml: function (q) { return 1000 * q.l; }, l: function (q) { return q.ml / 1000; } } },
+            { name: 'Liter in Hektoliter', v: ['hl', 'l'], f: function (q) { return [q.hl * 100, q.l]; }, loese: { hl: function (q) { return q.l / 100; }, l: function (q) { return q.hl * 100; } } },
+            { name: 'Liter in Kubikmeter', v: ['m3', 'l'], f: function (q) { return [q.m3 * 1000, q.l]; }, loese: { m3: function (q) { return q.l / 1000; }, l: function (q) { return q.m3 * 1000; } } }
+          ]
+        },
+        { titel: 'Massen umrechnen',
+          felder: [
+            { k: 'mg', tex: 'm_{mg}', name: 'Milligramm', e: 'mg', min: 1e-3, max: 1e15, n: 'genau' },
+            { k: 'g', tex: 'm_{g}', name: 'Gramm', e: 'g', min: 1e-6, max: 1e12, n: 'genau' },
+            { k: 'kg', tex: 'm_{kg}', name: 'Kilogramm', e: 'kg', min: 1e-9, max: 1e9, n: 'genau' },
+            { k: 't', tex: 'm_{t}', name: 'Tonnen', e: 't', min: 1e-12, max: 1e6, n: 'genau' }
+          ],
+          beispiel: { kg: 1.25 },
+          gleichungen: [
+            { name: 'Kilogramm in Gramm', v: ['g', 'kg'], f: function (q) { return [q.g, 1000 * q.kg]; }, loese: { g: function (q) { return 1000 * q.kg; }, kg: function (q) { return q.g / 1000; } } },
+            { name: 'Gramm in Milligramm', v: ['mg', 'g'], f: function (q) { return [q.mg, 1000 * q.g]; }, loese: { mg: function (q) { return 1000 * q.g; }, g: function (q) { return q.mg / 1000; } } },
+            { name: 'Kilogramm in Tonnen', v: ['t', 'kg'], f: function (q) { return [q.t * 1000, q.kg]; }, loese: { t: function (q) { return q.kg / 1000; }, kg: function (q) { return q.t * 1000; } } }
+          ]
+        }
+      ],
+
+      sammlung: [
+        ['Malnehmen mit einer Zehnerzahl', 'x \\cdot 10^k', 'Komma k Stellen nach rechts; fehlende Stellen mit Nullen auffüllen'],
+        ['Teilen durch eine Zehnerzahl', 'x : 10^k = x \\cdot 10^{-k}', 'Komma k Stellen nach links'],
+        ['Mal 0,1 ist geteilt durch 10', 'x \\cdot 0{,}1 = x : 10', 'ebenso · 0,01 = : 100 und · 0,001 = : 1000'],
+        ['Längen', '1\\,\\text{km} = 1000\\,\\text{m}, \\quad 1\\,\\text{m} = 10\\,\\text{dm} = 100\\,\\text{cm} = 1000\\,\\text{mm}', 'Umrechnungszahl 10 (km: 1000)'],
+        ['Flächen', '1\\,\\text{m}^2 = 100\\,\\text{dm}^2 = 10\\,000\\,\\text{cm}^2, \\quad 1\\,\\text{ha} = 100\\,\\text{a} = 10\\,000\\,\\text{m}^2', 'Umrechnungszahl 100'],
+        ['Rauminhalte', '1\\,\\text{m}^3 = 1000\\,\\text{dm}^3 = 1000\\,\\text{l}, \\quad 1\\,\\text{l} = 1000\\,\\text{ml}', 'Umrechnungszahl 1000; 1 dm³ = 1 l, 1 cm³ = 1 ml'],
+        ['Massen', '1\\,\\text{t} = 1000\\,\\text{kg}, \\quad 1\\,\\text{kg} = 1000\\,\\text{g}, \\quad 1\\,\\text{g} = 1000\\,\\text{mg}', 'Umrechnungszahl 1000'],
+        ['Vorsätze', '\\text{G} = 10^{9},\\ \\text{M} = 10^{6},\\ \\text{k} = 10^{3},\\ \\text{m} = 10^{-3},\\ \\mu = 10^{-6},\\ \\text{n} = 10^{-9}', 'von Vorsatz zu Vorsatz drei Stellen'],
+        ['Zehnerpotenz-Schreibweise', 'x = m \\cdot 10^{n}, \\quad 1 \\le m < 10', 'z. B. 0,00345 = 3,45 · 10⁻³']
+      ],
+      quellen: 'Einheiten nach dem Internationalen Einheitensystem (SI) und DIN 1301-1; Ar und Hektar sind gesetzliche Flächeneinheiten in Deutschland. Gerechnet wird mit der Ziffernfolge, nicht mit Gleitkommazahlen – es gibt keine Rundungsfehler.',
+
+      bild: {
+        titel: 'Stellenwerttafel', animiert: true,
+        label: 'Stellenwerttafel: Die Ziffern wandern bei der Rechnung um mehrere Spalten, das Komma bleibt an seinem Platz',
+        hoehe: function () { return 215; },
+        hinweis: function (r) { return r.k ? 'Die Ziffern wandern ' + Math.abs(r.k) + (Math.abs(r.k) === 1 ? ' Spalte' : ' Spalten') + ' nach ' + (r.k > 0 ? 'links – die Zahl wird größer' : 'rechts – die Zahl wird kleiner') + '. Gleich gesagt: Das Komma wandert nach ' + (r.k > 0 ? 'rechts.' : 'links.') : 'Keine Verschiebung.'; },
+        zeichne: function (cx, B, Hh, t, r) {
+          const T = F('--text'), L = F('--leise');
+          const st = r.start, zl = r.ziel;
+          // Spaltenbereich: Stellenwerte 10^p von oben nach unten, Komma zwischen p = 0 und p = −1
+          const hoch = Math.max(st.k - 1, zl.k - 1, 0), tief = Math.min(st.k - st.d.length, zl.k - zl.d.length, -1);
+          let pHoch = hoch, pTief = tief;
+          const maxSp = Math.max(6, Math.floor((B - 20) / 34));
+          while (pHoch - pTief + 1 > maxSp) { if (pHoch > -pTief) pHoch--; else pTief++; }
+          const n = pHoch - pTief + 1, w = Math.min(64, (B - 20) / n), x0 = (B - n * w) / 2, y0 = 52, hz = 64;
+          const NAME = { 6: 'M', 5: 'HT', 4: 'ZT', 3: 'T', 2: 'H', 1: 'Z', 0: 'E', '-1': 'z', '-2': 'h', '-3': 't', '-4': 'zt', '-5': 'ht', '-6': 'm' };
+          const X = function (p) { return x0 + (pHoch - p) * w + w / 2; };
+          for (let p = pHoch; p >= pTief; p--) {
+            const x = X(p) - w / 2;
+            cx.fillStyle = p >= 0 ? 'rgba(43,123,185,.10)' : 'rgba(232,89,12,.10)'; cx.fillRect(x + 1, y0, w - 2, hz);
+            R.Z.text(cx, NAME[p] || ('10' + hochZ(p)), X(p), y0 - 12, 'center', w < 36 ? 10 : 12, true, p >= 0 ? BLAU : ORANGE);
+          }
+          cx.strokeStyle = L; cx.lineWidth = 1; cx.strokeRect(x0, y0, n * w, hz);
+          // Komma fest zwischen Einer und Zehntel
+          const kx = X(0) + w / 2;
+          if (kx > x0 && kx < x0 + n * w) { cx.fillStyle = LILA; cx.beginPath(); cx.arc(kx, y0 + hz - 12, 5, 0, 2 * Math.PI); cx.fill(); cx.fillRect(kx - 1.5, y0 - 4, 3, hz + 8); }
+          // Phasen: halten, wandern, Nullen, halten
+          const zyk = 6000, q = (t % zyk) / zyk;
+          const bew = q < 0.2 ? 0 : q < 0.6 ? (q - 0.2) / 0.4 : 1, glatt = bew * bew * (3 - 2 * bew);
+          const nullenZeigen = q >= 0.6, verschub = r.k * glatt;
+          cx.font = '600 ' + Math.min(30, w * 0.62) + 'px ' + (F('--technik') || 'sans-serif'); cx.textAlign = 'center'; cx.textBaseline = 'middle';
+          for (let i = 0; i < st.d.length; i++) {
+            const p = st.k - 1 - i + verschub;   // wandernde Ziffer
+            if (p > pHoch + 0.5 || p < pTief - 0.5) continue;
+            cx.fillStyle = T; cx.fillText(st.d[i], X(p), y0 + hz / 2);
+          }
+          if (nullenZeigen) {
+            const a = Math.min(1, (q - 0.6) / 0.1); cx.globalAlpha = a; cx.fillStyle = GRUEN;
+            const zk = zl.k, zd = zl.d.length;
+            for (let p = Math.max(zk - 1, 0); p >= Math.min(zk - zd, 0); p--) {
+              const idx = zk - 1 - p;   // Index in der Ziffernfolge
+              if (idx >= 0 && idx < zd) continue;
+              if (p < 0 && p < zk - zd) continue;   // nach der letzten Ziffer hinter dem Komma keine Nullen
+              if (p > pHoch || p < pTief) continue;
+              cx.fillText('0', X(p), y0 + hz / 2);
+            }
+            cx.globalAlpha = 1;
+          }
+          // Beschriftung
+          const yb = y0 + hz + 34;
+          R.Z.text(cx, r.xText, B * 0.25, yb, 'center', 16, true, BLAU);
+          R.Z.text(cx, r.k ? (r.k > 0 ? '· ' : ': ') + '10' + (Math.abs(r.k) > 1 ? hochZ(Math.abs(r.k)) : '') : '', B / 2, yb, 'center', 15, true, LILA);
+          if (q >= 0.6) R.Z.text(cx, r.yText, B * 0.75, yb, 'center', 16, true, GRUEN);
+          cx.strokeStyle = LILA; cx.fillStyle = LILA; cx.lineWidth = 2;
+          if (r.k && q > 0.15 && q < 0.65) { const dir = r.k > 0 ? -1 : 1; R.Z.pfeil(cx, B / 2 - dir * 40, yb + 30, B / 2 + dir * 40, yb + 30, 8); R.Z.text(cx, 'Ziffern ' + Math.abs(r.k) + (Math.abs(r.k) === 1 ? ' Spalte' : ' Spalten'), B / 2, yb + 50, 'center', 12, false, LILA); }
+          if (hoch > pHoch || tief < pTief) R.Z.text(cx, 'Ausschnitt der Tafel', B - 8, Hh - 10, 'right', 10, false, L);
+        }
+      }
+    });
+    // Zehnerpotenz-Schreibweise
+    function sci(n) { if (n.d === '0') return '0'; const m = n.d[0] + (n.d.length > 1 ? ',' + n.d.slice(1) : ''); return (n.neg ? '−' : '') + m + ' · 10' + hochZ(n.k - 1); }
+    function sciTex(n) { if (n.d === '0') return '0'; const m = n.d[0] + (n.d.length > 1 ? '{,}' + n.d.slice(1) : ''); return (n.neg ? '-' : '') + m + ' \\cdot 10^{' + (n.k - 1) + '}'; }
+  })();
+  </script>
+</body>
+</html>

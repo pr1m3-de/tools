@@ -1,0 +1,18 @@
+{
+  "nr": 1,
+  "titel": "Bruchrechnen",
+  "gruppe": "Grundlagen",
+  "bereich": "Mathematik",
+  "themen": ["Brüche", "Hauptnenner", "Kürzen", "Erweitern", "Gemischte Zahl", "Kehrwert", "Periodische Dezimalzahl", "kgV", "ggT"],
+  "text": "Brüche addieren, subtrahieren, multiplizieren, dividieren und vergleichen – mit Hauptnenner, Erweitern, Kürzen, gemischter Zahl, periodischer Dezimalzahl und animierten Bruchbildern.",
+  "tex": "\\frac{a}{b} + \\frac{c}{d} = \\frac{ad + bc}{bd}",
+  "verwandt": ["mathe/dezimalzahlen.html", "mathe/kommaverschiebung.html"],
+  "fragen": [
+    ["Wie heißt der Hauptnenner von 1/4 und 1/6?", "12", ["24", "10", "6"], "Das kleinste gemeinsame Vielfache von 4 und 6 ist 12."],
+    ["Was ergibt 3/4 : 1/8?", "6", ["3/32", "1/6", "24"], "Mit dem Kehrwert malnehmen: 3/4 · 8/1 = 24/4 = 6. In drei Vierteln stecken sechs Achtel."],
+    ["Welcher Bruch ergibt eine periodische Dezimalzahl?", "5/12", ["3/8", "7/20", "9/25"], "12 = 2 · 2 · 3 enthält den Primfaktor 3. Nenner nur aus 2 und 5 ergeben endliche Dezimalzahlen."],
+    ["Was ist 2 ¾ als unechter Bruch?", "11/4", ["9/4", "23/4", "6/4"], "2 · 4 + 3 = 11, der Nenner bleibt 4."],
+    ["Was passiert beim Erweitern mit dem Wert des Bruchs?", "Er bleibt gleich.", ["Er wird größer.", "Er wird kleiner.", "Er verdoppelt sich."], "Zähler und Nenner werden mit derselben Zahl multipliziert – das ist eine Multiplikation mit 1."],
+    ["Wie viel sind 2/5 von 60 kg?", "24 kg", ["12 kg", "150 kg", "30 kg"], "60 kg : 5 · 2 = 24 kg."]
+  ]
+}
