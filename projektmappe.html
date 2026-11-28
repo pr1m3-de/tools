@@ -156,7 +156,7 @@
         const kn = document.createElement('span'); kn.className = 'knoepfe';
         const a = document.createElement('a'); a.className = 'knopf'; a.textContent = 'Öffnen';
         // Link nach dem gemeinsamen Muster (#werte=… bzw. #plan=…), geht nicht an den Server
-        const LINKNAME = { 'pv-dachplaner-2': 'dach', 'pv-verschaltung-1': 'plan', 'gasleitung-1': 'anlage', 'brandmeldeanlage-1': 'anlage', 'gefaehrdungsbeurteilung-1': 'plan', 'homelab-1': 'plan', 'homelab-server-1': 'plan', 'knx-simulator-1': 'anlage', 'automation-2': 'plan', 'sps-1': 'plan', 'kleinsteuerung-1': 'plan', 'motorpruefstand-1': 'plan', 'stromkreis-1': 'plan' };
+        const LINKNAME = { 'pv-dachplaner-2': 'dach', 'pv-verschaltung-1': 'plan', 'gasleitung-1': 'anlage', 'brandmeldeanlage-1': 'anlage', 'gefaehrdungsbeurteilung-1': 'plan', 'homelab-1': 'plan', 'homelab-server-1': 'plan', 'knx-simulator-1': 'anlage', 'automation-2': 'plan', 'sps-1': 'plan', 'kleinsteuerung-1': 'plan', 'motorpruefstand-1': 'plan', 'stromkreis-1': 'plan', 'elektroplanung-1': 'plan' };
         a.href = v ? Teilen.urlSofort(s[0], 'werte', v) : eigen && LINKNAME[s[3]] ? Teilen.urlSofort(s[0], LINKNAME[s[3]], eigen) : s[0];
         const weg = document.createElement('button'); weg.type = 'button'; weg.className = 'knopf-leise'; weg.textContent = 'zurücksetzen';
         weg.addEventListener('click', function () { schreiben(schluessel(s[0]), null); if (s[3]) schreiben(s[3], null); seitenZeigen(); melden('meldung1', s[1] + ' zurückgesetzt.'); });
