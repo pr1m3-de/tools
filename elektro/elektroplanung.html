@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elektroplanung: Bauplan, Stromlaufplan und Verdrahtungsplan – Formeln &amp; Rechner</title>
+  <meta name="description" content="Installationsplan auf dem eigenen Bauplan zeichnen und daraus baustellenreife Pläne erzeugen: Übersichtsschaltplan, Stromlaufplan in aufgelöster Darstellung, Verteiler- und Klemmenplan, Verdrahtung jeder Abzweigdose, Kabel- und Stückliste mit Spannungsfall und Abschaltbedingung.">
+  <meta name="theme-color" content="#F1F3F2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111214" media="(prefers-color-scheme: dark)">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="icon" href="../favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/symbol-apple.png">
+  <link rel="stylesheet" href="../assets/katex/katex.min.css">
+  <link rel="stylesheet" href="../assets/stil.css">
+  <script src="../assets/basis.js"></script>
+  <style>
+    .seite.ep { max-width: 1560px; }
+    .ep-kopf { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; margin: 14px 0 10px; }
+    .ep-reiter { display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; padding: 4px; border: 1px solid var(--linie); border-radius: 999px; background: var(--flaeche); max-width: 100%; }
+    .ep-reiter::-webkit-scrollbar { display: none; }
+    .ep-reiter button { flex: none; border: 0; background: none; color: var(--text); font: inherit; font-family: var(--technik); font-size: .98rem; padding: 7px 14px; border-radius: 999px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; }
+    .ep-reiter button[aria-selected="true"] { background: var(--text); color: var(--grund); }
+    .ep-reiter .zahl { font-size: .75rem; font-weight: 700; border-radius: 999px; padding: 1px 7px; color: #fff; background: #868E96; }
+    .ep-reiter .zahl.schlecht { background: #C92A2A; } .ep-reiter .zahl.mittel { background: #E67700; } .ep-reiter .zahl.gut { background: #2F9E44; }
+    #ep-kurz { color: var(--leise); font-size: .9rem; font-family: var(--technik); }
+    #ep-meldung { min-height: 1.3em; color: var(--ergebnis); font-size: .92rem; margin: 0 0 6px; }
+    .ep-ansicht[hidden] { display: none !important; }
+    /* Bauplan */
+    .ep-leiste { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; margin-bottom: 8px; }
+    .ep-leiste .ep-gruppe { display: inline-flex; gap: 4px; align-items: center; }
+    .ep-leiste button, .geschosse button { border: 1px solid var(--linie); background: var(--flaeche); color: var(--text); border-radius: 999px; padding: 5px 11px; font: inherit; font-size: .9rem; cursor: pointer; min-width: 34px; }
+    .ep-leiste button:disabled { opacity: .4; cursor: default; }
+    .geschosse { display: inline-flex; gap: 4px; flex-wrap: wrap; }
+    .geschosse button[aria-pressed="true"] { background: var(--text); color: var(--grund); border-color: var(--text); }
+    .geschosse .weg { color: var(--fehler); }
+    .ep .ep-leiste label { display: inline-flex; flex-direction: row; gap: 5px; align-items: center; font-size: .9rem; color: var(--leise); }
+    .ep-arbeit { display: grid; grid-template-columns: 190px minmax(0, 1fr) 300px; gap: 10px; align-items: stretch; }
+    .ep-palette, .ep-eigen { background: var(--flaeche); border: 1px solid var(--linie); border-radius: var(--rund); padding: 10px; overflow: auto; max-height: 74vh; }
+    .ep-palette h4 { margin: 10px 0 4px; font-family: var(--technik); font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; color: var(--leise); }
+    .ep-palette .werkzeuge, .ep-palette .symbole { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+    .ep-palette button { display: flex; flex-direction: column; align-items: center; gap: 2px; border: 1px solid var(--linie); background: var(--flaeche2); color: var(--text); border-radius: var(--rund-klein); padding: 5px 3px; cursor: pointer; font: inherit; font-size: .72rem; line-height: 1.1; text-align: center; min-width: 0; }
+    .ep-palette button svg { width: 34px; height: 30px; color: var(--text); }
+    .ep-palette button[aria-pressed="true"] { border-color: #2B7BB9; background: rgba(43, 123, 185, .14); box-shadow: inset 0 0 0 1px #2B7BB9; }
+    .ep-flaeche { position: relative; border: 1px solid var(--linie); border-radius: var(--rund); overflow: hidden; background: #fff; min-height: 420px; }
+    #bauplan { display: block; width: 100%; height: 74vh; min-height: 420px; touch-action: none; user-select: none; -webkit-user-select: none; }
+    #bauplan .geraet { cursor: move; }
+    #ep-hinweis { position: absolute; left: 8px; bottom: 8px; right: 8px; font-size: .8rem; color: #495057; background: rgba(255, 255, 255, .88); border-radius: 6px; padding: 4px 8px; pointer-events: none; }
+    .ep-eigen h3 { margin: 0 0 4px; font-size: 1.1rem; }
+    .ep-eigen h4 { margin: 14px 0 4px; font-family: var(--technik); }
+    .ep-eigen .klein, .ep .klein { color: var(--leise); font-size: .84rem; margin: 4px 0 8px; }
+    .ep .raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(124px, 1fr)); gap: 8px; margin: 8px 0; }
+    .ep .raster.breit { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+    .ep label { display: flex; flex-direction: column; gap: 2px; font-size: .78rem; color: var(--leise); min-width: 0; }
+    .ep label.haken { flex-direction: row; align-items: center; gap: 6px; font-size: .84rem; color: var(--text); grid-column: 1 / -1; }
+    .ep input[type="text"], .ep select { padding: 6px 8px; border: 1.5px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); font: inherit; font-size: .9rem; min-width: 0; width: 100%; }
+    .ep input.falsch { border-color: var(--fehler); background: var(--fehler-flaeche); }
+    .ep .mit-einheit { display: flex; align-items: center; gap: 4px; } .ep .mit-einheit i { font-style: normal; color: var(--leise); font-size: .82rem; }
+    .knopf-reihe { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0; }
+    .knopf.klein { padding: 4px 10px; font-size: .82rem; }
+    .knopf.gefahr { color: var(--fehler); }
+    .kabel-info { display: flex; flex-direction: column; gap: 2px; font-size: .82rem; background: var(--flaeche2); border-radius: var(--rund-klein); padding: 8px; }
+    .tipps { font-size: .82rem; color: var(--leise); padding-left: 18px; margin: 12px 0 0; }
+    @media (max-width: 1100px) { .ep-arbeit { grid-template-columns: 160px minmax(0, 1fr); } .ep-eigen { grid-column: 1 / -1; max-height: none; } }
+    @media (max-width: 700px) {
+      .ep-arbeit { grid-template-columns: minmax(0, 1fr); }
+      .ep-palette { max-height: none; display: flex; gap: 6px; overflow-x: auto; padding: 6px; }
+      .ep-palette .kat, .ep-palette .werkzeuge { flex: none; }
+      .ep-palette .kat h4 { margin: 0 0 3px; }
+      .ep-palette .werkzeuge, .ep-palette .symbole { display: flex; gap: 4px; }
+      .ep-palette button { width: 62px; }
+      #bauplan { height: 62vh; }
+    }
+    /* Tabellen */
+    .tabelle-huelle { overflow-x: auto; border: 1px solid var(--linie); border-radius: var(--rund); background: var(--flaeche); margin: 6px 0 14px; }
+    table.liste { border-collapse: collapse; width: 100%; font-size: .86rem; }
+    table.liste th, table.liste td { padding: 5px 8px; border-bottom: 1px solid var(--linie); text-align: left; vertical-align: middle; white-space: nowrap; }
+    table.liste th { font-family: var(--technik); background: var(--flaeche2); position: sticky; top: 0; }
+    table.liste td.zahl, table.liste th.zahl { text-align: right; font-variant-numeric: tabular-nums; }
+    table.liste td.fett { font-weight: 700; }
+    table.liste label { display: block; } table.liste label > span:empty { display: none; }
+    table.liste select, table.liste input[type="text"] { padding: 3px 6px; font-size: .84rem; min-width: 64px; }
+    table.kreise td:nth-child(2) input { min-width: 170px; }
+    table.liste .zwei { display: flex; gap: 4px; }
+    .fehlerzeile td { background: var(--fehler-flaeche); }
+    .farbpunkt { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: 0; }
+    .schlecht { color: var(--fehler); } .mittel { color: #E67700; } .gut { color: #2F9E44; }
+    .phasen { display: grid; gap: 4px; max-width: 520px; margin: 4px 0 12px; }
+    .phasen .balken { display: grid; grid-template-columns: 30px 1fr 70px; align-items: center; gap: 8px; font-size: .86rem; }
+    .phasen .balken i { display: block; height: 10px; border-radius: 5px; background: linear-gradient(90deg, #2B7BB9, #E4572E); min-width: 2px; }
+    .listen-kopf { display: flex; align-items: center; gap: 12px; justify-content: space-between; margin-top: 10px; }
+    .listen-kopf h3 { margin: 0; }
+    .dosen-liste details { border-bottom: 1px solid var(--linie); padding: 6px 0; }
+    .dosen-liste summary { cursor: pointer; font-family: var(--technik); }
+    .dosen-liste ul { font-size: .86rem; margin: 6px 0; }
+    .warn-liste { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+    .warn-liste li { display: grid; grid-template-columns: 70px 1fr auto; gap: 10px; align-items: center; padding: 8px 10px; border: 1px solid var(--linie); border-radius: var(--rund-klein); background: var(--flaeche); color: var(--text); }
+    .warn-liste li.schlecht { border-left: 4px solid #C92A2A; } .warn-liste li.mittel { border-left: 4px solid #E67700; }
+    .warn-liste b { font-family: var(--technik); font-size: .85rem; }
+    @media (max-width: 560px) { .warn-liste li { grid-template-columns: 1fr; } }
+    /* Pläne */
+    .ep-plaene { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 12px; }
+    #ep-blaetter { display: flex; flex-direction: column; gap: 3px; max-height: 78vh; overflow: auto; }
+    #ep-blaetter button { display: grid; grid-template-columns: 28px 1fr; gap: 6px; text-align: left; border: 1px solid transparent; background: none; color: var(--text); padding: 6px 8px; border-radius: var(--rund-klein); cursor: pointer; font: inherit; font-size: .86rem; }
+    #ep-blaetter button b { font-family: var(--technik); color: var(--leise); }
+    #ep-blaetter button[aria-pressed="true"] { border-color: var(--linie); background: var(--flaeche); box-shadow: var(--schatten); }
+    .blatt-rahmen { background: #fff; border: 1px solid var(--linie); border-radius: var(--rund); padding: 6px; overflow: auto; }
+    .blatt-rahmen svg { display: block; width: 100%; min-width: 760px; height: auto; }
+    #ep-blatt-titel { font-family: var(--technik); margin: 0 0 6px; font-size: 1rem; }
+    @media (max-width: 860px) { .ep-plaene { grid-template-columns: minmax(0, 1fr); } #ep-blaetter { max-height: 220px; } }
+    /* Druck der Planmappe */
+    .ep-sammlung { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr)); gap: 10px 18px; }
+    .ep-sammlung section h3 { margin: 6px 0 4px; font-size: 1rem; }
+    .ep-sammlung section p { margin: 4px 0 0; color: var(--leise); font-size: .86rem; }
+    .ep-sammlung .katex-display { margin: .3em 0; overflow-x: auto; overflow-y: hidden; }
+    #ep-druck { display: none; }
+    @media print {
+      body.drucke-mappe > *:not(#ep-druck) { display: none !important; }
+      body.drucke-mappe #ep-druck { display: block !important; }
+      body.drucke-mappe { background: #fff !important; margin: 0 !important; padding: 0 !important; }
+      .druck-blatt { page-break-after: always; break-after: page; overflow: hidden; }
+      .druck-blatt:last-child { page-break-after: auto; break-after: auto; }
+      .druck-blatt svg { width: 100%; height: 100%; display: block; }
+      body:not(.drucke-mappe) .ep-arbeit, body:not(.drucke-mappe) .ep-leiste { display: none !important; }
+    }
+  </style>
+  <style id="ep-druckstil"></style>
+</head>
+
+<body>
+  <div id="seitenkopf" data-wurzel="../"></div>
+
+  <main class="seite ep" data-eigenes-pdf>
+    <section class="held">
+      <h1><span class="unterstrichen">Elektroplanung</span></h1>
+      <p>Auf dem eigenen Bauplan Räume nachziehen und Steckdosen, Schalter, Leuchten und Geräte setzen. Daraus entstehen baustellenreife Pläne: Installationsplan, Übersichtsschaltplan, Stromlaufplan in aufgelöster Darstellung, Verteiler- und Klemmenplan, die Verdrahtung jeder Abzweigdose sowie Kabel- und Stückliste. Spannungsfall, Strombelastbarkeit und Abschaltbedingung werden für jeden Stromkreis geprüft.</p>
+      <div class="teilen-leiste">
+        <button type="button" class="knopf-leise" id="ep-teilen">Link kopieren</button>
+      </div>
+    </section>
+
+    <div class="ep-kopf">
+      <nav class="ep-reiter" role="tablist" aria-label="Ansicht">
+        <button type="button" role="tab" data-reiter="bauplan">Bauplan</button>
+        <button type="button" role="tab" data-reiter="kreise">Stromkreise</button>
+        <button type="button" role="tab" data-reiter="plaene">Pläne</button>
+        <button type="button" role="tab" data-reiter="listen">Listen</button>
+        <button type="button" role="tab" data-reiter="pruefung">Prüfung <span class="zahl" id="ep-zahl-pruefung"></span></button>
+        <button type="button" role="tab" data-reiter="projekt">Projekt</button>
+      </nav>
+      <span id="ep-kurz"></span>
+    </div>
+    <p id="ep-meldung" role="status" aria-live="polite"></p>
+
+    <section class="ep-ansicht" id="ep-ansicht-bauplan" aria-label="Bauplan">
+      <div class="ep-leiste">
+        <div class="geschosse" id="ep-geschosse"></div>
+        <div class="ep-gruppe">
+          <button type="button" id="ep-undo" title="Rückgängig (Strg+Z)" aria-label="Rückgängig">↶</button>
+          <button type="button" id="ep-redo" title="Wiederholen (Strg+Y)" aria-label="Wiederholen">↷</button>
+        </div>
+        <div class="ep-gruppe">
+          <button type="button" id="ep-zoom-minus" aria-label="Verkleinern">−</button>
+          <button type="button" id="ep-zoom-plus" aria-label="Vergrößern">+</button>
+          <button type="button" id="ep-einpassen">Einpassen</button>
+        </div>
+        <label><input type="checkbox" id="ep-raster" checked> Raster 5 cm</label>
+        <label><input type="checkbox" id="ep-leitungen" checked> Leitungen</label>
+      </div>
+      <div class="ep-arbeit">
+        <aside class="ep-palette" id="ep-palette" aria-label="Werkzeuge und Symbole"></aside>
+        <div class="ep-flaeche">
+          <svg id="bauplan" xmlns="http://www.w3.org/2000/svg" role="application" aria-label="Bauplan-Zeichenfläche"></svg>
+          <div id="ep-hinweis"></div>
+        </div>
+        <aside class="ep-eigen" id="eigenschaften" aria-label="Eigenschaften"></aside>
+      </div>
+    </section>
+
+    <section class="ep-ansicht tafel" id="ep-ansicht-kreise" hidden aria-label="Stromkreise">
+      <div id="ep-kreise"></div>
+    </section>
+
+    <section class="ep-ansicht" id="ep-ansicht-plaene" hidden aria-label="Pläne">
+      <div class="knopf-reihe">
+        <button type="button" class="knopf knopf-haupt" id="ep-drucken">Planmappe drucken / als PDF</button>
+        <button type="button" class="knopf" id="ep-drucken-eins">Dieses Blatt drucken</button>
+        <button type="button" class="knopf" id="ep-svg">Blatt als SVG</button>
+        <button type="button" class="knopf" id="ep-vorher" aria-label="Vorheriges Blatt">‹</button>
+        <button type="button" class="knopf" id="ep-nachher" aria-label="Nächstes Blatt">›</button>
+      </div>
+      <div class="ep-plaene">
+        <nav id="ep-blaetter" aria-label="Blätter"></nav>
+        <div>
+          <p id="ep-blatt-titel"></p>
+          <div class="blatt-rahmen" id="ep-blatt"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ep-ansicht tafel" id="ep-ansicht-listen" hidden aria-label="Listen"><div id="ep-listen"></div></section>
+    <section class="ep-ansicht tafel" id="ep-ansicht-pruefung" hidden aria-label="Prüfung"><div id="ep-pruefung"></div></section>
+    <section class="ep-ansicht tafel" id="ep-ansicht-projekt" hidden aria-label="Projekt"><div id="ep-projekt"></div></section>
+
+    <section class="tafel abstand formelsammlung" aria-labelledby="h-formeln">
+      <h2 id="h-formeln">Formelsammlung</h2>
+      <p class="hilfe">Mit diesen Formeln rechnet die Planung jeden Stromkreis nach.</p>
+      <div id="ep-sammlung" class="ep-sammlung"></div>
+      <p class="quellen">DIN 18015-1 (Spannungsfall ≤ 3 %), DIN 18015-2 (Ausstattung), DIN 18015-3 (Installationszonen), DIN VDE 0298-4 (Strombelastbarkeit), DIN VDE 0100-410 (Schutz gegen elektrischen Schlag), DIN VDE 0100-430 (Überstromschutz), DIN VDE 0100-520 (Leitungen), DIN VDE 0100-722 (Ladepunkte), DIN VDE 0293-308 (Aderfarben), DIN EN 61082 und DIN EN 60617 (Schaltpläne und Symbole), DIN EN 81346 (Kennzeichnung).</p>
+    </section>
+
+    <section class="tafel abstand seo-info" aria-labelledby="h-faq">
+      <h2 id="h-faq">Häufige Fragen</h2>
+      <div class="faq">
+        <details><summary>Woher weiß die Planung, ob ein Schalter ein Aus-, Wechsel- oder Kreuzschalter ist?</summary><p>Alle Schalter mit demselben Buchstaben schalten dieselbe Leuchtengruppe. Ist es einer, wird er Ausschalter; zwei werden Wechselschalter; ab drei kommen Kreuzschalter dazwischen. Taster ergeben eine Stromstoßschaltung mit Stromstoßschalter im Verteiler, ein Serienschalter schaltet zwei Gruppen.</p></details>
+        <details><summary>Wie werden die Leitungslängen berechnet?</summary><p>Vom Verteiler zur ersten Abzweigdose eines Stromkreises, von dort weiter von Raum zu Raum, und von jeder Dose zu den Geräten – jeweils rechtwinklig entlang der Wände (Installationszonen nach DIN 18015-3) plus Höhenunterschied und 0,3 m Vorrat. Über Geschosse kommt die Geschosshöhe dazu. Vor dem Bestellen vor Ort nachmessen.</p></details>
+        <details><summary>Welche Prüfungen rechnet die Seite?</summary><p>Strombelastbarkeit der Leitung nach DIN VDE 0298-4 (Iz ≥ In), Spannungsfall bis zum entferntesten Verbraucher (höchstens 3 % nach DIN 18015-1), Schleifenimpedanz für die Abschaltung in 0,4 s (DIN VDE 0100-410), RCD-Pflicht, Stromkreise je RCD, Außenleiterlast, Ladepunkte (DIN VDE 0100-722) und grobe Ausstattungs-Richtwerte nach DIN 18015-2.</p></details>
+        <details><summary>Kann ich meinen eigenen Grundriss verwenden?</summary><p>Ja. Ein Foto, einen Scan oder einen als Bild gespeicherten PDF-Plan laden, mit „Maßstab festlegen“ eine bemaßte Strecke antippen und die Räume darauf nachziehen. Das Bild bleibt im Browser und wird mitgedruckt.</p></details>
+        <details><summary>Wie komme ich an die Pläne als PDF?</summary><p>Im Reiter „Pläne“ auf „Planmappe drucken / als PDF“ tippen und im Druckdialog „Als PDF speichern“ wählen. Alle Blätter kommen im Format A3 quer (oder verkleinert auf A4) mit Schriftfeld und Blattnummern.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <div id="ep-druck"></div>
+  <div id="seitenfuss" data-wurzel="../"></div>
+  <script src="../assets/katex/katex.min.js"></script>
+  <script src="../assets/elektroplanung.js"></script>
+</body>
+</html>

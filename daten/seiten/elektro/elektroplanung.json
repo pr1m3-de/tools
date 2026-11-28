@@ -1,0 +1,12 @@
+{
+  "nr": 205,
+  "titel": "Elektroplanung: Bauplan, Stromlaufplan und Verdrahtungsplan",
+  "gruppe": "Installation und Schutz",
+  "bereich": "Elektrotechnik",
+  "auchIn": ["Werkzeuge"],
+  "themen": ["Installationsplan", "Stromlaufplan", "Übersichtsschaltplan", "Verdrahtungsplan", "Klemmenplan", "Abzweigdose", "Wechselschaltung", "Kreuzschaltung", "Stromstoßschaltung", "Serienschaltung", "Kabelliste", "Stückliste", "Bauplan", "Grundriss", "DIN 18015"],
+  "text": "Installationsplan auf dem eigenen Bauplan zeichnen und daraus baustellenreife Pläne erzeugen: Übersichtsschaltplan, Stromlaufplan in aufgelöster Darstellung, Verteiler- und Klemmenplan, Verdrahtung jeder Abzweigdose, Kabel- und Stückliste mit Spannungsfall und Abschaltbedingung.",
+  "tex": "\\Delta u = \\frac{2 \\, l \\, I_n}{\\kappa \\, A \\, U_0} \\le 3\\,\\%",
+  "verwandt": ["elektro/leitungsdimensionierung.html", "elektro/spannungsfall.html", "elektro/schleifenimpedanz.html", "elektro/stromkreis-simulator.html", "protokolle/elektro.html"],
+  "projektmappe": {"nr": 155, "name": "Elektroplanung", "farbe": "#2B7BB9", "speicher": "elektroplanung-1"}
+}
